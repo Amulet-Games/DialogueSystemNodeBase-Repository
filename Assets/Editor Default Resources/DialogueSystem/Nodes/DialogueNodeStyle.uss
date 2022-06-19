@@ -1,0 +1,14 @@
+.node #title {
+	background-color: #FF6334;
+}
+
+#title-label {
+	min-width: 98px;
+}
+
+/* --------------------------------------------------------- Add Choice ---------------------------------------------------------- */
+
+.dialogueNode_AddChoiceButton {
+	font-size: 13px;
+	margin-top: 3.5px;
+}

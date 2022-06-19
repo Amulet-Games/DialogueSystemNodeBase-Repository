@@ -1,0 +1,101 @@
+/*< -------------------- Common -------------------- >*/
+.modifier_Common_RemoveButton {
+	height: 27px;
+	width: 25px;
+	
+	font-size: 15px;
+
+	/* top - right - bottom - left */
+	margin: 1px 1px 0px 0px;
+	
+	/* top - right - bottom - left */
+	padding: 0px 6px 0px 6px;
+
+	border-width: 0px;
+}
+
+/*< -------------------- Condition -------------------- >*/
+.modifier_Condition_MainBox {
+	flex-direction: row;
+	justify-content: space-between;
+	height: 32px;
+}
+
+.modifier_Condition_TextField {
+	min-width: 150px;
+	width: 248px;
+	height: 27px;
+
+	white-space: normal;
+
+	/* top - right - bottom - left */
+	margin: 1px 4px 2px 0px;
+}
+
+.modifier_Condition_EnumField {
+	min-width: 125px;
+	
+	/* top - right - bottom - left */
+	margin: 0px 4px 1px 0px;
+
+	top: 0.5px;
+}
+
+.modifier_Condition_FloatField {
+	min-width: 40px;
+	width: 100px;
+	height: 27px;
+
+	/* top - right - bottom - left */
+	margin: 1px 4.5px 1px 0px;
+}
+
+/*< -------------------- Basic Event -------------------- >*/
+.modifier_BasicEvent_MainBox {
+	flex-direction: row;
+	justify-content: space-between;
+	height: 32px;
+}
+
+.modifier_BasicEvent_TextField {
+	min-width: 150px;
+	width: 248px;
+	height: 27px;
+
+	white-space: normal;
+
+	/* top - right - bottom - left */
+	margin: 1px 4px 2px 0px;
+}
+
+.modifier_BasicEvent_EnumField {
+	min-width: 125px;
+	
+	/* top - right - bottom - left */
+	margin: 1px 4px 1px 0px;
+}
+
+.modifier_BasicEvent_FloatField {
+	min-width: 40px;
+	width: 100px;
+	height: 27px;
+
+	/* top - right - bottom - left */
+	margin: 1px 4.5px 1px 0px;
+}
+
+/*< -------------------- Scriptable Event -------------------- >*/
+.modifier_ScriptableEvent_MainBox {
+	flex-direction: row;
+	justify-content: space-between;
+	height: 32px;
+}
+
+.modifier_ScriptableEvent_ObjectField {
+	width: 482px;
+
+	-unity-text-align: middle-left;
+	
+	/* top - right - bottom - left */
+	margin: 1px 4.5px 1px 0px;
+}

@@ -1,0 +1,7 @@
+.node #title {
+	background-color: #FFA600;
+}
+
+#title-label {
+	min-width: 155px;
+}

@@ -1,0 +1,87 @@
+/*< -------------------- Common -------------------- >*/
+.segment_Title_MainBox {
+	flex-direction: row;
+	border-bottom-width: 2px;
+}
+
+.segment_Title_Label {
+	margin-right: auto;
+	margin-top: 1px;
+	padding-left: 9px;
+	font-size: 18px;
+	color: white;
+}
+
+.segment_Title_RemoveButton {
+	height: 21px;
+	margin-left: auto;
+	margin-top: 2px;
+	margin-bottom: 0px;
+	border-width: 0px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+}
+
+/*< -------------------- Image Preview -------------------- >*/
+.segment_ImagePreview_TitleBox {
+	background-color: #DD4E50;
+}
+
+.segment_ImagePreview_ImagesBox {
+	flex-direction: row;
+	border-top-width: 4px;
+	border-bottom-width: 4px;
+}
+
+.segment_ImagePreivew_Images {
+	height: 140px;
+	width: 75px;
+}
+
+.segment_ImagePreivew_Image_L {
+	margin-right: auto;
+}
+
+.segment_ImagePreivew_Image_R {
+	margin-left: auto;
+}
+
+
+.segment_ImagePreview_ObjectFieldsBox {
+	flex-direction: row;
+}
+
+
+.segment_ImagePreivew_ObjectField_L {
+	margin-right: auto;
+}
+
+.segment_ImagePreivew_ObjectField_R {
+	margin-left: auto;
+}
+
+/*< -------------------- Speaker Name -------------------- >*/
+.segment_SpeakerName_TitleBox {
+	background-color: #6A71D5;
+	margin-bottom: 1px;
+}
+
+.segment_SpeakerName_TextField {
+	min-width: 200px;
+	width: 353px;
+	height: 25px;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	margin-left: 0px;
+	margin-right: 0px;
+	white-space: normal;
+}
+
+.segment_SpeakerName_TextField .unity-text-field__input {
+	padding-left: 9px;
+}
+
+/*< -------------------- LG Textline -------------------- >*/
+.segment_LGTextline_TitleBox {
+	background-color: #D569C8;
+}
