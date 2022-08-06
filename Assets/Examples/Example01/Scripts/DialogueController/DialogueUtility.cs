@@ -6,8 +6,8 @@ namespace AG
 {
     public class DialogueUtility : MonoBehaviour
     {
-        [Header("Dialogue Container (Drops).")]
-        public DialogueContainerSO containerSO;
+        //[Header("Dialogue Container (Drops).")]
+        //public DialogueContainerSO containerSO;
 
         //public BaseNodeData GetFirstNodeDataAfterStart()
         //{

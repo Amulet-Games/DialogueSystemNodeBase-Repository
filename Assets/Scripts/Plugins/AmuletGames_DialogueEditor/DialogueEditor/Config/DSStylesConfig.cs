@@ -18,12 +18,14 @@ namespace AG
         #region - StyleSheets.
         public static StyleSheet dsModifiersStyle;
         public static StyleSheet dsSegmentsStyle;
+        public static StyleSheet dsIntegrantsStyle;
+        public static StyleSheet dsRootedModifiersStyle;
         #endregion
 
         #region - Modifiers.
 
         #region - Commons
-        public static string modifier_Common_RemoveButton = "modifier_Common_RemoveButton";
+        public static string modifier_RemoveModifier_Button = "modifier_RemoveModifier_Button";
         #endregion
 
         #region - Condition
@@ -31,18 +33,17 @@ namespace AG
         public static string modifier_Condition_TextField = "modifier_Condition_TextField";
         public static string modifier_Condition_EnumField = "modifier_Condition_EnumField";
         public static string modifier_Condition_FloatField = "modifier_Condition_FloatField";
+
+        public static string modifier_Condition_Rooted_TextField = "modifier_Condition_Rooted_TextField";
+        public static string modifier_Condition_Rooted_EnumField = "modifier_Condition_Rooted_EnumField";
+        public static string modifier_Condition_Rooted_FloatField = "modifier_Condition_Rooted_FloatField";
         #endregion
 
-        #region - Basic Event
-        public static string modifier_BasicEvent_MainBox = "modifier_BasicEvent_MainBox";
-        public static string modifier_BasicEvent_TextField = "modifier_BasicEvent_TextField";
-        public static string modifier_BasicEvent_EnumField = "modifier_BasicEvent_EnumField";
-        public static string modifier_BasicEvent_FloatField = "modifier_BasicEvent_FloatField";
-        #endregion
+        #region - Event
+        public static string modifier_Event_MainBox = "modifier_Event_MainBox";
+        public static string modifier_Event_ObjectField = "modifier_Event_ObjectField";
 
-        #region - Scriptable Event
-        public static string modifier_ScriptableEvent_MainBox = "modifier_ScriptableEvent_MainBox";
-        public static string modifier_ScriptableEvent_ObjectField = "modifier_ScriptableEvent_ObjectField";
+        public static string modifier_Event_Rooted_ObjectField = "modifier_Event_Rooted_ObjectField";
         #endregion
 
         #endregion
@@ -50,38 +51,72 @@ namespace AG
         #region - Segments.
 
         #region - Commons
-        public static string segment_Title_MainBox = "segment_Title_MainBox";
+        public static string segment_TitleBox_Common = "segment_TitleBox_Common";
         public static string segment_Title_Label = "segment_Title_Label";
-        public static string segment_Title_RemoveButton = "segment_Title_RemoveButton";
+        #endregion
+
+        #region - Expand Button.
+        public static string segment_ExpandSegment_Button = "segment_ExpandSegment_Button";
         #endregion
 
         #region - Image Preview
-        // Title
-        public static string segment_ImagePreview_TitleBox = "segment_ImagePreview_TitleBox";
+        public static string segment_TitleBox_DualPortraits = "segment_TitleBox_DualPortraits";
 
-        // Image Style
-        public static string segment_ImagePreview_ImagesBox = "segment_ImagePreview_ImagesBox";
-        public static string segment_ImagePreivew_Images = "segment_ImagePreivew_Images";
-        public static string segment_ImagePreivew_Image_L = "segment_ImagePreivew_Image_L";
-        public static string segment_ImagePreivew_Image_R = "segment_ImagePreivew_Image_R";
+        public static string segment_DualPortraits_ImagesBox = "segment_DualPortraits_ImagesBox";
+        public static string segment_DualPortraits_Images = "segment_DualPortraits_Images";
+        public static string segment_DualPortraits_Image_L = "segment_DualPortraits_Image_L";
+        public static string segment_DualPortraits_Image_R = "segment_DualPortraits_Image_R";
 
-        // Object Field Style
-        public static string segment_ImagePreview_ObjectFieldsBox = "segment_ImagePreview_ObjectFieldsBox";
-        public static string segment_ImagePreivew_ObjectField_L = "segment_ImagePreivew_ObjectField_L";
-        public static string segment_ImagePreivew_ObjectField_R = "segment_ImagePreivew_ObjectField_R";
+        public static string segment_DualPortraits_ObjectFieldsBox = "segment_DualPortraits_ObjectFieldsBox";
+        public static string segment_DualPortraits_ObjectFields = "segment_DualPortraits_ObjectFields";
+        public static string segment_DualPortraits_ObjectField_L = "segment_DualPortraits_ObjectField_L";
+        public static string segment_DualPortraits_ObjectField_R = "segment_DualPortraits_ObjectField_R";
         #endregion
 
         #region - Speaker Name
-        // Title
-        public static string segment_SpeakerName_TitleBox = "segment_SpeakerName_TitleBox";
-
-        // Text Field Style
+        public static string segment_TitleBox_SpeakerName = "segment_TitleBox_SpeakerName";
+        public static string segment_SpeakerName_ContentBox = "segment_SpeakerName_ContentBox";
         public static string segment_SpeakerName_TextField = "segment_SpeakerName_TextField";
         #endregion
 
-        #region - LG Textline
-        // Title
-        public static string segment_LGTextline_TitleBox = "segment_LGTextline_TitleBox";
+        #region - Textline
+        public static string segment_TitleBox_Textline = "segment_TitleBox_Textline";
+        public static string segment_Textline_ContentBox = "segment_Textline_ContentBox";
+        public static string segment_Textline_TextField = "segment_Textline_TextField";
+        public static string segment_Textline_ObjectField = "segment_Textline_ObjectField";
+        #endregion
+
+        #region - Condition
+        public static string segment_TitleBox_Condition = "segment_TitleBox_Condition";
+        public static string segment_Condition_MainBox = "segment_Condition_MainBox";
+        public static string segment_Condition_ContentBox = "segment_Condition_ContentBox";
+        public static string segment_Condition_ConditionDisplayEnumField = "segment_Condition_ConditionDisplayEnumField";
+        #endregion
+
+        #region - Event
+        public static string segment_TitleBox_Event = "segment_TitleBox_Event";
+        public static string segment_Event_MainBox = "segment_Event_MainBox";
+        public static string segment_Event_ContentBox = "segment_Event_ContentBox";
+        #endregion
+
+        #endregion
+
+        #region - Integrants.
+
+        #region - Content Button.
+        public static string integrant_ContentButton_MainBox = "integrant_ContentButton_MainBox";
+        public static string integrant_ContentButton_Label = "integrant_ContentButton_Label";
+        public static string integrant_ContentButton_AddChoiceEntry_Image = "integrant_ContentButton_AddChoiceEntry_Image";
+        public static string integrant_ContentButton_AddCondition_Image = "integrant_ContentButton_AddCondition_Image";
+        public static string integrant_ContentButton_AddEvent_Image = "integrant_ContentButton_AddEvent_Image";
+        #endregion
+
+        #endregion
+
+        #region - Entries.
+
+        #region - Commons
+        public static string entry_RemoveModifier_Button = "entry_RemoveModifier_Button";
         #endregion
 
         #endregion
@@ -91,7 +126,6 @@ namespace AG
         #region Editor Window.
 
         #region - StyleSheets.
-        public static StyleSheet dsEditorWindowStyle;
         public static StyleSheet dsHeadBarStyle;
         #endregion
 
@@ -121,7 +155,7 @@ namespace AG
 
         #region - Input Hint
         public static string inputHint_MainBox = "inputHint_MainBox";
-        public static string inputHint_HintImage = "inputHint_HintImage";
+        public static string inputHint_IconImage = "inputHint_IconImage";
         public static string inputHint_HintLabel = "inputHint_HintLabel";
         #endregion
 
@@ -141,22 +175,11 @@ namespace AG
 
         #region - Generals.
         public static string nodeShare_ObjectField_Empty = "nodeShare_ObjectField_Empty";
-        public static string nodeShare_TextField_Empty = "unity-text-field__placeholder";
+        public static string nodeShare_TextField_Empty = "nodeShare_TextField_Empty";
         #endregion
 
-        #region - Dialogue.
-        public static string dialogueNode_AddChoiceButton = "dialogueNode_AddChoiceButton";
-        #endregion
-
-        #region - LGs.
-        public static string languageGenerics_Text_TextField = "languageGenerics_Text_TextField";
-        public static string languageGenerics_AudioClip_ObjectField = "languageGenerics_AudioClip_ObjectField";
-        #endregion
-
-        #region - Enum Settings.
-        public static string unmetConditionDisplayOption_MainBox = "unmetConditionDisplayOption_MainBox";
-        public static string unmetConditionDisplayOption_EnumField = "unmetConditionDisplayOption_EnumField";
-        public static string unmetConditionDisplayOption_Label = "unmetConditionDisplayOption_Label";
+        #region - End Node.
+        public static string endNode_GraphEndHandleType_EnumField = "endNode_GraphEndHandleType_EnumField";
         #endregion
 
         #endregion
@@ -183,11 +206,12 @@ namespace AG
             {
                 dsModifiersStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSModifiersStyle.uss");
                 dsSegmentsStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSSegmentsStyle.uss");
+                dsIntegrantsStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSIntegrantsStyle.uss");
+                dsRootedModifiersStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSRootedModifiersStyle.uss");
             }
 
             void SetupStyleSheet_EditorWindow()
             {
-                dsEditorWindowStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/EditorWindow/DSEditorWindowStyle.uss");
                 dsHeadBarStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/EditorWindow/DSHeadBarStyle.uss");
             }
 

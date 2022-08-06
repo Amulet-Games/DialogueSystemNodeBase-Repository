@@ -1,14 +1,19 @@
 .node #title {
-	background-color: #FF6334;
+
+	background-color: rgba(184, 74, 90, 1);
+	width: 382px;
 }
 
-#title-label {
-	min-width: 98px;
+#node-border #title #title-label {
+	
+	font-size: 18px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 8px;
+	padding: 0px 2px 0px 2px;
 }
 
-/* --------------------------------------------------------- Add Choice ---------------------------------------------------------- */
+#input {
 
-.dialogueNode_AddChoiceButton {
-	font-size: 13px;
-	margin-top: 3.5px;
+	width: 92px;
 }

@@ -4,18 +4,28 @@ namespace AG
 {
     public class DSTreeEntrySelectedEvent
     {
-        public static event Action mEvent;
+        /// <summary>
+        /// DSTreeEntrySelectedEvent, which'll be invoked when a search entry is selected
+        /// <br>in the search tree window by user.</br> 
+        /// </summary>
+        public static event Action Event;
 
-        /// Setup.
+
+        /// <summary>
+        /// Clear all the actions that have been registered to the event.
+        /// </summary>
         public static void ClearEvents()
         {
-            mEvent = null;
+            Event = null;
         }
 
-        /// Invoke.
+
+        /// <summary>
+        /// Invoke DSTreeEntrySelectedEvent.
+        /// </summary>
         public static void Invoke()
         {
-            mEvent?.Invoke();
+            Event?.Invoke();
         }
     }
 }

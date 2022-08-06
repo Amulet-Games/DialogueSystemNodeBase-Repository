@@ -4,23 +4,39 @@ namespace AG
 {
     public class DSLoadDataFromContainerSOEvent
     {
-        public static event Action<DialogueContainerSO> mEvent;
+        /// <summary>
+        /// DSLoadDataFromContainerSOEvent, which'll be invoked automatically when the editor
+        /// <br>window is first opened or manually by user clicking the load button on the editor's</br>
+        /// <br>head bar.</br>
+        /// </summary>
+        static event Action<DialogueContainerSO> mEvent;
 
-        /// Setup.
-        public static void ClearEvents()
+
+        /// <summary>
+        /// Clear all the actions that have been registered to the event.
+        /// </summary>
+        public static void Clear()
         {
             mEvent = null;
         }
 
-        public static void RegisterEvent()
-        {
-            DialogueEditorWindow _dsWindow = DialogueEditorWindow.dsWindow;
 
-            mEvent += _dsWindow.serializeHandler.LoadEdgesAndNodes;
-            mEvent += _dsWindow.headBar.LoadGraphLanguageAndTitle;
+        /// <summary>
+        /// Register actions from different modules to the event.
+        /// </summary>
+        public static void Register()
+        {
+            DialogueEditorWindow dsWindow = DialogueEditorWindow.Instance;
+
+            mEvent += dsWindow.GraphView.SerializeHandler.LoadEdgesAndNodesAction;
+            mEvent += dsWindow.HeadBar.LoadLanguageAndTitleAction;
         }
 
-        /// Invoke.
+
+        /// <summary>
+        /// Invoke DSLoadDataFromContainerSOEvent.
+        /// </summary>
+        /// <param name="eventPara">The scriptable object asset parameter that is needed for this event to be invoked.</param>
         public static void Invoke(DialogueContainerSO eventPara)
         {
             mEvent?.Invoke(eventPara);

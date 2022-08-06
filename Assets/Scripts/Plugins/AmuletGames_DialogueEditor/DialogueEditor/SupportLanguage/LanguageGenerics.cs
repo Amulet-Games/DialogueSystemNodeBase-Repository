@@ -5,7 +5,16 @@ namespace AG
     [Serializable]
     public class LanguageGenerics<T>
     {
-        public G_LanguageType languageType;
-        public T genericsContent;
+        /// <summary>
+        /// Language type of the generics object.
+        /// </summary>
+        public G_LanguageType LanguageType;
+
+
+        /// <summary>
+        /// Content of the generic object.
+        /// <br>T value can be either struct or object type.</br>
+        /// </summary>
+        public T GenericsContent;
     }
 }

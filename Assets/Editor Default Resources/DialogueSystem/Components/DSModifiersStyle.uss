@@ -1,57 +1,172 @@
 /*< -------------------- Common -------------------- >*/
-.modifier_Common_RemoveButton {
-	height: 27px;
+.modifier_RemoveModifier_Button {
+
+	height: 28px;
 	width: 25px;
-	
+
 	font-size: 15px;
-
-	/* top - right - bottom - left */
-	margin: 1px 1px 0px 0px;
 	
-	/* top - right - bottom - left */
-	padding: 0px 6px 0px 6px;
+	align-self: center;
 
-	border-width: 0px;
+	-unity-slice-top: 1;
+	-unity-slice-right: 1;
+	-unity-slice-bottom: 1;
+	-unity-slice-left: 1;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0.5px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
 }
 
 /*< -------------------- Condition -------------------- >*/
 .modifier_Condition_MainBox {
+
+	height: 30px;
+
 	flex-direction: row;
+	flex-grow: 1;
 	justify-content: space-between;
-	height: 32px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
 }
 
 .modifier_Condition_TextField {
-	min-width: 150px;
-	width: 248px;
-	height: 27px;
+
+	width: Auto;
+	height: 30px;
 
 	white-space: normal;
+	flex-grow: 500;
 
 	/* top - right - bottom - left */
-	margin: 1px 4px 2px 0px;
+	margin: 0px 1px 0px -1px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_TextField 
+.unity-text-field__input {
+
+	border-color: rgba(42, 42, 42, 1);
+
+	font-size: 16px;
+
+	/* top - right - bottom - left */
+	padding: 4px 0px 0px 10px;
+	border-width: 1px 2px 1px 3px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_TextField 
+.unity-text-field__input:hover {
+
+	border-color: rgba(118, 118, 118, 0.588);
+
+	/* top - right - bottom - left */
+	border-width: 1px 2px 1px 3px;
+	border-radius: 0px 0px 0px 0px;
 }
 
 .modifier_Condition_EnumField {
-	min-width: 125px;
+
+	flex-grow: 1;
 	
 	/* top - right - bottom - left */
-	margin: 0px 4px 1px 0px;
+	margin: 0px 2px 0px 0px;
+}
 
-	top: 0.5px;
+.modifier_Condition_EnumField
+.unity-enum-field__input {
+
+	min-width: 115px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 3px 0px 5px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_EnumField
+.unity-enum-field__input
+.unity-enum-field__text {
+
+	font-size: 15px;
+	
+	align-self: Center;
+}
+
+.modifier_Condition_EnumField
+.unity-enum-field__input
+.unity-enum-field__arrow {
+
+	height: 22px;
+	width: 21px;
+	
+	/* top - right - bottom - left */
+	margin: 0.5px 0px 0px 10px;
 }
 
 .modifier_Condition_FloatField {
-	min-width: 40px;
+
+	height: 30px;
 	width: 100px;
-	height: 27px;
+
+	white-space: normal;
+	flex-direction: row;
+	flex-grow: 1;
+	align-items: Center;
+	align-self: Center;
 
 	/* top - right - bottom - left */
-	margin: 1px 4.5px 1px 0px;
+	margin: 0px 3px 0px 0px;
 }
 
-/*< -------------------- Basic Event -------------------- >*/
+.modifier_Condition_FloatField
+.unity-float-field__input {
+
+	font-size: 16px;
+
+	align-self: Stretch;
+
+	/* top - right - bottom - left */
+	padding: 4px 0px 0px 8px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+/*< -------------------- Event -------------------- >*/
+.modifier_Event_MainBox {
+	
+	height: 30px;
+
+	flex-direction: row;
+	justify-content: space-between;
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Event_ObjectField {
+
+	height: 30px;
+	width: 462px;
+
+	-unity-text-align: middle-left;
+	
+	/* top - right - bottom - left */
+	margin: 0px 2px 0px 0px;
+}
+
+
+
+/*
+//< -------------------- Basic Event -------------------- >
 .modifier_BasicEvent_MainBox {
+
 	flex-direction: row;
 	justify-content: space-between;
 	height: 32px;
@@ -64,14 +179,12 @@
 
 	white-space: normal;
 
-	/* top - right - bottom - left */
 	margin: 1px 4px 2px 0px;
 }
 
 .modifier_BasicEvent_EnumField {
 	min-width: 125px;
 	
-	/* top - right - bottom - left */
 	margin: 1px 4px 1px 0px;
 }
 
@@ -80,22 +193,6 @@
 	width: 100px;
 	height: 27px;
 
-	/* top - right - bottom - left */
 	margin: 1px 4.5px 1px 0px;
 }
-
-/*< -------------------- Scriptable Event -------------------- >*/
-.modifier_ScriptableEvent_MainBox {
-	flex-direction: row;
-	justify-content: space-between;
-	height: 32px;
-}
-
-.modifier_ScriptableEvent_ObjectField {
-	width: 482px;
-
-	-unity-text-align: middle-left;
-	
-	/* top - right - bottom - left */
-	margin: 1px 4.5px 1px 0px;
-}
+*/

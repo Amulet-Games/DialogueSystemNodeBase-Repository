@@ -1,7 +1,23 @@
 .node #title {
-	background-color: #FFA600;
+	background-color: rgba(142, 149, 95, 1);
+	width: 517px;
 }
 
-#title-label {
-	min-width: 155px;
+#node-border #title #title-label {
+
+	font-size: 18px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 8px;
+	padding: 0px 2px 0px 2px;
+}
+
+#node-border #contents {
+	
+	flex-grow: 0;
+}
+
+#input {
+
+	width: 80px;
 }

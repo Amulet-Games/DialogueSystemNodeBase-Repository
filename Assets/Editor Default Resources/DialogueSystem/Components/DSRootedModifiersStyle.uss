@@ -1,0 +1,124 @@
+/*< -------------------- Condition -------------------- >*/
+.modifier_Condition_Rooted_TextField {
+
+	width: Auto;
+	height: 30px;
+
+	white-space: normal;
+	flex-grow: 500;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px -1px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Rooted_TextField 
+.unity-text-field__input {
+
+	border-color: rgba(42, 42, 42, 1);
+
+	font-size: 16px;
+
+	/* top - right - bottom - left */
+	padding: 4px 0px 0px 10px;
+	border-width: 1px 1px 1px 3px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Rooted_TextField 
+.unity-text-field__input:hover {
+
+	border-color: rgba(118, 118, 118, 0.588);
+
+	/* top - right - bottom - left */
+	border-width: 1px 2px 1px 3px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Rooted_EnumField {
+
+	flex-grow: 1;
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 2px;
+}
+
+.modifier_Condition_Rooted_EnumField
+.unity-enum-field__input {
+
+	min-width: 115px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 3px 0px 5px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Rooted_EnumField
+.unity-enum-field__input
+.unity-enum-field__text {
+
+	font-size: 15px;
+	
+	align-self: Center;
+}
+
+.modifier_Condition_Rooted_EnumField
+.unity-enum-field__input
+.unity-enum-field__arrow {
+
+	height: 22px;
+	width: 21px;
+	
+	/* top - right - bottom - left */
+	margin: 0.5px 0px 0px 10px;
+}
+
+.modifier_Condition_Rooted_FloatField {
+
+	height: 30px;
+	width: 100px;
+
+	white-space: normal;
+	flex-direction: row;
+	flex-grow: 1;
+	align-items: Center;
+	align-self: Center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 2px;
+}
+
+.modifier_Condition_Rooted_FloatField
+.unity-float-field__input {
+
+	font-size: 16px;
+
+	align-self: Stretch;
+
+	/* top - right - bottom - left */
+	padding: 4px 0px 0px 8px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+/*< -------------------- Event -------------------- >*/
+.modifier_Event_Rooted_ObjectField {
+
+	height: 30px;
+	width: 489px;
+
+	-unity-text-align: middle-left;
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+}
+
+.modifier_Event_Rooted_ObjectField
+.unity-object-field__input {
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 0px 1px;
+	border-radius: 0px 0px 0px 0px;
+}

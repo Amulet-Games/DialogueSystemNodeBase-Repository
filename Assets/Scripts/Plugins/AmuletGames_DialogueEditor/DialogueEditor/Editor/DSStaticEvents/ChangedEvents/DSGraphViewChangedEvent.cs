@@ -4,18 +4,27 @@ namespace AG
 {
     public class DSGraphViewChangedEvent
     {
-        public static event Action mEvent;
+        /// <summary>
+        /// DSGraphViewChangedEvent, which'll be invoked when the user has made any changes on the graph.
+        /// </summary>
+        public static event Action Event;
 
-        /// Setup.
+
+        /// <summary>
+        /// Clear all the actions that have been registered to the event.
+        /// </summary>
         public static void ClearEvents()
         {
-            mEvent = null;
+            Event = null;
         }
 
-        /// Invoke.
+
+        /// <summary>
+        /// Invoke DSGraphViewChangedEvent.
+        /// </summary>
         public static void Invoke()
         {
-            mEvent?.Invoke();
+            Event?.Invoke();
         }
     }
 }

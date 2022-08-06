@@ -1,87 +1,343 @@
 /*< -------------------- Common -------------------- >*/
-.segment_Title_MainBox {
+.segment_TitleBox_Common {
+
 	flex-direction: row;
-	border-bottom-width: 2px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 1px 1px 2px 1px;
 }
 
 .segment_Title_Label {
-	margin-right: auto;
-	margin-top: 1px;
-	padding-left: 9px;
-	font-size: 18px;
+
 	color: white;
+
+	align-self: Center;
+
+	font-size: 18px;
+
+	/* top - right - bottom - left */
+	margin: 2px auto 0px 0px;
+	padding: 0px 2px 0px 9px;
 }
 
-.segment_Title_RemoveButton {
-	height: 21px;
-	margin-left: auto;
-	margin-top: 2px;
-	margin-bottom: 0px;
+/*< -------------------- Expand Button -------------------- >*/
+.segment_ExpandSegment_Button {
+
+	background-color: rgba(88, 88, 88, 1);
+
+	height: 24px;
+	width: 24px;
+
+	font-size: 13px;
+
+	/* top - right - bottom - left */
+	margin: 2px 4px 0px 0px;
+	padding: 0px 6px 0px 0px;
+
 	border-width: 0px;
-	padding-bottom: 0px;
-	padding-top: 0px;
+}
+
+.segment_ExpandSegment_Button:hover {
+	background-color: rgba(115, 115, 115, 1);
 }
 
 /*< -------------------- Image Preview -------------------- >*/
-.segment_ImagePreview_TitleBox {
+.segment_TitleBox_DualPortraits {
+
 	background-color: #DD4E50;
 }
 
-.segment_ImagePreview_ImagesBox {
+.segment_DualPortraits_ImagesBox {
+
+	background-color: rgba(40, 40, 40, 0.871);
+	border-color: rgba(159, 159, 159, 0.713);
+
 	flex-direction: row;
-	border-top-width: 4px;
-	border-bottom-width: 4px;
+
+	/* top - right - bottom - left */
+	margin: -1px -1px 0px -1px;
+	padding: 0px 0px 0px 0px;
+	border-width: 2px 2px 2px 2px;
 }
 
-.segment_ImagePreivew_Images {
+.segment_DualPortraits_Images {
+
 	height: 140px;
-	width: 75px;
+	width: 150px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 }
 
-.segment_ImagePreivew_Image_L {
+.segment_DualPortraits_Image_L {
+
 	margin-right: auto;
 }
 
-.segment_ImagePreivew_Image_R {
+.segment_DualPortraits_Image_R {
+
 	margin-left: auto;
 }
 
+.segment_DualPortraits_ObjectFieldsBox {
 
-.segment_ImagePreview_ObjectFieldsBox {
+	height: 30px;
+
 	flex-direction: row;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
 }
 
+.segment_DualPortraits_ObjectFields {
 
-.segment_ImagePreivew_ObjectField_L {
-	margin-right: auto;
+	width: 150px;
+
+	/* top - right - bottom - left */
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 1px 0px;
 }
 
-.segment_ImagePreivew_ObjectField_R {
-	margin-left: auto;
+.segment_DualPortraits_ObjectField_L {
+
+	/* top - right - bottom - left */
+	margin: 1px auto 0px -1px;
+}
+
+.segment_DualPortraits_ObjectField_R {
+
+	/* top - right - bottom - left */
+	margin: 1px -1px 0px auto;
+}
+
+/*<-- Object field's border radius style. -->*/
+.segment_DualPortraits_ObjectFields 
+.unity-object-field__input {
+
+	/* top - right - bottom - left */
+	border-radius: 0px 0px 0px 0px;
+}
+
+/*<-- Object field's displaying label style. -->*/
+.segment_DualPortraits_ObjectField_L 
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label,
+
+.segment_DualPortraits_ObjectField_R 
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label {
+
+	align-self: Center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 4px;
+	padding: 0px 1px 0px 0px;
 }
 
 /*< -------------------- Speaker Name -------------------- >*/
-.segment_SpeakerName_TitleBox {
+.segment_TitleBox_SpeakerName {
+
 	background-color: #6A71D5;
-	margin-bottom: 1px;
+}
+
+.segment_SpeakerName_ContentBox {
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
 }
 
 .segment_SpeakerName_TextField {
-	min-width: 200px;
-	width: 353px;
-	height: 25px;
-	margin-bottom: 2px;
-	margin-top: 2px;
-	margin-left: 0px;
-	margin-right: 0px;
+
+	height: 30px;
+	width: auto;
+
 	white-space: normal;
+
+	/* top - right - bottom - left */
+	margin: 0px -1px 0.5px -1px;
+	padding: 0px 0px 0px 0px;
 }
 
-.segment_SpeakerName_TextField .unity-text-field__input {
-	padding-left: 9px;
+.segment_SpeakerName_TextField 
+.unity-text-field__input {
+
+	font-size: 16px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 1px 2px 0px 10px;
+	border-width: 1px 2px 1px 2px;
+	border-radius: 0px 0px 0px 0px;
 }
 
-/*< -------------------- LG Textline -------------------- >*/
-.segment_LGTextline_TitleBox {
+/*< -------------------- Textline -------------------- >*/
+.segment_TitleBox_Textline {
+
 	background-color: #D569C8;
+}
+
+.segment_Textline_ContentBox {
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_Textline_TextField {
+
+	height: 30px;
+	width: auto;
+
+	white-space: normal;
+
+	/* top - right - bottom - left */
+	margin: 0px -1px 0px -1px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_Textline_TextField 
+.unity-text-field__input {
+	
+	font-size: 16px;
+
+	/* top - right - bottom - left */
+	padding: 4px 2px 0px 10px;
+	border-width: 1px 2px 1px 2px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.segment_Textline_ObjectField {
+
+	height: 30px;
+	width: auto;
+
+	/* top - right - bottom - left */
+	margin: 0px -1px 0px -1px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_Textline_ObjectField
+.unity-object-field__input {
+	
+	/* top - right - bottom - left */
+	border-width: 1px 2px 1px 2px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+/*<-- Object field's displaying image's style. -->*/
+.segment_Textline_ObjectField 
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__icon {
+
+	height: 17px;
+	width: 21px;
+	max-height: 17px;
+	max-width: 21px;
+
+	/* top - right - bottom - left */
+	margin: 4.5px 0px 0px 0px;
+	padding: 0px 0px 0px 2px;
+}
+
+/*<-- Object field's displaying label's style. -->*/
+.segment_Textline_ObjectField 
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label {
+
+	align-self: Center;
+
+	font-size: 16px;
+
+	/* top - right - bottom - left */
+	margin: 4px 0px 0px 4px;
+	padding: 0px 1px 0px 0px;
+}
+
+/*< -------------------- Conditions -------------------- >*/
+.segment_TitleBox_Condition {
+
+	background-color: rgba(200, 132, 40, 1);
+}
+
+.segment_Condition_MainBox {
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_Condition_ContentBox {
+
+	flex-direction: column;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 1px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_Condition_ConditionDisplayEnumField {
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 0px;
+	padding: 0px 6px 0px 0px;
+}
+
+.segment_Condition_ConditionDisplayEnumField
+.unity-enum-field__input {
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 3px 0px 8px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_Condition_ConditionDisplayEnumField
+.unity-enum-field__input
+.unity-enum-field__text {
+
+	font-size: 14px;
+}
+
+.segment_Condition_ConditionDisplayEnumField
+.unity-enum-field__input
+.unity-enum-field__arrow {
+
+	height: 19px;
+	width: 19px;
+}
+
+/*< -------------------- Event -------------------- >*/
+.segment_TitleBox_Event {
+
+	background-color: rgba(173, 71, 105, 1);
+}
+
+.segment_Event_MainBox {
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_Event_ContentBox {
+
+	flex-direction: column;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 1px 0px -1px 0px;
+	border-width: 0px 0px 0px 0px;
 }

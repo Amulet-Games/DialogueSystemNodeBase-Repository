@@ -13,9 +13,9 @@ namespace AG
         [ReadOnlyInspector] public DialogueUtility dialogueUtility;
         [ReadOnlyInspector] public AudioSource audioSource;
 
-        [Space(10)]
-        [ReadOnlyInspector] public DialogueNodeData cur_DialogueNodeData;
-        [ReadOnlyInspector] public DialogueNodeData prev_DialogueNodeData;
+        //[Space(10)]
+        //[ReadOnlyInspector] public DialogueNodeData cur_DialogueNodeData;
+        //[ReadOnlyInspector] public DialogueNodeData prev_DialogueNodeData;
 
         #region Callbacks.
         private void Start()

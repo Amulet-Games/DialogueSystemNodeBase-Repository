@@ -1,11 +1,18 @@
 using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine;
 
 namespace AG
 {
     public static class DSLanguageFieldsMaker
     {
+        /// <summary>
+        /// Create a new text input field which can change it's input content base on the current selected language in the editor window.
+        /// </summary>
+        /// <param name="LG_Texts_Container">The container that'll combine and save the field as reference for other modules to use.</param>
+        /// <param name="placeholderText">The text that'll show up in the field when there's no actual content within it.</param>
+        /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
+        /// <returns>A new text field UIElement which connected to the language text container.</returns>
         public static TextField GetNewLanguageField_Text(LanguageTextContainer LG_Texts_Container, string placeholderText, string USS01 = "")
         {
             TextField textField;
@@ -33,8 +40,8 @@ namespace AG
                 {
                     LanguageGenerics<string> new_LG_Text = new LanguageGenerics<string>();
 
-                    new_LG_Text.languageType = SupportLanguage.SupportLanguageTypes[i];
-                    new_LG_Text.genericsContent = "";
+                    new_LG_Text.LanguageType = SupportLanguage.SupportLanguageTypes[i];
+                    new_LG_Text.GenericsContent = "";
 
                     LG_Texts_Container.Value.Add(new_LG_Text);
                 }
@@ -50,9 +57,9 @@ namespace AG
                 // At the moment, we can just set the TextField's value to whatever the string content that matched the editor language.
                 textField.SetValueWithoutNotify(LG_Texts_Container.Value.Find
                 (
-                    String_LG => String_LG.languageType == SupportLanguage.selectedLanguage
+                    String_LG => String_LG.LanguageType == SupportLanguage.SelectedLanguage
                 )
-                .genericsContent);
+                .GenericsContent);
             }
 
             void ConnectFieldToContainer()
@@ -63,9 +70,9 @@ namespace AG
 
             void RegisterFieldEvents()
             {
-                DSLanguageTextFieldUtilityEditor.RegisterValueChangedEvent(LG_Texts_Container);
-                DSLanguageTextFieldUtilityEditor.RegisterFieldFocusInEvent(textField);
-                DSLanguageTextFieldUtilityEditor.RegisterFieldFocusOutEvent(LG_Texts_Container);
+                DSLanguageTextFieldEventRegister.RegisterValueChangedEvent(LG_Texts_Container);
+                DSLanguageTextFieldEventRegister.RegisterFieldFocusInEvent(textField);
+                DSLanguageTextFieldEventRegister.RegisterFieldFocusOutEvent(LG_Texts_Container);
             }
 
             void UpdatePlaceHolderText()
@@ -74,7 +81,7 @@ namespace AG
                 LG_Texts_Container.PlaceholderText = placeholderText;
 
                 // Update text field's placeholder. 
-                DSTextFieldUtility.ToggleEmptyStyle(LG_Texts_Container);
+                DSTextFieldUtility.ShowEmptyStyle(LG_Texts_Container);
             }
 
             void AddFieldToStyleClass()
@@ -83,6 +90,14 @@ namespace AG
             }
         }
 
+
+        /// <summary>
+        /// Create a new object field which accepts audio clip assets as inputs,
+        /// <br>and can change it's input content base on the current selected language in the editor window.</br>
+        /// </summary>
+        /// <param name="LG_AudioClip_Container">The container that'll combine and save the field as reference for other modules to use.</param>
+        /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
+        /// <returns>A new object field UIElement which connected to the language audio clip container.</returns>
         public static ObjectField GetNewLanguageField_AudioClip(LanguageAudioClipContainer LG_AudioClip_Container, string USS01 = "")
         {
             ObjectField objectField;
@@ -110,8 +125,8 @@ namespace AG
                 {
                     LanguageGenerics<AudioClip> new_LG_AudioClip = new LanguageGenerics<AudioClip>();
 
-                    new_LG_AudioClip.languageType = SupportLanguage.SupportLanguageTypes[i];
-                    new_LG_AudioClip.genericsContent = null;
+                    new_LG_AudioClip.LanguageType = SupportLanguage.SupportLanguageTypes[i];
+                    new_LG_AudioClip.GenericsContent = null;
 
                     LG_AudioClip_Container.Value.Add(new_LG_AudioClip);
                 }
@@ -136,9 +151,9 @@ namespace AG
 
             void RegisterFieldEvents()
             {
-                DSLanguageAudioClipFieldUtilityEditor.RegisterValueChangedEvent(LG_AudioClip_Container);
-                DSLanguageAudioClipFieldUtilityEditor.RegisterFieldFocusInEvent(objectField);
-                DSLanguageAudioClipFieldUtilityEditor.RegisterFieldFocusOutEvent(objectField);
+                DSLanguageAudioClipFieldEventRegister.RegisterValueChangedEvent(LG_AudioClip_Container);
+                DSLanguageAudioClipFieldEventRegister.RegisterFieldFocusInEvent(objectField);
+                DSLanguageAudioClipFieldEventRegister.RegisterFieldFocusOutEvent(objectField);
             }
 
             void AddFieldToStyleClass()

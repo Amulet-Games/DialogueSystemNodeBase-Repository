@@ -15,7 +15,7 @@
 
 /*< -------------------- Image -------------------- >*/
 
-.inputHint_HintImage {
+.inputHint_IconImage {
 	background-color: #FF7066;
 
 	bottom: 0.8px;
@@ -26,9 +26,7 @@
 	
 	/* top - right - bottom - left */
 	margin: 2px 2px 0px 6px;
-	
-	/* top - right - bottom - left */
-	border-width: 3px 6px 3px 6px;
+	border-width: 0px 0px 2px 0px;
 }
 
 /*< -------------------- Label -------------------- >*/
@@ -43,7 +41,7 @@
 	font-size: 19px;
 	
 	/* top - right - bottom - left */
-	margin: -2px 4px -1px -1px;
+	margin: 0px 4px -1px -1px;
 	
 	/* top - right - bottom - left */
 	padding: 4px 2px 5px 1px;

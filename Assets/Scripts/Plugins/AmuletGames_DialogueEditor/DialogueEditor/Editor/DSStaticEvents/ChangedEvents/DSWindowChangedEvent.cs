@@ -4,31 +4,47 @@ namespace AG
 {
     public static class DSWindowChangedEvent
     {
-        /// Called for each time when a visual element field's value has been changed.
-        
-        public static event Action mEvent;
+        /// <summary>
+        /// DSWindowChangedEvent, which'll be invoked if any of the visual element field's value have been changed.
+        /// </summary>
+        static event Action mEvent;
 
-        /// Setup.
-        public static void ClearEvents()
+        
+        /// <summary>
+        /// Clear all the actions that have been registered to the event.
+        /// </summary>
+        public static void Clear()
         {
             mEvent = null;
         }
 
-        public static void RegisterEvent()
+
+        /// <summary>
+        /// Register actions from different modules to the event.
+        /// </summary>
+        public static void Register()
         {
             mEvent += DialogueEditorWindow.SetHasUnsavedChangesToTrue;
         }
 
-        public static void MultiCastEvents()
+
+        /// <summary>
+        /// Register this event to the other events so that they becomes one observable events stream. 
+        /// </summary>
+        public static void MultiCast()
         {
-            DSGraphViewChangedEvent.mEvent += mEvent;
-            DSTreeEntrySelectedEvent.mEvent += mEvent;
+            DSGraphViewChangedEvent.Event += mEvent;
+            DSTreeEntrySelectedEvent.Event += mEvent;
         }
-        
-        /// Invoke.
+
+
+        /// <summary>
+        /// Invoke DSWindowChangedEvent only if the editor window has not
+        /// <br>detected any unsaved changes yet, which usually it's made by the user.</br>
+        /// </summary>
         public static void Invoke()
         {
-            if (!DialogueEditorWindow.dsWindow.hasUnsavedChanges)
+            if (!DialogueEditorWindow.Instance.hasUnsavedChanges)
             {
                 mEvent.Invoke();
             }

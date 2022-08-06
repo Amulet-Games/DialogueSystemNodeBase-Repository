@@ -43,10 +43,11 @@ namespace AG
     #endregion
 
     #region Modifiers.
-    public enum N_Modifier_UnmetConditionDisplayType
+    public enum N_Modifier_ConditionDisplayType
     {
-        Hide = 1,
-        GrayOut = 2
+        ShowAll = 1,
+        ShowMatched = 2,
+        GrayOutUnmatched = 3
     }
 
     public enum N_Modifier_ConditionComparisonType
