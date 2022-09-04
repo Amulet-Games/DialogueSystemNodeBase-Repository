@@ -30,7 +30,7 @@ namespace AG
         {
             lgTextField.RegisterCallback<FocusInEvent>(_ =>
             {
-                DialogueEditorWindow.Instance.InputHint.ShowHint(DSStringsConfig.LG_InputHintText, lgTextField.worldBound);
+                DialogueEditorWindow.Instance.InputHint.ShowHint(DSStringsConfig.LanguageFieldInputHintText, lgTextField.worldBound);
 
                 DSTextFieldUtility.HideEmptyStyle(lgTextField);  
             });

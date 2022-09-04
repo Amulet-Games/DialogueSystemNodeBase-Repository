@@ -28,13 +28,13 @@ namespace AG
             void SetupBoxContainer()
             {
                 segmentTitleBox = new Box();
-                segmentTitleBox.AddToClassList(DSStylesConfig.segment_TitleBox_Common);
+                segmentTitleBox.AddToClassList(DSStylesConfig.Segment_TitleBox_Common);
                 segmentTitleBox.AddToClassList(titleBoxSpecialStyle);
             }
 
             void SetupTitleLabel()
             {
-                titleLabel = DSLabelsMaker.GetNewLabel(titleText, DSStylesConfig.segment_Title_Label);
+                titleLabel = DSLabelsMaker.GetNewLabel(titleText, DSStylesConfig.Segment_Title_Label);
             }
 
             void AddFieldsToBox()
@@ -51,7 +51,7 @@ namespace AG
         /// <returns>A new button to show or hide the segment that it's connecting to.</returns>
         public static Button AddSegmentExpandButton(Action SegmentExpandedAction)
         {
-            return DSButtonsMaker.GetNewButtonNonAlert(DSAssetsConfig.segmentExpandButtonIcon, SegmentExpandedAction, DSStylesConfig.segment_ExpandSegment_Button);
+            return DSButtonsMaker.GetNewButtonNonAlert(DSAssetsConfig.SegmentExpandButtonIcon, SegmentExpandedAction, DSStylesConfig.Segment_ExpandSegment_Button);
         }
     }
 }

@@ -25,9 +25,9 @@ namespace AG
 
 
         /// <summary>
-        /// List of saved choice node models.
+        /// List of saved option node models.
         /// </summary>
-        public List<DSChoiceNodeModel> ChoiceModelSavables = new List<DSChoiceNodeModel>();
+        public List<DSOptionNodeModel> OptionModelSavables = new List<DSOptionNodeModel>();
 
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace AG
 
             allModelSavables.AddRange(StartModelSavables);
             allModelSavables.AddRange(DialogueModelSavables);
-            allModelSavables.AddRange(ChoiceModelSavables);
+            allModelSavables.AddRange(OptionModelSavables);
             allModelSavables.AddRange(EventModelSavables);
             allModelSavables.AddRange(BranchModelSavables);
             allModelSavables.AddRange(EndModelSavables);

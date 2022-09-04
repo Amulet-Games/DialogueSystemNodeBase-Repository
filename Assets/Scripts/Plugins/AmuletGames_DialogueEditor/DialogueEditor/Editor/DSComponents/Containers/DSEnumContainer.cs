@@ -73,11 +73,11 @@ namespace AG
     }
 
 
-    public class ConditionDisplayTypeEnumContainer : EnumContainerBase
+    public class UnmetOptionDisplayTypeEnumContainer : EnumContainerBase
     {
-        public ConditionDisplayTypeEnumContainer()
+        public UnmetOptionDisplayTypeEnumContainer()
         {
-            Value = N_Modifier_ConditionDisplayType.ShowAll;
+            Value = N_Modifier_ConditionDisplayType.Hide;
         }
 
         public override void SetEnumValue(Enum newValue) => Value = (N_Modifier_ConditionDisplayType)newValue;

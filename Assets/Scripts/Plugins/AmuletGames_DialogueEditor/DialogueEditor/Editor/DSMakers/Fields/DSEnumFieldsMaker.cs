@@ -1,5 +1,6 @@
 using System;
 using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 namespace AG
 {
@@ -21,6 +22,8 @@ namespace AG
 
             SetupContainerField();
 
+            SetFieldsPickingModeToPosition();
+
             RegisterFieldEvents();
 
             AddFieldToStyleClass();
@@ -41,6 +44,11 @@ namespace AG
             void SetupContainerField()
             {
                 enumContainer.SetupContainerField();
+            }
+
+            void SetFieldsPickingModeToPosition()
+            {
+                enumField.ElementAt(0).pickingMode = PickingMode.Position;
             }
 
             void RegisterFieldEvents()
@@ -75,6 +83,8 @@ namespace AG
 
             SetupContainerField();
 
+            SetFieldsPickingModeToPosition();
+
             RegisterFieldEvents();
 
             AddFieldToStyleClass();
@@ -95,6 +105,11 @@ namespace AG
             void SetupContainerField()
             {
                 enumContainer.SetupContainerField();
+            }
+
+            void SetFieldsPickingModeToPosition()
+            {
+                enumField.ElementAt(0).pickingMode = PickingMode.Position;
             }
 
             void RegisterFieldEvents()

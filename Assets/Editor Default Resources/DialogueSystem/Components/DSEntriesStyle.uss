@@ -1,0 +1,94 @@
+/*< -------------------- Option -------------------- >*/
+.channel_Entry_Port {
+
+	height: auto;
+	width: auto;
+
+	align-content: flex-start;
+	align-items: center;
+	align-self: flex-end;
+	
+	flex-direction: row-reverse;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 16px 0px 0px 0px;
+	padding: 0px 4px 0px 4px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.channel_Entry_Port
+.channel_Entry_Connector {
+
+	background-color: rgba(255, 255, 255, 1);
+
+	height: 14px;
+	width: 14px;
+
+	right: 1px;
+
+	align-content: flex-start;
+	align-items: center;
+	align-self: auto;
+	
+	justify-content: center;
+
+	flex-grow: 0;
+	flex-shrink: 1;
+
+	/* top - right - bottom - left */
+	margin: 0px -13px 0px 15px;
+	padding: 0px 4px 0px 4px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 16px 16px 16px 16px;
+}
+
+.channel_Entry_Port
+.channel_Entry_Label {
+
+	color: rgba(193, 193, 193, 1);
+
+	font-size: 15px;
+
+	height: 16px;
+	width: auto;
+	
+	left: 13px;
+	
+	-unity-text-align: middle-left;
+	white-space: nowrap;
+	
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: auto;
+
+	/* top - right - bottom - left */
+	margin: 0px 4px 0px 4px;
+	padding: 0px 0px 2px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.channel_Entry_Port_Connected
+.channel_Entry_Label {
+
+	color: rgba(128, 209, 190, 1);
+
+	-unity-text-align: middle-center;
+
+	-unity-font-style: bold-and-italic;
+}
+
+.channel_Entry_Port
+.channel_Entry_Cap {
+
+	background-color: rgba(56, 171, 170, 1);
+
+	height: 10px;
+	width: 10px;
+
+	/* top - right - bottom - left */
+	border-radius: 16px 16px 16px 16px;
+}

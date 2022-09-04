@@ -44,29 +44,30 @@ namespace AG
         /// <param name="source">Target container to load from</param>
         public void LoadContainerValue(LanguageAudioClipContainer source)
         {
-            int matchedValueIndex = 0;
-
             // Foreach language of AudioClips that 'source' container contains.
             for (int i = 0; i < source.Value.Count; i++)
             {
                 // Foreach language of AudioClips that 'this' container contains.
-                for (matchedValueIndex = 0; matchedValueIndex < Value.Count; matchedValueIndex++)
+                for (int j = 0; j < Value.Count; j++)
                 {
                     // If we found a language from 'this' container,
                     // actually matches the language we're looping through from the source. 
-                    if (Value[matchedValueIndex].LanguageType == source.Value[i].LanguageType)
+                    if (Value[j].LanguageType == source.Value[i].LanguageType)
                     {
                         // Overwrite the value
-                        Value[matchedValueIndex].GenericsContent = source.Value[i].GenericsContent;
+                        Value[j].GenericsContent = source.Value[i].GenericsContent;
+
+                        // Set field's value without invoking field's value change event.
+                        if (Value[j].LanguageType == SupportLanguage.SelectedLanguage)
+                        {
+                            ObjectField.SetValueWithoutNotify(Value[j].GenericsContent);
+                        }
                         break;
                     }
                 }
             }
-
-            // Set field's value without invoking field's value change event.
-            ObjectField.SetValueWithoutNotify(Value[matchedValueIndex].GenericsContent);
-
-            // USS
+            
+            // If field's value is null, add it to empty style class.
             DSObjectFieldUtility.ToggleEmptyStyle(ObjectField);
         }
 
@@ -110,7 +111,11 @@ namespace AG
                 matchedLanguageAudioClip = value.newValue as AudioClip;
             });
 
+            // Set field's value without invoking field's value change event.
             ObjectField.SetValueWithoutNotify(matchedLanguageAudioClip);
+
+            // If field's value is null, add it to empty style class.
+            DSObjectFieldUtility.ToggleEmptyStyle(ObjectField);
         }
     }
 }

@@ -29,13 +29,10 @@ namespace AG
 
             void AddGraphEndHandleTypeEnumField()
             {
-                EnumField graphEndHandleEnum = DSEnumFieldsMaker.GetNewEnumField(Model.dialogueOverHandleType_EnumContainer, DSStylesConfig.endNode_GraphEndHandleType_EnumField);
+                EnumField graphEndHandleEnum = DSEnumFieldsMaker.GetNewEnumField(Model.dialogueOverHandleType_EnumContainer, DSStylesConfig.EndNode_GraphEndHandleType_EnumField);
                 
                 // Add field to node's main container.
                 Node.mainContainer.Add(graphEndHandleEnum);
-
-                // Get the ".unity-enum-field__input" child element from graphEndHandleEnum.
-                graphEndHandleEnum.ElementAt(0).pickingMode = PickingMode.Position;
             }
         }
 
@@ -45,7 +42,7 @@ namespace AG
         /// </summary>
         public void CreateNodePorts()
         {
-            Model.InputPort = DSPortsMaker.AddInputPort(Node, "Input", Port.Capacity.Multi, N_NodeType.End);
+            Model.InputPort = DSPortsMaker.AddInputPort(Node, DSStringsConfig.NodeInputLabelText, Port.Capacity.Multi);
         }
 
 

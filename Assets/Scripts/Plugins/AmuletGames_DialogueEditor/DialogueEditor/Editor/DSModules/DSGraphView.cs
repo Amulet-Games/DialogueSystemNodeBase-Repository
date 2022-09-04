@@ -9,6 +9,11 @@ namespace AG
     public class DSGraphView : GraphView
     {
         /// <summary>
+        /// Is reframe the graph view after loaded the custom graph editor?
+        /// </summary>
+        public bool IsReframeGraphAfterWindowLoaded;
+
+        /// <summary>
         /// Reference of the dialogue system's serialize handler module.
         /// </summary>
         public DSSerializeHandler SerializeHandler;
@@ -135,7 +140,7 @@ namespace AG
 
                 void AddStyleSheets()
                 {
-                    styleSheets.Add(DSStylesConfig.dsGraphViewStyle);
+                    styleSheets.Add(DSStylesConfig.DSGraphViewStyle);
                 }
 
                 void AddGraphToWindowRoot()
@@ -182,40 +187,70 @@ namespace AG
         /// <param name="askUser">Whether or not to ask the user.</param>
         void GraphDeleteSelectionAction(string operationName, AskUser askUser)
         {
-            Type edgeType = typeof(Edge);
+            Type edgeType;
 
-            List<DSNodeBase> nodesToDelete = new List<DSNodeBase>();
-            List<Edge> edgesToDelete = new List<Edge>();
+            List<DSNodeBase> nodesToDelete;
+            List<Edge> edgesToDelete;
 
-            int selectionCount = selection.Count;
-            int nodesToDeleteCount = 0;
+            int selectionCount;
+            int nodesToDeleteCount;
 
-            for (int i = 0; i < selectionCount; i++)
+            SetupDeletingList();
+
+            RearrangeDeletingList();
+
+            DeleteEdgesFromList();
+
+            DeleteNodesFromList();
+
+            void SetupDeletingList()
             {
-                // If the selected graph element is a node.
-                if (selection[i] is DSNodeBase node)
-                {
-                    nodesToDelete.Add(node);
-                    nodesToDeleteCount++;
-                    continue;
-                }
+                edgeType = typeof(Edge);
 
-                // If the selected graph element is an edge.
-                if (selection[i].GetType() == edgeType)
+                nodesToDelete = new List<DSNodeBase>();
+                edgesToDelete = new List<Edge>();
+
+                selectionCount = selection.Count;
+                nodesToDeleteCount = 0;
+            }
+
+            void RearrangeDeletingList()
+            {
+                for (int i = 0; i < selectionCount; i++)
                 {
-                    edgesToDelete.Add((Edge)selection[i]);
-                    continue;
+                    // If the selected graph element is a node.
+                    if (selection[i] is DSNodeBase node)
+                    {
+                        nodesToDelete.Add(node);
+                        nodesToDeleteCount++;
+                        continue;
+                    }
+
+                    // If the selected graph element is an edge.
+                    if (selection[i].GetType() == edgeType)
+                    {
+                        edgesToDelete.Add((Edge)selection[i]);
+                        continue;
+                    }
+                }
+            }
+        
+            void DeleteEdgesFromList()
+            {
+                for (int i = 0; i < edgesToDelete.Count; i++)
+                {
+                    edgesToDelete[i].EdgeRemovedByManualAction();
+                    RemoveElement(edgesToDelete[i]);
                 }
             }
 
-            // Delete edges.
-            DeleteElements(edgesToDelete);
-
-            // Delete nodes.
-            for (int i = 0; i < nodesToDeleteCount; i++)
+            void DeleteNodesFromList()
             {
-                nodesToDelete[i].NodeRemovedAction();
-                RemoveElement(nodesToDelete[i]);
+                for (int i = 0; i < nodesToDeleteCount; i++)
+                {
+                    nodesToDelete[i].NodeRemovedByManualAction();
+                    RemoveElement(nodesToDelete[i]);
+                }
             }
         }
 
@@ -232,49 +267,23 @@ namespace AG
         public override List<Port> GetCompatiblePorts(Port connectFromPort, NodeAdapter nodeAdapter)
         {
             List<Port> compatiblePorts = new List<Port>();
-            Port connectToPort = null;
 
-            ports.ForEach((port) =>
+            ports.ForEach((connectToPort) =>
             {
-                connectToPort = port;
-
                 // Same port cannot connect to itself.
-                if (connectFromPort != connectToPort && connectFromPort.node != connectToPort.node && connectFromPort.direction != port.direction)
+                if (connectFromPort != connectToPort)
                 {
                     // Start node cannot connect to start node
                     if (connectFromPort.node != connectToPort.node)
                     {
-                        // Port cannot connect to another port that is in the same direction.
+                        // Port cannot connect to the another port that has the same direction.
                         // *Input Port(A) -> Input Port(B) / Output Port(A) -> Output Port(B)
-                        if (connectFromPort.direction != port.direction)
+                        if (connectFromPort.direction != connectToPort.direction)
                         {
-                            // If we going to connect to choice node,
-                            // this port can only be dialogue node's choice port.
-                            if (connectToPort.node is DSChoiceNode)
+                            // Ports that aren't in the same port colors cannot connect.
+                            if (connectFromPort.portColor == connectToPort.portColor)
                             {
-                                if (connectFromPort.node is DSDialogueNode)
-                                {
-                                    if (connectFromPort.portColor == DSPortsUtility.GetPortColorByNodeType(N_NodeType.Choice))
-                                    {
-                                        compatiblePorts.Add(port);
-                                    }
-                                }
-                            }
-                            // If we're connecting from choice node and this port a input port,
-                            // this port can only connect to dialogue node's choice port.
-                            else if (connectFromPort.node is DSChoiceNode && connectFromPort.direction == Direction.Input)
-                            {
-                                if (connectToPort.node is DSDialogueNode)
-                                {
-                                    if (connectToPort.portColor == DSPortsUtility.GetPortColorByNodeType(N_NodeType.Choice))
-                                    {
-                                        compatiblePorts.Add(port);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                compatiblePorts.Add(port);
+                                compatiblePorts.Add(connectToPort);
                             }
                         }
                     }
@@ -284,5 +293,12 @@ namespace AG
             // return all the acceptable ports.
             return compatiblePorts;
         }
+
+
+        // ----------------------------- Reframe Graph Services -----------------------------
+        /// <summary>
+        /// Focus view all elements in the graph.
+        /// </summary>
+        public void ReframeGraphAll() => FrameAll();
     }
 }

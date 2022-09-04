@@ -34,16 +34,16 @@ namespace AG
             /// <summary>
             /// Action that invoked after modifier is added.
             /// </summary>
-            /// <param name="modifier">The modifier that'll be added to segment list.</param>
+            /// <param name="modifier">The new created modifier that'll be added to segment list.</param>
             public void ModifierAddedAction(TModifier modifier)
             {
-                // Add modifier to node's data
+                // Add modifier to the internal list.
                 Modifiers.Add(modifier);
 
                 // Update isHidden status.
                 SetIsHiddenToFalse();
 
-                // Add box to segment's content box
+                // Add box to segment's content box.
                 ContentBox.Add(modifier.MainBox);
             }
 
@@ -54,7 +54,7 @@ namespace AG
             /// <param name="modifier">The modifier that'll be removed from segment list.</param>
             public void ModifierRemovedAction(TModifier modifier)
             {
-                // Remove modifier from node's data.
+                // Remove modifier from the internal list.
                 Modifiers.Remove(modifier);
 
                 // Update isHidden status.
@@ -63,7 +63,7 @@ namespace AG
                     SetIsHiddenToTrue();
                 }
 
-                // Delete box from segment's content box
+                // Delete box from segment's content box.
                 ContentBox.Remove(modifier.MainBox);
             }
 
@@ -91,7 +91,7 @@ namespace AG
             /// <param name="source">The segment that was previously saved and now it's used to load from.</param>
             /// <param name="modifierAddedAction">Action that invoked after modifier is added.</param>
             /// <param name="modifierRemovedAction">Action that invoked after modifier is removed.</param>
-            public abstract void LoadSegmentValues(TSegment source, Action<TModifier> modifierAddedAction, Action<TModifier> modifierRemovedAction);
+            public abstract void LoadMolderSegmentValues(TSegment source, Action<TModifier> modifierAddedAction, Action<TModifier> modifierRemovedAction);
 
 
             // ----------------------------- Change IsHidden Status Services -----------------------------
@@ -123,7 +123,7 @@ namespace AG
             void SetIsHiddenToTrue()
             {
                 IsHidden = true;
-                DSFieldUtility.HideElement(MainBox);
+                DSElementDisplayUtility.HideElement(MainBox);
             }
 
 
@@ -133,7 +133,7 @@ namespace AG
             void SetIsHiddenToFalse()
             {
                 IsHidden = false;
-                DSFieldUtility.ShowElement(MainBox);
+                DSElementDisplayUtility.ShowElement(MainBox);
             }
 
 
@@ -142,7 +142,7 @@ namespace AG
             /// </summary>
             void RefreshSegmentIsHidden()
             {
-                DSFieldUtility.ToggleElementDisplay(IsHidden, MainBox);
+                DSElementDisplayUtility.ToggleElementDisplay(IsHidden, MainBox);
             }
         }
     }

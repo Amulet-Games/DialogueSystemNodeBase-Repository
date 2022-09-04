@@ -32,8 +32,8 @@ namespace AG
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Method that works like a callback when a node is deleted from graph.
+        /// The callback action to invoke when any of the nodes is deleted by users from the graph manually.
         /// </summary>
-        public abstract void NodeRemovedAction();
+        public abstract void NodeRemovedByManualAction();
     }
 }

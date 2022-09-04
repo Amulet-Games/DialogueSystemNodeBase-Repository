@@ -4,12 +4,14 @@ namespace AG
 {
     public class DSAssetsConfig
     {
-        public static Sprite inputHintIconSprite;
-        public static Sprite segmentExpandButtonIcon;
-        public static Sprite addChoiceEntryButtonIconImage;
-        public static Sprite addConditionModifierButtonIconImage;
-        public static Sprite addEventModifierButtonIconImage;
-        public static Sprite removeModifierButtonIconImage;
+        public static Sprite InputHintIconSprite;
+        public static Sprite SegmentExpandButtonIcon;
+        public static Sprite AddOptionEntryButtonIconImage;
+        public static Sprite AddConditionModifierButtonIconImage;
+        public static Sprite AddEventModifierButtonIconImage;
+        public static Sprite RemoveModifierButtonIconImage;
+        public static Sprite RemoveEntryButtonIconImage;
+        public static Sprite LanguageSelectionDropdownArrowIconImage;
 
         #region Setup.
         public static void Setup()
@@ -18,12 +20,14 @@ namespace AG
 
             void SetupSpriteAssets()
             {
-                inputHintIconSprite = Resources.Load<Sprite>("Assets/Sprites/InputHintIcon(PictoTotal)");
-                segmentExpandButtonIcon = Resources.Load<Sprite>("Assets/Sprites/SegmentExpandButtonIcon(PictoTotal)");
-                addChoiceEntryButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/AddChoiceEntryButtonIcon(PictoTotal)");
-                addConditionModifierButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/AddConditionModifierButtonIcon(PictoTotal)");
-                addEventModifierButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/AddEventModifierButtonIcon(PictoTotal)");
-                removeModifierButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/RemoveModifierButtonIcon(PictoTotal)");
+                InputHintIconSprite = Resources.Load<Sprite>("Assets/Sprites/InputHintIcon(PictoTotal)");
+                SegmentExpandButtonIcon = Resources.Load<Sprite>("Assets/Sprites/SegmentExpandButtonIcon(PictoTotal)");
+                AddOptionEntryButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/AddOptionEntryButtonIcon(PictoTotal)");
+                AddConditionModifierButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/AddConditionModifierButtonIcon(PictoTotal)");
+                AddEventModifierButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/AddEventModifierButtonIcon(PictoTotal)");
+                RemoveModifierButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/RemoveButtonIcon(PictoTotal)");
+                RemoveEntryButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/RemoveButtonIcon(PictoTotal)");
+                LanguageSelectionDropdownArrowIconImage = Resources.Load<Sprite>("Assets/Sprites/LanguageSelectionDropdownArrowIcon(RainbowArt)");
             }
         }
         #endregion

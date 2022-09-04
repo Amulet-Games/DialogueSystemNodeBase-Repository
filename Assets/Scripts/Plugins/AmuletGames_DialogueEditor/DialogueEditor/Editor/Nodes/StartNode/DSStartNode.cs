@@ -6,7 +6,7 @@ namespace AG
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Construtor of choice node.
+        /// Construtor of start node.
         /// </summary>
         /// <param name="position">The vector2 position of where this node'll be created on the graph.</param>
         /// <param name="graphView">Dialogue system's graph view module.</param>
@@ -15,7 +15,7 @@ namespace AG
         {
             SetupFrameFields();
 
-            AddPorts();
+            CreateNodePorts();
 
             RefreshPortsLayout();
 
@@ -32,14 +32,14 @@ namespace AG
                 Callback = new DSStartNodeCallback(this, model);
             }
 
-            void AddPorts()
+            void CreateNodePorts()
             {
                 Presenter.CreateNodePorts();
             }
 
             void AddStyleSheet()
             {
-                styleSheets.Add(DSStylesConfig.startNodeStyle);
+                styleSheets.Add(DSStylesConfig.StartNodeStyle);
             }
 
             void InvokeNodeAddedAction()

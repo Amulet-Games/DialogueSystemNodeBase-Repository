@@ -17,7 +17,7 @@ namespace AG
             {
                 spriteContainer.Value = value.newValue as Sprite;
 
-                DSObjectFieldUtility.UpdateImagePreview(spriteContainer.Value, referedImage);
+                DSImageUtility.UpdateImagePreview(spriteContainer.Value, referedImage);
 
                 DSObjectFieldUtility.ToggleEmptyStyle(spriteContainer.ObjectField);
 

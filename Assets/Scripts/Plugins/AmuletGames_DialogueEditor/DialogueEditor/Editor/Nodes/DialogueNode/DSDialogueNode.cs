@@ -17,7 +17,7 @@ namespace AG
 
             CreateNodeElements();
 
-            AddPorts();
+            CreateNodePorts();
 
             RefreshPortsLayout();
 
@@ -27,9 +27,9 @@ namespace AG
 
             void SetupFrameFields()
             {
-                DSDialogueNodeModel model = new DSDialogueNodeModel();
+                DSDialogueNodeModel model = new DSDialogueNodeModel(this);
 
-                Presenter = new DSDialogueNodePresenter(this, model, graphView);
+                Presenter = new DSDialogueNodePresenter(this, model);
                 Serializer = new DSDialogueNodeSerializer(this, model);
                 Callback = new DSDialogueNodeCallback(this, model);
             }
@@ -39,16 +39,16 @@ namespace AG
                 Presenter.CreateNodeElements();
             }
 
-            void AddPorts()
+            void CreateNodePorts()
             {
                 Presenter.CreateNodePorts();
             }
 
             void AddStyleSheet()
             {
-                styleSheets.Add(DSStylesConfig.dialogueNodeStyle);
-                styleSheets.Add(DSStylesConfig.dsSegmentsStyle);
-                styleSheets.Add(DSStylesConfig.dsIntegrantsStyle);
+                styleSheets.Add(DSStylesConfig.DialogueNodeStyle);
+                styleSheets.Add(DSStylesConfig.DSSegmentsStyle);
+                styleSheets.Add(DSStylesConfig.DSIntegrantsStyle);
             }
 
             void InvokeNodeAddedAction()

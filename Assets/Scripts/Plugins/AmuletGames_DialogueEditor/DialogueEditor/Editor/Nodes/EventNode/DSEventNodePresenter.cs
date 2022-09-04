@@ -27,7 +27,7 @@ namespace AG
 
             void AddEventMolder()
             {
-                Model.EventMolder.GetNewMolder(Node, "Add Event", DSAssetsConfig.addEventModifierButtonIconImage, DSStylesConfig.integrant_ContentButton_AddEvent_Image);
+                Model.EventMolder.GetNewMolder(Node, DSStringsConfig.AddEventLabelText, DSAssetsConfig.AddEventModifierButtonIconImage, DSStylesConfig.Integrant_ContentButton_AddEvent_Image);
             }
         }
 
@@ -37,8 +37,8 @@ namespace AG
         /// </summary>
         public void CreateNodePorts()
         {
-            Model.InputPort = DSPortsMaker.AddInputPort(Node, "Input", Port.Capacity.Multi, N_NodeType.Event);
-            Model.OutputPort = DSPortsMaker.AddOutputPort(Node, "Output", Port.Capacity.Single, N_NodeType.Event);
+            Model.InputPort = DSPortsMaker.AddInputPort(Node, DSStringsConfig.NodeInputLabelText, Port.Capacity.Multi);
+            Model.OutputPort = DSPortsMaker.AddOutputPort(Node, false, DSStringsConfig.NodeOutputLabelText, Port.Capacity.Single);
         }
 
 

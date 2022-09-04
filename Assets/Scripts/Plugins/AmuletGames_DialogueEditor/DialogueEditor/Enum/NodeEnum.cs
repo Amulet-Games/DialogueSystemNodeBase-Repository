@@ -11,7 +11,7 @@ namespace AG
     {
         Start,                          // Green            Color(0.141f, 0.541f, 0.271f)
         Dialogue,                       // Orange           Color(1f, 0.388f, 0.204f)
-        Choice,                         // Blue             Color(0.235f, 0.69f, 0.973f)
+        Option,                         // Blue             Color(0.235f, 0.69f, 0.973f)
         Event,                          // Purple           Color(0.635f, 0.0784f, 0.424f)
         Branch,                         // Yellow           Color(1f, 0.651f, 0f)
         End                             // River Green      Color(0.286f, 0.380f, 0.357f)
@@ -45,9 +45,8 @@ namespace AG
     #region Modifiers.
     public enum N_Modifier_ConditionDisplayType
     {
-        ShowAll = 1,
-        ShowMatched = 2,
-        GrayOutUnmatched = 3
+        Hide = 1,
+        GrayOut = 2
     }
 
     public enum N_Modifier_ConditionComparisonType

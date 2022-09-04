@@ -57,7 +57,7 @@ namespace AG
         /// </summary>
         void RefreshSegmentIsExpanded()
         {
-            DSFieldUtility.ToggleElementDisplay(!IsExpanded, ContentBox);
+            DSElementDisplayUtility.ToggleElementDisplay(!IsExpanded, ContentBox);
         }
     }
 }

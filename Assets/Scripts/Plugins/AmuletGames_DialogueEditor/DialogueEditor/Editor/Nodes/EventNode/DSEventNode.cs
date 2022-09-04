@@ -17,7 +17,7 @@ namespace AG
 
             CreateNodeElements();
 
-            AddPorts();
+            CreateNodePorts();
 
             RefreshPortsLayout();
 
@@ -39,18 +39,18 @@ namespace AG
                 Presenter.CreateNodeElements();
             }
 
-            void AddPorts()
+            void CreateNodePorts()
             {
                 Presenter.CreateNodePorts();
             }
 
             void AddStyleSheet()
             {
-                styleSheets.Add(DSStylesConfig.eventNodeStyle);
-                styleSheets.Add(DSStylesConfig.dsModifiersStyle);
-                styleSheets.Add(DSStylesConfig.dsSegmentsStyle);
-                styleSheets.Add(DSStylesConfig.dsIntegrantsStyle);
-                styleSheets.Add(DSStylesConfig.dsRootedModifiersStyle);
+                styleSheets.Add(DSStylesConfig.EventNodeStyle);
+                styleSheets.Add(DSStylesConfig.DSModifiersStyle);
+                styleSheets.Add(DSStylesConfig.DSSegmentsStyle);
+                styleSheets.Add(DSStylesConfig.DSIntegrantsStyle);
+                styleSheets.Add(DSStylesConfig.DSRootedModifiersStyle);
             }
 
             void InvokeNodeAddedAction()

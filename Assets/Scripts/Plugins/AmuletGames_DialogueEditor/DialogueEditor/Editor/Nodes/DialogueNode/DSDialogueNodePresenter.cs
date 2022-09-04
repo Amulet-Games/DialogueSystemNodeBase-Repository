@@ -6,11 +6,6 @@ namespace AG
 {
     public class DSDialogueNodePresenter : DSNodePresenterFrameBase<DSDialogueNode, DSDialogueNodeModel>
     {
-        /// <summary>
-        /// Reference of the graph module in the dialogue system.
-        /// </summary>
-        GraphView graphView;
-
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of dialogue node's presenter.
@@ -18,11 +13,10 @@ namespace AG
         /// <param name="node">Node of which this presenter is connecting upon.</param>
         /// <param name="model">Model of which this presenter is connecting upon.</param>
         /// <param name="graphView">Dialogue system's graph view module.</param>
-        public DSDialogueNodePresenter(DSDialogueNode node, DSDialogueNodeModel model, DSGraphView graphView)
+        public DSDialogueNodePresenter(DSDialogueNode node, DSDialogueNodeModel model)
         {
             Node = node;
             Model = model;
-            this.graphView = graphView;
         }
 
 
@@ -32,7 +26,7 @@ namespace AG
         /// </summary>
         public void CreateNodeElements()
         {
-            AddContentButton_ChoiceEntry();
+            AddContentButton_OptionEntry();
 
             AddImagesPreviewSegment();
 
@@ -40,9 +34,9 @@ namespace AG
 
             AddTextlineSegment();
 
-            void AddContentButton_ChoiceEntry()
+            void AddContentButton_OptionEntry()
             {
-                DSIntegrantsMaker.GetNewContentButton(Node, "Add Entry", DSAssetsConfig.addChoiceEntryButtonIconImage, DSStylesConfig.integrant_ContentButton_AddChoiceEntry_Image, AddChoiceEntryAction);
+                DSIntegrantsMaker.GetNewContentButton(Node, DSStringsConfig.AddEntryLabelText, DSAssetsConfig.AddOptionEntryButtonIconImage, DSStylesConfig.Integrant_ContentButton_AddOptionEntry_Image, AddOptionEntryAction);
             }
 
             void AddImagesPreviewSegment()
@@ -67,8 +61,8 @@ namespace AG
         /// </summary>
         public void CreateNodePorts()
         {
-            Model.InputPort = DSPortsMaker.AddInputPort(Node, "Input", Port.Capacity.Multi, N_NodeType.Dialogue);
-            Model.ContinueOutputPort = DSPortsMaker.AddOutputPort(Node, "Continue", Port.Capacity.Single, N_NodeType.Dialogue);
+            Model.InputPort = DSPortsMaker.AddInputPort(Node, DSStringsConfig.NodeInputLabelText, Port.Capacity.Multi);
+            Model.ContinueOutputPort = DSPortsMaker.AddOutputPort(Node, false, DSStringsConfig.DialogueNodeContinueOuputLabelText, Port.Capacity.Single);
         }
 
 
@@ -77,53 +71,13 @@ namespace AG
         /// Action that invoked after content button is pressed.
         /// <para>ContentButtonClickedAction - DSIntegrantsMaker - ContentButtonMainBox.</para>
         /// </summary>
-        void AddChoiceEntryAction()
+        void AddOptionEntryAction()
         {
-            // Create a new choice entry within this node.
-            DSEntriesMaker.GetNewChoiceEntry(Node, null, RemoveChoiceEntryAction, Model.ChoiceEntries);
+            // Ask option window to get a new option entry.
+            Model.OptionWindow.GetNewOptionEntry(null);
 
             // Refresh Ports Layout.
             Node.RefreshPortsLayout();
-        }
-
-
-        /// <summary>
-        /// Delete the choice entry's port within the connecting dialogue node.
-        /// <para>ChoiceEntryRemovedAction - DSEntriesMaker - EntryRemoveButton.</para>
-        /// </summary>
-        /// <param name="port">The selected port that is going to be deleted.</param>
-        public void RemoveChoiceEntryAction(Port port)
-        {
-            DeleteChoiceEntryPort();
-
-            void DeleteChoiceEntryPort()
-            {
-                // Find and remove the choice port data that assoicated with the Ouput Port that we are going to delete.
-                ChoiceEntry portData = Model.ChoiceEntries.Find(portData => portData.PortGuid == port.name);
-                Model.ChoiceEntries.Remove(portData);
-
-                // Find the edge that were come from this Output Port and put them in a list.
-                IEnumerable<Edge> portEdges = graphView.edges.ToList().Where(edge => edge.output == port);
-
-                // If there is an edge inside the list, meaning we need to delete it,
-                if (portEdges.Any())
-                {
-                    // Get the edge from the list.
-                    Edge firstEdge = portEdges.First();
-
-                    // Disconnect itself from the input node that it's connecting.
-                    firstEdge.input.Disconnect(firstEdge);
-
-                    // Disconnect itself from the output node which this edge was originate from.
-                    firstEdge.output.Disconnect(firstEdge);
-
-                    // Finally we remove this edge from the graph.
-                    graphView.RemoveElement(firstEdge);
-                }
-
-                // Remove the Output Port from the node.
-                Node.DeletePortElement(port, N_PortContainerType.Output);
-            }
         }
 
 

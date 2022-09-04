@@ -17,7 +17,7 @@ namespace AG
 
             CreateNodeElements();
 
-            AddPorts();
+            CreateNodePorts();
 
             RefreshPortsLayout();
 
@@ -39,14 +39,14 @@ namespace AG
                 Presenter.CreateNodeElements();
             }
 
-            void AddPorts()
+            void CreateNodePorts()
             {
                 Presenter.CreateNodePorts();
             }
 
             void AddStyleSheet()
             {
-                styleSheets.Add(DSStylesConfig.endNodeStyle);
+                styleSheets.Add(DSStylesConfig.EndNodeStyle);
             }
 
             void InvokeNodeAddedAction()

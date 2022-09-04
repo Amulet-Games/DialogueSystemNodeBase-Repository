@@ -1,6 +1,4 @@
 using UnityEditor.UIElements;
-using UnityEngine.UIElements;
-using UnityEngine;
 
 namespace AG
 {
@@ -14,23 +12,12 @@ namespace AG
         {
             if (objectField.value != null)
             {
-                objectField.RemoveFromClassList(DSStylesConfig.nodeShare_ObjectField_Empty);
+                objectField.RemoveFromClassList(DSStylesConfig.Node_ObjectField_Empty);
             }
             else
             {
-                objectField.AddToClassList(DSStylesConfig.nodeShare_ObjectField_Empty);
+                objectField.AddToClassList(DSStylesConfig.Node_ObjectField_Empty);
             }
-        }
-
-
-        /// <summary>
-        /// Update the image element's texture to match the sprite's texture.
-        /// </summary>
-        /// <param name="sprite">The sprite to use to overwrite the image element's image with.</param>
-        /// <param name="image">The image element of which it's image will be overwrited.</param>
-        public static void UpdateImagePreview(Sprite sprite, Image imageElement)
-        {
-            imageElement.image = sprite != null ? sprite.texture : null;
         }
     }
 }

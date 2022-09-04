@@ -1,7 +1,0 @@
-.node #title {
-	background-color: rgba(92, 166, 102, 1);
-	width: 140px;
-}
-
-#title-label {
-}

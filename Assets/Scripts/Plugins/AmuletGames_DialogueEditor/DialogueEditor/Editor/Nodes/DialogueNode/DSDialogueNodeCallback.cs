@@ -23,19 +23,23 @@ namespace AG
         public override void NodeAddedAction()
         {
             DSLanguageChangedEvent.Register(LanguageChangedAction);
-            Node.GraphView.SerializeHandler.AddNodeToList(Node);
+
+            DSSerializeHandler serializeHandler = Node.GraphView.SerializeHandler;
+            serializeHandler.AddNodeToList(Node);
+            serializeHandler.RegisterPostLoadingSetupAction(PostLoadingSetupAction);
         }
 
 
         /// <summary>
-        /// Callback action when the connecting node is removed from the graph.
+        /// Callback action when any of the nodes is deleted by users from the graph manually.
         /// <para>GraphDeleteSelectionAction - DSGraphView</para>
         /// </summary>
-        public override void NodeRemovedAction()
+        public override void NodeRemovedByManualAction()
         {
             DSLanguageChangedEvent.UnRegister(LanguageChangedAction);
             Node.DisconnectAllPorts();
             Node.GraphView.SerializeHandler.RemoveNodeFromList(Node);
+            Model.OptionWindow.CheckMultiOpponentsConnectedStyle();
         }
 
 
@@ -43,9 +47,20 @@ namespace AG
         /// Callback action when editor window's is changed to a different language.
         /// <para>LanguageChangedEvent - DSHeadBar</para>
         /// </summary>
-        public override void LanguageChangedAction()
+        protected override void LanguageChangedAction()
         {
             Model.TextlineSegment.ReloadLanguage();
+        }
+
+
+        /// <summary>
+        /// Callback action when the elements on the nodes has some logic to execute after 
+        /// <br>the edges loading phrase is finished.</br>
+        /// <para>PostLoadingSetupAction - DSSerializeHandler</para>
+        /// </summary>
+        protected override void PostLoadingSetupAction()
+        {
+            Model.OptionWindow.PostLoadingSetupAction();
         }
     }
 }

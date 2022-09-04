@@ -83,17 +83,17 @@ namespace AG
 
                 headBar_Toolbar.Add(headBar_LeftSideSubBox);
 
-                headBar_LeftSideSubBox.AddToClassList(DSStylesConfig.headBar_LeftSideSubBox);
+                headBar_LeftSideSubBox.AddToClassList(DSStylesConfig.HeadBar_LeftSide_SubBox);
             }
 
             void SetupButton_Save()
             {
-                saveButton = DSButtonsMaker.GetNewButtonNonAlert("Save", dsWindow.SaveWindowAction, DSStylesConfig.headBar_SaveButton);
+                saveButton = DSButtonsMaker.GetNewButtonNonAlert("Save", dsWindow.SaveWindowAction, DSStylesConfig.HeadBar_SaveGraph_Button);
             }
 
             void SetupButton_Load()
             {
-                loadButton = DSButtonsMaker.GetNewButtonNonAlert("Load", dsWindow.LoadWindowAction, DSStylesConfig.headBar_LoadButton);
+                loadButton = DSButtonsMaker.GetNewButtonNonAlert("Load", dsWindow.LoadWindowAction, DSStylesConfig.HeadBar_LoadGraph_Button);
             }
 
             void SetupToolbarMenu_SwitchLanguage()
@@ -106,7 +106,7 @@ namespace AG
 
                 void SetupMenu()
                 {
-                    languageDropdown = DSToolbarMenusMaker.GetNewToolbarMenu("", DSStylesConfig.headBar_LanguageToolbarMenu);
+                    languageDropdown = DSToolbarMenusMaker.GetNewToolbarMenu(DSAssetsConfig.LanguageSelectionDropdownArrowIconImage, DSStylesConfig.HeadBar_LanguageSelection_ToolbarMenu);
                 }
 
                 void RegisterMenuDropdownAction()
@@ -131,7 +131,7 @@ namespace AG
 
             void SetupTitleTextField()
             {
-                titleTextField = DSTextFieldsMaker.GetTitleTextField(DSStylesConfig.headBar_TitleTextField);
+                titleTextField = DSTextFieldsMaker.GetTitleTextField(DSStylesConfig.HeadBar_Title_TextField);
             }
 
             void AddFieldsToBox()
@@ -145,8 +145,8 @@ namespace AG
 
             void AddStyleSheet()
             {
-                headBar_Toolbar.styleSheets.Add(DSStylesConfig.dsHeadBarStyle);
-                headBar_LeftSideSubBox.styleSheets.Add(DSStylesConfig.dsHeadBarStyle);
+                headBar_Toolbar.styleSheets.Add(DSStylesConfig.DSHeadBarStyle);
+                headBar_LeftSideSubBox.styleSheets.Add(DSStylesConfig.DSHeadBarStyle);
             }
 
             void AddBoxToWindowRoot()
@@ -194,7 +194,7 @@ namespace AG
             SwitchLanguageAction(SupportLanguage.SelectedLanguage);
 
             // Update the graph title.
-            ReloadGraphTitleAction();
+            UpdateGraphTitleAction(containerSO.name);
         }
 
 

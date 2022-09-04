@@ -42,23 +42,16 @@ namespace AG
         /// <returns>The string suffix of current selected language type.</returns>
         public static string GetLanguageSuffix()
         {
-            switch (SelectedLanguage)
+            return SelectedLanguage switch
             {
-                case G_LanguageType.English:
-                    return " (Eng)";
-                case G_LanguageType.German:
-                    return " (Ger)";
-                case G_LanguageType.Danish:
-                    return " (Dan)";
-                case G_LanguageType.Spanish:
-                    return " (Span)";
-                case G_LanguageType.Japanese:
-                    return " (Jp)";
-                case G_LanguageType.Latin:
-                    return " (Lat)";
-                default:
-                    return " (Eng)";
-            }
+                G_LanguageType.English => " (Eng)",
+                G_LanguageType.German => " (Ger)",
+                G_LanguageType.Danish => " (Dan)",
+                G_LanguageType.Spanish => " (Span)",
+                G_LanguageType.Japanese => " (Jp)",
+                G_LanguageType.Latin => " (Lat)",
+                _ => " (Eng)",
+            };
         }
 
 
@@ -68,23 +61,16 @@ namespace AG
         /// <returns>The string label of current selected language type.</returns>
         public static string GetLanguageLabel()
         {
-            switch (SelectedLanguage)
+            return SelectedLanguage switch
             {
-                case G_LanguageType.English:
-                    return "ENG";
-                case G_LanguageType.German:
-                    return "GER";
-                case G_LanguageType.Danish:
-                    return "DAN";
-                case G_LanguageType.Spanish:
-                    return "SPAN";
-                case G_LanguageType.Japanese:
-                    return "JPN";
-                case G_LanguageType.Latin:
-                    return "LATIN";
-                default:
-                    return " (Eng)";
-            }
+                G_LanguageType.English => "ENG",
+                G_LanguageType.German => "GER",
+                G_LanguageType.Danish => "DAN",
+                G_LanguageType.Spanish => "SPAN",
+                G_LanguageType.Japanese => "JPN",
+                G_LanguageType.Latin => "LATIN",
+                _ => "ENG",
+            };
         }
     }
 }

@@ -23,7 +23,7 @@ namespace AG
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Construtor of choice node's model.
+        /// Construtor of start node's model.
         /// </summary>
         public DSStartNodeModel() { }
     }

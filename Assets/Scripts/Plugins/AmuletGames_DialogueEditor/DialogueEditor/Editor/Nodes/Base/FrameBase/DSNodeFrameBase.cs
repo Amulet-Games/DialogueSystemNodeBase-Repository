@@ -35,6 +35,7 @@ namespace AG
         /// </summary>
         public TNodeCallback Callback;
 
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor for node's frame base class.
@@ -48,7 +49,11 @@ namespace AG
 
             SetNodePosition();
 
-            AddBaseStyleSheet();
+            ImplementDSCommonStyleSheets();
+
+            OverrideContainersDefaultStyle();
+
+            OverrideBorderDefaultStyle();
 
             void SetupBaseFields()
             {
@@ -71,23 +76,55 @@ namespace AG
                 SetPosition(new Rect(position, DefaultNodeSize));
             }
 
-            void AddBaseStyleSheet()
+            void ImplementDSCommonStyleSheets()
             {
                 // Setup the base node's USS styles.
-                styleSheets.Add(DSStylesConfig.dsGlobalStyle);
-                styleSheets.Add(DSStylesConfig._nodesShareStyle);
+                styleSheets.Add(DSStylesConfig.DSGlobalStyle);
+                styleSheets.Add(DSStylesConfig.DSNodesShareStyle);
+            }
+
+            void OverrideContainersDefaultStyle()
+            {
+                // Override defualt picking mode.
+                titleContainer.pickingMode = PickingMode.Position;
+                mainContainer.pickingMode = PickingMode.Position;
+
+                // Remove the default USS names.
+                outputContainer.name = "";
+                inputContainer.name = "";
+
+                // Add to custom USS class.
+                outputContainer.AddToClassList(DSStylesConfig.Node_Output_Container);
+                inputContainer.AddToClassList(DSStylesConfig.Node_Input_Container);
+            }
+
+            void OverrideBorderDefaultStyle()
+            {
+                // Get the node border from node's children.
+                VisualElement nodeBorder = ElementAt(0);
+
+                // Brings the it to the front of any children element's under this nodes.
+                nodeBorder.BringToFront();
+
+                // Override default properties.
+                nodeBorder.style.overflow = Overflow.Visible;
+                nodeBorder.focusable = true;
+
+                // Remove the default USS names and add to custom class.
+                nodeBorder.name = "";
+                nodeBorder.AddToClassList(DSStylesConfig.Node_Border);
             }
         }
 
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Method that works like a callback when a node is deleted from graph.
+        /// The callback action to invoke when any of the nodes is deleted by users from the graph manually.
         /// <para></para>
         /// <br>Since each derived class may implemented different behaviors, this method is mainly used for calling</br>
         /// <br>the derived classes's NodeRemovedAction instead.</br>
         /// </summary>
-        public override void NodeRemovedAction() => Callback.NodeRemovedAction();
+        public override void NodeRemovedByManualAction() => Callback.NodeRemovedByManualAction();
 
 
         // ----------------------------- Overrides -----------------------------

@@ -23,7 +23,7 @@ namespace AG
         /// </summary>
         public void CreateNodePorts()
         {
-            Model.OutputPort = DSPortsMaker.AddOutputPort(Node, "Output", Port.Capacity.Single, N_NodeType.Start);
+            Model.OutputPort = DSPortsMaker.AddOutputPort(Node, false, DSStringsConfig.NodeOutputLabelText, Port.Capacity.Single);
         }
 
 

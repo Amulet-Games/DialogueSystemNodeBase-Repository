@@ -34,7 +34,7 @@ namespace AG
         {
             LG_AudioClipField.RegisterCallback<FocusInEvent>(_ =>
             {
-                DialogueEditorWindow.Instance.InputHint.ShowHint(DSStringsConfig.LG_InputHintText, LG_AudioClipField.worldBound);
+                DialogueEditorWindow.Instance.InputHint.ShowHint(DSStringsConfig.LanguageFieldInputHintText, LG_AudioClipField.worldBound);
             });
         }
 

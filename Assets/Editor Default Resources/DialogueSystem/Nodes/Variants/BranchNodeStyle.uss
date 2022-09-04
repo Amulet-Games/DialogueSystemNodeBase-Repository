@@ -1,0 +1,65 @@
+.node {
+	width: 519px;
+}
+
+.node #title {
+	background-color: rgba(142, 149, 95, 1);
+}
+
+.node_Border #title #title-label {
+
+	font-size: 18px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 8px;
+	padding: 0px 2px 0px 2px;
+}
+
+.node_Border #contents {
+	
+	flex-grow: 0;
+}
+
+
+/* ---------------------------------------------------------------- Port ---------------------------------------------------------------- */
+.node_Input_Container
+.node_Input_Port {
+
+	height: auto;
+	width: auto;
+
+	align-content: flex-start;
+	align-items: center;
+	align-self: flex-start;
+	
+	flex-direction: row;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 15px 0px;
+	padding: 0px 4px 0px 4px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.node_Output_Container
+.node_Output_Port {
+
+	height: auto;
+	width: auto;
+
+	align-content: flex-start;
+	align-items: center;
+	align-self: flex-end;
+
+	flex-direction: row-reverse;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 4px 0px 4px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}

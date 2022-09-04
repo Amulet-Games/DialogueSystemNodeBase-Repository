@@ -1,7 +1,8 @@
-.inputHint_MainBox {
-	background-color: #FF4A74;
-	border-color: #878FCC;
-	border-bottom-color: #B28FCC;
+.inputHint_Hint_MainBox {
+
+	background-color: rgba(255, 74, 116, 1);
+	border-color: rgba(135, 143, 204, 1);
+	border-bottom-color: rgba(178, 143, 204, 1);
 
 	align-self: flex-start;
 	flex-direction: row;
@@ -9,40 +10,40 @@
 	position: absolute;
 	
 	/* top - right - bottom - left */
-	border-width: 3px 3px 4px 4px;
-	border-radius: 1px 3px 10px 3px;
+	border-width: 2px 2px 2px 2px;
+	border-radius: 3px 3px 3px 3px;
 }
 
 /*< -------------------- Image -------------------- >*/
+.inputHint_HintIcon_Image {
 
-.inputHint_IconImage {
-	background-color: #FF7066;
+	background-color: rgba(255, 112, 102, 1);
 
-	bottom: 0.8px;
+	bottom: 0.5px;
 	right: 6px;
 
-	height: 30px;
-	width: 36px;
+	height: 27px;
+	width: 30px;
 	
 	/* top - right - bottom - left */
-	margin: 2px 2px 0px 6px;
+	margin: 1px 2px -1px 6px;
+	padding: 2px 0px 0px 0px;
 	border-width: 0px 0px 2px 0px;
+	border-radius: 0px 0px 3px 0px;
 }
 
 /*< -------------------- Label -------------------- >*/
+.inputHint_HintText_Label {
 
-.inputHint_HintLabel {
+	color: rgba(255, 255, 255, 1);
+
 	align-self: center;
-	bottom: -0.5px;
-
-	color: #FFFFFF;
+	bottom: -1px;
 
 	-unity-font-style: bold-and-italic;
-	font-size: 19px;
+	font-size: 18px;
 	
 	/* top - right - bottom - left */
-	margin: 0px 4px -1px -1px;
-	
-	/* top - right - bottom - left */
-	padding: 4px 2px 5px 1px;
+	margin: 0px 4px -2px -1px;
+	padding: 3px 2px 4px 1px;
 }

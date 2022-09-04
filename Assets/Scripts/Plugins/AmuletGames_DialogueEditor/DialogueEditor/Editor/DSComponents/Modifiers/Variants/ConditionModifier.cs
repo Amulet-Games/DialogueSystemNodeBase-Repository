@@ -65,22 +65,22 @@ namespace AG
             void SetupModifierBox()
             {
                 MainBox = new Box();
-                MainBox.AddToClassList(DSStylesConfig.modifier_Condition_MainBox);
+                MainBox.AddToClassList(DSStylesConfig.Modifier_Condition_Rooted_MainBox);
             }
 
             void SetupTextField()
             {
-                conditionNameField = DSTextFieldsMaker.GetNewTextField(ConditionName_TextContainer, "Condition Name", DSStylesConfig.modifier_Condition_Rooted_TextField);
+                conditionNameField = DSTextFieldsMaker.GetNewTextField(ConditionName_TextContainer, "Condition Name", DSStylesConfig.Modifier_Condition_Rooted_TextField);
             }
 
             void SetupFloatField()
             {
-                comparisonNumberField = DSFloatFieldsMaker.GetNewFloatField(ComparisonNumber_FloatContainer, DSStylesConfig.modifier_Condition_Rooted_FloatField);
+                comparisonNumberField = DSFloatFieldsMaker.GetNewFloatField(ComparisonNumber_FloatContainer, DSStylesConfig.Modifier_Condition_Rooted_FloatField);
             }
 
             void SetupEnumField()
             {
-                comparisonTypeField = DSEnumFieldsMaker.GetNewEnumField(ComparisonType_EnumContainer, () => ToggleFloatFieldVisibleAction(), DSStylesConfig.modifier_Condition_Rooted_EnumField);
+                comparisonTypeField = DSEnumFieldsMaker.GetNewEnumField(ComparisonType_EnumContainer, () => ToggleFloatFieldVisibleAction(), DSStylesConfig.Modifier_Condition_Rooted_EnumField);
             }
 
             void AddFieldsToBox()
@@ -109,7 +109,7 @@ namespace AG
         /// </summary>
         public void ToggleFloatFieldVisibleAction()
         {
-            DSFieldUtility.ToggleElementDisplay(ComparisonType_EnumContainer.IsBooleansComparisonType(), ComparisonNumber_FloatContainer.FloatField);
+            DSElementDisplayUtility.ToggleElementDisplay(ComparisonType_EnumContainer.IsBooleansComparisonType(), ComparisonNumber_FloatContainer.FloatField);
         }
 
 
@@ -117,7 +117,7 @@ namespace AG
         /// <summary>
         /// Save modifier's value from another previously create modifier.
         /// </summary>
-        /// <param name="source">The modifier of which it's values are going to be saved.</param>
+        /// <param name="source">The modifier of which its values are going to be saved.</param>
         public override void SaveModifierValue(ConditionModifier source)
         {
             // Calling each container's saving method in order.

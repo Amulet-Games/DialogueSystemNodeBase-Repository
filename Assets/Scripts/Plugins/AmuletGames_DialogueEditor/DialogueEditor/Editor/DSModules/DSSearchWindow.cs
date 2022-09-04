@@ -100,8 +100,8 @@ namespace AG
                 case N_NodeType.Dialogue:
                     DSNodesMaker.CreateDialogueNode(position, graphView);
                     break;
-                case N_NodeType.Choice:
-                    DSNodesMaker.CreateChoiceNode(position, graphView);
+                case N_NodeType.Option:
+                    DSNodesMaker.CreateOptionNode(position, graphView);
                     break;
                 case N_NodeType.Event:
                     DSNodesMaker.CreateEventNode(position, graphView);
@@ -133,7 +133,7 @@ namespace AG
 
                 AddNodeSearch("Start Node", N_NodeType.Start),
                 AddNodeSearch("Dialogue Node", N_NodeType.Dialogue),
-                AddNodeSearch("Choice Node", N_NodeType.Choice),
+                AddNodeSearch("Option Node", N_NodeType.Option),
                 AddNodeSearch("Event Node", N_NodeType.Event),
                 AddNodeSearch("Branch Node", N_NodeType.Branch),
                 AddNodeSearch("End Node", N_NodeType.End)

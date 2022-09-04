@@ -25,7 +25,7 @@ namespace AG
         /// <summary>
         /// Save modifier's value from another previously create modifier.
         /// </summary>
-        /// <param name="source">The modifier of which it's values are going to be saved.</param>
+        /// <param name="source">The modifier of which its values are going to be saved.</param>
         public abstract void SaveModifierValue(TModifier source);
 
 

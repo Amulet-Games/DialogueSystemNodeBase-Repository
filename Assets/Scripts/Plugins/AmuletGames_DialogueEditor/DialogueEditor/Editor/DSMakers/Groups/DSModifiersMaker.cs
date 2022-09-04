@@ -53,22 +53,22 @@ namespace AG
             void SetupModifierBox()
             {
                 mainBox = new Box();
-                mainBox.AddToClassList(DSStylesConfig.modifier_Condition_MainBox);
+                mainBox.AddToClassList(DSStylesConfig.Modifier_Condition_MainBox);
             }
 
             void SetupTextField()
             {
-                conditionNameField = DSTextFieldsMaker.GetNewTextField(newConditionModifier.ConditionName_TextContainer, "Condition Name", DSStylesConfig.modifier_Condition_TextField);
+                conditionNameField = DSTextFieldsMaker.GetNewTextField(newConditionModifier.ConditionName_TextContainer, "Condition Name", DSStylesConfig.Modifier_Condition_TextField);
             }
 
             void SetupFloatField()
             {
-                conditionNumberField = DSFloatFieldsMaker.GetNewFloatField(newConditionModifier.ComparisonNumber_FloatContainer, DSStylesConfig.modifier_Condition_FloatField);
+                conditionNumberField = DSFloatFieldsMaker.GetNewFloatField(newConditionModifier.ComparisonNumber_FloatContainer, DSStylesConfig.Modifier_Condition_FloatField);
             }
 
             void SetupEnumField()
             {
-                conditionEnumField = DSEnumFieldsMaker.GetNewEnumField(newConditionModifier.ComparisonType_EnumContainer, ConditionCompareTypeChangedAction, DSStylesConfig.modifier_Condition_EnumField);
+                conditionEnumField = DSEnumFieldsMaker.GetNewEnumField(newConditionModifier.ComparisonType_EnumContainer, ConditionCompareTypeChangedAction, DSStylesConfig.Modifier_Condition_EnumField);
             }
 
             void SetupModifierRemoveButton()
@@ -156,12 +156,12 @@ namespace AG
             void SetupModifierBox()
             {
                 mainBox = new Box();
-                mainBox.AddToClassList(DSStylesConfig.modifier_Event_MainBox);
+                mainBox.AddToClassList(DSStylesConfig.Modifier_Event_MainBox);
             }
 
             void SetupEventObjectField()
             {
-                eventObjectField = DSObjectFieldsMaker.GetNewObjectField(newEventModifier.DialogueEventSO_ObjectContainer, DSStylesConfig.modifier_Event_ObjectField);
+                eventObjectField = DSObjectFieldsMaker.GetNewObjectField(newEventModifier.DialogueEventSO_ObjectContainer, DSStylesConfig.Modifier_Event_ObjectField);
             }
 
             void SetupModifierRemvoeButton()
@@ -207,7 +207,7 @@ namespace AG
         /// <returns>A new button to remove the modifier that it's connecting to.</returns>
         static Button AddModifierRemoveButton(Action ModifierRemovedAction)
         {
-            return DSButtonsMaker.GetNewButton(DSAssetsConfig.removeModifierButtonIconImage, ModifierRemovedAction, DSStylesConfig.modifier_RemoveModifier_Button);
+            return DSButtonsMaker.GetNewButton(DSAssetsConfig.RemoveModifierButtonIconImage, ModifierRemovedAction, DSStylesConfig.Modifier_RemoveModifier_Button);
         }
     }
 }

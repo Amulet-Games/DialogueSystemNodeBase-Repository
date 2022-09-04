@@ -49,17 +49,28 @@
 	background-color: #DD4E50;
 }
 
+.segment_DualPortraits_ContentBox {
+
+	background-color: rgba(40, 40, 40, 1);
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
 .segment_DualPortraits_ImagesBox {
 
-	background-color: rgba(40, 40, 40, 0.871);
-	border-color: rgba(159, 159, 159, 0.713);
+	background-color: rgba(58, 58, 58, 1);
+	border-color: rgba(14, 14, 14, 0.667);
 
 	flex-direction: row;
 
 	/* top - right - bottom - left */
-	margin: -1px -1px 0px -1px;
+	margin: 6.5px 2.5px 5px 2.5px;
 	padding: 0px 0px 0px 0px;
-	border-width: 2px 2px 2px 2px;
+	border-width: 2.5px 2.5px 2.5px 2.5px;
+	border-radius: 4px 4px 4px 4px;
 }
 
 .segment_DualPortraits_Images {
@@ -84,7 +95,7 @@
 
 .segment_DualPortraits_ObjectFieldsBox {
 
-	height: 30px;
+	height: auto;
 
 	flex-direction: row;
 
@@ -96,34 +107,57 @@
 
 .segment_DualPortraits_ObjectFields {
 
-	width: 150px;
+	border-color: rgba(29, 29, 29, 1);
+
+	max-width: 170px;
+
+	height: 30px;
+	width: auto;
 
 	/* top - right - bottom - left */
 	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 1px 0px;
+	border-width: 2.5px 2.5px 2.5px 2.5px;
 }
 
 .segment_DualPortraits_ObjectField_L {
 
 	/* top - right - bottom - left */
-	margin: 1px auto 0px -1px;
+	margin: -2px auto 6px 3.5px;
 }
 
 .segment_DualPortraits_ObjectField_R {
 
 	/* top - right - bottom - left */
-	margin: 1px -1px 0px auto;
+	margin: -2px 3.5px 6px auto;
 }
 
-/*<-- Object field's border radius style. -->*/
 .segment_DualPortraits_ObjectFields 
 .unity-object-field__input {
 
 	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;
 }
 
-/*<-- Object field's displaying label style. -->*/
+/*<-- Object field's displaying image's style. -->*/
+.segment_DualPortraits_ObjectField_L 
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__icon,
+
+.segment_DualPortraits_ObjectField_R 
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__icon {
+
+	max-height: 17px;
+	max-width: 20px;
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 2px 2px;
+}
+
+/*<-- Object field's displaying label's style. -->*/
 .segment_DualPortraits_ObjectField_L 
 .unity-object-field__input 
 .unity-object-field-display 
@@ -133,6 +167,8 @@
 .unity-object-field__input 
 .unity-object-field-display 
 .unity-object-field-display__label {
+
+	font-size: 15px;
 
 	align-self: Center;
 
@@ -161,7 +197,7 @@
 	white-space: normal;
 
 	/* top - right - bottom - left */
-	margin: 0px -1px 0.5px -1px;
+	margin: 0px 0px 0.5px 0px;
 	padding: 0px 0px 0px 0px;
 }
 
@@ -172,8 +208,16 @@
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 0px;
-	padding: 1px 2px 0px 10px;
-	border-width: 1px 2px 1px 2px;
+	padding: 1px 7px 0px 12px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.segment_SpeakerName_TextField 
+.unity-text-field__input:focus {
+
+	/* top - right - bottom - left */
+	border-width: 2px 2px 2px 2px;
 	border-radius: 0px 0px 0px 0px;
 }
 
@@ -192,14 +236,15 @@
 }
 
 .segment_Textline_TextField {
-
-	height: 30px;
+	
+	min-height: 30px;
+	height: auto;
 	width: auto;
 
 	white-space: normal;
 
 	/* top - right - bottom - left */
-	margin: 0px -1px 0px -1px;
+	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 }
@@ -210,8 +255,16 @@
 	font-size: 16px;
 
 	/* top - right - bottom - left */
-	padding: 4px 2px 0px 10px;
-	border-width: 1px 2px 1px 2px;
+	padding: 4px 7px 0px 12px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.segment_Textline_TextField 
+.unity-text-field__input:focus {
+
+	/* top - right - bottom - left */
+	border-width: 2px 2px 2px 2px;
 	border-radius: 0px 0px 0px 0px;
 }
 
@@ -221,7 +274,7 @@
 	width: auto;
 
 	/* top - right - bottom - left */
-	margin: 0px -1px 0px -1px;
+	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 }
@@ -230,7 +283,7 @@
 .unity-object-field__input {
 	
 	/* top - right - bottom - left */
-	border-width: 1px 2px 1px 2px;
+	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;
 }
 
@@ -256,9 +309,9 @@
 .unity-object-field-display 
 .unity-object-field-display__label {
 
-	align-self: Center;
-
 	font-size: 16px;
+
+	align-self: Center;
 
 	/* top - right - bottom - left */
 	margin: 4px 0px 0px 4px;
@@ -284,18 +337,18 @@
 	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 1px 0px 0px 0px;
+	margin: 0px 0px -1px 0px;
 	border-width: 0px 0px 0px 0px;
 }
 
-.segment_Condition_ConditionDisplayEnumField {
+.segment_Condition_UnmetOptionDisplayEnumField {
 
 	/* top - right - bottom - left */
 	margin: 2px 0px 0px 0px;
 	padding: 0px 6px 0px 0px;
 }
 
-.segment_Condition_ConditionDisplayEnumField
+.segment_Condition_UnmetOptionDisplayEnumField
 .unity-enum-field__input {
 
 	/* top - right - bottom - left */
@@ -304,19 +357,23 @@
 	border-width: 0px 0px 0px 0px;
 }
 
-.segment_Condition_ConditionDisplayEnumField
+.segment_Condition_UnmetOptionDisplayEnumField
 .unity-enum-field__input
 .unity-enum-field__text {
 
 	font-size: 14px;
 }
 
-.segment_Condition_ConditionDisplayEnumField
+.segment_Condition_UnmetOptionDisplayEnumField
 .unity-enum-field__input
 .unity-enum-field__arrow {
 
 	height: 19px;
 	width: 19px;
+	
+	/* top - right - bottom - left */
+	margin: 0.5px 0px 0px 3.5px;
+	padding: 0px 0px 0px 0px;
 }
 
 /*< -------------------- Event -------------------- >*/
@@ -338,6 +395,6 @@
 	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 1px 0px -1px 0px;
+	margin: 0px 0px -1px 0px;
 	border-width: 0px 0px 0px 0px;
 }

@@ -27,10 +27,10 @@ namespace AG
 
 
         /// <summary>
-        /// Callback action when the connecting node is removed from the graph.
+        /// Callback action when any of the nodes is deleted by users from the graph manually.
         /// <para>GraphDeleteSelectionAction - DSGraphView</para>
         /// </summary>
-        public override void NodeRemovedAction()
+        public override void NodeRemovedByManualAction()
         {
             Node.DisconnectAllPorts();
             Node.GraphView.SerializeHandler.RemoveNodeFromList(Node);

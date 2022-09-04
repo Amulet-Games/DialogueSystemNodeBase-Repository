@@ -106,7 +106,7 @@ namespace AG
 
             void UpdateImagePreview()
             {
-                DSObjectFieldUtility.UpdateImagePreview(spriteContainer.Value, imageElement);
+                DSImageUtility.UpdateImagePreview(spriteContainer.Value, imageElement);
             }
 
             void AddFieldToStyleClass()

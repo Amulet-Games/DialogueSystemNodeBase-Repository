@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor;
 
@@ -37,6 +38,22 @@ namespace AG
         int edgesCount;
 
 
+        /// <summary>
+        /// The action to invoke when the handler has finished loading all the nodes and edges.
+        /// </summary>
+        event Action PostLoadingSetupAction;
+
+
+        // ----------------------------- Pre Setup -----------------------------
+        /// <summary>
+        /// Clear all the actions that have been registered to the PostLoadingSetupAction.
+        /// </summary>
+        public void ClearActions()
+        {
+            PostLoadingSetupAction = null;
+        }
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue system's serialize handler
@@ -47,63 +64,6 @@ namespace AG
             this.graphView = graphView;
 
             nodes = new List<DSNodeBase>();
-            nodesCount = 0;
-        }
-
-
-        // ----------------------------- Utility -----------------------------
-        /// <summary>
-        /// Add node to the internal node's list.
-        /// </summary>
-        /// <param name="node">The node to add to the serialize handler's internal list.</param>
-        public void AddNodeToList(DSNodeBase node)
-        {
-            nodes.Add(node);
-            nodesCount++;
-        }
-
-
-        /// <summary>
-        /// Remove node from the internal node's list.
-        /// </summary>
-        /// <param name="node">The node to remove from the serialize handler's internal list.</param>
-        public void RemoveNodeFromList(DSNodeBase node)
-        {
-            nodes.Remove(node);
-            nodesCount--;
-        }
-
-
-        /// <summary>
-        /// Update internal edges' list by getting all the edges that are on the graph.
-        /// </summary>
-        void RefreshInternalEdges()
-        {
-            edges = graphView.edges.ToList();
-            edgesCount = edges.Count;
-        }
-
-
-        /// <summary>
-        /// Find all the edges and nodes that are on the graph and delete them all.
-        /// </summary>
-        void ClearGraph()
-        {
-            for (int i = 0; i < edgesCount; i++)
-            {
-                graphView.RemoveElement(edges[i]);
-            }
-
-            // Clear the nodes on graph.
-            for (int i = 0; i < nodesCount; i++)
-            {
-                graphView.RemoveElement(nodes[i]);
-            }
-
-            // Clear the nodes inside the list.
-            nodes.Clear();
-
-            // Reset nodes count back to zero.
             nodesCount = 0;
         }
 
@@ -180,7 +140,7 @@ namespace AG
             {
                 dialogueContainerSO.StartModelSavables.Clear();
                 dialogueContainerSO.DialogueModelSavables.Clear();
-                dialogueContainerSO.ChoiceModelSavables.Clear();
+                dialogueContainerSO.OptionModelSavables.Clear();
                 dialogueContainerSO.EventModelSavables.Clear();
                 dialogueContainerSO.BranchModelSavables.Clear();
                 dialogueContainerSO.EndModelSavables.Clear();
@@ -196,10 +156,10 @@ namespace AG
                             dialogueContainerSO.StartModelSavables.Add(node.Serializer.SaveNode());
                             break;
                         case DSDialogueNode node:
-                            dialogueContainerSO.DialogueModelSavables.Add(node.Serializer.SaveNode(edges, edgesCount));
+                            dialogueContainerSO.DialogueModelSavables.Add(node.Serializer.SaveNode());
                             break;
-                        case DSChoiceNode node:
-                            dialogueContainerSO.ChoiceModelSavables.Add(node.Serializer.SaveNode());
+                        case DSOptionNode node:
+                            dialogueContainerSO.OptionModelSavables.Add(node.Serializer.SaveNode());
                             break;
                         case DSEventNode node:
                             dialogueContainerSO.EventModelSavables.Add(node.Serializer.SaveNode());
@@ -231,6 +191,8 @@ namespace AG
             LoadNodes(dialogueContainerSO);
             LoadEdges(dialogueContainerSO);
 
+            InvokePostLoadingSetupAction();
+
             // Set dirty when all the changes involving ContainerSO is done.
             EditorUtility.SetDirty(dialogueContainerSO);
         }
@@ -249,7 +211,7 @@ namespace AG
 
             LoadDialogueNodes();
 
-            LoadChoiceNodes();
+            LoadOptionNodes();
 
             LoadBranchNodes();
 
@@ -281,15 +243,15 @@ namespace AG
                 }
             }
 
-            void LoadChoiceNodes()
+            void LoadOptionNodes()
             {
-                List<DSChoiceNodeModel> choiceNodeModels = dialogueContainerSO.ChoiceModelSavables;
-                modelsCount = choiceNodeModels.Count;
+                List<DSOptionNodeModel> optionNodeModels = dialogueContainerSO.OptionModelSavables;
+                modelsCount = optionNodeModels.Count;
 
                 for (int i = 0; i < modelsCount; i++)
                 {
-                    DSChoiceNode newChoiceNode = DSNodesMaker.CreateChoiceNode(choiceNodeModels[i].SavedNodePosition, graphView);
-                    newChoiceNode.Serializer.LoadNode(choiceNodeModels[i]);
+                    DSOptionNode newOptionNode = DSNodesMaker.CreateOptionNode(optionNodeModels[i].SavedNodePosition, graphView);
+                    newOptionNode.Serializer.LoadNode(optionNodeModels[i]);
                 }
             }
 
@@ -352,7 +314,7 @@ namespace AG
                 for (int j = 0; j < matchedEdgeData.Count; j++)
                 {
                     // Find its corresponding input node by searching through all the nodes again,
-                    // and if we do found one, we cab start the nodes linking process.
+                    // and if we do found one, we can start the nodes linking process.
                     DSNodeBase connectingInputNode = nodes.First(inputNode => inputNode.NodeGuid == matchedEdgeData[j].InputNodeGuid);
                     if (connectingInputNode != null)
                     {
@@ -390,6 +352,85 @@ namespace AG
             edge.input.Connect(edge);
 
             graphView.Add(edge);
+        }
+
+
+        /// <summary>
+        /// Invoke the PostLoadingSetupAction.
+        /// </summary>
+        void InvokePostLoadingSetupAction()
+        {
+            PostLoadingSetupAction?.Invoke();
+        }
+
+
+        // ----------------------------- Update Internal Nodes Services -----------------------------
+        /// <summary>
+        /// Add node to the internal node's list.
+        /// </summary>
+        /// <param name="node">The node to add to the serialize handler's internal list.</param>
+        public void AddNodeToList(DSNodeBase node)
+        {
+            nodes.Add(node);
+            nodesCount++;
+        }
+
+
+        /// <summary>
+        /// Remove node from the internal node's list.
+        /// </summary>
+        /// <param name="node">The node to remove from the serialize handler's internal list.</param>
+        public void RemoveNodeFromList(DSNodeBase node)
+        {
+            nodes.Remove(node);
+            nodesCount--;
+        }
+
+
+        // ----------------------------- Register Action Services -----------------------------
+        /// <summary>
+        /// Register the action to PostLoadingSetupAction.
+        /// </summary>
+        /// <param name="action">The action to add to the PostLoadingSetupAction.</param>
+        public void RegisterPostLoadingSetupAction(Action action)
+        {
+            PostLoadingSetupAction += action;
+        }
+
+
+        // ----------------------------- Update Internal Edges Tasks -----------------------------
+        /// <summary>
+        /// Update internal edges' list by getting all the edges that are on the graph.
+        /// </summary>
+        void RefreshInternalEdges()
+        {
+            edges = graphView.edges.ToList();
+            edgesCount = edges.Count;
+        }
+
+
+        // ----------------------------- Clear Graph Elements Tasks -----------------------------
+        /// <summary>
+        /// Find all the edges and nodes that are on the graph and delete them all.
+        /// </summary>
+        void ClearGraph()
+        {
+            for (int i = 0; i < edgesCount; i++)
+            {
+                graphView.RemoveElement(edges[i]);
+            }
+
+            // Clear the nodes on graph.
+            for (int i = 0; i < nodesCount; i++)
+            {
+                graphView.RemoveElement(nodes[i]);
+            }
+
+            // Clear the nodes inside the list.
+            nodes.Clear();
+
+            // Reset nodes count back to zero.
+            nodesCount = 0;
         }
     }
 }

@@ -41,13 +41,20 @@ namespace AG
         {
             AddContentButton_MolderInstanceModifier();
 
+            AddMolderSegment();
+
             AddMolderRootModifier();
 
-            AddMolderSegment();
+            AddInitialInstanceModifier();
 
             void AddContentButton_MolderInstanceModifier()
             {
                 DSIntegrantsMaker.GetNewContentButton(node, contentButtonName, contentButtonSprite, contentButtonIconImageUSS01, () => IntegrantButtonPressedAction(node));
+            }
+
+            void AddMolderSegment()
+            {
+                MolderSegment.SetupSegment(node);
             }
 
             void AddMolderRootModifier()
@@ -55,9 +62,9 @@ namespace AG
                 MolderRootModifier.SetupRootModifier(node);
             }
 
-            void AddMolderSegment()
+            void AddInitialInstanceModifier()
             {
-                MolderSegment.SetupSegment(node);
+                AddInstanceModifier();
             }
         }
 
@@ -68,28 +75,25 @@ namespace AG
         /// </summary>
         protected void IntegrantButtonPressedAction(DSNodeBase node)
         {
-            // If this is the first time adding a new instance modifier,
-            // create a default one first to represent the root modifier. 
-            if (molderInternalCount == 0)
+            // If this is the first time user adding a new instance modifier through content button.
+            if (molderInternalCount == 1)
             {
-                AddInstanceModifier();
+                // Load the root modifier's data to the initial instance modifier.
+                MolderSegment.Modifiers[0].LoadModifierValue(MolderRootModifier);
+
+                // and change the molder to mainly show instance modifiers.
+                ShowSegmentOnly();
             }
-
-            // Then create the second one as the user wanted.
+            
+            // Lastly, Create a new one as the user wanted.
             AddInstanceModifier();
-
-            // Change the molder to mainly show instance modifiers
-            ShowSegmentOnly();
-
-            // Lastly, load the data from the rooted modifier to the first instance modifier.
-            MolderSegment.Modifiers[0].LoadModifierValue(MolderRootModifier);
         }
 
 
         /// <summary>
         /// Action that invoked after modifier is added.
         /// </summary>
-        /// <param name="modifier">The modifier that'll be added to the molder's segment list.</param>
+        /// <param name="modifier">The new created modifier that'll be added to the molder's segment list.</param>
         protected void ModifierAddedAction(TModifier modifier)
         {
             // Add modifier to node's data
@@ -157,7 +161,7 @@ namespace AG
             MolderRootModifier.LoadModifierValue(source.MolderRootModifier);
 
             // Load molder's segment.
-            MolderSegment.LoadSegmentValues(source.MolderSegment, ModifierAddedAction, ModifierRemovedAction);
+            MolderSegment.LoadMolderSegmentValues(source.MolderSegment, ModifierAddedAction, ModifierRemovedAction);
 
             // Update molder's cotent.
             ToggleShowSegmentOrRootModifier(molderInternalCount > 1);
@@ -177,8 +181,8 @@ namespace AG
         /// </summary>
         void ShowRootModifierOnly()
         {
-            DSFieldUtility.HideElement(MolderSegment.MainBox);
-            DSFieldUtility.ShowElement(MolderRootModifier.MainBox);
+            DSElementDisplayUtility.HideElement(MolderSegment.MainBox);
+            DSElementDisplayUtility.ShowElement(MolderRootModifier.MainBox);
         }
 
 
@@ -187,8 +191,8 @@ namespace AG
         /// </summary>
         void ShowSegmentOnly()
         {
-            DSFieldUtility.ShowElement(MolderSegment.MainBox);
-            DSFieldUtility.HideElement(MolderRootModifier.MainBox);
+            DSElementDisplayUtility.ShowElement(MolderSegment.MainBox);
+            DSElementDisplayUtility.HideElement(MolderRootModifier.MainBox);
         }
 
 

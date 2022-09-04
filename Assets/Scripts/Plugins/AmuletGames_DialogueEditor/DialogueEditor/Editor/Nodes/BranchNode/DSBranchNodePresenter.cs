@@ -27,7 +27,7 @@ namespace AG
 
             void AddConditionMolder()
             {
-                Model.ConditionMolder.GetNewMolder(Node, "Add Condition", DSAssetsConfig.addConditionModifierButtonIconImage, DSStylesConfig.integrant_ContentButton_AddCondition_Image);
+                Model.ConditionMolder.GetNewMolder(Node, DSStringsConfig.AddConditionLabelText, DSAssetsConfig.AddConditionModifierButtonIconImage, DSStylesConfig.Integrant_ContentButton_AddCondition_Image);
             }
         }
 
@@ -37,9 +37,9 @@ namespace AG
         /// </summary>
         public void CreateNodePorts()
         {
-            Model.InputPort = DSPortsMaker.AddInputPort(Node, "Input", Port.Capacity.Multi, N_NodeType.Branch);
-            Model.TrueOutputPort = DSPortsMaker.AddOutputPort(Node, "True", Port.Capacity.Single, N_NodeType.Branch);
-            Model.FalseOutputPort = DSPortsMaker.AddOutputPort(Node, "False", Port.Capacity.Single, N_NodeType.Branch);
+            Model.InputPort = DSPortsMaker.AddInputPort(Node, DSStringsConfig.NodeInputLabelText, Port.Capacity.Multi);
+            Model.TrueOutputPort = DSPortsMaker.AddOutputPort(Node, false, DSStringsConfig.BranchNodeTrueOutputLabelText, Port.Capacity.Single);
+            Model.FalseOutputPort = DSPortsMaker.AddOutputPort(Node, true, DSStringsConfig.BranchNodeFalseOutputLabelText, Port.Capacity.Single);
         }
 
 

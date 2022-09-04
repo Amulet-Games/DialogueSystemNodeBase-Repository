@@ -38,7 +38,7 @@ namespace AG
             void SetupBoxContainer()
             {
                 mainBox = new Box();
-                mainBox.AddToClassList(DSStylesConfig.integrant_ContentButton_MainBox);
+                mainBox.AddToClassList(DSStylesConfig.Integrant_ContentButton_MainBox);
             }
 
             void RegisterBoxAction()
@@ -48,7 +48,7 @@ namespace AG
 
             void SetupContentButtonLabel()
             {
-                contentButtonLabel = DSLabelsMaker.GetNewLabel(btnText, DSStylesConfig.integrant_ContentButton_Label);
+                contentButtonLabel = DSLabelsMaker.GetNewLabel(btnText, DSStylesConfig.Integrant_ContentButton_Label);
             }
 
             void SetupContentButtonIconImage()

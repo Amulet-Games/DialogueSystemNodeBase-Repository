@@ -2,6 +2,8 @@
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using System.Collections;
+using Unity.EditorCoroutines.Editor;
 
 namespace AG
 {
@@ -50,7 +52,7 @@ namespace AG
         public DSHeadBar HeadBar;
 
 
-        // ----------------------------- Callbacks -----------------------------
+        // ----------------------------- Overrides -----------------------------
         /// <summary>
         /// Callback attribute for opening an asset in Unity (e.g the callback is fired when double clicking an asset in the Project Browser).
         /// <para>Read More https://docs.unity3d.com/2020.1/Documentation/ScriptReference/Callbacks.OnOpenAssetAttribute.html</para>
@@ -65,32 +67,11 @@ namespace AG
 
             if (openedAssetObject is DialogueContainerSO)
             {
-                DrawNewWindow();
-
-                SetupWindowDetail();
-
-                LoadPreviousData();
+                Instance = (DialogueEditorWindow)GetWindow(typeof(DialogueEditorWindow));
+                Instance.WindowShownAction(openedAssetObject, instanceId);
             }
 
             return false;
-
-            void DrawNewWindow()
-            {
-                Instance = (DialogueEditorWindow)GetWindow(typeof(DialogueEditorWindow));
-            }
-
-            void SetupWindowDetail()
-            {
-                ContainerID = instanceId;
-                Instance.titleContent = new GUIContent("Dialogue Editor");
-                Instance.ContainerSO = openedAssetObject as DialogueContainerSO;
-                Instance.minSize = new Vector2(2000, 1080);
-            }
-
-            void LoadPreviousData()
-            {
-                Instance.LoadWindowAction();
-            }
         }
 
 
@@ -105,6 +86,7 @@ namespace AG
         }
 
 
+        // ----------------------------- Callbacks -----------------------------
         /// <summary>
         /// This method is called when custom graph editor becomes enabled and active.
         /// </summary>
@@ -118,11 +100,21 @@ namespace AG
 
             PostSetup();
 
-            LoadWindowAction();
+            WindowShownOnEnable();
 
             void CheckDSWindowRef()
             {
-                Instance ??= this;
+                Instance = Instance != null ? Instance : this;
+            }
+
+            void WindowShownOnEnable()
+            {
+                if (ContainerSO != null)
+                {
+                    LoadWindowAction();
+
+                    WaitRequestGraphViewReframe();
+                }
             }
         }
 
@@ -140,6 +132,34 @@ namespace AG
             void DestructGraphView()
             {
                 rootVisualElement.Remove(GraphView);
+            }
+        }
+
+        /// <summary>
+        /// Action for setting up the custom graph editor when it first opened or shown.
+        /// <br>Note that this aciton only be invoked when it was first opened and it's not the same as OnEnable.</br>
+        /// <para>WindowShowAction - Internal - ShowWindow.</para>
+        /// </summary>
+        /// <param name="instanceId"></param>
+        void WindowShownAction(Object openedAssetObject, int instanceId)
+        {
+            SetupWindowDetail();
+
+            LoadPreviousData();
+
+            WaitRequestGraphViewReframe();
+
+            void SetupWindowDetail()
+            {
+                ContainerID = instanceId;
+                ContainerSO = openedAssetObject as DialogueContainerSO;
+                titleContent = new GUIContent("Dialogue Editor");
+                minSize = new Vector2(2000, 1080);
+            }
+
+            void LoadPreviousData()
+            {
+                LoadWindowAction();
             }
         }
 
@@ -202,11 +222,8 @@ namespace AG
         /// </summary>
         public void LoadWindowAction()
         {
-            if (ContainerSO != null)
-            {
-                DSLoadDataFromContainerSOEvent.Invoke(ContainerSO);
-                DSApplyChangesToDiskEvent.Invoke();
-            }
+            DSLoadDataFromContainerSOEvent.Invoke(ContainerSO);
+            DSApplyChangesToDiskEvent.Invoke();
         }
 
 
@@ -257,6 +274,7 @@ namespace AG
                 void ClearInstanceEvents()
                 {
                     GraphView.ClearEvents();
+                    GraphView.SerializeHandler.ClearActions();
                 }
 
                 void ClearStaticEvents()
@@ -371,6 +389,21 @@ namespace AG
             void SetupHeadBar()
             {
                 HeadBar.PostSetup();
+            }
+        }
+
+
+        /// <summary>
+        /// Ask graph view module to reframe and focus all elements on the graph.
+        /// </summary>
+        void WaitRequestGraphViewReframe()
+        {
+            EditorCoroutineUtility.StartCoroutine(GraphViewReframeRoutine(), this);
+
+            IEnumerator GraphViewReframeRoutine()
+            {
+                yield return new WaitForEndOfFrame();
+                GraphView.ReframeGraphAll();
             }
         }
     }

@@ -35,14 +35,14 @@ namespace AG
 
 
         /// <summary>
-        /// Create a new choice node on the dialogue system graph.
+        /// Create a new option node on the dialogue system graph.
         /// </summary>
         /// <param name="position">The vector2 position of where the node'll be created on the graph.</param>
         /// <param name="graphView">Dialogue system's graph view module.</param>
-        /// <returns>A new choice node graph element which created in the given position.</returns>
-        public static DSChoiceNode CreateChoiceNode(Vector2 position, DSGraphView graphView)
+        /// <returns>A new option node graph element which created in the given position.</returns>
+        public static DSOptionNode CreateOptionNode(Vector2 position, DSGraphView graphView)
         {
-            DSChoiceNode newNode = new DSChoiceNode(position, graphView);
+            DSOptionNode newNode = new DSOptionNode(position, graphView);
             graphView.AddElement(newNode);
 
             return newNode;

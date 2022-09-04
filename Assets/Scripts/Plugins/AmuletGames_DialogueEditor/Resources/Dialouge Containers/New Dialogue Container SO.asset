@@ -12,10 +12,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701948597a2eb684a8e5f3183a5c91ba, type: 3}
   m_Name: New Dialogue Container SO
   m_EditorClassIdentifier: 
-  EdgeModelSavables: []
-  StartModelSavables: []
-  DialogueModelSavables: []
-  ChoiceModelSavables: []
+  EdgeModelSavables:
+  - OutputPortGuid: 4af9da18-c854-445e-aee8-2929a53109f4
+    InputPortGuid: d034f5b8-b00f-4cf2-8114-48a6ff2c5028
+    OutputNodeGuid: 41fe2157-e30d-45ef-8093-3b1c0ee87f0b
+    InputNodeGuid: 82b41e4c-6d96-4dd4-ae27-713320a57109
+  - OutputPortGuid: 0956d6da-8f8b-4383-9cdf-bab3e15346f0
+    InputPortGuid: 8dd58901-4d45-43d8-8808-0c6122e2af7b
+    OutputNodeGuid: 82b41e4c-6d96-4dd4-ae27-713320a57109
+    InputNodeGuid: eb21a3f9-4942-4ede-99ad-7bf1804310bd
+  - OutputPortGuid: e355e85b-0e41-4939-bec6-108a47750ed7
+    InputPortGuid: 7222bcbb-2208-4a34-9c82-507f5d63fbb1
+    OutputNodeGuid: 82b41e4c-6d96-4dd4-ae27-713320a57109
+    InputNodeGuid: aa61e77b-2997-4e7a-b85a-ece5e190e2fa
+  - OutputPortGuid: 5adcb4bd-7c27-44ba-8f6d-f9d3c9c30306
+    InputPortGuid: 73aec625-709e-4608-a71f-d42e02319e8a
+    OutputNodeGuid: 82b41e4c-6d96-4dd4-ae27-713320a57109
+    InputNodeGuid: c1a953d4-b081-44ec-9fd6-ca595326ea04
+  StartModelSavables:
+  - SavedNodeGuid: 41fe2157-e30d-45ef-8093-3b1c0ee87f0b
+    SavedNodePosition: {x: -179.33333, y: -468.6667}
+    SavedOutputPortGuid: 4af9da18-c854-445e-aee8-2929a53109f4
+  DialogueModelSavables:
+  - SavedNodeGuid: 82b41e4c-6d96-4dd4-ae27-713320a57109
+    SavedNodePosition: {x: 192, y: -469.33334}
+    SavedInputPortGuid: d034f5b8-b00f-4cf2-8114-48a6ff2c5028
+    SavedContinueOutputPortGuid: 5adcb4bd-7c27-44ba-8f6d-f9d3c9c30306
+    OptionWindow:
+      optionEntries:
+      - SavedPortGuid: 0956d6da-8f8b-4383-9cdf-bab3e15346f0
+        SavedPortLabelText: Option 1
+      - SavedPortGuid: e355e85b-0e41-4939-bec6-108a47750ed7
+        SavedPortLabelText: Option 2
+      - SavedPortGuid: c160541c-cd1f-41b6-939d-2ab82030864e
+        SavedPortLabelText: Empty
+    DualPortraitsSegment:
+      IsExpanded: 1
+    SpeakerNameSegment:
+      IsExpanded: 1
+    TextlineSegment:
+      IsExpanded: 1
+  OptionModelSavables:
+  - SavedNodeGuid: aa61e77b-2997-4e7a-b85a-ece5e190e2fa
+    SavedNodePosition: {x: 731.3333, y: -75.333336}
+    SavedOutputPortGuid: afee0845-1b93-48c3-bdaf-4a480a1f850d
+    OptionTrack:
+      SavedPortGuid: 7222bcbb-2208-4a34-9c82-507f5d63fbb1
+      SavedPortLabelText: Track 2
+    TextlineSegment:
+      IsExpanded: 1
+    ConditionSegment:
+      IsExpanded: 1
+      IsHidden: 1
+      Modifiers: []
+  - SavedNodeGuid: eb21a3f9-4942-4ede-99ad-7bf1804310bd
+    SavedNodePosition: {x: 731.3333, y: -378}
+    SavedOutputPortGuid: 61a5e29c-2718-4369-8189-2b35c7172bf1
+    OptionTrack:
+      SavedPortGuid: 8dd58901-4d45-43d8-8808-0c6122e2af7b
+      SavedPortLabelText: Track 1
+    TextlineSegment:
+      IsExpanded: 1
+    ConditionSegment:
+      IsExpanded: 1
+      IsHidden: 1
+      Modifiers: []
   EventModelSavables: []
-  BranchModelSavables: []
+  BranchModelSavables:
+  - SavedNodeGuid: c1a953d4-b081-44ec-9fd6-ca595326ea04
+    SavedNodePosition: {x: 1311.3334, y: -469.33334}
+    SavedInputPortGuid: 73aec625-709e-4608-a71f-d42e02319e8a
+    SavedTrueOutputPortGuid: 185ff82d-10df-49c7-a545-3b2744b6358d
+    SavedFalseOutputPortGuid: da607027-ef7f-4819-a721-0efa89ed2446
+    SavedTrueInputNodeGuid: 
+    SavedFalseInputNodeGuid: 
   EndModelSavables: []

@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using System;
-using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using UnityEngine;
 
 namespace AG
 {
@@ -22,29 +20,30 @@ namespace AG
         /// <param name="source">Target container to load from</param>
         public void LoadContainerValue(LanguageTextContainer source)
         {
-            int matchedValueIndex = 0;
-
             // Foreach language of Texts that 'source' container contains.
             for (int i = 0; i < source.Value.Count; i++)
             {
                 // Foreach language of Texts that 'this' container contains.
-                for (matchedValueIndex = 0; matchedValueIndex < Value.Count; matchedValueIndex++)
+                for (int j = 0; j < Value.Count; j++)
                 {
                     // If we found a language from 'this' container,
                     // actually matches the language we're looping through from the source. 
-                    if (Value[matchedValueIndex].LanguageType == source.Value[i].LanguageType)
+                    if (Value[j].LanguageType == source.Value[i].LanguageType)
                     {
                         // Overwrite the value
-                        Value[matchedValueIndex].GenericsContent = source.Value[i].GenericsContent;
+                        Value[j].GenericsContent = source.Value[i].GenericsContent;
+
+                        // Set field's value without invoking field's value change event.
+                        if (Value[j].LanguageType == SupportLanguage.SelectedLanguage)
+                        {
+                            TextField.SetValueWithoutNotify(Value[j].GenericsContent);
+                        }
                         break;
                     }
                 }
             }
 
-            // Set field's value without invoking field's value change event.
-            TextField.SetValueWithoutNotify(Value[matchedValueIndex].GenericsContent);
-
-            // Set fields value to placeholder text if the field is empty.
+            // If field's value is null, add it to empty style class.
             DSTextFieldUtility.ToggleEmptyStyle(this);
         }
 
@@ -91,7 +90,7 @@ namespace AG
             // Set field's value without invoking field's value change event.
             TextField.SetValueWithoutNotify(matchedLanguageText);
 
-            // Set fields value to placeholder text if the field is empty.
+            // If field's value is null, add it to empty style class.
             DSTextFieldUtility.ToggleEmptyStyle(this);
         }
     }

@@ -1,14 +1,29 @@
 /*< -------------------- Condition -------------------- >*/
+.modifier_Condition_Rooted_MainBox {
+
+	height: 30px;
+
+	flex-direction: row;
+	flex-grow: 1;
+	justify-content: space-between;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
 .modifier_Condition_Rooted_TextField {
 
-	width: Auto;
+	max-width: 401px;
+
 	height: 30px;
+	width: Auto;
 
 	white-space: normal;
 	flex-grow: 500;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px -1px;
+	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 }
@@ -16,27 +31,25 @@
 .modifier_Condition_Rooted_TextField 
 .unity-text-field__input {
 
-	border-color: rgba(42, 42, 42, 1);
-
 	font-size: 16px;
 
 	/* top - right - bottom - left */
-	padding: 4px 0px 0px 10px;
-	border-width: 1px 1px 1px 3px;
+	padding: 4px 0px 0px 12px;
+	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;
 }
 
 .modifier_Condition_Rooted_TextField 
-.unity-text-field__input:hover {
-
-	border-color: rgba(118, 118, 118, 0.588);
+.unity-text-field__input:focus {
 
 	/* top - right - bottom - left */
-	border-width: 1px 2px 1px 3px;
-	border-radius: 0px 0px 0px 0px;
+	border-width: 1px 1px 1px 2.5px;
+	border-radius: 0px 0px 0px 1.5px;
 }
 
 .modifier_Condition_Rooted_EnumField {
+
+	height: 30px;
 
 	flex-grow: 1;
 	
@@ -52,6 +65,7 @@
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 0px;
 	padding: 0px 3px 0px 5px;
+	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;
 }
 
@@ -103,7 +117,27 @@
 	border-radius: 0px 0px 0px 0px;
 }
 
+.modifier_Condition_Rooted_FloatField
+.unity-float-field__input:focus {
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+	border-radius: 0px 0px 0px 0px;
+}
+
 /*< -------------------- Event -------------------- >*/
+.modifier_Event_Rooted_MainBox {
+	
+	height: 30px;
+
+	flex-direction: row;
+	justify-content: space-between;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
 .modifier_Event_Rooted_ObjectField {
 
 	height: 30px;
@@ -119,6 +153,36 @@
 .unity-object-field__input {
 
 	/* top - right - bottom - left */
-	border-width: 1px 1px 0px 1px;
+	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;
+}
+
+/*<-- Object field's displaying image's style. -->*/
+.modifier_Event_Rooted_ObjectField
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__icon {
+
+	height: 17px;
+	width: 21px;
+	max-height: 17px;
+	max-width: 21px;
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 0px;
+	padding: 0px 0px 0px 2px;
+}
+
+.modifier_Event_Rooted_ObjectField
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label {
+
+	font-size: 16px;
+
+	align-self: Center;
+
+	/* top - right - bottom - left */
+	margin: 4px 0px 0px 4px;
+	padding: 0px 1px 0px 0px;
 }

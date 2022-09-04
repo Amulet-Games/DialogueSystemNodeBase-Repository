@@ -13,14 +13,20 @@ namespace AG
 
 
         /// <summary>
-        /// Callback action when the connecting node is removed from the graph.
+        /// Callback action when any of the nodes is deleted by users from the graph manually.
         /// </summary>
-        public abstract void NodeRemovedAction();
+        public abstract void NodeRemovedByManualAction();
 
 
         /// <summary>
         /// Callback action when editor window's is changed to a different language.
         /// </summary>
-        public virtual void LanguageChangedAction() { }
+        protected virtual void LanguageChangedAction() { }
+
+
+        /// <summary>
+        /// Callback action when the elements on the nodes has some logic to execute after the edges loading phrase is finished.
+        /// </summary>
+        protected virtual void PostLoadingSetupAction() { }
     }
 }

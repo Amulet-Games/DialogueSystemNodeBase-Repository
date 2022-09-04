@@ -43,12 +43,12 @@ namespace AG
             void SetupModifierBox()
             {
                 MainBox = new Box();
-                MainBox.AddToClassList(DSStylesConfig.modifier_Event_MainBox);
+                MainBox.AddToClassList(DSStylesConfig.Modifier_Event_Rooted_MainBox);
             }
 
             void SetupEventObjectField()
             {
-                eventObjectField = DSObjectFieldsMaker.GetNewObjectField(DialogueEventSO_ObjectContainer, DSStylesConfig.modifier_Event_Rooted_ObjectField);
+                eventObjectField = DSObjectFieldsMaker.GetNewObjectField(DialogueEventSO_ObjectContainer, DSStylesConfig.Modifier_Event_Rooted_ObjectField);
             }
 
             void AddFieldsToBox()
@@ -67,7 +67,7 @@ namespace AG
         /// <summary>
         /// Save modifier's value from another previously create modifier.
         /// </summary>
-        /// <param name="source">The modifier of which it's values are going to be saved.</param>
+        /// <param name="source">The modifier of which its values are going to be saved.</param>
         public override void SaveModifierValue(EventModifier source)
         {
             DialogueEventSO_ObjectContainer.SaveContainerValue(source.DialogueEventSO_ObjectContainer);

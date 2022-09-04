@@ -8,7 +8,7 @@ namespace AG
         /// <summary>
         /// Reference of the dialogue system's graph view module.
         /// </summary>
-        DSGraphView graphView;
+        readonly DSGraphView graphView;
 
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace AG
         /// <summary>
         /// Vertical offset value in between the target field and the hint itself.
         /// </summary>
-        float hintTopOffset = 19.5f;
+        float hintTopOffset = 31f;
 
         /// <summary>
         /// Horizontal offset value in between the target field and the hint itself.
@@ -84,24 +84,24 @@ namespace AG
             void SetupBoxContainer()
             {
                 mainBox = new Box();
-                mainBox.AddToClassList(DSStylesConfig.inputHint_MainBox);
+                mainBox.AddToClassList(DSStylesConfig.InputHint_Hint_MainBox);
             }
 
             void SetupImage()
             {
-                inputHintIconImage = DSImagesMaker.GetNewImage(DSStylesConfig.inputHint_IconImage);
-                inputHintIconImage.image = DSAssetsConfig.inputHintIconSprite.texture;
+                inputHintIconImage = DSImagesMaker.GetNewImage(DSStylesConfig.InputHint_HintIcon_Image);
+                inputHintIconImage.image = DSAssetsConfig.InputHintIconSprite.texture;
             }
 
             void SetupLabel()
             {
-                hintLabel = DSLabelsMaker.GetNewLabel("", DSStylesConfig.inputHint_HintLabel);
+                hintLabel = DSLabelsMaker.GetNewLabel("", DSStylesConfig.InputHint_HintText_Label);
             }
 
             void AddStyleSheet()
             {
-                mainBox.styleSheets.Add(DSStylesConfig.dsGlobalStyle);
-                mainBox.styleSheets.Add(DSStylesConfig.dsInputHintStyle);
+                mainBox.styleSheets.Add(DSStylesConfig.DSGlobalStyle);
+                mainBox.styleSheets.Add(DSStylesConfig.DSInputHintStyle);
             }
 
             void AddFieldsToBox()
@@ -132,7 +132,7 @@ namespace AG
             float targetHintPosY;
 
             // Show the hint.
-            DSFieldUtility.ShowElement(mainBox);
+            DSElementDisplayUtility.ShowElement(mainBox);
 
             // Set hint position.
             CalculateHintBoxXPos();
@@ -149,26 +149,27 @@ namespace AG
                 // Remove the horizontal offset value that created by the Graph View Container.
                 targetHintPosX += graphView.contentViewContainer.worldBound.x * -1;
 
-                // Add the left offset value to create space between this hint and the field.
-                targetHintPosX += hintLeftOffset;
+                // Divide it with the graph view size to keep position even after zooming in and out.
+                targetHintPosX /= graphView.scale;
 
-                // To keep the correct position even after graph view zooming.
-                mainBox.style.left = targetHintPosX / graphView.scale;
+                // Lastly add the top offset value to the field that the hint is targeting to.
+                mainBox.style.left = targetHintPosX += hintLeftOffset;
             }
 
             void CalculateHintBoxYPos()
             {
                 // Calculate the height position point of the field that this hint is going to target.
                 targetHintPosY = targetWorldBoundRect.y - targetWorldBoundRect.height;
+                //Debug.Log("Max.y = " + targetWorldBoundRect.max.y);
 
                 // Remove the vertical offset value that created by the Graph View Container.
                 targetHintPosY += graphView.contentViewContainer.worldBound.y * -1;
 
-                // Add the top offset value to match the position of this hint and the field.
-                targetHintPosY += hintTopOffset;
+                // Divide it with the graph view size to keep position even after zooming in and out.
+                targetHintPosY /= graphView.scale;
 
-                // To keep the correct position even after graph view zooming.
-                mainBox.style.top = targetHintPosY / graphView.scale;
+                // Lastly add the top offset value to the field that the hint is targeting to.
+                mainBox.style.top = targetHintPosY += hintTopOffset;
             }
         }
 
@@ -178,7 +179,7 @@ namespace AG
         /// </summary>
         public void HideHint()
         {
-            DSFieldUtility.HideElement(mainBox);
+            DSElementDisplayUtility.HideElement(mainBox);
         }
     }
 }

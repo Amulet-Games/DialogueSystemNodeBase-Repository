@@ -15,12 +15,12 @@ namespace AG
             // if there's texts in the input field.
             if (!string.IsNullOrEmpty(textField.text))
             {
-                textField.RemoveFromClassList(DSStylesConfig.nodeShare_TextField_Empty);
+                textField.RemoveFromClassList(DSStylesConfig.Node_TextField_Empty);
             }
             else
             {
                 textField.SetValueWithoutNotify(stringContainer.PlaceholderText);
-                textField.AddToClassList(DSStylesConfig.nodeShare_TextField_Empty);
+                textField.AddToClassList(DSStylesConfig.Node_TextField_Empty);
             }
         }
 
@@ -32,12 +32,13 @@ namespace AG
         public static void HideEmptyStyle(TextField textField)
         {
             // when input field was clicked and the field is empty, hide the placeholder text as well.
-            if (textField.ClassListContains(DSStylesConfig.nodeShare_TextField_Empty))
+            if (textField.ClassListContains(DSStylesConfig.Node_TextField_Empty))
             {
                 textField.SetValueWithoutNotify(string.Empty);
-                textField.RemoveFromClassList(DSStylesConfig.nodeShare_TextField_Empty);
+                textField.RemoveFromClassList(DSStylesConfig.Node_TextField_Empty);
             }
         }
+
 
         /// <summary>
         /// Show the text field's placeholder text if the field is currently empty.
@@ -51,7 +52,7 @@ namespace AG
             if (string.IsNullOrEmpty(textField.text))
             {
                 textField.SetValueWithoutNotify(stringContainer.PlaceholderText);
-                textField.AddToClassList(DSStylesConfig.nodeShare_TextField_Empty);
+                textField.AddToClassList(DSStylesConfig.Node_TextField_Empty);
             }
         }
     }

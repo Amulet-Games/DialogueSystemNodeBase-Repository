@@ -23,9 +23,9 @@ namespace AG
 
         // ----------------------------- Model's Elements -----------------------------
         /// <summary>
-        /// The serialized port entries that are used to connect with choice node.
+        /// Holds a collection of speical output ports, in which can only collect to the same channel type of input ports.
         /// </summary>
-        public List<ChoiceEntry> ChoiceEntries;
+        public DSOptionWindow OptionWindow;
 
 
         /// <summary>
@@ -65,9 +65,10 @@ namespace AG
         /// <summary>
         /// Construtor of dialogue node's model.
         /// </summary>
-        public DSDialogueNodeModel()
+        /// <param name="node">Node of which this model is connecting upon.</param>
+        public DSDialogueNodeModel(DSNodeBase node)
         {
-            ChoiceEntries = new List<ChoiceEntry>();
+            OptionWindow = new DSOptionWindow(node);
             DualPortraitsSegment = new DualPortraitsSegment();
             SpeakerNameSegment = new SpeakerNameSegment();
             TextlineSegment = new TextlineSegment();
