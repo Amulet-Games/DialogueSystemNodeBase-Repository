@@ -71,7 +71,8 @@ namespace AG
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Action that invoked after content button is pressed.
+        /// Action that invoked after the content button is pressed.
+        /// <para>ContentButtonClickedAction - DSIntegrantsMaker - ContentButtonMainBox.</para>
         /// </summary>
         protected void IntegrantButtonPressedAction(DSNodeBase node)
         {

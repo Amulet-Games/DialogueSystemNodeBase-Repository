@@ -38,10 +38,7 @@ namespace AG
 
 
         // ----------------------------- Makers -----------------------------
-        /// <summary>
-        /// Create all the UIElements that are needed in this modifier as root.
-        /// </summary>
-        /// <param name="node">Node of which this modifier is created for.</param>
+        /// <inheritdoc />
         public override void SetupRootModifier(DSNodeBase node)
         {
             TextField conditionNameField;
@@ -114,10 +111,7 @@ namespace AG
 
 
         // ----------------------------- Serialization -----------------------------
-        /// <summary>
-        /// Save modifier's value from another previously create modifier.
-        /// </summary>
-        /// <param name="source">The modifier of which its values are going to be saved.</param>
+        /// <inheritdoc />
         public override void SaveModifierValue(ConditionModifier source)
         {
             // Calling each container's saving method in order.
@@ -127,10 +121,7 @@ namespace AG
         }
 
 
-        /// <summary>
-        /// Load modifier's value from another previously saved modifier.
-        /// </summary>
-        /// <param name="source">The modifier that was previously saved and now it's used to load from.</param>
+        /// <inheritdoc />
         public override void LoadModifierValue(ConditionModifier source)
         {
             // Calling each container's loading method in order.

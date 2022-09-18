@@ -8,10 +8,31 @@ namespace AG
         #region Global.
         public static StyleSheet DSGlobalStyle;
         public const string DSGlobal_Display_None = "dsGlobal_Display_None";
+        public const string DSGlobal_Visible_Hidden = "dsGlobal_Visible_Hidden";
         #endregion
 
-        #region Graph View.
+        #region Modules.
+
+        #region - StyleSheets.
         public static StyleSheet DSGraphViewStyle;
+        public static StyleSheet DSHeadBarStyle;
+        public static StyleSheet DSInputHintStyle;
+        #endregion
+
+        #region - Head Bar.
+        public const string HeadBar_GraphTitle_TextField = "headBar_GraphTitle_TextField";
+        public const string HeadBar_LeftSide_SubBox = "headBar_LeftSide_SubBox";
+        public const string HeadBar_SaveGraph_Button = "headBar_SaveGraph_Button";
+        public const string HeadBar_LoadGraph_Button = "headBar_LoadGraph_Button";
+        public const string HeadBar_LanguageSelection_ToolbarMenu = "headBar_LanguageSelection_ToolbarMenu";
+        #endregion
+
+        #region - Input Hint.
+        public const string InputHint_Hint_MainBox = "inputHint_Hint_MainBox";
+        public const string InputHint_HintIcon_Image = "inputHint_HintIcon_Image";
+        public const string InputHint_HintText_Label = "inputHint_HintText_Label";
+        #endregion
+
         #endregion
 
         #region Components.
@@ -147,24 +168,6 @@ namespace AG
 
         #endregion
 
-        #region Head Bar.
-        public static StyleSheet DSHeadBarStyle;
-
-        public const string HeadBar_Title_TextField = "headBar_Title_TextField";
-        public const string HeadBar_LeftSide_SubBox = "headBar_LeftSide_SubBox";
-        public const string HeadBar_SaveGraph_Button = "headBar_SaveGraph_Button";
-        public const string HeadBar_LoadGraph_Button = "headBar_LoadGraph_Button";
-        public const string HeadBar_LanguageSelection_ToolbarMenu = "headBar_LanguageSelection_ToolbarMenu";
-        #endregion
-
-        #region Input Hint.
-        public static StyleSheet DSInputHintStyle;
-
-        public const string InputHint_Hint_MainBox = "inputHint_Hint_MainBox";
-        public const string InputHint_HintIcon_Image = "inputHint_HintIcon_Image";
-        public const string InputHint_HintText_Label = "inputHint_HintText_Label";
-        #endregion
-
         #region Nodes.
 
         #region - StyleSheets.
@@ -177,8 +180,19 @@ namespace AG
         public static StyleSheet EndNodeStyle;
         #endregion
 
+        #region - Empty Fields.
+        public const string Node_TextField_Empty = "node_TextField_Empty";
+        public const string Node_ObjectField_Empty = "node_ObjectField_Empty";
+        #endregion
+
         #region - Border.
         public const string Node_Border = "node_Border";
+        #endregion
+
+        #region - Node Title.
+        public const string Node_NodeTitle_MainBox = "node_NodeTitle_MainBox";
+        public const string Node_NodeTitle_TextField = "node_NodeTitle_TextField";
+        public const string Node_EditTitle_Button = "node_EditTitle_Button";
         #endregion
 
         #region - Input / Ouput Containers.
@@ -208,40 +222,47 @@ namespace AG
         public const string Node_Output_Cap = "node_Output_Cap";
         #endregion
 
-        #region - Empty Fields.
-        public const string Node_TextField_Empty = "node_TextField_Empty";
-        public const string Node_ObjectField_Empty = "node_ObjectField_Empty";
-        #endregion
-
         #region - End Node.
         public const string EndNode_GraphEndHandleType_EnumField = "endNode_GraphEndHandleType_EnumField";
         #endregion
 
         #endregion
 
-        #region Setup.
+        #region Windows.
+
+        #region Node Title Edit Window.
+        public static StyleSheet DSNodeTitleEditWindowStyle;
+        #endregion
+
+        #endregion
+
+
+        // ----------------------------- Setup -----------------------------
+        /// <summary>
+        /// Setup for the class, used to initialize internal fields.
+        /// </summary>
         public static void Setup()
         {
             SetupStyleSheet_DSGlobal();
 
-            SetupStyleSheet_GraphView();
+            SetupStyleSheet_Modules();
 
             SetupStyleSheet_DSComponents();
 
-            SetupStyleSheet_HeaderBar();
-
-            SetupStyleSheet_InputHint();
-
             SetupStyleSheet_Nodes();
+
+            SetupStyleSheet_Windows();
 
             void SetupStyleSheet_DSGlobal()
             {
                 DSGlobalStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/DSGlobal.uss");
             }
 
-            void SetupStyleSheet_GraphView()
+            void SetupStyleSheet_Modules()
             {
-                DSGraphViewStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/GraphView/DSGraphViewStyle.uss");
+                DSGraphViewStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Modules/DSGraphViewStyle.uss");
+                DSInputHintStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Modules/DSInputHintStyle.uss");
+                DSHeadBarStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Modules/DSHeadBarStyle.uss");
             }
 
             void SetupStyleSheet_DSComponents()
@@ -254,16 +275,6 @@ namespace AG
                 DSTracksStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSTracksStyle.uss");
             }
 
-            void SetupStyleSheet_InputHint()
-            {
-                DSInputHintStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/GraphView/DSInputHintStyle.uss");
-            }
-
-            void SetupStyleSheet_HeaderBar()
-            {
-                DSHeadBarStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/EditorWindow/DSHeadBarStyle.uss");
-            }
-
             void SetupStyleSheet_Nodes()
             {
                 DSNodesShareStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/DSNodesShareStyle.uss");
@@ -274,7 +285,11 @@ namespace AG
                 BranchNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/BranchNodeStyle.uss");
                 EndNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/EndNodeStyle.uss");
             }
+
+            void SetupStyleSheet_Windows()
+            {
+                DSNodeTitleEditWindowStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Windows/DSNodeTitleEditWindowStyle.uss");
+            }
         }
-        #endregion
     }
 }

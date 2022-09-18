@@ -1,5 +1,6 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG
@@ -20,44 +21,80 @@ namespace AG
 
 
         // ----------------------------- Makers -----------------------------
-        /// <summary>
-        /// Create all the UIElements that exist within the connecting node.
-        /// </summary>
-        public void CreateNodeElements()
+        /// <inheritdoc />
+        public override void CreateNodeElements()
         {
-            AddGraphEndHandleTypeEnumField();
+            base.CreateNodeElements();
 
-            void AddGraphEndHandleTypeEnumField()
+            // Create a new graphEndHandle type enum field within this node.
+            Node.mainContainer.Add(DSEnumFieldsMaker.GetNewEnumField
+            (
+                Model.dialogueOverHandleType_EnumContainer,
+                DSStylesConfig.EndNode_GraphEndHandleType_EnumField
+            ));
+        }
+
+
+        /// <inheritdoc />
+        public override void CreateNodePorts()
+        {
+            Model.InputPort = DSPortsMaker.GetNewInputPort(Node, DSStringsConfig.NodeInputLabelText, Port.Capacity.Multi);
+        }
+
+
+        // ----------------------------- Callbacks -----------------------------
+        /// <inheritdoc />
+        public override void NodeManualCreationSetupAction()
+        {
+            AlignConnectorPosition();
+
+            ConnectConnectorPort();
+
+            void AlignConnectorPosition()
             {
-                EnumField graphEndHandleEnum = DSEnumFieldsMaker.GetNewEnumField(Model.dialogueOverHandleType_EnumContainer, DSStylesConfig.EndNode_GraphEndHandleType_EnumField);
-                
-                // Add field to node's main container.
-                Node.mainContainer.Add(graphEndHandleEnum);
+                // Create a new vector2 result variable to cache the node's current local bound position.
+                Vector2 result = Node.localBound.position;
+
+                // Height offset.
+                result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
+
+                if (CreationDetails.HorizontalAlignType == C_Alignment_HorizontalType.Middle)
+                {
+                    // width offset.
+                    result.x -= Node.localBound.width / 2;
+                }
+
+                // Apply the final position result to the node.
+                Node.SetPosition(new Rect(result, DSVector2Utility.Zero));
+            }
+
+            void ConnectConnectorPort()
+            {
+                // If connnector port is null then return.
+                if (CreationDetails.ConnectorPort == null)
+                    return;
+
+                // Create local reference for the connector port.
+                Port connectorPort = CreationDetails.ConnectorPort;
+
+                // If the connector port is connecting to another port, disconnect them first.
+                if (connectorPort.connected)
+                {
+                    Node.GraphView.DisconnectPorts(connectorPort);
+                }
+
+                // Connect to connector port.
+                Node.GraphView.ConnectPorts(connectorPort, Model.InputPort);
             }
         }
 
 
-        /// <summary>
-        /// Create all the ports that exist within the connecting node.
-        /// </summary>
-        public void CreateNodePorts()
-        {
-            Model.InputPort = DSPortsMaker.AddInputPort(Node, DSStringsConfig.NodeInputLabelText, Port.Capacity.Multi);
-        }
-
-
         // ----------------------------- Ports Connection Check Services -----------------------------
-        /// <summary>
-        /// Is the node's input ports are connecting to the other nodes?
-        /// </summary>
-        /// <returns>A boolean value that returns true if input ports are connected and vice versa.</returns>
+        /// <inheritdoc />
         public override bool IsInputPortConnected() => Model.InputPort.connected;
 
 
-        /// <summary>
-        /// Is the node's output ports are connecting to the other nodes?
-        /// </summary>
-        /// <returns>A boolean value that returns true if output ports are connected and vice versa.</returns>
+        /// <inheritdoc />
         public override bool IsOutputPortConnected() => false;
     }
 }

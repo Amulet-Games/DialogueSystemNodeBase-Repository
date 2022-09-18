@@ -5,7 +5,7 @@ namespace AG
     public static class DSImagesMaker
     {
         /// <summary>
-        /// Create a new image.
+        /// Returns a new image UIElement.
         /// </summary>
         /// <param name="USS01">The first style for the image to use when it appeared on the editor window.</param>
         /// <param name="USS02">The second style for the image to use when it appeared on the editor window.</param>

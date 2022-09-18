@@ -16,34 +16,38 @@ namespace AG
 
 
         // ----------------------------- Callbacks -----------------------------
-        /// <summary>
-        /// Callback action when the connecting node is added on the graph.
-        /// <para>optionNode - Constructor.</para>
-        /// </summary>
-        public override void NodeAddedAction()
+        /// <inheritdoc />
+        public override void InitializedAction()
         {
             DSLanguageChangedEvent.Register(LanguageChangedAction);
             Node.GraphView.SerializeHandler.AddNodeToList(Node);
         }
 
 
-        /// <summary>
-        /// Callback action when any of the nodes is deleted by users from the graph manually.
-        /// <para>GraphDeleteSelectionAction - DSGraphView</para>
-        /// </summary>
-        public override void NodeRemovedByManualAction()
+        /// <inheritdoc />
+        public override void ManualCreatedAction()
         {
-            DSLanguageChangedEvent.UnRegister(LanguageChangedAction);
+            Node.SetupNewManualCreatedNode();
+        }
+
+
+        /// <inheritdoc />
+        public override void PreManualRemovedAction()
+        {
             Node.DisconnectAllPorts();
-            Node.GraphView.SerializeHandler.RemoveNodeFromList(Node);
             Model.OptionTrack.CheckOpponentConnectedStyle();
         }
 
 
-        /// <summary>
-        /// Callback action when editor window's is changed to a different language.
-        /// <para>LanguageChangedEvent - DSHeadBar</para>
-        /// </summary>
+        /// <inheritdoc />
+        public override void PostManualRemovedAction()
+        {
+            DSLanguageChangedEvent.UnRegister(LanguageChangedAction);
+            Node.GraphView.SerializeHandler.RemoveNodeFromList(Node);
+        }
+
+
+        /// <inheritdoc />
         protected override void LanguageChangedAction()
         {
             Model.TextlineSegment.ReloadLanguage();

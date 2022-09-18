@@ -1,3 +1,6 @@
+using UnityEngine.UIElements;
+using UnityEngine;
+
 namespace AG
 {
     /// <summary>
@@ -22,5 +25,92 @@ namespace AG
         /// <br>and allows other framework classes to utilize them for different purposes.</br>.
         /// </summary>
         protected TNodeModel Model;
+
+
+        // ----------------------------- Makers -----------------------------
+        /// <summary>
+        /// Create all the UIElements that exist within the connecting node.
+        /// </summary>
+        public virtual void CreateNodeElements()
+        {
+            SetupNodeTitleSection();
+
+            void SetupNodeTitleSection()
+            {
+                Box mainBox;
+
+                TextField nodeTitleField;
+
+                ConnectModelElementsToLocalRefs();
+
+                SetupTitleMainBox();
+
+                SetupTitleTextField();
+
+                SetupEditTitleButton();
+
+                AddElementsToBox();
+
+                AddBoxToTitleContainer();
+
+                void ConnectModelElementsToLocalRefs()
+                {
+                    mainBox = Model.TitleMainBox;
+                }
+
+                void SetupTitleMainBox()
+                {
+                    mainBox = new Box();
+                    mainBox.AddToClassList(DSStylesConfig.Node_NodeTitle_MainBox);
+                }
+
+                void SetupTitleTextField()
+                {
+                    nodeTitleField = DSTextFieldsMaker.GetNewNodeTitleField(Model.NodeTitle_TextContainer, Node.title, DSStylesConfig.Node_NodeTitle_TextField);
+                }
+
+                void SetupEditTitleButton()
+                {
+                    Model.EditTitleButton = DSButtonsMaker.GetNewButtonNonAlert(DSAssetsConfig.EditNodeTitleButtonIconImage, ButtonClickedAction, DSStylesConfig.Node_EditTitle_Button);
+                }
+
+                void AddElementsToBox()
+                {
+                    // Node title Field.
+                    mainBox.Add(nodeTitleField);
+
+                    // Edit node title button.
+                    mainBox.Add(Model.EditTitleButton);
+                }
+
+                void AddBoxToTitleContainer()
+                {
+                    Node.titleContainer.Add(mainBox);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Create all the ports that exist within the connecting node.
+        /// </summary>
+        public virtual void CreateNodePorts() { }
+
+
+        // ----------------------------- Callbacks -----------------------------
+        /// <summary>
+        /// Action that invoked after the node title edit button is pressed.
+        /// <para>ButtonClickedAction - DSButtonsMaker - EditTitleButton.</para>
+        /// </summary>
+        void ButtonClickedAction()
+        {
+            TextField nodeTitleField = Model.NodeTitle_TextContainer.TextField;
+
+            // Set focusable to true so that it'll trigger FocusInEvent later.
+            nodeTitleField.focusable = true;
+
+            // Focus on the node title field.
+            nodeTitleField.Focus();
+        }
     }
 }

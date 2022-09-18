@@ -7,7 +7,7 @@ namespace AG
     public class DSEnumFieldsMaker
     {
         /// <summary>
-        /// Create a new enum input field.
+        /// Returns a new enum input field.
         /// </summary>
         /// <param name="enumContainer">The container that'll combine and save the field as reference for other modules to use.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
@@ -64,7 +64,7 @@ namespace AG
 
 
         /// <summary>
-        /// Create a new enum input field.
+        /// Returns a new enum input field.
         /// <para>
         /// Note that changing the selected type of the field will invoke DSWindowChangedEvent right after the specified enumFieldValueChangedAction.
         /// </para>

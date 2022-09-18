@@ -1,5 +1,6 @@
 using System;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG
@@ -33,19 +34,20 @@ namespace AG
         /// </summary>
         /// <typeparam name="TEdge">Edge type</typeparam>
         /// <param name="optionEntry">The dialogue system option channel entry that the port is related to.</param>
+        /// <param name="graphView">The dialogue system's graph view module to set for the listener.</param>
         /// <returns>A entry port that can connect to the same channel of track from another node, or nodes if capacity is set to multiple.</returns>
-        public static DSOptionPort GetNewEntryPort<TEdge>(DSOptionEntry optionEntry) 
+        public static DSOptionPort GetNewEntryPort<TEdge>(DSOptionEntry optionEntry, DSGraphView graphView) 
             where TEdge : Edge, new()
         {
             DSOptionPort newEntryPort;
 
             CreateNewInstance();
 
-            AddStyleSheet();
-
-            InitalizePortDetail();
+            SetupPortDetail();
 
             SetupEdgeConnector();
+
+            AddStyleSheet();
 
             OverridePortDefaultStyle();
 
@@ -56,12 +58,7 @@ namespace AG
                 newEntryPort = new DSOptionPort(Orientation.Horizontal, Direction.Output, Capacity.Single, typeof(float));
             }
 
-            void AddStyleSheet()
-            {
-                newEntryPort.styleSheets.Add(DSStylesConfig.DSEntriesStyle);
-            }
-
-            void InitalizePortDetail()
+            void SetupPortDetail()
             {
                 newEntryPort.name = optionEntry.SavedPortGuid;
                 newEntryPort.portName = optionEntry.SavedPortLabelText;
@@ -70,11 +67,23 @@ namespace AG
 
             void SetupEdgeConnector()
             {
-                newEntryPort.m_EdgeConnector = new EdgeConnector<TEdge>(new DSDefaultEdgeConnectorListener());
-
-                // Add default and custom channel's edge connector listener to the port.
+                // Base edge connector listener.
+                newEntryPort.m_EdgeConnector = new EdgeConnector<TEdge>(new EdgeConnectorListenerBase());
                 newEntryPort.AddManipulator(newEntryPort.m_EdgeConnector);
-                newEntryPort.AddManipulator(new EdgeConnector<TEdge>(new DSChannelEdgeConnectorListener(newEntryPort)));
+
+                // Channel edge connector listner.
+                newEntryPort.AddManipulator
+                (
+                    new EdgeConnector<TEdge>
+                    (
+                        new DSChannelEdgeConnectorListener(newEntryPort, graphView.NodeCreationConnectorWindow)
+                    )
+                );
+            }
+
+            void AddStyleSheet()
+            {
+                newEntryPort.styleSheets.Add(DSStylesConfig.DSEntriesStyle);
             }
 
             void OverridePortDefaultStyle()
@@ -100,19 +109,20 @@ namespace AG
         /// Factory method for creating a new option track port.
         /// </summary>
         /// <typeparam name="TEdge">Edge type</typeparam>
+        /// <param name="graphView">The dialogue system's graph view module to set for the listener.</param>
         /// <returns>A track port that can connect to the same channel of entry from another node, or nodes if capacity is set to multiple.</returns>
-        public static DSOptionPort GetNewTrackPort<TEdge>()
+        public static DSOptionPort GetNewTrackPort<TEdge>(DSGraphView graphView)
             where TEdge : Edge, new()
         {
             DSOptionPort newTrackPort;
 
             CreateNewInstance();
 
-            AddStyleSheet();
-
-            InitalizePortDetail();
+            SetupPortDetail();
 
             SetupEdgeConnector();
+
+            AddStyleSheet();
 
             OverridePortDefaultStyle();
 
@@ -123,12 +133,7 @@ namespace AG
                 newTrackPort = new DSOptionPort(Orientation.Horizontal, Direction.Input, Capacity.Single, typeof(float));
             }
 
-            void AddStyleSheet()
-            {
-                newTrackPort.styleSheets.Add(DSStylesConfig.DSTracksStyle);
-            }
-
-            void InitalizePortDetail()
+            void SetupPortDetail()
             {
                 newTrackPort.name = Guid.NewGuid().ToString();
                 newTrackPort.portName = DSStringsConfig.OptionChannelTrackLabelTextEmpty;
@@ -137,11 +142,23 @@ namespace AG
 
             void SetupEdgeConnector()
             {
-                newTrackPort.m_EdgeConnector = new EdgeConnector<TEdge>(new DSDefaultEdgeConnectorListener());
-
-                // Add default and custom channel's edge connector listener to the port.
+                // Base edge connector listener.
+                newTrackPort.m_EdgeConnector = new EdgeConnector<TEdge>(new EdgeConnectorListenerBase());
                 newTrackPort.AddManipulator(newTrackPort.m_EdgeConnector);
-                newTrackPort.AddManipulator(new EdgeConnector<TEdge>(new DSChannelEdgeConnectorListener(newTrackPort)));
+
+                // Channel edge connector listner.
+                newTrackPort.AddManipulator
+                (
+                    new EdgeConnector<TEdge>
+                    (
+                        new DSChannelEdgeConnectorListener(newTrackPort, graphView.NodeCreationConnectorWindow)
+                    )
+                );
+            }
+
+            void AddStyleSheet()
+            {
+                newTrackPort.styleSheets.Add(DSStylesConfig.DSTracksStyle);
             }
 
             void OverridePortDefaultStyle()

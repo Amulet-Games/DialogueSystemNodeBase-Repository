@@ -15,20 +15,33 @@ namespace AG
         /// <summary>
         /// The dialogue system option port that owns the listener.
         /// </summary>
-        readonly DSOptionPort owner;
+        DSOptionPort owner;
+
+
+        /// <summary>
+        /// Reference of the dialogue system's node creation connector window module.
+        /// </summary>
+        DSNodeCreationConnectorWindow nodeCreationConnectorWindow;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of dialogue system channel's edge connector listener.
+        /// Constructor of dialogue system channel edge connector listener.
         /// </summary>
         /// <param name="owner">The dialogue system option port owner to set for the listener.</param>
-        public DSChannelEdgeConnectorListener(DSOptionPort owner)
+        /// <param name="nodeCreationConnectorWindow">Dialogue system's node creation connector window module.</param>
+        public DSChannelEdgeConnectorListener
+        (
+            DSOptionPort owner, 
+            DSNodeCreationConnectorWindow nodeCreationConnectorWindow
+        )
         {
             this.owner = owner;
+            this.nodeCreationConnectorWindow = nodeCreationConnectorWindow;
         }
 
 
+        // ----------------------------- Callbacks -----------------------------
         /// <summary>
         /// Called when a new edge is dropped on a port.
         /// </summary>
@@ -46,23 +59,11 @@ namespace AG
             // Register MouseMoveEvent to the edge that is connecting the two. 
             DSChannelEdgeEventRegister.RegisterMouseEvents(edge.output.connections.First());
 
-
             void HidePreviousOpponentsConnectedStyle()
             {
                 DSOptionPort opponentPort;
 
-                if (owner.direction == Direction.Output)
-                {
-                    // Check owner previous connected port is connecting anymore, if not hide it's connected style.
-                    owner.CheckOpponentConnectedStyle(false);
-
-                    // Update temporay opponent port reference.
-                    opponentPort = (DSOptionPort)edge.input;
-
-                    // Check the temporay opponent port's previous connected port is connecting anymore, if not hide it's connected style.
-                    opponentPort.CheckOpponentConnectedStyle(true);
-                }
-                else
+                if (owner.IsInput())
                 {
                     // Check owner previous connected port is connecting anymore, if not hide it's connected style.
                     owner.CheckOpponentConnectedStyle(true);
@@ -72,6 +73,17 @@ namespace AG
 
                     // Check the temporay opponent port's previous connected port is connecting anymore, if not hide it's connected style.
                     opponentPort.CheckOpponentConnectedStyle(false);
+                }
+                else
+                {
+                    // Check owner previous connected port is connecting anymore, if not hide it's connected style.
+                    owner.CheckOpponentConnectedStyle(false);
+
+                    // Update temporay opponent port reference.
+                    opponentPort = (DSOptionPort)edge.input;
+
+                    // Check the temporay opponent port's previous connected port is connecting anymore, if not hide it's connected style.
+                    opponentPort.CheckOpponentConnectedStyle(true);
                 }
 
                 owner.PreviousOpponentPort = opponentPort;
@@ -85,6 +97,47 @@ namespace AG
         /// </summary>
         /// <param name="edge">The edge being dropped.</param>
         /// <param name="position">The position in empty space the edge is dropped on.</param>
-        public void OnDropOutsidePort(Edge edge, Vector2 position) { }
+        public void OnDropOutsidePort(Edge edge, Vector2 position)
+        {
+            if (edge.input != null)
+            {
+                // If the edge that user dropped is from a input port.
+                nodeCreationConnectorWindow.UpdateWindowContext
+                (
+                    // Align on the left side.
+                    C_Alignment_HorizontalType.Left,
+
+                    // Option channel connector type.
+                    N_NodeCreationConnectorType.OptionChannel,
+
+                    // Connector port.
+                    owner,
+
+                    // Option channel's track search entries.
+                    DSNodeCreationEntriesProvider.OptionChannelTrackEntries
+                );
+            }
+            else
+            {
+                // If the edge that user dropped is from a output port.
+                nodeCreationConnectorWindow.UpdateWindowContext
+                (
+                    // Align on the right side.
+                    C_Alignment_HorizontalType.Right,
+
+                    // Option channel connector type.
+                    N_NodeCreationConnectorType.OptionChannel,
+
+                    // Connector port.
+                    owner,
+
+                    // Option channel's track search entries.
+                    DSNodeCreationEntriesProvider.OptionChannelEntryEntries
+                );
+            }
+
+            // Open window.
+            nodeCreationConnectorWindow.Open(DSGraphView.GetCurrentEventMousePosition());
+        }
     }
 }

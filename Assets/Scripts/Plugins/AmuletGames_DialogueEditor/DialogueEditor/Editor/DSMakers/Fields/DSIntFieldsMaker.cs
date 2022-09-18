@@ -5,7 +5,7 @@ namespace AG
     public class DSIntFieldsMaker
     {
         /// <summary>
-        /// Create a new int input field.
+        /// Returns a new int input field.
         /// </summary>
         /// <param name="intContainer">The container that'll combine and save the field as reference for other modules to use.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>

@@ -7,15 +7,31 @@ namespace AG
     {
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Callback action when the connecting node is added on the graph.
+        /// Callback action when the node is fully initialized but hasn't been created on the graph yet.
+        /// <br>This action happens at the end of the node's class constructor.</br>
         /// </summary>
-        public abstract void NodeAddedAction();
+        public abstract void InitializedAction();
 
 
         /// <summary>
-        /// Callback action when any of the nodes is deleted by users from the graph manually.
+        /// Callback action when the node is added on the graph by users manually (by contextual menu or search window).
+        /// <br>This action happens after InitalizedAction is called.</br>
         /// </summary>
-        public abstract void NodeRemovedByManualAction();
+        public abstract void ManualCreatedAction();
+
+
+        /// <summary>
+        /// Callback action when the nodes is deleted by users from the graph manually.
+        /// <br>This action happens before the node is being removed from the graph.</br>
+        /// </summary>
+        public abstract void PreManualRemovedAction();
+
+
+        /// <summary>
+        /// Callback action when the nodes is deleted by users from the graph manually.
+        /// <br>This action happens after the node is removed from the graph.</br>
+        /// </summary>
+        public abstract void PostManualRemovedAction();
 
 
         /// <summary>
@@ -27,6 +43,6 @@ namespace AG
         /// <summary>
         /// Callback action when the elements on the nodes has some logic to execute after the edges loading phrase is finished.
         /// </summary>
-        protected virtual void PostLoadingSetupAction() { }
+        protected virtual void PostLoadingSetupElementsAction() { }
     }
 }

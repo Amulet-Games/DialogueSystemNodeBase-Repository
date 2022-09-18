@@ -23,19 +23,18 @@ namespace AG
         /// <summary>
         /// Create a new branch node's model and save the current model's data into it.
         /// </summary>
-        /// <param name="edges">List of edges that are currently in the graph.</param>
         /// <returns>A new copy of selected branch node model.</returns>
-        public DSBranchNodeModel SaveNode(List<Edge> edges)
+        public DSBranchNodeModel SaveNode()
         {
             DSBranchNodeModel newNodeModel;
 
             CreateNewBranchNodeModel();
 
-            SaveNodeDetails();
+            SaveBaseDetails(newNodeModel);
 
             SavePortsGuid();
 
-            SaveBranchingNodesGuid();
+            SaveBranchingOpponentNodesGuid();
 
             SaveConditionMolder();
 
@@ -46,12 +45,6 @@ namespace AG
                 newNodeModel = new DSBranchNodeModel();
             }
 
-            void SaveNodeDetails()
-            {
-                newNodeModel.SavedNodeGuid = Node.NodeGuid;
-                newNodeModel.SavedNodePosition = Node.GetPosition().position;
-            }
-
             void SavePortsGuid()
             {
                 newNodeModel.SavedInputPortGuid = Model.InputPort.name;
@@ -59,29 +52,29 @@ namespace AG
                 newNodeModel.SavedFalseOutputPortGuid = Model.FalseOutputPort.name;
             }
 
-            void SaveBranchingNodesGuid()
+            void SaveBranchingOpponentNodesGuid()
             {
-                // Find the edges that are connecting to this branch node's output ports.
-                // Two edges for either True or False
-                Edge trueOutputEdge = edges.FirstOrDefault(edge => edge.output == Model.TrueOutputPort);
-                Edge falseOutputEdge = edges.FirstOrDefault(edge => edge.output == Model.FalseOutputPort);
-
-                // Save their connecting input node's guid if edges were found.
-                if (trueOutputEdge != null)
+                if (Model.TrueOutputPort.connected)
                 {
-                    newNodeModel.SavedTrueInputNodeGuid = ((DSNodeBase)trueOutputEdge.input.node).NodeGuid;
+                    // If true output port is connecting to other node, save the opponent node's Guid.
+                    newNodeModel.SavedTrueInputNodeGuid =
+                        ((DSNodeBase)Model.TrueOutputPort.connections.First().input.node).NodeGuid;
                 }
                 else
                 {
+                    // Otherwise simply leave it as empty.
                     newNodeModel.SavedTrueInputNodeGuid = "";
                 }
 
-                if (falseOutputEdge != null)
+                if (Model.FalseOutputPort.connected)
                 {
-                    newNodeModel.SavedFalseInputNodeGuid = ((DSNodeBase)falseOutputEdge.input.node).NodeGuid;
+                    // If false output port is connecting to other node, save the opponent node's Guid.
+                    newNodeModel.SavedFalseInputNodeGuid =
+                        ((DSNodeBase)Model.FalseOutputPort.connections.First().input.node).NodeGuid;
                 }
                 else
                 {
+                    // Otherwise simply leave it as empty.
                     newNodeModel.SavedFalseInputNodeGuid = "";
                 }
             }
@@ -100,16 +93,11 @@ namespace AG
         /// <param name="source">The node's model of which this node is going to load from.</param>
         public void LoadNode(DSBranchNodeModel source)
         {
-            LoadNodeDetails();
+            LoadBaseDetails(source);
 
             LoadPortsGuid();
 
             LoadConditionMolder();
-
-            void LoadNodeDetails()
-            {
-                Node.NodeGuid = source.SavedNodeGuid;
-            }
 
             void LoadPortsGuid()
             {

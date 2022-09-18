@@ -29,7 +29,7 @@ namespace AG
 
             CreateNewEventNodeModel();
 
-            SaveNodeDetails();
+            SaveBaseDetails(newNodeModel);
 
             SavePortsGuid();
 
@@ -40,12 +40,6 @@ namespace AG
             void CreateNewEventNodeModel()
             {
                 newNodeModel = new DSEventNodeModel();
-            }
-
-            void SaveNodeDetails()
-            {
-                newNodeModel.SavedNodeGuid = Node.NodeGuid;
-                newNodeModel.SavedNodePosition = Node.GetPosition().position;
             }
 
             void SavePortsGuid()
@@ -68,16 +62,11 @@ namespace AG
         /// <param name="source">The node's model of which this node is going to load from.</param>
         public void LoadNode(DSEventNodeModel source)
         {
-            LoadNodeDetails();
+            LoadBaseDetails(source);
 
             LoadPortsGuid();
 
             LoadEventMolder();
-
-            void LoadNodeDetails()
-            {
-                Node.NodeGuid = source.SavedNodeGuid;
-            }
 
             void LoadPortsGuid()
             {

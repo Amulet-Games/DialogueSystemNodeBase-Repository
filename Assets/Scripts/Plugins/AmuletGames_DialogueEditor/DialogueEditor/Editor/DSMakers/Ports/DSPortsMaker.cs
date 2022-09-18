@@ -8,13 +8,13 @@ namespace AG
     public class DSPortsMaker
     {
         /// <summary>
-        /// Create a new input port.
+        /// Returns a new input port.
         /// </summary>
         /// <param name="node">Node of which this port is created for.</param>
         /// <param name="portName">The name of the port, it'll appear next to the port if the value is not empty.</param>
         /// <param name="capacity">The type determines how many edges a port can have for connection.</param>
         /// <returns>An input port that can connect to another node or nodes if capacity is set to multiple.</returns>
-        public static Port AddInputPort(DSNodeBase node, string portName, Port.Capacity capacity)
+        public static Port GetNewInputPort(DSNodeBase node, string portName, Port.Capacity capacity)
         {
             Port newInputPort;
 
@@ -22,9 +22,11 @@ namespace AG
 
             SetupPortDetail();
 
+            SetupEdgeConnector();
+
             AddPortToContainer();
 
-            ImplementDSCommonStyleSheets();
+            AddStyleSheet();
 
             OverridePortDefaultStyle();
 
@@ -42,12 +44,24 @@ namespace AG
                 newInputPort.portColor = new Color(1, 1, 1);
             }
 
+            void SetupEdgeConnector()
+            {
+                // Add default edge connector listener to the port.
+                newInputPort.AddManipulator
+                (
+                    new EdgeConnector<Edge>
+                    (
+                        new DSDefaultEdgeConnectorListener(node.GraphView.NodeCreationConnectorWindow)
+                    )
+                );
+            }
+
             void AddPortToContainer()
             {
                 node.inputContainer.Add(newInputPort);
             }
 
-            void ImplementDSCommonStyleSheets()
+            void AddStyleSheet()
             {
                 newInputPort.styleSheets.Add(DSStylesConfig.DSNodesShareStyle);
             }
@@ -79,14 +93,14 @@ namespace AG
 
 
         /// <summary>
-        /// Create a new output port.
+        /// Returns a new output port.
         /// </summary>
         /// <param name="node">Node of which this port is created for.</param>
         /// <param name="isSiblings">Is the port a sibing to the first ouput port within the same hierarchy.</param>
         /// <param name="portName">The name of the port, it'll appear next to the port if the value is not empty.</param>
         /// <param name="capacity">The type determines how many edges a port can have for connection.</param>
         /// <returns>A output port that can connect to another node or nodes if capacity is set to multiple.</returns>
-        public static Port AddOutputPort(DSNodeBase node, bool isSiblings, string portName, Port.Capacity capacity)
+        public static Port GetNewOutputPort(DSNodeBase node, bool isSiblings, string portName, Port.Capacity capacity)
         {
             Port newOutputPort;
 
@@ -94,9 +108,11 @@ namespace AG
 
             SetupPortDetail();
 
+            SetupEdgeConnector();
+
             AddPortToContainer();
 
-            ImplementDSCommonStyleSheets();
+            AddStyleSheet();
 
             OverridePortDefaultStyle();
 
@@ -114,12 +130,24 @@ namespace AG
                 newOutputPort.portColor = new Color(1, 1, 1);
             }
 
+            void SetupEdgeConnector()
+            {
+                // Add default edge connector listener to the port.
+                newOutputPort.AddManipulator
+                (
+                    new EdgeConnector<Edge>
+                    (
+                        new DSDefaultEdgeConnectorListener(node.GraphView.NodeCreationConnectorWindow)
+                    )
+                );
+            }
+
             void AddPortToContainer()
             {
                 node.outputContainer.Add(newOutputPort);
             }
 
-            void ImplementDSCommonStyleSheets()
+            void AddStyleSheet()
             {
                 newOutputPort.styleSheets.Add(DSStylesConfig.DSNodesShareStyle);
             }

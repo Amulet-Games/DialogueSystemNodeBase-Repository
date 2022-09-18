@@ -12,8 +12,13 @@ namespace AG
         public static Sprite RemoveModifierButtonIconImage;
         public static Sprite RemoveEntryButtonIconImage;
         public static Sprite LanguageSelectionDropdownArrowIconImage;
+        public static Sprite EditNodeTitleButtonIconImage;
 
-        #region Setup.
+
+        // ----------------------------- Setup -----------------------------
+        /// <summary>
+        /// Setup for the class, used to initialize internal fields.
+        /// </summary>
         public static void Setup()
         {
             SetupSpriteAssets();
@@ -28,8 +33,8 @@ namespace AG
                 RemoveModifierButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/RemoveButtonIcon(PictoTotal)");
                 RemoveEntryButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/RemoveButtonIcon(PictoTotal)");
                 LanguageSelectionDropdownArrowIconImage = Resources.Load<Sprite>("Assets/Sprites/LanguageSelectionDropdownArrowIcon(RainbowArt)");
+                EditNodeTitleButtonIconImage = Resources.Load<Sprite>("Assets/Sprites/EditNodeTitleButtonIcon(PictoTotal)");
             }
         }
-        #endregion
     }
 }

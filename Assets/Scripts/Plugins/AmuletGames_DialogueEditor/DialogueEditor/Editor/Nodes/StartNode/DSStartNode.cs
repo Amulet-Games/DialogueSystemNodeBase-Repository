@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 namespace AG
 {
@@ -8,12 +10,14 @@ namespace AG
         /// <summary>
         /// Construtor of start node.
         /// </summary>
-        /// <param name="position">The vector2 position of where this node'll be created on the graph.</param>
+        /// <param name="position">The vector2 position on the graph where this node'll be placed to once it's created.</param>
         /// <param name="graphView">Dialogue system's graph view module.</param>
-        public DSStartNode(Vector2 position, DSGraphView serializeHandler)
-            : base("Start", position, serializeHandler)
+        public DSStartNode(Vector2 position, DSGraphView graphView)
+            : base(DSStringsConfig.StartNodeDefaultLabelText, position, graphView)
         {
             SetupFrameFields();
+
+            CreateNodeElements();
 
             CreateNodePorts();
 
@@ -21,7 +25,7 @@ namespace AG
 
             AddStyleSheet();
 
-            InvokeNodeAddedAction();
+            InvokeInitalizedAction();
 
             void SetupFrameFields()
             {
@@ -30,6 +34,11 @@ namespace AG
                 Presenter = new DSStartNodePresenter(this, model);
                 Serializer = new DSStartNodeSerializer(this, model);
                 Callback = new DSStartNodeCallback(this, model);
+            }
+
+            void CreateNodeElements()
+            {
+                Presenter.CreateNodeElements();
             }
 
             void CreateNodePorts()
@@ -42,9 +51,9 @@ namespace AG
                 styleSheets.Add(DSStylesConfig.StartNodeStyle);
             }
 
-            void InvokeNodeAddedAction()
+            void InvokeInitalizedAction()
             {
-                Callback.NodeAddedAction();
+                Callback.InitializedAction();
             }
         }
     }

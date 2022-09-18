@@ -7,7 +7,7 @@ namespace AG
     public static class DSLanguageFieldsMaker
     {
         /// <summary>
-        /// Create a new text input field which can change it's input content base on the current selected language in the editor window.
+        /// Returns a new text input field which can change it's input content base on the current selected language in the editor window.
         /// </summary>
         /// <param name="LG_Texts_Container">The container that'll combine and save the field as reference for other modules to use.</param>
         /// <param name="placeholderText">The text that'll show up in the field when there's no actual content within it.</param>
@@ -36,11 +36,11 @@ namespace AG
                 // Make new LGs foreach languages that this editor supports,
                 // and add it to the list that inside the Container_LG_Texts.
 
-                for (int i = 0; i < SupportLanguage.SupportLanguageLength; i++)
+                for (int i = 0; i < DSLanguagesConfig.SupportLanguageLength; i++)
                 {
                     LanguageGenerics<string> new_LG_Text = new LanguageGenerics<string>();
 
-                    new_LG_Text.LanguageType = SupportLanguage.SupportLanguageTypes[i];
+                    new_LG_Text.LanguageType = DSLanguagesConfig.SupportLanguageTypes[i];
                     new_LG_Text.GenericsContent = "";
 
                     LG_Texts_Container.Value.Add(new_LG_Text);
@@ -57,7 +57,7 @@ namespace AG
                 // At the moment, we can just set the TextField's value to whatever the string content that matched the editor language.
                 textField.SetValueWithoutNotify(LG_Texts_Container.Value.Find
                 (
-                    String_LG => String_LG.LanguageType == SupportLanguage.SelectedLanguage
+                    String_LG => String_LG.LanguageType == DSLanguagesConfig.SelectedLanguage
                 )
                 .GenericsContent);
             }
@@ -92,7 +92,7 @@ namespace AG
 
 
         /// <summary>
-        /// Create a new object field which accepts audio clip assets as inputs,
+        /// Returns a new object field which accepts audio clip assets as inputs,
         /// <br>and can change it's input content base on the current selected language in the editor window.</br>
         /// </summary>
         /// <param name="LG_AudioClip_Container">The container that'll combine and save the field as reference for other modules to use.</param>
@@ -121,11 +121,11 @@ namespace AG
                 // Make new LGs foreach languages that this editor supports,
                 // and add it to the list that inside the Container_LG_AudioClips.
 
-                for (int i = 0; i < SupportLanguage.SupportLanguageLength; i++)
+                for (int i = 0; i < DSLanguagesConfig.SupportLanguageLength; i++)
                 {
                     LanguageGenerics<AudioClip> new_LG_AudioClip = new LanguageGenerics<AudioClip>();
 
-                    new_LG_AudioClip.LanguageType = SupportLanguage.SupportLanguageTypes[i];
+                    new_LG_AudioClip.LanguageType = DSLanguagesConfig.SupportLanguageTypes[i];
                     new_LG_AudioClip.GenericsContent = null;
 
                     LG_AudioClip_Container.Value.Add(new_LG_AudioClip);

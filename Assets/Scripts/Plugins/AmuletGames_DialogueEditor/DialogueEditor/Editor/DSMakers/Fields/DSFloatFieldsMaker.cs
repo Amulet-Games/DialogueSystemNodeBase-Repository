@@ -5,7 +5,7 @@ namespace AG
     public class DSFloatFieldsMaker
     {
         /// <summary>
-        /// Create a new float input field.
+        /// Returns a new float input field.
         /// </summary>
         /// <param name="floatContainer">The container that'll combine and save the field as reference for other modules to use.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>

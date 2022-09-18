@@ -8,12 +8,12 @@ namespace AG
         /// Each time the text field is assigned to a new value,
         /// <br>the Value(string) in the string container will changed at the sametime.</br>
         /// </summary>
-        /// <param name="stringContainer">String container of which the text field is connecting to.</param>
-        public static void RegisterValueChangedEvent(TextContainer stringContainer)
+        /// <param name="textContainer">Text container of which the text field is connecting to.</param>
+        public static void RegisterValueChangedEvent(TextContainer textContainer)
         {
-            stringContainer.TextField.RegisterValueChangedCallback(value =>
+            textContainer.TextField.RegisterValueChangedCallback(value =>
             {
-                stringContainer.Value = value.newValue;
+                textContainer.Value = value.newValue;
 
                 InvokeDSWindowChangedEvent();
             });
@@ -38,12 +38,12 @@ namespace AG
         /// Each time the text field is deselected,
         /// <br>if it's currently empty then show the placeholder text.</br>
         /// </summary>
-        /// <param name="stringContainer">String container of which the text field is connecting to.</param>
-        public static void RegisterFieldFocusOutEvent(TextContainerBase stringContainer)
+        /// <param name="textContainer">Text container of which the text field is connecting to.</param>
+        public static void RegisterFieldFocusOutEvent(TextContainerBase textContainer)
         {
-            stringContainer.TextField.RegisterCallback<FocusOutEvent>(_ =>
+            textContainer.TextField.RegisterCallback<FocusOutEvent>(_ =>
             {
-                DSTextFieldUtility.ShowEmptyStyle(stringContainer);
+                DSTextFieldUtility.ShowEmptyStyle(textContainer);
             });
         }
     }

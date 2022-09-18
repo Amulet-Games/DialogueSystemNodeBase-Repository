@@ -1,19 +1,9 @@
 .node {
-	width: 142px;
+	min-width: 142px;
 }
 
 .node #title {
 	background-color: rgba(92, 166, 102, 1);
-}
-
-
-.node_Border #title #title-label {
-	
-	font-size: 18px;
-
-	/* top - right - bottom - left */
-	margin: 0px 0px 0px 8px;
-	padding: 0px 2px 0px 2px;
 }
 
 

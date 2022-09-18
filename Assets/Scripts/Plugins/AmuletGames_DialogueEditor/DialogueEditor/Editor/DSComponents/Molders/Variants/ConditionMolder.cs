@@ -17,9 +17,7 @@ namespace AG
 
 
         // ----------------------------- Add Modifier Services -----------------------------
-        /// <summary>
-        /// Ask DSModifierMaker to create a new instance condition modifier for the molder.
-        /// </summary>
+        /// <inheritdoc />
         protected override void AddInstanceModifier()
         {
             DSModifiersMaker.GetNewConditionModifier

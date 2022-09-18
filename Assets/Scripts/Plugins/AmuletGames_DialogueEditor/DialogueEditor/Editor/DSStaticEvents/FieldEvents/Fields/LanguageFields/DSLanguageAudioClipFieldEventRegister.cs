@@ -16,7 +16,7 @@ namespace AG
         {
             LG_AudioClipContainer.ObjectField.RegisterValueChangedCallback(value =>
             {
-                LG_AudioClipContainer.Value.Find(AudioClip_LG => AudioClip_LG.LanguageType == SupportLanguage.SelectedLanguage).GenericsContent = value.newValue as AudioClip;
+                LG_AudioClipContainer.Value.Find(AudioClip_LG => AudioClip_LG.LanguageType == DSLanguagesConfig.SelectedLanguage).GenericsContent = value.newValue as AudioClip;
 
                 DSObjectFieldUtility.ToggleEmptyStyle(LG_AudioClipContainer.ObjectField);
 

@@ -28,7 +28,7 @@ namespace AG
 
             CreateNewOptionNodeModel();
 
-            SaveNodeDetails();
+            SaveBaseDetails(newNodeModel);
 
             SavePortsGuid();
 
@@ -43,12 +43,6 @@ namespace AG
             void CreateNewOptionNodeModel()
             {
                 newNodeModel = new DSOptionNodeModel();
-            }
-
-            void SaveNodeDetails()
-            {
-                newNodeModel.SavedNodeGuid = Node.NodeGuid;
-                newNodeModel.SavedNodePosition = Node.GetPosition().position;
             }
 
             void SavePortsGuid()
@@ -80,7 +74,7 @@ namespace AG
         /// <param name="source">The node's model of which this node is going to load from.</param>
         public void LoadNode(DSOptionNodeModel source)
         {
-            LoadNodeDetails();
+            LoadBaseDetails(source);
 
             LoadPortsGuid();
 
@@ -89,11 +83,6 @@ namespace AG
             LoadTextlineSegment();
 
             LoadConditionSegment();
-
-            void LoadNodeDetails()
-            {
-                Node.NodeGuid = source.SavedNodeGuid;
-            }
 
             void LoadPortsGuid()
             {

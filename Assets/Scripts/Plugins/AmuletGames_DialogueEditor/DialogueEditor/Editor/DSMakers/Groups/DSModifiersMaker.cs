@@ -7,7 +7,7 @@ namespace AG
     public class DSModifiersMaker
     {
         /// <summary>
-        /// Create all the UIElements that are needed in this modifier as instance.
+        /// Create a new condition modifier within any nodes that are specified in the modifierAddedAction.
         /// </summary>
         /// <param name="source">The another modifier that has the values to this new modifier to load from if it's provided.</param>
         /// <param name="conditionModifierAddedAction">Action that will invoked at the end of this setup process.</param>
@@ -73,7 +73,7 @@ namespace AG
 
             void SetupModifierRemoveButton()
             {
-                modifierRemoveButton = AddModifierRemoveButton(ConditionModifierRemovedAction);
+                modifierRemoveButton = GetNewModifierRemoveButton(ConditionModifierRemovedAction);
             }
 
             void CheckSourceValues()
@@ -116,7 +116,7 @@ namespace AG
 
 
         /// <summary>
-        /// Create all the UIElements that are needed in this modifier as instance.
+        /// Create a new event modifier within any nodes that are specified in the modifierAddedAction.
         /// </summary>
         /// <param name="source">The another modifier that has the values to this new modifier to load from if it's provided.</param>
         /// <param name="eventModifierAddedAction">Action that will invoked at the end of this setup process.</param>
@@ -166,7 +166,7 @@ namespace AG
 
             void SetupModifierRemvoeButton()
             {
-                modifierRemoveButton = AddModifierRemoveButton(EventModifierRemovedAction);
+                modifierRemoveButton = GetNewModifierRemoveButton(EventModifierRemovedAction);
             }
 
             void CheckSourceValues()
@@ -205,7 +205,7 @@ namespace AG
         /// </summary>
         /// <param name="ModifierRemovedAction">The action to invoke when remove button is pressed.</param>
         /// <returns>A new button to remove the modifier that it's connecting to.</returns>
-        static Button AddModifierRemoveButton(Action ModifierRemovedAction)
+        static Button GetNewModifierRemoveButton(Action ModifierRemovedAction)
         {
             return DSButtonsMaker.GetNewButton(DSAssetsConfig.RemoveModifierButtonIconImage, ModifierRemovedAction, DSStylesConfig.Modifier_RemoveModifier_Button);
         }

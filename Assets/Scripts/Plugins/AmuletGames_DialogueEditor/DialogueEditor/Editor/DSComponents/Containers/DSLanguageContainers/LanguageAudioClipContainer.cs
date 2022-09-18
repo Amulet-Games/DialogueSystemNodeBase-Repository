@@ -30,7 +30,7 @@ namespace AG
             ObjectField.allowSceneObjects = false;
 
             // Make sure the field's audio clip matches the current editor language's audio clip.
-            ObjectField.value = Value.Find(AudioClip_LG => AudioClip_LG.LanguageType == SupportLanguage.SelectedLanguage).GenericsContent;
+            ObjectField.value = Value.Find(AudioClip_LG => AudioClip_LG.LanguageType == DSLanguagesConfig.SelectedLanguage).GenericsContent;
 
             // Update field's empty style
             DSObjectFieldUtility.ToggleEmptyStyle(ObjectField);
@@ -58,7 +58,7 @@ namespace AG
                         Value[j].GenericsContent = source.Value[i].GenericsContent;
 
                         // Set field's value without invoking field's value change event.
-                        if (Value[j].LanguageType == SupportLanguage.SelectedLanguage)
+                        if (Value[j].LanguageType == DSLanguagesConfig.SelectedLanguage)
                         {
                             ObjectField.SetValueWithoutNotify(Value[j].GenericsContent);
                         }
@@ -102,7 +102,7 @@ namespace AG
         public void ReloadLanguage()
         {
             // Find the audio clip that it's language matches the one that we want to change to. 
-            AudioClip matchedLanguageAudioClip = Value.Find(AudioClip_LG => AudioClip_LG.LanguageType == SupportLanguage.SelectedLanguage).GenericsContent;
+            AudioClip matchedLanguageAudioClip = Value.Find(AudioClip_LG => AudioClip_LG.LanguageType == DSLanguagesConfig.SelectedLanguage).GenericsContent;
 
             // Register a new value change callback to ensure that,
             // any new value given for this field will update to the correct language generics.

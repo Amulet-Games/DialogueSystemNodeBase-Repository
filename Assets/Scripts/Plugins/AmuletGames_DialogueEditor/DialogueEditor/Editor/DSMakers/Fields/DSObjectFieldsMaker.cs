@@ -7,7 +7,7 @@ namespace AG
     public class DSObjectFieldsMaker
     {
         /// <summary>
-        /// Create a new object field which accepts any assets as type object as inputs.
+        /// Returns a new object field which accepts any assets as type object as inputs.
         /// </summary>
         /// <typeparam name="TObject">Type object</typeparam>
         /// <param name="objectContainer">The container that'll combine and save the field as reference for other modules to use.</param>
@@ -58,7 +58,7 @@ namespace AG
 
 
         /// <summary>
-        /// Create a new object field which accepts sprite assets as inputs.
+        /// Returns a new object field which accepts sprite assets as inputs.
         /// </summary>
         /// <param name="spriteContainer">The container that'll combine and save the field as reference for other modules to use.</param>
         /// <param name="imageElement">The image UIElement to use to show the sprite's texture as previews.</param>

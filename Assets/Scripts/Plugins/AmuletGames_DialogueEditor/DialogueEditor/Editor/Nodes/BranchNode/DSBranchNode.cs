@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace AG
@@ -9,10 +8,10 @@ namespace AG
         /// <summary>
         /// Construtor of branch node.
         /// </summary>
-        /// <param name="position">The vector2 position of where this node'll be created on the graph.</param>
+        /// <param name="position">The vector2 position on the graph where this node'll be placed to once it's created.</param>
         /// <param name="graphView">Dialogue system's graph view module.</param>
         public DSBranchNode(Vector2 position, DSGraphView graphView)
-            : base("Branch", position, graphView)
+            : base(DSStringsConfig.BranchNodeDefaultLabelText, position, graphView)
         {
             SetupFrameFields();
 
@@ -24,7 +23,7 @@ namespace AG
 
             AddStyleSheet();
 
-            InvokeNodeAddedAction();
+            InvokeInitalizedAction();
 
             void SetupFrameFields()
             {
@@ -54,9 +53,9 @@ namespace AG
                 styleSheets.Add(DSStylesConfig.DSRootedModifiersStyle);
             }
 
-            void InvokeNodeAddedAction()
+            void InvokeInitalizedAction()
             {
-                Callback.NodeAddedAction();
+                Callback.InitializedAction();
             }
         }
     }

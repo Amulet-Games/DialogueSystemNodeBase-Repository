@@ -35,6 +35,7 @@ namespace AG
         public abstract void SetEnumValue(Enum newValue);
 
 
+        // ----------------------------- Serialization -----------------------------
         /// <summary>
         /// Overwrite the value of this container with the value that's from the source,
         /// and update the field to show the changes.
@@ -64,22 +65,32 @@ namespace AG
 
     public class DialogueOverHandleTypeEnumContainer : EnumContainerBase
     {
+        /// <summary>
+        /// Constructor of dialogue over handle type enum container.
+        /// </summary>
         public DialogueOverHandleTypeEnumContainer()
         {
             Value = N_End_DialogueOverHandleType.End;
         }
 
+
+        /// <inheritdoc />
         public override void SetEnumValue(Enum newValue) => Value = (N_End_DialogueOverHandleType)newValue;
     }
 
 
     public class UnmetOptionDisplayTypeEnumContainer : EnumContainerBase
     {
+        /// <summary>
+        /// Constructor of unmet option display type enum container.
+        /// </summary>
         public UnmetOptionDisplayTypeEnumContainer()
         {
             Value = N_Modifier_ConditionDisplayType.Hide;
         }
 
+
+        /// <inheritdoc />
         public override void SetEnumValue(Enum newValue) => Value = (N_Modifier_ConditionDisplayType)newValue;
     }
 
@@ -95,10 +106,7 @@ namespace AG
         }
 
 
-        /// <summary>
-        /// Set the container's value to a new value of type condition comparison.
-        /// </summary>
-        /// <param name="newValue">The new value to use to override the current one.</param>
+        /// <inheritdoc />
         public override void SetEnumValue(Enum newValue) => Value = (N_Modifier_ConditionComparisonType)newValue;
 
 

@@ -3,7 +3,7 @@ namespace AG
     /// <summary>
     /// Dialogue system node serializer base class.
     /// </summary>
-    public class DSNodeSerializerBase
+    public abstract class DSNodeSerializerBase
     {
     }
 }

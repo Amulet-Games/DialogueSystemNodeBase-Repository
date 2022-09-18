@@ -1,4 +1,5 @@
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 namespace AG
 {
@@ -18,11 +19,11 @@ namespace AG
 
 
         // ----------------------------- Makers -----------------------------
-        /// <summary>
-        /// Create all the UIElements that exist within the connecting node.
-        /// </summary>
-        public void CreateNodeElements()
+        /// <inheritdoc />
+        public override void CreateNodeElements()
         {
+            base.CreateNodeElements();
+
             AddContentButton_ConditionModifier();
 
             AddOptionTrack();
@@ -53,55 +54,105 @@ namespace AG
         }
 
 
-        /// <summary>
-        /// Create all the ports that exist within the connecting node.
-        /// </summary>
-        public void CreateNodePorts()
+        /// <inheritdoc />
+        public override void CreateNodePorts()
         {
-            Model.OutputPort = DSPortsMaker.AddOutputPort(Node, false, DSStringsConfig.NodeOutputLabelText, Port.Capacity.Single);
+            Model.OutputPort = DSPortsMaker.GetNewOutputPort(Node, false, DSStringsConfig.NodeOutputLabelText, Port.Capacity.Single);
         }
 
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Action that invoked after content button is pressed.
+        /// Action that invoked after the content button is pressed.
+        /// <para>ContentButtonClickedAction - DSIntegrantsMaker - ContentButtonMainBox.</para>
         /// </summary>
         void IntegrantButtonPressedAction()
         {
             // Create a new condition modifier within this node.
-            AddInstanceConditionModifier();
-
-            // Reveal the condition segment on the connecting node.
-            DSElementDisplayUtility.ShowElement(Model.ConditionSegment.MainBox);
-        }
-
-
-        /// <summary>
-        /// Helper function for adding a new instance condition modifier.
-        /// </summary>
-        void AddInstanceConditionModifier()
-        {
             DSModifiersMaker.GetNewConditionModifier
             (
                 null,
                 Model.ConditionSegment.ModifierAddedAction,
                 Model.ConditionSegment.ModifierRemovedAction
             );
+
+            // Reveal the condition segment on the connecting node.
+            DSElementDisplayUtility.ShowElement(Model.ConditionSegment.MainBox);
+        }
+
+
+        /// <inheritdoc />
+        public override void NodeManualCreationSetupAction()
+        {
+            if (CreationDetails.CreationConnectorType == N_NodeCreationConnectorType.OptionChannel)
+            {
+                // Ask option track to handle this action.
+                Model.OptionTrack.NodeManualCreationSetupAction(Node, CreationDetails.ConnectorPort);
+            }
+            else
+            {
+                AlignConnectorPosition();
+
+                ConnectConnectorPort();
+            }
+
+            void AlignConnectorPosition()
+            {
+                // Create a new vector2 result variable to cache the node's current local bound position.
+                Vector2 result = Node.localBound.position;
+
+                switch (CreationDetails.HorizontalAlignType)
+                {
+                    case C_Alignment_HorizontalType.Left:
+
+                        // Height offset.
+                        result.y -= (Node.titleContainer.worldBound.height + Model.OutputPort.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
+
+                        // Width offset.
+                        result.x -= Node.localBound.width;
+
+                        break;
+                    case C_Alignment_HorizontalType.Middle:
+
+                        // Height offset.
+                        result.y -= (Node.titleContainer.worldBound.height + Model.OptionTrack.Port.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
+
+                        // Width offset.
+                        result.x -= Node.localBound.width / 2;
+                        break;
+                }
+
+                // Apply the final position result to the node.
+                Node.SetPosition(new Rect(result, DSVector2Utility.Zero));
+            }
+
+            void ConnectConnectorPort()
+            {
+                // If connnector port is null then return.
+                if (CreationDetails.ConnectorPort == null)
+                    return;
+
+                // Create local reference for the connector port.
+                Port connectorPort = CreationDetails.ConnectorPort;
+
+                // If the connector port is connecting to another port, disconnect them first.
+                if (connectorPort.connected)
+                {
+                    Node.GraphView.DisconnectPorts(connectorPort);
+                }
+
+                // Connect to connector port.
+                Node.GraphView.ConnectPorts(Model.OutputPort, connectorPort);
+            }
         }
 
 
         // ----------------------------- Ports Connection Check Services -----------------------------
-        /// <summary>
-        /// Is the node's input ports are connecting to the other nodes?
-        /// </summary>
-        /// <returns>A boolean value that returns true if input ports are connected and vice versa.</returns>
+        /// <inheritdoc />
         public override bool IsInputPortConnected() => Model.OptionTrack.Port.connected;
 
 
-        /// <summary>
-        /// Is the node's output ports are connecting to the other nodes?
-        /// </summary>
-        /// <returns>A boolean value that returns true if output ports are connected and vice versa.</returns>
+        /// <inheritdoc />
         public override bool IsOutputPortConnected() => Model.OutputPort.connected;
     }
 }

@@ -39,9 +39,9 @@ namespace AG
 
 
         /// <summary>
-        /// The action to invoke when the handler has finished loading all the nodes and edges.
+        /// The action to invoke when the handler has finished loading and linking all the edges.
         /// </summary>
-        event Action PostLoadingSetupAction;
+        event Action EdgeLoadedSetupAction;
 
 
         // ----------------------------- Pre Setup -----------------------------
@@ -50,7 +50,7 @@ namespace AG
         /// </summary>
         public void ClearActions()
         {
-            PostLoadingSetupAction = null;
+            EdgeLoadedSetupAction = null;
         }
 
 
@@ -165,7 +165,7 @@ namespace AG
                             dialogueContainerSO.EventModelSavables.Add(node.Serializer.SaveNode());
                             break;
                         case DSBranchNode node:
-                            dialogueContainerSO.BranchModelSavables.Add(node.Serializer.SaveNode(edges));
+                            dialogueContainerSO.BranchModelSavables.Add(node.Serializer.SaveNode());
                             break;
                         case DSEndNode node:
                             dialogueContainerSO.EndModelSavables.Add(node.Serializer.SaveNode());
@@ -191,7 +191,7 @@ namespace AG
             LoadNodes(dialogueContainerSO);
             LoadEdges(dialogueContainerSO);
 
-            InvokePostLoadingSetupAction();
+            InvokeEdgeLoadedSetupAction();
 
             // Set dirty when all the changes involving ContainerSO is done.
             EditorUtility.SetDirty(dialogueContainerSO);
@@ -226,7 +226,7 @@ namespace AG
 
                 for (int i = 0; i < modelsCount; i++)
                 {
-                    DSStartNode newStartNode = DSNodesMaker.CreateStartNode(startNodeModels[i].SavedNodePosition, graphView);
+                    DSStartNode newStartNode = new DSStartNode(startNodeModels[i].SavedNodePosition, graphView);
                     newStartNode.Serializer.LoadNode(startNodeModels[i]);
                 }
             }
@@ -238,7 +238,7 @@ namespace AG
 
                 for (int i = 0; i < modelsCount; i++)
                 {
-                    DSDialogueNode newDialogueNode = DSNodesMaker.CreateDialogueNode(dialogueNodeModels[i].SavedNodePosition, graphView);
+                    DSDialogueNode newDialogueNode = new DSDialogueNode(dialogueNodeModels[i].SavedNodePosition, graphView);
                     newDialogueNode.Serializer.LoadNode(dialogueNodeModels[i]);
                 }
             }
@@ -250,7 +250,7 @@ namespace AG
 
                 for (int i = 0; i < modelsCount; i++)
                 {
-                    DSOptionNode newOptionNode = DSNodesMaker.CreateOptionNode(optionNodeModels[i].SavedNodePosition, graphView);
+                    DSOptionNode newOptionNode = new DSOptionNode(optionNodeModels[i].SavedNodePosition, graphView);
                     newOptionNode.Serializer.LoadNode(optionNodeModels[i]);
                 }
             }
@@ -261,7 +261,7 @@ namespace AG
                 modelsCount = branchNodeModels.Count;
                 for (int i = 0; i < modelsCount; i++)
                 {
-                    DSBranchNode newBranchNode = DSNodesMaker.CreateBranchNode(branchNodeModels[i].SavedNodePosition, graphView);
+                    DSBranchNode newBranchNode = new DSBranchNode(branchNodeModels[i].SavedNodePosition, graphView);
                     newBranchNode.Serializer.LoadNode(branchNodeModels[i]);
                 }
             }
@@ -273,7 +273,7 @@ namespace AG
 
                 for (int i = 0; i < modelsCount; i++)
                 {
-                    DSEventNode newEventNode = DSNodesMaker.CreateEventNode(eventNodeModels[i].SavedNodePosition, graphView);
+                    DSEventNode newEventNode = new DSEventNode(eventNodeModels[i].SavedNodePosition, graphView);
                     newEventNode.Serializer.LoadNode(eventNodeModels[i]);
                 }
             }
@@ -285,7 +285,7 @@ namespace AG
 
                 for (int i = 0; i < modelsCount; i++)
                 {
-                    DSEndNode newEndNode = DSNodesMaker.CreateEndNode(endNodeModels[i].SavedNodePosition, graphView);
+                    DSEndNode newEndNode = new DSEndNode(endNodeModels[i].SavedNodePosition, graphView);
                     newEndNode.Serializer.LoadNode(endNodeModels[i]);
                 }
             }
@@ -324,8 +324,8 @@ namespace AG
                             // Find the correct output port that the edge data matches
                             if (allOutputPorts[k].name == matchedEdgeData[j].OutputPortGuid)
                             {
-                                // Make an new edge to connect two ports together
-                                LinkNodesTogether(allOutputPorts[k], (Port)connectingInputNode.inputContainer[0]);
+                                // Make an new edge to connect the two ports together
+                                graphView.ConnectPorts(allOutputPorts[k], (Port)connectingInputNode.inputContainer[0]);
                             }
                         }
                     }
@@ -335,32 +335,11 @@ namespace AG
 
 
         /// <summary>
-        /// Recreate the edges that were connecting with the different nodes,
-        /// <br>and attempt to reconnect them again by linking the selected two ports together.</br>
+        /// Invoke the EdgeLoadedSetupAction.
         /// </summary>
-        /// <param name="outputPort">Selected output port for the edge to make connection.</param>
-        /// <param name="inputPort">Selected input port for the edge to make connection.</param>
-        void LinkNodesTogether(Port outputPort, Port inputPort)
+        void InvokeEdgeLoadedSetupAction()
         {
-            Edge edge = new Edge()
-            {
-                output = outputPort,
-                input = inputPort
-            };
-
-            edge.output.Connect(edge);
-            edge.input.Connect(edge);
-
-            graphView.Add(edge);
-        }
-
-
-        /// <summary>
-        /// Invoke the PostLoadingSetupAction.
-        /// </summary>
-        void InvokePostLoadingSetupAction()
-        {
-            PostLoadingSetupAction?.Invoke();
+            EdgeLoadedSetupAction?.Invoke();
         }
 
 
@@ -389,12 +368,12 @@ namespace AG
 
         // ----------------------------- Register Action Services -----------------------------
         /// <summary>
-        /// Register the action to PostLoadingSetupAction.
+        /// Register the action to EdgeLoadedSetupAction.
         /// </summary>
-        /// <param name="action">The action to add to the PostLoadingSetupAction.</param>
-        public void RegisterPostLoadingSetupAction(Action action)
+        /// <param name="action">The action to add to the EdgeLoadedSetupAction.</param>
+        public void RegisterEdgeLoadedSetupAction(Action action)
         {
-            PostLoadingSetupAction += action;
+            EdgeLoadedSetupAction += action;
         }
 
 

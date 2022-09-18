@@ -19,7 +19,9 @@ namespace AG
 
             /// <summary>
             /// Load segment's value from another previously saved segment.
-            /// <br>This is the common loading method for segment.</br>
+            /// <para></para>
+            /// <br>This method is used for loading values between segments only.</br>
+            /// <br>If loading values between molders is what you want, use the LoadMolderSegmentValues method instead.</br>
             /// </summary>
             /// <param name="source">The segment that was previously saved and now it's used to load from.</param>
             public abstract void LoadSegmentValues(TSegment source);

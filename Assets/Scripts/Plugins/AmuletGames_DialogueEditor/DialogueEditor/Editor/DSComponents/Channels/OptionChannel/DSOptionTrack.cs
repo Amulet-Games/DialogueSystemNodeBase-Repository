@@ -1,5 +1,6 @@
 using System;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 namespace AG
 {
@@ -39,7 +40,7 @@ namespace AG
         /// <summary>
         /// Create all the UIElements that are needed in this track.
         /// </summary>
-        /// <param name="node">Node of which this track is created for.</param>
+        /// <param name="node">Reference of the node that creating this track.</param>
         /// <returns>A new track that has its port set up.</returns>
         public void SetupTrack(DSNodeBase node)
         {
@@ -49,7 +50,7 @@ namespace AG
 
             void GetNewTrackPort()
             {
-                Port = DSOptionPort.GetNewTrackPort<Edge>();
+                Port = DSOptionPort.GetNewTrackPort<Edge>(node.GraphView);
             }
 
             void AddTrackToContainer()
@@ -59,11 +60,83 @@ namespace AG
         }
 
 
+        // ----------------------------- Callbacks -----------------------------
+        /// <summary>
+        /// Action that called when a node that has the option track is added on the graph by users,
+        /// <br>when a option channel edge was dropped in a empty space on the graph.</br>
+        /// </summary>
+        /// <param name="node">Reference of the node that owns this track.</param>
+        /// <param name="connectorEntryPort">Reference of the option entry that started the node creation.</param>
+        public void NodeManualCreationSetupAction(DSNodeBase node, Port connectorEntryPort)
+        {
+            AlignConnectorPosition();
+
+            ConnectConnectorPort();
+
+            void AlignConnectorPosition()
+            {
+                // Create a new vector2 result variable to cache the node's current local bound position.
+                Vector2 result = node.localBound.position;
+
+                // Height offset.
+                result.y -= (node.titleContainer.worldBound.height + Port.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / node.GraphView.scale;
+
+                // Apply the final position result to the node.
+                node.SetPosition(new Rect(result, DSVector2Utility.Zero));
+            }
+
+            void ConnectConnectorPort()
+            {
+                // Create local reference for the connector port as a dialogue system's option port.
+                DSOptionPort optionPort = (DSOptionPort)connectorEntryPort;
+
+                // If the option port is connecting to another entry,
+                // disconnect them and hide that entry connected style.
+                if (optionPort.connected)
+                {
+                    DSOptionChannelUtility.HideEntryConnectedStyle(optionPort.PreviousOpponentPort);
+                    node.GraphView.DisconnectPorts(optionPort);
+                }
+
+                // Create an new edge.
+                Edge edge = new Edge()
+                {
+                    input = Port,
+                    output = optionPort
+                };
+
+                // Connect to the edge.
+                Port.Connect(edge);
+                optionPort.Connect(edge);
+
+                // Add the edge to the graph.
+                node.GraphView.Add(edge);
+
+                // Add connected styles.
+                if (optionPort.connected)
+                {
+                    DSOptionChannelUtility.ShowTrackConnectedStyle(Port, optionPort.GetSiblingIndex());
+                }
+                else
+                {
+                    DSOptionChannelUtility.ShowBothConnectedStyle(edge);
+                }
+
+                // Register MouseMoveEvent to the edge.
+                DSChannelEdgeEventRegister.RegisterMouseEvents(edge);
+
+                // Register previous opponent port references.
+                Port.PreviousOpponentPort = optionPort;
+                optionPort.PreviousOpponentPort = Port;
+            }
+        }
+
+
         // ----------------------------- Serialization -----------------------------
         /// <summary>
         /// Save the track port values from the source.
         /// </summary>
-        /// <param name="source">The track of which its values are going to be saved in.</param>
+        /// <param name="source">The track to save its values from.</param>
         public void SaveTrackValues(DSOptionTrack source)
         {
             // Save track port's Guid Id.
@@ -77,7 +150,7 @@ namespace AG
         /// <summary>
         /// Load the track port values from the previously saved track.
         /// </summary>
-        /// <param name="source">The track that was previosuly saved and now it's used to load from.</param>
+        /// <param name="source">The track to load its values from.</param>
         public void LoadTrackValues(DSOptionTrack source)
         {
             // Load track port's Guid Id.

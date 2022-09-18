@@ -26,10 +26,7 @@ namespace AG
 
 
         // ----------------------------- Makers -----------------------------
-        /// <summary>
-        /// Create all the UIElements that are needed in this segment.
-        /// </summary>
-        /// <param name="node">Node of which this segment is created for.</param>
+        /// <inheritdoc />
         public override void SetupSegment(DSNodeBase node)
         {
             Box segmentTitleBox;
@@ -97,10 +94,7 @@ namespace AG
 
 
         // ----------------------------- Serialization -----------------------------
-        /// <summary>
-        /// Save segment's value from another previously created segment.
-        /// </summary>
-        /// <param name="source">The segment of which its values are going to be saved in.</param>
+        /// <inheritdoc />
         public override void SaveSegmentValues(ConditionSegment source)
         {
             // Save segment's isExpanded state
@@ -128,10 +122,7 @@ namespace AG
         }
 
 
-        /// <summary>
-        /// Load segment's value from another previously saved segment.
-        /// </summary>
-        /// <param name="source">The segment that was previously saved and now it's used to load from.</param>
+        /// <inheritdoc />
         public override void LoadSegmentValues(ConditionSegment source)
         {
             LoadConditionDisplayType();
@@ -172,13 +163,7 @@ namespace AG
         }
 
 
-        /// <summary>
-        /// Load segment's value from another previously saved segment.
-        /// <br>This is used by molder component and should only be called within molder's class. </br>
-        /// </summary>
-        /// <param name="source">The segment that was previously saved and now it's used to load from.</param>
-        /// <param name="modifierAddedAction">Action that invoked after modifier is added.</param>
-        /// <param name="modifierRemovedAction">Action that invoked after modifier is removed.</param>
+        /// <inheritdoc />
         public override void LoadMolderSegmentValues(ConditionSegment source, Action<ConditionModifier> modifierAddedAction, Action<ConditionModifier> modifierRemovedAction)
         {
             LoadConditionDisplayType();

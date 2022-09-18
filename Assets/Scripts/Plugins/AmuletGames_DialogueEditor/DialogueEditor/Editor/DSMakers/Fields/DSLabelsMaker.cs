@@ -5,7 +5,7 @@ namespace AG
     public class DSLabelsMaker
     {
         /// <summary>
-        /// Create a new label.
+        /// Returns a new label UIElement.
         /// </summary>
         /// <param name="labelName">The contexts of the label.</param>
         /// <param name="USS01">The first style for the label to use when it appeared on the editor window.</param>

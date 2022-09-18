@@ -29,6 +29,9 @@ namespace AG
 
 
         // ----------------------------- Constructor -----------------------------
+        /// <summary>
+        /// Constructor of end node's model.
+        /// </summary>
         public DSEndNodeModel()
         {
             dialogueOverHandleType_EnumContainer = new DialogueOverHandleTypeEnumContainer();

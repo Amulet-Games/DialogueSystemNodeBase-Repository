@@ -13,7 +13,7 @@ namespace AG
         {
             lgTextsContainer.TextField.RegisterValueChangedCallback(value =>
             {
-                lgTextsContainer.Value.Find(String_LG => String_LG.LanguageType == SupportLanguage.SelectedLanguage).GenericsContent = value.newValue;
+                lgTextsContainer.Value.Find(String_LG => String_LG.LanguageType == DSLanguagesConfig.SelectedLanguage).GenericsContent = value.newValue;
 
                 InvokeDSWindowChangedEvent();
             });

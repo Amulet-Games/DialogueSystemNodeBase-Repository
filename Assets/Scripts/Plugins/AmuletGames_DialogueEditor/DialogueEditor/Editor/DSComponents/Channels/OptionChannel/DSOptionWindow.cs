@@ -25,7 +25,7 @@ namespace AG
         /// <summary>
         /// Reference of the dialogue system's node that the window is created for.
         /// </summary>
-        readonly DSNodeBase node;
+        DSNodeBase node;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -69,12 +69,12 @@ namespace AG
 
             void GetNewEntryPort()
             {
-                newEntry.Port = DSOptionPort.GetNewEntryPort<Edge>(newEntry);
+                newEntry.Port = DSOptionPort.GetNewEntryPort<Edge>(newEntry, node.GraphView);
             }
 
             void SetupEntryRemoveButton()
             {
-                entryRemoveButton = DSChannelsMaker.AddEntryRemoveButton(() => RemoveOptionEntryAction(newEntry));
+                entryRemoveButton = DSChannelsMaker.GetNewEntryRemoveButton(() => RemoveOptionEntryAction(newEntry));
             }
 
             void AddButtonToEntryPort()
@@ -105,7 +105,6 @@ namespace AG
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
         /// Remove the option entry from the window as well as deleting all its children UI elements.
-        /// <para>OptionEntryRemovedAction - DSOptionEntry - EntryRemoveButton.</para>
         /// </summary>
         /// <param name="entry">The selected port that is going to be deleted.</param>
         void RemoveOptionEntryAction(DSOptionEntry entry)
@@ -129,25 +128,16 @@ namespace AG
 
             void RemoveEntryPortFromNode()
             {
-                Port entryPort = entry.Port;
+                DSOptionPort entryPort = entry.Port;
 
                 // If the entry is in connecting state.
                 if (entryPort.connected)
                 {
-                    // Get the edge that is used from the connection.
-                    Edge firstEdge = entryPort.connections.First();
+                    // Hide opponent track port connected style.
+                    DSOptionChannelUtility.HideTrackConnectedStyle(entryPort.PreviousOpponentPort);
 
-                    // Disconnect the edge from the track port that it's connecting.
-                    firstEdge.input.Disconnect(firstEdge);
-
-                    // Hide track port connected style.
-                    DSOptionChannelUtility.HideTrackConnectedStyle(firstEdge.input);
-
-                    // Disconnect the edge from the entry port.
-                    entryPort.Disconnect(firstEdge);
-
-                    // Lastly remove the edge from the graph.
-                    node.GraphView.RemoveElement(firstEdge);
+                    // Disconnect the entry and track ports.
+                    node.GraphView.DisconnectPorts(entryPort);
                 }
 
                 // Remove the entry port from the node output container.
@@ -190,9 +180,8 @@ namespace AG
         /// <summary>
         /// Check if entry port is connected and if so add connected style to it, 
         /// <br>and register MouseMoveEvent to the edge that were created during the loading phrase.</br>
-        /// <para>PostLoadingSetupAction - DSDialogueNodeCallback</para>
         /// </summary>
-        public void PostLoadingSetupAction()
+        public void PostLoadingSetupElementsAction()
         {
             for (int i = 0; i < optionEntriesCount; i++)
             {
@@ -201,11 +190,84 @@ namespace AG
         }
 
 
+        /// <summary>
+        /// Action that called when a node that has the option window is added on the graph by users,
+        /// <br>when a option channel edge was dropped in a empty space on the graph.</br>
+        /// </summary>
+        /// <param name="connectorTrackPort">Reference of the option track that started the node creation.</param>
+        public void NodeManualCreationSetupAction(Port connectorTrackPort)
+        {
+            AlignConnectorPosition();
+
+            ConnectConnectorPort();
+
+            void AlignConnectorPosition()
+            {
+                // Create a new vector2 result variable to cache the node's current local bound position.
+                Vector2 result = node.localBound.position;
+
+                // Height offset.
+                result.y -= (node.titleContainer.worldBound.height + optionEntries[0].Port.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / node.GraphView.scale;
+
+                // Width offset.
+                result.x -= node.localBound.width;
+
+                // Apply the final position result to the node.
+                node.SetPosition(new Rect(result, DSVector2Utility.Zero));
+            }
+
+            void ConnectConnectorPort()
+            {
+                // Create local reference for the connector port as a dialogue system's option port.
+                DSOptionPort optionPort = (DSOptionPort)connectorTrackPort;
+
+                // If the option port is connecting to another entry,
+                // disconnect them and hide that entry connected style.
+                if (optionPort.connected)
+                {
+                    DSOptionChannelUtility.HideEntryConnectedStyle(optionPort.PreviousOpponentPort);
+                    node.GraphView.DisconnectPorts(optionPort);
+                }
+
+                // Create an new edge.
+                Edge edge = new Edge()
+                {
+                    output = optionEntries[0].Port,
+                    input = optionPort
+                };
+
+                // Connect to the edge.
+                optionEntries[0].Port.Connect(edge);
+                optionPort.Connect(edge);
+
+                // Add the edge to the graph.
+                node.GraphView.Add(edge);
+
+                // Add connected styles.
+                if (optionPort.connected)
+                {
+                    DSOptionChannelUtility.ShowEntryConnectedStyle(optionEntries[0].Port, optionEntries[0].Port.GetSiblingIndex());
+                }
+                else
+                {
+                    DSOptionChannelUtility.ShowBothConnectedStyle(edge);
+                }
+
+                // Register MouseMoveEvent to the edge.
+                DSChannelEdgeEventRegister.RegisterMouseEvents(edge);
+
+                // Register previous opponent port references.
+                optionEntries[0].Port.PreviousOpponentPort = optionPort;
+                optionPort.PreviousOpponentPort = optionEntries[0].Port;
+            }
+        }
+
+
         // ----------------------------- Serialization -----------------------------
         /// <summary>
         /// Save entry's value from another previously created entry.
         /// </summary>
-        /// <param name="source">The entry of which its values are going to be saved in.</param>
+        /// <param name="source">The entry to save its values from.</param>
         public void SaveWindowValues(DSOptionWindow source)
         {
             List<DSOptionEntry> sourceOptionEntries = source.optionEntries;
@@ -226,7 +288,7 @@ namespace AG
         /// <summary>
         /// Load entry's value from another previously saved entry.
         /// </summary>
-        /// <param name="source">The entry that was previosuly saved and now it's used to load from.</param>
+        /// <param name="source">The entry to load its values from.</param>
         public void LoadWindowValues(DSOptionWindow source)
         {
             List<DSOptionEntry> sourceOptionEntries = source.optionEntries;
@@ -239,10 +301,10 @@ namespace AG
 
         // ----------------------------- Check Window's Opponent Connected Style -----------------------------
         /// <summary>
-        /// Check if the entries within the window and hide each of their previous opponent
-        /// <br>port's connected style if it's not in connecting state anymore.</br>
+        /// Check the current window's entries connecting status and if they're not connecting,
+        /// <br>hide their previous opponent track's connected style.</br>
         /// </summary>
-        public void CheckMultiOpponentsConnectedStyle()
+        public void CheckOpponentTracksConnectedStyle()
         {
             for (int i = 0; i < optionEntriesCount; i++)
             {

@@ -16,51 +16,51 @@ namespace AG
 
 
         // ----------------------------- Callbacks -----------------------------
-        /// <summary>
-        /// Callback action when the connecting node is added on the graph.
-        /// <para>DialogueNode - Constructor.</para>
-        /// </summary>
-        public override void NodeAddedAction()
+        /// <inheritdoc />
+        public override void InitializedAction()
         {
             DSLanguageChangedEvent.Register(LanguageChangedAction);
 
             DSSerializeHandler serializeHandler = Node.GraphView.SerializeHandler;
             serializeHandler.AddNodeToList(Node);
-            serializeHandler.RegisterPostLoadingSetupAction(PostLoadingSetupAction);
+            serializeHandler.RegisterEdgeLoadedSetupAction(PostLoadingSetupElementsAction);
         }
 
 
-        /// <summary>
-        /// Callback action when any of the nodes is deleted by users from the graph manually.
-        /// <para>GraphDeleteSelectionAction - DSGraphView</para>
-        /// </summary>
-        public override void NodeRemovedByManualAction()
+        /// <inheritdoc />
+        public override void ManualCreatedAction()
+        {
+            Node.SetupNewManualCreatedNode();
+        }
+
+
+        /// <inheritdoc />
+        public override void PreManualRemovedAction()
+        {
+            Node.DisconnectAllPorts();
+            Model.OptionWindow.CheckOpponentTracksConnectedStyle();
+        }
+
+
+        /// <inheritdoc />
+        public override void PostManualRemovedAction()
         {
             DSLanguageChangedEvent.UnRegister(LanguageChangedAction);
-            Node.DisconnectAllPorts();
             Node.GraphView.SerializeHandler.RemoveNodeFromList(Node);
-            Model.OptionWindow.CheckMultiOpponentsConnectedStyle();
         }
 
 
-        /// <summary>
-        /// Callback action when editor window's is changed to a different language.
-        /// <para>LanguageChangedEvent - DSHeadBar</para>
-        /// </summary>
+        /// <inheritdoc />
         protected override void LanguageChangedAction()
         {
             Model.TextlineSegment.ReloadLanguage();
         }
 
 
-        /// <summary>
-        /// Callback action when the elements on the nodes has some logic to execute after 
-        /// <br>the edges loading phrase is finished.</br>
-        /// <para>PostLoadingSetupAction - DSSerializeHandler</para>
-        /// </summary>
-        protected override void PostLoadingSetupAction()
+        /// <inheritdoc />
+        protected override void PostLoadingSetupElementsAction()
         {
-            Model.OptionWindow.PostLoadingSetupAction();
+            Model.OptionWindow.PostLoadingSetupElementsAction();
         }
     }
 }

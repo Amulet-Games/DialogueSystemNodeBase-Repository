@@ -29,7 +29,7 @@ namespace AG
 
             CreateNewDialogueNodeModel();
 
-            SaveNodeDetails();
+            SaveBaseDetails(newNodeModel);
 
             SavePortsGuid();
 
@@ -46,12 +46,6 @@ namespace AG
             void CreateNewDialogueNodeModel()
             {
                 newNodeModel = new DSDialogueNodeModel(Node);
-            }
-
-            void SaveNodeDetails()
-            {
-                newNodeModel.SavedNodeGuid = Node.NodeGuid;
-                newNodeModel.SavedNodePosition = Node.GetPosition().position;
             }
 
             void SavePortsGuid()
@@ -89,7 +83,7 @@ namespace AG
         /// <param name="source">The node's model of which this node is going to load from.</param>
         public void LoadNode(DSDialogueNodeModel source)
         {
-            LoadNodeDetails();
+            LoadBaseDetails(source);
 
             LoadPortsGuid();
 
@@ -102,11 +96,6 @@ namespace AG
             LoadTextlineSegment();
 
             RefreshPortsLayout();
-
-            void LoadNodeDetails()
-            {
-                Node.NodeGuid = source.SavedNodeGuid;
-            }
 
             void LoadPortsGuid()
             {

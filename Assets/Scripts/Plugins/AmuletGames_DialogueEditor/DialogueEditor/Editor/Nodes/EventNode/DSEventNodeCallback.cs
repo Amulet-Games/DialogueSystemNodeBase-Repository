@@ -16,23 +16,30 @@ namespace AG
 
 
         // ----------------------------- Callbacks -----------------------------
-        /// <summary>
-        /// Callback action when the connecting node is added on the graph.
-        /// <para>EventNode - Constructor.</para>
-        /// </summary>
-        public override void NodeAddedAction()
+        /// <inheritdoc />
+        public override void InitializedAction()
         {
             Node.GraphView.SerializeHandler.AddNodeToList(Node);
         }
 
 
-        /// <summary>
-        /// Callback action when any of the nodes is deleted by users from the graph manually.
-        /// <para>GraphDeleteSelectionAction - DSGraphView</para>
-        /// </summary>
-        public override void NodeRemovedByManualAction()
+        /// <inheritdoc />
+        public override void ManualCreatedAction()
+        {
+            Node.SetupNewManualCreatedNode();
+        }
+
+
+        /// <inheritdoc />
+        public override void PreManualRemovedAction()
         {
             Node.DisconnectAllPorts();
+        }
+
+
+        /// <inheritdoc />
+        public override void PostManualRemovedAction()
+        {
             Node.GraphView.SerializeHandler.RemoveNodeFromList(Node);
         }
     }

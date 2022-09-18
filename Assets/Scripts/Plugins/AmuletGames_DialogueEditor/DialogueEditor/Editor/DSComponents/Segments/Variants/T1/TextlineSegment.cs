@@ -36,10 +36,7 @@ namespace AG
 
 
         // ----------------------------- Makers -----------------------------
-        /// <summary>
-        /// Create all the UIElements that are needed in this segment.
-        /// </summary>
-        /// <param name="node">Node of which this segment is created for.</param>
+        /// <inheritdoc />
         public override void SetupSegment(DSNodeBase node)
         {
             Box segmentTitleBox;
@@ -110,10 +107,7 @@ namespace AG
 
 
         // ----------------------------- Serialization -----------------------------
-        /// <summary>
-        /// Save segment's value from another previously created segment.
-        /// </summary>
-        /// <param name="source">The segment of which its values are going to be saved in.</param>
+        /// <inheritdoc />
         public override void SaveSegmentValues(TextlineSegment source)
         {
             // Save segment's isExpanded state
@@ -130,10 +124,7 @@ namespace AG
         }
 
 
-        /// <summary>
-        /// Load segment's value from another previously saved segment.
-        /// </summary>
-        /// <param name="source">The segment that was previously saved and now it's used to load from.</param>
+        /// <inheritdoc />
         public override void LoadSegmentValues(TextlineSegment source)
         {
             // Load language text field container.

@@ -8,7 +8,7 @@ namespace AG
     public class DSIntegrantsMaker
     {
         /// <summary>
-        /// Create all the UIElements that are needed in this content button.
+        /// Create a new content button within the specificed node.
         /// </summary>
         /// <param name="node">The node of which this button is created for and connect to.</param>
         /// <param name="btnText">The name for this content button.</param>

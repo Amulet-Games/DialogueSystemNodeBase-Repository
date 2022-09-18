@@ -4,11 +4,15 @@ namespace AG
 {
     public static class EdgeExtensions
     {
+        /// <summary>
+        /// Action that called after an edge was selected by user and removed from the graph.
+        /// </summary>
+        /// <param name="edge">Extension edge</param>
         public static void EdgeRemovedByManualAction(this Edge edge)
         {
-            RemoveOptionChannelConnectedStyle();
+            OptionChannelRemoveConnectedStyle();
 
-            void RemoveOptionChannelConnectedStyle()
+            void OptionChannelRemoveConnectedStyle()
             {
                 if (edge.output.portColor == DSOptionChannelUtility.ChannelColor)
                 {

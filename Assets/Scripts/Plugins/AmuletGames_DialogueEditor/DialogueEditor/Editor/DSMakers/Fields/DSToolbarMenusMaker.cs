@@ -4,7 +4,7 @@ using UnityEngine;
 public class DSToolbarMenusMaker
 {
     /// <summary>
-    /// Create a new toolbar menu.
+    /// Returns a new toolbar menu.
     /// </summary>
     /// <param name="toolbarText">The text that'll show up as a label for the menu.</param>
     /// <param name="USS01">The first style for the menu to use when it appeared on the editor window.</param>
@@ -32,7 +32,7 @@ public class DSToolbarMenusMaker
     }
 
     /// <summary>
-    /// Create a new toolbar menu.
+    /// Returns a new toolbar menu.
     /// </summary>
     /// <param name="menuSprite">The sprite icon that'll appear on the right side of the menu, usually it's a down arrow.</param>
     /// <param name="USS01">The first style for the menu to use when it appeared on the editor window.</param>

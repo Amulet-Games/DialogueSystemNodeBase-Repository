@@ -1,60 +1,88 @@
-using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace AG
 {
     /// <summary>
-    /// Default edge connector listener for every port graph element.
+    /// Listener that detects whenever an default edge was dragged and released within the custom editor graph.
+    /// <para></para>
+    /// <br>Used by EdgeConnector manipulator to finish the actual edge creation.</br>
+    /// <br>Its an interface the user can override and create edges in a different way.</br>
     /// </summary>
     public class DSDefaultEdgeConnectorListener : IEdgeConnectorListener
     {
-        GraphViewChange m_GraphViewChange;
-        List<Edge> m_EdgesToCreate;
-        List<GraphElement> m_EdgesToDelete;
+        /// <summary>
+        /// Reference of the dialogue system's node creation connector window module.
+        /// </summary>
+        DSNodeCreationConnectorWindow nodeCreationConnectorWindow;
 
-        public DSDefaultEdgeConnectorListener()
+
+        // ----------------------------- Constructor -----------------------------
+        /// <summary>
+        /// Constructor of dialogue system default edge connector listener.
+        /// </summary>
+        /// <param name="nodeCreationConnectorWindow">Dialogue system's node creation connector window module.</param>
+        public DSDefaultEdgeConnectorListener(DSNodeCreationConnectorWindow nodeCreationConnectorWindow)
         {
-            m_EdgesToCreate = new List<Edge>();
-            m_EdgesToDelete = new List<GraphElement>();
-
-            m_GraphViewChange.edgesToCreate = m_EdgesToCreate;
+            this.nodeCreationConnectorWindow = nodeCreationConnectorWindow;
         }
 
-        public void OnDropOutsidePort(Edge edge, Vector2 position) { }
-        public void OnDrop(GraphView graphView, Edge edge)
+
+        // ----------------------------- Callbacks -----------------------------
+        /// <summary>
+        /// Called when a new edge is dropped on a port.
+        /// </summary>
+        /// <param name="graphView">Reference to the GraphView.</param>
+        /// <param name="edge">The edge being created.</param>
+        public void OnDrop(GraphView graphView, Edge edge) { }
+
+
+        /// <summary>
+        /// Called when a new edge is dropped in empty space.
+        /// </summary>
+        /// <param name="edge">The edge being dropped.</param>
+        /// <param name="position">The position in empty space the edge is dropped on.</param>
+        public void OnDropOutsidePort(Edge edge, Vector2 position)
         {
-            m_EdgesToCreate.Clear();
-            m_EdgesToCreate.Add(edge);
-
-            // We can't just add these edges to delete to the m_GraphViewChange
-            // because we want the proper deletion code in GraphView to also
-            // be called. Of course, that code (in DeleteElements) also
-            // sends a GraphViewChange.
-            m_EdgesToDelete.Clear();
-            if (edge.input.capacity == Port.Capacity.Single)
-                foreach (Edge edgeToDelete in edge.input.connections)
-                    if (edgeToDelete != edge)
-                        m_EdgesToDelete.Add(edgeToDelete);
-            if (edge.output.capacity == Port.Capacity.Single)
-                foreach (Edge edgeToDelete in edge.output.connections)
-                    if (edgeToDelete != edge)
-                        m_EdgesToDelete.Add(edgeToDelete);
-            if (m_EdgesToDelete.Count > 0)
-                graphView.DeleteElements(m_EdgesToDelete);
-
-            var edgesToCreate = m_EdgesToCreate;
-            if (graphView.graphViewChanged != null)
+            if (edge.input != null)
             {
-                edgesToCreate = graphView.graphViewChanged(m_GraphViewChange).edgesToCreate;
+                // If the edge that user dropped is from a input port.
+                nodeCreationConnectorWindow.UpdateWindowContext
+                (
+                    // Align on the left side.
+                    C_Alignment_HorizontalType.Left,
+
+                    // Default connector type.
+                    N_NodeCreationConnectorType.Default,
+
+                    // Connector port.
+                    edge.input,
+
+                    // Default node's input search entries.
+                    DSNodeCreationEntriesProvider.DefaultNodeInputEntries
+                );
+            }
+            else
+            {
+                // If the edge that user dropped is from a output port.
+                nodeCreationConnectorWindow.UpdateWindowContext
+                (
+                    // Align on the right side.
+                    C_Alignment_HorizontalType.Right,
+
+                    // Default connector type.
+                    N_NodeCreationConnectorType.Default,
+
+                    // Connector port.
+                    edge.output,
+
+                    // Default node's output search entries.
+                    DSNodeCreationEntriesProvider.DefaultNodeOutputEntries
+                );
             }
 
-            foreach (Edge e in edgesToCreate)
-            {
-                graphView.AddElement(e);
-                edge.input.Connect(e);
-                edge.output.Connect(e);
-            }
+            // Open window.
+            nodeCreationConnectorWindow.Open(DSGraphView.GetCurrentEventMousePosition());
         }
     }
 }

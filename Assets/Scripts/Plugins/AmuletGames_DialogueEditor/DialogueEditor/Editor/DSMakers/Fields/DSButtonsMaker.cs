@@ -7,7 +7,7 @@ namespace AG
     public class DSButtonsMaker
     {
         /// <summary>
-        /// Create a new button.
+        /// Returns a new button UIElement.
         /// <para>
         /// Note that by pressing the button, it'll invoke DSWindowChangedEvent right after the specified buttonClickedAction.
         /// To avoid this, use DSButtonMaker.GetNewButtonNonAlert() instead.
@@ -46,8 +46,9 @@ namespace AG
             }
         }
 
+
         /// <summary>
-        /// Create a new button.
+        /// Returns a new button UIElement.
         /// <para>
         /// Note that by pressing the button, it'll invoke DSWindowChangedEvent right after the specified buttonClickedAction.
         /// To avoid this, use DSButtonMaker.GetNewButtonNonAlert() instead.
@@ -86,8 +87,9 @@ namespace AG
             }
         }
 
+
         /// <summary>
-        /// Create a new button.
+        /// Returns a new button UIElement.
         /// <para>
         /// Note that by using this method, the button will only invoked the specified buttonClickedAction and will not trigger DSWindowChangedEvent.
         /// To avoid this, use DSButtonMaker.GetNewButton() instead.
@@ -129,8 +131,9 @@ namespace AG
             }
         }
 
+
         /// <summary>
-        /// Create a new button.
+        /// Returns a new button UIElement.
         /// <para>
         /// Note that by using this method, the button will only invoked the specified buttonClickedAction and will not trigger DSWindowChangedEvent.
         /// To avoid this, use DSButtonMaker.GetNewButton() instead.

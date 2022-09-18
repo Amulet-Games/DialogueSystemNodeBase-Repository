@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ namespace AG
     /// <typeparam name="TNodePresenter">Node presenter type</typeparam>
     /// <typeparam name="TNodeSerializer">Node serializer type</typeparam>
     /// <typeparam name="TNodeCallback">Node callback type</typeparam>
-    public class DSNodeFrameBase<TNodePresenter, TNodeSerializer, TNodeCallback> 
+    public abstract class DSNodeFrameBase<TNodePresenter, TNodeSerializer, TNodeCallback> 
         : DSNodeBase
         where TNodePresenter : DSNodePresenterBase
         where TNodeSerializer : DSNodeSerializerBase
@@ -40,16 +41,18 @@ namespace AG
         /// <summary>
         /// Constructor for node's frame base class.
         /// </summary>
-        /// <param name="name">The title name for this node.</param>
+        /// <param name="nodeTitleText">The title label text for this node.</param>
         /// <param name="position">The vector2 position on the graph where this node'll be placed to once it's created.</param>
         /// <param name="graphView">Dialogue system's graph view module.</param>
-        public DSNodeFrameBase(string name, Vector2 position, DSGraphView graphView)
+        public DSNodeFrameBase(string nodeTitleText, Vector2 position, DSGraphView graphView)
         {
             SetupBaseFields();
 
             SetNodePosition();
 
-            ImplementDSCommonStyleSheets();
+            AddElementToGraph();
+
+            AddStyleSheet();
 
             OverrideContainersDefaultStyle();
 
@@ -57,26 +60,28 @@ namespace AG
 
             void SetupBaseFields()
             {
-                // Setup node title
-                title = name;
-
-                // Setup node GUID.
+                // Set a new node GUID.
                 NodeGuid = Guid.NewGuid().ToString();
 
-                // Setup default size.
-                DefaultNodeSize = new Vector2(200, 250);
+                // Set default title.
+                title = nodeTitleText;
 
-                // Setup refs.
+                // Implement refs.
                 GraphView = graphView;
             }
 
             void SetNodePosition()
             {
                 // Move the node to the specificed location on the graph.
-                SetPosition(new Rect(position, DefaultNodeSize));
+                SetPosition(new Rect(position, DSVector2Utility.Zero));
             }
 
-            void ImplementDSCommonStyleSheets()
+            void AddElementToGraph()
+            {
+                GraphView.AddElement(this);
+            }
+
+            void AddStyleSheet()
             {
                 // Setup the base node's USS styles.
                 styleSheets.Add(DSStylesConfig.DSGlobalStyle);
@@ -118,13 +123,20 @@ namespace AG
 
 
         // ----------------------------- Callbacks -----------------------------
-        /// <summary>
-        /// The callback action to invoke when any of the nodes is deleted by users from the graph manually.
-        /// <para></para>
-        /// <br>Since each derived class may implemented different behaviors, this method is mainly used for calling</br>
-        /// <br>the derived classes's NodeRemovedAction instead.</br>
-        /// </summary>
-        public override void NodeRemovedByManualAction() => Callback.NodeRemovedByManualAction();
+        /// <inheritdoc />
+        public override void PreManualRemovedAction() => Callback.PreManualRemovedAction();
+
+
+        /// <inheritdoc />
+        public override void PostManualRemovedAction() => Callback.PostManualRemovedAction();
+
+
+        /// <inheritdoc />
+        public override void ManualCreatedAction(DSNodeCreationDetails creationDetails)
+        {
+            Presenter.CreationDetails = creationDetails;
+            Callback.ManualCreatedAction();
+        }
 
 
         // ----------------------------- Overrides -----------------------------
@@ -140,6 +152,58 @@ namespace AG
             evt.menu.AppendAction("Disconnect Output Port", actionEvent => DisconnectOutputPorts(), Presenter.IsOutputPortConnected() ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
 
             base.BuildContextualMenu(evt);
+        }
+
+
+        // ----------------------------- Setup New Manual Created Node Services -----------------------------
+        /// <summary>
+        /// Setup for the node after it's created on the graph manually, which is mainly adjusting its position and
+        /// <br>connecting it to a connector port if there's one.</br>
+        /// </summary>
+        public void SetupNewManualCreatedNode()
+        {
+            HideNodeFromGraph();
+
+            NodeManualCreationPreSetupAction();
+
+            // Apply a few frames of delay to let any UI / graph elements fully setup.
+            EditorApplication.delayCall += () =>
+            {
+                if (double.IsNaN(localBound.height))
+                {
+                    schedule.Execute(_ =>
+                    {
+                        NodeManualCreationSetupAction();
+                        ShowNodeOnGraph();
+                    });
+                }
+                else
+                {
+                    NodeManualCreationSetupAction();
+                    ShowNodeOnGraph();
+                }
+            };
+
+            void HideNodeFromGraph()
+            {
+                AddToClassList(DSStylesConfig.DSGlobal_Visible_Hidden);
+            }
+
+            void NodeManualCreationPreSetupAction()
+            {
+                Presenter.NodeManualCreationPreSetupAction();
+            }
+
+            void NodeManualCreationSetupAction()
+            {
+                Presenter.NodeManualCreationSetupAction();
+            }
+
+            void ShowNodeOnGraph()
+            {
+                // Remove the node from hidden class
+                RemoveFromClassList(DSStylesConfig.DSGlobal_Visible_Hidden);
+            }
         }
     }
 }

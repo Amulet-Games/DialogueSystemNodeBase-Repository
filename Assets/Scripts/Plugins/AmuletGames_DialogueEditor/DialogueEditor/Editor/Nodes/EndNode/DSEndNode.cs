@@ -8,10 +8,10 @@ namespace AG
         /// <summary>
         /// Construtor of end node.
         /// </summary>
-        /// <param name="position">The vector2 position of where this node'll be created on the graph.</param>
+        /// <param name="position">The vector2 position on the graph where this node'll be placed to once it's created.</param>
         /// <param name="graphView">Dialogue system's graph view module.</param>
         public DSEndNode(Vector2 position, DSGraphView graphView)
-            : base("End", position, graphView)
+            : base(DSStringsConfig.EndNodeDefaultLabelText, position, graphView)
         {
             SetupFrameFields();
 
@@ -23,7 +23,7 @@ namespace AG
 
             AddStyleSheet();
 
-            InvokeNodeAddedAction();
+            InvokeInitalizedAction();
 
             void SetupFrameFields()
             {
@@ -49,9 +49,9 @@ namespace AG
                 styleSheets.Add(DSStylesConfig.EndNodeStyle);
             }
 
-            void InvokeNodeAddedAction()
+            void InvokeInitalizedAction()
             {
-                Callback.NodeAddedAction();
+                Callback.InitializedAction();
             }
         }
     }

@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 namespace AG
 {
@@ -21,11 +20,11 @@ namespace AG
 
 
         // ----------------------------- Makers -----------------------------
-        /// <summary>
-        /// Create all the UIElements that exist within the connecting node.
-        /// </summary>
-        public void CreateNodeElements()
+        /// <inheritdoc />
+        public override void CreateNodeElements()
         {
+            base.CreateNodeElements();
+
             AddContentButton_OptionEntry();
 
             AddImagesPreviewSegment();
@@ -36,7 +35,14 @@ namespace AG
 
             void AddContentButton_OptionEntry()
             {
-                DSIntegrantsMaker.GetNewContentButton(Node, DSStringsConfig.AddEntryLabelText, DSAssetsConfig.AddOptionEntryButtonIconImage, DSStylesConfig.Integrant_ContentButton_AddOptionEntry_Image, AddOptionEntryAction);
+                DSIntegrantsMaker.GetNewContentButton
+                (
+                    Node,
+                    DSStringsConfig.AddEntryLabelText,
+                    DSAssetsConfig.AddOptionEntryButtonIconImage,
+                    DSStylesConfig.Integrant_ContentButton_AddOptionEntry_Image,
+                    ContentButtonClickedAction
+                );
             }
 
             void AddImagesPreviewSegment()
@@ -56,24 +62,22 @@ namespace AG
         }
 
 
-        /// <summary>
-        /// Create all the ports that exist within the connecting node.
-        /// </summary>
-        public void CreateNodePorts()
+        /// <inheritdoc />
+        public override void CreateNodePorts()
         {
-            Model.InputPort = DSPortsMaker.AddInputPort(Node, DSStringsConfig.NodeInputLabelText, Port.Capacity.Multi);
-            Model.ContinueOutputPort = DSPortsMaker.AddOutputPort(Node, false, DSStringsConfig.DialogueNodeContinueOuputLabelText, Port.Capacity.Single);
+            Model.InputPort = DSPortsMaker.GetNewInputPort(Node, DSStringsConfig.NodeInputLabelText, Port.Capacity.Multi);
+            Model.ContinueOutputPort = DSPortsMaker.GetNewOutputPort(Node, false, DSStringsConfig.DialogueNodeContinueOuputLabelText, Port.Capacity.Single);
         }
 
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Action that invoked after content button is pressed.
+        /// Action that invoked after the content button is pressed.
         /// <para>ContentButtonClickedAction - DSIntegrantsMaker - ContentButtonMainBox.</para>
         /// </summary>
-        void AddOptionEntryAction()
+        void ContentButtonClickedAction()
         {
-            // Ask option window to get a new option entry.
+            // Create a new option entry within the node's option window component.
             Model.OptionWindow.GetNewOptionEntry(null);
 
             // Refresh Ports Layout.
@@ -81,18 +85,103 @@ namespace AG
         }
 
 
+        /// <inheritdoc />
+        public override void NodeManualCreationPreSetupAction()
+        {
+            if (CreationDetails.CreationConnectorType == N_NodeCreationConnectorType.OptionChannel)
+            {
+                // Create a new option entry before setting up the connection to the connector port
+                // in the later setup action. 
+                ContentButtonClickedAction();
+            }
+        }
+
+
+        /// <inheritdoc />
+        public override void NodeManualCreationSetupAction()
+        {
+            if (CreationDetails.CreationConnectorType == N_NodeCreationConnectorType.OptionChannel)
+            {
+                // Ask option window to handle this action.
+                Model.OptionWindow.NodeManualCreationSetupAction(CreationDetails.ConnectorPort);
+            }
+            else
+            {
+                AlignConnectorPosition();
+
+                ConnectConnectorPort();
+            }
+
+            void AlignConnectorPosition()
+            {
+                // Create a new vector2 result variable to cache the node's current local bound position.
+                Vector2 result = Node.localBound.position;
+
+                switch (CreationDetails.HorizontalAlignType)
+                {
+                    case C_Alignment_HorizontalType.Left:
+
+                        // Height offset.
+                        result.y -= (Node.titleContainer.worldBound.height + Model.ContinueOutputPort.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
+
+                        // Width offset.
+                        result.x -= Node.localBound.width;
+
+                        break;
+                    case C_Alignment_HorizontalType.Middle:
+
+                        // Height offset.
+                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
+
+                        // Width offset.
+                        result.x -= Node.localBound.width / 2;
+
+                        break;
+                    case C_Alignment_HorizontalType.Right:
+
+                        // Height offset.
+                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
+                        break;
+                }
+
+                // Apply the final position result to the node.
+                Node.SetPosition(new Rect(result, DSVector2Utility.Zero));
+            }
+
+            void ConnectConnectorPort()
+            {
+                // If connnector port is null then return.
+                if (CreationDetails.ConnectorPort == null)
+                    return;
+
+                // Create local reference for the connector port.
+                Port connectorPort = CreationDetails.ConnectorPort;
+
+                // If the connector port is connecting to another port, disconnect them first.
+                if (connectorPort.connected)
+                {
+                    Node.GraphView.DisconnectPorts(connectorPort);
+                }
+
+                // Connect to connector port.
+                if (connectorPort.IsInput())
+                {
+                    Node.GraphView.ConnectPorts(Model.ContinueOutputPort, connectorPort);
+                }
+                else
+                {
+                    Node.GraphView.ConnectPorts(connectorPort, Model.InputPort);
+                }
+            }
+        }
+
+
         // ----------------------------- Ports Connection Check Services -----------------------------
-        /// <summary>
-        /// Is the node's input ports are connecting to the other nodes?
-        /// </summary>
-        /// <returns>A boolean value that returns true if input ports are connected and vice versa.</returns>
+        /// <inheritdoc />
         public override bool IsInputPortConnected() => Model.InputPort.connected;
 
 
-        /// <summary>
-        /// Is the node's output ports are connecting to the other nodes?
-        /// </summary>
-        /// <returns>A boolean value that returns true if output ports are connected and vice versa.</returns>
+        /// <inheritdoc />
         public override bool IsOutputPortConnected()
         {
             // Try to find any visual elements that are type ports.
