@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor;
 
@@ -36,22 +35,6 @@ namespace AG
         /// Internal counter for the edges that are on the graph.
         /// </summary>
         int edgesCount;
-
-
-        /// <summary>
-        /// The action to invoke when the handler has finished loading and linking all the edges.
-        /// </summary>
-        event Action EdgeLoadedSetupAction;
-
-
-        // ----------------------------- Pre Setup -----------------------------
-        /// <summary>
-        /// Clear all the actions that have been registered to the PostLoadingSetupAction.
-        /// </summary>
-        public void ClearActions()
-        {
-            EdgeLoadedSetupAction = null;
-        }
 
 
         // ----------------------------- Constructor -----------------------------
@@ -138,12 +121,7 @@ namespace AG
 
             void ClearSavables()
             {
-                dialogueContainerSO.StartModelSavables.Clear();
-                dialogueContainerSO.DialogueModelSavables.Clear();
-                dialogueContainerSO.OptionModelSavables.Clear();
-                dialogueContainerSO.EventModelSavables.Clear();
-                dialogueContainerSO.BranchModelSavables.Clear();
-                dialogueContainerSO.EndModelSavables.Clear();
+                dialogueContainerSO.ClearNodeSavables();
             }
 
             void CreateSavables()
@@ -152,23 +130,26 @@ namespace AG
                 {
                     switch (nodes[i])
                     {
-                        case DSStartNode node:
-                            dialogueContainerSO.StartModelSavables.Add(node.Serializer.SaveNode());
-                            break;
-                        case DSDialogueNode node:
-                            dialogueContainerSO.DialogueModelSavables.Add(node.Serializer.SaveNode());
-                            break;
-                        case DSOptionNode node:
-                            dialogueContainerSO.OptionModelSavables.Add(node.Serializer.SaveNode());
-                            break;
-                        case DSEventNode node:
-                            dialogueContainerSO.EventModelSavables.Add(node.Serializer.SaveNode());
-                            break;
-                        case DSBranchNode node:
-                            dialogueContainerSO.BranchModelSavables.Add(node.Serializer.SaveNode());
+                        case DSBooleanNode node:
+                            dialogueContainerSO.BooleanModelSavables.Add(node.Callback.Serializer.SaveNode());
                             break;
                         case DSEndNode node:
-                            dialogueContainerSO.EndModelSavables.Add(node.Serializer.SaveNode());
+                            dialogueContainerSO.EndModelSavables.Add(node.Callback.Serializer.SaveNode());
+                            break;
+                        case DSEventNode node:
+                            dialogueContainerSO.EventModelSavables.Add(node.Callback.Serializer.SaveNode());
+                            break;
+                        case DSOptionNode node:
+                            dialogueContainerSO.OptionModelSavables.Add(node.Callback.Serializer.SaveNode());
+                            break;
+                        case DSPathNode node:
+                            dialogueContainerSO.PathModelSavables.Add(node.Callback.Serializer.SaveNode());
+                            break;
+                        case DSStartNode node:
+                            dialogueContainerSO.StartModelSavables.Add(node.Callback.Serializer.SaveNode());
+                            break;
+                        case DSStoryNode node:
+                            dialogueContainerSO.StoryModelSavables.Add(node.Callback.Serializer.SaveNode());
                             break;
                     }
                 }
@@ -191,7 +172,8 @@ namespace AG
             LoadNodes(dialogueContainerSO);
             LoadEdges(dialogueContainerSO);
 
-            InvokeEdgeLoadedSetupAction();
+            // Invoke edge loaded setup event.
+            DSEdgeLoadedSetupEvent.Invoke();
 
             // Set dirty when all the changes involving ContainerSO is done.
             EditorUtility.SetDirty(dialogueContainerSO);
@@ -207,74 +189,27 @@ namespace AG
             // Temp variable that cache the count number of each list.
             int modelsCount;
 
-            LoadStartNodes();
-
-            LoadDialogueNodes();
-
-            LoadOptionNodes();
-
-            LoadBranchNodes();
-
-            LoadEventNodes();
+            LoadBooleanNodes();
 
             LoadEndNodes();
 
-            void LoadStartNodes()
-            {
-                List<DSStartNodeModel> startNodeModels = dialogueContainerSO.StartModelSavables;
-                modelsCount = startNodeModels.Count;
+            LoadEventNodes();
 
+            LoadOptionNodes();
+
+            LoadPathNodes();
+
+            LoadStartNodes();
+
+            LoadStoryNodes();
+
+            void LoadBooleanNodes()
+            {
+                List<DSBooleanNodeModel> booleanNodeModels = dialogueContainerSO.BooleanModelSavables;
+                modelsCount = booleanNodeModels.Count;
                 for (int i = 0; i < modelsCount; i++)
                 {
-                    DSStartNode newStartNode = new DSStartNode(startNodeModels[i].SavedNodePosition, graphView);
-                    newStartNode.Serializer.LoadNode(startNodeModels[i]);
-                }
-            }
-
-            void LoadDialogueNodes()
-            {
-                List<DSDialogueNodeModel> dialogueNodeModels = dialogueContainerSO.DialogueModelSavables;
-                modelsCount = dialogueNodeModels.Count;
-
-                for (int i = 0; i < modelsCount; i++)
-                {
-                    DSDialogueNode newDialogueNode = new DSDialogueNode(dialogueNodeModels[i].SavedNodePosition, graphView);
-                    newDialogueNode.Serializer.LoadNode(dialogueNodeModels[i]);
-                }
-            }
-
-            void LoadOptionNodes()
-            {
-                List<DSOptionNodeModel> optionNodeModels = dialogueContainerSO.OptionModelSavables;
-                modelsCount = optionNodeModels.Count;
-
-                for (int i = 0; i < modelsCount; i++)
-                {
-                    DSOptionNode newOptionNode = new DSOptionNode(optionNodeModels[i].SavedNodePosition, graphView);
-                    newOptionNode.Serializer.LoadNode(optionNodeModels[i]);
-                }
-            }
-
-            void LoadBranchNodes()
-            {
-                List<DSBranchNodeModel> branchNodeModels = dialogueContainerSO.BranchModelSavables;
-                modelsCount = branchNodeModels.Count;
-                for (int i = 0; i < modelsCount; i++)
-                {
-                    DSBranchNode newBranchNode = new DSBranchNode(branchNodeModels[i].SavedNodePosition, graphView);
-                    newBranchNode.Serializer.LoadNode(branchNodeModels[i]);
-                }
-            }
-
-            void LoadEventNodes()
-            {
-                List<DSEventNodeModel> eventNodeModels = dialogueContainerSO.EventModelSavables;
-                modelsCount = eventNodeModels.Count;
-
-                for (int i = 0; i < modelsCount; i++)
-                {
-                    DSEventNode newEventNode = new DSEventNode(eventNodeModels[i].SavedNodePosition, graphView);
-                    newEventNode.Serializer.LoadNode(eventNodeModels[i]);
+                    new DSBooleanNode(booleanNodeModels[i], graphView);
                 }
             }
 
@@ -285,8 +220,62 @@ namespace AG
 
                 for (int i = 0; i < modelsCount; i++)
                 {
-                    DSEndNode newEndNode = new DSEndNode(endNodeModels[i].SavedNodePosition, graphView);
-                    newEndNode.Serializer.LoadNode(endNodeModels[i]);
+                    new DSEndNode(endNodeModels[i], graphView);
+                }
+            }
+
+            void LoadEventNodes()
+            {
+                List<DSEventNodeModel> eventNodeModels = dialogueContainerSO.EventModelSavables;
+                modelsCount = eventNodeModels.Count;
+
+                for (int i = 0; i < modelsCount; i++)
+                {
+                    new DSEventNode(eventNodeModels[i], graphView);
+                }
+            }
+
+            void LoadOptionNodes()
+            {
+                List<DSOptionNodeModel> optionNodeModels = dialogueContainerSO.OptionModelSavables;
+                modelsCount = optionNodeModels.Count;
+
+                for (int i = 0; i < modelsCount; i++)
+                {
+                    new DSOptionNode(optionNodeModels[i], graphView);
+                }
+            }
+
+            void LoadPathNodes()
+            {
+                List<DSPathNodeModel> pathNodeModels = dialogueContainerSO.PathModelSavables;
+                modelsCount = pathNodeModels.Count;
+
+                for (int i = 0; i < modelsCount; i++)
+                {
+                    new DSPathNode(pathNodeModels[i], graphView);
+                }
+            }
+
+            void LoadStartNodes()
+            {
+                List<DSStartNodeModel> startNodeModels = dialogueContainerSO.StartModelSavables;
+                modelsCount = startNodeModels.Count;
+
+                for (int i = 0; i < modelsCount; i++)
+                {
+                    new DSStartNode(startNodeModels[i], graphView);
+                }
+            }
+
+            void LoadStoryNodes()
+            {
+                List<DSStoryNodeModel> storyNodeModels = dialogueContainerSO.StoryModelSavables;
+                modelsCount = storyNodeModels.Count;
+
+                for (int i = 0; i < modelsCount; i++)
+                {
+                    new DSStoryNode(storyNodeModels[i], graphView);
                 }
             }
         }
@@ -304,42 +293,40 @@ namespace AG
             {
                 // Search through the saved edge data list,
                 // to find a edge data that has the same outputNodeGuid as the node[i]'s output port's name.
-                List<DSEdgeModel> matchedEdgeData = dialogueContainerSO.EdgeModelSavables.Where(edgeData => edgeData.OutputNodeGuid == nodes[i].NodeGuid).ToList();
-
-                // Search through all the visual elements inside the output container of the node[i],
-                // and only get the ones that are Ports, and group them into a list.
-                List<Port> allOutputPorts = nodes[i].outputContainer.Children().Where(visualElement => visualElement is Port).Cast<Port>().ToList();
+                DSEdgeModel[] matchedEdgeData = dialogueContainerSO.EdgeModelSavables
+                    .Where(edgeData => edgeData.OutputNodeGuid == nodes[i].NodeGuid)
+                    .ToArray();
 
                 // Foreach matched output port name's edge data that we found
-                for (int j = 0; j < matchedEdgeData.Count; j++)
+                for (int j = 0; j < matchedEdgeData.Length; j++)
                 {
-                    // Find its corresponding input node by searching through all the nodes again,
-                    // and if we do found one, we can start the nodes linking process.
-                    DSNodeBase connectingInputNode = nodes.First(inputNode => inputNode.NodeGuid == matchedEdgeData[j].InputNodeGuid);
-                    if (connectingInputNode != null)
-                    {
-                        // From all the output ports that we have found
-                        for (int k = 0; k < allOutputPorts.Count; k++)
-                        {
-                            // Find the correct output port that the edge data matches
-                            if (allOutputPorts[k].name == matchedEdgeData[j].OutputPortGuid)
-                            {
-                                // Make an new edge to connect the two ports together
-                                graphView.ConnectPorts(allOutputPorts[k], (Port)connectingInputNode.inputContainer[0]);
-                            }
-                        }
-                    }
+                    // Search through all the visual elements inside the output container of the node[i],
+                    // get the ones that are Ports,
+                    // search through the ports and find the ones that its name matches the edge data's output guid.
+                    DSPortBase matchedOutputPort = nodes[i].outputContainer.Children()
+                        .Where(visualElement => visualElement is DSPortBase)
+                        .Cast<DSPortBase>()
+                        .ToList()
+                        .Find(port => port.name == matchedEdgeData[j].OutputPortGuid);
+
+
+                    // Search through the nodes again to find the one its node Guid matches the edge data,
+                    // Search through all the visual elements inside its input container,
+                    // get the ones that are Ports,
+                    // search through the ports and find the ones that its name matches the edge data's input guid.
+                    DSPortBase matchedInputPort = nodes
+                        .First(inputNode => inputNode.NodeGuid == matchedEdgeData[j].InputNodeGuid)
+                        .inputContainer.Children()
+                        .Where(visualElement => visualElement is DSPortBase)
+                        .Cast<DSPortBase>()
+                        .ToList()
+                        .Find(port => port.name == matchedEdgeData[j].InputPortGuid);
+
+
+                    // Connect the ports and retrieve the edge to register callbacks into it.
+                    matchedOutputPort.ConnectedEdgeLoadedAction(graphView.ConnectPorts(matchedOutputPort, matchedInputPort));
                 }
             }
-        }
-
-
-        /// <summary>
-        /// Invoke the EdgeLoadedSetupAction.
-        /// </summary>
-        void InvokeEdgeLoadedSetupAction()
-        {
-            EdgeLoadedSetupAction?.Invoke();
         }
 
 
@@ -363,17 +350,6 @@ namespace AG
         {
             nodes.Remove(node);
             nodesCount--;
-        }
-
-
-        // ----------------------------- Register Action Services -----------------------------
-        /// <summary>
-        /// Register the action to EdgeLoadedSetupAction.
-        /// </summary>
-        /// <param name="action">The action to add to the EdgeLoadedSetupAction.</param>
-        public void RegisterEdgeLoadedSetupAction(Action action)
-        {
-            EdgeLoadedSetupAction += action;
         }
 
 

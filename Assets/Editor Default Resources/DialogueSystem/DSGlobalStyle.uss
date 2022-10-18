@@ -1,0 +1,9 @@
+.global_Display_None
+{
+	display: none;
+}
+
+.global_Visible_Hidden
+{
+	visibility: hidden;
+}

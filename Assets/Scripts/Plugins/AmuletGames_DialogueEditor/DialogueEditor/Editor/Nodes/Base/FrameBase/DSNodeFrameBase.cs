@@ -1,33 +1,35 @@
 using System;
-using UnityEditor;
 using UnityEngine.UIElements;
-using UnityEngine;
 
 namespace AG
 {
     /// <summary>
     /// Dialogue system node's frame base class.
     /// </summary>
+    /// <typeparam name="TNode">Node type</typeparam>
+    /// <typeparam name="TNodeModel">Node model type</typeparam>
     /// <typeparam name="TNodePresenter">Node presenter type</typeparam>
     /// <typeparam name="TNodeSerializer">Node serializer type</typeparam>
     /// <typeparam name="TNodeCallback">Node callback type</typeparam>
-    public abstract class DSNodeFrameBase<TNodePresenter, TNodeSerializer, TNodeCallback> 
+    public abstract class DSNodeFrameBase<
+        TNode,
+        TNodeModel,
+        TNodePresenter,
+        TNodeSerializer,
+        TNodeCallback
+    > 
         : DSNodeBase
-        where TNodePresenter : DSNodePresenterBase
-        where TNodeSerializer : DSNodeSerializerBase
-        where TNodeCallback : DSNodeCallbackBase
+        where TNode : DSNodeBase
+        where TNodeModel : DSNodeModelFrameBase<TNode>
+        where TNodePresenter : DSNodePresenterFrameBase<TNode, TNodeModel>
+        where TNodeSerializer : DSNodeSerializerFrameBase<TNode, TNodeModel>
+        where TNodeCallback : DSNodeCallbackFrameBase<TNode, TNodeModel, TNodeSerializer>
     {
         /// <summary>
         /// Holds the methods for creating all the visual elements that are required for the node.
         /// <br>And methods that are require to have access to Model class.</br>
         /// </summary>
         public TNodePresenter Presenter;
-
-
-        /// <summary>
-        /// Responsible for serializing the node's data which are located in Model class.
-        /// </summary>
-        public TNodeSerializer Serializer;
 
 
         /// <summary>
@@ -42,13 +44,10 @@ namespace AG
         /// Constructor for node's frame base class.
         /// </summary>
         /// <param name="nodeTitleText">The title label text for this node.</param>
-        /// <param name="position">The vector2 position on the graph where this node'll be placed to once it's created.</param>
         /// <param name="graphView">Dialogue system's graph view module.</param>
-        public DSNodeFrameBase(string nodeTitleText, Vector2 position, DSGraphView graphView)
+        public DSNodeFrameBase(string nodeTitleText, DSGraphView graphView)
         {
             SetupBaseFields();
-
-            SetNodePosition();
 
             AddElementToGraph();
 
@@ -68,12 +67,6 @@ namespace AG
 
                 // Implement refs.
                 GraphView = graphView;
-            }
-
-            void SetNodePosition()
-            {
-                // Move the node to the specificed location on the graph.
-                SetPosition(new Rect(position, DSVector2Utility.Zero));
             }
 
             void AddElementToGraph()
@@ -124,19 +117,29 @@ namespace AG
 
         // ----------------------------- Callbacks -----------------------------
         /// <inheritdoc />
+        protected override void InitializedAction() => Callback.InitializedAction();
+
+
+        /// <inheritdoc />
+        protected override void ManualCreatedAction() => Callback.ManualCreatedAction();
+
+
+        /// <summary>
+        /// The callback action to invoke when the node is added on the graph by loading the previous
+        /// <br>saved values.(by serialize handler).</br>
+        /// <para></para>
+        /// This action happens after InitalizedAction is called.
+        /// </summary>
+        /// <param name="source">Reference of the previous saved node's model.</param>
+        protected void LoadCreatedAction(TNodeModel source) => Callback.LoadCreatedAction(source);
+
+
+        /// <inheritdoc />
         public override void PreManualRemovedAction() => Callback.PreManualRemovedAction();
 
 
         /// <inheritdoc />
         public override void PostManualRemovedAction() => Callback.PostManualRemovedAction();
-
-
-        /// <inheritdoc />
-        public override void ManualCreatedAction(DSNodeCreationDetails creationDetails)
-        {
-            Presenter.CreationDetails = creationDetails;
-            Callback.ManualCreatedAction();
-        }
 
 
         // ----------------------------- Overrides -----------------------------
@@ -147,63 +150,22 @@ namespace AG
         /// <param name="evt">The event holding the menu to populate.</param>
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
-            // Add items that will execute an action in the drop-down menu. The items is added at the end of the current item list.
-            evt.menu.AppendAction("Disconnect Input Port", actionEvent => DisconnectInputPorts(), Presenter.IsInputPortConnected() ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
-            evt.menu.AppendAction("Disconnect Output Port", actionEvent => DisconnectOutputPorts(), Presenter.IsOutputPortConnected() ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
-
-            base.BuildContextualMenu(evt);
+            Presenter.AddContextualManuItems(evt);
+            evt.menu.AppendSeparator();
         }
 
 
-        // ----------------------------- Setup New Manual Created Node Services -----------------------------
         /// <summary>
-        /// Setup for the node after it's created on the graph manually, which is mainly adjusting its position and
-        /// <br>connecting it to a connector port if there's one.</br>
+        /// Called when the node is selected by users on the graph.
+        /// <para>Read More https://docs.unity3d.com/ScriptReference/Experimental.GraphView.GraphElement.OnSelected.html</para>
         /// </summary>
-        public void SetupNewManualCreatedNode()
-        {
-            HideNodeFromGraph();
+        public override void OnSelected() => base.OnSelected();
 
-            NodeManualCreationPreSetupAction();
 
-            // Apply a few frames of delay to let any UI / graph elements fully setup.
-            EditorApplication.delayCall += () =>
-            {
-                if (double.IsNaN(localBound.height))
-                {
-                    schedule.Execute(_ =>
-                    {
-                        NodeManualCreationSetupAction();
-                        ShowNodeOnGraph();
-                    });
-                }
-                else
-                {
-                    NodeManualCreationSetupAction();
-                    ShowNodeOnGraph();
-                }
-            };
-
-            void HideNodeFromGraph()
-            {
-                AddToClassList(DSStylesConfig.DSGlobal_Visible_Hidden);
-            }
-
-            void NodeManualCreationPreSetupAction()
-            {
-                Presenter.NodeManualCreationPreSetupAction();
-            }
-
-            void NodeManualCreationSetupAction()
-            {
-                Presenter.NodeManualCreationSetupAction();
-            }
-
-            void ShowNodeOnGraph()
-            {
-                // Remove the node from hidden class
-                RemoveFromClassList(DSStylesConfig.DSGlobal_Visible_Hidden);
-            }
-        }
+        /// <summary>
+        /// Called when the node is unselected by users on the graph.
+        /// <para>Read more https://docs.unity3d.com/ScriptReference/Experimental.GraphView.GraphElement.html</para>
+        /// </summary>
+        public override void OnUnselected() => base.OnUnselected();
     }
 }

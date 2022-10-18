@@ -14,7 +14,7 @@ namespace AG
         /// <summary>
         /// Clear all the actions that have been registered to the event.
         /// </summary>
-        public static void ClearEvents()
+        public static void Clear()
         {
             mEvent = null;
         }
@@ -23,9 +23,10 @@ namespace AG
         /// <summary>
         /// Register actions from different modules to the event.
         /// </summary>
-        public static void RegisterEvent()
+        /// <param name="headBar">Dialogue system's Headbar module.</param>
+        public static void Register(DSHeadBar headBar)
         {
-            mEvent += DialogueEditorWindow.GraphTitleFieldChangedAction;
+            mEvent += headBar.GraphTitleFieldChangedAction;
         }
 
 

@@ -41,11 +41,13 @@ namespace AG
         /// <param name="context">Contextual data to pass to the search window when it is first created.</param>
         public bool OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
         {
-            Vector2 graphMousePosition;
+            Vector2 placePosition;
 
             InvokeSelectedEntryEvent();
 
             CalculateGraphMousePosition();
+
+            PostUpdateCreationDetails();
 
             CreateNodes();
 
@@ -79,42 +81,43 @@ namespace AG
                 );
 
                 // And calculate its position in the graph view.
-                graphMousePosition = GraphView.contentViewContainer.WorldToLocal(postWindowCenterDir);
+                placePosition = GraphView.contentViewContainer.WorldToLocal(postWindowCenterDir);
+            }
+
+            void PostUpdateCreationDetails()
+            {
+                // Post update the creation details.
+                Details.PostUpdateValues(placePosition);
             }
 
             void CreateNodes()
             {
-                // Local reference of the node that we're creating.
-                DSNodeBase createdNode = null;
-
                 // Retrieves the underlying node type by the convering the entryId inside the search entry.
                 N_NodeType selectedNodeType = (N_NodeType)((DSNodeCreationEntry)searchTreeEntry).EntryId;
-
-                // Create it under the graph position that we has just calculated.
                 switch (selectedNodeType)
                 {
-                    case N_NodeType.Start:
-                        createdNode = new DSStartNode(graphMousePosition, GraphView);
-                        break;
-                    case N_NodeType.Dialogue:
-                        createdNode = new DSDialogueNode(graphMousePosition, GraphView);
-                        break;
-                    case N_NodeType.Option:
-                        createdNode = new DSOptionNode(graphMousePosition, GraphView);
-                        break;
-                    case N_NodeType.Event:
-                        createdNode = new DSEventNode(graphMousePosition, GraphView);
-                        break;
-                    case N_NodeType.Branch:
-                        createdNode = new DSBranchNode(graphMousePosition, GraphView);
+                    case N_NodeType.Boolean:
+                        new DSBooleanNode(Details, GraphView);
                         break;
                     case N_NodeType.End:
-                        createdNode = new DSEndNode(graphMousePosition, GraphView);
+                        new DSEndNode(Details, GraphView);
+                        break;
+                    case N_NodeType.Event:
+                        new DSEventNode(Details, GraphView);
+                        break;
+                    case N_NodeType.Option:
+                        new DSOptionNode(Details, GraphView);
+                        break;
+                    case N_NodeType.Path:
+                        new DSPathNode(Details, GraphView);
+                        break;
+                    case N_NodeType.Start:
+                        new DSStartNode(Details, GraphView);
+                        break;
+                    case N_NodeType.Story:
+                        new DSStoryNode(Details, GraphView);
                         break;
                 }
-
-                // Invoke the ManualCreatedAction from the node we created.
-                createdNode.ManualCreatedAction(Details);
             }
         }
 

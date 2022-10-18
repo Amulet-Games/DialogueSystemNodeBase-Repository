@@ -1,0 +1,16 @@
+.node #title {
+	background-color: rgba(142, 149, 95, 1);
+}
+
+.node_Border #contents {
+	
+	flex-grow: 0;
+}
+
+
+/* ---------------------------------------------------------------- Port ---------------------------------------------------------------- */
+.port_Input_Port {
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 15px 0px;
+}

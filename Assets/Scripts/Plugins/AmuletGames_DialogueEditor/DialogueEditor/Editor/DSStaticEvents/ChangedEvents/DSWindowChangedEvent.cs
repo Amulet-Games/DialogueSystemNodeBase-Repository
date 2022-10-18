@@ -22,9 +22,10 @@ namespace AG
         /// <summary>
         /// Register actions from different modules to the event.
         /// </summary>
-        public static void Register()
+        /// <param name="window">Dialogue system's editor window module.</param>
+        public static void Register(DialogueEditorWindow window)
         {
-            mEvent += DialogueEditorWindow.SetHasUnsavedChangesToTrue;
+            mEvent += window.SetHasUnsavedChangesToTrue;
         }
 
 

@@ -39,7 +39,7 @@ namespace AG
             // Set field's value without invoking field's value change event.
             TextField.SetValueWithoutNotify(Value);
 
-            // Set fields value to placeholder text if the field is empty.
+            // Add the field to empty style class if it's content is empty.
             DSTextFieldUtility.ToggleEmptyStyle(this);
         }
 

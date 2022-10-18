@@ -13,21 +13,15 @@ namespace AG
 
 
         /// <summary>
-        /// List of saved start node models.
+        /// List of saved boolean node models.
         /// </summary>
-        public List<DSStartNodeModel> StartModelSavables = new List<DSStartNodeModel>();
+        public List<DSBooleanNodeModel> BooleanModelSavables = new List<DSBooleanNodeModel>();
 
 
         /// <summary>
-        /// List of saved dialogue node models.
+        /// List of saved end node models.
         /// </summary>
-        public List<DSDialogueNodeModel> DialogueModelSavables = new List<DSDialogueNodeModel>();
-
-
-        /// <summary>
-        /// List of saved option node models.
-        /// </summary>
-        public List<DSOptionNodeModel> OptionModelSavables = new List<DSOptionNodeModel>();
+        public List<DSEndNodeModel> EndModelSavables = new List<DSEndNodeModel>();
 
 
         /// <summary>
@@ -37,34 +31,63 @@ namespace AG
 
 
         /// <summary>
-        /// List of saved branch node models.
+        /// List of saved option node models.
         /// </summary>
-        public List<DSBranchNodeModel> BranchModelSavables = new List<DSBranchNodeModel>();
+        public List<DSOptionNodeModel> OptionModelSavables = new List<DSOptionNodeModel>();
 
 
         /// <summary>
-        /// List of saved end node models.
+        /// List of saved path node models.
         /// </summary>
-        public List<DSEndNodeModel> EndModelSavables = new List<DSEndNodeModel>();
+        public List<DSPathNodeModel> PathModelSavables = new List<DSPathNodeModel>();
 
 
-        // ----------------------------- Get Savables Services -----------------------------
         /// <summary>
-        /// Get all the node's model savables from the asset.
+        /// List of saved start node models.
+        /// </summary>
+        public List<DSStartNodeModel> StartModelSavables = new List<DSStartNodeModel>();
+
+
+        /// <summary>
+        /// List of saved story node models.
+        /// </summary>
+        public List<DSStoryNodeModel> StoryModelSavables = new List<DSStoryNodeModel>();
+
+
+        // ----------------------------- Get Node Savables Services -----------------------------
+        /// <summary>
+        /// Get all the node model savables from the scriptable asset.
         /// </summary>
         /// <returns>A new list that have combined all saved node's models from the asset.</returns>
-        public List<DSNodeModelBase> GetAllModelSavables()
+        public List<DSNodeModelBase> GetNodeSavables()
         {
             List<DSNodeModelBase> allModelSavables = new List<DSNodeModelBase>();
 
-            allModelSavables.AddRange(StartModelSavables);
-            allModelSavables.AddRange(DialogueModelSavables);
-            allModelSavables.AddRange(OptionModelSavables);
-            allModelSavables.AddRange(EventModelSavables);
-            allModelSavables.AddRange(BranchModelSavables);
+            allModelSavables.AddRange(BooleanModelSavables);
             allModelSavables.AddRange(EndModelSavables);
+            allModelSavables.AddRange(EventModelSavables);
+            allModelSavables.AddRange(OptionModelSavables);
+            allModelSavables.AddRange(PathModelSavables);
+            allModelSavables.AddRange(StartModelSavables);
+            allModelSavables.AddRange(StoryModelSavables);
 
             return allModelSavables;
+        }
+
+
+        // ----------------------------- Clear Node Savables Services -----------------------------
+        /// <summary>
+        /// Clear all the node savables inside the scriptable asset.
+        /// </summary>
+        public void ClearNodeSavables()
+        {
+            BooleanModelSavables.Clear();
+            EndModelSavables.Clear();
+            EventModelSavables.Clear();
+            OptionModelSavables.Clear();
+            PathModelSavables.Clear();
+            StartModelSavables.Clear();
+            StoryModelSavables.Clear();
         }
     }
 }

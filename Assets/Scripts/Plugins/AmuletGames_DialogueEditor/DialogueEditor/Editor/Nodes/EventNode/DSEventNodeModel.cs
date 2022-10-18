@@ -1,12 +1,10 @@
 using System;
-using UnityEditor.Experimental.GraphView;
 
 namespace AG
 {
     [Serializable]
-    public class DSEventNodeModel : DSNodeModelBase
+    public class DSEventNodeModel : DSNodeModelFrameBase<DSEventNode>
     {
-        //TODO Move this to another data class!
         // ----------------------------- Serialized Port Guid -----------------------------
         /// <summary>
         /// The serialized "Input" port's Guid id in this node.
@@ -31,21 +29,22 @@ namespace AG
         /// <summary>
         /// Port that allows the other nodes to connect to this node.
         /// </summary>
-        public Port InputPort;
+        public DSDefaultPort InputPort;
 
 
         /// <summary>
         /// Port that allows this node to move forward to the other node.
         /// </summary>
-        public Port OutputPort;
+        public DSDefaultPort OutputPort;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of event node's model.
         /// </summary>
-        public DSEventNodeModel()
+        public DSEventNodeModel(DSEventNode node)
         {
+            Node = node;
             EventMolder = new EventMolder();
         }
     }

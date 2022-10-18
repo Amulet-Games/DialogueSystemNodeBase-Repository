@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace AG
 {
     /// <summary>
@@ -24,12 +26,21 @@ namespace AG
         protected TNodeModel Model;
 
 
-        // ----------------------------- Node Serialization Services -----------------------------
+        // ----------------------------- Load -----------------------------
         /// <summary>
-        /// Base method for saving the node model's values.
+        /// Method for loading the previous saved node model's values to the current
+        /// <br>connecting node model.</br>
         /// </summary>
-        /// <param name="source">The target node's model to save the values to.</param>
-        public void SaveBaseDetails(DSNodeModelBase target)
+        /// <param name="source">The source node's model to load the values from.</param>
+        public abstract void LoadNode(TNodeModel source);
+
+
+        // ----------------------------- Serialize Base Values Services -----------------------------
+        /// <summary>
+        /// Method for saving the node's base values.
+        /// </summary>
+        /// <param name="target">The target node's model to save the values to.</param>
+        protected void SaveBaseValues(TNodeModel target)
         {
             SaveNodeDetails();
 
@@ -49,10 +60,10 @@ namespace AG
 
 
         /// <summary>
-        /// Base method for loading the node model's values.
+        /// Method for loading the node's base values.
         /// </summary>
         /// <param name="source">The source node's model to load the values from.</param>
-        public void LoadBaseDetails(DSNodeModelBase source)
+        protected void LoadBaseValues(TNodeModel source)
         {
             LoadNodeDetails();
 
@@ -61,6 +72,7 @@ namespace AG
             void LoadNodeDetails()
             {
                 Node.NodeGuid = source.SavedNodeGuid;
+                Node.SetPosition(new Rect(source.SavedNodePosition, DSVector2Utility.Zero));
             }
 
             void LoadNodeTitleField()

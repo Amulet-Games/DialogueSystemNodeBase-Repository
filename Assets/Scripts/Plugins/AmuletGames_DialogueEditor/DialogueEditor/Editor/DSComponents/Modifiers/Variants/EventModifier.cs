@@ -8,9 +8,9 @@ namespace AG
     public class EventModifier : DSModifierFrameBase<EventModifier>
     {
         /// <summary>
-        /// Object container for the dialogue event's scriptable object.
+        /// Object container for the dialogue system's event scriptable object.
         /// </summary>
-        public ObjectContainer<DialogueEventSO> DialogueEventSO_ObjectContainer;
+        public DSObjectContainer<DSEvent> EventObjectContainer;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -19,7 +19,7 @@ namespace AG
         /// </summary>
         public EventModifier()
         {
-            DialogueEventSO_ObjectContainer = new ObjectContainer<DialogueEventSO>();
+            EventObjectContainer = new DSObjectContainer<DSEvent>();
         }
 
 
@@ -45,7 +45,12 @@ namespace AG
 
             void SetupEventObjectField()
             {
-                eventObjectField = DSObjectFieldsMaker.GetNewObjectField(DialogueEventSO_ObjectContainer, DSStylesConfig.Modifier_Event_Rooted_ObjectField);
+                eventObjectField = DSObjectFieldsMaker.GetNewObjectField
+                (
+                    EventObjectContainer,
+                    DSAssetsConfig.InputHintIconSprite,
+                    DSStylesConfig.Modifier_Event_Rooted_ObjectField
+                );
             }
 
             void AddFieldsToBox()
@@ -64,14 +69,14 @@ namespace AG
         /// <inheritdoc />
         public override void SaveModifierValue(EventModifier source)
         {
-            DialogueEventSO_ObjectContainer.SaveContainerValue(source.DialogueEventSO_ObjectContainer);
+            EventObjectContainer.SaveContainerValue(source.EventObjectContainer);
         }
 
 
         /// <inheritdoc />
         public override void LoadModifierValue(EventModifier source)
         {
-            DialogueEventSO_ObjectContainer.LoadContainerValue(source.DialogueEventSO_ObjectContainer);
+            EventObjectContainer.LoadContainerValue(source.EventObjectContainer);
         }
     }
 }

@@ -1,6 +1,5 @@
 using System;
 using UnityEditor;
-using UnityEngine;
 
 namespace AG
 {
@@ -16,7 +15,7 @@ namespace AG
         /// <summary>
         /// Clear all the actions that have been registered to the event.
         /// </summary>
-        public static void ClearEvents()
+        public static void Clear()
         {
             mEvent = null;
         }
@@ -25,10 +24,11 @@ namespace AG
         /// <summary>
         /// Register actions from different modules to the event.
         /// </summary>
-        public static void RegisterEvent()
+        /// <param name="window">Dialogue system's editor window module.</param>
+        public static void Register(DialogueEditorWindow window)
         {
             mEvent += AssetDatabase.SaveAssets;
-            mEvent += DialogueEditorWindow.SetHasUnsavedChangesToFalse;
+            mEvent += window.SetHasUnsavedChangesToFalse;
         }
 
 

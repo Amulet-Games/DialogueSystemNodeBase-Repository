@@ -5,8 +5,8 @@ namespace AG
     public class DSLanguageChangedEvent
     {
         /// <summary>
-        /// DSLanguageChangedEvent, which'll be invoked
-        /// <br>when the editor window's language is changed to a new one.</br>
+        /// DSLanguageChangedEvent, which'll be invoked when the editor window's
+        /// <br>language is changed to a new one.</br>
         /// </summary>
         static event Action mEvent;
 
@@ -23,7 +23,7 @@ namespace AG
         /// <summary>
         /// Register the action to DSLanguageChangedEvent.
         /// </summary>
-        /// <param name="action">The action to add to the language changed event.</param>
+        /// <param name="action">The action to add to the event.</param>
         public static void Register(Action action)
         {
             mEvent += action;
@@ -33,7 +33,7 @@ namespace AG
         /// <summary>
         /// Remove the action that has been registered from the DSLanguageChangedEvent.
         /// </summary>
-        /// <param name="action">The action to remove from the language changed event.</param>
+        /// <param name="action">The action to remove from the event.</param>
         public static void UnRegister(Action action)
         {
             mEvent -= action;

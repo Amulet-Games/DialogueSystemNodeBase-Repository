@@ -70,13 +70,13 @@ namespace AG
         public void UpdateWindowContext
         (
             C_Alignment_HorizontalType horizontalAlignType,
-            N_NodeCreationConnectorType nodeCreationConnectorType,
+            P_ConnectorType nodeCreationConnectorType,
             Port connectorPort,
             List<SearchTreeEntry> connectorEntries
         )
         {
             // Update node creation details.
-            Details.UpdateValues
+            Details.PreUpdateValues
             (
                 horizontalAlignType,
                 nodeCreationConnectorType,

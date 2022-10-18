@@ -13,7 +13,7 @@ namespace AG
         /// <summary>
         /// Clear all the actions that have been registered to the event.
         /// </summary>
-        public static void ClearEvents()
+        public static void Clear()
         {
             Event = null;
         }

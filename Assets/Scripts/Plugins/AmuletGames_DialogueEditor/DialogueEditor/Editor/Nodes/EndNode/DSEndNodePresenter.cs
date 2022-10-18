@@ -1,6 +1,4 @@
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG
@@ -26,75 +24,75 @@ namespace AG
         {
             base.CreateNodeElements();
 
-            // Create a new graphEndHandle type enum field within this node.
-            Node.mainContainer.Add(DSEnumFieldsMaker.GetNewEnumField
-            (
-                Model.dialogueOverHandleType_EnumContainer,
-                DSStylesConfig.EndNode_GraphEndHandleType_EnumField
-            ));
+            AddGraphEndHandleTypeEnumField();
+
+            void AddGraphEndHandleTypeEnumField()
+            {
+                // Create a new graph end handle type enum field within the node.
+                Node.mainContainer.Add(DSEnumFieldsMaker.GetNewEnumField
+                (
+                    Model.dialogueOverHandleType_EnumContainer,
+                    DSStylesConfig.EndNode_GraphEndHandleType_EnumField
+                ));
+            }
         }
 
 
         /// <inheritdoc />
         public override void CreateNodePorts()
         {
-            Model.InputPort = DSPortsMaker.GetNewInputPort(Node, DSStringsConfig.NodeInputLabelText, Port.Capacity.Multi);
+            // Input port.
+            Model.InputPort = DSDefaultPort.GetNewInputPort<Edge>
+            (
+                Node,
+                DSStringsConfig.NodeInputLabelText,
+                Port.Capacity.Single
+            );
         }
 
 
-        // ----------------------------- Callbacks -----------------------------
+        // ----------------------------- Add Contextual Menu Items Services -----------------------------
         /// <inheritdoc />
-        public override void NodeManualCreationSetupAction()
+        public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
         {
-            AlignConnectorPosition();
+            bool isInputPortConnected;
 
-            ConnectConnectorPort();
+            SetupLocalFields();
 
-            void AlignConnectorPosition()
+            AppendDisconnectInputPortAction();
+
+            AppendDisconnectAllPortsAction();
+
+            void SetupLocalFields()
             {
-                // Create a new vector2 result variable to cache the node's current local bound position.
-                Vector2 result = Node.localBound.position;
-
-                // Height offset.
-                result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
-
-                if (CreationDetails.HorizontalAlignType == C_Alignment_HorizontalType.Middle)
-                {
-                    // width offset.
-                    result.x -= Node.localBound.width / 2;
-                }
-
-                // Apply the final position result to the node.
-                Node.SetPosition(new Rect(result, DSVector2Utility.Zero));
+                isInputPortConnected = Model.InputPort.connected;
             }
 
-            void ConnectConnectorPort()
+            void AppendDisconnectInputPortAction()
             {
-                // If connnector port is null then return.
-                if (CreationDetails.ConnectorPort == null)
-                    return;
+                Model.InputPort.AddContextualManuItems
+                (
+                    evt,
+                    DSStringsConfig.DisconnectInputPortLabelText
+                );
+            }
 
-                // Create local reference for the connector port.
-                Port connectorPort = CreationDetails.ConnectorPort;
+            void AppendDisconnectAllPortsAction()
+            {
+                // Disconnect All
+                evt.menu.AppendAction
+                (
+                    DSStringsConfig.DisconnectAllPortLabelText,
+                    actionEvent => DisconnectAllActionEvent(),
+                    isInputPortConnected ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled
+                );
 
-                // If the connector port is connecting to another port, disconnect them first.
-                if (connectorPort.connected)
+                void DisconnectAllActionEvent()
                 {
-                    Node.GraphView.DisconnectPorts(connectorPort);
+                    // Disconnect Input port.
+                    if (isInputPortConnected) Model.InputPort.DisconnectPort();
                 }
-
-                // Connect to connector port.
-                Node.GraphView.ConnectPorts(connectorPort, Model.InputPort);
             }
         }
-
-
-        // ----------------------------- Ports Connection Check Services -----------------------------
-        /// <inheritdoc />
-        public override bool IsInputPortConnected() => Model.InputPort.connected;
-
-
-        /// <inheritdoc />
-        public override bool IsOutputPortConnected() => false;
     }
 }

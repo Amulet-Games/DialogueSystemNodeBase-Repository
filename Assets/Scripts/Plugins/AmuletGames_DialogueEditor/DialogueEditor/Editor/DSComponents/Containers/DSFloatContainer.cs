@@ -19,15 +19,6 @@ namespace AG
 
 
         /// <summary>
-        /// Setup the float field internally after it's been connected to the newly created one.
-        /// </summary>
-        public void SetupContainerField()
-        {
-            FloatField.SetValueWithoutNotify(Value);
-        }
-
-
-        /// <summary>
         /// Overwrite the value of this container with the value that's from the source,
         /// and update the field to show the changes.
         /// </summary>
@@ -39,6 +30,9 @@ namespace AG
 
             // Set field's value without invoking field's value change event.
             FloatField.SetValueWithoutNotify(Value);
+
+            // Add the field to empty style class if its value is empty.
+            DSFloatFieldUtility.ToggleEmptyStyle(FloatField);
         }
 
 

@@ -34,57 +34,13 @@ namespace AG
 
 
         /// <summary>
-        /// Returns a new start node child entry.
+        /// Returns a new boolean node child entry.
         /// </summary>
-        /// <param name="level">The level of the new start node child entry to set for.</param>
-        /// <returns>A new start node child entry.</returns>
-        public static DSNodeCreationEntry GetNewStartNodeChildEntry(int level)
+        /// <param name="level">The level of the new boolean node child entry to set for.</param>
+        /// <returns>A new boolean node child entry.</returns>
+        public static DSNodeCreationEntry GetNewBooleanNodeChildEntry(int level)
         {
-            return GetNewNodeEntry(DSStringsConfig.StartNodeChildEntryLabelText, level, N_NodeType.Start);
-        }
-
-
-        /// <summary>
-        /// Returns a new dialogue node child entry.
-        /// </summary>
-        /// <param name="level">The level of the new dialogue node child entry to set for.</param>
-        /// <returns>A new dialogue node child entry.</returns>
-        public static DSNodeCreationEntry GetNewDialogueNodeChildEntry(int level)
-        {
-            return GetNewNodeEntry(DSStringsConfig.DialogueNodeChildEntryLabelText, level, N_NodeType.Dialogue);
-        }
-
-
-        /// <summary>
-        /// Returns a new option node child entry.
-        /// </summary>
-        /// <param name="level">The level of the new option node child entry to set for.</param>
-        /// <returns>A new option node child entry.</returns>
-        public static DSNodeCreationEntry GetNewOptionNodeChildEntry(int level)
-        {
-            return GetNewNodeEntry(DSStringsConfig.OptionNodeChildEntryLabelText, level, N_NodeType.Option);
-        }
-
-
-        /// <summary>
-        /// Returns a new event node child entry.
-        /// </summary>
-        /// <param name="level">The level of the new event node child entry to set for.</param>
-        /// <returns>A new event node child entry.</returns>
-        public static DSNodeCreationEntry GetNewEventNodeChildEntry(int level)
-        {
-            return GetNewNodeEntry(DSStringsConfig.EventNodeChildEntryLabelText, level, N_NodeType.Event);
-        }
-
-
-        /// <summary>
-        /// Returns a new branch node child entry.
-        /// </summary>
-        /// <param name="level">The level of the new branch node child entry to set for.</param>
-        /// <returns>A new branch node child entry.</returns>
-        public static DSNodeCreationEntry GetNewBranchNodeChildEntry(int level)
-        {
-            return GetNewNodeEntry(DSStringsConfig.BranchNodeChildEntryLabelText, level, N_NodeType.Branch);
+            return GetNewNodeEntry(DSStringsConfig.BooleanNodeChildEntryLabelText, level, N_NodeType.Boolean);
         }
 
 
@@ -100,12 +56,67 @@ namespace AG
 
 
         /// <summary>
+        /// Returns a new event node child entry.
+        /// </summary>
+        /// <param name="level">The level of the new event node child entry to set for.</param>
+        /// <returns>A new event node child entry.</returns>
+        public static DSNodeCreationEntry GetNewEventNodeChildEntry(int level)
+        {
+            return GetNewNodeEntry(DSStringsConfig.EventNodeChildEntryLabelText, level, N_NodeType.Event);
+        }
+
+
+        /// <summary>
+        /// Returns a new option node child entry.
+        /// </summary>
+        /// <param name="level">The level of the new option node child entry to set for.</param>
+        /// <returns>A new option node child entry.</returns>
+        public static DSNodeCreationEntry GetNewOptionNodeChildEntry(int level)
+        {
+            return GetNewNodeEntry(DSStringsConfig.OptionNodeChildEntryLabelText, level, N_NodeType.Option);
+        }
+
+
+        /// <summary>
+        /// Returns a new dialogue node child entry.
+        /// </summary>
+        /// <param name="level">The level of the new dialogue node child entry to set for.</param>
+        /// <returns>A new dialogue node child entry.</returns>
+        public static DSNodeCreationEntry GetNewPathNodeChildEntry(int level)
+        {
+            return GetNewNodeEntry(DSStringsConfig.PathNodeChildEntryLabelText, level, N_NodeType.Path);
+        }
+
+
+        /// <summary>
+        /// Returns a new start node child entry.
+        /// </summary>
+        /// <param name="level">The level of the new start node child entry to set for.</param>
+        /// <returns>A new start node child entry.</returns>
+        public static DSNodeCreationEntry GetNewStartNodeChildEntry(int level)
+        {
+            return GetNewNodeEntry(DSStringsConfig.StartNodeChildEntryLabelText, level, N_NodeType.Start);
+        }
+
+
+        /// <summary>
+        /// Returns a new story node child entry.
+        /// </summary>
+        /// <param name="level">The level of the new story node child entry to set for.</param>
+        /// <returns>A new start node child entry.</returns>
+        public static DSNodeCreationEntry GetNewStoryNodeChildEntry(int level)
+        {
+            return GetNewNodeEntry(DSStringsConfig.StoryNodeChildEntryLabelText, level, N_NodeType.Story);
+        }
+
+
+        /// <summary>
         /// Create a new node child entry.
         /// </summary>
         /// <param name="entryName">The entry name to set for.</param>
         /// <param name="level">The level of the new node child entry to set for.</param>
         /// <param name="entryNodeType">The type of node that the child entry is representing.</param>
-        /// <returns></returns>
+        /// <returns>A new node creation child entry.</returns>
         static DSNodeCreationEntry GetNewNodeEntry(string entryName, int level, N_NodeType entryNodeType)
         {
             // If entry icon is not yet setup.

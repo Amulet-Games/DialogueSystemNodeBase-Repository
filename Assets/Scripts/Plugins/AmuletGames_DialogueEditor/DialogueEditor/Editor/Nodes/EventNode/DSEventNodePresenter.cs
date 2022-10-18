@@ -1,5 +1,5 @@
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG
 {
@@ -38,89 +38,82 @@ namespace AG
         /// <inheritdoc />
         public override void CreateNodePorts()
         {
-            Model.InputPort = DSPortsMaker.GetNewInputPort(Node, DSStringsConfig.NodeInputLabelText, Port.Capacity.Multi);
-            Model.OutputPort = DSPortsMaker.GetNewOutputPort(Node, false, DSStringsConfig.NodeOutputLabelText, Port.Capacity.Single);
+            // Input port.
+            Model.InputPort = DSDefaultPort.GetNewInputPort<Edge>
+            (
+                Node,
+                DSStringsConfig.NodeInputLabelText,
+                Port.Capacity.Single
+            );
+            
+            // Output port.
+            Model.OutputPort = DSDefaultPort.GetNewOutputPort<Edge>
+            (
+                Node,
+                false,
+                DSStringsConfig.NodeOutputLabelText,
+                Port.Capacity.Single
+            );
         }
 
 
-        // ----------------------------- Callbacks -----------------------------
+        // ----------------------------- Add Contextual Menu Items Services -----------------------------
         /// <inheritdoc />
-        public override void NodeManualCreationSetupAction()
+        public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
         {
-            AlignConnectorPosition();
+            bool isInputPortConnected;
+            bool isOutputPortConnected;
 
-            ConnectConnectorPort();
+            SetupLocalFields();
 
-            void AlignConnectorPosition()
+            AppendDisconnectInputPortAction();
+
+            AppendDisconnectOuputPortAction();
+
+            AppendDisconnectAllPortsAction();
+
+            void SetupLocalFields()
             {
-                // Create a new vector2 result variable to cache the node's current local bound position.
-                Vector2 result = Node.localBound.position;
-
-                switch (CreationDetails.HorizontalAlignType)
-                {
-                    case C_Alignment_HorizontalType.Left:
-
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.OutputPort.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
-
-                        // Width offset.
-                        result.x -= Node.localBound.width;
-
-                        break;
-                    case C_Alignment_HorizontalType.Middle:
-
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
-
-                        // Width offset.
-                        result.x -= Node.localBound.width / 2;
-
-                        break;
-                    case C_Alignment_HorizontalType.Right:
-
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
-                        break;
-                }
-
-                // Apply the final position result to the node.
-                Node.SetPosition(new Rect(result, DSVector2Utility.Zero));
+                isInputPortConnected = Model.InputPort.connected;
+                isOutputPortConnected = Model.OutputPort.connected;
             }
 
-            void ConnectConnectorPort()
+            void AppendDisconnectInputPortAction()
             {
-                // If connnector port is null then return.
-                if (CreationDetails.ConnectorPort == null)
-                    return;
+                Model.InputPort.AddContextualManuItems
+                (
+                    evt,
+                    DSStringsConfig.DisconnectInputPortLabelText
+                );
+            }
 
-                // Create local reference for the connector port.
-                Port connectorPort = CreationDetails.ConnectorPort;
+            void AppendDisconnectOuputPortAction()
+            {
+                Model.OutputPort.AddContextualManuItems
+                (
+                    evt,
+                    DSStringsConfig.DisconnectOutputPortLabelText
+                );
+            }
 
-                // If the connector port is connecting to another port, disconnect them first.
-                if (connectorPort.connected)
-                {
-                    Node.GraphView.DisconnectPorts(connectorPort);
-                }
+            void AppendDisconnectAllPortsAction()
+            {
+                // Disconnect All
+                evt.menu.AppendAction
+                (
+                    DSStringsConfig.DisconnectAllPortLabelText,
+                    actionEvent => DisconnectAllActionEvent(),
+                    isInputPortConnected || isOutputPortConnected ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled
+                );
 
-                // Connect to connector port.
-                if (connectorPort.IsInput())
+                void DisconnectAllActionEvent()
                 {
-                    Node.GraphView.ConnectPorts(Model.OutputPort, connectorPort);
-                }
-                else
-                {
-                    Node.GraphView.ConnectPorts(connectorPort, Model.InputPort);
+                    // Disconnect Input port.
+                    if (isInputPortConnected) Model.InputPort.DisconnectPort();
+                    // Disconnect Ouput port.
+                    if (isOutputPortConnected) Model.OutputPort.DisconnectPort();
                 }
             }
         }
-
-
-        // ----------------------------- Ports Connection Check Services -----------------------------
-        /// <inheritdoc />
-        public override bool IsInputPortConnected() => Model.InputPort.connected;
-
-
-        /// <inheritdoc />
-        public override bool IsOutputPortConnected() => Model.OutputPort.connected;
     }
 }

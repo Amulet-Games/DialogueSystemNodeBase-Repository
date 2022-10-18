@@ -1,0 +1,180 @@
+/*< -------------------- Condition -------------------- >*/
+.modifier_Condition_Rooted_MainBox {
+
+	height: 30px;
+
+	align-self: flex-end;
+
+	justify-content: space-between;
+
+	flex-direction: row;
+	flex-grow: 1;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Rooted_TextField {
+
+	max-width: 250px;
+
+	height: 30px;
+	width: Auto;
+
+	flex-grow: 1;
+	flex-shrink: 1;
+
+	-unity-overflow-clip-box: content-box;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Rooted_TextField 
+.unity-text-field__input {
+
+	font-size: 16px;
+
+	/* top - right - bottom - left */
+	padding: 4px 0px 0px 10.5px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Rooted_TextField 
+.unity-text-field__input:focus {
+
+	/* top - right - bottom - left */
+	padding: 4px 0px 0px 9px;
+	border-width: 1.5px 1.5px 1.5px 1.5px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Rooted_EnumField {
+
+	height: 30px;
+	
+	flex-shrink: 0;
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 2px;
+}
+
+.modifier_Condition_Rooted_EnumField
+.unity-enum-field__input {
+
+	min-width: 115px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 3px 0px 5px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Rooted_EnumField
+.unity-enum-field__input
+.unity-enum-field__text {
+
+	font-size: 15px;
+	
+	align-self: Center;
+}
+
+.modifier_Condition_Rooted_EnumField
+.unity-enum-field__input
+.unity-enum-field__arrow {
+
+	height: 22px;
+	width: 21px;
+	
+	/* top - right - bottom - left */
+	margin: 0.5px 0px 0px 10px;
+}
+
+.modifier_Condition_Rooted_FloatField {
+
+	height: 30px;
+	width: 100px;
+
+	align-items: Center;
+	align-self: Center;
+
+	white-space: normal;
+	flex-direction: row;
+	flex-grow: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 2px;
+}
+
+.modifier_Condition_Rooted_FloatField
+.unity-float-field__input {
+
+	font-size: 16px;
+
+	align-self: Stretch;
+
+	/* top - right - bottom - left */
+	padding: 4px 0px 0px 8px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Rooted_FloatField
+.unity-float-field__input:focus {
+
+	/* top - right - bottom - left */
+	padding: 4px 0px 0px 7px;
+	border-width: 1px 1px 1px 1px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+/*< -------------------- Event -------------------- >*/
+.modifier_Event_Rooted_MainBox {
+	
+	height: 30px;
+
+	flex-direction: row;
+	justify-content: space-between;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Event_Rooted_ObjectField {
+
+	height: 30px;
+	width: 489px;
+
+	-unity-text-align: middle-left;
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+}
+
+.modifier_Event_Rooted_ObjectField
+.unity-object-field__input {
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.modifier_Event_Rooted_ObjectField
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label {
+
+	font-size: 16px;
+
+	align-self: Center;
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 4px;
+	padding: 0px 1px 0px 0px;
+}

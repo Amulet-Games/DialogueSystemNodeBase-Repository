@@ -11,8 +11,12 @@ namespace AG
         /// <param name="EntryRemovedAction">The action to invoke when the remove button is pressed.</param>
         /// <returns>Button that is use to remove the entry that it's connecting to.</returns>
         public static Button GetNewEntryRemoveButton(Action EntryRemovedAction)
-        {
-            return DSButtonsMaker.GetNewButton(DSAssetsConfig.RemoveEntryButtonIconImage, EntryRemovedAction, DSStylesConfig.Channel_RemoveEntry_Button);
-        }
+            =>
+            DSButtonsMaker.GetNewButton
+            (
+                DSAssetsConfig.RemoveEntryButtonIconImage,
+                EntryRemovedAction,
+                DSStylesConfig.Channel_Option_RemoveEntry_Button
+            );
     }
 }

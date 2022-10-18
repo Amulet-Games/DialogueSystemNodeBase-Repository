@@ -24,26 +24,19 @@ namespace AG
         /// <returns>A new copy of selected option node model.</returns>
         public DSOptionNodeModel SaveNode()
         {
-            DSOptionNodeModel newNodeModel;
+            DSOptionNodeModel newNodeModel = new DSOptionNodeModel(Node);
 
-            CreateNewOptionNodeModel();
-
-            SaveBaseDetails(newNodeModel);
+            SaveBaseValues(newNodeModel);
 
             SavePortsGuid();
 
             SaveOptionTrack();
 
-            SaveTextlineSegment();
+            SaveOptionHeaderTextContainer();
 
             SaveConditionSegment();
 
             return newNodeModel;
-
-            void CreateNewOptionNodeModel()
-            {
-                newNodeModel = new DSOptionNodeModel();
-            }
 
             void SavePortsGuid()
             {
@@ -55,9 +48,9 @@ namespace AG
                 newNodeModel.OptionTrack.SaveTrackValues(Model.OptionTrack);
             }
 
-            void SaveTextlineSegment()
+            void SaveOptionHeaderTextContainer()
             {
-                newNodeModel.TextlineSegment.SaveSegmentValues(Model.TextlineSegment);
+                newNodeModel.OptionHeaderTextContainer.SaveContainerValue(Model.OptionHeaderTextContainer);
             }
 
             void SaveConditionSegment()
@@ -68,19 +61,16 @@ namespace AG
 
 
         // ----------------------------- Load -----------------------------
-        /// <summary>
-        /// Create a new option node to the graph with the data loaded from the source.
-        /// </summary>
-        /// <param name="source">The node's model of which this node is going to load from.</param>
-        public void LoadNode(DSOptionNodeModel source)
+        /// <inheritdoc />
+        public override void LoadNode(DSOptionNodeModel source)
         {
-            LoadBaseDetails(source);
+            LoadBaseValues(source);
 
             LoadPortsGuid();
 
             LoadOptionTrack();
 
-            LoadTextlineSegment();
+            LoadOptionHeaderTextContainer();
 
             LoadConditionSegment();
 
@@ -94,9 +84,9 @@ namespace AG
                 Model.OptionTrack.LoadTrackValues(source.OptionTrack);
             }
 
-            void LoadTextlineSegment()
+            void LoadOptionHeaderTextContainer()
             {
-                Model.TextlineSegment.LoadSegmentValues(source.TextlineSegment);
+                Model.OptionHeaderTextContainer.LoadContainerValue(source.OptionHeaderTextContainer);
             }
 
             void LoadConditionSegment()

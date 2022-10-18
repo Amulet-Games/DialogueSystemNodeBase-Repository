@@ -77,6 +77,15 @@ namespace AG
 
 
             /// <summary>
+            /// Save molder segment's value from another previously created molder segment.
+            /// <para></para>
+            /// <br>This method is used for saving values between molders only.</br>
+            /// <br>If saving values between segments is what you want, use the SaveSegmentValues method instead.</br>
+            /// </summary>
+            public abstract void SaveMolderSegmentValues(TSegment source);
+
+
+            /// <summary>
             /// Load segment's value from another previously saved segment.
             /// <para></para>
             /// <br>This method is used for loading values between segments only.</br>
@@ -93,8 +102,8 @@ namespace AG
             /// <br>If loading values between segments is what you want, use the LoadSegmentValues method instead.</br>
             /// </summary>
             /// <param name="source">The molder segment that was previously saved and now it's used to load from.</param>
-            /// <param name="modifierAddedAction">Action that invoked after modifier is added.</param>
-            /// <param name="modifierRemovedAction">Action that invoked after modifier is removed.</param>
+            /// <param name="modifierAddedAction">Action to invoke after modifier is added.</param>
+            /// <param name="modifierRemovedAction">Action to invoke after modifier is removed.</param>
             public abstract void LoadMolderSegmentValues(TSegment source, Action<TModifier> modifierAddedAction, Action<TModifier> modifierRemovedAction);
 
 

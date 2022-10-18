@@ -1,5 +1,5 @@
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG
 {
@@ -29,68 +29,59 @@ namespace AG
         /// <inheritdoc />
         public override void CreateNodePorts()
         {
-            Model.OutputPort = DSPortsMaker.GetNewOutputPort(Node, false, DSStringsConfig.NodeOutputLabelText, Port.Capacity.Single);
+            // Output port.
+            Model.OutputPort = DSDefaultPort.GetNewOutputPort<Edge>
+            (
+                Node,
+                false,
+                DSStringsConfig.NodeOutputLabelText,
+                Port.Capacity.Single
+            );
         }
 
 
-        // ----------------------------- Callbacks -----------------------------
+        // ----------------------------- Add Contextual Menu Items Services -----------------------------
         /// <inheritdoc />
-        public override void NodeManualCreationSetupAction()
+        public override  void AddContextualManuItems(ContextualMenuPopulateEvent evt)
         {
-            AlignConnectorPosition();
+            bool isOutputPortConnected;
 
-            ConnectConnectorPort();
+            SetupLocalFields();
 
-            void AlignConnectorPosition()
+            AppendDisconnectOutputPortAction();
+
+            AppendDisconnectAllPortsAction();
+
+            void SetupLocalFields()
             {
-                // Create a new vector2 result variable to cache the node's current local bound position.
-                Vector2 result = Node.localBound.position;
-
-                // Height offset.
-                result.y -= (Node.titleContainer.worldBound.height + Model.OutputPort.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
-
-                if (CreationDetails.HorizontalAlignType == C_Alignment_HorizontalType.Middle)
-                {
-                    // Width offset.
-                    result.x -= Node.localBound.width / 2;
-                }
-                else
-                {
-                    // Width offset.
-                    result.x -= Node.localBound.width;
-                }
-
-                // Apply the final position result to the node.
-                Node.SetPosition(new Rect(result, DSVector2Utility.Zero));
+                isOutputPortConnected = Model.OutputPort.connected;
             }
 
-            void ConnectConnectorPort()
+            void AppendDisconnectOutputPortAction()
             {
-                // If connnector port is null then return.
-                if (CreationDetails.ConnectorPort == null)
-                    return;
+                Model.OutputPort.AddContextualManuItems
+                (
+                    evt,
+                    DSStringsConfig.DisconnectOutputPortLabelText
+                );
+            }
 
-                // Create local reference for the connector port.
-                Port connectorPort = CreationDetails.ConnectorPort;
+            void AppendDisconnectAllPortsAction()
+            {
+                // Disconnect All
+                evt.menu.AppendAction
+                (
+                    DSStringsConfig.DisconnectAllPortLabelText,
+                    actionEvent => DisconnectAllActionEvent(),
+                    isOutputPortConnected ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled
+                );
 
-                // If the connector port is connecting to another port, disconnect them first.
-                if (connectorPort.connected)
+                void DisconnectAllActionEvent()
                 {
-                    Node.GraphView.DisconnectPorts(connectorPort);
+                    // Disconnect Output port.
+                    if (isOutputPortConnected) Model.OutputPort.DisconnectPort();
                 }
-
-                // Connect to connector port.
-                Node.GraphView.ConnectPorts(Model.OutputPort, connectorPort);
             }
         }
-
-
-        // ----------------------------- Ports Connection Check Services -----------------------------
-        /// <inheritdoc />
-        public override bool IsInputPortConnected() => false;
-
-
-        /// <inheritdoc />
-        public override bool IsOutputPortConnected() => Model.OutputPort.connected;
     }
 }

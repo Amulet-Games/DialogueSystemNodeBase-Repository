@@ -1,39 +1,49 @@
-﻿using System.Linq;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
-
-namespace AG
+﻿namespace AG
 {
-    public class DSStartNode : DSNodeFrameBase<DSStartNodePresenter, DSStartNodeSerializer, DSStartNodeCallback>
+    public class DSStartNode : DSNodeFrameBase<
+        DSStartNode,
+        DSStartNodeModel,
+        DSStartNodePresenter,
+        DSStartNodeSerializer,
+        DSStartNodeCallback
+    >
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Construtor of start node.
         /// </summary>
-        /// <param name="position">The vector2 position on the graph where this node'll be placed to once it's created.</param>
-        /// <param name="graphView">Dialogue system's graph view module.</param>
-        public DSStartNode(Vector2 position, DSGraphView graphView)
-            : base(DSStringsConfig.StartNodeDefaultLabelText, position, graphView)
+        /// <param name="creationDetails">Reference of the dialogue system's node creation details.</param>
+        /// <param name="graphView">Reference of the dialogue system's graph view module.</param>
+        public DSStartNode(DSNodeCreationDetails creationDetails, DSGraphView graphView)
+            : base(DSStringsConfig.StartNodeDefaultLabelText, graphView)
         {
             SetupFrameFields();
+
+            SetupCreationDetail();
 
             CreateNodeElements();
 
             CreateNodePorts();
 
-            RefreshPortsLayout();
+            RefreshPorts();
 
             AddStyleSheet();
 
-            InvokeInitalizedAction();
+            InitializedAction();
+
+            ManualCreatedAction();
 
             void SetupFrameFields()
             {
-                DSStartNodeModel model = new DSStartNodeModel();
+                DSStartNodeModel model = new DSStartNodeModel(this);
 
                 Presenter = new DSStartNodePresenter(this, model);
-                Serializer = new DSStartNodeSerializer(this, model);
-                Callback = new DSStartNodeCallback(this, model);
+                Callback = new DSStartNodeCallback(this, model, new DSStartNodeSerializer(this, model));
+            }
+
+            void SetupCreationDetail()
+            {
+                Callback.Details = creationDetails;
             }
 
             void CreateNodeElements()
@@ -48,12 +58,56 @@ namespace AG
 
             void AddStyleSheet()
             {
-                styleSheets.Add(DSStylesConfig.StartNodeStyle);
+                styleSheets.Add(DSStylesConfig.DSStartNodeStyle);
+            }
+        }
+
+
+        // ----------------------------- Constructor (Load) -----------------------------
+        /// <summary>
+        /// Construtor of start node.
+        /// Specifically used when the node is created by the previously saved model.
+        /// </summary>
+        /// <param name="sourceModel">Reference of the previous saved node's model.</param>
+        /// <param name="graphView">Reference of the dialogue system's graph view module.</param>
+        public DSStartNode(DSStartNodeModel sourceModel, DSGraphView graphView)
+            : base(DSStringsConfig.StartNodeDefaultLabelText, graphView)
+        {
+            SetupFrameFields();
+
+            CreateNodeElements();
+
+            CreateNodePorts();
+
+            RefreshPorts();
+
+            AddStyleSheet();
+
+            InitializedAction();
+
+            LoadCreatedAction(sourceModel);
+
+            void SetupFrameFields()
+            {
+                DSStartNodeModel model = new DSStartNodeModel(this);
+
+                Presenter = new DSStartNodePresenter(this, model);
+                Callback = new DSStartNodeCallback(this, model, new DSStartNodeSerializer(this, model));
             }
 
-            void InvokeInitalizedAction()
+            void CreateNodeElements()
             {
-                Callback.InitializedAction();
+                Presenter.CreateNodeElements();
+            }
+
+            void CreateNodePorts()
+            {
+                Presenter.CreateNodePorts();
+            }
+
+            void AddStyleSheet()
+            {
+                styleSheets.Add(DSStylesConfig.DSStartNodeStyle);
             }
         }
     }

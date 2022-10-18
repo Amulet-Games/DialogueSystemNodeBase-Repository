@@ -1,37 +1,49 @@
-﻿using UnityEngine;
-
-namespace AG
+﻿namespace AG
 {
-    public class DSEndNode : DSNodeFrameBase<DSEndNodePresenter, DSEndNodeSerializer, DSEndNodeCallback>
+    public class DSEndNode : DSNodeFrameBase<
+        DSEndNode,
+        DSEndNodeModel,
+        DSEndNodePresenter,
+        DSEndNodeSerializer,
+        DSEndNodeCallback
+    >
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Construtor of end node.
         /// </summary>
-        /// <param name="position">The vector2 position on the graph where this node'll be placed to once it's created.</param>
-        /// <param name="graphView">Dialogue system's graph view module.</param>
-        public DSEndNode(Vector2 position, DSGraphView graphView)
-            : base(DSStringsConfig.EndNodeDefaultLabelText, position, graphView)
+        /// <param name="creationDetails">Reference of the dialogue system's node creation details.</param>
+        /// <param name="graphView">Reference of the dialogue system's graph view module.</param>
+        public DSEndNode(DSNodeCreationDetails creationDetails, DSGraphView graphView)
+            : base(DSStringsConfig.EndNodeDefaultLabelText, graphView)
         {
             SetupFrameFields();
+
+            SetupCreationDetail();
 
             CreateNodeElements();
 
             CreateNodePorts();
 
-            RefreshPortsLayout();
+            RefreshPorts();
 
             AddStyleSheet();
 
-            InvokeInitalizedAction();
+            InitializedAction();
+
+            ManualCreatedAction();
 
             void SetupFrameFields()
             {
-                DSEndNodeModel model = new DSEndNodeModel();
+                DSEndNodeModel model = new DSEndNodeModel(this);
 
                 Presenter = new DSEndNodePresenter(this, model);
-                Serializer = new DSEndNodeSerializer(this, model);
-                Callback = new DSEndNodeCallback(this, model);
+                Callback = new DSEndNodeCallback(this, model, new DSEndNodeSerializer(this, model));
+            }
+
+            void SetupCreationDetail()
+            {
+                Callback.Details = creationDetails;
             }
 
             void CreateNodeElements()
@@ -46,12 +58,56 @@ namespace AG
 
             void AddStyleSheet()
             {
-                styleSheets.Add(DSStylesConfig.EndNodeStyle);
+                styleSheets.Add(DSStylesConfig.DSEndNodeStyle);
+            }
+        }
+
+
+        // ----------------------------- Constructor (Load) -----------------------------
+        /// <summary>
+        /// Construtor of end node.
+        /// Specifically used when the node is created by the previously saved model.
+        /// </summary>
+        /// <param name="sourceModel">Reference of the previous saved node's model.</param>
+        /// <param name="graphView">Reference of the dialogue system's graph view module.</param>
+        public DSEndNode(DSEndNodeModel sourceModel, DSGraphView graphView)
+            : base(DSStringsConfig.EndNodeDefaultLabelText, graphView)
+        {
+            SetupFrameFields();
+
+            CreateNodeElements();
+
+            CreateNodePorts();
+
+            RefreshPorts();
+
+            AddStyleSheet();
+
+            InitializedAction();
+
+            LoadCreatedAction(sourceModel);
+
+            void SetupFrameFields()
+            {
+                DSEndNodeModel model = new DSEndNodeModel(this);
+
+                Presenter = new DSEndNodePresenter(this, model);
+                Callback = new DSEndNodeCallback(this, model, new DSEndNodeSerializer(this, model));
             }
 
-            void InvokeInitalizedAction()
+            void CreateNodeElements()
             {
-                Callback.InitializedAction();
+                Presenter.CreateNodeElements();
+            }
+
+            void CreateNodePorts()
+            {
+                Presenter.CreateNodePorts();
+            }
+
+            void AddStyleSheet()
+            {
+                styleSheets.Add(DSStylesConfig.DSEndNodeStyle);
             }
         }
     }

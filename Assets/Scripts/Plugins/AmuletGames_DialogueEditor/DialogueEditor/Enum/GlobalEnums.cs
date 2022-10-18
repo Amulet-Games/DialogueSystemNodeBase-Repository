@@ -2,6 +2,7 @@ namespace AG
 {
     public class GlobalEnums { }
 
+    // ----------------------------- Global Enums -----------------------------
     public enum G_LanguageType
     {
         English = 1,

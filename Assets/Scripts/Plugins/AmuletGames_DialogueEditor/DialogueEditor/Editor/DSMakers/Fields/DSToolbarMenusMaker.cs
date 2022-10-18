@@ -9,7 +9,11 @@ public class DSToolbarMenusMaker
     /// <param name="toolbarText">The text that'll show up as a label for the menu.</param>
     /// <param name="USS01">The first style for the menu to use when it appeared on the editor window.</param>
     /// <returns>A new toolbar menu that haven't fully been setup yet. Assign the menu actions separately.</returns>
-    public static ToolbarMenu GetNewToolbarMenu(string toolbarText, string USS01 = "")
+    public static ToolbarMenu GetNewToolbarMenu
+    (
+        string toolbarText,
+        string USS01 = ""
+    )
     {
         ToolbarMenu dropdownMenu;
 
@@ -37,7 +41,11 @@ public class DSToolbarMenusMaker
     /// <param name="menuSprite">The sprite icon that'll appear on the right side of the menu, usually it's a down arrow.</param>
     /// <param name="USS01">The first style for the menu to use when it appeared on the editor window.</param>
     /// <returns>A new toolbar menu that haven't fully been setup yet. Assign the menu actions separately.</returns>
-    public static ToolbarMenu GetNewToolbarMenu(Sprite menuSprite, string USS01 = "")
+    public static ToolbarMenu GetNewToolbarMenu
+    (
+        Sprite menuSprite,
+        string USS01 = ""
+    )
     {
         ToolbarMenu dropdownMenu;
 

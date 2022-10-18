@@ -1,10 +1,9 @@
 using System;
-using UnityEditor.Experimental.GraphView;
 
 namespace AG
 {
     [Serializable]
-    public class DSOptionNodeModel : DSNodeModelBase
+    public class DSOptionNodeModel : DSNodeModelFrameBase<DSOptionNode>
     {
         //TODO Move this to another data class!
         // ----------------------------- Serialized Port Guid -----------------------------
@@ -22,10 +21,9 @@ namespace AG
 
 
         /// <summary>
-        /// Holds the input fields for a line of text and audio clip, in which
-        /// <br>to show in the game when it comes to this node. (Language dependent)</br>
+        /// Text container for the option header text.
         /// </summary>
-        public TextlineSegment TextlineSegment;
+        public LanguageTextContainer OptionHeaderTextContainer;
 
 
         /// <summary>
@@ -38,18 +36,20 @@ namespace AG
         /// <summary>
         /// Port that allows this node to move forward to the other node.
         /// </summary>
-        public Port OutputPort;
+        public DSDefaultPort OutputPort;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Construtor of option node's model.
         /// </summary>
-        public DSOptionNodeModel()
+        /// <param name="node">Node of which this model is connecting upon.</param>
+        public DSOptionNodeModel(DSOptionNode node)
         {
-            TextlineSegment = new TextlineSegment();
-            ConditionSegment = new ConditionSegment();
+            Node = node;
             OptionTrack = new DSOptionTrack();
+            OptionHeaderTextContainer = new LanguageTextContainer();
+            ConditionSegment = new ConditionSegment();
         }
     }
 }

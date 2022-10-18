@@ -12,7 +12,7 @@ namespace AG
         /// Root condition modifier.
         /// <br>Appears when there's only one condition modifier on the node.</br>
         /// </summary>
-        protected TModifier MolderRootModifier;
+        [SerializeField] protected TModifier MolderRootModifier;
 
 
         /// <summary>
@@ -20,13 +20,13 @@ namespace AG
         /// <br>Appears when there's are multiple condition modifiers on the node.</br>
         /// <br>This segment requires to have one condition modifier always.</br>
         /// </summary>
-        protected TSegment MolderSegment;
+        [SerializeField] protected TSegment MolderSegment;
 
 
         /// <summary>
         /// Internal condition modifiers' count.
         /// </summary>
-        [NonSerialized] int molderInternalCount = 0;
+        int molderInternalCount = 0;
 
 
         // ----------------------------- Makers -----------------------------
@@ -147,7 +147,7 @@ namespace AG
             MolderRootModifier.SaveModifierValue(source.MolderRootModifier);
 
             // Save molder's segment.
-            MolderSegment.SaveSegmentValues(source.MolderSegment);
+            MolderSegment.SaveMolderSegmentValues(source.MolderSegment);
         }
 
 

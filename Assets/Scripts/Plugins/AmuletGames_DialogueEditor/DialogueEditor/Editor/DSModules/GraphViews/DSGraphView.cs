@@ -20,7 +20,6 @@ namespace AG
         /// </summary>
         public DSNodeCreationConnectorWindow NodeCreationConnectorWindow;
 
-
         /// <summary>
         /// Reference of the dialogue system's node creation request window module.
         /// </summary>
@@ -48,25 +47,6 @@ namespace AG
         }
 
 
-        // ----------------------------- Pre Setup -----------------------------
-        /// <summary>
-        /// Clear all the actions that have been registered to GraphViewChangedEvent
-        /// </summary>
-        public void ClearEvents()
-        {
-            graphViewChanged = null;
-        }
-
-
-        /// <summary>
-        /// Register internal action to GraphViewChangedEvent
-        /// </summary>
-        public void RegisterEvents()
-        {
-            graphViewChanged += GraphViewChangedAction;
-        }
-
-
         // ----------------------------- Post Setup -----------------------------
         /// <summary>
         /// Post setup for the class, used to initialize internal fields, create a new graph view element
@@ -85,9 +65,13 @@ namespace AG
 
             SetupGraphZoom();
 
-            SetupNodeCreationRequest();
+            SetupGraphViewChangedDelegate();
 
-            SetupGraphDeleteSelection();
+            SetupNodeCreationRequestAction();
+
+            SetupDeleteSelectionDelegate();
+
+            SetupFocusBlurEvent();
 
             AddStyleSheet();
 
@@ -122,14 +106,25 @@ namespace AG
                 SetupZoom(ContentZoomer.DefaultMinScale, 1.15f);
             }
 
-            void SetupNodeCreationRequest()
+            void SetupGraphViewChangedDelegate()
+            {
+                graphViewChanged = GraphViewChangedAction;
+            }
+
+            void SetupNodeCreationRequestAction()
             {
                 nodeCreationRequest = NodeCreationRequestAction;
             }
 
-            void SetupGraphDeleteSelection()
+            void SetupDeleteSelectionDelegate()
             {
                 deleteSelection = GraphDeleteSelectionAction;
+            }
+
+            void SetupFocusBlurEvent()
+            {
+                RegisterCallback<FocusEvent>(GraphFocusAction);
+                RegisterCallback<BlurEvent>(GraphBlurAction);
             }
 
             void AddStyleSheet()
@@ -191,6 +186,8 @@ namespace AG
 
             DeleteNodesFromList();
 
+            InvokeDSWindowChangedEvent();
+
             void SetupDeletingList()
             {
                 edgeType = typeof(Edge);
@@ -227,8 +224,8 @@ namespace AG
             {
                 for (int i = 0; i < edgesToDelete.Count; i++)
                 {
-                    edgesToDelete[i].EdgeRemovedByManualAction();
-                    DisconnectPorts(edgesToDelete[i]);
+                    edgesToDelete[i].PreManualRemovedAction();
+                    DisconnectPort(edgesToDelete[i]);
                 }
             }
 
@@ -240,6 +237,11 @@ namespace AG
                     RemoveElement(nodesToDelete[i]);
                     nodesToDelete[i].PostManualRemovedAction();
                 }
+            }
+
+            void InvokeDSWindowChangedEvent()
+            {
+                DSWindowChangedEvent.Invoke();
             }
         }
 
@@ -261,6 +263,26 @@ namespace AG
                 nodeCreationRequestWindow.Open(context.screenMousePosition);
             }
         }
+
+
+        /// <summary>
+        /// Action that called when the graph view module has gained focus.
+        /// <para></para>
+        /// <br>Different than "Focus In", this version has its bubble up property set to false.</br>
+        /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
+        /// </summary>
+        /// <param name="evt">Registering event.</param>
+        void GraphFocusAction(FocusEvent evt) => dsWindow.IsGraphViewFocus = true;
+
+
+        /// <summary>
+        /// Action that called when the graph view module has lost focus.
+        /// <para></para>
+        /// <br>Different than "Focus Out", this version has its bubble up property set to false.</br>
+        /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
+        /// </summary>
+        /// <param name="evt">Registering event.</param>
+        void GraphBlurAction(BlurEvent evt) => dsWindow.IsGraphViewFocus = false;
 
 
         // ----------------------------- Overrides -----------------------------
@@ -322,10 +344,10 @@ namespace AG
 
         // ----------------------------- Manipulate Port Connection Services -----------------------------
         /// <summary>
-        /// Disconnects the specified port to its connecting opponent port.
+        /// Disconnects the specified single port from its connecting opponent port.
         /// </summary>
-        /// <param name="port">The first port to start the disconnection from.</param>
-        public void DisconnectPorts(Port port)
+        /// <param name="port">The target port to start the disconnection from.</param>
+        public void DisconnectPort(Port port)
         { 
             Edge edge = port.connections.First();
 
@@ -345,10 +367,10 @@ namespace AG
 
 
         /// <summary>
-        /// Disconnects any ports that are connecting through the specified edge.
+        /// Disconnects any single port that are connecting through the specified edge.
         /// </summary>
         /// <param name="edge">The edge of the two ports that are disconnecting.</param>
-        public void DisconnectPorts(Edge edge)
+        public void DisconnectPort(Edge edge)
         {
             edge.input.Disconnect(edge);
             edge.output.Disconnect(edge);
@@ -357,22 +379,57 @@ namespace AG
 
 
         /// <summary>
+        /// Disconnects multi edge port from each of its connecting opponent port.
+        /// </summary>
+        /// <param name="port">The target port to start the disconnection from.</param>
+        public void DisconnectPortMulti(Port port)
+        {
+            Edge[] connections = port.connections.ToArray();
+            Edge edge;
+
+            for (int i = 0; i < connections.Length; i++)
+            {
+                edge = connections[i];
+
+                port.Disconnect(edge);
+
+                if (port.IsInput())
+                {
+                    edge.output.Disconnect(edge);
+                }
+                else
+                {
+                    edge.input.Disconnect(edge);
+                }
+
+                RemoveElement(edge);
+            }
+        }
+
+
+        /// <summary>
         /// Creates an new edge and connects the two specified ports with it.
         /// </summary>
         /// <param name="outputPort"></param>
         /// <param name="inputPort"></param>
-        public void ConnectPorts(Port outputPort, Port inputPort)
+        public Edge ConnectPorts(Port outputPort, Port inputPort)
         {
+            // Create an new edge.
             Edge edge = new Edge()
             {
                 output = outputPort,
                 input = inputPort
             };
 
+            // Connect to the edge.
             edge.output.Connect(edge);
             edge.input.Connect(edge);
 
+            // Add the edge to the graph.
             Add(edge);
+
+            // Return edge
+            return edge;
         }
     }
 }

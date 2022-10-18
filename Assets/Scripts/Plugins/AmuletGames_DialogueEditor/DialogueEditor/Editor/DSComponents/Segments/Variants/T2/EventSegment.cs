@@ -46,7 +46,11 @@ namespace AG
 
             void SetupSegmentTitle()
             {
-                segmentTitleBox = DSSegmentsMaker.AddSegmentTitle("Scriptable Events", DSStylesConfig.Segment_TitleBox_Event);
+                segmentTitleBox = DSSegmentsMaker.AddSegmentTitle
+                (
+                    DSStringsConfig.EventSegmentTitleLabelText,
+                    DSStylesConfig.Segment_TitleBox_Event
+                );
             }
 
             void SetupSegmentExpandButton()
@@ -79,24 +83,66 @@ namespace AG
         /// <inheritdoc />
         public override void SaveSegmentValues(EventSegment source)
         {
-            // Save segment's isExpanded state
-            IsExpanded = source.IsExpanded;
+            SaveEventModifiers();
 
-            // Save segment's isHidden state
-            IsHidden = source.IsHidden;
+            SaveBaseSegmentValue();
 
-            // Save segment's modifiers
-            List<EventModifier> sourceEventModifiers = source.Modifiers;
-            for (int i = 0; i < sourceEventModifiers.Count; i++)
+            void SaveEventModifiers()
             {
-                // Create a new modifier.
-                EventModifier newEventModifier = new EventModifier();
+                // Save event modifiers
+                List<EventModifier> sourceEventModifiers = source.Modifiers;
+                for (int i = 0; i < sourceEventModifiers.Count; i++)
+                {
+                    // Create a new modifier.
+                    EventModifier newEventModifier = new EventModifier();
 
-                // Save the source modifier's values to the new one.
-                newEventModifier.SaveModifierValue(sourceEventModifiers[i]);
+                    // Save the source modifier's values to the new one.
+                    newEventModifier.SaveModifierValue(sourceEventModifiers[i]);
 
-                // Add the new modifier to internal list.
-                Modifiers.Add(newEventModifier);
+                    // Add the new modifier to internal list.
+                    Modifiers.Add(newEventModifier);
+                }
+            }
+
+            void SaveBaseSegmentValue()
+            {
+                // Save segment's isExpanded state
+                IsExpanded = source.IsExpanded;
+
+                // Save segment's isHidden state
+                IsHidden = source.IsHidden;
+            }
+        }
+
+
+        /// <inheritdoc />
+        public override void SaveMolderSegmentValues(EventSegment source)
+        {
+            SaveEventModifiers();
+
+            SaveBaseSegmentValue();
+
+            void SaveEventModifiers()
+            {
+                // Save event modifiers
+                List<EventModifier> sourceEventModifiers = source.Modifiers;
+                for (int i = 0; i < sourceEventModifiers.Count; i++)
+                {
+                    // Create a new modifier.
+                    EventModifier newEventModifier = new EventModifier();
+
+                    // Save the source modifier's values to the new one.
+                    newEventModifier.SaveModifierValue(sourceEventModifiers[i]);
+
+                    // Add the new modifier to internal list.
+                    Modifiers.Add(newEventModifier);
+                }
+            }
+
+            void SaveBaseSegmentValue()
+            {
+                // Save segment's isHidden state
+                IsHidden = source.IsHidden;
             }
         }
 
@@ -168,9 +214,6 @@ namespace AG
 
             void LoadBaseSegmentValue()
             {
-                // Load isExpanded state.
-                LoadIsExpandedValue(source);
-
                 // Load isHidden state.
                 LoadIsHiddenValue(source);
             }

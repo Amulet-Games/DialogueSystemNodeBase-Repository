@@ -10,7 +10,11 @@ namespace AG
         /// <param name="floatContainer">The container that'll combine and save the field as reference for other modules to use.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
         /// <returns>A new float field UIElement which connected to the float container.</returns>
-        public static FloatField GetNewFloatField(FloatContainer floatContainer, string USS01 = "")
+        public static FloatField GetNewFloatField
+        (
+            FloatContainer floatContainer,
+            string USS01 = ""
+        )
         {
             FloatField floatField;
 
@@ -18,9 +22,11 @@ namespace AG
 
             ConnectFieldToContainer();
 
-            SetupContainerField();
+            SetFieldDetails();
 
             RegisterFieldEvents();
+
+            ShowEmptyStyle();
 
             AddFieldToStyleClass();
 
@@ -37,14 +43,21 @@ namespace AG
                 floatContainer.FloatField = floatField;
             }
 
-            void SetupContainerField()
+            void SetFieldDetails()
             {
-                floatContainer.SetupContainerField();
+                floatField.SetValueWithoutNotify(floatContainer.Value);
             }
 
             void RegisterFieldEvents()
             {
-                DSFloatFieldEventRegister.RegisterValueChangedEvent(floatContainer);
+                DSFloatFieldCallbacks.RegisterValueChangedEvent(floatContainer);
+                DSFloatFieldCallbacks.RegisterFieldFocusInEvent(floatField);
+                DSFloatFieldCallbacks.RegisterFieldFocusOutEvent(floatField);
+            }
+
+            void ShowEmptyStyle()
+            {
+                DSFloatFieldUtility.ShowEmptyStyle(floatField);
             }
 
             void AddFieldToStyleClass()

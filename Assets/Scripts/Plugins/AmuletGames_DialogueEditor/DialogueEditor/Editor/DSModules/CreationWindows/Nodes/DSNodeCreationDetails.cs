@@ -1,4 +1,5 @@
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 namespace AG
 {
@@ -17,7 +18,7 @@ namespace AG
         /// <summary>
         /// The connector type of the port is representing when the node creation happened.
         /// </summary>
-        public N_NodeCreationConnectorType CreationConnectorType { get; private set; }
+        public P_ConnectorType ConnectorType { get; private set; }
 
 
         /// <summary>
@@ -25,6 +26,12 @@ namespace AG
         /// <br>If node is created through nodeCreationRequest, simply leave the field as null.</br>
         /// </summary>
         public Port ConnectorPort { get; private set; }
+
+
+        /// <summary>
+        /// The vector2 position on the graph where this node'll be placed to once it's created.
+        /// </summary>
+        public Vector2 PlacePosition { get; private set; }
 
 
         // ----------------------------- Constructor -----------------------------
@@ -46,28 +53,39 @@ namespace AG
         )
         {
             HorizontalAlignType = horizontalAlignType;
-            CreationConnectorType = N_NodeCreationConnectorType.Default;
+            ConnectorType = P_ConnectorType.Default;
             ConnectorPort = connectorPort;
         }
 
 
         // ----------------------------- Update Properties Services -----------------------------
         /// <summary>
-        /// Method for updating the template internal properties.
+        /// Method for updating the internal properties for the first time.
         /// </summary>
         /// <param name="horizontalAlignType">The new horizontal alignment type values to set for.</param>
         /// <param name="creationConnectorType">The connector type to set for.</param>
         /// <param name="connectorPort">The new connector port values to set for.</param>
-        public void UpdateValues
+        public void PreUpdateValues
         (
             C_Alignment_HorizontalType horizontalAlignType,
-            N_NodeCreationConnectorType creationConnectorType,
+            P_ConnectorType creationConnectorType,
             Port connectorPort
         )
         {
             HorizontalAlignType = horizontalAlignType;
-            CreationConnectorType = creationConnectorType;
+            ConnectorType = creationConnectorType;
             ConnectorPort = connectorPort;
+        }
+
+
+        /// <summary>
+        /// Method for updating the internal properties for the second time.
+        /// </summary>
+        /// <param name="placePosition">The new place position value to set for.</param>
+        /// <param name="isLockedWidth">The type of node that the details is used to create.</param>
+        public void PostUpdateValues(Vector2 placePosition)
+        {
+            PlacePosition = placePosition;
         }
     }
 }

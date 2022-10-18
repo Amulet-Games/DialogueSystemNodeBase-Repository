@@ -25,22 +25,15 @@ namespace AG
         /// <returns>A new copy of selected event node model.</returns>
         public DSEventNodeModel SaveNode()
         {
-            DSEventNodeModel newNodeModel;
+            DSEventNodeModel newNodeModel = new DSEventNodeModel(Node);
 
-            CreateNewEventNodeModel();
-
-            SaveBaseDetails(newNodeModel);
+            SaveBaseValues(newNodeModel);
 
             SavePortsGuid();
 
             SaveEventMolder();
 
             return newNodeModel;
-
-            void CreateNewEventNodeModel()
-            {
-                newNodeModel = new DSEventNodeModel();
-            }
 
             void SavePortsGuid()
             {
@@ -56,13 +49,10 @@ namespace AG
 
 
         // ----------------------------- Load -----------------------------
-        /// <summary>
-        /// Create a new event node to the graph with the data loaded from the source.
-        /// </summary>
-        /// <param name="source">The node's model of which this node is going to load from.</param>
-        public void LoadNode(DSEventNodeModel source)
+        /// <inheritdoc />
+        public override void LoadNode(DSEventNodeModel source)
         {
-            LoadBaseDetails(source);
+            LoadBaseValues(source);
 
             LoadPortsGuid();
 

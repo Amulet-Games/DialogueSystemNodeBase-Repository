@@ -2,6 +2,11 @@ using System;
 
 namespace AG
 {
+    /// <summary>
+    /// Class that stores config data for the languages that'll be used in the dialogue system.
+    /// <br>The values here would be used by other module class when creating nodes,</br>
+    /// <br>and unlike other config classes, the values here can be altered and saved.</br>
+    /// </summary>
     public static class DSLanguagesConfig
     {
         /// <summary>

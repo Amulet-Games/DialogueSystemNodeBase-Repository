@@ -14,18 +14,26 @@ namespace AG
         /// <br>no matter which elements are the nodes are belong to, by channels or default.</br>
         /// </summary>
         public static List<SearchTreeEntry> NodeCreationRequestEntries { get; private set; }
+
+
         /// <summary>
         /// Default node's input connector creation entries.
         /// </summary>
         public static List<SearchTreeEntry> DefaultNodeInputEntries { get; private set; }
+
+
         /// <summary>
         /// Default node's output connector creation entries.
         /// </summary>
         public static List<SearchTreeEntry> DefaultNodeOutputEntries { get; private set; }
+
+
         /// <summary>
         /// Option channel's entry connector creation entries.
         /// </summary>
         public static List<SearchTreeEntry> OptionChannelEntryEntries { get; private set; }
+
+
         /// <summary>
         /// Option channel's track connector creation entries.
         /// </summary>
@@ -42,12 +50,13 @@ namespace AG
             SearchTreeGroupEntry ancestorEntry;
 
             // Child entry.
-            SearchTreeEntry branchNodeChildEntry;
-            SearchTreeEntry dialogueNodeChildEntry;
+            SearchTreeEntry booleanNodeChildEntry;
             SearchTreeEntry endNodeChildEntry;
             SearchTreeEntry eventNodeChildEntry;
             SearchTreeEntry optionNodeChildEntry;
+            SearchTreeEntry pathNodeChildEntry;
             SearchTreeEntry startNodeChildEntry;
+            SearchTreeEntry storyNodeChildEntry;
 
             SetupLocalEntryRefs();
 
@@ -60,12 +69,13 @@ namespace AG
             void SetupLocalEntryRefs()
             {
                 ancestorEntry = DSNodeCreationEntriesMaker.GetNewAncestorEntry();
-                branchNodeChildEntry = DSNodeCreationEntriesMaker.GetNewBranchNodeChildEntry(1);
-                dialogueNodeChildEntry = DSNodeCreationEntriesMaker.GetNewDialogueNodeChildEntry(1);
+                booleanNodeChildEntry = DSNodeCreationEntriesMaker.GetNewBooleanNodeChildEntry(1);
                 endNodeChildEntry = DSNodeCreationEntriesMaker.GetNewEndNodeChildEntry(1);
                 eventNodeChildEntry = DSNodeCreationEntriesMaker.GetNewEventNodeChildEntry(1);
                 optionNodeChildEntry = DSNodeCreationEntriesMaker.GetNewOptionNodeChildEntry(1);
+                pathNodeChildEntry = DSNodeCreationEntriesMaker.GetNewPathNodeChildEntry(1);
                 startNodeChildEntry = DSNodeCreationEntriesMaker.GetNewStartNodeChildEntry(1);
+                storyNodeChildEntry = DSNodeCreationEntriesMaker.GetNewStoryNodeChildEntry(1);
             }
 
             void SetupNodeCreationRequestEntries()
@@ -79,12 +89,13 @@ namespace AG
                     DSNodeCreationEntriesMaker.GetNewNodesFamilyEntry(1),
 
                     // Child entry.
-                    DSNodeCreationEntriesMaker.GetNewBranchNodeChildEntry(2),
-                    DSNodeCreationEntriesMaker.GetNewDialogueNodeChildEntry(2),
+                    DSNodeCreationEntriesMaker.GetNewBooleanNodeChildEntry(2),
                     DSNodeCreationEntriesMaker.GetNewEndNodeChildEntry(2),
                     DSNodeCreationEntriesMaker.GetNewEventNodeChildEntry(2),
                     DSNodeCreationEntriesMaker.GetNewOptionNodeChildEntry(2),
-                    DSNodeCreationEntriesMaker.GetNewStartNodeChildEntry(2)
+                    DSNodeCreationEntriesMaker.GetNewPathNodeChildEntry(2),
+                    DSNodeCreationEntriesMaker.GetNewStartNodeChildEntry(2),
+                    DSNodeCreationEntriesMaker.GetNewStoryNodeChildEntry(2),
                 };
             }
 
@@ -97,11 +108,11 @@ namespace AG
                     ancestorEntry,
 
                     // Child entry.
-                    branchNodeChildEntry,
-                    dialogueNodeChildEntry,
+                    booleanNodeChildEntry,
                     eventNodeChildEntry,
                     optionNodeChildEntry,
-                    startNodeChildEntry
+                    startNodeChildEntry,
+                    storyNodeChildEntry
                 };
                 // Output
                 DefaultNodeOutputEntries = new List<SearchTreeEntry>()
@@ -110,10 +121,11 @@ namespace AG
                     ancestorEntry,
 
                     // Child entry.
-                    branchNodeChildEntry,
-                    dialogueNodeChildEntry,
+                    booleanNodeChildEntry,
                     endNodeChildEntry,
-                    eventNodeChildEntry
+                    eventNodeChildEntry,
+                    pathNodeChildEntry,
+                    storyNodeChildEntry
                 };
             }
 
@@ -126,7 +138,7 @@ namespace AG
                     ancestorEntry,
 
                     // Child entry.
-                    dialogueNodeChildEntry
+                    pathNodeChildEntry
                 };
                 // Entry
                 OptionChannelEntryEntries = new List<SearchTreeEntry>()

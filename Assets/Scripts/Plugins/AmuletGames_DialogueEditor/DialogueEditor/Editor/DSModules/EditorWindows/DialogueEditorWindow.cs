@@ -2,42 +2,23 @@
 using Unity.EditorCoroutines.Editor;
 using UnityEditor.Callbacks;
 using UnityEditor;
+using UnityEngine.UIElements;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace AG
 {
     public class DialogueEditorWindow : EditorWindow
     {
         /// <summary>
-        /// The static reference of the class.
+        /// Reference of the connecting DSCoaninerSO.
         /// </summary>
-        public static DialogueEditorWindow Instance;
+        public DialogueContainerSO DSContainerSO;
 
 
         /// <summary>
-        /// The asset instance id of the dialogueCoaninerSO that built the custom graph editor.
+        /// The asset instance id of the connecting DSCoaninerSO.
         /// </summary>
-        public static int ContainerID { get; private set; }
-
-
-        /// <summary>
-        /// The boolean variable that helps identifly if the user edited the graph's title
-        /// by the custom graph editor or by the project window.
-        /// </summary>
-        public static bool IsRenameChangesApplied { get; private set; }
-
-        
-        /// <summary>
-        /// Reference of the dialogueContainerSO that built the custom graph editor.
-        /// </summary>
-        public DialogueContainerSO ContainerSO;
-
-
-        /// <summary>
-        /// Reference of the custom graph module's input hint.
-        /// </summary>
-        public DSInputHint InputHint;
+        public int DSContainerId { get; private set; }
 
 
         /// <summary>
@@ -47,9 +28,45 @@ namespace AG
 
 
         /// <summary>
-        /// Reference of the dialogue system's headBar module.
+        /// Reference of the custom graph module's input hint.
+        /// </summary>
+        public DSInputHint InputHint;
+
+
+        /// <summary>
+        /// Reference of the dialogue system's head bar module.
         /// </summary>
         public DSHeadBar HeadBar;
+
+
+        /// <summary>
+        /// Reference of the dialogue system's GUI event module.
+        /// </summary>
+        public DSHotkeysHandler HotkeysHandler;
+
+
+        /// <summary>
+        /// Is the graph view module in focus at the moment?
+        /// </summary>
+        public bool IsGraphViewFocus;
+
+
+        /// <summary>
+        /// Is the headbar module in focus at the moment?
+        /// </summary>
+        public bool IsHeadBarFocus;
+
+
+        /// <summary>
+        /// The static reference of the dialogue editor window module.
+        /// </summary>
+        public static DialogueEditorWindow Instance;
+
+
+        /// <summary>
+        /// Is the dialogue editor window going through a first time only show window setup?
+        /// </summary>
+        static bool isShowWindowSetup;
 
 
         // ----------------------------- Overrides -----------------------------
@@ -62,13 +79,28 @@ namespace AG
         [OnOpenAsset(0)]
         public static bool ShowWindow(int instanceId, int line)
         {
-            // Get the instance id from the opened asset and translate it an object reference.
+            // Get the instance id from the opened asset and translate it to an object reference.
             Object openedAssetObject = EditorUtility.InstanceIDToObject(instanceId);
 
+            // If the object is an DialogueContainerSO
             if (openedAssetObject is DialogueContainerSO)
             {
+                // If the static reference of dialogue editor window already exists somewhere
+                if (Instance != null)
+                {
+                    // Print out a warning message and return the method immediately.
+                    Debug.LogWarning(DSStringsConfig.WindowAlreadyOpenedWarningText);
+                    return false;
+                }
+
+                // This setup only happens the first time when the editor window is shown.
+                isShowWindowSetup = true;
+
+                // Show the editor window.
                 Instance = (DialogueEditorWindow)GetWindow(typeof(DialogueEditorWindow));
-                Instance.WindowShownAction(openedAssetObject, instanceId);
+
+                // Initialize window.
+                Instance.Init(openedAssetObject as DialogueContainerSO, instanceId);
             }
 
             return false;
@@ -92,7 +124,8 @@ namespace AG
         /// </summary>
         void OnEnable()
         {
-            CheckDSWindowRef();
+            // OnEnable is called manually when isShowWindowSetup is true.
+            if (isShowWindowSetup) return;
 
             PreSetup();
 
@@ -100,21 +133,18 @@ namespace AG
 
             PostSetup();
 
-            WindowShownOnEnable();
+            DelaySetup();
 
-            void CheckDSWindowRef()
+            LoadSavedData();
+
+            void DelaySetup()
             {
-                Instance = Instance != null ? Instance : this;
+                EditorCoroutineUtility.StartCoroutine(DelayedSetup(), this);
             }
 
-            void WindowShownOnEnable()
+            void LoadSavedData()
             {
-                if (ContainerSO != null)
-                {
-                    LoadWindowAction();
-
-                    WaitRequestGraphViewReframe();
-                }
+                LoadWindowAction(true);
             }
         }
 
@@ -135,70 +165,6 @@ namespace AG
             }
         }
 
-        /// <summary>
-        /// Action for setting up the custom graph editor when it first opened or shown.
-        /// <br>Note that this aciton only be invoked when it was first opened and it's not the same as OnEnable.</br>
-        /// <para>WindowShowAction - Internal - ShowWindow.</para>
-        /// </summary>
-        /// <param name="instanceId"></param>
-        void WindowShownAction(Object openedAssetObject, int instanceId)
-        {
-            SetupWindowDetail();
-
-            LoadPreviousData();
-
-            WaitRequestGraphViewReframe();
-
-            void SetupWindowDetail()
-            {
-                ContainerID = instanceId;
-                ContainerSO = openedAssetObject as DialogueContainerSO;
-                titleContent = new GUIContent(DSStringsConfig.DialogueEditorWindowLabelText);
-                minSize = new Vector2(2000, 1080);
-            }
-
-            void LoadPreviousData()
-            {
-                LoadWindowAction();
-            }
-        }
-
-
-        /// <summary>
-        /// Invoke the action when the graph title field's value is changed.
-        /// <para>GraphTitleChangedEvent - DSHeadBar - GraphTitleField.</para>
-        /// </summary>
-        /// <param name="newContainerName">The new value received from the graph title field.</param>
-        public static void GraphTitleFieldChangedAction(string newContainerName)
-        {
-            IsRenameChangesApplied = true;
-
-            AssetDatabase.RenameAsset(AssetDatabase.GetAssetPath(ContainerID), newContainerName);
-            DSApplyChangesToDiskEvent.Invoke();
-
-            IsRenameChangesApplied = false;
-        }
-
-
-        /// <summary>
-        /// Force Unity to recognize the custom graph editor has unsaved changes,
-        /// <br>so that it asks the user to save it each time when they're trying to close it without saving.</br>
-        /// <para></para>
-        /// <br>DSWindowChangedEvent - SELibrary =></br>
-        /// <br>-> LanguageChangedEvent - DSHeadBar</br>
-        /// <br>-> GraphViewChangedEvent - DSGraphView</br>
-        /// <br>-> TreeEntrySelectedEvent - DSSearchWindow</br>
-        /// <br>-> FieldValueChangedEvent - GEMaker</br>
-        /// </summary>
-        public static void SetHasUnsavedChangesToTrue() => Instance.hasUnsavedChanges = true;
-
-
-        /// <summary>
-        /// Tell Unity that user has saved the graph so that it won't stop user to close the custom graph editor.
-        /// <para>DSApplyChangesToDiskEvent - Internal</para>
-        /// </summary>
-        public static void SetHasUnsavedChangesToFalse() => Instance.hasUnsavedChanges = false;
-
 
         /// <summary>
         /// Ask the DSSerialieHandler to save all the graph elements on the custom graph editor.
@@ -206,10 +172,14 @@ namespace AG
         /// </summary>
         public void SaveWindowAction()
         {
-            if (ContainerSO != null)
+            if (hasUnsavedChanges)
             {
-                DSSaveDataToContainerSOEvent.Invoke(ContainerSO);
+                DSSaveDataToContainerSOEvent.Invoke(DSContainerSO);
                 DSApplyChangesToDiskEvent.Invoke();
+            }
+            else
+            {
+                Debug.LogWarning(DSStringsConfig.WindowAlreadySavedWarningText);
             }
         }
 
@@ -220,10 +190,89 @@ namespace AG
         /// <br>ButtonClickedAction - DSHeadBar - LoadButton</br>
         /// <br>OnDisable - Internal - Unity</br>
         /// </summary>
-        public void LoadWindowAction()
+        public void LoadWindowAction(bool isForceLoadWindow)
         {
-            DSLoadDataFromContainerSOEvent.Invoke(ContainerSO);
-            DSApplyChangesToDiskEvent.Invoke();
+            if (isForceLoadWindow)
+            {
+                LoadWindow();
+            }
+            else if (hasUnsavedChanges)
+            {
+                LoadWindow();
+            }
+            else
+            {
+                Debug.LogWarning(DSStringsConfig.WindowAlreadyLoadedWarningText);
+            }
+
+            void LoadWindow()
+            {
+                DSLoadDataFromContainerSOEvent.Invoke(DSContainerSO);
+                DSApplyChangesToDiskEvent.Invoke();
+            }
+        }
+
+
+        /// <summary>
+        /// Action that called when the window's dock area has gained focus.
+        /// <para></para>
+        /// <br>Different than "Focus In", this version has its bubble up property set to false.</br>
+        /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
+        /// </summary>
+        /// <param name="evt">Registering event.</param>
+        void DockAreaFocusAction(FocusEvent evt) => GraphView.Focus();
+
+
+        /// <summary>
+        /// Action that called when the window's dock area has lost focus.
+        /// <para></para>
+        /// <br>Different than "Focus Out", this version has its bubble up property set to false.</br>
+        /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
+        /// </summary>
+        /// <param name="evt">Registering event.</param>
+        void DockAreaBlurAction(BlurEvent evt) => GraphView.Blur();
+
+
+        // ----------------------------- Init -----------------------------
+        /// <summary>
+        /// Init for the class. it's executed only when the window is first opened by the user,
+        /// <br>meaning that it should only be executed once.</br>
+        /// <para></para>
+        /// <br>Its main responsibility is to setup the fields that are only needed to be setup once in their life time until the window get closed.</br>
+        /// </summary>
+        /// <param name="openedContainerSO">The DSContainerSO that were opened by the user in the editor's project window.</param>
+        /// <param name="instanceId">The instance id of the opened asset.</param>
+        void Init(DialogueContainerSO openedContainerSO, int instanceId)
+        {
+            ResetIsShowWindowSetup();
+
+            SetupContainerRefs();
+
+            SetupWindowDetail();
+
+            ExecuteOnEnable();
+
+            void ResetIsShowWindowSetup()
+            {
+                isShowWindowSetup = false;
+            }
+
+            void SetupContainerRefs()
+            {
+                DSContainerId = instanceId;
+                DSContainerSO = openedContainerSO;
+            }
+
+            void SetupWindowDetail()
+            {
+                titleContent = new GUIContent(DSStringsConfig.DialogueEditorWindowLabelText);
+                minSize = new Vector2(2000, 1080);
+            }
+
+            void ExecuteOnEnable()
+            {
+                OnEnable();
+            }
         }
 
 
@@ -242,6 +291,8 @@ namespace AG
 
             CreateHeaderBar();
 
+            CreateHotkeysHandler();
+
             SetupEvents();
 
             void CreateGraphView()
@@ -259,54 +310,83 @@ namespace AG
                 HeadBar = new DSHeadBar(this);
             }
 
+            void CreateHotkeysHandler()
+            {
+                HotkeysHandler = new DSHotkeysHandler(this);
+            }
+
             void SetupEvents()
             {
-                ClearInstanceEvents();
+                ClearInternalEvents();
 
                 ClearStaticEvents();
 
-                RegisterInstanceEvents();
+                RegisterInternalEvents();
 
                 RegisterStaticEvents();
 
                 MultiCastEvents();
 
-                void ClearInstanceEvents()
+                void ClearInternalEvents()
                 {
-                    GraphView.ClearEvents();
-                    GraphView.SerializeHandler.ClearActions();
+                    UnRegisterKeyDownEvent();
+
+                    UnRegisterKeyUpEvent();
+
+                    void UnRegisterKeyDownEvent()
+                    {
+                        rootVisualElement.UnregisterCallback<KeyDownEvent>(HotkeysHandler.HotkeysDownAction);
+                    }
+
+                    void UnRegisterKeyUpEvent()
+                    {
+                        rootVisualElement.UnregisterCallback<KeyUpEvent>(HotkeysHandler.HotkeysUpAction);
+                    }
                 }
 
                 void ClearStaticEvents()
                 {
                     // Serialization Events
-                    DSSaveDataToContainerSOEvent.ClearEvents();
+                    DSSaveDataToContainerSOEvent.Clear();
                     DSLoadDataFromContainerSOEvent.Clear();
-                    DSApplyChangesToDiskEvent.ClearEvents();
+                    DSApplyChangesToDiskEvent.Clear();
+                    DSEdgeLoadedSetupEvent.Clear();
 
                     // Changed Events
-                    DSGraphViewChangedEvent.ClearEvents();
+                    DSGraphViewChangedEvent.Clear();
                     DSLanguageChangedEvent.Clear();
-                    DSGraphTitleChangedEvent.ClearEvents();
-                    DSTreeEntrySelectedEvent.ClearEvents();
+                    DSGraphTitleChangedEvent.Clear();
+                    DSTreeEntrySelectedEvent.Clear();
                     DSWindowChangedEvent.Clear();
                 }
 
-                void RegisterInstanceEvents()
+                void RegisterInternalEvents()
                 {
-                    GraphView.RegisterEvents();
+                    RegisterKeyDownEvent();
+
+                    RegisterKeyUpEvent();
+
+                    void RegisterKeyDownEvent()
+                    {
+                        rootVisualElement.RegisterCallback<KeyDownEvent>(HotkeysHandler.HotkeysDownAction);
+                    }
+
+                    void RegisterKeyUpEvent()
+                    {
+                        rootVisualElement.RegisterCallback<KeyUpEvent>(HotkeysHandler.HotkeysUpAction);
+                    }
                 }
 
                 void RegisterStaticEvents()
                 {
                     // Serialization Events
-                    DSSaveDataToContainerSOEvent.RegisterEvent();
-                    DSLoadDataFromContainerSOEvent.Register();
-                    DSApplyChangesToDiskEvent.RegisterEvent();
+                    DSSaveDataToContainerSOEvent.Register(GraphView.SerializeHandler);
+                    DSLoadDataFromContainerSOEvent.Register(GraphView.SerializeHandler, HeadBar);
+                    DSApplyChangesToDiskEvent.Register(this);
 
                     // Changed Events
-                    DSGraphTitleChangedEvent.RegisterEvent();
-                    DSWindowChangedEvent.Register();
+                    DSGraphTitleChangedEvent.Register(HeadBar);
+                    DSWindowChangedEvent.Register(this);
                 }
 
                 void MultiCastEvents()
@@ -333,8 +413,6 @@ namespace AG
 
             SetupDSStringUtility();
 
-            SetupAssetModificationProcessor();
-
             SetupDSNodeCreationEntriesProvider();
 
             void SetupDSLanguagesConfig()
@@ -355,11 +433,6 @@ namespace AG
             void SetupDSStringUtility()
             {
                 DSStringUtility.Setup();
-            }
-
-            void SetupAssetModificationProcessor()
-            {
-                DSAssetModificationProcessor.HeadBar = HeadBar;
             }
 
             void SetupDSNodeCreationEntriesProvider()
@@ -400,18 +473,93 @@ namespace AG
         }
 
 
+        // ----------------------------- Delayed Setup -----------------------------
         /// <summary>
-        /// Ask graph view module to reframe and focus all elements on the graph.
+        /// Delay setup for the class. It'll executed after the post setup method and at the end of that frame.
+        /// <para></para>
+        /// <br>Its main responsibility is to executes the internal setups that were needed the 1 frame of delay.</br>
         /// </summary>
-        void WaitRequestGraphViewReframe()
+        /// <returns></returns>
+        IEnumerator DelayedSetup()
         {
-            EditorCoroutineUtility.StartCoroutine(GraphViewReframeRoutine(), this);
+            yield return new WaitForEndOfFrame();
 
-            IEnumerator GraphViewReframeRoutine()
+            SetupEvent();
+
+            SetupReframeGraphView();
+
+            void SetupEvent()
             {
-                yield return new WaitForEndOfFrame();
+                UnRegisterFocusBlurEvent();
+
+                RegisterFocusBlurEvent();
+
+                void UnRegisterFocusBlurEvent()
+                {
+                    // Get the dock area from the window's parent
+                    VisualElement dockArea = rootVisualElement.parent.ElementAt(0);
+
+                    dockArea.UnregisterCallback<FocusEvent>(DockAreaFocusAction);
+                    dockArea.UnregisterCallback<BlurEvent>(DockAreaBlurAction);
+                }
+
+                void RegisterFocusBlurEvent()
+                {
+                    // Get the dock area from the window's parent
+                    VisualElement dockArea = rootVisualElement.parent.ElementAt(0);
+
+                    dockArea.RegisterCallback<FocusEvent>(_ => GraphView.Focus());
+                    dockArea.RegisterCallback<BlurEvent>(_ => GraphView.Blur());
+                }
+                
+            }
+
+            void SetupReframeGraphView()
+            {
                 GraphView.ReframeGraphAll();
             }
+        }
+
+
+        // ----------------------------- Set Has Unsaved Changes Services -----------------------------
+        /// <summary>
+        /// Force Unity to recognize the custom graph editor has unsaved changes,
+        /// <br>so that it asks the user to save it each time when they're trying to close it without saving.</br>
+        /// <para></para>
+        /// <br>DSWindowChangedEvent - SELibrary =></br>
+        /// <br>-> LanguageChangedEvent - DSHeadBar</br>
+        /// <br>-> GraphViewChangedEvent - DSGraphView</br>
+        /// <br>-> TreeEntrySelectedEvent - DSSearchWindow</br>
+        /// <br>-> FieldValueChangedEvent - GEMaker</br>
+        /// </summary>
+        public void SetHasUnsavedChangesToTrue() => hasUnsavedChanges = true;
+
+
+        /// <summary>
+        /// Tell Unity that user has saved the graph so that it won't stop user to close the custom graph editor.
+        /// <para>DSApplyChangesToDiskEvent - Internal</para>
+        /// </summary>
+        public void SetHasUnsavedChangesToFalse() => hasUnsavedChanges = false;
+
+
+        // ----------------------------- Retrieve Is Hotkey Available Services -----------------------------
+        /// <summary>
+        /// Returns true if the editor window and either the graph view or the headbar is in focus.
+        /// </summary>
+        /// <returns>True if the editor window and either the graph view or the headbar is in focus.</returns>
+        public bool IsHotkeysFunctionAvailable()
+        {
+            //Debug.Log("IsGraphViewFocus = " + IsGraphViewFocus);
+            //Debug.Log("IsHeadBarFocus = " + IsHeadBarFocus);
+
+            // If either the graph view or headbar is in focus.
+            if (IsGraphViewFocus || IsHeadBarFocus)
+            {
+                // Hotkeys are allowed.
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -7,8 +7,8 @@ namespace AG
     {
         #region Global.
         public static StyleSheet DSGlobalStyle;
-        public const string DSGlobal_Display_None = "dsGlobal_Display_None";
-        public const string DSGlobal_Visible_Hidden = "dsGlobal_Visible_Hidden";
+        public const string Global_Display_None = "global_Display_None";
+        public const string Global_Visible_Hidden = "global_Visible_Hidden";
         #endregion
 
         #region Modules.
@@ -20,11 +20,12 @@ namespace AG
         #endregion
 
         #region - Head Bar.
-        public const string HeadBar_GraphTitle_TextField = "headBar_GraphTitle_TextField";
+        public const string HeadBar_MainBox = "headBar_MainBox";
         public const string HeadBar_LeftSide_SubBox = "headBar_LeftSide_SubBox";
         public const string HeadBar_SaveGraph_Button = "headBar_SaveGraph_Button";
         public const string HeadBar_LoadGraph_Button = "headBar_LoadGraph_Button";
         public const string HeadBar_LanguageSelection_ToolbarMenu = "headBar_LanguageSelection_ToolbarMenu";
+        public const string HeadBar_GraphTitle_TextField = "headBar_GraphTitle_TextField";
         #endregion
 
         #region - Input Hint.
@@ -42,8 +43,8 @@ namespace AG
         public static StyleSheet DSRootedModifiersStyle;
         public static StyleSheet DSSegmentsStyle;
         public static StyleSheet DSIntegrantsStyle;
-        public static StyleSheet DSEntriesStyle;
-        public static StyleSheet DSTracksStyle;
+        public static StyleSheet DSOptionEntriesStyle;
+        public static StyleSheet DSOptionTracksStyle;
         #endregion
 
         #region - Modifiers.
@@ -76,7 +77,7 @@ namespace AG
 
         #region - Segments.
 
-        #region - Commons
+        #region - Commons.
         public const string Segment_TitleBox_Common = "segment_TitleBox_Common";
         public const string Segment_Title_Label = "segment_Title_Label";
         #endregion
@@ -85,7 +86,11 @@ namespace AG
         public const string Segment_ExpandSegment_Button = "segment_ExpandSegment_Button";
         #endregion
 
-        #region - Image Preview
+        #region - Title Enum Field.
+        public const string Segment_TitleEnum_EnumField = "segment_TitleEnum_EnumField";
+        #endregion
+
+        #region - Dual Portraits.
         public const string Segment_TitleBox_DualPortraits = "segment_TitleBox_DualPortraits";
         public const string Segment_DualPortraits_ContentBox = "segment_DualPortraits_ContentBox";
 
@@ -100,27 +105,33 @@ namespace AG
         public const string Segment_DualPortraits_ObjectField_R = "segment_DualPortraits_ObjectField_R";
         #endregion
 
-        #region - Speaker Name
-        public const string Segment_TitleBox_SpeakerName = "segment_TitleBox_SpeakerName";
-        public const string Segment_SpeakerName_ContentBox = "segment_SpeakerName_ContentBox";
-        public const string Segment_SpeakerName_TextField = "segment_SpeakerName_TextField";
+        #region - Dialogue.
+        public const string Segment_TitleBox_Dialogue = "segment_TitleBox_Dialogue";
+        public const string Segment_Dialogue_ContentBox = "segment_Dialogue_ContentBox";
+        public const string Segment_Dialogue_Character_ObjectField = "segment_Dialogue_Character_ObjectField";
+        public const string Segment_Dialogue_First_Textline_TextField = "segment_Dialogue_First_Textline_TextField";
+        public const string Segment_Dialogue_AudioClip_ObjectField = "segment_Dialogue_AudioClip_ObjectField";
+        
+        public const string Segment_Dialogue_SecondContentBox = "segment_Dialogue_SecondContentBox";
+
+        public const string Segment_Dialogue_SecondLineTriggerType_CellBox = "segment_Dialogue_SecondLineTriggerType_CellBox";
+        public const string Segment_Dialogue_SecondLineTriggerType_Label = "segment_Dialogue_SecondLineTriggerType_Label";
+        public const string Segment_Dialogue_SecondLineTriggerType_EnumField = "segment_Dialogue_SecondLineTriggerType_EnumField";
+
+        public const string Segment_Dialogue_Duration_CellBox = "segment_Dialogue_Duration_CellBox";
+        public const string Segment_Dialogue_Duration_Label = "segment_Dialogue_Duration_Label";
+        public const string Segment_Dialogue_Duration_FloatField = "segment_Dialogue_Duration_FloatField";
+
+        public const string Segment_Dialogue_Second_Textline_TextField = "segment_Dialogue_Second_Textline_TextField";
         #endregion
 
-        #region - Textline
-        public const string Segment_TitleBox_Textline = "segment_TitleBox_Textline";
-        public const string Segment_Textline_ContentBox = "segment_Textline_ContentBox";
-        public const string Segment_Textline_TextField = "segment_Textline_TextField";
-        public const string Segment_Textline_ObjectField = "segment_Textline_ObjectField";
-        #endregion
-
-        #region - Condition
+        #region - Condition.
         public const string Segment_TitleBox_Condition = "segment_TitleBox_Condition";
         public const string Segment_Condition_MainBox = "segment_Condition_MainBox";
         public const string Segment_Condition_ContentBox = "segment_Condition_ContentBox";
-        public const string Segment_Condition_UnmetOptionDisplayEnumField = "segment_Condition_UnmetOptionDisplayEnumField";
         #endregion
 
-        #region - Event
+        #region - Event.
         public const string Segment_TitleBox_Event = "segment_TitleBox_Event";
         public const string Segment_Event_MainBox = "segment_Event_MainBox";
         public const string Segment_Event_ContentBox = "segment_Event_ContentBox";
@@ -142,26 +153,34 @@ namespace AG
 
         #region - Channel.
 
-        #region - Commons
-        public const string Channel_RemoveEntry_Button = "channel_RemoveEntry_Button";
+        #region - Commons.
+        public const string Channel_Option_RemoveEntry_Button = "channel_Option_RemoveEntry_Button";
         #endregion
 
-        #region - Option
+        #region - Option.
         // Entry
-        public const string Channel_Entry_Port = "channel_Entry_Port";
-        public const string Channel_Entry_Connector = "channel_Entry_Connector";
-        public const string Channel_Entry_Label = "channel_Entry_Label";
-        public const string Channel_Entry_Cap = "channel_Entry_Cap";
+        public const string Channel_Option_Entry_Port = "channel_Option_Entry_Port";
+        public const string Channel_Option_Entry_Connector = "channel_Option_Entry_Connector";
+        public const string Channel_Option_Entry_Label = "channel_Option_Entry_Label";
+        public const string Channel_Option_Entry_Cap = "channel_Option_Entry_Cap";
 
-        public const string Channel_Entry_Port_Connected = "channel_Entry_Port_Connected";
+        public const string Channel_Option_Entry_Port_Connected = "channel_Option_Entry_Port_Connected";
+
+        // Window Entry
+        public const string Channel_Option_Window_Entry_Port = "channel_Option_Window_Entry_Port";
+        public const string Channel_Option_Window_Entry_Label = "channel_Option_Window_Entry_Label";
 
         // Track
-        public const string Channel_Track_Port = "channel_Track_Port";
-        public const string Channel_Track_Connector = "channel_Track_Connector";
-        public const string Channel_Track_Label = "channel_Track_Label";
-        public const string Channel_Track_Cap = "channel_Track_Cap";
+        public const string Channel_Option_Track_Port = "channel_Option_Track_Port";
+        public const string Channel_Option_Track_Connector = "channel_Option_Track_Connector";
+        public const string Channel_Option_Track_Label = "channel_Option_Track_Label";
+        public const string Channel_Option_Track_Cap = "channel_Option_Track_Cap";
 
-        public const string Channel_Track_Port_Connected = "channel_Track_Port_Connected";
+        public const string Channel_Option_Track_Port_Connected = "channel_Option_Track_Port_Connected";
+
+        // Edge
+        public const string Channel_Option_Edge = "channel_Option_Edge";
+        public const string Channel_Option_Edge_Selected = "channel_Option_Edge_Selected";
         #endregion
 
         #endregion
@@ -172,17 +191,13 @@ namespace AG
 
         #region - StyleSheets.
         public static StyleSheet DSNodesShareStyle;
-        public static StyleSheet StartNodeStyle;
-        public static StyleSheet DialogueNodeStyle;
-        public static StyleSheet OptionNodeStyle;
-        public static StyleSheet EventNodeStyle;
-        public static StyleSheet BranchNodeStyle;
-        public static StyleSheet EndNodeStyle;
-        #endregion
-
-        #region - Empty Fields.
-        public const string Node_TextField_Empty = "node_TextField_Empty";
-        public const string Node_ObjectField_Empty = "node_ObjectField_Empty";
+        public static StyleSheet DSBooleanNodeStyle;
+        public static StyleSheet DSEndNodeStyle;
+        public static StyleSheet DSEventNodeStyle;
+        public static StyleSheet DSOptionNodeStyle;
+        public static StyleSheet DSPathNodeStyle;
+        public static StyleSheet DSStartNodeStyle;
+        public static StyleSheet DSStoryNodeStyle;
         #endregion
 
         #region - Border.
@@ -201,31 +216,59 @@ namespace AG
         public const string Node_Output_Container_Window = "node_Output_Container_Window";
         #endregion
 
-        #region - Input / Ouput Ports.
-        public const string Node_Input_Port = "node_Input_Port";
-        public const string Node_Output_Port = "node_Output_Port";
-        public const string Node_Port_Sibling = "node_Port_Sibling";
+        #region - Empty Fields.
+        public const string Node_TextField_Empty = "node_TextField_Empty";
+        public const string Node_ObjectField_Empty = "node_ObjectField_Empty";
+        public const string Node_FloatField_Empty = "node_FloatField_Empty";
         #endregion
 
-        #region - Input / Ouput Connectors.
-        public const string Node_Input_Connector = "node_Input_Connector";
-        public const string Node_Output_Connector = "node_Output_Connector";
-        #endregion
-
-        #region - Input / Ouput Labels.
-        public const string Node_Input_Label = "node_Input_Label";
-        public const string Node_Output_Label = "node_Output_Label";
-        #endregion
-
-        #region - Input / Ouput Cap.
-        public const string Node_Input_Cap = "node_Input_Cap";
-        public const string Node_Output_Cap = "node_Output_Cap";
+        #region - Fields Icons.
+        public const string Node_ObjectField_Icon = "node_ObjectField_Icon";
+        public const string Node_TextField_Icon = "node_TextField_Icon";
         #endregion
 
         #region - End Node.
         public const string EndNode_GraphEndHandleType_EnumField = "endNode_GraphEndHandleType_EnumField";
         #endregion
 
+        #region - Option Node.
+        public const string OptionNode_OptionHeader_TextField = "optionNode_OptionHeader_TextField";
+        #endregion
+
+        #endregion
+
+        #region Ports.
+
+        #region StyleSheets.
+        public static StyleSheet DSPortsStyle;
+        #endregion
+
+        #region - Connectors.
+        public const string Default_Input_Connector = "default_Input_Connector";
+        public const string Default_Output_Connector = "default_Output_Connector";
+        #endregion
+
+        #region - Labels.
+        public const string Default_Input_Label = "default_Input_Label";
+        public const string Default_Output_Label = "default_Output_Label";
+        #endregion
+
+        #region - Caps.
+        public const string Default_Input_Cap = "default_Input_Cap";
+        public const string Default_Output_Cap = "default_Output_Cap";
+        #endregion
+
+        #region - Ports.
+        public const string Default_Input_Port = "default_Input_Port";
+        public const string Default_Output_Port = "default_Output_Port";
+        public const string Default_Port_Sibling = "default_port_Sibling";
+        #endregion
+
+        #endregion
+
+        #region Edges.
+        public const string Default_Edge = "default_Edge";
+        public const string Default_Edge_Selected = "default_Edge_Selected";
         #endregion
 
         #region Windows.
@@ -243,19 +286,21 @@ namespace AG
         /// </summary>
         public static void Setup()
         {
-            SetupStyleSheet_DSGlobal();
+            SetupStyleSheet_Global();
 
             SetupStyleSheet_Modules();
 
-            SetupStyleSheet_DSComponents();
+            SetupStyleSheet_Components();
 
             SetupStyleSheet_Nodes();
 
+            SetupStyleSheet_Ports();
+
             SetupStyleSheet_Windows();
 
-            void SetupStyleSheet_DSGlobal()
+            void SetupStyleSheet_Global()
             {
-                DSGlobalStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/DSGlobal.uss");
+                DSGlobalStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/DSGlobalStyle.uss");
             }
 
             void SetupStyleSheet_Modules()
@@ -265,25 +310,39 @@ namespace AG
                 DSHeadBarStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Modules/DSHeadBarStyle.uss");
             }
 
-            void SetupStyleSheet_DSComponents()
+            void SetupStyleSheet_Components()
             {
-                DSModifiersStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSModifiersStyle.uss");
-                DSRootedModifiersStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSRootedModifiersStyle.uss");
+                // Modifiers
+                DSModifiersStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/Modifiers/DSModifiersStyle.uss");
+                DSRootedModifiersStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/Modifiers/DSRootedModifiersStyle.uss");
+                
+                // Others
                 DSSegmentsStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSSegmentsStyle.uss");
                 DSIntegrantsStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSIntegrantsStyle.uss");
-                DSEntriesStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSEntriesStyle.uss");
-                DSTracksStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSTracksStyle.uss");
+                
+                // Option Channels
+                DSOptionEntriesStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/Channels/Option/DSOptionEntriesStyle.uss");
+                DSOptionTracksStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/Channels/Option/DSOptionTracksStyle.uss");
             }
 
             void SetupStyleSheet_Nodes()
             {
+                // Share Style
                 DSNodesShareStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/DSNodesShareStyle.uss");
-                StartNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/StartNodeStyle.uss");
-                DialogueNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/DialogueNodeStyle.uss");
-                OptionNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/OptionNodeStyle.uss");
-                EventNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/EventNodeStyle.uss");
-                BranchNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/BranchNodeStyle.uss");
-                EndNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/EndNodeStyle.uss");
+                
+                // Variants
+                DSBooleanNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/DSBooleanNodeStyle.uss");
+                DSEndNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/DSEndNodeStyle.uss");
+                DSEventNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/DSEventNodeStyle.uss");
+                DSOptionNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/DSOptionNodeStyle.uss");
+                DSPathNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/DSPathNodeStyle.uss");
+                DSStartNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/DSStartNodeStyle.uss");
+                DSStoryNodeStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Nodes/Variants/DSStoryNodeStyle.uss");
+            }
+
+            void SetupStyleSheet_Ports()
+            {
+                DSPortsStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Ports/DSPortsStyle.uss");
             }
 
             void SetupStyleSheet_Windows()

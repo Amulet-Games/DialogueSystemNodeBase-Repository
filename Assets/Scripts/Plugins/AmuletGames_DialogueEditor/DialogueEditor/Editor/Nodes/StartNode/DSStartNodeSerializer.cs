@@ -23,20 +23,13 @@ namespace AG
         /// <returns>A new copy of selected start node model.</returns>
         public DSStartNodeModel SaveNode()
         {
-            DSStartNodeModel newNodeModel;
+            DSStartNodeModel newNodeModel = new DSStartNodeModel(Node);
 
-            CreateNewStartNodeModel();
-
-            SaveBaseDetails(newNodeModel);
+            SaveBaseValues(newNodeModel);
 
             SavePortsGuid();
 
             return newNodeModel;
-
-            void CreateNewStartNodeModel()
-            {
-                newNodeModel = new DSStartNodeModel();
-            }
 
             void SavePortsGuid()
             {
@@ -46,13 +39,10 @@ namespace AG
 
 
         // ----------------------------- Load -----------------------------
-        /// <summary>
-        /// Create a new start node to the graph with the data loaded from the source.
-        /// </summary>
-        /// <param name="source">The node's model of which this node is going to load from.</param>
-        public void LoadNode(DSStartNodeModel source)
+        /// <inheritdoc />
+        public override void LoadNode(DSStartNodeModel source)
         {
-            LoadBaseDetails(source);
+            LoadBaseValues(source);
 
             LoadPortsGuid();
 

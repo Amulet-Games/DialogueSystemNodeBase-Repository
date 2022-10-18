@@ -1,10 +1,9 @@
 using System;
-using UnityEditor.Experimental.GraphView;
 
 namespace AG
 {
     [Serializable]
-    public class DSEndNodeModel : DSNodeModelBase
+    public class DSEndNodeModel : DSNodeModelFrameBase<DSEndNode>
     {
         //TODO Move this to another data class!
         // ----------------------------- Serialized Port Guid -----------------------------
@@ -25,15 +24,16 @@ namespace AG
         /// <summary>
         /// Port that allows the other nodes to connect to this node.
         /// </summary>
-        public Port InputPort;
+        public DSDefaultPort InputPort;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of end node's model.
         /// </summary>
-        public DSEndNodeModel()
+        public DSEndNodeModel(DSEndNode node)
         {
+            Node = node;
             dialogueOverHandleType_EnumContainer = new DialogueOverHandleTypeEnumContainer();
         }
     }

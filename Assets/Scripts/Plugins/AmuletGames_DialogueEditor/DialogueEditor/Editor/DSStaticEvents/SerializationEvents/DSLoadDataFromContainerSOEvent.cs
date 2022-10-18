@@ -24,12 +24,12 @@ namespace AG
         /// <summary>
         /// Register actions from different modules to the event.
         /// </summary>
-        public static void Register()
+        /// <param name="serializeHandler">Dialogue system's serialize handler module.</param>
+        /// <param name="headBar">Dialogue system's Headbar module.</param>
+        public static void Register(DSSerializeHandler serializeHandler, DSHeadBar headBar)
         {
-            DialogueEditorWindow dsWindow = DialogueEditorWindow.Instance;
-
-            mEvent += dsWindow.GraphView.SerializeHandler.LoadEdgesAndNodesAction;
-            mEvent += dsWindow.HeadBar.LoadLanguageAndTitleAction;
+            mEvent += serializeHandler.LoadEdgesAndNodesAction;
+            mEvent += headBar.LoadLanguageAndTitleAction;
         }
 
 

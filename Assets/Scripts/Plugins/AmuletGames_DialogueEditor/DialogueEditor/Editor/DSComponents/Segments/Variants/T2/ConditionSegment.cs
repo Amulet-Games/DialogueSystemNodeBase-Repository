@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using UnityEngine;
 
 namespace AG
 {
@@ -9,9 +10,10 @@ namespace AG
     public class ConditionSegment : DSSegmentFrameBase.T2<ConditionSegment, ConditionModifier>
     {
         /// <summary>
-        /// Enum container for how the user want to display the option when its condition is unmet.
+        /// Enum container for the users to choose how they want to display the option if its condition
+        /// <br>has not been unmet yet.</br>
         /// </summary>
-        UnmetOptionDisplayTypeEnumContainer unmetOptionDisplayType_EnumContainer;
+        [SerializeField] UnmetOptionDisplayTypeEnumContainer unmetOptionDisplayTypeEnumContainer;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -20,7 +22,7 @@ namespace AG
         /// </summary>
         public ConditionSegment()
         {
-            unmetOptionDisplayType_EnumContainer = new UnmetOptionDisplayTypeEnumContainer();
+            unmetOptionDisplayTypeEnumContainer = new UnmetOptionDisplayTypeEnumContainer();
             Modifiers = new List<ConditionModifier>();
         }
 
@@ -31,13 +33,13 @@ namespace AG
         {
             Box segmentTitleBox;
 
-            EnumField unmentOptionDisplayEnumField;
+            EnumField unmentOptionDisplayTypeEnumField;
 
             SetupBoxContainer();
 
             SetupSegmentTitle();
 
-            SetupUnmetOptionDisplayEnumField();
+            SetupUnmetOptionDisplayTypeEnumField();
 
             SetupSegmentExpandButton();
 
@@ -58,12 +60,20 @@ namespace AG
 
             void SetupSegmentTitle()
             {
-                segmentTitleBox = DSSegmentsMaker.AddSegmentTitle("Conditions", DSStylesConfig.Segment_TitleBox_Condition);
+                segmentTitleBox = DSSegmentsMaker.AddSegmentTitle
+                (
+                    DSStringsConfig.ConditionSegmentTitleLabelText,
+                    DSStylesConfig.Segment_TitleBox_Condition
+                );
             }
 
-            void SetupUnmetOptionDisplayEnumField()
+            void SetupUnmetOptionDisplayTypeEnumField()
             {
-                unmentOptionDisplayEnumField = DSEnumFieldsMaker.GetNewEnumField(unmetOptionDisplayType_EnumContainer, DSStylesConfig.Segment_Condition_UnmetOptionDisplayEnumField);
+                unmentOptionDisplayTypeEnumField = DSEnumFieldsMaker.GetNewEnumField
+                (
+                    unmetOptionDisplayTypeEnumContainer,
+                    DSStylesConfig.Segment_TitleEnum_EnumField
+                );
             }
 
             void SetupSegmentExpandButton()
@@ -76,7 +86,7 @@ namespace AG
                 MainBox.Add(segmentTitleBox);
                 MainBox.Add(ContentBox);
 
-                segmentTitleBox.Add(unmentOptionDisplayEnumField);
+                segmentTitleBox.Add(unmentOptionDisplayTypeEnumField);
                 segmentTitleBox.Add(ExpandButton);
             }
 
@@ -97,27 +107,82 @@ namespace AG
         /// <inheritdoc />
         public override void SaveSegmentValues(ConditionSegment source)
         {
-            // Save segment's isExpanded state
-            IsExpanded = source.IsExpanded;
+            SaveConditionDisplayType();
 
-            // Save segment's isHidden state
-            IsHidden = source.IsHidden;
+            SaveConditionModifiers();
 
-            // Save segment's unmet option display enum field
-            unmetOptionDisplayType_EnumContainer.SaveContainerValue(source.unmetOptionDisplayType_EnumContainer);
+            SaveBaseSegmentValue();
 
-            // Save segment's modifiers
-            List<ConditionModifier> sourceConditionModifiers = source.Modifiers;
-            for (int i = 0; i < sourceConditionModifiers.Count; i++)
+            void SaveConditionDisplayType()
             {
-                // Create a new modifier.
-                ConditionModifier newConditionModifier = new ConditionModifier();
+                // Save unmet option display type enum container.
+                unmetOptionDisplayTypeEnumContainer.SaveContainerValue(source.unmetOptionDisplayTypeEnumContainer);
+            }
 
-                // Save the source modifier's values to the new one.
-                newConditionModifier.SaveModifierValue(sourceConditionModifiers[i]);
+            void SaveConditionModifiers()
+            {
+                // Save condition modifiers.
+                List<ConditionModifier> sourceConditionModifiers = source.Modifiers;
+                for (int i = 0; i < sourceConditionModifiers.Count; i++)
+                {
+                    // Create a new modifier.
+                    ConditionModifier newConditionModifier = new ConditionModifier();
 
-                // Add the new modifier to internal list.
-                Modifiers.Add(newConditionModifier);
+                    // Save the source modifier's values to the new one.
+                    newConditionModifier.SaveModifierValue(sourceConditionModifiers[i]);
+
+                    // Add the new modifier to internal list.
+                    Modifiers.Add(newConditionModifier);
+                }
+            }
+
+            void SaveBaseSegmentValue()
+            {
+                // Save segment's isExpanded state
+                IsExpanded = source.IsExpanded;
+
+                // Save segment's isHidden state
+                IsHidden = source.IsHidden;
+            }
+        }
+
+
+        /// <inheritdoc />
+        public override void SaveMolderSegmentValues(ConditionSegment source)
+        {
+            SaveConditionDisplayType();
+
+            SaveConditionModifiers();
+
+            SaveBaseSegmentValue();
+
+            void SaveConditionDisplayType()
+            {
+                // Save unmet option display type enum container.
+                unmetOptionDisplayTypeEnumContainer.SaveContainerValue(source.unmetOptionDisplayTypeEnumContainer);
+            }
+
+            void SaveConditionModifiers()
+            {
+                // Save condition modifiers.
+                List<ConditionModifier> sourceConditionModifiers = source.Modifiers;
+                for (int i = 0; i < sourceConditionModifiers.Count; i++)
+                {
+                    // Create a new modifier.
+                    ConditionModifier newConditionModifier = new ConditionModifier();
+
+                    // Save the source modifier's values to the new one.
+                    newConditionModifier.SaveModifierValue(sourceConditionModifiers[i]);
+
+                    // Add the new modifier to internal list.
+                    Modifiers.Add(newConditionModifier);
+                }
+            }
+
+            void SaveBaseSegmentValue()
+            {
+                // Save segment's isHidden state
+                IsHidden = source.IsHidden;
             }
         }
 
@@ -134,7 +199,7 @@ namespace AG
             void LoadConditionDisplayType()
             {
                 // Load unmet option display type enum container.
-                unmetOptionDisplayType_EnumContainer.LoadContainerValue(source.unmetOptionDisplayType_EnumContainer);
+                unmetOptionDisplayTypeEnumContainer.LoadContainerValue(source.unmetOptionDisplayTypeEnumContainer);
             }
 
             void LoadConditionModifiers()
@@ -175,7 +240,7 @@ namespace AG
             void LoadConditionDisplayType()
             {
                 // Load unmet option display type enum container.
-                unmetOptionDisplayType_EnumContainer.LoadContainerValue(source.unmetOptionDisplayType_EnumContainer);
+                unmetOptionDisplayTypeEnumContainer.LoadContainerValue(source.unmetOptionDisplayTypeEnumContainer);
             }
 
             void LoadConditionModifiers()
@@ -205,9 +270,6 @@ namespace AG
 
             void LoadBaseSegmentValue()
             {
-                // Load isExpanded state.
-                LoadIsExpandedValue(source);
-
                 // Load isHidden state.
                 LoadIsHiddenValue(source);
             }

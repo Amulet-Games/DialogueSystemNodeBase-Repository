@@ -2,6 +2,9 @@ using System;
 
 namespace AG
 {
+    /// <summary>
+    /// A special node's UI style that combined the use of segment, modifier and content button together.
+    /// </summary>
     [Serializable]
     public class ConditionMolder : DSMolderBase<ConditionSegment, ConditionModifier>
     {

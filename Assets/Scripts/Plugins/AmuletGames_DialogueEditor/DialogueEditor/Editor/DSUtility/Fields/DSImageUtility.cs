@@ -10,9 +10,9 @@ namespace AG
         /// </summary>
         /// <param name="sprite">The sprite to use to overwrite the image element's image with.</param>
         /// <param name="image">The image element of which it's image will be overwrited.</param>
-        public static void UpdateImagePreview(Sprite sprite, Image imageElement)
+        public static void UpdateImagePreview(Sprite sprite, Image image)
         {
-            imageElement.image = sprite != null ? sprite.texture : null;
+            image.image = sprite != null ? sprite.texture : null;
         }
     }
 }

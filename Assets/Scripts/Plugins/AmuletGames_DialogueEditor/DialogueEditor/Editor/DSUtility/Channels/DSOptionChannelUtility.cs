@@ -5,12 +5,6 @@ namespace AG
 {
     public static class DSOptionChannelUtility
     {
-        /// <summary>
-        /// The channel's representing color.
-        /// </summary>
-        public static Color ChannelColor { get; } = new Color(0.404f, 0.706f, 0.663f);
-
-
         // ----------------------------- Set Connected Style Services -----------------------------
         /// <summary>
         /// Add the connected style to both entry and track port. And update their port label.
@@ -20,15 +14,15 @@ namespace AG
         {
             Port entryPort = optionChannelEdge.output;
             Port trackPort = optionChannelEdge.input;
-            int siblingIndex = entryPort.GetSiblingIndex();
+            string siblingIndexText = entryPort.GetSiblingIndexAdd(1).ToString();
 
             // Entry
-            entryPort.portName = DSStringUtility.New(DSStringsConfig.OptionChannelEntryLabelText, siblingIndex.ToString()).ToString();
-            entryPort.AddToClassList(DSStylesConfig.Channel_Entry_Port_Connected);
+            entryPort.portName = DSStringUtility.New(DSStringsConfig.OptionChannelEntryLabelText, siblingIndexText).ToString();
+            entryPort.AddToClassList(DSStylesConfig.Channel_Option_Entry_Port_Connected);
 
             // Track
-            trackPort.portName = DSStringUtility.New(DSStringsConfig.OptionChannelTrackLabelText, siblingIndex.ToString()).ToString();
-            trackPort.AddToClassList(DSStylesConfig.Channel_Track_Port_Connected);
+            trackPort.portName = DSStringUtility.New(DSStringsConfig.OptionChannelTrackLabelText, siblingIndexText).ToString();
+            trackPort.AddToClassList(DSStylesConfig.Channel_Option_Track_Port_Connected);
         }
 
 
@@ -40,7 +34,7 @@ namespace AG
         public static void ShowTrackConnectedStyle(Port trackPort, int siblingIndex)
         {
             trackPort.portName = DSStringUtility.New(DSStringsConfig.OptionChannelTrackLabelText, siblingIndex.ToString()).ToString();
-            trackPort.AddToClassList(DSStylesConfig.Channel_Track_Port_Connected);
+            trackPort.AddToClassList(DSStylesConfig.Channel_Option_Track_Port_Connected);
         }
 
 
@@ -52,7 +46,7 @@ namespace AG
         public static void ShowEntryConnectedStyle(Port entryPort, int siblingIndex)
         {
             entryPort.portName = DSStringUtility.New(DSStringsConfig.OptionChannelEntryLabelText, siblingIndex.ToString()).ToString();
-            entryPort.AddToClassList(DSStylesConfig.Channel_Entry_Port_Connected);
+            entryPort.AddToClassList(DSStylesConfig.Channel_Option_Entry_Port_Connected);
         }
 
 
@@ -62,7 +56,7 @@ namespace AG
         /// <param name="trackPort">The target track port to add the connected style to.</param>
         public static void AddToTrackConnectedClass(Port trackPort)
         {
-            trackPort.AddToClassList(DSStylesConfig.Channel_Track_Port_Connected);
+            trackPort.AddToClassList(DSStylesConfig.Channel_Option_Track_Port_Connected);
         }
 
 
@@ -72,7 +66,7 @@ namespace AG
         /// <param name="entryPort">The target entry port to add the connected style to.</param>
         public static void AddToEntryConnectedClass(Port entryPort)
         {
-            entryPort.AddToClassList(DSStylesConfig.Channel_Entry_Port_Connected);
+            entryPort.AddToClassList(DSStylesConfig.Channel_Option_Entry_Port_Connected);
         }
 
 
@@ -99,13 +93,28 @@ namespace AG
 
 
         /// <summary>
+        /// Remove the connected style to both entry and track port. And reset their port labels.
+        /// </summary>
+        /// <param name="trackPort">The track port to remove the connected style from.</param>
+        /// <param name="entryPort">The entry port to remove the connected style from.</param>
+        public static void HideBothConnectedStyle(Port trackPort, Port entryPort)
+        {
+            trackPort.portName = DSStringsConfig.OptionChannelEmptyTrackLabelText;
+            trackPort.RemoveFromClassList(DSStylesConfig.Channel_Option_Track_Port_Connected);
+
+            entryPort.portName = DSStringsConfig.OptionChannelEmptyEntryLabelText;
+            entryPort.RemoveFromClassList(DSStylesConfig.Channel_Option_Entry_Port_Connected);
+        }
+
+
+        /// <summary>
         /// Remove the connected style from option's track port. And reset its port label to input.
         /// </summary>
         /// <param name="trackPort">The track port to remove the connected style from.</param>
         public static void HideTrackConnectedStyle(Port trackPort)
         {
-            trackPort.portName = DSStringsConfig.OptionChannelTrackLabelTextEmpty;
-            trackPort.RemoveFromClassList(DSStylesConfig.Channel_Track_Port_Connected);
+            trackPort.portName = DSStringsConfig.OptionChannelEmptyTrackLabelText;
+            trackPort.RemoveFromClassList(DSStylesConfig.Channel_Option_Track_Port_Connected);
         }
 
 
@@ -115,8 +124,8 @@ namespace AG
         /// <param name="entryPort">The entry port to remove the connected style from.</param>
         public static void HideEntryConnectedStyle(Port entryPort)
         {
-            entryPort.portName = DSStringsConfig.OptionChannelEntryLabelTextEmpty;
-            entryPort.RemoveFromClassList(DSStylesConfig.Channel_Entry_Port_Connected);
+            entryPort.portName = DSStringsConfig.OptionChannelEmptyEntryLabelText;
+            entryPort.RemoveFromClassList(DSStylesConfig.Channel_Option_Entry_Port_Connected);
         }
     }
 }

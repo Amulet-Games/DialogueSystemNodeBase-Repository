@@ -47,11 +47,15 @@ namespace AG
         /// <summary>
         /// Create a new segment's expand button in it's title part.
         /// </summary>
-        /// <param name="SegmentExpandedAction">The action to invoke when expand button is pressed.</param>
+        /// <param name="segmentExpandedAction">The action to invoke when expand button is pressed.</param>
         /// <returns>A new button to show or hide the segment that it's connecting to.</returns>
-        public static Button AddSegmentExpandButton(Action SegmentExpandedAction)
-        {
-            return DSButtonsMaker.GetNewButtonNonAlert(DSAssetsConfig.SegmentExpandButtonIcon, SegmentExpandedAction, DSStylesConfig.Segment_ExpandSegment_Button);
-        }
+        public static Button AddSegmentExpandButton(Action segmentExpandedAction)
+            =>
+            DSButtonsMaker.GetNewButtonNonAlert
+            (
+                DSAssetsConfig.SegmentExpandButtonIcon,
+                segmentExpandedAction,
+                DSStylesConfig.Segment_ExpandSegment_Button
+            );
     }
 }

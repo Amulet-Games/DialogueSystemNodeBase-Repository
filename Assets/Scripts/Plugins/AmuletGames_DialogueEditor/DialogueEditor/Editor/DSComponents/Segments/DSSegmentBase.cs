@@ -30,17 +30,7 @@ namespace AG
         public abstract void SetupSegment(DSNodeBase node);
 
 
-        // ----------------------------- Change IsExpanded Status Services -----------------------------
-        /// <summary>
-        /// Switch the isExpanded status and resize itself to show the changes.
-        /// </summary>
-        protected void SwitchSegmentIsExpanded()
-        {
-            IsExpanded = !IsExpanded;
-            RefreshSegmentIsExpanded();
-        }
-
-
+        // ----------------------------- Serialization -----------------------------
         /// <summary>
         /// Load isExpanded status from another saved segment and resize itself to show the changes.
         /// </summary>
@@ -52,6 +42,18 @@ namespace AG
         }
 
 
+        // ----------------------------- Change IsExpanded Status Services -----------------------------
+        /// <summary>
+        /// Switch the isExpanded status and resize itself to show the changes.
+        /// </summary>
+        protected void SwitchSegmentIsExpanded()
+        {
+            IsExpanded = !IsExpanded;
+            RefreshSegmentIsExpanded();
+        }
+
+
+        // ----------------------------- Refresh IsExpanded Status Services -----------------------------
         /// <summary>
         /// Expand or shrink segment based on its current isExpanded status.
         /// </summary>

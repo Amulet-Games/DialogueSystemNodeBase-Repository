@@ -1,5 +1,6 @@
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace AG
@@ -13,7 +14,13 @@ namespace AG
         /// <param name="objectContainer">The container that'll combine and save the field as reference for other modules to use.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
         /// <returns>A new object field UIElement which connected to the TObject's object container.</returns>
-        public static ObjectField GetNewObjectField<TObject>(ObjectContainer<TObject> objectContainer, string USS01 = "") where TObject : Object
+        public static ObjectField GetNewObjectField<TObject>
+        (
+            DSObjectContainer<TObject> objectContainer,
+            Sprite fieldIcon,
+            string USS01 = ""
+        )
+            where TObject : Object
         {
             ObjectField objectField;
 
@@ -21,7 +28,11 @@ namespace AG
 
             ConnectFieldToContainer();
 
-            SetupContainerField();
+            SetFieldDetails();
+
+            ReplaceFieldIcon();
+
+            ShowEmptyStyle();
 
             RegisterFieldEvents();
 
@@ -40,14 +51,31 @@ namespace AG
                 objectContainer.ObjectField = objectField;
             }
 
-            void SetupContainerField()
+            void SetFieldDetails()
             {
-                objectContainer.SetupContainerField();
+                // Type of any object.
+                objectField.objectType = typeof(TObject);
+
+                // Don't allow scene references to be input to the field.
+                objectField.allowSceneObjects = false;
+
+                // Make sure the field's value matches the connecting container's.
+                objectField.value = objectContainer.Value;
+            }
+
+            void ReplaceFieldIcon()
+            {
+                DSObjectFieldUtility.ReplaceFieldsIcon(objectField, fieldIcon.texture);
+            }
+
+            void ShowEmptyStyle()
+            {
+                DSObjectFieldUtility.ShowEmptyStyle(objectField);
             }
 
             void RegisterFieldEvents()
             {
-                DSObjectFieldEventRegister.RegisterValueChangedEvent(objectContainer);
+                DSObjectFieldCallbacks.RegisterValueChangedEvent(objectContainer);
             }
 
             void AddFieldToStyleClass()
@@ -65,7 +93,13 @@ namespace AG
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
         /// <param name="USS02">The second style for the field to use when it appeared on the editor window.</param>
         /// <returns>A new object field UIElement which connected to the sprite container.</returns>
-        public static ObjectField GetNewSpriteField(SpriteContainer spriteContainer, Image imageElement, string USS01 = "", string USS02 = "")
+        public static ObjectField GetNewSpriteField
+        (
+            DSObjectContainer<Sprite> spriteContainer,
+            Image imageElement,
+            string USS01 = "",
+            string USS02 = ""
+        )
         {
             ObjectField objectField;
 
@@ -73,7 +107,9 @@ namespace AG
 
             ConnectFieldToContainer();
 
-            SetupContainerField();
+            SetFieldDetails();
+
+            ShowEmptyStyle();
 
             RegisterFieldEvents();
 
@@ -94,14 +130,27 @@ namespace AG
                 spriteContainer.ObjectField = objectField;
             }
 
-            void SetupContainerField()
+            void SetFieldDetails()
             {
-                spriteContainer.SetupContainerField();
+                // Type of any object.
+                objectField.objectType = typeof(Sprite);
+
+                // Don't allow scene references to be input to the field.
+                objectField.allowSceneObjects = false;
+
+                // Make sure the field's value matches the connecting container's.
+                objectField.value = spriteContainer.Value;
+            }
+
+            void ShowEmptyStyle()
+            {
+                DSObjectFieldUtility.ShowEmptyStyle(objectField);
             }
 
             void RegisterFieldEvents()
             {
-                DSSpriteFieldEventRegister.RegisterValueChangedEvent(spriteContainer, imageElement);
+                DSObjectFieldCallbacks.RegisterValueChangedEvent(spriteContainer);
+                DSSpriteFieldCallbacks.AddValueChangedListeners(spriteContainer, imageElement);
             }
 
             void UpdateImagePreview()

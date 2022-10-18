@@ -16,7 +16,13 @@ namespace AG
         /// <param name="contentButtonIconImageUSS01">The style for the content button icon image to use when it appeared on the editor window.</param>
         /// <param name="contentButtonClickedAction">The action to invoke when content button is pressed.</param>
         public static void GetNewContentButton
-            (Node node, string btnText, Sprite contentButtonIconSprite, string contentButtonIconImageUSS01, Action contentButtonClickedAction)
+        (
+            Node node,
+            string btnText,
+            Sprite contentButtonIconSprite,
+            string contentButtonIconImageUSS01,
+            Action contentButtonClickedAction
+        )
         {
             Box mainBox;
 
@@ -43,7 +49,7 @@ namespace AG
 
             void RegisterBoxAction()
             {
-                DSBoxEventRegister.DSBoxClickedAction(mainBox, contentButtonClickedAction);
+                DSBoxElementCallbacks.RegisterMouseDownEvent(mainBox, contentButtonClickedAction);
             }
 
             void SetupContentButtonLabel()

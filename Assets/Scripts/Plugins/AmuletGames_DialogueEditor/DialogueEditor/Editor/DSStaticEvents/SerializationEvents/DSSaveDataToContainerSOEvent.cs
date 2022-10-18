@@ -14,7 +14,7 @@ namespace AG
         /// <summary>
         /// Clear all the actions that have been registered to the event.
         /// </summary>
-        public static void ClearEvents()
+        public static void Clear()
         {
             mEvent = null;
         }
@@ -23,9 +23,10 @@ namespace AG
         /// <summary>
         /// Register actions from different modules to the event.
         /// </summary>
-        public static void RegisterEvent()
+        /// <param name="serializeHandler">Dialogue system's serialize handler module.</param>
+        public static void Register(DSSerializeHandler serializeHandler)
         {
-            mEvent += DialogueEditorWindow.Instance.GraphView.SerializeHandler.SaveEdgesAndNodesAction;
+            mEvent += serializeHandler.SaveEdgesAndNodesAction;
         }
 
 

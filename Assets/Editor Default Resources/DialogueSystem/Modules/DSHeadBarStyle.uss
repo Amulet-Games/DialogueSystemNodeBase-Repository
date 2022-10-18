@@ -1,4 +1,4 @@
-Toolbar {
+.headBar_MainBox {
 	background-color: #1D1D1E;
 	height: 60px;
 }

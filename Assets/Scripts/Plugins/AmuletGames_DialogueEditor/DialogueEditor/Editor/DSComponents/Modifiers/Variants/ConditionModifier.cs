@@ -10,19 +10,19 @@ namespace AG
         /// <summary>
         /// Text container for the name of condition.
         /// </summary>
-        public TextContainer ConditionName_TextContainer;
+        public TextContainer ConditionNameTextContainer;
 
 
         /// <summary>
         /// Float container for the value that is used for comparison.
         /// </summary>
-        public FloatContainer ComparisonNumber_FloatContainer;
+        public FloatContainer ComparisonNumberFloatContainer;
 
 
         /// <summary>
-        /// Enum container for how the user want to compare the value in this condition.
+        /// Enum container for how the users want to compare the value in this condition.
         /// </summary>
-        public ConditionComparisonTypeEnumContainer ComparisonType_EnumContainer;
+        public ConditionComparisonTypeEnumContainer ConditionComparisonTypeEnumContainer;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -31,9 +31,9 @@ namespace AG
         /// </summary>
         public ConditionModifier()
         {
-            ConditionName_TextContainer = new TextContainer();
-            ComparisonNumber_FloatContainer = new FloatContainer();
-            ComparisonType_EnumContainer = new ConditionComparisonTypeEnumContainer();
+            ConditionNameTextContainer = new TextContainer();
+            ComparisonNumberFloatContainer = new FloatContainer();
+            ConditionComparisonTypeEnumContainer = new ConditionComparisonTypeEnumContainer();
         }
 
 
@@ -41,17 +41,17 @@ namespace AG
         /// <inheritdoc />
         public override void SetupRootModifier(DSNodeBase node)
         {
-            TextField conditionNameField;
-            FloatField comparisonNumberField;
-            EnumField comparisonTypeField;
+            TextField conditionNameTextField;
+            FloatField comparisonNumberFloatField;
+            EnumField conditionComparisonTypeEnumField;
 
             SetupModifierBox();
 
-            SetupTextField();
+            SetupConditionNameTextField();
 
-            SetupFloatField();
+            SetupComparisonNumberFloatField();
 
-            SetupEnumField();
+            SetupConditionComparisonTypeEnumField();
 
             AddFieldsToBox();
 
@@ -65,26 +65,41 @@ namespace AG
                 MainBox.AddToClassList(DSStylesConfig.Modifier_Condition_Rooted_MainBox);
             }
 
-            void SetupTextField()
+            void SetupConditionNameTextField()
             {
-                conditionNameField = DSTextFieldsMaker.GetNewTextField(ConditionName_TextContainer, "Condition Name", DSStylesConfig.Modifier_Condition_Rooted_TextField);
+                conditionNameTextField = DSTextFieldsMaker.GetNewTextField
+                (
+                    ConditionNameTextContainer,
+                    false,
+                    DSStringsConfig.ConditionModifierConditionNamePlaceHolderText,
+                    DSStylesConfig.Modifier_Condition_Rooted_TextField
+                );
             }
 
-            void SetupFloatField()
+            void SetupComparisonNumberFloatField()
             {
-                comparisonNumberField = DSFloatFieldsMaker.GetNewFloatField(ComparisonNumber_FloatContainer, DSStylesConfig.Modifier_Condition_Rooted_FloatField);
+                comparisonNumberFloatField = DSFloatFieldsMaker.GetNewFloatField
+                (
+                    ComparisonNumberFloatContainer,
+                    DSStylesConfig.Modifier_Condition_Rooted_FloatField
+                );
             }
 
-            void SetupEnumField()
+            void SetupConditionComparisonTypeEnumField()
             {
-                comparisonTypeField = DSEnumFieldsMaker.GetNewEnumField(ComparisonType_EnumContainer, () => ToggleFloatFieldVisibleAction(), DSStylesConfig.Modifier_Condition_Rooted_EnumField);
+                conditionComparisonTypeEnumField = DSEnumFieldsMaker.GetNewEnumField
+                (
+                    ConditionComparisonTypeEnumContainer,
+                    EnumFieldValueChangedAction,
+                    DSStylesConfig.Modifier_Condition_Rooted_EnumField
+                );
             }
 
             void AddFieldsToBox()
             {
-                MainBox.Add(conditionNameField);
-                MainBox.Add(comparisonTypeField);
-                MainBox.Add(comparisonNumberField);
+                MainBox.Add(conditionNameTextField);
+                MainBox.Add(conditionComparisonTypeEnumField);
+                MainBox.Add(comparisonNumberFloatField);
             }
 
             void AddBoxToSegmentContentContainer()
@@ -94,20 +109,16 @@ namespace AG
 
             void ModifierPostSetupAction()
             {
-                ToggleFloatFieldVisibleAction();
+                ToggleConditionNumberDisplay();
             }
         }
 
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Hide modifier's float field when the condition compare type is set to boolean's type.
-        /// <para>EnumFieldValueChangedAction - Internal - ConditionCompareTypeEnumField</para>
+        /// Action that invoked when the modifier's enum field value is changed.
         /// </summary>
-        public void ToggleFloatFieldVisibleAction()
-        {
-            DSElementDisplayUtility.ToggleElementDisplay(ComparisonType_EnumContainer.IsBooleansComparisonType(), ComparisonNumber_FloatContainer.FloatField);
-        }
+        void EnumFieldValueChangedAction() => ToggleConditionNumberDisplay();
 
 
         // ----------------------------- Serialization -----------------------------
@@ -115,9 +126,9 @@ namespace AG
         public override void SaveModifierValue(ConditionModifier source)
         {
             // Calling each container's saving method in order.
-            ConditionName_TextContainer.SaveContainerValue(source.ConditionName_TextContainer);
-            ComparisonNumber_FloatContainer.SaveContainerValue(source.ComparisonNumber_FloatContainer);
-            ComparisonType_EnumContainer.SaveContainerValue(source.ComparisonType_EnumContainer);
+            ConditionNameTextContainer.SaveContainerValue(source.ConditionNameTextContainer);
+            ComparisonNumberFloatContainer.SaveContainerValue(source.ComparisonNumberFloatContainer);
+            ConditionComparisonTypeEnumContainer.SaveContainerValue(source.ConditionComparisonTypeEnumContainer);
         }
 
 
@@ -125,12 +136,26 @@ namespace AG
         public override void LoadModifierValue(ConditionModifier source)
         {
             // Calling each container's loading method in order.
-            ConditionName_TextContainer.LoadContainerValue(source.ConditionName_TextContainer);
-            ComparisonNumber_FloatContainer.LoadContainerValue(source.ComparisonNumber_FloatContainer);
-            ComparisonType_EnumContainer.LoadContainerValue(source.ComparisonType_EnumContainer);
-
+            ConditionNameTextContainer.LoadContainerValue(source.ConditionNameTextContainer);
+            ComparisonNumberFloatContainer.LoadContainerValue(source.ComparisonNumberFloatContainer);
+            ConditionComparisonTypeEnumContainer.LoadContainerValue(source.ConditionComparisonTypeEnumContainer);
+            
             // Manually invoke the ToggleFloatFieldVisible action
-            ToggleFloatFieldVisibleAction();
+            ToggleConditionNumberDisplay();
+        }
+
+
+        // ----------------------------- Toggle Condition Number Display Services -----------------------------
+        /// <summary>
+        /// Hide or show the modifier's condition number field when the condition compare type is set to "True" or "False".
+        /// </summary>
+        public void ToggleConditionNumberDisplay()
+        {
+            DSElementDisplayUtility.ToggleElementDisplay
+            (
+                ConditionComparisonTypeEnumContainer.IsTrueOrFalseComparisonType(),
+                ComparisonNumberFloatContainer.FloatField
+            );
         }
     }
 }

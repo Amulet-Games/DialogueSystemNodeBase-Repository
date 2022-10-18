@@ -10,7 +10,11 @@ namespace AG
         /// <param name="intContainer">The container that'll combine and save the field as reference for other modules to use.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
         /// <returns>A new int field UIElement which connected to the int container.</returns>
-        public static IntegerField GetNewIntegerField(IntContainer intContainer, string USS01 = "")
+        public static IntegerField GetNewIntegerField
+        (
+            IntContainer intContainer,
+            string USS01 = ""
+        )
         {
             IntegerField intField;
 
@@ -18,7 +22,7 @@ namespace AG
 
             ConnectFieldToContainer();
 
-            SetupContainerField();
+            SetFieldDetails();
 
             RegisterFieldEvents();
 
@@ -37,14 +41,14 @@ namespace AG
                 intContainer.IntField = intField;
             }
 
-            void SetupContainerField()
+            void SetFieldDetails()
             {
-                intContainer.SetupContainerField();
+                intField.SetValueWithoutNotify(intContainer.Value);
             }
 
             void RegisterFieldEvents()
             {
-                DSIntFieldEventRegister.RegisterValueChangedEvent(intContainer);
+                DSIntFieldCallbacks.RegisterValueChangedEvent(intContainer);
             }
 
             void AddFieldToStyleClass()

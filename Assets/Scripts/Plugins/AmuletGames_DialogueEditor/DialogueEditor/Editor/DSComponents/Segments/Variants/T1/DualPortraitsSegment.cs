@@ -1,6 +1,7 @@
 using System;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using UnityEngine;
 
 namespace AG
 {
@@ -22,13 +23,13 @@ namespace AG
         /// <summary>
         /// Object container for showing the left side character sprite in the preview image.
         /// </summary>
-        SpriteContainer left_SpriteContainer;
+        DSObjectContainer<Sprite> left_SpriteContainer;
 
 
         /// <summary>
         /// Object container for showing the right side character sprite in the preview image.
         /// </summary>
-        SpriteContainer right_SpriteContainer;
+        DSObjectContainer<Sprite> right_SpriteContainer;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -37,8 +38,8 @@ namespace AG
         /// </summary>
         public DualPortraitsSegment()
         {
-            left_SpriteContainer = new SpriteContainer();
-            right_SpriteContainer = new SpriteContainer();
+            left_SpriteContainer = new DSObjectContainer<Sprite>();
+            right_SpriteContainer = new DSObjectContainer<Sprite>();
         }
 
 
@@ -84,7 +85,11 @@ namespace AG
 
             void SetupSegmentTitle()
             {
-                segmentTitleBox = DSSegmentsMaker.AddSegmentTitle("Image", DSStylesConfig.Segment_TitleBox_DualPortraits);
+                segmentTitleBox = DSSegmentsMaker.AddSegmentTitle
+                (
+                    DSStringsConfig.DualPortraitsSegmentTitleLabelText,
+                    DSStylesConfig.Segment_TitleBox_DualPortraits
+                );
             }
 
             void SetupSegmentButton()
@@ -94,14 +99,36 @@ namespace AG
 
             void SetupImages()
             {
-                leftPortraitImage = DSImagesMaker.GetNewImage(DSStylesConfig.Segment_DualPortraits_Images, DSStylesConfig.Segment_DualPortraits_Image_L);
-                rightPortraitImage = DSImagesMaker.GetNewImage(DSStylesConfig.Segment_DualPortraits_Images, DSStylesConfig.Segment_DualPortraits_Image_R);
+                leftPortraitImage = DSImagesMaker.GetNewImage
+                (
+                    DSStylesConfig.Segment_DualPortraits_Images,
+                    DSStylesConfig.Segment_DualPortraits_Image_L
+                );
+
+                rightPortraitImage = DSImagesMaker.GetNewImage
+                (
+                    DSStylesConfig.Segment_DualPortraits_Images,
+                    DSStylesConfig.Segment_DualPortraits_Image_R
+                );
             }
 
             void SetupObjectFields()
             {
-                leftSpriteField = DSObjectFieldsMaker.GetNewSpriteField(left_SpriteContainer, leftPortraitImage, DSStylesConfig.Segment_DualPortraits_ObjectFields, DSStylesConfig.Segment_DualPortraits_ObjectField_L);
-                rightSpriteField = DSObjectFieldsMaker.GetNewSpriteField(right_SpriteContainer, rightPortraitImage, DSStylesConfig.Segment_DualPortraits_ObjectFields, DSStylesConfig.Segment_DualPortraits_ObjectField_R);
+                leftSpriteField = DSObjectFieldsMaker.GetNewSpriteField
+                (
+                    left_SpriteContainer,
+                    leftPortraitImage,
+                    DSStylesConfig.Segment_DualPortraits_ObjectFields,
+                    DSStylesConfig.Segment_DualPortraits_ObjectField_L
+                );
+
+                rightSpriteField = DSObjectFieldsMaker.GetNewSpriteField
+                (
+                    right_SpriteContainer,
+                    rightPortraitImage,
+                    DSStylesConfig.Segment_DualPortraits_ObjectFields,
+                    DSStylesConfig.Segment_DualPortraits_ObjectField_R
+                );
             }
 
             void AddFieldsToBox()
@@ -135,14 +162,14 @@ namespace AG
         /// <inheritdoc />
         public override void SaveSegmentValues(DualPortraitsSegment source)
         {
-            // Save segment's isExpanded state
-            IsExpanded = source.IsExpanded;
-
             // Save left side sprite container.
             left_SpriteContainer.SaveContainerValue(source.left_SpriteContainer);
 
             // Save right side sprite container. 
             right_SpriteContainer.SaveContainerValue(source.right_SpriteContainer);
+
+            // Save segment's isExpanded state
+            IsExpanded = source.IsExpanded;
         }
 
 

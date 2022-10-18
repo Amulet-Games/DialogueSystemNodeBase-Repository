@@ -1,0 +1,379 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 701948597a2eb684a8e5f3183a5c91ba, type: 3}
+  m_Name: Sample
+  m_EditorClassIdentifier: 
+  EdgeModelSavables:
+  - OutputPortGuid: a9eb15c1-72c6-48b4-9a53-2b6354c573cb
+    InputPortGuid: 278a122e-46e0-4882-981e-77dba503a503
+    OutputNodeGuid: 0f71d08f-403f-4667-be0a-bc8d579c93b4
+    InputNodeGuid: b58b291b-1265-489b-9a4c-6ab0675b3a24
+  - OutputPortGuid: cee52a54-a1fd-43d4-a7bf-15c69c8bee7e
+    InputPortGuid: e54db48a-8dad-44b1-ba1e-3d5879d6e6f4
+    OutputNodeGuid: 0f71d08f-403f-4667-be0a-bc8d579c93b4
+    InputNodeGuid: 683276a3-438a-4599-aa9f-c1b8f4c83f8e
+  - OutputPortGuid: c2409ed9-5a8c-408e-8a2d-691ae21a2077
+    InputPortGuid: 773e021c-22d6-4719-8646-947493d27387
+    OutputNodeGuid: e00d5cf8-56f6-45bf-a9e3-105bf1668aab
+    InputNodeGuid: 256730c9-3360-4cf6-8f46-c0d1abac4ed6
+  - OutputPortGuid: 1c68f12a-00c8-4890-86ef-894856f04ad7
+    InputPortGuid: 78c861b3-e9d4-44c7-a156-ae1cbecb3445
+    OutputNodeGuid: c6aa886e-8349-453f-8bce-c32f982a5998
+    InputNodeGuid: f99c7612-7178-4ceb-8fd3-69bd7ba249f9
+  - OutputPortGuid: 05b496d4-bb2d-4e91-85dc-069774bb595e
+    InputPortGuid: 1dba0bda-9249-49a6-b1f8-c1d620368e62
+    OutputNodeGuid: e3430859-d8e4-4d20-8d6d-eadc957015ce
+    InputNodeGuid: e00d5cf8-56f6-45bf-a9e3-105bf1668aab
+  - OutputPortGuid: 3b8b750a-c329-4dbc-9433-f9ce1ce6222a
+    InputPortGuid: cb7ed469-a70e-4110-bbb2-ea0b16a011b7
+    OutputNodeGuid: 3ec8e2b1-f179-4d96-89b3-9026817e7020
+    InputNodeGuid: a5c1a0ce-5db9-4d4f-ac55-7d13ba86efcd
+  - OutputPortGuid: 8252d399-71e8-42d7-9800-b373d35fea7d
+    InputPortGuid: 9b5cf947-46a2-4dc1-8c86-b03c8ef59da6
+    OutputNodeGuid: 683276a3-438a-4599-aa9f-c1b8f4c83f8e
+    InputNodeGuid: c6aa886e-8349-453f-8bce-c32f982a5998
+  - OutputPortGuid: 65ccfb22-e5d8-40cb-a3de-3f3e61891ea4
+    InputPortGuid: 99923e0c-707e-4b09-8f02-be80c26d096b
+    OutputNodeGuid: 683276a3-438a-4599-aa9f-c1b8f4c83f8e
+    InputNodeGuid: e3430859-d8e4-4d20-8d6d-eadc957015ce
+  - OutputPortGuid: 581ea1d0-08f5-4444-9753-4147db817e04
+    InputPortGuid: bc8fd81a-63b6-47c1-8c9b-2203c1965173
+    OutputNodeGuid: 6e1cbdd0-5a7c-40d6-bfb0-5bcb7df9ac77
+    InputNodeGuid: 8a3d6bb1-a3d2-4dd4-974d-de2690bc973e
+  - OutputPortGuid: 1ff3512f-6050-4720-a2c9-43b469212c19
+    InputPortGuid: 0e4b819c-a11d-44a1-a870-acd89aa0ad67
+    OutputNodeGuid: 8a3d6bb1-a3d2-4dd4-974d-de2690bc973e
+    InputNodeGuid: f622ee7d-514c-4002-b432-558711ed677a
+  - OutputPortGuid: 2d97386c-4bde-4eb1-b8f4-1d291a8b7a28
+    InputPortGuid: cc70d63c-e5c9-43f1-8e2e-3c8580f027f1
+    OutputNodeGuid: f622ee7d-514c-4002-b432-558711ed677a
+    InputNodeGuid: 0f71d08f-403f-4667-be0a-bc8d579c93b4
+  - OutputPortGuid: 01a773ea-8bfa-4925-8aa6-f18766d12938
+    InputPortGuid: c890a241-6efa-41d7-9a57-182657ee7fb0
+    OutputNodeGuid: 683276a3-438a-4599-aa9f-c1b8f4c83f8e
+    InputNodeGuid: 3ec8e2b1-f179-4d96-89b3-9026817e7020
+  BooleanModelSavables:
+  - SavedNodeGuid: 0f71d08f-403f-4667-be0a-bc8d579c93b4
+    SavedNodePosition: {x: 1848, y: -267.33334}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: Boolean
+    SavedInputPortGuid: cc70d63c-e5c9-43f1-8e2e-3c8580f027f1
+    SavedTrueOutputPortGuid: cee52a54-a1fd-43d4-a7bf-15c69c8bee7e
+    SavedFalseOutputPortGuid: a9eb15c1-72c6-48b4-9a53-2b6354c573cb
+    SavedTrueInputNodeGuid: 683276a3-438a-4599-aa9f-c1b8f4c83f8e
+    SavedFalseInputNodeGuid: b58b291b-1265-489b-9a4c-6ab0675b3a24
+    ConditionMolder:
+      MolderRootModifier:
+        ConditionNameTextContainer:
+          PlaceholderText: 
+          Value: 
+        ComparisonNumberFloatContainer:
+          Value: 0
+        ConditionComparisonTypeEnumContainer:
+          Value: 4
+      MolderSegment:
+        IsExpanded: 0
+        IsHidden: 0
+        Modifiers:
+        - ConditionNameTextContainer:
+            PlaceholderText: 
+            Value: 
+          ComparisonNumberFloatContainer:
+            Value: 0
+          ConditionComparisonTypeEnumContainer:
+            Value: 1
+        unmetOptionDisplayTypeEnumContainer:
+          Value: 1
+  - SavedNodeGuid: e00d5cf8-56f6-45bf-a9e3-105bf1668aab
+    SavedNodePosition: {x: 4128.6665, y: -232.66666}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: Boolean
+    SavedInputPortGuid: 1dba0bda-9249-49a6-b1f8-c1d620368e62
+    SavedTrueOutputPortGuid: c2409ed9-5a8c-408e-8a2d-691ae21a2077
+    SavedFalseOutputPortGuid: c8a2b3af-75e2-4b4d-9908-04cba35637f7
+    SavedTrueInputNodeGuid: 256730c9-3360-4cf6-8f46-c0d1abac4ed6
+    SavedFalseInputNodeGuid: 
+    ConditionMolder:
+      MolderRootModifier:
+        ConditionNameTextContainer:
+          PlaceholderText: 
+          Value: Condition Name
+        ComparisonNumberFloatContainer:
+          Value: 0
+        ConditionComparisonTypeEnumContainer:
+          Value: 5
+      MolderSegment:
+        IsExpanded: 0
+        IsHidden: 0
+        Modifiers:
+        - ConditionNameTextContainer:
+            PlaceholderText: 
+            Value: 
+          ComparisonNumberFloatContainer:
+            Value: 0
+          ConditionComparisonTypeEnumContainer:
+            Value: 5
+        unmetOptionDisplayTypeEnumContainer:
+          Value: 1
+  EndModelSavables:
+  - SavedNodeGuid: b58b291b-1265-489b-9a4c-6ab0675b3a24
+    SavedNodePosition: {x: 2530.6667, y: -138}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: End
+    SavedInputPortGuid: 278a122e-46e0-4882-981e-77dba503a503
+    dialogueOverHandleType_EnumContainer:
+      Value: 3
+  - SavedNodeGuid: f99c7612-7178-4ceb-8fd3-69bd7ba249f9
+    SavedNodePosition: {x: 4128.6665, y: -449.33334}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: End
+    SavedInputPortGuid: 78c861b3-e9d4-44c7-a156-ae1cbecb3445
+    dialogueOverHandleType_EnumContainer:
+      Value: 1
+  EventModelSavables:
+  - SavedNodeGuid: a5c1a0ce-5db9-4d4f-ac55-7d13ba86efcd
+    SavedNodePosition: {x: 4128.6665, y: 34.666664}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: Event
+    SavedInputPortGuid: cb7ed469-a70e-4110-bbb2-ea0b16a011b7
+    SavedOutputPortGuid: 510fc5a4-85cb-49a8-9ac6-ae44788b4e87
+    EventMolder:
+      MolderRootModifier:
+        EventObjectContainer:
+          Value: {fileID: 0}
+      MolderSegment:
+        IsExpanded: 0
+        IsHidden: 0
+        Modifiers:
+        - EventObjectContainer:
+            Value: {fileID: 0}
+  OptionModelSavables:
+  - SavedNodeGuid: c6aa886e-8349-453f-8bce-c32f982a5998
+    SavedNodePosition: {x: 3398.6667, y: -449.33334}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: Option
+    SavedOutputPortGuid: 1c68f12a-00c8-4890-86ef-894856f04ad7
+    OptionTrack:
+      SavedPortGuid: 9b5cf947-46a2-4dc1-8c86-b03c8ef59da6
+      SavedPortLabelText: Track 1
+    OptionHeaderTextContainer:
+      PlaceholderText: 
+      Value:
+      - LanguageType: 1
+        GenericsContent: 
+      - LanguageType: 2
+        GenericsContent: 
+      - LanguageType: 3
+        GenericsContent: 
+      - LanguageType: 4
+        GenericsContent: 
+      - LanguageType: 5
+        GenericsContent: 
+      - LanguageType: 6
+        GenericsContent: 
+    ConditionSegment:
+      IsExpanded: 1
+      IsHidden: 0
+      Modifiers:
+      - ConditionNameTextContainer:
+          PlaceholderText: 
+          Value: Condition Name
+        ComparisonNumberFloatContainer:
+          Value: 123
+        ConditionComparisonTypeEnumContainer:
+          Value: 4
+      unmetOptionDisplayTypeEnumContainer:
+        Value: 1
+  - SavedNodeGuid: e3430859-d8e4-4d20-8d6d-eadc957015ce
+    SavedNodePosition: {x: 3398.6667, y: -232.66666}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: Option
+    SavedOutputPortGuid: 05b496d4-bb2d-4e91-85dc-069774bb595e
+    OptionTrack:
+      SavedPortGuid: 99923e0c-707e-4b09-8f02-be80c26d096b
+      SavedPortLabelText: Track 2
+    OptionHeaderTextContainer:
+      PlaceholderText: 
+      Value:
+      - LanguageType: 1
+        GenericsContent: Talk to Jason.
+      - LanguageType: 2
+        GenericsContent: 
+      - LanguageType: 3
+        GenericsContent: 
+      - LanguageType: 4
+        GenericsContent: 
+      - LanguageType: 5
+        GenericsContent: 
+      - LanguageType: 6
+        GenericsContent: 
+    ConditionSegment:
+      IsExpanded: 1
+      IsHidden: 0
+      Modifiers:
+      - ConditionNameTextContainer:
+          PlaceholderText: 
+          Value: Conditions
+        ComparisonNumberFloatContainer:
+          Value: 0
+        ConditionComparisonTypeEnumContainer:
+          Value: 6
+      unmetOptionDisplayTypeEnumContainer:
+        Value: 1
+  - SavedNodeGuid: 3ec8e2b1-f179-4d96-89b3-9026817e7020
+    SavedNodePosition: {x: 3398.6667, y: -14}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: Option
+    SavedOutputPortGuid: 3b8b750a-c329-4dbc-9433-f9ce1ce6222a
+    OptionTrack:
+      SavedPortGuid: c890a241-6efa-41d7-9a57-182657ee7fb0
+      SavedPortLabelText: Track 3
+    OptionHeaderTextContainer:
+      PlaceholderText: 
+      Value:
+      - LanguageType: 1
+        GenericsContent: Textline
+      - LanguageType: 2
+        GenericsContent: 
+      - LanguageType: 3
+        GenericsContent: 
+      - LanguageType: 4
+        GenericsContent: 
+      - LanguageType: 5
+        GenericsContent: 
+      - LanguageType: 6
+        GenericsContent: 
+    ConditionSegment:
+      IsExpanded: 1
+      IsHidden: 0
+      Modifiers:
+      - ConditionNameTextContainer:
+          PlaceholderText: 
+          Value: Conditions
+        ComparisonNumberFloatContainer:
+          Value: 0
+        ConditionComparisonTypeEnumContainer:
+          Value: 1
+      unmetOptionDisplayTypeEnumContainer:
+        Value: 1
+  PathModelSavables:
+  - SavedNodeGuid: 683276a3-438a-4599-aa9f-c1b8f4c83f8e
+    SavedNodePosition: {x: 2746.6667, y: -268}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: Path
+    SavedInputPortGuid: e54db48a-8dad-44b1-ba1e-3d5879d6e6f4
+    OptionEntry:
+      SavedPortGuid: 8252d399-71e8-42d7-9800-b373d35fea7d
+      SavedPortLabelText: Option 1
+    OptionWindow:
+      windowEntries:
+      - SavedPortGuid: 65ccfb22-e5d8-40cb-a3de-3f3e61891ea4
+        SavedPortLabelText: Option 2
+      - SavedPortGuid: 01a773ea-8bfa-4925-8aa6-f18766d12938
+        SavedPortLabelText: Option 3
+      windowEntriesCount: 2
+    DualPortraitsSegment:
+      IsExpanded: 1
+    DialogueSegment:
+      IsExpanded: 1
+      textlineNumberTypeEnumContainer:
+        Value: 1
+      characterObjectContainer:
+        Value: {fileID: 0}
+      audioClipContainer:
+        Value:
+        - LanguageType: 1
+          GenericsContent: {fileID: 0}
+        - LanguageType: 2
+          GenericsContent: {fileID: 0}
+        - LanguageType: 3
+          GenericsContent: {fileID: 0}
+        - LanguageType: 4
+          GenericsContent: {fileID: 0}
+        - LanguageType: 5
+          GenericsContent: {fileID: 0}
+        - LanguageType: 6
+          GenericsContent: {fileID: 0}
+      firstTextlineTextContainer:
+        PlaceholderText: 
+        Value:
+        - LanguageType: 1
+          GenericsContent: 
+        - LanguageType: 2
+          GenericsContent: 
+        - LanguageType: 3
+          GenericsContent: 
+        - LanguageType: 4
+          GenericsContent: 
+        - LanguageType: 5
+          GenericsContent: 
+        - LanguageType: 6
+          GenericsContent: 
+      secondLineTriggerTypeEnumContainer:
+        Value: 0
+      secondTextlineTextContainer:
+        PlaceholderText: 
+        Value:
+        - LanguageType: 1
+          GenericsContent: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        - LanguageType: 2
+          GenericsContent: 
+        - LanguageType: 3
+          GenericsContent: 
+        - LanguageType: 4
+          GenericsContent: 
+        - LanguageType: 5
+          GenericsContent: 
+        - LanguageType: 6
+          GenericsContent: 
+      durationFloatContainer:
+        Value: 0
+      csvGuid: 30ac5ada-62b3-4b74-a067-2b85beb03bd9
+  StartModelSavables:
+  - SavedNodeGuid: 6e1cbdd0-5a7c-40d6-bfb0-5bcb7df9ac77
+    SavedNodePosition: {x: 584, y: -267.33334}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: Start
+    SavedOutputPortGuid: 581ea1d0-08f5-4444-9753-4147db817e04
+  StoryModelSavables:
+  - SavedNodeGuid: 8a3d6bb1-a3d2-4dd4-974d-de2690bc973e
+    SavedNodePosition: {x: 807.3333, y: -267.33334}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: Story
+    SavedInputPortGuid: bc8fd81a-63b6-47c1-8c9b-2203c1965173
+    SavedOutputPortGuid: 1ff3512f-6050-4720-a2c9-43b469212c19
+  - SavedNodeGuid: f622ee7d-514c-4002-b432-558711ed677a
+    SavedNodePosition: {x: 1318, y: -267.33334}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: Story
+    SavedInputPortGuid: 0e4b819c-a11d-44a1-a870-acd89aa0ad67
+    SavedOutputPortGuid: 2d97386c-4bde-4eb1-b8f4-1d291a8b7a28
+  - SavedNodeGuid: 256730c9-3360-4cf6-8f46-c0d1abac4ed6
+    SavedNodePosition: {x: 4802, y: -326}
+    NodeTitle_TextContainer:
+      PlaceholderText: 
+      Value: Story
+    SavedInputPortGuid: 773e021c-22d6-4719-8646-947493d27387
+    SavedOutputPortGuid: e450b74a-293c-4840-9206-37f25abd90de

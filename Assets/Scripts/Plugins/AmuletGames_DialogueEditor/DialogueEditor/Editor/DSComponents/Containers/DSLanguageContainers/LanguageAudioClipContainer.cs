@@ -22,22 +22,6 @@ namespace AG
 
 
         /// <summary>
-        /// Setup the object field internally after it's been connected to the newly created one.
-        /// </summary>
-        public void SetupContainerField()
-        {
-            ObjectField.objectType = typeof(AudioClip);
-            ObjectField.allowSceneObjects = false;
-
-            // Make sure the field's audio clip matches the current editor language's audio clip.
-            ObjectField.value = Value.Find(AudioClip_LG => AudioClip_LG.LanguageType == DSLanguagesConfig.SelectedLanguage).GenericsContent;
-
-            // Update field's empty style
-            DSObjectFieldUtility.ToggleEmptyStyle(ObjectField);
-        }
-
-
-        /// <summary>
         /// Overwrite the generics content of each language with the datas that from another container,
         /// and update the field with the current language's content to show the changes.
         /// </summary>

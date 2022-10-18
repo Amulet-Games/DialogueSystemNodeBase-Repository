@@ -19,15 +19,6 @@ namespace AG
 
 
         /// <summary>
-        /// Setup the int field internally after it's been connected to the newly created one.
-        /// </summary>
-        public void SetupContainerField()
-        {
-            IntField.SetValueWithoutNotify(Value);
-        }
-
-
-        /// <summary>
         /// Overwrite the value of this container with the value that's from the source,
         /// and update the field to show the changes.
         /// </summary>

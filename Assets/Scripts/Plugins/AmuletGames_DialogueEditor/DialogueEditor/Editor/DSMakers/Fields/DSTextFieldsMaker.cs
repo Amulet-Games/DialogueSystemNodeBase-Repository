@@ -1,3 +1,5 @@
+using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace AG
@@ -8,10 +10,17 @@ namespace AG
         /// Returns a new text input field.
         /// </summary>
         /// <param name="textContainer">The container that'll combine and save the field as reference for other modules to use.</param>
+        /// <param name="isMultiLine">Can the texts separate into multiple lines inside the text field when they too long to show in one line.</param>
         /// <param name="placeholderText">The text that'll show up in the field when there's no actual content within it.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
         /// <returns>A new text field UIElement which connected to the text container.</returns>
-        public static TextField GetNewTextField(TextContainer textContainer, string placeholderText, string USS01 = "")
+        public static TextField GetNewTextField
+        (
+            TextContainer textContainer,
+            bool isMultiLine,
+            string placeholderText,
+            string USS01 = ""
+        )
         {
             TextField textField;
 
@@ -19,9 +28,11 @@ namespace AG
 
             ConnectFieldToContainer();
 
+            SetFieldDetails();
+
             RegisterFieldEvents();
 
-            UpdatePlaceHolderText();
+            ShowEmptyStyle();
 
             AddFieldToStyleClass();
 
@@ -39,19 +50,31 @@ namespace AG
                 textContainer.TextField = textField;
             }
 
-            void RegisterFieldEvents()
+            void SetFieldDetails()
             {
-                DSTextFieldEventRegister.RegisterValueChangedEvent(textContainer);
-                DSTextFieldEventRegister.RegisterFieldFocusInEvent(textField);
-                DSTextFieldEventRegister.RegisterFieldFocusOutEvent(textContainer);
+                // Set multi-line property.
+                textField.multiline = isMultiLine;
+
+                // Set white space style,
+                // Normal means the texts'll auto line break when it reached the end of the input box,
+                // NoWarp means the texts are shown in one line even it's expanded outside the input box.
+                textField.style.whiteSpace = isMultiLine
+                    ? WhiteSpace.Normal
+                    : WhiteSpace.NoWrap;
+
+                // Set placeholder text.
+                textContainer.PlaceholderText = placeholderText;
             }
 
-            void UpdatePlaceHolderText()
+            void RegisterFieldEvents()
             {
-                // Save the placeholder texts to Container.
-                textContainer.PlaceholderText = placeholderText;
+                DSTextFieldCallbacks.RegisterValueChangedEvent(textContainer);
+                DSTextFieldCallbacks.RegisterFieldFocusInEvent(textField);
+                DSTextFieldCallbacks.RegisterFieldFocusOutEvent(textContainer);
+            }
 
-                // Setup field's placeholder.
+            void ShowEmptyStyle()
+            {
                 DSTextFieldUtility.ShowEmptyStyle(textContainer);
             }
 
@@ -69,7 +92,12 @@ namespace AG
         /// <param name="currentTitleText">The current title text of the node that the field is created upon on.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
         /// <returns>A new text field UIElement which connected to the text container.</returns>
-        public static TextField GetNewNodeTitleField(TextContainer textContainer, string currentTitleText, string USS01 = "")
+        public static TextField GetNewNodeTitleField
+        (
+            TextContainer textContainer,
+            string currentTitleText,
+            string USS01 = ""
+        )
         {
             TextField nodeTitleField;
 
@@ -111,14 +139,14 @@ namespace AG
 
                 // Set both the field and input base to block user's mouse interaction.
                 nodeTitleField.pickingMode = PickingMode.Ignore;
-                nodeTitleField.GetTextFieldInputBase().pickingMode = PickingMode.Ignore;
+                nodeTitleField.GetFieldInputBase().pickingMode = PickingMode.Ignore;
             }
 
             void RegisterFieldEvents()
             {
-                DSNodeTitleFieldEventRegister.RegisterNodeTitleChangedEvent(textContainer);
-                DSNodeTitleFieldEventRegister.RegisterNodeTitleFocusInEvent(textContainer);
-                DSNodeTitleFieldEventRegister.RegisterNodeTitleFocusOutEvent(textContainer);
+                DSNodeTitleFieldCallbacks.RegisterNodeTitleChangedEvent(textContainer);
+                DSNodeTitleFieldCallbacks.RegisterNodeTitleFocusInEvent(textContainer);
+                DSNodeTitleFieldCallbacks.RegisterNodeTitleFocusOutEvent(textContainer);
             }
 
             void AddFieldToStyleClass()
@@ -133,13 +161,15 @@ namespace AG
         /// </summary>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
         /// <returns>A new text field UIElement which doesn't connect to any containers and will stay on top in the editor window.</returns>
-        public static TextField GetNewGraphTitleField(string USS01 = "")
+        public static TextField GetNewGraphTitleField(DialogueEditorWindow dsWindow, string USS01 = "")
         {
             TextField graphTitleField;
 
             CreateGraphTitleField();
 
-            SetFieldIsDelayedToTrue();
+            SetFieldDetails();
+
+            BindGraphTitleField();
 
             RegisterFieldEvents();
 
@@ -152,16 +182,31 @@ namespace AG
                 graphTitleField = new TextField();
             }
 
-            void SetFieldIsDelayedToTrue()
+            void SetFieldDetails()
             {
                 // Field will not invoke OnValueChangedCallback unless user has pressed enter.
                 graphTitleField.isDelayed = true;
             }
 
+            void BindGraphTitleField()
+            {
+                // Create the serialized object from the DSContainerSO.
+                SerializedObject so = new SerializedObject(dsWindow.DSContainerSO);
+
+                // Bind object to the field directly.
+                graphTitleField.Bind(so);
+
+                // Setup callback action when the bound serialized object's value has changed.
+                graphTitleField.TrackSerializedObjectValue(so, so =>
+                {
+                    graphTitleField.SetValueWithoutNotify(so.targetObject.name);
+                });
+            }
+
             void RegisterFieldEvents()
             {
-                DSGraphTitleFieldEventRegister.RegisterGraphTitleChangedEvent(graphTitleField);
-                DSGraphTitleFieldEventRegister.RegisterGraphTitleFocusOutEvent(graphTitleField);
+                DSGraphTitleFieldCallbacks.RegisterGraphTitleChangedEvent(graphTitleField);
+                DSGraphTitleFieldCallbacks.RegisterGraphTitleFocusOutEvent(graphTitleField);
             }
 
             void AddFieldToStyleClass()

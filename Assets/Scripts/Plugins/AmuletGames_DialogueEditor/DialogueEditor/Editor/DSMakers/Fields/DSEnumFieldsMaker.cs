@@ -12,7 +12,11 @@ namespace AG
         /// <param name="enumContainer">The container that'll combine and save the field as reference for other modules to use.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
         /// <returns>A new enum field UIElement which connected to the enum container.</returns>
-        public static EnumField GetNewEnumField(EnumContainerBase enumContainer, string USS01 = "")
+        public static EnumField GetNewEnumField
+        (
+            EnumContainerBase enumContainer,
+            string USS01 = ""
+        )
         {
             EnumField enumField;
 
@@ -20,9 +24,7 @@ namespace AG
 
             ConnectFieldToContainer();
 
-            SetupContainerField();
-
-            SetFieldsPickingModeToPosition();
+            SetFieldDetails();
 
             RegisterFieldEvents();
 
@@ -41,19 +43,18 @@ namespace AG
                 enumContainer.EnumField = enumField;
             }
 
-            void SetupContainerField()
+            void SetFieldDetails()
             {
-                enumContainer.SetupContainerField();
-            }
+                // Initialize the field's underlying type.
+                enumContainer.InitFieldValue();
 
-            void SetFieldsPickingModeToPosition()
-            {
+                // Set the field's picking mode to be position so that it reacts to users' cursor.
                 enumField.ElementAt(0).pickingMode = PickingMode.Position;
             }
 
             void RegisterFieldEvents()
             {
-                DSEnumFieldEventRegister.RegisterValueChangedEvent(enumContainer);
+                DSEnumFieldCallbacks.RegisterValueChangedEvent(enumContainer);
             }
 
             void AddFieldToStyleClass()
@@ -73,7 +74,12 @@ namespace AG
         /// <param name="enumFieldValueChangedAction">The action to invoke when changed the field's selected type.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
         /// <returns>A new enum field UIElement which connected to the enum container.</returns>
-        public static EnumField GetNewEnumField(EnumContainerBase enumContainer, Action enumFieldValueChangedAction, string USS01 = "")
+        public static EnumField GetNewEnumField
+        (
+            EnumContainerBase enumContainer,
+            Action enumFieldValueChangedAction,
+            string USS01 = ""
+        )
         {
             EnumField enumField;
 
@@ -81,9 +87,7 @@ namespace AG
 
             ConnectFieldToContainer();
 
-            SetupContainerField();
-
-            SetFieldsPickingModeToPosition();
+            SetFieldDetails();
 
             RegisterFieldEvents();
 
@@ -102,19 +106,18 @@ namespace AG
                 enumContainer.EnumField = enumField;
             }
 
-            void SetupContainerField()
+            void SetFieldDetails()
             {
-                enumContainer.SetupContainerField();
-            }
+                // Initialize the field's underlying type.
+                enumContainer.InitFieldValue();
 
-            void SetFieldsPickingModeToPosition()
-            {
+                // Set the field's picking mode to be position so that it reacts to users' cursor.
                 enumField.ElementAt(0).pickingMode = PickingMode.Position;
             }
 
             void RegisterFieldEvents()
             {
-                DSEnumFieldEventRegister.RegisterValueChangedEvent(enumContainer, enumFieldValueChangedAction);
+                DSEnumFieldCallbacks.RegisterValueChangedEvent(enumContainer, enumFieldValueChangedAction);
             }
 
             void AddFieldToStyleClass()

@@ -13,13 +13,13 @@ namespace AG
         /// <summary>
         /// A special type of output ports that'll only connect with the input port which has the same channel type.
         /// </summary>
-        [SerializeField] List<DSOptionEntry> optionEntries;
+        [SerializeField] List<DSOptionWindowEntry> windowEntries;
 
 
         /// <summary>
-        /// The internal option enteries list number count.
+        /// The internal window entry list count.
         /// </summary>
-        int optionEntriesCount;
+        [SerializeField] int windowEntriesCount;
 
 
         /// <summary>
@@ -35,20 +35,21 @@ namespace AG
         /// <param name="node">Node of which this window is going to be connect upon.</param>
         public DSOptionWindow(DSNodeBase node)
         {
-            optionEntries = new List<DSOptionEntry>();
-            optionEntriesCount = 0;
             this.node = node;
+
+            windowEntries = new List<DSOptionWindowEntry>();
+            windowEntriesCount = 0;
         }
 
 
         // ----------------------------- Makers -----------------------------
         /// <summary>
-        /// Create all the UIElements that are needed in this entry.
+        /// Create all the UIElements that are needed for the window entry.
         /// </summary>
-        /// <param name="source">The another entry that has the values to this new entry to load from if it's provided.</param>
-        public void GetNewOptionEntry(DSOptionEntry source)
+        /// <param name="source">The another window entry that has the values to this new window entry to load from if it's provided.</param>
+        public void GetNewOptionWindowEntry(DSOptionWindowEntry source)
         {
-            DSOptionEntry newEntry;
+            DSOptionWindowEntry newWindowEntry;
 
             Button entryRemoveButton;
 
@@ -60,41 +61,41 @@ namespace AG
 
             AddButtonToEntryPort();
 
-            EntryAddedAction();
+            WindowEntryAddedAction();
 
             void CreateNewEntry()
             {
-                newEntry = source != null ? new DSOptionEntry(source) : new DSOptionEntry(null);
+                newWindowEntry = new DSOptionWindowEntry(source);
             }
 
             void GetNewEntryPort()
             {
-                newEntry.Port = DSOptionPort.GetNewEntryPort<Edge>(newEntry, node.GraphView);
+                newWindowEntry.Port = DSOptionPort.GetNewWindowEntryPort<Edge>(newWindowEntry, node.GraphView);
             }
 
             void SetupEntryRemoveButton()
             {
-                entryRemoveButton = DSChannelsMaker.GetNewEntryRemoveButton(() => RemoveOptionEntryAction(newEntry));
+                entryRemoveButton = DSChannelsMaker.GetNewEntryRemoveButton(() => RemoveWindowEntryAction(newWindowEntry));
             }
 
             void AddButtonToEntryPort()
             {
-                newEntry.Port.contentContainer.Add(entryRemoveButton);
+                newWindowEntry.Port.contentContainer.Add(entryRemoveButton);
             }
 
-            void EntryAddedAction()
+            void WindowEntryAddedAction()
             {
-                // Add the entry port to the node output container.
-                node.outputContainer.Add(newEntry.Port);
+                // Add the window entry port to the node output container.
+                node.outputContainer.Add(newWindowEntry.Port);
 
-                // Add entry to the internal list.
-                optionEntries.Add(newEntry);
+                // Add window entry to the internal list.
+                windowEntries.Add(newWindowEntry);
 
-                // Increase the internal entry list count.
-                optionEntriesCount++;
+                // Increase the internal window entry list count.
+                windowEntriesCount++;
 
-                // Assign new style for node ouput container for the first entry added.
-                if (optionEntriesCount == 1)
+                // Assign new style for the node ouput container when added the first window entry.
+                if (windowEntriesCount == 1)
                 {
                     ShowWindowStyle();
                 }
@@ -104,10 +105,10 @@ namespace AG
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Remove the option entry from the window as well as deleting all its children UI elements.
+        /// Remove the window entry from the window as well as deleting all its children UI elements.
         /// </summary>
-        /// <param name="entry">The selected port that is going to be deleted.</param>
-        void RemoveOptionEntryAction(DSOptionEntry entry)
+        /// <param name="windowEntry">The selected port that is going to be deleted.</param>
+        void RemoveWindowEntryAction(DSOptionWindowEntry windowEntry)
         {
             RemoveEntryFromList();
 
@@ -119,57 +120,57 @@ namespace AG
 
             void RemoveEntryFromList()
             {
-                // Remove the entry from this window's internal list.
-                optionEntries.Remove(entry);
+                // Remove the window entry from the internal list.
+                windowEntries.Remove(windowEntry);
 
-                // Decrement the internal option entries count.
-                optionEntriesCount--;
+                // Decrement the internal window entries count.
+                windowEntriesCount--;
             }
 
             void RemoveEntryPortFromNode()
             {
-                DSOptionPort entryPort = entry.Port;
+                DSOptionPort port = windowEntry.Port;
 
-                // If the entry is in connecting state.
-                if (entryPort.connected)
+                // If the window entry port is in connecting state.
+                if (port.connected)
                 {
                     // Hide opponent track port connected style.
-                    DSOptionChannelUtility.HideTrackConnectedStyle(entryPort.PreviousOpponentPort);
+                    DSOptionChannelUtility.HideTrackConnectedStyle(port.PreviousOpponentPort);
 
-                    // Disconnect the entry and track ports.
-                    node.GraphView.DisconnectPorts(entryPort);
+                    // Disconnect the window entry and track ports.
+                    node.GraphView.DisconnectPort(port);
                 }
 
-                // Remove the entry port from the node output container.
-                node.DeletePortElement(entryPort, N_PortContainerType.Output);
+                // Remove the window entry port from the node output container.
+                node.DeletePortElement(port, Direction.Output);
             }
 
             void UpdateEntriesLabel()
             {
-                // Check the internal entry list
-                for (int i = 0; i < optionEntriesCount; i++)
+                // Check the internal window entry list
+                for (int i = 0; i < windowEntriesCount; i++)
                 {
-                    // If any of the entries is connecting to a track.
-                    if (optionEntries[i].Port.connected)
+                    // If any of the window entries is connecting to a track.
+                    if (windowEntries[i].Port.connected)
                     {
-                        // Entry port reference.
-                        Port entryPort = optionEntries[i].Port;
+                        // Local window entry port reference.
+                        Port port = windowEntries[i].Port;
 
-                        // Get their sibiling index.
-                        int sibilingIndex = entryPort.GetSiblingIndex();
+                        // Get its sibiling index in string.
+                        string sibilingIndexText = port.GetSiblingIndexAdd(1).ToString();
 
                         // Set their label with the index.
-                        entryPort.portName = DSStringUtility.New(DSStringsConfig.OptionChannelEntryLabelText, sibilingIndex.ToString()).ToString();
+                        port.portName = DSStringUtility.New(DSStringsConfig.OptionChannelEntryLabelText, sibilingIndexText).ToString();
 
                         // Set the track port's label with the index.
-                        entryPort.connections.First().input.portName = DSStringUtility.New(DSStringsConfig.OptionChannelTrackLabelText, sibilingIndex.ToString()).ToString();
+                        port.connections.First().input.portName = DSStringUtility.New(DSStringsConfig.OptionChannelTrackLabelText, sibilingIndexText).ToString();
                     }
                 }
             }
 
             void UpdateWindowStyle()
             {
-                if (optionEntriesCount == 0)
+                if (windowEntriesCount == 0)
                 {
                     HideWindowStyle();
                 }
@@ -178,24 +179,24 @@ namespace AG
 
 
         /// <summary>
-        /// Check if entry port is connected and if so add connected style to it, 
-        /// <br>and register MouseMoveEvent to the edge that were created during the loading phrase.</br>
+        /// Action that called when the connecting node is created manually by the opponent
+        /// <br>option channel track's connector.</br>
         /// </summary>
-        public void PostLoadingSetupElementsAction()
+        public void NodeManualCreatedAction()
         {
-            for (int i = 0; i < optionEntriesCount; i++)
-            {
-                optionEntries[i].PostLoadingSetup();
-            }
+            // Create a new window entry within the window.
+            GetNewOptionWindowEntry(null);
+
+            // Refresh Ports Layout.
+            node.RefreshPorts();
         }
 
 
         /// <summary>
-        /// Action that called when a node that has the option window is added on the graph by users,
-        /// <br>when a option channel edge was dropped in a empty space on the graph.</br>
+        /// Action that a few frames after the "NodeManualCreatedAction".</br>
         /// </summary>
-        /// <param name="connectorTrackPort">Reference of the option track that started the node creation.</param>
-        public void NodeManualCreationSetupAction(Port connectorTrackPort)
+        /// <param name="connectorTrackPort">Reference of the opponent option track that started the node creation.</param>
+        public void NodeDelayedManualCreatedAction(Port connectorTrackPort)
         {
             AlignConnectorPosition();
 
@@ -207,7 +208,7 @@ namespace AG
                 Vector2 result = node.localBound.position;
 
                 // Height offset.
-                result.y -= (node.titleContainer.worldBound.height + optionEntries[0].Port.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / node.GraphView.scale;
+                result.y -= (node.titleContainer.worldBound.height + windowEntries[0].Port.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / node.GraphView.scale;
 
                 // Width offset.
                 result.x -= node.localBound.width;
@@ -226,96 +227,147 @@ namespace AG
                 if (optionPort.connected)
                 {
                     DSOptionChannelUtility.HideEntryConnectedStyle(optionPort.PreviousOpponentPort);
-                    node.GraphView.DisconnectPorts(optionPort);
+                    node.GraphView.DisconnectPort(optionPort);
                 }
 
-                // Create an new edge.
-                Edge edge = new Edge()
-                {
-                    output = optionEntries[0].Port,
-                    input = optionPort
-                };
-
-                // Connect to the edge.
-                optionEntries[0].Port.Connect(edge);
-                optionPort.Connect(edge);
-
-                // Add the edge to the graph.
-                node.GraphView.Add(edge);
+                // Connect the ports and retrieve the new edge.
+                Edge edge = node.GraphView.ConnectPorts(windowEntries[0].Port, optionPort);
 
                 // Add connected styles.
-                if (optionPort.connected)
-                {
-                    DSOptionChannelUtility.ShowEntryConnectedStyle(optionEntries[0].Port, optionEntries[0].Port.GetSiblingIndex());
-                }
-                else
-                {
-                    DSOptionChannelUtility.ShowBothConnectedStyle(edge);
-                }
+                DSOptionChannelUtility.ShowBothConnectedStyle(edge);
 
-                // Register MouseMoveEvent to the edge.
-                DSChannelEdgeEventRegister.RegisterMouseEvents(edge);
+                // Register channel edge callbacks to the edge.
+                DSChannelEdgeCallbacks.Register(edge);
 
                 // Register previous opponent port references.
-                optionEntries[0].Port.PreviousOpponentPort = optionPort;
-                optionPort.PreviousOpponentPort = optionEntries[0].Port;
+                windowEntries[0].Port.PreviousOpponentPort = optionPort;
+                optionPort.PreviousOpponentPort = windowEntries[0].Port;
+            }
+        }
+
+
+        /// <summary>
+        /// Action that called when the connecting node is going to be deleted by users from the graph manually.
+        /// </summary>
+        public void NodePreManualRemovedAction()
+        {
+            for (int i = 0; i < windowEntriesCount; i++)
+            {
+                // If the window entry port is connecting to an opponent track, disconnect them.
+                if (windowEntries[i].Port.connected)
+                {
+                    windowEntries[i].DisconnectPort(node);
+                }
             }
         }
 
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save entry's value from another previously created entry.
+        /// Save window entry's value from another previously created window entry.
         /// </summary>
-        /// <param name="source">The entry to save its values from.</param>
+        /// <param name="source">The window entry to save its values from.</param>
         public void SaveWindowValues(DSOptionWindow source)
         {
-            List<DSOptionEntry> sourceOptionEntries = source.optionEntries;
+            List<DSOptionWindowEntry> sourceOptionEntries = source.windowEntries;
 
-            // Save channel's entries
-            for (int i = 0; i < source.optionEntriesCount; i++)
+            // Save internal window's entries
+            for (int i = 0; i < source.windowEntriesCount; i++)
             {
-                DSOptionEntry newOptionEntry = new DSOptionEntry();
-                newOptionEntry.SaveEntryValues(sourceOptionEntries[i]);
-                optionEntries.Add(newOptionEntry);
+                DSOptionWindowEntry newWindowEntry = new DSOptionWindowEntry();
+                newWindowEntry.SaveEntryValues(sourceOptionEntries[i]);
+                windowEntries.Add(newWindowEntry);
             }
 
-            // Save the internal option entries' count.
-            optionEntriesCount = source.optionEntriesCount;
+            // Save the internal window entries' count.
+            windowEntriesCount = source.windowEntriesCount;
         }
 
 
         /// <summary>
-        /// Load entry's value from another previously saved entry.
+        /// Load window entry's value from another previously saved window entry.
         /// </summary>
-        /// <param name="source">The entry to load its values from.</param>
+        /// <param name="source">The window entry to load its values from.</param>
         public void LoadWindowValues(DSOptionWindow source)
         {
-            List<DSOptionEntry> sourceOptionEntries = source.optionEntries;
-            for (int i = 0; i < source.optionEntriesCount; i++)
+            List<DSOptionWindowEntry> sourceOptionEntries = source.windowEntries;
+
+            // Load from the source window's entries
+            for (int i = 0; i < source.windowEntriesCount; i++)
             {
-                GetNewOptionEntry(sourceOptionEntries[i]);
+                GetNewOptionWindowEntry(sourceOptionEntries[i]);
             }
         }
 
 
-        // ----------------------------- Check Window's Opponent Connected Style -----------------------------
+        // ----------------------------- Add Contextual Menu Items Services -----------------------------
         /// <summary>
-        /// Check the current window's entries connecting status and if they're not connecting,
-        /// <br>hide their previous opponent track's connected style.</br>
+        /// Methods for adding menu items to the connecting node's contextual menu, 
+        /// <br>items are added at the end of the current item list.</br>
+        /// <para>This method is used inside the node's DSNodeFrameBase class, "BuildContextualManu" method.</para>
         /// </summary>
-        public void CheckOpponentTracksConnectedStyle()
+        /// <param name="evt">The event holding the connecting node's contextual menu to populate.</param>
+        public void AddContextualManuItems(ContextualMenuPopulateEvent evt)
         {
-            for (int i = 0; i < optionEntriesCount; i++)
+            AppendDisconnectEntryPortsAction();
+
+            void AppendDisconnectEntryPortsAction()
             {
-                optionEntries[i].CheckOpponentConnectedStyle();
+                for (int i = 0; i < windowEntriesCount; i++)
+                {
+                    // Cache a local reference for windowEntries[i]
+                    DSOptionWindowEntry windowEntry = windowEntries[i];
+
+                    if (windowEntry.Port.connected)
+                    {
+                        evt.menu.AppendAction
+                        (
+                            // Menu item name.
+                            DSStringUtility.New(DSStringsConfig.DisconnectEntryPortLabelText, windowEntry.Port.portName).ToString(),
+                            // Menu item action.
+                            actionEvent => windowEntry.DisconnectPort(node),
+                            // Menu item status.
+                            DropdownMenuAction.Status.Normal
+                        );
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Is there any window entry port connecting to the other option tracks within the window?
+        /// </summary>
+        /// <returns>Returns true if any of the window entry ports within the window are connecting.</returns>
+        public bool IsWindowEntriesConnected()
+        {
+            for (int i = 0; i < windowEntriesCount; i++)
+            {
+                if (windowEntries[i].Port.connected) return true;
+            }
+
+            return false;
+        }
+
+
+        /// <summary>
+        /// Disconnect all the window entry ports within the window if they're connecting.
+        /// </summary>
+        public void DisconnectEntryPorts()
+        {
+            for (int i = 0; i < windowEntriesCount; i++)
+            {
+                if (windowEntries[i].Port.connected)
+                {
+                    windowEntries[i].DisconnectPort(node);
+                }
             }
         }
 
 
         // ----------------------------- Set Window Style Tasks -----------------------------
         /// <summary>
-        /// Assign the window style for the node output container when it has one option entry.
+        /// Assign the window style for the node output container when it has one window entry.
         /// </summary>
         void ShowWindowStyle()
         {
@@ -324,7 +376,7 @@ namespace AG
 
 
         /// <summary>
-        /// Hide the assigned window style from the node output container when it has no option entry.
+        /// Hide the assigned window style from the node output container when it has no window entry.
         /// </summary>
         void HideWindowStyle()
         {

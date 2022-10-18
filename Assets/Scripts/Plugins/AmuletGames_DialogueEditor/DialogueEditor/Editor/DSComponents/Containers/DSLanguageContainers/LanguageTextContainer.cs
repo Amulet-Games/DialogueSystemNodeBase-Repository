@@ -78,7 +78,9 @@ namespace AG
         public void ReloadLanguage()
         {
             // Find the string that it's language matches the one that we want to change to.
-            string matchedLanguageText = Value.Find(String_LG => String_LG.LanguageType == DSLanguagesConfig.SelectedLanguage).GenericsContent;
+            string matchedLanguageText = Value
+               .Find(String_LG => String_LG.LanguageType == DSLanguagesConfig.SelectedLanguage)
+               .GenericsContent;
 
             // Register a new value change callback to ensure that,
             // any new value given for this field will update to the correct language generics.

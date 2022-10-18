@@ -1,37 +1,49 @@
-using UnityEngine;
-
 namespace AG
 {
-    public class DSOptionNode : DSNodeFrameBase<DSOptionNodePresenter, DSOptionNodeSerializer, DSOptionNodeCallback>
+    public class DSOptionNode : DSNodeFrameBase<
+        DSOptionNode,
+        DSOptionNodeModel,
+        DSOptionNodePresenter,
+        DSOptionNodeSerializer,
+        DSOptionNodeCallback
+    >
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Construtor of option node.
         /// </summary>
-        /// <param name="position">The vector2 position on the graph where this node'll be placed to once it's created.</param>
-        /// <param name="graphView">Dialogue system's graph view module.</param>
-        public DSOptionNode(Vector2 position, DSGraphView graphView) 
-            : base(DSStringsConfig.OptionNodeDefaultLabelText, position, graphView)
+        /// <param name="creationDetails">Reference of the dialogue system's node creation details.</param>
+        /// <param name="graphView">Reference of the dialogue system's graph view module.</param>
+        public DSOptionNode(DSNodeCreationDetails creationDetails, DSGraphView graphView) 
+            : base(DSStringsConfig.OptionNodeDefaultLabelText, graphView)
         {
             SetupFrameFields();
+
+            SetupCreationDetail();
 
             CreateNodeElements();
 
             CreateNodePorts();
 
-            RefreshPortsLayout();
+            RefreshPorts();
 
             AddStyleSheet();
 
-            InvokeInitalizedAction();
+            InitializedAction();
+
+            ManualCreatedAction();
 
             void SetupFrameFields()
             {
-                DSOptionNodeModel model = new DSOptionNodeModel();
+                DSOptionNodeModel model = new DSOptionNodeModel(this);
 
                 Presenter = new DSOptionNodePresenter(this, model);
-                Serializer = new DSOptionNodeSerializer(this, model);
-                Callback = new DSOptionNodeCallback(this, model);
+                Callback = new DSOptionNodeCallback(this, model, new DSOptionNodeSerializer(this, model));
+            }
+
+            void SetupCreationDetail()
+            {
+                Callback.Details = creationDetails;
             }
 
             void CreateNodeElements()
@@ -46,15 +58,62 @@ namespace AG
 
             void AddStyleSheet()
             {
-                styleSheets.Add(DSStylesConfig.OptionNodeStyle);
+                styleSheets.Add(DSStylesConfig.DSOptionNodeStyle);
                 styleSheets.Add(DSStylesConfig.DSModifiersStyle);
                 styleSheets.Add(DSStylesConfig.DSSegmentsStyle);
                 styleSheets.Add(DSStylesConfig.DSIntegrantsStyle);
             }
+        }
 
-            void InvokeInitalizedAction()
+
+        // ----------------------------- Constructor (Load) -----------------------------
+        /// <summary>
+        /// Construtor of option node.
+        /// Specifically used when the node is created by the previously saved model.
+        /// </summary>
+        /// <param name="sourceModel">Reference of the previous saved node's model.</param>
+        /// <param name="graphView">Reference of the dialogue system's graph view module.</param>
+        public DSOptionNode(DSOptionNodeModel sourceModel, DSGraphView graphView)
+            : base(DSStringsConfig.OptionNodeDefaultLabelText, graphView)
+        {
+            SetupFrameFields();
+
+            CreateNodeElements();
+
+            CreateNodePorts();
+
+            RefreshPorts();
+
+            AddStyleSheet();
+
+            InitializedAction();
+
+            LoadCreatedAction(sourceModel);
+
+            void SetupFrameFields()
             {
-                Callback.InitializedAction();
+                DSOptionNodeModel model = new DSOptionNodeModel(this);
+
+                Presenter = new DSOptionNodePresenter(this, model);
+                Callback = new DSOptionNodeCallback(this, model, new DSOptionNodeSerializer(this, model));
+            }
+
+            void CreateNodeElements()
+            {
+                Presenter.CreateNodeElements();
+            }
+
+            void CreateNodePorts()
+            {
+                Presenter.CreateNodePorts();
+            }
+
+            void AddStyleSheet()
+            {
+                styleSheets.Add(DSStylesConfig.DSOptionNodeStyle);
+                styleSheets.Add(DSStylesConfig.DSModifiersStyle);
+                styleSheets.Add(DSStylesConfig.DSSegmentsStyle);
+                styleSheets.Add(DSStylesConfig.DSIntegrantsStyle);
             }
         }
     }

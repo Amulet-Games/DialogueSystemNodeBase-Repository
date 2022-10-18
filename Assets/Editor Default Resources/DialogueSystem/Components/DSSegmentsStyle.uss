@@ -43,15 +43,53 @@
 	background-color: rgba(115, 115, 115, 1);
 }
 
+
+/*< -------------------- Title Enum Field -------------------- >*/
+.segment_TitleEnum_EnumField {
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 0px;
+	padding: 0px 6px 0px 0px;
+}
+
+.segment_TitleEnum_EnumField
+.unity-enum-field__input {
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 3px 0px 8px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_TitleEnum_EnumField
+.unity-enum-field__input
+.unity-enum-field__text {
+
+	font-size: 14px;
+}
+
+.segment_TitleEnum_EnumField
+.unity-enum-field__input
+.unity-enum-field__arrow {
+
+	height: 19px;
+	width: 19px;
+	
+	/* top - right - bottom - left */
+	margin: 0.5px 0px 0px 3.5px;
+	padding: 0px 0px 0px 0px;
+}
+
+
 /*< -------------------- Image Preview -------------------- >*/
 .segment_TitleBox_DualPortraits {
 
-	background-color: #DD4E50;
+	background-color: rgba(116, 150, 98, 1);
 }
 
 .segment_DualPortraits_ContentBox {
 
-	background-color: rgba(40, 40, 40, 1);
+	background-color: rgba(51, 51, 51, 1);
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 0px;
@@ -61,15 +99,15 @@
 
 .segment_DualPortraits_ImagesBox {
 
-	background-color: rgba(58, 58, 58, 1);
+	background-color: rgba(55, 55, 55, 1);
 	border-color: rgba(14, 14, 14, 0.667);
 
 	flex-direction: row;
 
 	/* top - right - bottom - left */
-	margin: 6.5px 2.5px 5px 2.5px;
+	margin: 6.5px 3.5px 7.5px 3.5px;
 	padding: 0px 0px 0px 0px;
-	border-width: 2.5px 2.5px 2.5px 2.5px;
+	border-width: 1.75px 1.75px 1.75px 1.75px;
 	border-radius: 4px 4px 4px 4px;
 }
 
@@ -94,6 +132,8 @@
 }
 
 .segment_DualPortraits_ObjectFieldsBox {
+
+	background-color: rgba(0, 0, 0, 0);
 
 	height: auto;
 
@@ -154,7 +194,8 @@
 	max-width: 20px;
 
 	/* top - right - bottom - left */
-	margin: 2px 0px 2px 2px;
+	margin: 0px 0px 0px 4px;
+	padding: 0px 0px 0px 3px;
 }
 
 /*<-- Object field's displaying label's style. -->*/
@@ -168,66 +209,82 @@
 .unity-object-field-display 
 .unity-object-field-display__label {
 
-	font-size: 15px;
+	font-size: 16px;
 
 	align-self: Center;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 4px;
-	padding: 0px 1px 0px 0px;
-}
-
-/*< -------------------- Speaker Name -------------------- >*/
-.segment_TitleBox_SpeakerName {
-
-	background-color: #6A71D5;
-}
-
-.segment_SpeakerName_ContentBox {
-
-	/* top - right - bottom - left */
-	border-width: 0px 0px 0px 0px;
-}
-
-.segment_SpeakerName_TextField {
-
-	height: 30px;
-	width: auto;
-
-	white-space: normal;
-
-	/* top - right - bottom - left */
-	margin: 0px 0px 0.5px 0px;
+	margin: 1px 6px 0px 6px;
 	padding: 0px 0px 0px 0px;
 }
 
-.segment_SpeakerName_TextField 
-.unity-text-field__input {
+
+/*< -------------------- Dialogue -------------------- >*/
+.segment_TitleBox_Dialogue {
+
+	background-color: rgba(52, 124, 143, 1);
+}
+
+.segment_Dialogue_ContentBox {
+
+	background-color: rgba(40, 40, 40, 1);
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Character_ObjectField {
+
+	min-height: 30px;
+	height: auto;
+	width: auto;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Character_ObjectField
+.unity-object-field__input {
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Character_ObjectField 
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label {
 
 	font-size: 16px;
 
-	/* top - right - bottom - left */
-	margin: 0px 0px 0px 0px;
-	padding: 1px 7px 0px 12px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 0px 0px 0px 0px;
-}
-
-.segment_SpeakerName_TextField 
-.unity-text-field__input:focus {
+	align-self: Center;
 
 	/* top - right - bottom - left */
-	border-width: 2px 2px 2px 2px;
-	border-radius: 0px 0px 0px 0px;
+	margin: 3px 0px 0px 6px;
+	padding: 0px 1px 0px 0px;
 }
 
-/*< -------------------- Textline -------------------- >*/
-.segment_TitleBox_Textline {
+.segment_Dialogue_Character_ObjectField 
+.node_ObjectField_Icon {
 
-	background-color: #D569C8;
+	height: 21px;
+	width: 21px;
+
+	/* top - right - bottom - left */
+	margin: 6px 0px 0px 0px;
+	padding: 0px 0px 0px 2px;
 }
 
-.segment_Textline_ContentBox {
+.segment_Dialogue_AudioClip_ObjectField {
+
+	min-height: 30px;
+	height: auto;
+	width: auto;
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 0px;
@@ -235,8 +292,32 @@
 	border-width: 0px 0px 0px 0px;
 }
 
-.segment_Textline_TextField {
+.segment_Dialogue_AudioClip_ObjectField
+.unity-object-field__input {
 	
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_AudioClip_ObjectField 
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label {
+
+	font-size: 16px;
+
+	align-self: Center;
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 6px;
+	padding: 0px 1px 0px 0px;
+}
+
+.segment_Dialogue_First_Textline_TextField {
+	
+	border-color: rgba(58, 121, 187, 1);
+
 	min-height: 30px;
 	height: auto;
 	width: auto;
@@ -249,29 +330,44 @@
 	border-width: 0px 0px 0px 0px;
 }
 
-.segment_Textline_TextField 
-.unity-text-field__input {
-	
-	font-size: 16px;
-
-	/* top - right - bottom - left */
-	padding: 4px 7px 0px 12px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 0px 0px 0px 0px;
-}
-
-.segment_Textline_TextField 
-.unity-text-field__input:focus {
+.segment_Dialogue_First_Textline_TextField:focus {
 
 	/* top - right - bottom - left */
 	border-width: 2px 2px 2px 2px;
 	border-radius: 0px 0px 0px 0px;
 }
 
-.segment_Textline_ObjectField {
+.segment_Dialogue_First_Textline_TextField
+.unity-text-field__input {
+	
+	font-size: 16px;
 
-	height: 30px;
-	width: auto;
+	align-self: flex-start;
+
+	/* top - right - bottom - left */
+	margin: 4px 0px 3px 6px;
+	padding: 0px 7px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_First_Textline_TextField:focus 
+.unity-text-field__input {
+	
+	/* top - right - bottom - left */
+	margin: 2px 0px 3px 6px;
+}
+
+.segment_Dialogue_First_Textline_TextField:focus
+.node_TextField_Icon {
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px -2px;
+}
+
+.segment_Dialogue_SecondContentBox {
+
+	background-color: rgba(40, 40, 40, 1);
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 0px;
@@ -279,49 +375,221 @@
 	border-width: 0px 0px 0px 0px;
 }
 
-.segment_Textline_ObjectField
-.unity-object-field__input {
+.segment_Dialogue_SecondLineTriggerType_CellBox {
 	
+	background-color: rgba(51, 51, 51, 1);
+
+	height: 30px;
+	width: auto;
+	
+	align-items: stretch;
+	align-self: stretch;
+
+	flex-direction: row;
+	flex-grow: 0;
+	flex-shrink: 0;
+
 	/* top - right - bottom - left */
+	margin: 3px 5px 0px 0px;
+	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;
 }
 
-/*<-- Object field's displaying image's style. -->*/
-.segment_Textline_ObjectField 
-.unity-object-field__input 
-.unity-object-field-display 
-.unity-object-field-display__icon {
+.segment_Dialogue_SecondLineTriggerType_Label {
 
-	height: 17px;
-	width: 21px;
-	max-height: 17px;
-	max-width: 21px;
+	font-size: 15px;
 
-	/* top - right - bottom - left */
-	margin: 4.5px 0px 0px 0px;
-	padding: 0px 0px 0px 2px;
-}
-
-/*<-- Object field's displaying label's style. -->*/
-.segment_Textline_ObjectField 
-.unity-object-field__input 
-.unity-object-field-display 
-.unity-object-field-display__label {
-
-	font-size: 16px;
+	-unity-font-style: bold;
 
 	align-self: Center;
 
 	/* top - right - bottom - left */
-	margin: 4px 0px 0px 4px;
-	padding: 0px 1px 0px 0px;
+	margin: 0px 0px 1px 15px;
+	padding: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_SecondLineTriggerType_EnumField {
+
+	height: auto;
+	width: auto;
+
+	align-self: auto;
+	
+	flex-direction: row;
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 160px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 3px 3px 3px 3px;
+}
+
+.segment_Dialogue_SecondLineTriggerType_EnumField
+.unity-enum-field__input {
+
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 4px 0px 8px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_SecondLineTriggerType_EnumField
+.unity-enum-field__input
+.unity-enum-field__text {
+
+	font-size: 16px;
+
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 1px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_SecondLineTriggerType_EnumField
+.unity-enum-field__input
+.unity-enum-field__arrow {
+
+	height: 20px;
+	width: 20px;
+	
+	/* top - right - bottom - left */
+	margin: 0px 2px 1px 3.5px;
+	padding: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Duration_CellBox {
+
+	background-color: rgba(51, 51, 51, 1);
+
+	height: 30px;
+	width: auto;
+	
+	align-items: stretch;
+	align-self: stretch;
+
+	flex-direction: row;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 4px 5px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Duration_Label {
+
+	font-size: 15px;
+
+	-unity-font-style: bold;
+
+	align-self: Center;
+
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 1px 0px 0px 15px;
+	padding: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Duration_FloatField {
+
+	align-self: flex-end;
+
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 3px 83px 3px 190px;
+	padding: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Duration_FloatField
+.unity-float-field__input {
+
+	background-color: rgba(42, 42, 42, 1);
+
+	font-size: 16px;
+
+	align-items: stretch;
+	align-self: auto;
+
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 1px 0px 0px 8px;
+	border-width: 1px 1px 1px 1px;
+	border-radius: 3px 3px 3px 3px;
+}
+
+.segment_Dialogue_Second_Textline_TextField {
+
+	border-color: rgba(58, 121, 187, 1);
+
+	min-height: 30px;
+	height: auto;
+	width: auto;
+
+	white-space: normal;
+
+	/* top - right - bottom - left */
+	margin: 3px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Second_Textline_TextField:focus {
+
+	/* top - right - bottom - left */
+	border-width: 2px 2px 2px 2px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Second_Textline_TextField
+.unity-text-field__input {
+	
+	font-size: 16px;
+
+	align-self: flex-start;
+
+	/* top - right - bottom - left */
+	margin: 4px 0px 3px 6px;
+	padding: 0px 7px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Second_Textline_TextField:focus
+.unity-text-field__input {
+	
+	/* top - right - bottom - left */
+	margin: 2px 0px 3px 6px;
+}
+
+.segment_Dialogue_Second_Textline_TextField:focus
+.node_TextField_Icon {
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px -2px;
 }
 
 /*< -------------------- Conditions -------------------- >*/
 .segment_TitleBox_Condition {
 
-	background-color: rgba(200, 132, 40, 1);
+	background-color: rgba(180, 138, 103, 1);
 }
 
 .segment_Condition_MainBox {
@@ -332,6 +600,8 @@
 
 .segment_Condition_ContentBox {
 
+	overflow: hidden;
+
 	flex-direction: column;
 	flex-grow: 0;
 	flex-shrink: 0;
@@ -341,45 +611,11 @@
 	border-width: 0px 0px 0px 0px;
 }
 
-.segment_Condition_UnmetOptionDisplayEnumField {
-
-	/* top - right - bottom - left */
-	margin: 2px 0px 0px 0px;
-	padding: 0px 6px 0px 0px;
-}
-
-.segment_Condition_UnmetOptionDisplayEnumField
-.unity-enum-field__input {
-
-	/* top - right - bottom - left */
-	margin: 0px 0px 0px 0px;
-	padding: 0px 3px 0px 8px;
-	border-width: 0px 0px 0px 0px;
-}
-
-.segment_Condition_UnmetOptionDisplayEnumField
-.unity-enum-field__input
-.unity-enum-field__text {
-
-	font-size: 14px;
-}
-
-.segment_Condition_UnmetOptionDisplayEnumField
-.unity-enum-field__input
-.unity-enum-field__arrow {
-
-	height: 19px;
-	width: 19px;
-	
-	/* top - right - bottom - left */
-	margin: 0.5px 0px 0px 3.5px;
-	padding: 0px 0px 0px 0px;
-}
 
 /*< -------------------- Event -------------------- >*/
 .segment_TitleBox_Event {
 
-	background-color: rgba(173, 71, 105, 1);
+	background-color: rgba(170, 82, 97, 1);
 }
 
 .segment_Event_MainBox {

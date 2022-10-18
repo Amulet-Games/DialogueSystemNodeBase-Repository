@@ -13,11 +13,11 @@ namespace AG
         {
             if (shouldHide)
             {
-                elementToHide.AddToClassList(DSStylesConfig.DSGlobal_Display_None);
+                elementToHide.AddToClassList(DSStylesConfig.Global_Display_None);
             }
             else
             {
-                elementToHide.RemoveFromClassList(DSStylesConfig.DSGlobal_Display_None);
+                elementToHide.RemoveFromClassList(DSStylesConfig.Global_Display_None);
             }
         }
 
@@ -28,7 +28,7 @@ namespace AG
         /// <param name="elementToShow">The visual element to show.</param>
         public static void ShowElement(VisualElement elementToShow)
         {
-            elementToShow.RemoveFromClassList(DSStylesConfig.DSGlobal_Display_None);
+            elementToShow.RemoveFromClassList(DSStylesConfig.Global_Display_None);
         }
 
 
@@ -38,7 +38,7 @@ namespace AG
         /// <param name="elementToHide">The visual element to hide.</param>
         public static void HideElement(VisualElement elementToHide)
         {
-            elementToHide.AddToClassList(DSStylesConfig.DSGlobal_Display_None);
+            elementToHide.AddToClassList(DSStylesConfig.Global_Display_None);
         }
     }
 }

@@ -22,54 +22,44 @@ namespace AG
         /// <returns>A new copy of selected end node model.</returns>
         public DSEndNodeModel SaveNode()
         {
-            DSEndNodeModel newNodeModel;
+            DSEndNodeModel target = new DSEndNodeModel(Node);
 
-            CreateNewEndNodeModel();
-
-            SaveBaseDetails(newNodeModel);
+            SaveBaseValues(target);
 
             SavePortsGuid();
 
-            SaveGraphEndHandleType();
+            SaveDialogueOverHandleType();
 
-            return newNodeModel;
-
-            void CreateNewEndNodeModel()
-            {
-                newNodeModel = new DSEndNodeModel();
-            }
+            return target;
 
             void SavePortsGuid()
             {
-                newNodeModel.SavedInputPortGuid = Model.InputPort.name;
+                target.SavedInputPortGuid = Model.InputPort.name;
             }
 
-            void SaveGraphEndHandleType()
+            void SaveDialogueOverHandleType()
             {
-                newNodeModel.dialogueOverHandleType_EnumContainer.SaveContainerValue(Model.dialogueOverHandleType_EnumContainer);
+                target.dialogueOverHandleType_EnumContainer.SaveContainerValue(Model.dialogueOverHandleType_EnumContainer);
             }
         }
 
 
         // ----------------------------- Load -----------------------------
-        /// <summary>
-        /// Create a new end node to the graph with the data loaded from the source.
-        /// </summary>
-        /// <param name="source">The node's model of which this node is going to load from.</param>
-        public void LoadNode(DSEndNodeModel source)
+        /// <inheritdoc />
+        public override void LoadNode(DSEndNodeModel source)
         {
-            LoadBaseDetails(source);
+            LoadBaseValues(source);
 
             LoadPortsGuid();
 
-            LoadGraphEndHandleType();
+            LoadDialogueOverHandleType();
 
             void LoadPortsGuid()
             {
                 Model.InputPort.name = source.SavedInputPortGuid;
             }
 
-            void LoadGraphEndHandleType()
+            void LoadDialogueOverHandleType()
             {
                 Model.dialogueOverHandleType_EnumContainer.LoadContainerValue(source.dialogueOverHandleType_EnumContainer);
             }

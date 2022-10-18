@@ -1,9 +1,0 @@
-.dsGlobal_Display_None
-{
-	display: none;
-}
-
-.dsGlobal_Visible_Hidden
-{
-	visibility: hidden;
-}

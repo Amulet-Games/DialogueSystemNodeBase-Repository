@@ -10,10 +10,19 @@ namespace AG
         /// Returns a new text input field which can change it's input content base on the current selected language in the editor window.
         /// </summary>
         /// <param name="LG_Texts_Container">The container that'll combine and save the field as reference for other modules to use.</param>
+        /// <param name="fieldIcon">The sprite that'll show up next to the input area.</param>
+        /// <param name="isMultiLine">Can the texts separate into multiple lines inside the text field when they too long to show in one line.</param>
         /// <param name="placeholderText">The text that'll show up in the field when there's no actual content within it.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
         /// <returns>A new text field UIElement which connected to the language text container.</returns>
-        public static TextField GetNewLanguageField_Text(LanguageTextContainer LG_Texts_Container, string placeholderText, string USS01 = "")
+        public static TextField GetNewTextField
+        (
+            LanguageTextContainer LG_Texts_Container,
+            Sprite fieldIcon,
+            bool isMultiLine,
+            string placeholderText,
+            string USS01 = ""
+        )
         {
             TextField textField;
 
@@ -23,9 +32,13 @@ namespace AG
 
             ConnectFieldToContainer();
 
-            RegisterFieldEvents();
+            SetFieldDetails();
 
-            UpdatePlaceHolderText();
+            SetupFieldIcon();
+
+            ShowEmptyStyle();
+
+            RegisterFieldEvents();
 
             AddFieldToStyleClass();
 
@@ -50,16 +63,6 @@ namespace AG
             void CreateTextField()
             {
                 textField = new TextField("");
-
-                // TextField is set to be multi-line.
-                textField.multiline = true;
-
-                // At the moment, we can just set the TextField's value to whatever the string content that matched the editor language.
-                textField.SetValueWithoutNotify(LG_Texts_Container.Value.Find
-                (
-                    String_LG => String_LG.LanguageType == DSLanguagesConfig.SelectedLanguage
-                )
-                .GenericsContent);
             }
 
             void ConnectFieldToContainer()
@@ -68,20 +71,45 @@ namespace AG
                 LG_Texts_Container.TextField = textField;
             }
 
-            void RegisterFieldEvents()
+            void SetFieldDetails()
             {
-                DSLanguageTextFieldEventRegister.RegisterValueChangedEvent(LG_Texts_Container);
-                DSLanguageTextFieldEventRegister.RegisterFieldFocusInEvent(textField);
-                DSLanguageTextFieldEventRegister.RegisterFieldFocusOutEvent(LG_Texts_Container);
+                // Set multi-line property.
+                textField.multiline = isMultiLine;
+
+                // Set white space style,
+                // Normal means the texts'll auto line break when it reached the end of the input box,
+                // NoWarp means the texts are shown in one line even it's expanded outside the input box.
+                textField.style.whiteSpace = isMultiLine 
+                    ? WhiteSpace.Normal
+                    : WhiteSpace.NoWrap;
+
+                // At the moment, we can just set the TextField's value to whatever the string content that matched the editor language.
+                textField.SetValueWithoutNotify
+                (
+                    LG_Texts_Container.Value
+                    .Find(String_LG => String_LG.LanguageType == DSLanguagesConfig.SelectedLanguage)
+                    .GenericsContent
+                );
+
+                // Set placeholder text.
+                LG_Texts_Container.PlaceholderText = placeholderText;
             }
 
-            void UpdatePlaceHolderText()
+            void SetupFieldIcon()
             {
-                // Save the placeholder texts to Container.
-                LG_Texts_Container.PlaceholderText = placeholderText;
+                DSTextFieldUtility.AddFieldIcon(textField, fieldIcon.texture);
+            }
 
-                // Update text field's placeholder. 
+            void ShowEmptyStyle()
+            {
                 DSTextFieldUtility.ShowEmptyStyle(LG_Texts_Container);
+            }
+
+            void RegisterFieldEvents()
+            {
+                DSLanguageTextFieldCallbacks.RegisterValueChangedEvent(LG_Texts_Container);
+                DSLanguageTextFieldCallbacks.RegisterFieldFocusInEvent(textField);
+                DSLanguageTextFieldCallbacks.RegisterFieldFocusOutEvent(LG_Texts_Container);
             }
 
             void AddFieldToStyleClass()
@@ -96,9 +124,15 @@ namespace AG
         /// <br>and can change it's input content base on the current selected language in the editor window.</br>
         /// </summary>
         /// <param name="LG_AudioClip_Container">The container that'll combine and save the field as reference for other modules to use.</param>
+        /// <param name="fieldIcon">The sprite that'll show up next to the input area.</param>
         /// <param name="USS01">The first style for the field to use when it appeared on the editor window.</param>
         /// <returns>A new object field UIElement which connected to the language audio clip container.</returns>
-        public static ObjectField GetNewLanguageField_AudioClip(LanguageAudioClipContainer LG_AudioClip_Container, string USS01 = "")
+        public static ObjectField GetNewAudioClipField
+        (
+            LanguageAudioClipContainer LG_AudioClip_Container,
+            Sprite fieldIcon,
+            string USS01 = ""
+        )
         {
             ObjectField objectField;
 
@@ -108,7 +142,11 @@ namespace AG
 
             ConnectFieldToContainer();
 
-            SetupContainerField();
+            SetFieldDetails();
+
+            ReplaceFieldIcon();
+
+            ToggleEmptyStyle();
 
             RegisterFieldEvents();
 
@@ -144,16 +182,38 @@ namespace AG
                 LG_AudioClip_Container.ObjectField = objectField;
             }
 
-            void SetupContainerField()
+            void SetFieldDetails()
             {
-                LG_AudioClip_Container.SetupContainerField();
+                // Type of any audio clip.
+                objectField.objectType = typeof(AudioClip);
+
+                // Don't allow scene references to be input to the field.
+                objectField.allowSceneObjects = false;
+
+                // Make sure the field's audio clip matches the current editor language's audio clip.
+                objectField.SetValueWithoutNotify
+                (
+                    LG_AudioClip_Container.Value
+                    .Find(AudioClip_LG => AudioClip_LG.LanguageType == DSLanguagesConfig.SelectedLanguage)
+                    .GenericsContent
+                );
+            }
+
+            void ReplaceFieldIcon()
+            {
+                DSObjectFieldUtility.ReplaceFieldsIcon(objectField, fieldIcon.texture);
+            }
+
+            void ToggleEmptyStyle()
+            {
+                DSObjectFieldUtility.ToggleEmptyStyle(objectField);
             }
 
             void RegisterFieldEvents()
             {
-                DSLanguageAudioClipFieldEventRegister.RegisterValueChangedEvent(LG_AudioClip_Container);
-                DSLanguageAudioClipFieldEventRegister.RegisterFieldFocusInEvent(objectField);
-                DSLanguageAudioClipFieldEventRegister.RegisterFieldFocusOutEvent(objectField);
+                DSLanguageAudioClipFieldCallbacks.RegisterValueChangedEvent(LG_AudioClip_Container);
+                DSLanguageAudioClipFieldCallbacks.RegisterFieldFocusInEvent(objectField);
+                DSLanguageAudioClipFieldCallbacks.RegisterFieldFocusOutEvent(objectField);
             }
 
             void AddFieldToStyleClass()

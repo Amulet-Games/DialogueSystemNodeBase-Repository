@@ -17,7 +17,12 @@ namespace AG
         /// <param name="buttonClickedAction">The action to invoke when the button is pressed.</param>
         /// <param name="USS01">The first style for the button to use when it appeared on the editor window.</param>
         /// <returns>A new button UIElement.</returns>
-        public static Button GetNewButton(string btnText, Action buttonClickedAction, string USS01 = "")
+        public static Button GetNewButton
+        (
+            string btnText,
+            Action buttonClickedAction,
+            string USS01 = ""
+        )
         {
             Button btn;
 
@@ -37,7 +42,7 @@ namespace AG
 
             void RegisterButtonAction()
             {
-                DSButtonEventRegister.DSButtonClickedAction(btn, buttonClickedAction);
+                DSButtonCallbacks.RegisterButtonClickedEvent(btn, buttonClickedAction);
             }
 
             void AddButtonToStyleClass()
@@ -58,7 +63,12 @@ namespace AG
         /// <param name="buttonClickedAction">The action to invoke when the button is pressed.</param>
         /// <param name="USS01">The first style for the button to use when it appeared on the editor window.</param>
         /// <returns>A new button UIElement.</returns>
-        public static Button GetNewButton(Sprite btnSprite, Action buttonClickedAction, string USS01 = "")
+        public static Button GetNewButton
+        (
+            Sprite btnSprite,
+            Action buttonClickedAction,
+            string USS01 = ""
+        )
         {
             Button btn;
 
@@ -78,7 +88,7 @@ namespace AG
 
             void RegisterButtonAction()
             {
-                DSButtonEventRegister.DSButtonClickedAction(btn, buttonClickedAction);
+                DSButtonCallbacks.RegisterButtonClickedEvent(btn, buttonClickedAction);
             }
 
             void AddButtonToStyleClass()
@@ -99,11 +109,13 @@ namespace AG
         /// <param name="buttonClickedAction">The action to invoke when the button is pressed.</param>
         /// <param name="USS01">The first style for the button to use when it appeared on the editor window.</param>
         /// /// <returns>A new button UIElement.</returns>
-        public static Button GetNewButtonNonAlert(string btnText, Action buttonClickedAction, string USS01 = "")
+        public static Button GetNewButtonNonAlert
+        (
+            string btnText,
+            Action buttonClickedAction,
+            string USS01 = ""
+        )
         {
-            // Create and return a button UIElement,
-            // however its clicked action doesn't invoke DSWindowChangedEvent.
-
             Button btn;
 
             SetupButton();
@@ -143,7 +155,12 @@ namespace AG
         /// <param name="buttonClickedAction">The action to invoke when the button is pressed.</param>
         /// <param name="USS01">The first style for the button to use when it appeared on the editor window.</param>
         /// <returns>A new button UIElement.</returns>
-        public static Button GetNewButtonNonAlert(Sprite btnSprite, Action buttonClickedAction, string USS01 = "")
+        public static Button GetNewButtonNonAlert
+        (
+            Sprite btnSprite,
+            Action buttonClickedAction,
+            string USS01 = ""
+        )
         {
             Button btn;
 

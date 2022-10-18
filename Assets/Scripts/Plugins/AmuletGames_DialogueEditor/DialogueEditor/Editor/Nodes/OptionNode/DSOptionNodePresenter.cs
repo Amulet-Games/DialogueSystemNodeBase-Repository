@@ -1,5 +1,5 @@
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG
 {
@@ -28,13 +28,20 @@ namespace AG
 
             AddOptionTrack();
 
-            AddTextlineSegment();
+            AddOptionHeaderTextContainer();
 
             AddConditionSegment();
 
             void AddContentButton_ConditionModifier()
             {
-                DSIntegrantsMaker.GetNewContentButton(Node, DSStringsConfig.AddConditionLabelText, DSAssetsConfig.AddConditionModifierButtonIconImage, DSStylesConfig.Integrant_ContentButton_AddCondition_Image, IntegrantButtonPressedAction);
+                DSIntegrantsMaker.GetNewContentButton
+                (
+                    Node,
+                    DSStringsConfig.AddConditionLabelText,
+                    DSAssetsConfig.AddConditionModifierButtonIconImage,
+                    DSStylesConfig.Integrant_ContentButton_AddCondition_Image,
+                    ContentButtonClickedAction
+                );
             }
 
             void AddOptionTrack()
@@ -42,9 +49,17 @@ namespace AG
                 Model.OptionTrack.SetupTrack(Node);
             }
 
-            void AddTextlineSegment()
+            void AddOptionHeaderTextContainer()
             {
-                Model.TextlineSegment.SetupSegment(Node);
+                // Create a new option header text field within the node.
+                Node.mainContainer.Add(DSLanguageFieldsMaker.GetNewTextField
+                (
+                    Model.OptionHeaderTextContainer,
+                    DSAssetsConfig.InputHintIconSprite,
+                    false,
+                    DSStringsConfig.OptionNodeHeadlinePlaceHolderText,
+                    DSStylesConfig.OptionNode_OptionHeader_TextField
+                ));
             }
 
             void AddConditionSegment()
@@ -57,7 +72,14 @@ namespace AG
         /// <inheritdoc />
         public override void CreateNodePorts()
         {
-            Model.OutputPort = DSPortsMaker.GetNewOutputPort(Node, false, DSStringsConfig.NodeOutputLabelText, Port.Capacity.Single);
+            // Output port.
+            Model.OutputPort = DSDefaultPort.GetNewOutputPort<Edge>
+            (
+                Node,
+                false,
+                DSStringsConfig.NodeOutputLabelText,
+                Port.Capacity.Single
+            );
         }
 
 
@@ -66,7 +88,7 @@ namespace AG
         /// Action that invoked after the content button is pressed.
         /// <para>ContentButtonClickedAction - DSIntegrantsMaker - ContentButtonMainBox.</para>
         /// </summary>
-        void IntegrantButtonPressedAction()
+        void ContentButtonClickedAction()
         {
             // Create a new condition modifier within this node.
             DSModifiersMaker.GetNewConditionModifier
@@ -81,78 +103,59 @@ namespace AG
         }
 
 
+        // ----------------------------- Add Contextual Menu Items Services -----------------------------
         /// <inheritdoc />
-        public override void NodeManualCreationSetupAction()
+        public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
         {
-            if (CreationDetails.CreationConnectorType == N_NodeCreationConnectorType.OptionChannel)
+            bool isTrackPortConnected;
+            bool isOutputPortConnected;
+
+            SetupLocalFields();
+
+            AddOptionTrackContextualMenuItems();
+
+            AppendDisconnectOutputPortAction();
+
+            AppendDisconnectAllPortsAction();
+
+            void SetupLocalFields()
             {
-                // Ask option track to handle this action.
-                Model.OptionTrack.NodeManualCreationSetupAction(Node, CreationDetails.ConnectorPort);
+                isTrackPortConnected = Model.OptionTrack.Port.connected;
+                isOutputPortConnected = Model.OutputPort.connected;
             }
-            else
-            {
-                AlignConnectorPosition();
 
-                ConnectConnectorPort();
+            void AddOptionTrackContextualMenuItems()
+            {
+                Model.OptionTrack.AddContextualManuItems(evt);
             }
 
-            void AlignConnectorPosition()
+            void AppendDisconnectOutputPortAction()
             {
-                // Create a new vector2 result variable to cache the node's current local bound position.
-                Vector2 result = Node.localBound.position;
+                Model.OutputPort.AddContextualManuItems
+                (
+                    evt,
+                    DSStringsConfig.DisconnectOutputPortLabelText
+                );
+            }
 
-                switch (CreationDetails.HorizontalAlignType)
+            void AppendDisconnectAllPortsAction()
+            {
+                // Disconnect All
+                evt.menu.AppendAction
+                (
+                    DSStringsConfig.DisconnectAllPortLabelText,
+                    actionEvent => DisconnectAllActionEvent(),
+                    isTrackPortConnected || isOutputPortConnected ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled
+                );
+
+                void DisconnectAllActionEvent()
                 {
-                    case C_Alignment_HorizontalType.Left:
-
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.OutputPort.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
-
-                        // Width offset.
-                        result.x -= Node.localBound.width;
-
-                        break;
-                    case C_Alignment_HorizontalType.Middle:
-
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.OptionTrack.Port.localBound.position.y + DSNodesConfig.ManualCreateYOffset) / Node.GraphView.scale;
-
-                        // Width offset.
-                        result.x -= Node.localBound.width / 2;
-                        break;
+                    // Disconnect Track port.
+                    if (isTrackPortConnected) Model.OptionTrack.DisconnectPort();
+                    // Disconnect Output port.
+                    if (isOutputPortConnected) Model.OutputPort.DisconnectPort();
                 }
-
-                // Apply the final position result to the node.
-                Node.SetPosition(new Rect(result, DSVector2Utility.Zero));
-            }
-
-            void ConnectConnectorPort()
-            {
-                // If connnector port is null then return.
-                if (CreationDetails.ConnectorPort == null)
-                    return;
-
-                // Create local reference for the connector port.
-                Port connectorPort = CreationDetails.ConnectorPort;
-
-                // If the connector port is connecting to another port, disconnect them first.
-                if (connectorPort.connected)
-                {
-                    Node.GraphView.DisconnectPorts(connectorPort);
-                }
-
-                // Connect to connector port.
-                Node.GraphView.ConnectPorts(Model.OutputPort, connectorPort);
             }
         }
-
-
-        // ----------------------------- Ports Connection Check Services -----------------------------
-        /// <inheritdoc />
-        public override bool IsInputPortConnected() => Model.OptionTrack.Port.connected;
-
-
-        /// <inheritdoc />
-        public override bool IsOutputPortConnected() => Model.OutputPort.connected;
     }
 }

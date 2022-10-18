@@ -1,0 +1,3 @@
+.node #title {
+	background-color: rgba(184, 113, 74, 1);
+}

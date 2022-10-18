@@ -1,12 +1,10 @@
 using System;
-using UnityEditor.Experimental.GraphView;
 
 namespace AG
 {
     [Serializable]
-    public class DSStartNodeModel : DSNodeModelBase
+    public class DSStartNodeModel : DSNodeModelFrameBase<DSStartNode>
     {
-        //TODO Move this to another data class!
         // ----------------------------- Serialized Port Guid -----------------------------
         /// <summary>
         /// The serialized "Output" port's Guid id in this node.
@@ -18,13 +16,16 @@ namespace AG
         /// <summary>
         /// Port that allows this node to move forward to the other node.
         /// </summary>
-        public Port OutputPort;
+        public DSDefaultPort OutputPort;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Construtor of start node's model.
         /// </summary>
-        public DSStartNodeModel() { }
+        public DSStartNodeModel(DSStartNode node)
+        {
+            Node = node;
+        }
     }
 }
