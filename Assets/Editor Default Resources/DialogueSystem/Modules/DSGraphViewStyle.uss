@@ -5,14 +5,6 @@
 	--spacing: 11;
 }
 
-/*
-  Before Version:
-
-	--grid-background-color: #282828;
-	--line-color: rgba(193, 196, 192, 0.1);
-	--thick-line-color: rgba(193, 196, 192, 0.3);
-	--spacing: 11;
-*/
 
 /* -----------------------------------------------------------  Edges ----------------------------------------------------------- */
 
@@ -27,11 +19,6 @@
 /*< -------------------- Option Channel Edge -------------------- >*/
 .channel_Option_Edge.channel_Option_Edge_Selected,
 .channel_Option_Edge:checked {
-
-	/*
-	  Lighter Version:
-		--selected-edge-color: rgba(217, 92, 145, 1);
-	*/
 
 	--selected-edge-color: rgba(216, 71, 132, 1);
 	--edge-width: 4;

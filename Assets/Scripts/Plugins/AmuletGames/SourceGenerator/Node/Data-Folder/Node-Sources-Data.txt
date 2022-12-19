@@ -1,0 +1,11 @@
+using System;
+using UnityEngine;
+
+namespace AG.#Namespace#
+{
+    /// <inheritdoc />
+    [Serializable]
+    public class #Name#NodeData : NodeDataBase
+    {
+    }
+}

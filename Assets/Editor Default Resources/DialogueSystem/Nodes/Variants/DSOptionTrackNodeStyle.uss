@@ -1,0 +1,60 @@
+.node #title {
+	background-color: rgba(149, 95, 124, 1);
+}
+
+
+/* ---------------------------------------------------------------- Node Elements Styles ---------------------------------------------------------------- */
+
+/*< -------------------- Header Text Field -------------------- >*/
+.optionTrackNode_Header_TextField {
+
+	background-color: rgba(51, 51, 51, 1);
+
+	height: 28px;
+	width: auto;
+
+	white-space: normal;
+
+	/* top - right - bottom - left */
+	margin: 6px 6px 6px 6px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.optionTrackNode_Header_TextField
+.textField_Icon {
+
+	height: 20px;
+	width: 20px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 3px;
+	padding: 0px 0px 0px 0px;
+}
+
+.optionTrackNode_Header_TextField 
+.unity-text-field__input {
+
+	background-color: rgba(42, 42, 42, 1);
+
+	font-size: 15px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 2.5px 0px 3px;
+	padding: 2px 4px 2px 5px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 3px 3px 3px 3px;
+}
+
+.optionTrackNode_Header_TextField
+.unity-text-field__input:focus {
+
+	/* top - right - bottom - left */
+	padding: 3px 3px 3px 4px;
+	border-width: 1px 1px 1px 1px;
+}

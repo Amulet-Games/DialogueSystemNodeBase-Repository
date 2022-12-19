@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 namespace AG
 {
+    using DS;
+
     public class DialogueController : MonoBehaviour
     {
         [Header("Refs")]
@@ -120,7 +122,7 @@ namespace AG
         //        UnityAction action = null;
         //        action += () =>
         //        {
-        //            // Run the next node that was found by choice data's input guid
+        //            // Run the next node that was found by choice data's input GUID
         //            RunNodeByType(dialogueUtility.GetNodeDataByGuid(choiceData.inputGuid));
 
         //            // Stop the current audio immediately

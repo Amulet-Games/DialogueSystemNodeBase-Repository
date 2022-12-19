@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace AG
 {
+    using DS;
+
     public class LanguageHandler : MonoBehaviour
     {
         [Header("Config")]

@@ -1,0 +1,46 @@
+using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
+
+namespace AG.#Namespace#
+{
+    /// <inheritdoc />
+    public class #Name#NodePresenter : NodePresenterFrameBase
+    <
+        #Name#Node,
+        #Name#NodeModel
+    >
+    {
+        // ----------------------------- Constructor -----------------------------
+        /// <summary>
+        /// Constructor of the #name# node presenter module class.
+        /// </summary>
+        /// <param name="node">Node of which this presenter is connecting upon.</param>
+        /// <param name="model">Model of which this presenter is connecting upon.</param>
+        public #Name#NodePresenter(#Name#Node node, #Name#NodeModel model)
+        {
+            Node = node;
+            Model = model;
+        }
+
+
+        // ----------------------------- Makers -----------------------------
+        /// <inheritdoc />
+        public override void CreateNodeElements()
+        {
+            base.CreateNodeElements();
+        }
+
+
+        /// <inheritdoc />
+        public override void CreateNodePorts()
+        {
+        }
+
+
+        // ----------------------------- Add Contextual Menu Items Services -----------------------------
+        /// <inheritdoc />
+        public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
+        {
+        }
+    }
+}

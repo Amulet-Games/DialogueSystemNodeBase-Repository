@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 namespace AG
 {
+    using DS;
+
     public class DialogueTalkZone : MonoBehaviour
     {
         [SerializeField] private GameObject speechBubble;

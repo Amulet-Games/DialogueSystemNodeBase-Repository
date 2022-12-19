@@ -14,6 +14,7 @@
 	margin: 4px 0px 0px 0px;
 }
 
+
 /*< ------------------ Text Field ------------------ >*/
 .headBar_GraphTitle_TextField {
 
@@ -55,6 +56,7 @@
 	border-bottom-color: #FFD35B;
 }
 
+
 /*< -------------------- Button -------------------- >*/
 .headBar_SaveGraph_Button,
 .headBar_LoadGraph_Button {
@@ -93,6 +95,7 @@
 	border-bottom-color: #FFD35B;
 	color: #FFC937;
 }
+
 
 /*< -------------------- Toolbar Menu -------------------- >*/
 .headBar_LanguageSelection_ToolbarMenu {

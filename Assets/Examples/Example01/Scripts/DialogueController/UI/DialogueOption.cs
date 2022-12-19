@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 using TMPro;
 
 namespace AG
 {
+    using DS;
+
     public class DialogueOption : MonoBehaviour
     {
         [Header("UI (Drops.)")]

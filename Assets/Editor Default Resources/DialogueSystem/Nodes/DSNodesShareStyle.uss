@@ -6,7 +6,7 @@
 
 .node_Border {
 
-	background-color: rgba(0, 0, 0, 0);
+	background-color: rgba(35, 35, 35, 1);
 	border-color: rgba(59, 219, 218, 0.8);
 
 	overflow: visible;
@@ -192,16 +192,13 @@
 }
 
 .node_Output_Container_Window {
-
-	/* top - right - bottom - left */
-	padding: 13px 0px 13px 0px;
 }
 
 
 /* ----------------------------------------------------------- Field Empty Styles ----------------------------------------------------------- */
 
 /*< -------------------- Text Field -------------------- >*/
-.node_TextField_Empty
+.textField_Empty
 .unity-text-field__input {
 
 	color: rgba(150, 150, 150, 1);
@@ -209,14 +206,14 @@
 }
 
 /*< -------------------- Object Field -------------------- >*/
-.node_ObjectField_Empty 
+.objectField_Empty 
 .unity-object-field-display__label {
 
 	color: rgba(150, 150, 150, 1);
 }
 
 /*< -------------------- float Field -------------------- >*/
-.node_FloatField_Empty
+.floatField_Empty
 .unity-float-field__input {
 
 	color: rgba(150, 150, 150, 1);
@@ -278,31 +275,4 @@
 .unity-float-field__input:focus {
 
 	border-color: rgba(58, 121, 187, 1);
-}
-
-
-/* ----------------------------------------------------------- Field Icons ----------------------------------------------------------- */
-
-/*< -------------------- Object Field -------------------- >*/
-.node_ObjectField_Icon {
-
-	height: 21px;
-	width: 21px;
-
-	/* top - right - bottom - left */
-	margin: 5px 0px 0px 0px;
-	padding: 0px 0px 0px 2px;
-}
-
-/*< -------------------- Text Field -------------------- >*/
-.node_TextField_Icon {
-
-	height: 21px;
-	width: 21px;
-
-	align-self: auto;
-
-	/* top - right - bottom - left */
-	margin: 4px 0px 0px 0px;
-	padding: 0px 0px 0px 2px;
 }

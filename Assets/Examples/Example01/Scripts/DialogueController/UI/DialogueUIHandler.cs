@@ -7,6 +7,8 @@ using UnityEngine.Events;
 
 namespace AG
 {
+    using DS;
+
     public class DialogueUIHandler : MonoBehaviour
     {
         [Header("Canvas (Drops).")]

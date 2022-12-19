@@ -1,0 +1,155 @@
+.node #title {
+	background-color: rgba(184, 150, 74, 1);
+}
+
+
+/* ---------------------------------------------------------------- Node Elements Styles ---------------------------------------------------------------- */
+
+/*< -------------------- Image Preview -------------------- >*/
+.previewNode_ImagesBox {
+
+	background-color: rgba(51, 51, 51, 1);
+
+	flex-direction: row;
+
+	/* top - right - bottom - left */
+	margin: 6px 6px 0px 6px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.previewNode_Image {
+
+	height: 140px;
+	width: 150px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.previewNode_Image_L {
+
+	margin-right: auto;
+}
+
+.previewNode_Image_R {
+
+	margin-left: auto;
+}
+
+.previewNode_ObjectFieldsBox {
+
+	background-color: rgba(35, 35, 35, 1);
+
+	height: auto;
+
+	justify-content: space-between;
+
+	flex-direction: row;
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.previewNode_ObjectField {
+
+	height: 28px;
+	width: auto;
+
+	max-width: 170px;
+
+	align-self: center;
+
+	flex-grow: 1;
+	flex-shrink: 1;
+
+	-unity-overflow-clip-box: content-box;
+
+	/* top - right - bottom - left */
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.previewNode_ObjectField_L {
+
+	/* top - right - bottom - left */
+	margin: 6px auto 6px 6px;
+}
+
+.previewNode_ObjectField_R {
+
+	/* top - right - bottom - left */
+	margin: 6px 3px 6px auto
+}
+
+.previewNode_ObjectField
+.objectField_Icon {
+
+	height: 20px;
+	width: 20px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 3px;
+	padding: 0px 0px 0px 0px;
+}
+
+.previewNode_ObjectField
+.unity-object-field__input {
+	
+	background-color: rgba(51, 51, 51, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.previewNode_ObjectField
+.unity-object-field__input:hover {
+
+	background-color: rgba(62, 62, 62, 1);
+}
+
+.previewNode_ObjectField_L
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__icon,
+
+.previewNode_ObjectField_R
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__icon {
+
+	max-height: 17px;
+	max-width: 20px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 4px;
+	padding: 0px 0px 0px 3px;
+}
+
+.previewNode_ObjectField_L
+.unity-object-field__input
+.unity-object-field-display
+.unity-object-field-display__label,
+
+.previewNode_ObjectField_R
+.unity-object-field__input
+.unity-object-field-display
+.unity-object-field-display__label {
+
+	font-size: 16px;
+
+	align-self: Center;
+
+	/* top - right - bottom - left */
+	margin: 1px 6px 0px 4px;
+	padding: 0px 0px 0px 0px;
+}

@@ -1,5 +1,5 @@
 .node #title {
-	background-color: rgba(142, 149, 95, 1);
+	background-color: rgba(116, 150, 98, 1);
 }
 
 .node_Border #contents {

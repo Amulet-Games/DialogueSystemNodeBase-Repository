@@ -35,7 +35,7 @@
 	border-radius: 0px 0px 0px 0px;
 }
 
-.integrant_ContentButton_AddChoiceEntry_Image,
+.integrant_ContentButton_AddEntry_Image,
 .integrant_ContentButton_AddCondition_Image {
 
 	height: 30px;

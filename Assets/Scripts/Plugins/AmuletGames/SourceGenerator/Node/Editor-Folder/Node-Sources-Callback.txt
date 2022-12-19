@@ -1,0 +1,116 @@
+using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
+using UnityEngine;
+
+namespace AG.#Namespace#
+{
+    /// <inheritdoc />
+    public class #Name#NodeCallback : NodeCallbackFrameBase
+    <
+        #Name#Node,
+        #Name#NodeModel,
+        #Name#NodeSerializer,
+        #Name#NodeData
+    >
+    {
+        // ----------------------------- Constructor -----------------------------
+        /// <summary>
+        /// Constructor of the #name# node callback module class.
+        /// </summary>
+        /// <param name="node">Node of which this presenter is connecting upon.</param>
+        /// <param name="model">Model of which this presenter is connecting upon.</param>
+        /// <param name="serializer">The connecting serializer module to set for.</param>
+        /// <param name="details">The connecting creation details to set for.</param>
+        public #Name#NodeCallback
+        (
+            #Name#Node node,
+            #Name#NodeModel model,
+            #Name#NodeSerializer serializer,
+            NodeCreationDetails details
+        )
+        {
+            Node = node;
+            Model = model;
+            Serializer = serializer;
+            Details = details;
+        }
+
+
+        // ----------------------------- Callbacks -----------------------------
+        /// <inheritdoc />
+        public override void PostCreatedAction()
+        {
+            AddSerializeCache();
+
+            void AddSerializeCache()
+            {
+                var serializeHandler = Node.GraphViewer.SerializeHandler;
+
+                // Node
+                serializeHandler.AddCacheNode(node: Node);
+            }
+        }
+
+
+        /// <inheritdoc />
+        public override void DelayedManualCreatedAction()
+        {
+        }
+
+
+        /// <inheritdoc />
+        public override void SetNodeMinMaxWidth()
+        {
+            SetNodeMinWidth();
+
+            SetMaxWidthProperties();
+
+            void SetNodeMinWidth()
+            {
+                Node.style.minWidth = NodesConfig.#Name#NodeMinWidth;
+            }
+
+            void SetMaxWidthProperties()
+            {
+                // Node
+                Node.style.maxWidth =
+                    NodesConfig.#Name#NodeMinWidth + NodesConfig.#Name#NodeMaxWidthBuffer;
+
+                // Node title field
+                TextField nodeTitleField = Model.NodeTitle_TextContainer.TextField;
+                nodeTitleField.RegisterCallback<GeometryChangedEvent>(GeometryChangedAction);
+
+                void GeometryChangedAction(GeometryChangedEvent evt)
+                {
+                    // Set the title field max width once it's fully created in the editor.
+                    nodeTitleField.style.maxWidth =
+                        nodeTitleField.contentRect.width + NodesConfig.#Name#NodeMaxWidthBuffer;
+
+                    // Unregister the action once the setup is done.
+                    nodeTitleField.UnregisterCallback<GeometryChangedEvent>(GeometryChangedAction);
+                }
+            }
+        }
+
+
+        /// <inheritdoc />
+        public override void PreManualRemovedAction()
+        {
+        }
+
+
+        /// <inheritdoc />
+        public override void PostManualRemovedAction()
+        {
+            RemoveSerializeCache();
+
+            void RemoveSerializeCache()
+            {
+                var serializeHandler = Node.GraphViewer.SerializeHandler;
+
+                // Node
+                serializeHandler.RemoveCacheNode(node: Node);
+            }
+        }
+    }
+}

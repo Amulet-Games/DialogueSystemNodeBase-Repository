@@ -156,7 +156,6 @@
 	border-radius: 0px 0px 0px 0px;
 }
 
-
 .default_Input_Port.default_port_Sibling,
 .default_Output_Port.default_port_Sibling {
 	 

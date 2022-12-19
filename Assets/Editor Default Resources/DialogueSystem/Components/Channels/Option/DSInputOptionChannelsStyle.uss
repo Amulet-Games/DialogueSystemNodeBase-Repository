@@ -1,0 +1,94 @@
+/*< -------------------- Option -------------------- >*/
+.channel_Option_Input_Port {
+
+	height: auto;
+	width: auto;
+
+	align-content: flex-start;
+	align-items: center;
+	align-self: flex-start;
+	
+	flex-direction: row;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 4px 0px 4px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.channel_Option_Input_Connector {
+
+	background-color: rgba(255, 255, 255, 1);
+
+	height: 14.5px;
+	width: 14.5px;
+
+	right: 1px;
+
+	align-content: flex-start;
+	align-items: center;
+	align-self: auto;
+	
+	justify-content: center;
+
+	flex-grow: 0;
+	flex-shrink: 1;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px -11.5px;
+	padding: 0px 4px 0px 4px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 16px 16px 16px 16px;
+}
+
+.channel_Option_Input_Label {
+
+	color: rgba(193, 193, 193, 1);
+
+	font-size: 15px;
+
+	height: 16px;
+	width: auto;
+	
+	left: 2px;
+
+	-unity-text-align: middle-left;
+	white-space: nowrap;
+
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: auto;
+
+	/* top - right - bottom - left */
+	margin: 0px 4px 0px 4px;
+	padding: 0px 0px 2px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.channel_Option_Input_Port_Connected
+.channel_Option_Input_Label {
+
+	color: rgba(204, 115, 134, 1);
+
+	font-size: 16px;
+
+	-unity-font-style: bold-and-italic;
+
+	/* top - right - bottom - left */
+	padding: 0px 0px 0px 1px;
+}
+
+.channel_Option_Input_Cap {
+
+	background-color: rgba(197, 96, 139, 1);
+
+	height: 10.5px;
+	width: 10.5px;
+
+	/* top - right - bottom - left */
+	border-radius: 16px 16px 16px 16px;
+}

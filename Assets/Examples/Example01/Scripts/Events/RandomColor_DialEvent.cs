@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace AG
 {
+    using DS;
+
     //[CreateAssetMenu(menuName = "Dialogue/New Dialogue Event/Random Color")]
     //public class RandomColor_DialEvent : DialogueEventSO
     //{
