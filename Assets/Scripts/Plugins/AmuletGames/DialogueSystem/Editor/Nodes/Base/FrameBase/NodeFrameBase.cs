@@ -120,15 +120,7 @@ namespace AG.DS
 
         // ----------------------------- Callbacks -----------------------------
         /// <inheritdoc />
-        protected override void ManualCreatedAction() => Callback.ManualCreatedAction();
-
-
-        /// <inheritdoc />
-        protected override void LoadCreatedAction() => Callback.LoadCreatedAction();
-
-
-        /// <inheritdoc />
-        protected override void PostCreatedAction() => Callback.PostCreatedAction();
+        protected override void NodeCreatedAction() => Callback.NodeCreatedAction();
 
 
         /// <inheritdoc />

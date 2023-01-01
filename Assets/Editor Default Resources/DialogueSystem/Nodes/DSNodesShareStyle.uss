@@ -4,7 +4,7 @@
 	padding: 0px 0px 0px 0px;
 }
 
-.node_Border {
+.node_Border{
 
 	background-color: rgba(35, 35, 35, 1);
 	border-color: rgba(59, 219, 218, 0.8);
@@ -23,7 +23,7 @@
 
 .node:checked
 .node_Border,
-.node_Border:hover,
+.node_Border_Hover,
 .node_Border:focus {
 
 	/* top - right - bottom - left */
@@ -38,7 +38,7 @@
 	height: 30px;
 }
 
-.node_NodeTitle_MainBox {
+.node_NodeTitle_Main_Box {
 
 	background-color: rgba(0, 0, 0, 0);
 

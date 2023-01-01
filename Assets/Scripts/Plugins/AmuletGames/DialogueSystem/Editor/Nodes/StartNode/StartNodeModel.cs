@@ -15,8 +15,7 @@ namespace AG.DS
         /// <summary>
         /// Construtor of the start node model module class.
         /// </summary>
-        /// <param name="node">The connecting node to set for.</param>
-        public StartNodeModel(StartNode node)
+        public StartNodeModel()
         {
         }
     }

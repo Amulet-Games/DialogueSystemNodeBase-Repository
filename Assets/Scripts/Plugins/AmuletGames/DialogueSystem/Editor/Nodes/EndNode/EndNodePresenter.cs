@@ -1,4 +1,5 @@
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -55,6 +56,9 @@ namespace AG.DS
                 portlabel: StringsConfig.NodeInputLabelText,
                 isSiblings: false
             );
+
+            // Refresh ports.
+            Node.RefreshPorts();
         }
 
 
@@ -62,18 +66,9 @@ namespace AG.DS
         /// <inheritdoc />
         public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
         {
-            bool isInputPortConnected;
-
-            SetupLocalFields();
-
             AppendDisconnectInputPortAction();
 
             AppendDisconnectAllPortsAction();
-
-            void SetupLocalFields()
-            {
-                isInputPortConnected = Model.InputPort.connected;
-            }
 
             void AppendDisconnectInputPortAction()
             {
@@ -91,7 +86,7 @@ namespace AG.DS
                 (
                     actionName: StringsConfig.DisconnectAllPortLabelText,
                     action: actionEvent => DisconnectAllActionEvent(),
-                    status: isInputPortConnected
+                    status: Model.InputPort.connected
                             ? DropdownMenuAction.Status.Normal
                             : DropdownMenuAction.Status.Disabled
                 );
@@ -99,8 +94,69 @@ namespace AG.DS
                 void DisconnectAllActionEvent()
                 {
                     // Disconnect Input port.
-                    if (isInputPortConnected) Model.InputPort.DisconnectPort();
+                    Model.InputPort.DisconnectPort();
                 }
+            }
+        }
+
+
+        // ----------------------------- Post Process Position Details Services -----------------------------
+        /// <inheritdoc />
+        protected override void PostProcessPositionDetails(NodeCreationDetails details)
+        {
+            AlignConnectorPosition();
+
+            ConnectConnectorPort();
+
+            ShowNodeOnGraph();
+
+            void AlignConnectorPosition()
+            {
+                // Create a new vector2 result variable to cache the node's current local bound position.
+                Vector2 result = Node.localBound.position;
+
+                // Height offset.
+                result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+
+                if (details.HorizontalAlignType == C_Alignment_HorizontalType.Middle)
+                {
+                    // width offset.
+                    result.x -= Node.localBound.width / 2;
+                }
+
+                // Apply the final position result to the node.
+                Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
+            }
+
+            void ConnectConnectorPort()
+            {
+                // If connnector port is null then return.
+                if (details.ConnectorPort == null)
+                    return;
+
+                // Create local reference for the connector port.
+                Port connectorPort = details.ConnectorPort;
+
+                // If the connector port is connecting to another port, disconnect them first.
+                if (connectorPort.connected)
+                {
+                    Node.GraphViewer.DisconnectPort(port: connectorPort);
+                }
+
+                // Connect the ports and retrieve the new edge.
+                Edge edge = Node.GraphViewer.ConnectPorts
+                            (
+                                outputPort: connectorPort,
+                                inputPort: Model.InputPort
+                            );
+
+                // Register default edge callbacks to the edge.
+                DefaultEdgeCallbacks.Register(edge: edge);
+            }
+
+            void ShowNodeOnGraph()
+            {
+                Node.RemoveFromClassList(StylesConfig.Global_Visible_Hidden);
             }
         }
     }

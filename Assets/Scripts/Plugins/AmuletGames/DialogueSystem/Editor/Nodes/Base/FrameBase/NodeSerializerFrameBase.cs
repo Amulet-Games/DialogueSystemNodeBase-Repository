@@ -62,7 +62,7 @@ namespace AG.DS
 
             void SaveNodeTitleField()
             {
-                data.NodeTitleText = Model.NodeTitle_TextContainer.Value;
+                data.NodeTitleText = Model.NodeTitleTextContainer.Value;
             }
         }
 
@@ -91,7 +91,7 @@ namespace AG.DS
 
             void LoadNodeTitleField()
             {
-                Model.NodeTitle_TextContainer.LoadContainerValue(data.NodeTitleText);
+                Model.NodeTitleTextContainer.LoadContainerValue(data.NodeTitleText);
             }
         }
     }

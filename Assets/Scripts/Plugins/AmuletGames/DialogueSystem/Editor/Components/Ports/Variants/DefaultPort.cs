@@ -84,13 +84,12 @@ namespace AG.DS
 
             void CreateNewInstance()
             {
-                newPort = new DefaultPort
-                               (
-                                   portOrientation: Orientation.Horizontal,
-                                   portDirection: direction,
-                                   portCapacity: capacity,
-                                   type: typeof(float)
-                               );
+                newPort = new(
+                                portOrientation: Orientation.Horizontal,
+                                portDirection: direction,
+                                portCapacity: capacity,
+                                type: typeof(float)
+                             );
 
                 isInput = direction == Direction.Input;
             }
@@ -174,18 +173,11 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Callbacks -----------------------------
-        /// <summary>
-        /// Action that called when the connecting node is going to be deleted by users from the graph manually.
-        /// </summary>
-        public void NodePreManualRemovedAction() => DisconnectPort();
-
-
         // ----------------------------- Add Contextual Menu Items Services -----------------------------
         /// <summary>
         /// Methods for adding menu items to the connecting node's contextual menu, 
         /// <br>items are added at the end of the current item list.</br>
-        /// <para>Read more: <br><see cref="NodeFrameBase{TNode, TNodeModel, TNodePresenter, TNodeSerializer, TNodeCallback, TNodeData}.BuildContextualMenu(ContextualMenuPopulateEvent)"/></br></para>
+        /// <para>See: <see cref="NodeFrameBase{TNode, TNodeModel, TNodePresenter, TNodeSerializer, TNodeCallback, TNodeData}.BuildContextualMenu"/></para>
         /// </summary>
         /// <param name="evt">The event holding the connecting node's contextual menu to populate.</param>
         /// <param name="itemName">The name to use when it's shown on the menu.</param>
@@ -202,7 +194,7 @@ namespace AG.DS
                     actionName: itemName,
 
                     // Menu item action.
-                    action: actionEvent => disconnectPortAction.Invoke(),
+                    action: actionEvent => DisconnectPort(),
 
                     // Menu item status.
                     status: connected

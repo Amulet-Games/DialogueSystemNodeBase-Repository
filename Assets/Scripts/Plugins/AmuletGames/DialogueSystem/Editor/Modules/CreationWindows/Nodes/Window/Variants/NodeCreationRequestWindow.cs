@@ -40,7 +40,11 @@ namespace AG.DS
                 // Setup instance's internal references
                 instance.GraphViewer = graphViewer;
                 instance.DsWindow = dsWindow;
-                instance.Details = new NodeCreationDetails(C_Alignment_HorizontalType.Middle, null);
+                instance.Details = new
+                (
+                    horizontalAlignType: C_Alignment_HorizontalType.Middle,
+                    connectorPort: null
+                );
             }
 
             void SetupValues()

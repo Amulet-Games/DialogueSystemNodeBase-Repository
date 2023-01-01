@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 
 namespace AG.DS
 {
-    [Serializable]
     public abstract class MolderFrameBase
     <
         TModifier,
@@ -22,7 +20,7 @@ namespace AG.DS
         /// Root condition modifier.
         /// <br>Appears when there's only one condition modifier on the node.</br>
         /// </summary>
-        [SerializeField] protected TModifier MolderRootModifier;
+        protected TModifier MolderRootModifier;
 
 
         /// <summary>
@@ -30,7 +28,7 @@ namespace AG.DS
         /// <br>Appears when there's are multiple condition modifiers on the node.</br>
         /// <br>This segment requires to have one condition modifier always.</br>
         /// </summary>
-        [SerializeField] protected TSegment MolderSegment;
+        protected TSegment MolderSegment;
 
 
         /// <summary>
@@ -83,19 +81,19 @@ namespace AG.DS
 
             void AddContentButton_MolderInstanceModifier()
             {
-                IntegrantFactory.CreateNewContentButton
+                ButtonFactory.CreateNewContentButton
                 (
                     node: node,
-                    btnText: contentBtnText,
-                    btnIconSprite: contentBtnSprite,
-                    btnIconImageUSS01: contentBtnIconImageUSS01,
-                    action: ContentButtonClickedAction
+                    buttonText: contentBtnText,
+                    buttonIconSprite: contentBtnSprite,
+                    buttonClickAction: ContentButtonClickAction,
+                    buttonIconUSS01: contentBtnIconImageUSS01
                 );
             }
 
             void AddMolderSegment()
             {
-                MolderSegment.SetupSegment(node);
+                MolderSegment.CreateRootElements(node);
             }
 
             void AddMolderRootModifier()
@@ -112,10 +110,10 @@ namespace AG.DS
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Action that invoked after the content button is pressed.
-        /// <para>ContentButtonClickedAction - IntegrantsMaker - ContentButtonMainBox.</para>
+        /// Action that invoked after the content button is clicked.
+        /// <para>See: <see cref="GetNewMolder"/></para>
         /// </summary>
-        protected void ContentButtonClickedAction()
+        protected void ContentButtonClickAction()
         {
             // If this is the first time user adding a new instance modifier through content button.
             if (modifierCounter == 1)
@@ -134,10 +132,10 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Action that invoked after modifier is added.
+        /// The action to invoke when a modifier is created.
         /// </summary>
-        /// <param name="modifier">The new created modifier that'll be added to the molder's segment list.</param>
-        protected void ModifierAddedAction(TModifier modifier)
+        /// <param name="modifier">The new created modifier.</param>
+        protected void ModifierCreatedAction(TModifier modifier)
         {
             // Add modifier to node's data
             MolderSegment.Modifiers.Add(modifier);
@@ -154,10 +152,10 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Action that invoked after modifier is removed.
+        /// The action to invoke when the modifier's remove button is clicked.
         /// </summary>
-        /// <param name="modifier">The modifier that'll be removed from the molder's segment list.</param>
-        protected void ModifierRemovedAction(TModifier modifier)
+        /// <param name="modifier">The modifier that is going to be removed.</param>
+        protected void ModifierRemoveButtonClickAction(TModifier modifier)
         {
             // Decrease internal count.
             modifierCounter--;
@@ -210,8 +208,8 @@ namespace AG.DS
             MolderSegment.LoadMolderSegmentValues
             (
                 data: data.SegmentData,
-                modifierAddedAction: ModifierAddedAction,
-                modifierRemovedAction: ModifierRemovedAction
+                modifierCreatedAction: ModifierCreatedAction,
+                modifierRemoveButtonClickAction: ModifierRemoveButtonClickAction
             );
 
             // Update molder's cotent.

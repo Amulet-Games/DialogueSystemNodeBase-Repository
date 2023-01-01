@@ -1,5 +1,5 @@
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -38,8 +38,8 @@ namespace AG.DS
             void AddPortraitImages()
             {
                 // New box container.
-                var portraitImageElementsBox = new Box();
-                portraitImageElementsBox.AddToClassList(StylesConfig.PreviewNode_ImagesBox);
+                Box portraitImageElementsBox = new();
+                portraitImageElementsBox.AddToClassList(StylesConfig.PreviewNode_Image_Box);
 
                 // New images.
                 Model.LeftPortraitImage = ImageFactory.GetNewImage
@@ -65,8 +65,8 @@ namespace AG.DS
             void AddSpriteObjectFields()
             {
                 // New box container.
-                var imageObjectFieldsBox = new Box();
-                imageObjectFieldsBox.AddToClassList(StylesConfig.PreviewNode_ObjectFieldsBox);
+                Box imageObjectFieldsBox = new();
+                imageObjectFieldsBox.AddToClassList(StylesConfig.PreviewNode_ObjectField_Box);
 
                 // New object fields.
                 var leftSpriteField = ObjectFieldFactory.GetNewObjectField
@@ -119,6 +119,9 @@ namespace AG.DS
                 portlabel: StringsConfig.NodeOutputLabelText,
                 isSiblings: false
             );
+
+            // Refresh ports.
+            Node.RefreshPorts();
         }
 
 
@@ -126,16 +129,16 @@ namespace AG.DS
         /// <summary>
         /// Action that invoked when the left sprite object container value is changed.
         /// </summary>
-        void LeftSpriteObjectContainerValueChangedAction() =>
-                ImageElementHelper.UpdateImagePreview
-                    (sprite: Model.LeftSpriteContainer.Value, image: Model.LeftPortraitImage);
+        void LeftSpriteObjectContainerValueChangedAction()
+            => ImageElementHelper.UpdateImagePreview
+                (sprite: Model.LeftSpriteContainer.Value, image: Model.LeftPortraitImage);
 
 
         /// <summary>
         /// Action that invoked when the right sprite object container value is changed.
         /// </summary>
-        void RightSpriteObjectContainerValueChangedAction() =>
-                ImageElementHelper.UpdateImagePreview
+        void RightSpriteObjectContainerValueChangedAction()
+                => ImageElementHelper.UpdateImagePreview
                     (sprite: Model.RightSpriteContainer.Value, image: Model.RightPortraitImage);
 
 
@@ -143,22 +146,11 @@ namespace AG.DS
         /// <inheritdoc />
         public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
         {
-            bool isInputPortConnected;
-            bool isOutputPortConnected;
-
-            SetupLocalFields();
-
             AppendDisconnectInputPortAction();
 
             AppendDisconnectOuputPortAction();
 
             AppendDisconnectAllPortsAction();
-
-            void SetupLocalFields()
-            {
-                isInputPortConnected = Model.InputPort.connected;
-                isOutputPortConnected = Model.OutputPort.connected;
-            }
 
             void AppendDisconnectInputPortAction()
             {
@@ -180,6 +172,9 @@ namespace AG.DS
 
             void AppendDisconnectAllPortsAction()
             {
+                var isInputPortConnected = Model.InputPort.connected;
+                var isOutputPortConnected = Model.OutputPort.connected;
+
                 // Disconnect All
                 evt.menu.AppendAction
                 (
@@ -193,10 +188,101 @@ namespace AG.DS
                 void DisconnectAllActionEvent()
                 {
                     // Disconnect Input port.
-                    if (isInputPortConnected) Model.InputPort.DisconnectPort();
+                    Model.InputPort.DisconnectPort();
                     // Disconnect Ouput port.
-                    if (isOutputPortConnected) Model.OutputPort.DisconnectPort();
+                    Model.OutputPort.DisconnectPort();
                 }
+            }
+        }
+
+
+        // ----------------------------- Post Process Position Details Services -----------------------------
+        /// <inheritdoc />
+        protected override void PostProcessPositionDetails(NodeCreationDetails details)
+        {
+            AlignConnectorPosition();
+
+            ConnectConnectorPort();
+
+            ShowNodeOnGraph();
+
+            void AlignConnectorPosition()
+            {
+                // Create a new vector2 result variable to cache the node's current local bound position.
+                Vector2 result = Node.localBound.position;
+
+                switch (details.HorizontalAlignType)
+                {
+                    case C_Alignment_HorizontalType.Left:
+
+                        // Height offset.
+                        result.y -= (Node.titleContainer.worldBound.height + Model.OutputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+
+                        // Width offset.
+                        result.x -= Node.localBound.width;
+
+                        break;
+                    case C_Alignment_HorizontalType.Middle:
+
+                        // Height offset.
+                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+
+                        // Width offset.
+                        result.x -= Node.localBound.width / 2;
+
+                        break;
+                    case C_Alignment_HorizontalType.Right:
+
+                        // Height offset.
+                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                        break;
+                }
+
+                // Apply the final position result to the node.
+                Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
+            }
+
+            void ConnectConnectorPort()
+            {
+                // If connnector port is null then return.
+                if (details.ConnectorPort == null)
+                    return;
+
+                // Create local reference for the connector port.
+                Port connectorPort = details.ConnectorPort;
+
+                // If the connector port is connecting to another port, disconnect them first.
+                if (connectorPort.connected)
+                {
+                    Node.GraphViewer.DisconnectPort(port: connectorPort);
+                }
+
+                // Connect the ports and retrieve the new edge.
+                Edge edge;
+                if (connectorPort.IsInput())
+                {
+                    edge = Node.GraphViewer.ConnectPorts
+                           (
+                               Model.OutputPort,
+                               connectorPort
+                           );
+                }
+                else
+                {
+                    edge = Node.GraphViewer.ConnectPorts
+                           (
+                               outputPort: connectorPort,
+                               inputPort: Model.InputPort
+                           );
+                }
+
+                // Register default edge callbacks to the edge.
+                DefaultEdgeCallbacks.Register(edge: edge);
+            }
+
+            void ShowNodeOnGraph()
+            {
+                Node.RemoveFromClassList(StylesConfig.Global_Visible_Hidden);
             }
         }
     }

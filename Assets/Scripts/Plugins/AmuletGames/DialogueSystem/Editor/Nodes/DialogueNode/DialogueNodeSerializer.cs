@@ -25,11 +25,13 @@
         /// <inheritdoc />
         public override void SaveNode(DialogueSystemData dsData)
         {
-            var data = new DialogueNodeData();
+            DialogueNodeData data = new();
 
             SaveBaseValues(data: data);
 
             SavePortsGUID();
+
+            SaveCharacterObjectContainer();
 
             AddData();
 
@@ -37,6 +39,11 @@
             {
                 data.InputPortGUID = Model.InputPort.name;
                 data.OutputPortGUID = Model.OutputPort.name;
+            }
+
+            void SaveCharacterObjectContainer()
+            {
+                data.DialogueCharacter = Model.CharacterObjectContainer.Value;
             }
 
             void AddData()
@@ -54,10 +61,17 @@
 
             LoadPortsGUID();
 
+            LoadCharacterObjectContainer();
+
             void LoadPortsGUID()
             {
                 Model.InputPort.name = data.InputPortGUID;
                 Model.OutputPort.name = data.OutputPortGUID;
+            }
+
+            void LoadCharacterObjectContainer()
+            {
+                Model.CharacterObjectContainer.LoadContainerValue(data.DialogueCharacter);
             }
         }
     }

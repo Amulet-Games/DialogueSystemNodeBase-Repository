@@ -36,7 +36,7 @@ namespace AG.DS
 
             void CreateEnumField()
             {
-                enumField = new EnumField();
+                enumField = new();
             }
 
             void ConnectFieldToContainer()
@@ -104,8 +104,8 @@ namespace AG.DS
 
             void CreateFieldElements()
             {
-                enumField = new EnumField();
-                iconImage = new Image();
+                enumField = new();
+                iconImage = new();
             }
 
             void ConnectFieldToContainer()

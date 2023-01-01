@@ -6,8 +6,9 @@ namespace AG.DS
     {
         // Add Component Buttons
         public static Sprite AddConditionModifierButtonIconSprite;
+        public static Sprite AddChoiceEntryButtonIconSprite;
         public static Sprite AddEventModifierButtonIconSprite;
-        public static Sprite AddEntryButtonIconSprite;
+        public static Sprite AddMessageModifierButtonIconSprite;
 
 
         // Dropdown Arrows
@@ -19,16 +20,22 @@ namespace AG.DS
 
 
         // Fields
-        public static Sprite HeadlineTextFieldIcon;
+        public static Sprite CharacterFieldIconSprite;
+        public static Sprite HeadlineTextFieldIconSprite;
         public static Sprite ImageFieldIconSprite;
         public static Sprite KeyboardInputFieldIconSprite;
         public static Sprite LanguageFieldHintIconSprite;
         public static Sprite ScriptableObjectFieldIconSprite;
 
+        // Folders
+        public static Sprite FolderExpandButtonCloseIconSprite;
+        public static Sprite FolderExpandButtonOpenIconSprite;
 
         // Modifiers
         public static Sprite ChangeFieldTypeButtonIconSprite;
         public static Sprite ChangeFieldTypeButtonBlockedIconSprite;
+        public static Sprite MoveDownButtonIconSprite;
+        public static Sprite MoveUpButtonIconSprite;
 
 
         // Operators
@@ -43,8 +50,8 @@ namespace AG.DS
 
 
         // Remove Component Buttons
-        public static Sprite RemoveChannelButtonIconSprite;
-        public static Sprite RemoveModifierButtonIconSprite;
+        public static Sprite RemoveButtonIcon1Sprite;
+        public static Sprite RemoveButtonIcon2Sprite;
 
 
         // Segments
@@ -65,6 +72,8 @@ namespace AG.DS
 
             SetupFieldsSpriteAssets();
 
+            SetupFoldersSpriteAssets();
+
             SetupModifiersSpriteAssets();
 
             SetupOperatorsSpriteAssets();
@@ -76,8 +85,9 @@ namespace AG.DS
             void SetupAddComponentButtonsSpriteAssets()
             {
                 AddConditionModifierButtonIconSprite = Resources.Load<Sprite>("Assets/Sprites/AddComponentButtons/AddConditionModifierButtonIcon(PictoTotal)");
+                AddChoiceEntryButtonIconSprite = Resources.Load<Sprite>("Assets/Sprites/AddComponentButtons/AddChoiceEntryButtonIcon(PictoTotal)");
                 AddEventModifierButtonIconSprite = Resources.Load<Sprite>("Assets/Sprites/AddComponentButtons/AddEventModifierButtonIcon(PictoTotal)");
-                AddEntryButtonIconSprite = Resources.Load<Sprite>("Assets/Sprites/AddComponentButtons/AddEntryButtonIcon(PictoTotal)");
+                AddMessageModifierButtonIconSprite = Resources.Load<Sprite>("Assets/Sprites/AddComponentButtons/AddMessageModifierButtonIcon(PictoTotal)");
             }
 
             void SetupDropdownArrowsSpriteAssets()
@@ -92,17 +102,26 @@ namespace AG.DS
 
             void SetupFieldsSpriteAssets()
             {
-                HeadlineTextFieldIcon = Resources.Load<Sprite>("Assets/Sprites/Fields/HeadlineTextFieldIcon(PictoTotal)");
+                CharacterFieldIconSprite = Resources.Load<Sprite>("Assets/Sprites/Fields/CharacterFieldIcon(PictoTotal)");
+                HeadlineTextFieldIconSprite = Resources.Load<Sprite>("Assets/Sprites/Fields/HeadlineTextFieldIcon(PictoTotal)");
                 ImageFieldIconSprite = Resources.Load<Sprite>("Assets/Sprites/Fields/ImageFieldIcon(PictoTotal)");
                 KeyboardInputFieldIconSprite = Resources.Load<Sprite>("Assets/Sprites/Fields/KeyboardInputFieldIcon(PictoTotal)");
                 LanguageFieldHintIconSprite = Resources.Load<Sprite>("Assets/Sprites/Fields/LanguageFieldHintIcon(PictoTotal)");
                 ScriptableObjectFieldIconSprite = Resources.Load<Sprite>("Assets/Sprites/Fields/ScriptableObjectFieldIcon(RainbowArt)");
             }
 
+            void SetupFoldersSpriteAssets()
+            {
+                FolderExpandButtonCloseIconSprite = Resources.Load<Sprite>("Assets/Sprites/Folders/FolderExpandButtonCloseIcon(RainbowArt)");
+                FolderExpandButtonOpenIconSprite = Resources.Load<Sprite>("Assets/Sprites/Folders/FolderExpandButtonOpenIcon(RainbowArt)");
+            }
+
             void SetupModifiersSpriteAssets()
             {
                 ChangeFieldTypeButtonIconSprite = Resources.Load<Sprite>("Assets/Sprites/Modifiers/ChangeFieldTypeButtonIcon(RainbowArt)");
                 ChangeFieldTypeButtonBlockedIconSprite = Resources.Load<Sprite>("Assets/Sprites/Modifiers/ChangeFieldTypeButtonBlockedIcon(RainbowArt)");
+                MoveDownButtonIconSprite = Resources.Load<Sprite>("Assets/Sprites/Modifiers/MoveDownButtonIcon(PictoTotal)");
+                MoveUpButtonIconSprite = Resources.Load<Sprite>("Assets/Sprites/Modifiers/MoveUpButtonIcon(PictoTotal)");
             }
 
             void SetupOperatorsSpriteAssets()
@@ -119,8 +138,8 @@ namespace AG.DS
 
             void SetupRemoveComponentButtonsSpriteAssets()
             {
-                RemoveChannelButtonIconSprite = Resources.Load<Sprite>("Assets/Sprites/RemoveComponentButtons/RemoveChannelButtonIcon(PictoTotal)");
-                RemoveModifierButtonIconSprite = Resources.Load<Sprite>("Assets/Sprites/RemoveComponentButtons/RemoveModifierButtonIcon(PictoTotal)");
+                RemoveButtonIcon1Sprite = Resources.Load<Sprite>("Assets/Sprites/RemoveComponentButtons/RemoveButtonIcon1(PictoTotal)");
+                RemoveButtonIcon2Sprite = Resources.Load<Sprite>("Assets/Sprites/RemoveComponentButtons/RemoveButtonIcon2(PictoTotal)");
             }
 
             void SetupSegmentsSpriteAssets()

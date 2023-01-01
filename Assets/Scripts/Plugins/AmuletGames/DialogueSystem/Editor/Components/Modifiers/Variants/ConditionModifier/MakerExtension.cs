@@ -11,8 +11,8 @@ namespace AG.DS
         public override void CreateInstanceElements
         (
             ConditionModifierData data,
-            Action<ConditionModifier> addToSegmentAction,
-            Action<ConditionModifier> removeFromSegmentAction
+            Action<ConditionModifier> modifierCreatedAction,
+            Action<ConditionModifier> removeButtonClickAction
         )
         {
             // Boxes
@@ -55,11 +55,11 @@ namespace AG.DS
 
             void SetupModifierBox()
             {
-                MainBox = new Box();
-                MainBox.AddToClassList(StylesConfig.Modifier_Condition_MainBox);
+                MainBox = new();
+                MainBox.AddToClassList(StylesConfig.Modifier_Condition_Main_Box);
 
-                buttonSideBox = new Box();
-                buttonSideBox.AddToClassList(StylesConfig.Modifier_Condition_ButtonSideBox);
+                buttonSideBox = new();
+                buttonSideBox.AddToClassList(StylesConfig.Modifier_Condition_Button_Box);
             }
 
             void SetupFirstTermObjectField()
@@ -79,7 +79,7 @@ namespace AG.DS
                     iconicEnumContainer: ConditionComparisonTypeEnumContainer,
                     containerValueChangedAction: EnumContainerValueChangedAction,
                     fieldUSS01: StylesConfig.Modifier_Condition_Operator_EnumField,
-                    iconImageUSS01: StylesConfig.Modifier_Condition_Operator_EnumField_Icon
+                    iconImageUSS01: StylesConfig.Modifier_Condition_Operator_Icon
                 );
             }
 
@@ -120,17 +120,19 @@ namespace AG.DS
                 changeFieldTypeButton = ButtonFactory.GetNewButton
                 (
                     isAlert: true,
-                    btnSprite: AssetsConfig.ChangeFieldTypeButtonIconSprite,
-                    btnPressedAction: ButtonPressedAction,
+                    buttonSprite: AssetsConfig.ChangeFieldTypeButtonIconSprite,
+                    buttonClickAction: ButtonClickAction,
                     buttonUSS01: StylesConfig.Modifier_Condition_ChangeFieldType_Button
                 );
             }
 
             void SetupModifierRemoveButton()
             {
-                modifierRemoveButton = ModifierFactory.GetNewModifierRemoveButton
+                modifierRemoveButton = ButtonFactory.GetNewButton
                 (
-                    action: () => removeFromSegmentAction.Invoke(this),
+                    isAlert: true,
+                    buttonSprite: AssetsConfig.RemoveButtonIcon2Sprite,
+                    buttonClickAction: () => removeButtonClickAction.Invoke(this),
                     buttonUSS01: StylesConfig.Modifier_Condition_RemoveModifier_Button
                 );
             }
@@ -159,7 +161,7 @@ namespace AG.DS
             void InvokeModifierCreatedAction()
             {
                 ModifierCreatedAction();
-                addToSegmentAction.Invoke(this);
+                modifierCreatedAction.Invoke(this);
             }
         }
     }

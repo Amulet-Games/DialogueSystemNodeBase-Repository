@@ -1,35 +1,33 @@
 using System.Collections.Generic;
-using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using UnityEngine;
 
 namespace AG.DS
 {
-    [Serializable]
     public class MultiOptionChannelGroup
     {
         /// <summary>
         /// The cached channel list.
         /// </summary>
-        [SerializeField] List<MultiOptionChannel> channels;
+        List<MultiOptionChannel> channels;
 
         /// <summary>
         /// The cached channel count.
         /// </summary>
-        [NonSerialized] int channelsCount;
+        int channelsCount;
 
 
         /// <summary>
         /// Reference of the connecting node component.
         /// </summary>
-        [NonSerialized] NodeBase node;
+        NodeBase node;
 
 
         /// <summary>
         /// Is this group contains output channels or input channels?
         /// </summary>
-        [NonSerialized] bool isOutput;
+        bool isOutput;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -65,7 +63,7 @@ namespace AG.DS
 
             void CreateNewChannel()
             {
-                newChannel = new MultiOptionChannel(isOutput: isOutput);
+                newChannel = new(isOutput: isOutput);
             }
 
             void CreateChannelPort()
@@ -75,7 +73,7 @@ namespace AG.DS
                     node: node,
                     channel: newChannel,
                     data: data,
-                    ChannelRemovedAction: () => RemoveChannelAction(newChannel)
+                    removeButtonClickAction: () => RemoveChannelAction(newChannel)
                 );
             }
 
@@ -206,25 +204,113 @@ namespace AG.DS
         }
 
 
+        // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Action that called when the user is adding the connecting node to the graph manually by dropping
-        /// <br>an channel edge in the empty space of the graph.</br>
+        /// Save the channel group values to the given data.
         /// </summary>
-        public void NodeManualCreatedAction()
+        /// <param name="data">The given data to save to</param>
+        public void SaveGroupValues(MultiOptionChannelGroupData data)
         {
-            // Create a new channel within the group.
-            GetNewChannel(data: null);
+            // Channels
+            for (int i = 0; i < channelsCount; i++)
+            {
+                // New channel data.
+                MultiOptionChannelData channelData = new();
 
-            // Update ports layout.
-            node.RefreshPorts();
+                // Save values.
+                channels[i].SaveChannelValues(channelData);
+                
+                // Add to list.
+                data.ChannelDataList.Add(channelData);
+            }
+
+            // Channels count.
+            data.ChannelDataListCount = channelsCount;
         }
 
 
         /// <summary>
-        /// Action that called a few frames after the <see cref="NodeManualCreatedAction"/>.
+        /// Load the channel group values from the given data.
+        /// </summary>
+        /// <param name="data">The given data to load from.</param>
+        public void LoadGroupValues(MultiOptionChannelGroupData data)
+        {
+            // Channels
+            for (int i = 0; i < data.ChannelDataListCount; i++)
+            {
+                GetNewChannel(data.ChannelDataList[i]);
+            }
+        }
+
+
+        // ----------------------------- Add Contextual Menu Items Services -----------------------------
+        /// <summary>
+        /// Methods for adding menu items to the connecting node's contextual menu, 
+        /// <br>items are added at the end of the current item list.</br>
+        /// <para>See: <see cref="NodeFrameBase{TNode, TNodeModel, TNodePresenter, TNodeSerializer, TNodeCallback, TNodeData}.BuildContextualMenu"/></para>
+        /// </summary>
+        /// <param name="evt">The event holding the connecting node's contextual menu to populate.</param>
+        public void AddContextualManuItems(ContextualMenuPopulateEvent evt)
+        {
+            AppendDisconnectChannelsAction();
+
+            void AppendDisconnectChannelsAction()
+            {
+                for (int i = 0; i < channelsCount; i++)
+                {
+                    // Cache the current channel's port reference.
+                    var port = channels[i].Port;
+                    if (port.connected)
+                    {
+                        evt.menu.AppendAction
+                        (
+                            // Menu item name.
+                            actionName: ActionName(),
+
+                            // Menu item action.
+                            action: actionEvent => channels[i].DisconnectPort(node),
+
+                            // Menu item status.
+                            status: DropdownMenuAction.Status.Normal
+                        );
+                    }
+
+                    string ActionName()
+                    {
+                        if (isOutput)
+                        {
+                            return port.connected
+                                   ? StringUtility.New(
+                                                      text01: StringsConfig.DisconnectOutputChannelLabelText,
+                                                      text02: port.portName
+                                                      )
+                                                      .ToString()
+
+                                   : StringsConfig.DisconnectOutputPortLabelText;
+                        }
+                        else
+                        {
+                            return port.connected
+                                   ? StringUtility.New(
+                                                      text01: StringsConfig.DisconnectInputChannelLabelText,
+                                                      text02: port.portName
+                                                      )
+                                                      .ToString()
+
+                                   : StringsConfig.DisconnectInputPortLabelText;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        // ----------------------------- Post Process Position Details Services -----------------------------
+        /// <summary>
+        /// Set the connecting node's first position base on the creation details.
         /// </summary>
         /// <param name="opponentChannelPort">Reference of the opponent channel's port that created the drag and drop channel edge.</param>
-        public void NodeDelayedManualCreatedAction(Port opponentChannelPort)
+        public void PostProcessPositionDetails(Port opponentChannelPort)
         {
             var opponentPort = (OptionPort)opponentChannelPort;
             var firstPort = channels[0].Port;
@@ -311,126 +397,29 @@ namespace AG.DS
         }
 
 
+        // ----------------------------- Disconnect Ports Services -----------------------------
         /// <summary>
-        /// Action that called when the user is deleting the connecting node from the graph manually.
+        /// Disconnect every internal channel's port element.
         /// </summary>
-        public void NodePreManualRemovedAction()
+        public void DisconnectPorts()
         {
             for (int i = 0; i < channelsCount; i++)
             {
                 // Disconnect the port if it's connecting.
-                if (channels[i].Port.connected){
-                    channels[i].DisconnectPort(node);
-                }
+                channels[i].DisconnectPort(node);
             }
         }
 
 
+        // ----------------------------- Remove Cache Ports Services -----------------------------
         /// <summary>
-        /// Action that called when the connecting node is deleted by users from the graph manually.
-        /// <br>This action happens after the <see cref="NodePreManualRemovedAction"/> is called.</br>
+        /// Remove every internal channel's port from serialize handler's cache.
         /// </summary>
-        public void NodePostManualRemovedAction()
+        public void RemoveCachePorts()
         {
             for (int i = 0; i < channelsCount; i++)
             {
                 node.GraphViewer.SerializeHandler.RemoveCachePort(port: channels[i].Port);
-            }
-        }
-
-
-        // ----------------------------- Serialization -----------------------------
-        /// <summary>
-        /// Save the channel group values to the given data.
-        /// </summary>
-        /// <param name="data">The given data to save to</param>
-        public void SaveGroupValues(MultiOptionChannelGroupData data)
-        {
-            // Channels
-            for (int i = 0; i < channelsCount; i++)
-            {
-                var channelData = new MultiOptionChannelData();
-                channels[i].SaveChannelValues(channelData);
-                data.ChannelDataList.Add(channelData);
-            }
-
-            // Channels count.
-            data.ChannelDataListCount = channelsCount;
-        }
-
-
-        /// <summary>
-        /// Load the channel group values from the given data.
-        /// </summary>
-        /// <param name="data">The given data to load from.</param>
-        public void LoadGroupValues(MultiOptionChannelGroupData data)
-        {
-            // Channels
-            for (int i = 0; i < data.ChannelDataListCount; i++)
-            {
-                GetNewChannel(data.ChannelDataList[i]);
-            }
-        }
-
-
-        // ----------------------------- Add Contextual Menu Items Services -----------------------------
-        /// <summary>
-        /// Methods for adding menu items to the connecting node's contextual menu, 
-        /// <br>items are added at the end of the current item list.</br>
-        /// <para>Read more: <br><see cref="NodeFrameBase{TNode, TNodeModel, TNodePresenter, TNodeSerializer, TNodeCallback, TNodeData}.BuildContextualMenu(ContextualMenuPopulateEvent)"/></br></para>
-        /// </summary>
-        /// <param name="evt">The event holding the connecting node's contextual menu to populate.</param>
-        public void AddContextualManuItems(ContextualMenuPopulateEvent evt)
-        {
-            AppendDisconnectChannelsAction();
-
-            void AppendDisconnectChannelsAction()
-            {
-                for (int i = 0; i < channelsCount; i++)
-                {
-                    // Cache the current channel's port reference.
-                    var port = channels[i].Port;
-                    if (port.connected)
-                    {
-                        evt.menu.AppendAction
-                        (
-                            // Menu item name.
-                            actionName: ActionName(),
-
-                            // Menu item action.
-                            action: actionEvent => channels[i].DisconnectPort(node),
-
-                            // Menu item status.
-                            status: DropdownMenuAction.Status.Normal
-                        );
-                    }
-
-                    string ActionName()
-                    {
-                        if (isOutput)
-                        {
-                            return port.connected
-                                   ? StringUtility.New(
-                                                      text01: StringsConfig.DisconnectOutputChannelLabelText,
-                                                      text02: port.portName
-                                                      )
-                                                      .ToString()
-
-                                   : StringsConfig.DisconnectOutputPortLabelText;
-                        }
-                        else
-                        {
-                            return port.connected
-                                   ? StringUtility.New(
-                                                      text01: StringsConfig.DisconnectInputChannelLabelText,
-                                                      text02: port.portName
-                                                      )
-                                                      .ToString()
-
-                                   : StringsConfig.DisconnectInputPortLabelText;
-                        }
-                    }
-                }
             }
         }
 
@@ -450,21 +439,6 @@ namespace AG.DS
             }
 
             return false;
-        }
-
-
-        // ----------------------------- Disconnect Entries Services -----------------------------
-        /// <summary>
-        /// Disconnect all the channels within the group.
-        /// </summary>
-        public void DisconnectChannels()
-        {
-            for (int i = 0; i < channelsCount; i++)
-            {
-                if (channels[i].Port.connected){
-                    channels[i].DisconnectPort(node);
-                }
-            }
         }
 
 

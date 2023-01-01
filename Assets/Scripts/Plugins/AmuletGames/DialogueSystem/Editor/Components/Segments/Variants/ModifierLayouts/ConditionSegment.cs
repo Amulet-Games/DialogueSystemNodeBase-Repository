@@ -1,11 +1,9 @@
 using System;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using UnityEngine;
 
 namespace AG.DS
 {
-    [Serializable]
     public class ConditionSegment : SegmentFrameBase.ModifierLayout
     <
         ConditionModifier,
@@ -17,7 +15,7 @@ namespace AG.DS
         /// Enum container for the users to choose how they want to display the option if its condition
         /// <br>has not been unmet yet.</br>
         /// </summary>
-        [SerializeField] UnmetOptionDisplayTypeEnumContainer unmetOptionDisplayTypeEnumContainer;
+        UnmetOptionDisplayTypeEnumContainer unmetOptionDisplayTypeEnumContainer;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -26,16 +24,17 @@ namespace AG.DS
         /// </summary>
         public ConditionSegment()
         {
-            unmetOptionDisplayTypeEnumContainer = new UnmetOptionDisplayTypeEnumContainer();
+            unmetOptionDisplayTypeEnumContainer = new();
         }
 
 
         // ----------------------------- Makers -----------------------------
         /// <inheritdoc />
-        public override void SetupSegment(NodeBase node)
+        public override void CreateRootElements(NodeBase node)
         {
-            Box segmentTitleBox;
-
+            // Title
+            Box titleBox;
+            Label titleLabel;
             EnumField unmentOptionDisplayTypeEnumField;
 
             SetupBoxContainer();
@@ -44,30 +43,34 @@ namespace AG.DS
 
             SetupUnmetOptionDisplayTypeEnumField();
 
-            SetupSegmentExpandButton();
+            SetupExpandButton();
 
             AddFieldsToBox();
 
             AddBoxToMainContainer();
 
-            HideAndExpandSegementUponCreated();
+            SegmentCreatedAction();
 
             void SetupBoxContainer()
             {
-                MainBox = new Box();
-                MainBox.AddToClassList(StylesConfig.Segment_Condition_MainBox);
+                MainBox = new();
+                MainBox.AddToClassList(StylesConfig.Segment_Condition_Main_Box);
 
-                ContentBox = new Box();
+                titleBox = new();
+                titleBox.AddToClassList(StylesConfig.Segment_Common_Title_Box);
+                titleBox.AddToClassList(StylesConfig.Segment_Condition_Title_Box);
+
+                ContentBox = new();
                 ContentBox.pickingMode = PickingMode.Ignore;
-                ContentBox.AddToClassList(StylesConfig.Segment_Condition_ContentBox);
+                ContentBox.AddToClassList(StylesConfig.Segment_Condition_Content_Box);
             }
 
             void SetupSegmentTitle()
             {
-                segmentTitleBox = SegmentFactory.AddSegmentTitle
+                titleLabel = LabelFactory.GetNewLabel
                 (
-                    titleText: StringsConfig.ConditionSegmentTitleLabelText,
-                    titleBoxUSS01: StylesConfig.Segment_TitleBox_Condition
+                    labelText: StringsConfig.ConditionSegmentTitleLabelText,
+                    labelUSS01: StylesConfig.Segment_Common_Title_Label
                 );
             }
 
@@ -76,25 +79,29 @@ namespace AG.DS
                 unmentOptionDisplayTypeEnumField = EnumFieldFactory.GetNewEnumField
                 (
                     enumContainer: unmetOptionDisplayTypeEnumContainer,
-                    fieldUSS01: StylesConfig.Segment_TitleEnum_EnumField
+                    fieldUSS01: StylesConfig.Segment_Common_Title_EnumField
                 );
             }
 
-            void SetupSegmentExpandButton()
+            void SetupExpandButton()
             {
-                ExpandButton = SegmentFactory.AddSegmentExpandButton
+                ExpandButton = ButtonFactory.GetNewButton
                 (
-                    action: SwitchSegmentIsExpanded
+                    isAlert: false,
+                    buttonSprite: AssetsConfig.SegmentExpandButtonIconSprite,
+                    buttonClickAction: SwitchSegmentIsExpanded,
+                    buttonUSS01: StylesConfig.Segment_Common_ExpandSegment_Button
                 );
             }
 
             void AddFieldsToBox()
             {
-                MainBox.Add(segmentTitleBox);
+                MainBox.Add(titleBox);
                 MainBox.Add(ContentBox);
 
-                segmentTitleBox.Add(unmentOptionDisplayTypeEnumField);
-                segmentTitleBox.Add(ExpandButton);
+                titleBox.Add(titleLabel);
+                titleBox.Add(unmentOptionDisplayTypeEnumField);
+                titleBox.Add(ExpandButton);
             }
 
             void AddBoxToMainContainer()
@@ -102,9 +109,12 @@ namespace AG.DS
                 node.mainContainer.Add(MainBox);
             }
 
-            void HideAndExpandSegementUponCreated()
+            void SegmentCreatedAction()
             {
+                // Hide the segment.
                 SwitchSegmentIsHidden();
+
+                // Expand the segment.
                 SwitchSegmentIsExpanded();
             }
         }
@@ -131,8 +141,8 @@ namespace AG.DS
                 // Modifiers
                 for (int i = 0; i < Modifiers.Count; i++)
                 {
-                    // new modifier data.
-                    var newModifierData = new ConditionModifierData();
+                    // New modifier data.
+                    ConditionModifierData newModifierData = new();
 
                     // Save values.
                     Modifiers[i].SaveModifierValue(newModifierData);
@@ -173,8 +183,8 @@ namespace AG.DS
                 // Modifiers
                 for (int i = 0; i < Modifiers.Count; i++)
                 {
-                    // new modifier data.
-                    var newModifierData = new ConditionModifierData();
+                    // New modifier data.
+                    ConditionModifierData newModifierData = new();
 
                     // Save values.
                     Modifiers[i].SaveModifierValue(newModifierData);
@@ -219,8 +229,8 @@ namespace AG.DS
                     new ConditionModifier().CreateInstanceElements
                     (
                         data: data.ModifierDataList[i],
-                        addToSegmentAction: ModifierAddedAction,
-                        removeFromSegmentAction: ModifierRemovedAction
+                        modifierCreatedAction: ModifierCreatedAction,
+                        removeButtonClickAction: ModifierRemoveButtonClickAction
                     );
                 }
             }
@@ -240,8 +250,8 @@ namespace AG.DS
         public override void LoadMolderSegmentValues
         (
             ConditionSegmentData data,
-            Action<ConditionModifier> modifierAddedAction,
-            Action<ConditionModifier> modifierRemovedAction
+            Action<ConditionModifier> modifierCreatedAction,
+            Action<ConditionModifier> modifierRemoveButtonClickAction
         )
         {
             LoadConditionDisplayType();
@@ -278,8 +288,8 @@ namespace AG.DS
                     new ConditionModifier().CreateInstanceElements
                     (
                         data: data.ModifierDataList[i],
-                        addToSegmentAction: modifierAddedAction,
-                        removeFromSegmentAction: modifierRemovedAction
+                        modifierCreatedAction: modifierCreatedAction,
+                        removeButtonClickAction: modifierRemoveButtonClickAction
                     );
                 }
             }

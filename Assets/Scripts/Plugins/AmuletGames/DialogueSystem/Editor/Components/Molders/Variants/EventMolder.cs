@@ -19,8 +19,8 @@ namespace AG.DS
             new EventModifier().CreateInstanceElements
             (
                 data: null,
-                addToSegmentAction: ModifierAddedAction,
-                removeFromSegmentAction: ModifierRemovedAction
+                modifierCreatedAction: ModifierCreatedAction,
+                removeButtonClickAction: ModifierRemoveButtonClickAction
             );
         }
     }

@@ -56,6 +56,7 @@ namespace AG.DS
         public const string AddConditionLabelText = "Add Condition";
         public const string AddEventLabelText = "Add Event";
         public const string AddEntryLabelText = "Add Entry";
+        public const string AddLineLabelText = "Add Message";
 
 
         // ----------------------------- Contextual Menu Item Labels -----------------------------
@@ -82,6 +83,10 @@ namespace AG.DS
         public const string DualPortraitsSegmentTitleLabelText = "Image";
         public const string EventSegmentTitleLabelText = "Scriptable Events";
         public const string ConditionSegmentTitleLabelText = "Conditions";
+
+
+        // ----------------------------- Folder Title Labels -----------------------------
+        public const string MessageModifierFolderTitleLabelText = "Message ";
 
 
         // ----------------------------- Label Element Texts -----------------------------

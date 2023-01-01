@@ -32,7 +32,7 @@ namespace AG.DS
 
             void CreateIntField()
             {
-                intField = new IntegerField();
+                intField = new();
             }
 
             void ConnectFieldToContainer()
@@ -48,7 +48,7 @@ namespace AG.DS
 
             void RegisterFieldEvents()
             {
-                IntFieldCallbacks.RegisterFieldFocusOutEvent(intContainer);
+                IntFieldCallbacks.RegisterFocusOutEvent(intContainer);
             }
 
             void AddFieldToStyleClass()

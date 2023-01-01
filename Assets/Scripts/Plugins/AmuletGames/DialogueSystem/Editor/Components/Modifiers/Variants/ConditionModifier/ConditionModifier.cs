@@ -1,11 +1,8 @@
-using System;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using UnityEngine;
 
 namespace AG.DS
 {
-    [Serializable]
     public partial class ConditionModifier
         : ModifierFrameBase<ConditionModifier, ConditionModifierData>
     {
@@ -42,7 +39,7 @@ namespace AG.DS
         /// <summary>
         /// Is the in display second term field appearing as the keyboard input field?
         /// </summary>
-        [SerializeField] bool isShowKeyboardInputField;
+        bool isShowKeyboardInputField;
 
 
         /// <summary>
@@ -101,7 +98,7 @@ namespace AG.DS
             ObjectField secondTermObjectField;
 
             // Side buttons
-            Box buttonSideBox;
+            Box buttonBox;
 
             SetupModifierBox();
 
@@ -125,11 +122,11 @@ namespace AG.DS
 
             void SetupModifierBox()
             {
-                MainBox = new Box();
-                MainBox.AddToClassList(StylesConfig.Modifier_Condition_Rooted_MainBox);
+                MainBox = new();
+                MainBox.AddToClassList(StylesConfig.Modifier_Condition_Rooted_Main_Box);
 
-                buttonSideBox = new Box();
-                buttonSideBox.AddToClassList(StylesConfig.Modifier_Condition_Rooted_ButtonSideBox);
+                buttonBox = new();
+                buttonBox.AddToClassList(StylesConfig.Modifier_Condition_Rooted_Button_Box);
             }
 
             void SetupFirstTermObjectField()
@@ -149,7 +146,7 @@ namespace AG.DS
                     iconicEnumContainer: ConditionComparisonTypeEnumContainer,
                     containerValueChangedAction: EnumContainerValueChangedAction,
                     fieldUSS01: StylesConfig.Modifier_Condition_Rooted_Operator_EnumField,
-                    iconImageUSS01: StylesConfig.Modifier_Condition_Rooted_Operator_EnumField_Icon
+                    iconImageUSS01: StylesConfig.Modifier_Condition_Rooted_Operator_Icon
                 );
             }
 
@@ -190,8 +187,8 @@ namespace AG.DS
                 changeFieldTypeButton = ButtonFactory.GetNewButton
                 (
                     isAlert: true,
-                    btnSprite: AssetsConfig.ChangeFieldTypeButtonIconSprite,
-                    btnPressedAction: ButtonPressedAction,
+                    buttonSprite: AssetsConfig.ChangeFieldTypeButtonIconSprite,
+                    buttonClickAction: ButtonClickAction,
                     buttonUSS01: StylesConfig.Modifier_Condition_Rooted_ChangeFieldType_Button
                 );
             }
@@ -199,7 +196,7 @@ namespace AG.DS
             void AddFieldsToBox()
             {
                 // Button side box
-                buttonSideBox.Add(changeFieldTypeButton);
+                buttonBox.Add(changeFieldTypeButton);
 
                 // Main box
                 MainBox.Add(firstTermObjectField);
@@ -207,7 +204,7 @@ namespace AG.DS
                 MainBox.Add(secondTermFloatField);
                 MainBox.Add(secondTermTextField);
                 MainBox.Add(secondTermObjectField);
-                MainBox.Add(buttonSideBox);
+                MainBox.Add(buttonBox);
             }
 
             void AddBoxToNode()
@@ -218,8 +215,10 @@ namespace AG.DS
 
 
         // ----------------------------- Callbacks -----------------------------
-        /// <inheritdoc />
-        public override void ModifierCreatedAction()
+        /// <summary>
+        /// The action to invoke when the modifier is created.
+        /// </summary>
+        public void ModifierCreatedAction()
         {
             // Update the internal in display second term type.
             UpdateInDisplaySecondTermType();
@@ -265,9 +264,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Action that invoked when the change field type button is pressed.
+        /// Action that invoked when the change field type button is clicked.
         /// </summary>
-        void ButtonPressedAction()
+        void ButtonClickAction()
         {
             // Switch the status.
             isShowKeyboardInputField = !isShowKeyboardInputField;

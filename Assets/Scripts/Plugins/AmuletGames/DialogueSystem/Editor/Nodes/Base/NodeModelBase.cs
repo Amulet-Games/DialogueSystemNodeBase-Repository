@@ -18,11 +18,11 @@ namespace AG.DS
         /// <summary>
         /// Text container for the node's title field.
         /// </summary>
-        public TextContainer NodeTitle_TextContainer;
+        public TextContainer NodeTitleTextContainer;
 
 
         /// <summary>
-        /// Button that'll reveal the node's title field when pressed.
+        /// Button that'll reveal the node's title field when clicked.
         /// </summary>
         public Button EditTitleButton;
 
@@ -33,7 +33,7 @@ namespace AG.DS
         /// </summary>
         public NodeModelBase()
         {
-            NodeTitle_TextContainer = new();
+            NodeTitleTextContainer = new();
         }
     }
 }

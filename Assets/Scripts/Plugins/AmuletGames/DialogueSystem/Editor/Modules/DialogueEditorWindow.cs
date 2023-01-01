@@ -157,12 +157,7 @@ namespace AG.DS
         /// </summary>
         void OnDisable()
         {
-            DestructGraphView();
-
-            void DestructGraphView()
-            {
-                rootVisualElement.Remove(graphViewer);
-            }
+            graphViewer.Destruct();
 
             InputHint.Instance.Destruct();
         }
@@ -170,7 +165,9 @@ namespace AG.DS
 
         /// <summary>
         /// Ask the serialie handler to save all the graph elements on the custom graph editor.
-        /// <para>ButtonClickedAction - HeadBar - SaveButton</para>
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="HeadBar.SaveButtonClickAction"/></br>
         /// </summary>
         public void SaveWindowAction()
         {
@@ -189,8 +186,9 @@ namespace AG.DS
         /// <summary>
         /// Ask the serialie handler to load the saved graph elements and create them again on the graph.
         /// <para></para>
-        /// <br>ButtonClickedAction - HeadBar - LoadButton</br>
-        /// <br>OnDisable - Internal - Unity</br>
+        /// References:
+        /// <br>See: <see cref="HeadBar.LoadButtonClickAction"/></br>
+        /// <br>See: <see cref="OnEnable"/></br>
         /// </summary>
         public void LoadWindowAction(bool isForceLoadWindow)
         {
@@ -216,7 +214,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Action that called when the window's dock area has gained focus.
+        /// The action to invoke when the window's dock area gained focus.
         /// <para></para>
         /// <br>Different than "Focus In", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
@@ -226,7 +224,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Action that called when the window's dock area has lost focus.
+        /// The action to invoke when the window's dock area lost focus.
         /// <para></para>
         /// <br>Different than "Focus Out", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
@@ -299,7 +297,7 @@ namespace AG.DS
 
             void CreateGraphViewer()
             {
-                graphViewer = new GraphViewer(this);
+                graphViewer = new(this);
             }
 
             void CreateInputHint()
@@ -317,12 +315,12 @@ namespace AG.DS
 
             void CreateHeaderBar()
             {
-                headBar = new HeadBar(this);
+                headBar = new(this);
             }
 
             void CreateHotkeysHandler()
             {
-                hotkeysHandler = new HotkeysHandler(this);
+                hotkeysHandler = new(this);
             }
 
             void SetupEvents()
@@ -536,18 +534,17 @@ namespace AG.DS
         /// Force Unity to recognize the custom graph editor has unsaved changes,
         /// <br>so that it asks the user to save it each time when they're trying to close it without saving.</br>
         /// <para></para>
-        /// <br>WindowChangedEvent =></br>
-        /// <br>-> LanguageChangedEvent - HeadBar</br>
-        /// <br>-> GraphViewChangedEvent - GraphViewer</br>
-        /// <br>-> TreeEntrySelectedEvent - SearchWindow</br>
-        /// <br>-> FieldValueChangedEvent - GEMaker</br>
+        /// References:
+        /// <br>See: <see cref="WindowChangedEvent.Register"/></br>
         /// </summary>
         public void SetHasUnsavedChangesToTrue() => hasUnsavedChanges = true;
 
 
         /// <summary>
         /// Tell Unity that user has saved the graph so that it won't stop user to close the custom graph editor.
-        /// <para>ApplyChangesToDiskEvent - Internal</para>
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="ApplyChangesToDiskEvent.Register"/></br>
         /// </summary>
         public void SetHasUnsavedChangesToFalse() => hasUnsavedChanges = false;
 

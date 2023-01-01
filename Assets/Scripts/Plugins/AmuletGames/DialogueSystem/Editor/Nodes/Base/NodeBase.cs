@@ -25,25 +25,9 @@ namespace AG.DS
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// The callback action to invoke when the user start adding the node to the graph manually
-        /// <br>(by contextual menu or search window).</br>
-        /// <para></para>
-        /// This action happens after InitalizedAction is called.
-        /// </summary>
-        protected abstract void ManualCreatedAction();
-
-
-        /// <summary>
-        /// The callback action to invoke when the previous saved data is loaded and adding the node
-        /// <br>to the graph (by serialize handler).</br>
-        /// </summary>
-        protected abstract void LoadCreatedAction();
-
-
-        /// <summary>
         /// The callback action to invoke when the node has finished its creation process and added on the graph fully.
         /// </summary>
-        protected abstract void PostCreatedAction();
+        protected abstract void NodeCreatedAction();
 
 
         /// <summary>
@@ -68,7 +52,7 @@ namespace AG.DS
         public abstract void SaveNode(DialogueSystemData dsData);
 
 
-        // ----------------------------- Element Deletion Services -----------------------------
+        // ----------------------------- Delete Elements Services -----------------------------
         /// <summary>
         /// Delete the desired visual element that are created within the node.
         /// </summary>

@@ -3,7 +3,6 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    [Serializable]
     public class EventSegment : SegmentFrameBase.ModifierLayout
     <
         EventModifier,
@@ -13,55 +12,65 @@ namespace AG.DS
     {
         // ----------------------------- Makers -----------------------------
         /// <inheritdoc />
-        public override void SetupSegment(NodeBase node)
+        public override void CreateRootElements(NodeBase node)
         {
-            Box segmentTitleBox;
+            // Title
+            Box titleBox;
+            Label titleLabel;
 
             SetupBoxContainer();
 
             SetupSegmentTitle();
 
-            SetupSegmentExpandButton();
+            SetupExpandButton();
 
             AddFieldsToBox();
 
             AddBoxToMainContainer();
 
-            HideAndExpandSegementUponCreated();
+            SegmentCreatedAction();
 
             void SetupBoxContainer()
             {
-                MainBox = new Box();
-                MainBox.AddToClassList(StylesConfig.Segment_Event_MainBox);
+                MainBox = new();
+                MainBox.AddToClassList(StylesConfig.Segment_Event_Main_Box);
 
-                ContentBox = new Box();
+                titleBox = new();
+                titleBox.AddToClassList(StylesConfig.Segment_Common_Title_Box);
+                titleBox.AddToClassList(StylesConfig.Segment_Event_Title_Box);
+
+                ContentBox = new();
                 ContentBox.pickingMode = PickingMode.Ignore;
-                ContentBox.AddToClassList(StylesConfig.Segment_Event_ContentBox);
+                ContentBox.AddToClassList(StylesConfig.Segment_Event_Content_Box);
             }
 
             void SetupSegmentTitle()
             {
-                segmentTitleBox = SegmentFactory.AddSegmentTitle
+                titleLabel = LabelFactory.GetNewLabel
                 (
-                    titleText: StringsConfig.EventSegmentTitleLabelText,
-                    titleBoxUSS01: StylesConfig.Segment_TitleBox_Event
+                    labelText: StringsConfig.EventSegmentTitleLabelText,
+                    labelUSS01: StylesConfig.Segment_Common_Title_Label
                 );
             }
 
-            void SetupSegmentExpandButton()
+            void SetupExpandButton()
             {
-                ExpandButton = SegmentFactory.AddSegmentExpandButton
+                ExpandButton = ButtonFactory.GetNewButton
                 (
-                    action: SwitchSegmentIsExpanded
+                    isAlert: false,
+                    buttonSprite: AssetsConfig.SegmentExpandButtonIconSprite,
+                    buttonClickAction: SwitchSegmentIsExpanded,
+                    buttonUSS01: StylesConfig.Segment_Common_ExpandSegment_Button
                 );
             }
 
             void AddFieldsToBox()
             {
-                MainBox.Add(segmentTitleBox);
+                MainBox.Add(titleBox);
                 MainBox.Add(ContentBox);
 
-                segmentTitleBox.Add(ExpandButton);
+                titleBox.Add(titleLabel);
+                titleBox.Add(ExpandButton);
             }
 
             void AddBoxToMainContainer()
@@ -69,9 +78,12 @@ namespace AG.DS
                 node.mainContainer.Add(MainBox);
             }
 
-            void HideAndExpandSegementUponCreated()
+            void SegmentCreatedAction()
             {
+                // Hide the segment.
                 SwitchSegmentIsHidden();
+
+                // Expand the segment.
                 SwitchSegmentIsExpanded();
             }
         }
@@ -90,8 +102,8 @@ namespace AG.DS
                 // Modifiers
                 for (int i = 0; i < Modifiers.Count; i++)
                 {
-                    // new modifier data.
-                    var newModifierData = new EventModifierData();
+                    // New modifier data.
+                    EventModifierData newModifierData = new();
 
                     // Save values.
                     Modifiers[i].SaveModifierValue(newModifierData);
@@ -124,8 +136,8 @@ namespace AG.DS
                 // Modifiers
                 for (int i = 0; i < Modifiers.Count; i++)
                 {
-                    // new modifier data.
-                    var newModifierData = new EventModifierData();
+                    // New modifier data.
+                    EventModifierData newModifierData = new();
 
                     // Save values.
                     Modifiers[i].SaveModifierValue(newModifierData);
@@ -159,8 +171,8 @@ namespace AG.DS
                     new EventModifier().CreateInstanceElements
                     (
                         data: data.ModifierDataList[i],
-                        addToSegmentAction: ModifierAddedAction,
-                        removeFromSegmentAction: ModifierRemovedAction
+                        modifierCreatedAction: ModifierCreatedAction,
+                        removeButtonClickAction: ModifierRemoveButtonClickAction
                     );
                 }
             }
@@ -180,8 +192,8 @@ namespace AG.DS
         public override void LoadMolderSegmentValues
         (
             EventSegmentData data,
-            Action<EventModifier> modifierAddedAction,
-            Action<EventModifier> modifierRemovedAction
+            Action<EventModifier> modifierCreatedAction,
+            Action<EventModifier> modifierRemoveButtonClickAction
         )
         {
             LoadEventModifiers();
@@ -207,8 +219,8 @@ namespace AG.DS
                     new EventModifier().CreateInstanceElements
                     (
                         data: data.ModifierDataList[i],
-                        addToSegmentAction: modifierAddedAction,
-                        removeFromSegmentAction: modifierRemovedAction
+                        modifierCreatedAction: modifierCreatedAction,
+                        removeButtonClickAction: modifierRemoveButtonClickAction
                     );
                 }
             }

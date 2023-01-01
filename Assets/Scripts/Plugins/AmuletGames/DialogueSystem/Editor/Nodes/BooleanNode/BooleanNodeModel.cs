@@ -32,8 +32,7 @@ namespace AG.DS
         /// <summary>
         /// Construtor of the boolean node model module class.
         /// </summary>
-        /// <param name="node">The connecting node to set for.</param>
-        public BooleanNodeModel(BooleanNode node)
+        public BooleanNodeModel()
         {
             ConditionMolder = new();
         }

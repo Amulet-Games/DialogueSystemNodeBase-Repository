@@ -28,7 +28,7 @@ namespace AG.DS
 
         //private List<LanguageGeneric<T>> UpdateLanguageGeneric<T>(List<LanguageGeneric<T>> languageGeneric)
         //{
-        //    List<LanguageGeneric<T>> tmp = new List<LanguageGeneric<T>>();
+        //    List<LanguageGeneric<T>> tmp = new();
 
         //    foreach (LanguageType languageType in (LanguageType[])Enum.GetValues(typeof(LanguageType)))
         //    {

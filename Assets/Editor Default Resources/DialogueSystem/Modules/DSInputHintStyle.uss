@@ -1,4 +1,4 @@
-.inputHint_Hint_MainBox {
+.inputHint_Main_Box {
 
 	background-color: rgba(255, 74, 116, 1);
 	border-color: rgba(135, 143, 204, 1);
@@ -14,7 +14,7 @@
 	border-radius: 3px 3px 3px 3px;
 }
 
-.inputHint_HintIcon_Image {
+.inputHint_Icon_Image {
 
 	background-color: rgba(255, 112, 102, 1);
 
@@ -31,7 +31,7 @@
 	border-radius: 0px 0px 3px 0px;
 }
 
-.inputHint_HintText_Label {
+.inputHint_Text_Label {
 
 	color: rgba(255, 255, 255, 1);
 

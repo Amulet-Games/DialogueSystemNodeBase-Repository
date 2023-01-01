@@ -81,13 +81,12 @@ namespace AG.DS
 
             void CreateNewInstance()
             {
-                newPort = new OptionPort
-                          (
-                              portOrientation: Orientation.Horizontal,
-                              portDirection: isOuput ? Direction.Output : Direction.Input,
-                              portCapacity: Capacity.Single,
-                              type: typeof(float)
-                          );
+                newPort = new(
+                                portOrientation: Orientation.Horizontal,
+                                portDirection: isOuput ? Direction.Output : Direction.Input,
+                                portCapacity: Capacity.Single,
+                                type: typeof(float)
+                             );
 
                 channel.Port = newPort;
             }

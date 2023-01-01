@@ -20,8 +20,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the end node model module class.
         /// </summary>
-        /// <param name="node">The connecting node to set for.</param>
-        public EndNodeModel(EndNode node)
+        public EndNodeModel()
         {
             dialogueOverHandleType_EnumContainer = new();
         }

@@ -59,7 +59,7 @@ public class SerializableDictionary<TKey, TValue>
 
         if (dictionary == null)
         {
-            throw new ArgumentException("The passed dictionary is null.");
+            throw new ArgumentException("The given dictionary is null.");
         }
 
         foreach (KeyValuePair<TKey, TValue> pair in dictionary)

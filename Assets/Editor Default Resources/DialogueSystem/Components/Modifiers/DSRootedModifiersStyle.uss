@@ -1,5 +1,5 @@
 /*< -------------------- Condition -------------------- >*/
-.modifier_Condition_Rooted_MainBox {
+.modifier_Condition_Rooted_Main_Box {
 
 	background-color: rgba(35, 35, 35, 1);
 
@@ -292,7 +292,7 @@
 	padding: 0px 0px 0px 0px;
 }
 
-.modifier_Condition_Rooted_ButtonSideBox {
+.modifier_Condition_Rooted_Button_Box {
 	
 	background-color: rgba(0, 0, 0, 0);
 
@@ -314,12 +314,12 @@
 
 .modifier_Condition_Rooted_ChangeFieldType_Button:hover {
 
-	background-color: rgba(62, 62, 62, 1);
+	background-color: rgba(80, 80, 80, 1);
 }
 
 
 /*< -------------------- Event -------------------- >*/
-.modifier_Event_Rooted_MainBox {
+.modifier_Event_Rooted_Main_Box {
 	
 	height: 30px;
 

@@ -17,7 +17,7 @@ namespace AG.DS
         )
         {
             // Setup label
-            Label label = new Label(labelText);
+            Label label = new(labelText);
 
             // Add label to style class
             label.AddToClassList(labelUSS01);

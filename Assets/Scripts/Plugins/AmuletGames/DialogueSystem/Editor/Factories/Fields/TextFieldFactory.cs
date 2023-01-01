@@ -12,7 +12,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="textContainer">Reference of the connecting text container component.</param>
         /// <param name="isMultiLine">Can the texts separate into multiple lines inside the text field when they too long to show in one line.</param>
-        /// <param name="placeholderText">The text that'll show up in the field when there's no actual content within it.</param>
+        /// <param name="placeholderText">The placeholder text to set for the field when there's no actual text within it.</param>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
         /// <returns>A new text input field UIElement.</returns>
         public static TextField GetNewTextField
@@ -45,7 +45,7 @@ namespace AG.DS
             void CreateTextField()
             {
                 // Create a new text field.
-                textField = new TextField();
+                textField = new();
             }
 
             void ConnectFieldToContainer()
@@ -80,8 +80,8 @@ namespace AG.DS
 
             void RegisterFieldEvents()
             {
-                TextFieldCallbacks.RegisterFieldFocusInEvent(textField);
-                TextFieldCallbacks.RegisterFieldFocusOutEvent(textContainer);
+                TextFieldCallbacks.RegisterFocusInEvent(textField);
+                TextFieldCallbacks.RegisterFocusOutEvent(textContainer);
             }
 
             void ShowEmptyStyle()
@@ -97,20 +97,20 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Factory method for creating a new text input field for the node's title.
+        /// Factory method for creating a new delayable text input field UIElement.
         /// </summary>
         /// <param name="textContainer">Reference of the connecting text container component.</param>
-        /// <param name="currentTitleText">The current title text of the node that the field is created upon on.</param>
+        /// <param name="defaultText">The default text to set for the field when it's first created.</param>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
-        /// <returns>A new node title's text input field UIElement.</returns>
-        public static TextField GetNewNodeTitleField
+        /// <returns>A new delayable text input field UIElement.</returns>
+        public static TextField GetNewDelayableTextField
         (
             TextContainer textContainer,
-            string currentTitleText,
+            string defaultText,
             string fieldUSS01 = ""
         )
         {
-            TextField nodeTitleField;
+            TextField textField;
 
             CreateTextField();
 
@@ -122,47 +122,47 @@ namespace AG.DS
 
             AddFieldToStyleClass();
 
-            return nodeTitleField;
+            return textField;
 
             void CreateTextField()
             {
                 // Create a new text field.
-                nodeTitleField = new TextField();
+                textField = new();
 
                 // Set its value with the current node's title.
-                nodeTitleField.SetValueWithoutNotify(currentTitleText);
+                textField.SetValueWithoutNotify(defaultText);
             }
 
             void ConnectFieldToContainer()
             {
                 // Connect the field with the container.
-                textContainer.TextField = nodeTitleField;
-                textContainer.Value = nodeTitleField.value;
+                textContainer.TextField = textField;
+                textContainer.Value = textField.value;
             }
 
             void SetFieldDetails()
             {
-                // Field will not invoke OnValueChangedCallback unless user has pressed enter.
-                nodeTitleField.isDelayed = true;
+                // The new field's value won't be set unless the user pressed enter.
+                textField.isDelayed = true;
 
-                // Field cannot have more than one line.
-                nodeTitleField.multiline = false;
+                // The field cannot have more than one line.
+                textField.multiline = false;
 
                 // Set both the field and input base to block user's mouse interaction.
-                nodeTitleField.pickingMode = PickingMode.Ignore;
-                nodeTitleField.GetFieldInputBase().pickingMode = PickingMode.Ignore;
+                textField.pickingMode = PickingMode.Ignore;
+                textField.GetFieldInputBase().pickingMode = PickingMode.Ignore;
             }
 
             void RegisterFieldEvents()
             {
-                NodeTitleFieldCallbacks.RegisterNodeTitleChangedEvent(textContainer);
-                NodeTitleFieldCallbacks.RegisterNodeTitleFocusInEvent(textContainer);
-                NodeTitleFieldCallbacks.RegisterNodeTitleFocusOutEvent(textContainer);
+                DelayableTextFieldCallbacks.RegisterValueChangedEvent(textContainer);
+                DelayableTextFieldCallbacks.RegisterFocusInEvent(textContainer);
+                DelayableTextFieldCallbacks.RegisterFocusOutEvent(textContainer);
             }
 
             void AddFieldToStyleClass()
             {
-                nodeTitleField.AddToClassList(fieldUSS01);
+                textField.AddToClassList(fieldUSS01);
             }
         }
 
@@ -194,12 +194,12 @@ namespace AG.DS
 
             void CreateGraphTitleField()
             {
-                graphTitleField = new TextField();
+                graphTitleField = new();
             }
 
             void SetFieldDetails()
             {
-                // Field will not invoke OnValueChangedCallback unless user has pressed enter.
+                // The new field's value won't be set unless the user pressed enter.
                 graphTitleField.isDelayed = true;
             }
 
@@ -220,7 +220,7 @@ namespace AG.DS
 
             void RegisterFieldEvents()
             {
-                GraphTitleFieldCallbacks.RegisterGraphTitleChangedEvent(graphTitleField);
+                GraphTitleFieldCallbacks.RegisterValueChangedEvent(graphTitleField);
                 GraphTitleFieldCallbacks.RegisterGraphTitleFocusOutEvent(graphTitleField);
             }
 

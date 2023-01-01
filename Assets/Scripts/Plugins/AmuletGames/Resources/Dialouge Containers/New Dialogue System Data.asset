@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: New Dialogue System Data
   m_EditorClassIdentifier: 
   EdgeData:
+  - InputPortGUID: 13465254-c579-41c2-a9b0-cf2f7aeb5e94
+    OutputPortGUID: 59460684-fa2a-4738-b484-41e8edd03324
   - InputPortGUID: 35615652-2686-4f4e-ae1e-126a00996272
     OutputPortGUID: 5d8aa12b-3df1-4aef-99be-7c76a7308828
   - InputPortGUID: e797e35d-a1e3-4805-b2e8-5c9b56c30e7d
@@ -21,8 +23,6 @@ MonoBehaviour:
     OutputPortGUID: 05d809fc-962e-4c93-809a-ef69040a1d9e
   - InputPortGUID: c7f78c54-6888-469a-94eb-fe4a7e71951e
     OutputPortGUID: 93bea48b-02c1-4d1e-b488-d1e8ab01a555
-  - InputPortGUID: fe7a59c8-4dfd-409e-86e6-073f7a0ebc4d
-    OutputPortGUID: 1cafef94-0c77-4039-92a5-5f28707565ee
   - InputPortGUID: 01ef1672-9db9-475b-bad5-1a1fa01bd75e
     OutputPortGUID: 6b71061a-edbc-4e08-b05c-8e53fd823150
   BooleanNodeData:
@@ -67,7 +67,15 @@ MonoBehaviour:
           FloatVariable: {fileID: 0}
           StringVariable: {fileID: 0}
         IsShowKeyboardInputField: 1
-  DialogueNodeData: []
+  DialogueNodeData:
+  - NodeGUID: bf964eae-d1e6-4e66-8126-dd5e4fafac53
+    NodePosition:
+      x: 1686.6666
+      y: 225.33334
+    NodeTitleText: Dialogue
+    InputPortGUID: 23f6fa25-3331-40f4-a996-c39c2d79291b
+    OutputPortGUID: 59460684-fa2a-4738-b484-41e8edd03324
+    DialogueCharacter: {fileID: 0}
   EndNodeData:
   - NodeGUID: 7dfa6161-f1ee-4438-851e-efbcd352d02c
     NodePosition:
@@ -76,7 +84,17 @@ MonoBehaviour:
     NodeTitleText: End
     InputPortGUID: e797e35d-a1e3-4805-b2e8-5c9b56c30e7d
     DialogueOverHandleTypeEnumIndex: 2
-  EventNodeData: []
+  EventNodeData:
+  - NodeGUID: 7779441f-fd90-4ea9-8f81-d25ab81e27eb
+    NodePosition:
+      x: 2303.3333
+      y: 225.33334
+    NodeTitleText: Event
+    InputPortGUID: 13465254-c579-41c2-a9b0-cf2f7aeb5e94
+    OutputPortGUID: 3dedb082-dff8-477e-aeaa-45e83b1f4bc1
+    EventMolderData:
+      RootModifierData:
+        DialogueEvent: {fileID: 0}
   OptionTrackNodeData:
   - NodeGUID: 170f56bd-7a4c-4ec5-bbcd-9cb80028a311
     NodePosition:
@@ -181,62 +199,6 @@ MonoBehaviour:
           Value: 
         - Key: 5
           Value: 
-    DualPortraitsSegmentData:
-      IsExpanded: 0
-      LeftPortraitSprite: {fileID: 0}
-      RightPortraitSprite: {fileID: 0}
-    DialogueSegmentData:
-      IsExpanded: 1
-      TextlineNumberTypeEnumIndex: 0
-      DialogueCharacter: {fileID: 0}
-      AudioClipLanguageGeneric:
-        ValueByLanguageType:
-          list:
-          - Key: 0
-            Value: {fileID: 0}
-          - Key: 1
-            Value: {fileID: 0}
-          - Key: 2
-            Value: {fileID: 0}
-          - Key: 3
-            Value: {fileID: 0}
-          - Key: 4
-            Value: {fileID: 0}
-          - Key: 5
-            Value: {fileID: 0}
-      FirstTextlineTextLanguageGeneric:
-        ValueByLanguageType:
-          list:
-          - Key: 0
-            Value: textline
-          - Key: 1
-            Value: 
-          - Key: 2
-            Value: 
-          - Key: 3
-            Value: 
-          - Key: 4
-            Value: 
-          - Key: 5
-            Value: 
-      SecondLineTriggerTypeEnumIndex: 0
-      SecondTextlineTextLanguageGeneric:
-        ValueByLanguageType:
-          list:
-          - Key: 0
-            Value: 
-          - Key: 1
-            Value: 
-          - Key: 2
-            Value: 
-          - Key: 3
-            Value: 
-          - Key: 4
-            Value: 
-          - Key: 5
-            Value: 
-      DurationFloat: 0
-      CsvGUID: 859f4a0e-8f32-4ac1-b3c3-53d491f2ffc1
   - NodeGUID: c2e56f8b-3eab-4d15-8550-f63b817fa3e4
     NodePosition:
       x: 2078
@@ -264,62 +226,6 @@ MonoBehaviour:
           Value: 
         - Key: 5
           Value: 
-    DualPortraitsSegmentData:
-      IsExpanded: 0
-      LeftPortraitSprite: {fileID: 0}
-      RightPortraitSprite: {fileID: 0}
-    DialogueSegmentData:
-      IsExpanded: 1
-      TextlineNumberTypeEnumIndex: 0
-      DialogueCharacter: {fileID: 0}
-      AudioClipLanguageGeneric:
-        ValueByLanguageType:
-          list:
-          - Key: 0
-            Value: {fileID: 0}
-          - Key: 1
-            Value: {fileID: 0}
-          - Key: 2
-            Value: {fileID: 0}
-          - Key: 3
-            Value: {fileID: 0}
-          - Key: 4
-            Value: {fileID: 0}
-          - Key: 5
-            Value: {fileID: 0}
-      FirstTextlineTextLanguageGeneric:
-        ValueByLanguageType:
-          list:
-          - Key: 0
-            Value: 
-          - Key: 1
-            Value: 
-          - Key: 2
-            Value: 
-          - Key: 3
-            Value: 
-          - Key: 4
-            Value: 
-          - Key: 5
-            Value: 
-      SecondLineTriggerTypeEnumIndex: 0
-      SecondTextlineTextLanguageGeneric:
-        ValueByLanguageType:
-          list:
-          - Key: 0
-            Value: 
-          - Key: 1
-            Value: 
-          - Key: 2
-            Value: 
-          - Key: 3
-            Value: 
-          - Key: 4
-            Value: 
-          - Key: 5
-            Value: 
-      DurationFloat: 0
-      CsvGUID: 9178bf6b-16c8-466e-8e92-6c4040d13e2d
   PreviewNodeData:
   - NodeGUID: c4d75e69-4945-4ac7-b350-7ec39b7712e5
     NodePosition:
@@ -337,11 +243,4 @@ MonoBehaviour:
       y: -343.33334
     NodeTitleText: Start
     OutputPortGUID: 6b71061a-edbc-4e08-b05c-8e53fd823150
-  StoryNodeData:
-  - NodeGUID: d305de5f-eb8c-4195-a2d3-e8577b0b57ba
-    NodePosition:
-      x: 1262.6666
-      y: -412
-    NodeTitleText: Story
-    InputPortGUID: fe7a59c8-4dfd-409e-86e6-073f7a0ebc4d
-    OutputPortGUID: 57c25eb3-6ebb-49a6-974c-bda53e4b18d5
+  StoryNodeData: []

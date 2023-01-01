@@ -21,8 +21,8 @@ namespace AG.DS
         #endregion
 
         #region - HeadBar.
-        public const string HeadBar_MainBox = "headBar_MainBox";
-        public const string HeadBar_LeftSide_SubBox = "headBar_LeftSide_SubBox";
+        public const string HeadBar_Main_Box = "headBar_Main_Box";
+        public const string HeadBar_LeftSide_Box = "headBar_LeftSide_Box";
         public const string HeadBar_SaveGraph_Button = "headBar_SaveGraph_Button";
         public const string HeadBar_LoadGraph_Button = "headBar_LoadGraph_Button";
         public const string HeadBar_LanguageSelection_ToolbarMenu = "headBar_LanguageSelection_ToolbarMenu";
@@ -30,9 +30,9 @@ namespace AG.DS
         #endregion
 
         #region - Input Hint.
-        public const string InputHint_Hint_MainBox = "inputHint_Hint_MainBox";
-        public const string InputHint_HintIcon_Image = "inputHint_HintIcon_Image";
-        public const string InputHint_HintText_Label = "inputHint_HintText_Label";
+        public const string InputHint_Main_Box = "inputHint_Main_Box";
+        public const string InputHint_Icon_Image = "inputHint_Icon_Image";
+        public const string InputHint_Text_Label = "inputHint_Text_Label";
         #endregion
 
         #endregion
@@ -43,6 +43,7 @@ namespace AG.DS
         public static StyleSheet DSModifiersStyle;
         public static StyleSheet DSRootedModifiersStyle;
         public static StyleSheet DSSegmentsStyle;
+        public static StyleSheet DSFolderStyle;
         public static StyleSheet DSIntegrantsStyle;
         public static StyleSheet DSOutputOptionChannelsStyle;
         public static StyleSheet DSInputOptionChannelsStyle;
@@ -50,43 +51,51 @@ namespace AG.DS
 
         #region - Modifiers.
 
+        #region - Message.
+        public const string Modifier_Message_Main_Box = "modifier_Message_Main_Box";
+        public const string Modifier_Message_RemoveModifier_Button = "modifier_Message_RemoveModifier_Button";
+
+        /*< -------------------- Root -------------------- >*/
+        public const string Modifier_Message_Rooted_Main_Box = "modifier_Message_Rooted_Main_Box";
+        #endregion
+
         #region - Event.
-        public const string Modifier_Event_MainBox = "modifier_Event_MainBox";
+        public const string Modifier_Event_Main_Box = "modifier_Event_Main_Box";
         public const string Modifier_Event_ObjectField = "modifier_Event_ObjectField";
         public const string Modifier_Event_RemoveModifier_Button = "modifier_Event_RemoveModifier_Button";
 
         /*< -------------------- Root -------------------- >*/
-        public const string Modifier_Event_Rooted_MainBox = "modifier_Event_Rooted_MainBox";
+        public const string Modifier_Event_Rooted_Main_Box = "modifier_Event_Rooted_Main_Box";
         public const string Modifier_Event_Rooted_ObjectField = "modifier_Event_Rooted_ObjectField";
         #endregion
 
         #region - Condition.
-        public const string Modifier_Condition_MainBox = "modifier_Condition_MainBox";
+        public const string Modifier_Condition_Main_Box = "modifier_Condition_Main_Box";
         public const string Modifier_Condition_FirstTerm_ObjectField = "modifier_Condition_FirstTerm_ObjectField";
 
         public const string Modifier_Condition_Operator_EnumField = "modifier_Condition_Operator_EnumField";
-        public const string Modifier_Condition_Operator_EnumField_Icon = "modifier_Condition_Operator_EnumField_Icon";
+        public const string Modifier_Condition_Operator_Icon = "modifier_Condition_Operator_Icon";
 
         public const string Modifier_Condition_SecondTerm_TextField = "modifier_Condition_SecondTerm_TextField";
         public const string Modifier_Condition_SecondTerm_FloatField = "modifier_Condition_SecondTerm_FloatField";
         public const string Modifier_Condition_SecondTerm_ObjectField = "modifier_Condition_SecondTerm_ObjectField";
 
-        public const string Modifier_Condition_ButtonSideBox = "modifier_Condition_ButtonSideBox";
+        public const string Modifier_Condition_Button_Box = "modifier_Condition_Button_Box";
         public const string Modifier_Condition_ChangeFieldType_Button = "modifier_Condition_ChangeFieldType_Button";
         public const string Modifier_Condition_RemoveModifier_Button = "modifier_Condition_RemoveModifier_Button";
 
         /*< -------------------- Root -------------------- >*/
-        public const string Modifier_Condition_Rooted_MainBox = "modifier_Condition_Rooted_MainBox";
+        public const string Modifier_Condition_Rooted_Main_Box = "modifier_Condition_Rooted_Main_Box";
         public const string Modifier_Condition_Rooted_FirstTerm_ObjectField = "modifier_Condition_Rooted_FirstTerm_ObjectField";
 
         public const string Modifier_Condition_Rooted_Operator_EnumField = "modifier_Condition_Rooted_Operator_EnumField";
-        public const string Modifier_Condition_Rooted_Operator_EnumField_Icon = "modifier_Condition_Rooted_Operator_EnumField_Icon";
+        public const string Modifier_Condition_Rooted_Operator_Icon = "modifier_Condition_Rooted_Operator_Icon";
 
         public const string Modifier_Condition_Rooted_SecondTerm_TextField = "modifier_Condition_Rooted_SecondTerm_TextField";
         public const string Modifier_Condition_Rooted_SecondTerm_FloatField = "modifier_Condition_Rooted_SecondTerm_FloatField";
         public const string Modifier_Condition_Rooted_SecondTerm_ObjectField = "modifier_Condition_Rooted_SecondTerm_ObjectField";
 
-        public const string Modifier_Condition_Rooted_ButtonSideBox = "modifier_Condition_Rooted_ButtonSideBox";
+        public const string Modifier_Condition_Rooted_Button_Box = "modifier_Condition_Rooted_Button_Box";
         public const string Modifier_Condition_Rooted_ChangeFieldType_Button = "modifier_Condition_Rooted_ChangeFieldType_Button";
         #endregion
 
@@ -95,36 +104,26 @@ namespace AG.DS
         #region - Segments.
 
         #region - Commons.
-        public const string Segment_TitleBox_Common = "segment_TitleBox_Common";
-        public const string Segment_Title_Label = "segment_Title_Label";
-        #endregion
-
-        #region - Expand Button.
-        public const string Segment_ExpandSegment_Button = "segment_ExpandSegment_Button";
-        #endregion
-
-        #region - Title Enum Field.
-        public const string Segment_TitleEnum_EnumField = "segment_TitleEnum_EnumField";
-        #endregion
-
-        #region - Dual Portraits.
-        
+        public const string Segment_Common_Title_Box = "segment_Common_Title_Box";
+        public const string Segment_Common_Title_Label = "segment_Common_Title_Label";
+        public const string Segment_Common_Title_EnumField = "segment_Common_Title_EnumField";
+        public const string Segment_Common_ExpandSegment_Button = "segment_Common_ExpandSegment_Button";
         #endregion
 
         #region - Dialogue.
-        public const string Segment_TitleBox_Dialogue = "segment_TitleBox_Dialogue";
-        public const string Segment_Dialogue_ContentBox = "segment_Dialogue_ContentBox";
+        public const string Segment_Dialogue_Title_Box = "segment_Dialogue_Title_Box";
+        public const string Segment_Dialogue_Content_Box = "segment_Dialogue_Content_Box";
         public const string Segment_Dialogue_Character_ObjectField = "segment_Dialogue_Character_ObjectField";
         public const string Segment_Dialogue_First_Textline_TextField = "segment_Dialogue_First_Textline_TextField";
         public const string Segment_Dialogue_AudioClip_ObjectField = "segment_Dialogue_AudioClip_ObjectField";
         
-        public const string Segment_Dialogue_SecondContentBox = "segment_Dialogue_SecondContentBox";
+        public const string Segment_Dialogue_SecondContent_Box = "segment_Dialogue_SecondContent_Box";
 
-        public const string Segment_Dialogue_SecondLineTriggerType_CellBox = "segment_Dialogue_SecondLineTriggerType_CellBox";
+        public const string Segment_Dialogue_SecondLineTriggerType_Box = "segment_Dialogue_SecondLineTriggerType_Box";
         public const string Segment_Dialogue_SecondLineTriggerType_Label = "segment_Dialogue_SecondLineTriggerType_Label";
         public const string Segment_Dialogue_SecondLineTriggerType_EnumField = "segment_Dialogue_SecondLineTriggerType_EnumField";
 
-        public const string Segment_Dialogue_Duration_CellBox = "segment_Dialogue_Duration_CellBox";
+        public const string Segment_Dialogue_Duration_Box = "segment_Dialogue_Duration_Box";
         public const string Segment_Dialogue_Duration_Label = "segment_Dialogue_Duration_Label";
         public const string Segment_Dialogue_Duration_FloatField = "segment_Dialogue_Duration_FloatField";
 
@@ -132,27 +131,35 @@ namespace AG.DS
         #endregion
 
         #region - Condition.
-        public const string Segment_TitleBox_Condition = "segment_TitleBox_Condition";
-        public const string Segment_Condition_MainBox = "segment_Condition_MainBox";
-        public const string Segment_Condition_ContentBox = "segment_Condition_ContentBox";
+        public const string Segment_Condition_Main_Box = "segment_Condition_Main_Box";
+        public const string Segment_Condition_Title_Box = "segment_Condition_Title_Box";
+        public const string Segment_Condition_Content_Box = "segment_Condition_Content_Box";
         #endregion
 
         #region - Event.
-        public const string Segment_TitleBox_Event = "segment_TitleBox_Event";
-        public const string Segment_Event_MainBox = "segment_Event_MainBox";
-        public const string Segment_Event_ContentBox = "segment_Event_ContentBox";
+        public const string Segment_Event_Main_Box = "segment_Event_Main_Box";
+        public const string Segment_Event_Title_Box = "segment_Event_Title_Box";
+        public const string Segment_Event_Content_Box = "segment_Event_Content_Box";
         #endregion
 
+        #endregion
+
+        #region - Folders.
+        public const string Folder_Common_Title_Box = "folder_Common_Title_Box";
+        public const string Folder_Common_Content_Box = "folder_Common_Content_Box";
+        public const string Folder_Common_ExpandFolder_Button = "folder_Common_ExpandFolder_Button";
+        public const string Folder_Common_Title_TextField = "folder_Common_Title_TextField";
         #endregion
 
         #region - Integrants.
 
         #region - Content Button.
-        public const string Integrant_ContentButton_MainBox = "integrant_ContentButton_MainBox";
+        public const string Integrant_ContentButton_Main_Box = "integrant_ContentButton_Main_Box";
         public const string Integrant_ContentButton_Label = "integrant_ContentButton_Label";
-        public const string Integrant_ContentButton_AddEntry_Image = "integrant_ContentButton_AddEntry_Image";
         public const string Integrant_ContentButton_AddCondition_Image = "integrant_ContentButton_AddCondition_Image";
+        public const string Integrant_ContentButton_AddEntry_Image = "integrant_ContentButton_AddEntry_Image";
         public const string Integrant_ContentButton_AddEvent_Image = "integrant_ContentButton_AddEvent_Image";
+        public const string Integrant_ContentButton_AddMessage_Image = "integrant_ContentButton_AddMessage_Image";
         #endregion
 
         #endregion
@@ -226,10 +233,11 @@ namespace AG.DS
 
         #region - Border.
         public const string Node_Border = "node_Border";
+        public const string Node_Border_Hover = "node_Border_Hover";
         #endregion
 
         #region - Node Title.
-        public const string Node_NodeTitle_MainBox = "node_NodeTitle_MainBox";
+        public const string Node_NodeTitle_Main_Box = "node_NodeTitle_Main_Box";
         public const string Node_NodeTitle_TextField = "node_NodeTitle_TextField";
         public const string Node_EditTitle_Button = "node_EditTitle_Button";
         #endregion
@@ -253,12 +261,12 @@ namespace AG.DS
         #endregion
 
         #region - Preview Node.
-        public const string PreviewNode_ImagesBox = "previewNode_ImagesBox";
+        public const string PreviewNode_Image_Box = "previewNode_Image_Box";
         public const string PreviewNode_Image = "previewNode_Image";
         public const string PreviewNode_Image_L = "previewNode_Image_L";
         public const string PreviewNode_Image_R = "previewNode_Image_R";
 
-        public const string PreviewNode_ObjectFieldsBox = "previewNode_ObjectFieldsBox";
+        public const string PreviewNode_ObjectField_Box = "previewNode_ObjectField_Box";
         public const string PreviewNode_ObjectField = "previewNode_ObjectField";
         public const string PreviewNode_ObjectField_L = "previewNode_ObjectField_L";
         public const string PreviewNode_ObjectField_R = "previewNode_ObjectField_R";
@@ -343,8 +351,13 @@ namespace AG.DS
                 DSModifiersStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/Modifiers/DSModifiersStyle.uss");
                 DSRootedModifiersStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/Modifiers/DSRootedModifiersStyle.uss");
                 
-                // Others
+                // Segments
                 DSSegmentsStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSSegmentsStyle.uss");
+                
+                // Folders
+                DSFolderStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSFoldersStyle.uss");
+
+                // Integrants
                 DSIntegrantsStyle = (StyleSheet)EditorGUIUtility.Load("DialogueSystem/Components/DSIntegrantsStyle.uss");
                 
                 // Option Channels

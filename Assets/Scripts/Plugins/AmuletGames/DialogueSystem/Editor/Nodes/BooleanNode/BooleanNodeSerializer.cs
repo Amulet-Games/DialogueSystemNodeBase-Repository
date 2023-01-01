@@ -27,7 +27,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override void SaveNode(DialogueSystemData dsData)
         {
-            var data = new BooleanNodeData();
+            BooleanNodeData data = new();
 
             SaveBaseValues(data: data);
 

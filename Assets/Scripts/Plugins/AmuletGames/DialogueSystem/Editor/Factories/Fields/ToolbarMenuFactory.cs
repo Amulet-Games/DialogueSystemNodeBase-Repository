@@ -27,7 +27,7 @@ namespace AG.DS
 
             void SetupToolbar()
             {
-                dropdownMenu = new ToolbarMenu();
+                dropdownMenu = new();
                 dropdownMenu.text = toolbarText;
             }
 
@@ -60,7 +60,7 @@ namespace AG.DS
 
             void SetupToolbar()
             {
-                dropdownMenu = new ToolbarMenu();
+                dropdownMenu = new();
 
                 // Get the arrow image element and set its background image.
                 dropdownMenu.ElementAt(1).style.backgroundImage = menuSprite.texture;

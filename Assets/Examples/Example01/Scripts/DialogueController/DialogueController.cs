@@ -110,8 +110,8 @@ namespace AG
         #region Choice Buttons.
         //void MakeOptionButtons(List<ChoiceData> _choiceDataList)
         //{
-        //    List<string> choiceTexts = new List<string>();
-        //    List<UnityAction> unityActions = new List<UnityAction>();
+        //    List<string> choiceTexts = new();
+        //    List<UnityAction> unityActions = new();
 
         //    foreach (ChoiceData choiceData in _choiceDataList)
         //    {

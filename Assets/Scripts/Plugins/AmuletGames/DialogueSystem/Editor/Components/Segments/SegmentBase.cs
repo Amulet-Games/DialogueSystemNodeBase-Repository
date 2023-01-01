@@ -1,27 +1,25 @@
-using System;
 using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    [Serializable]
     public abstract class SegmentBase
     {
         /// <summary>
-        /// Is segment expanded or closed.
-        /// </summary>
-        public bool IsExpanded;
-
-
-        /// <summary>
-        /// The box UIElement that stores the content section's visual elements.
+        /// The box UIElement that stores all the visual elements that are included in the segment's content section.
         /// </summary>
         public Box ContentBox;
 
 
         /// <summary>
-        /// Button that can expand or shrink segment's content when pressed.
+        /// Button that can expand or shrink the segment's content when clicked.
         /// </summary>
-        public Button ExpandButton;
+        protected Button ExpandButton;
+
+
+        /// <summary>
+        /// Is the segment expanded?
+        /// </summary>
+        protected bool IsExpanded;
 
 
         // ----------------------------- Makers -----------------------------
@@ -29,7 +27,7 @@ namespace AG.DS
         /// Create all the UIElements that are needed in the segment.
         /// </summary>
         /// <param name="node">Node of which this segment is created for.</param>
-        public abstract void SetupSegment(NodeBase node);
+        public abstract void CreateRootElements(NodeBase node);
 
 
         // ----------------------------- Serialization -----------------------------
@@ -74,7 +72,7 @@ namespace AG.DS
         /// </summary>
         void UpdateSegmentIsExpanded()
         {
-            VisualElementHelper.ToggleElementDisplay
+            VisualElementHelper.UpdateElementDisplay
             (
                 condition: !IsExpanded,
                 element: ContentBox

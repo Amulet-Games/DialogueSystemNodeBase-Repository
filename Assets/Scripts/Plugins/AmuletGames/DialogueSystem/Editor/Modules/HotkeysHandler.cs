@@ -71,14 +71,14 @@ namespace AG.DS
                 if (evt.keyCode == SaveKey)
                 {
                     dsWindow.SaveWindowAction();
-                    SetIsKeyReleasedToFalse();
+                    isKeyReleased = false;
                 }
 
                 // Loading
                 if (evt.keyCode == LoadKey)
                 {
                     dsWindow.LoadWindowAction(false);
-                    SetIsKeyReleasedToFalse();
+                    isKeyReleased = false;
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace AG.DS
         /// Action that invoked when the user has released the hotkey that pressed in a empty space inside the window.
         /// </summary>
         /// <param name="evt">Registering event.</param>
-        public void HotkeysUpAction(KeyUpEvent evt) => SetIsKeyReleasedToTrue();
+        public void HotkeysUpAction(KeyUpEvent evt) => isKeyReleased = true;
 
 
         // ----------------------------- Keys Confirmation Tasks -----------------------------
@@ -107,18 +107,5 @@ namespace AG.DS
                 _ => false
             };
         }
-
-
-        // ----------------------------- Set Is Key Released Services -----------------------------
-        /// <summary>
-        /// Set IsKeyRelease variable to true.
-        /// </summary>
-        public void SetIsKeyReleasedToTrue() => isKeyReleased = true;
-
-
-        /// <summary>
-        /// Set IsKeyRelease variable to False.
-        /// </summary>
-        public void SetIsKeyReleasedToFalse() => isKeyReleased = false;
     }
 }

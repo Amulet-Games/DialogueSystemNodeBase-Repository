@@ -25,11 +25,17 @@ namespace AG.DS
         /// <inheritdoc />
         public override void SaveNode(DialogueSystemData dsData)
         {
-            var data = new StoryNodeData();
+            StoryNodeData data = new();
 
             SaveBaseValues(data: data);
 
             SavePortsGUID();
+
+            SaveFirstContentBoxContainers();
+
+            SaveSecondContentBoxContainers();
+
+            Save_CSV_GUID();
 
             AddData();
 
@@ -37,6 +43,36 @@ namespace AG.DS
             {
                 data.InputPortGUID = Model.InputPort.name;
                 data.OutputPortGUID = Model.OutputPort.name;
+            }
+
+            void SaveFirstContentBoxContainers()
+            {
+                // Character SO.
+                data.DialogueCharacter = Model.CharacterObjectContainer.Value;
+
+                // Audio clip.
+                Model.AudioClipContainer.SaveContainerValue(data.AudioClipLanguageGeneric);
+
+                // First textline text.
+                Model.FirstTextlineTextContainer.SaveContainerValue(data.FirstTextlineTextLanguageGeneric);
+            }
+
+            void SaveSecondContentBoxContainers()
+            {
+                // Second line trigger type enum.
+                data.SecondLineTriggerTypeEnumIndex = Model.SecondLineTriggerTypeEnumContainer.Value;
+
+                // Duration float.
+                data.DurationFloat = Model.DurationFloatContainer.Value;
+
+                // Second textline text.
+                Model.SecondTextlineTextContainer.SaveContainerValue(data.SecondTextlineTextLanguageGeneric);
+            }
+
+            void Save_CSV_GUID()
+            {
+                // CSV GUID.
+                data.CsvGUID = Model.CsvGUID;
             }
 
             void AddData()
@@ -54,10 +90,46 @@ namespace AG.DS
 
             LoadPortsGUID();
 
+            LoadFirstContentBoxContainers();
+
+            LoadSecondContentBoxContainers();
+
+            Load_CSV_Guid();
+
             void LoadPortsGUID()
             {
                 Model.InputPort.name = data.InputPortGUID;
                 Model.OutputPort.name = data.OutputPortGUID;
+            }
+
+            void LoadFirstContentBoxContainers()
+            {
+                // Character SO.
+                Model.CharacterObjectContainer.LoadContainerValue(data.DialogueCharacter);
+
+                // Audio clip.
+                Model.AudioClipContainer.LoadContainerValue(data.AudioClipLanguageGeneric);
+
+                // First textline text.
+                Model.FirstTextlineTextContainer.LoadContainerValue(data.FirstTextlineTextLanguageGeneric);
+            }
+
+            void LoadSecondContentBoxContainers()
+            {
+                // Second line trigger type enum.
+                Model.SecondLineTriggerTypeEnumContainer.LoadContainerValue(data.SecondLineTriggerTypeEnumIndex);
+
+                // Duration float.
+                Model.DurationFloatContainer.LoadContainerValue(data.DurationFloat);
+
+                // Second textline text.
+                Model.SecondTextlineTextContainer.LoadContainerValue(data.SecondTextlineTextLanguageGeneric);
+            }
+
+            void Load_CSV_Guid()
+            {
+                // CSV GUID.
+                Model.CsvGUID = data.CsvGUID;
             }
         }
     }

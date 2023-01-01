@@ -21,13 +21,6 @@ namespace AG.DS
         public LanguageTextContainer HeaderTextContainer;
 
 
-        /// <summary>
-        /// Holds the text field for the dialogue text, text field for speaker's name and
-        /// <br>a object field for the dialogue's audio. (Language dependent)</br>
-        /// </summary>
-        public DialogueSegment DialogueSegment;
-
-
         // ----------------------------- Ports -----------------------------
         /// <summary>
         /// Port that allows other nodes to connect to this node.
@@ -45,7 +38,6 @@ namespace AG.DS
             OutputSingleOptionChannel = new(isOutput: true);
             OutputMultiOptionChannelGroup = new(node: node, isOutput: true);
             HeaderTextContainer = new();
-            DialogueSegment = new();
         }
     }
 }

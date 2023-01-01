@@ -1,7 +1,3 @@
-using UnityEditor.Experimental.GraphView;
-using UnityEngine.UIElements;
-using UnityEngine;
-
 namespace AG.DS
 {
     /// <inheritdoc />
@@ -17,127 +13,47 @@ namespace AG.DS
         /// </summary>
         /// <param name="node">Node of which this presenter is connecting upon.</param>
         /// <param name="model">Model of which this presenter is connecting upon.</param>
-        /// <param name="details">The connecting creation details to set for.</param>
         public OptionWindowNodeCallback
         (
             OptionWindowNode node,
-            OptionWindowNodeModel model,
-            NodeCreationDetails details
+            OptionWindowNodeModel model
         )
         {
             Node = node;
             Model = model;
-            Details = details;
         }
 
 
         // ----------------------------- Callbacks -----------------------------
         /// <inheritdoc />
-        public override void PostCreatedAction()
+        public override void NodeCreatedAction()
         {
-            RegisterLanguageChangedEvent();
-
             AddSerializeCache();
 
-            void RegisterLanguageChangedEvent()
-            {
-                LanguageChangedEvent.Register(LanguageChangedAction);
-            }
+            RegisterEvents();
 
             void AddSerializeCache()
             {
                 var serializeHandler = Node.GraphViewer.SerializeHandler;
 
-                // Node
+                // Add node to serialize handler's cache.
                 serializeHandler.AddCacheNode(node: Node);
 
-                // Port
+                // Add ports to serialize handler's cache.
                 serializeHandler.AddCachePort(port: Model.OutputSingleOptionChannel.Port);
                 serializeHandler.AddCachePort(port: Model.InputPort);
             }
-        }
 
-
-        /// <inheritdoc />
-        public override void DelayedManualCreatedAction()
-        {
-            CheckIsOptionChannelCreation();
-
-            ShowNodeOnGraph();
-
-            void CheckIsOptionChannelCreation()
+            void RegisterEvents()
             {
-                if (Details.ConnectorType == P_ConnectorType.OptionChannel)
-                {
-                    Model.OutputSingleOptionChannel.NodeDelayedManualCreatedAction
-                    (
-                        opponentChannelPort: Details.ConnectorPort
-                    );
-                }
-                else
-                {
-                    AlignConnectorPosition();
+                // Register to LanguageChangedEvent.
+                LanguageChangedEvent.Register(LanguageChangedAction);
 
-                    ConnectConnectorPort();
-                }
-            }
+                // Register to PointerEnterEvent.
+                RegisterPointerEnterEvent();
 
-            void AlignConnectorPosition()
-            {
-                // Create a new vector2 result variable to cache the node's current local bound position.
-                Vector2 result = Node.localBound.position;
-
-                switch (Details.HorizontalAlignType)
-                {
-                    case C_Alignment_HorizontalType.Middle:
-
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
-
-                        // Width offset.
-                        result.x -= Node.localBound.width / 2;
-
-                        break;
-                    case C_Alignment_HorizontalType.Right:
-
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
-                        break;
-                }
-
-                // Apply the final position result to the node.
-                Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
-            }
-
-            void ConnectConnectorPort()
-            {
-                // If connnector port is null then return.
-                if (Details.ConnectorPort == null)
-                    return;
-
-                // Create local reference for the connector port.
-                Port connectorPort = Details.ConnectorPort;
-
-                // If the connector port is connecting to another port, disconnect them first.
-                if (connectorPort.connected)
-                {
-                    Node.GraphViewer.DisconnectPort(port: connectorPort);
-                }
-
-                // Connect the ports and retrieve the new edge.
-                Edge edge = Node.GraphViewer.ConnectPorts
-                            (
-                                outputPort: connectorPort,
-                                inputPort: Model.InputPort
-                            );
-
-                // Register default edge callbacks to the edge.
-                DefaultEdgeCallbacks.Register(defaultEdge: edge);
-            }
-
-            void ShowNodeOnGraph()
-            {
-                Node.RemoveFromClassList(StylesConfig.Global_Visible_Hidden);
+                // Register to PointerLeaveEvent.
+                RegisterPointerLeaveEvent();
             }
         }
 
@@ -145,104 +61,54 @@ namespace AG.DS
         /// <inheritdoc />
         public override void PreManualRemovedAction()
         {
-            DisconnectInputPort();
+            // Disconnect input port.
+            Model.InputPort.DisconnectPort();
 
-            DisconnectOutputSingleOptionChannel();
+            // Disconnect output single option channel.
+            Model.OutputSingleOptionChannel.DisconnectPort();
 
-            DisconnectOutputMultiOptionChannelGroup();
-
-            void DisconnectInputPort()
-            {
-                Model.InputPort.NodePreManualRemovedAction();
-            }
-
-            void DisconnectOutputSingleOptionChannel()
-            {
-                Model.OutputSingleOptionChannel.NodePreManualRemovedAction();
-            }
-
-            void DisconnectOutputMultiOptionChannelGroup()
-            {
-                Model.OutputMultiOptionChannelGroup.NodePreManualRemovedAction();
-            }
+            // Disconnect output multi option channel group.
+            Model.OutputMultiOptionChannelGroup.DisconnectPorts();
         }
 
 
         /// <inheritdoc />
         public override void PostManualRemovedAction()
         {
-            UnRegisterLanguageChangedEvent();
-
             RemoveSerializeCache();
 
-            void UnRegisterLanguageChangedEvent()
-            {
-                LanguageChangedEvent.UnRegister(LanguageChangedAction);
-            }
+            UnRegisterEvents();
 
             void RemoveSerializeCache()
             {
                 var serializeHandler = Node.GraphViewer.SerializeHandler;
 
-                // Node
+                // Remove node from serialize handler's cache.
                 serializeHandler.RemoveCacheNode(node: Node);
 
-                // Port
+                // Remove ports from serialize handler's cache.
                 serializeHandler.RemoveCachePort(port: Model.OutputSingleOptionChannel.Port);
                 serializeHandler.RemoveCachePort(port: Model.InputPort);
 
-                // Channel Group
-                Model.OutputMultiOptionChannelGroup.NodePostManualRemovedAction();
+                // Remove channel group's ports from serialize handler's cache.
+                Model.OutputMultiOptionChannelGroup.RemoveCachePorts();
+            }
+
+            void UnRegisterEvents()
+            {
+                LanguageChangedEvent.UnRegister(LanguageChangedAction);
             }
         }
 
 
-        /// <inheritdoc />
-        protected override void LanguageChangedAction()
+        // ----------------------------- Register additional Events Tasks -----------------------------
+        /// <summary>
+        /// Register new language changed actions to the connecting node module.
+        /// </summary>
+        void LanguageChangedAction()
         {
-            UpdateLanguageField();
-
-            void UpdateLanguageField()
-            {
-                Model.HeaderTextContainer.UpdateLanguageField();
-                Model.DialogueSegment.UpdateLanguageFields();
-            }
-        }
-
-
-        // ----------------------------- Set Node Min Max Width Task -----------------------------
-        /// <inheritdoc />
-        protected override void SetNodeMinMaxWidth()
-        {
-            SetNodeMinWidth();
-
-            SetMaxWidthProperties();
-
-            void SetNodeMinWidth()
-            {
-                Node.style.minWidth = NodesConfig.OptionWindowNodeMinWidth;
-            }
-
-            void SetMaxWidthProperties()
-            {
-                // Node
-                Node.style.maxWidth =
-                    NodesConfig.OptionWindowNodeMinWidth + NodesConfig.OptionWindowMaxWidthBuffer;
-
-                // Node title field
-                TextField nodeTitleField = Model.NodeTitle_TextContainer.TextField;
-                nodeTitleField.RegisterCallback<GeometryChangedEvent>(GeometryChangedAction);
-
-                void GeometryChangedAction(GeometryChangedEvent evt)
-                {
-                    // Set the title field max width once it's fully created in the editor.
-                    nodeTitleField.style.maxWidth =
-                        nodeTitleField.contentRect.width + NodesConfig.OptionWindowMaxWidthBuffer;
-
-                    // Unregister the action once the setup is done.
-                    nodeTitleField.UnregisterCallback<GeometryChangedEvent>(GeometryChangedAction);
-                }
-            }
+            // Update header text's language
+            Model.HeaderTextContainer.UpdateLanguageField();
         }
     }
 }

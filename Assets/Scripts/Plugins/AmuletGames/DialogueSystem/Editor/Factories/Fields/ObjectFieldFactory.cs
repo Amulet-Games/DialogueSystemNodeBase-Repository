@@ -47,7 +47,7 @@ namespace AG.DS
 
             void CreateObjectField()
             {
-                objectField = new ObjectField();
+                objectField = new();
             }
 
             void ConnectFieldToContainer()

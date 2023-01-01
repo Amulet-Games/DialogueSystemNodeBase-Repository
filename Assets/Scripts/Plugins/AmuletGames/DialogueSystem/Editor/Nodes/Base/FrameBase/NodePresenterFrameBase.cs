@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -57,16 +58,16 @@ namespace AG.DS
 
                 void SetupTitleMainBox()
                 {
-                    mainBox = new Box();
-                    mainBox.AddToClassList(StylesConfig.Node_NodeTitle_MainBox);
+                    mainBox = new();
+                    mainBox.AddToClassList(StylesConfig.Node_NodeTitle_Main_Box);
                 }
 
                 void SetupTitleTextField()
                 {
-                    nodeTitleField = TextFieldFactory.GetNewNodeTitleField
+                    nodeTitleField = TextFieldFactory.GetNewDelayableTextField
                     (
-                        textContainer: Model.NodeTitle_TextContainer,
-                        currentTitleText: Node.title,
+                        textContainer: Model.NodeTitleTextContainer,
+                        defaultText: Node.title,
                         fieldUSS01: StylesConfig.Node_NodeTitle_TextField
                     );
                 }
@@ -76,8 +77,8 @@ namespace AG.DS
                     Model.EditTitleButton = ButtonFactory.GetNewButton
                     (
                         isAlert: false,
-                        btnSprite: AssetsConfig.NodeTitleEditButtonIconSprite,
-                        btnPressedAction: ButtonClickedAction,
+                        buttonSprite: AssetsConfig.NodeTitleEditButtonIconSprite,
+                        buttonClickAction: NodeTitleEditButtonClickAction,
                         buttonUSS01: StylesConfig.Node_EditTitle_Button
                     );
                 }
@@ -102,17 +103,17 @@ namespace AG.DS
         /// <summary>
         /// Create all the ports that exist within the connecting node.
         /// </summary>
-        public virtual void CreateNodePorts() { }
+        public abstract void CreateNodePorts();
 
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Action that invoked after the node title edit button is pressed.
-        /// <para>ButtonClickedAction - ButtonsMaker - EditTitleButton.</para>
+        /// The action to invoke when the node title edit button is clicked.
+        /// <para>See: <see cref="CreateNodeElements"/></para>
         /// </summary>
-        void ButtonClickedAction()
+        void NodeTitleEditButtonClickAction()
         {
-            TextField nodeTitleField = Model.NodeTitle_TextContainer.TextField;
+            TextField nodeTitleField = Model.NodeTitleTextContainer.TextField;
 
             // Set focusable to true so that it'll trigger FocusInEvent later.
             nodeTitleField.focusable = true;
@@ -120,5 +121,90 @@ namespace AG.DS
             // Focus on the node title field.
             nodeTitleField.Focus();
         }
+
+
+        // ----------------------------- Post Process Node Width Services -----------------------------
+        /// <summary>
+        /// Set the connecting node's minimum and maximum width value.
+        /// </summary>
+        /// <param name="minWidth">The minimum node's width to set for.</param>
+        /// <param name="widthBuffer">The width buffer to to set for, combine it with the minimum width to get the node's maximum width.</param>
+        public void PostProcessNodeWidth(float minWidth, float widthBuffer)
+        {
+            SetNodeMinWidth();
+
+            SetMaxWidthProperties();
+
+            void SetNodeMinWidth()
+            {
+                // Set the node min width.
+                Node.style.minWidth = minWidth;
+            }
+
+            void SetMaxWidthProperties()
+            {
+                // Set the node max width.
+                Node.style.maxWidth = minWidth + widthBuffer;
+
+                TextField nodeTitleField = Model.NodeTitleTextContainer.TextField;
+                nodeTitleField.RegisterCallback<GeometryChangedEvent>(GeometryChangedAction);
+
+                void GeometryChangedAction(GeometryChangedEvent evt)
+                {
+                    // Set the title field max width once it's fully created in the editor.
+                    nodeTitleField.style.maxWidth =
+                        nodeTitleField.contentRect.width + widthBuffer;
+
+                    // Unregister the action once the setup is done.
+                    nodeTitleField.UnregisterCallback<GeometryChangedEvent>(GeometryChangedAction);
+                }
+            }
+        }
+
+
+        // ----------------------------- Post Process Node Position Services -----------------------------
+        /// <summary>
+        /// Set the connecting node's first position base on the creation details.
+        /// </summary>
+        /// <param name="details">The connecting creation details to set for.</param>
+        public void PostProcessNodePosition(NodeCreationDetails details)
+        {
+            SetNodePosition();
+
+            TemporaryHideNode();
+
+            PostProcessManualCreationProperties();
+
+            void SetNodePosition()
+            {
+                Node.SetPosition(newPos: new Rect(details.PlacePosition, Vector2Utility.Zero));
+            }
+
+            void TemporaryHideNode()
+            {
+                Node.AddToClassList(StylesConfig.Global_Visible_Hidden);
+            }
+
+            void PostProcessManualCreationProperties()
+            {
+                Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedAction);
+
+                void GeometryChangedAction(GeometryChangedEvent evt)
+                {
+                    // Post process node position details.
+                    PostProcessPositionDetails(details);
+
+                    // Unregister the action once the setup is done.
+                    Node.UnregisterCallback<GeometryChangedEvent>(GeometryChangedAction);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Adjust the node's position for the second time base on the creation details.
+        /// </summary>
+        /// <param name="details">The connecting creation details to set for.</param>
+        protected abstract void PostProcessPositionDetails(NodeCreationDetails details);
     }
 }

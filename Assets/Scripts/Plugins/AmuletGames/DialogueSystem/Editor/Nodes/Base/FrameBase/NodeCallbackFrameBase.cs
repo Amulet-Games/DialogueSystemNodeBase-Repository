@@ -1,5 +1,5 @@
-using UnityEngine.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -27,48 +27,29 @@ namespace AG.DS
         protected TNodeModel Model;
 
 
-        // ----------------------------- Callbacks -----------------------------
-        /// <inheritdoc />
-        public override void ManualCreatedAction()
+        /// <summary>
+        /// Register new pointer enter actions to the connecting node module.
+        /// </summary>
+        protected void RegisterPointerEnterEvent()
         {
-            SetNodePosition();
-
-            SetNodeMinMaxWidth();
-
-            TemporaryHideNode();
-
-            RegisterDelayCreatedAction();
-
-            void SetNodePosition()
+            Node.RegisterCallback<PointerEnterEvent>(callback =>
             {
-                Node.SetPosition(newPos: new Rect(Details.PlacePosition, Vector2Utility.Zero));
-            }
-
-            void TemporaryHideNode()
-            {
-                Node.AddToClassList(StylesConfig.Global_Visible_Hidden);
-            }
-
-            void RegisterDelayCreatedAction()
-            {
-                Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedAction);
-
-                void GeometryChangedAction(GeometryChangedEvent evt)
-                {
-                    // Delay setup the manual created node.
-                    DelayedManualCreatedAction();
-
-                    // Unregister the action once the setup is done.
-                    Node.UnregisterCallback<GeometryChangedEvent>(GeometryChangedAction);
-                }
-            }
+                // Add to hover class.
+                Node.NodeBorder.AddToClassList(StylesConfig.Node_Border_Hover);
+            });
         }
 
 
-        /// <inheritdoc />
-        public override void LoadCreatedAction()
+        /// <summary>
+        /// Register new pointer leave actions to the connecting node module.
+        /// </summary>
+        protected void RegisterPointerLeaveEvent()
         {
-            SetNodeMinMaxWidth();
+            Node.RegisterCallback<PointerLeaveEvent>(callback =>
+            {
+                // Remove from hover class.
+                Node.NodeBorder.RemoveFromClassList(StylesConfig.Node_Border_Hover);
+            });
         }
     }
 }

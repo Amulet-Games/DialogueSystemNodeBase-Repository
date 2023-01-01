@@ -29,13 +29,13 @@
 
             CreateNodePorts();
 
-            RefreshPorts();
+            PostProcessNodeWidth();
+
+            PostProcessNodePosition();
 
             AddStyleSheet();
 
-            ManualCreatedAction();
-
-            PostCreatedAction();
+            NodeCreatedAction();
 
             void SetupFrameFields()
             {
@@ -43,7 +43,7 @@
 
                 Presenter = new(node: this, model: model);
                 Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model, details: details);
+                Callback = new(node: this, model: model);
             }
 
             void CreateNodeElements()
@@ -54,6 +54,20 @@
             void CreateNodePorts()
             {
                 Presenter.CreateNodePorts();
+            }
+
+            void PostProcessNodeWidth()
+            {
+                Presenter.PostProcessNodeWidth
+                (
+                    minWidth: NodesConfig.OptionWindowNodeMinWidth,
+                    widthBuffer: NodesConfig.OptionWindowNodeWidthBuffer
+                );
+            }
+
+            void PostProcessNodePosition()
+            {
+                Presenter.PostProcessNodePosition(details);
             }
 
             void AddStyleSheet()
@@ -85,15 +99,13 @@
 
             CreateNodePorts();
 
-            RefreshPorts();
+            PostProcessNodeWidth();
 
             AddStyleSheet();
 
             LoadNode(data);
 
-            LoadCreatedAction();
-
-            PostCreatedAction();
+            NodeCreatedAction();
 
             void SetupFrameFields()
             {
@@ -101,7 +113,7 @@
 
                 Presenter = new(node: this, model: model);
                 Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model, details: null);
+                Callback = new(node: this, model: model);
             }
 
             void CreateNodeElements()
@@ -112,6 +124,15 @@
             void CreateNodePorts()
             {
                 Presenter.CreateNodePorts();
+            }
+
+            void PostProcessNodeWidth()
+            {
+                Presenter.PostProcessNodeWidth
+                (
+                    minWidth: NodesConfig.OptionWindowNodeMinWidth,
+                    widthBuffer: NodesConfig.OptionWindowNodeWidthBuffer
+                );
             }
 
             void AddStyleSheet()

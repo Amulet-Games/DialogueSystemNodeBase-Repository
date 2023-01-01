@@ -28,25 +28,16 @@ namespace AG.DS
 
         /// <summary>
         /// Create all the UIElements that are needed in the instance modifier.
-        /// <br>Specific which segment to store the modifier in modifierAddedAction.</br>
         /// </summary>
         /// <param name="data">The modifier data to load from.</param>
-        /// <param name="addToSegmentAction">Action that invoked at the end when the modifier is created and ready to be added to the segment.</param>
-        /// <param name="removeFromSegmentAction">Action to invoke when this modifier is deleted from the segment.</param>
+        /// <param name="modifierCreatedAction">Action to invoke when the modifier is created.</param>
+        /// <param name="removeButtonClickAction">Action to invoke when the modifier's remove button is clicked.</param>
         public abstract void CreateInstanceElements
         (
             TModifierData data,
-            Action<TModifier> addToSegmentAction,
-            Action<TModifier> removeFromSegmentAction
+            Action<TModifier> modifierCreatedAction,
+            Action<TModifier> removeButtonClickAction
         );
-
-
-        // ----------------------------- Callbacks -----------------------------
-        /// <summary>
-        /// Action that invoked at the end when the modifier is created.
-        /// <br>The callback action is optional and depends on the modifier it may not be needed.</br>
-        /// </summary>
-        public virtual void ModifierCreatedAction() { }
 
 
         // ----------------------------- Serialization -----------------------------

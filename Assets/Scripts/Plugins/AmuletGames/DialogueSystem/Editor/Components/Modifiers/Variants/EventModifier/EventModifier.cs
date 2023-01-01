@@ -1,10 +1,8 @@
-using System;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    [Serializable]
     public partial class EventModifier
         : ModifierFrameBase<EventModifier, EventModifierData>
     {
@@ -40,8 +38,8 @@ namespace AG.DS
 
             void SetupModifierBox()
             {
-                MainBox = new Box();
-                MainBox.AddToClassList(StylesConfig.Modifier_Event_Rooted_MainBox);
+                MainBox = new();
+                MainBox.AddToClassList(StylesConfig.Modifier_Event_Rooted_Main_Box);
             }
 
             void SetupEventObjectField()

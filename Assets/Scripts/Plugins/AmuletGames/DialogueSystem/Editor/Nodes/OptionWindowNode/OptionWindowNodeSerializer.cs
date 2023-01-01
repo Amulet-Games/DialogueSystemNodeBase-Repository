@@ -25,7 +25,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override void SaveNode(DialogueSystemData dsData)
         {
-            var data = new OptionWindowNodeData();
+            OptionWindowNodeData data = new();
 
             SaveBaseValues(data: data);
 
@@ -36,8 +36,6 @@ namespace AG.DS
             SaveOutputMultiOptionChannelGroup();
 
             SaveHeaderTextContainer();
-
-            SaveDialogueSegment();
 
             AddData();
 
@@ -67,11 +65,6 @@ namespace AG.DS
                 Model.HeaderTextContainer.SaveContainerValue(data.HeaderLanguageGeneric);
             }
 
-            void SaveDialogueSegment()
-            {
-                Model.DialogueSegment.SaveSegmentValues(data.DialogueSegmentData);
-            }
-
             void AddData()
             {
                 dsData.OptionWindowNodeData.Add(data);
@@ -93,8 +86,6 @@ namespace AG.DS
 
             LoadHeaderTextContainer();
 
-            LoadDialogueSegment();
-
             RefreshPortsLayout();
 
             void LoadPortsGUID()
@@ -115,11 +106,6 @@ namespace AG.DS
             void LoadHeaderTextContainer()
             {
                 Model.HeaderTextContainer.LoadContainerValue(data.HeaderLanguageGeneric);
-            }
-
-            void LoadDialogueSegment()
-            {
-                Model.DialogueSegment.LoadSegmentValues(data.DialogueSegmentData);
             }
 
             void RefreshPortsLayout()

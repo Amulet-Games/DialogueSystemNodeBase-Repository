@@ -17,5 +17,11 @@ namespace AG.DS
         /// The data's output port GUID value.
         /// </summary>
         [SerializeField] public string OutputPortGUID;
+
+
+        /// <summary>
+        /// The data's dialogue character value.
+        /// </summary>
+        [SerializeField] public DialogueCharacter DialogueCharacter;
     }
 }

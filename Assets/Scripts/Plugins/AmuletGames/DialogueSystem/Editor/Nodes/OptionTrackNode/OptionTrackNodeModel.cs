@@ -32,8 +32,7 @@ namespace AG.DS
         /// <summary>
         /// Construtor of the option track node model module class.
         /// </summary>
-        /// <param name="node">The connecting node to set for.</param>
-        public OptionTrackNodeModel(OptionTrackNode node)
+        public OptionTrackNodeModel()
         {
             InputSingleOptionChannel = new(isOutput: false);
             HeaderTextContainer = new();

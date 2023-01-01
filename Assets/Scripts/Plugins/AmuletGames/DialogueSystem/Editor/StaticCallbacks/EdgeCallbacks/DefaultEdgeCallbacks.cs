@@ -6,11 +6,12 @@ namespace AG.DS
     public class DefaultEdgeCallbacks
     {
         /// <summary>
-        /// Register focus and blur events to the edge in order to change its color
-        /// <br>when it's selected or checked.</br>
+        /// Register different actions to the given edge element.
+        /// <para></para>
+        /// This method is limited to default typed edges, for channel typed edges use <see cref="ChannelEdgeCallbacks.Register(Edge)"/> instead.
         /// </summary>
-        /// <param name="defaultEdge">The default edge of which this event is register to.</param>
-        public static void Register(Edge defaultEdge)
+        /// <param name="edge">The edge to assign the actions to.</param>
+        public static void Register(Edge edge)
         {
             SetAllowsFocus();
 
@@ -23,30 +24,30 @@ namespace AG.DS
             void SetAllowsFocus()
             {
                 // Set its focusable property to true so that it can register to FocusEvent.
-                defaultEdge.focusable = true;
+                edge.focusable = true;
             }
 
             void AddDefaultEdgeStyle()
             {
                 // Add to the default edge style class.
-                defaultEdge.AddToClassList(StylesConfig.Default_Edge);
+                edge.AddToClassList(StylesConfig.Default_Edge);
             }
 
             void RegisterFocusEvent()
             {
-                defaultEdge.RegisterCallback<FocusEvent>(callback =>
+                edge.RegisterCallback<FocusEvent>(callback =>
                 {
                     // Add to selected style class.
-                    defaultEdge.AddToClassList(StylesConfig.Default_Edge_Selected);
+                    edge.AddToClassList(StylesConfig.Default_Edge_Selected);
                 });
             }
 
             void RegisterBlurEvent()
             {
-                defaultEdge.RegisterCallback<BlurEvent>(callback =>
+                edge.RegisterCallback<BlurEvent>(callback =>
                 {
                     // Remove from selected style class.
-                    defaultEdge.RemoveFromClassList(StylesConfig.Default_Edge_Selected);
+                    edge.RemoveFromClassList(StylesConfig.Default_Edge_Selected);
                 });
             }
         }

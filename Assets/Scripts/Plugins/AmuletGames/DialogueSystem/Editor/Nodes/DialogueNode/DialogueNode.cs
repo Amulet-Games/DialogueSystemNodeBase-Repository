@@ -29,21 +29,21 @@
 
             CreateNodePorts();
 
-            RefreshPorts();
+            PostProcessNodeWidth();
+
+            PostProcessNodePosition();
 
             AddStyleSheet();
 
-            ManualCreatedAction();
-
-            PostCreatedAction();
+            NodeCreatedAction();
 
             void SetupFrameFields()
             {
-                DialogueNodeModel model = new(node: this);
+                DialogueNodeModel model = new();
 
                 Presenter = new(node: this, model: model);
                 Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model, details: details);
+                Callback = new(node: this, model: model);
             }
 
             void CreateNodeElements()
@@ -56,9 +56,24 @@
                 Presenter.CreateNodePorts();
             }
 
+            void PostProcessNodeWidth()
+            {
+                Presenter.PostProcessNodeWidth
+                (
+                    minWidth: NodesConfig.DialogueNodeMinWidth,
+                    widthBuffer: NodesConfig.DialogueNodeWidthBuffer
+                );
+            }
+
+            void PostProcessNodePosition()
+            {
+                Presenter.PostProcessNodePosition(details);
+            }
+
             void AddStyleSheet()
             {
                 styleSheets.Add(StylesConfig.DSDialogueNodeStyle);
+                styleSheets.Add(StylesConfig.DSIntegrantsStyle);
             }
         }
 
@@ -83,23 +98,21 @@
 
             CreateNodePorts();
 
-            RefreshPorts();
+            PostProcessNodeWidth();
 
             AddStyleSheet();
 
             LoadNode(data);
 
-            LoadCreatedAction();
-
-            PostCreatedAction();
+            NodeCreatedAction();
 
             void SetupFrameFields()
             {
-                DialogueNodeModel model = new(node: this);
+                DialogueNodeModel model = new();
 
                 Presenter = new(node: this, model: model);
                 Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model, details: null);
+                Callback = new(node: this, model: model);
             }
 
             void CreateNodeElements()
@@ -112,9 +125,19 @@
                 Presenter.CreateNodePorts();
             }
 
+            void PostProcessNodeWidth()
+            {
+                Presenter.PostProcessNodeWidth
+                (
+                    minWidth: NodesConfig.DialogueNodeMinWidth,
+                    widthBuffer: NodesConfig.DialogueNodeWidthBuffer
+                );
+            }
+
             void AddStyleSheet()
             {
                 styleSheets.Add(StylesConfig.DSDialogueNodeStyle);
+                styleSheets.Add(StylesConfig.DSIntegrantsStyle);
             }
         }
     }

@@ -31,18 +31,6 @@ namespace AG.DS
         [SerializeField] public LanguageGeneric<string> HeaderLanguageGeneric;
 
 
-        /// <summary>
-        /// The data's dual portraits segment data.
-        /// </summary>
-        [SerializeField] public DualPortraitsSegmentData DualPortraitsSegmentData;
-
-
-        /// <summary>
-        /// The data's dialogue segment data.
-        /// </summary>
-        [SerializeField] public DialogueSegmentData DialogueSegmentData;
-
-
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option window node data class.
@@ -52,8 +40,6 @@ namespace AG.DS
             OutputSingleOptionChannelData = new();
             OutputMultiOptionChannelGroupData = new();
             HeaderLanguageGeneric = new();
-            DualPortraitsSegmentData = new();
-            DialogueSegmentData = new();
         }
     }
 }

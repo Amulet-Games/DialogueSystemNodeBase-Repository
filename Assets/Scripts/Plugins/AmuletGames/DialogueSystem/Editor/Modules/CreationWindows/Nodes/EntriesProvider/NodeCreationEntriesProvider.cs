@@ -84,7 +84,7 @@ namespace AG.DS
 
             void SetupNodeCreationRequestEntries()
             {
-                NodeCreationRequestEntries = new List<SearchTreeEntry>
+                NodeCreationRequestEntries = new()
                 {
                     // Ancestor entry.
                     ancestorEntry,
@@ -108,7 +108,7 @@ namespace AG.DS
             void SetupDefaultNodeEntries()
             {
                 // Input
-                DefaultNodeInputEntries = new List<SearchTreeEntry>()
+                DefaultNodeInputEntries = new()
                 {
                     // Ancestor entry.
                     ancestorEntry,
@@ -123,7 +123,7 @@ namespace AG.DS
                     storyNodeChildEntry
                 };
                 // Output
-                DefaultNodeOutputEntries = new List<SearchTreeEntry>()
+                DefaultNodeOutputEntries = new()
                 {
                     // Ancestor entry.
                     ancestorEntry,
@@ -142,7 +142,7 @@ namespace AG.DS
             void SetupOptionChannelEntries()
             {
                 // Input
-                OptionChannelInputEntries = new List<SearchTreeEntry>()
+                OptionChannelInputEntries = new()
                 {
                     // Ancestor entry.
                     ancestorEntry,
@@ -151,7 +151,7 @@ namespace AG.DS
                     optionWindowNodeChildEntry
                 };
                 // Output
-                OptionChannelOutputEntries = new List<SearchTreeEntry>()
+                OptionChannelOutputEntries = new()
                 {
                     // Ancestor entry.
                     ancestorEntry,

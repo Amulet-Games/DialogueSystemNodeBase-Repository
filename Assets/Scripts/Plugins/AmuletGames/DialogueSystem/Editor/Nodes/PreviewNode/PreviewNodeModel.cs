@@ -47,8 +47,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the preview node's model module class.
         /// </summary>
-        /// <param name="node">The connecting node to set for.</param>
-        public PreviewNodeModel(PreviewNode node)
+        public PreviewNodeModel()
         {
             LeftSpriteContainer = new();
             RightSpriteContainer = new();

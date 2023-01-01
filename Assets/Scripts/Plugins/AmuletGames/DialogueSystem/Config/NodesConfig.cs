@@ -18,9 +18,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The max width value of the boolean node.
+        /// The width buffer value of the boolean node.
         /// </summary>
-        public const int BooleanNodeMaxWidthBuffer = 25;
+        public const int BooleanNodeWidthBuffer = 25;
 
 
         /// <summary>
@@ -30,9 +30,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The max width value of the dialogue node.
+        /// The width buffer value of the dialogue node.
         /// </summary>
-        public const int DialogueNodeMaxWidthBuffer = 50;
+        public const int DialogueNodeWidthBuffer = 50;
 
 
         /// <summary>
@@ -42,9 +42,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The max width value of the end node.
+        /// The width buffer value of the end node.
         /// </summary>
-        public const int EndNodeMaxWidthBuffer = 200;
+        public const int EndNodeWidthBuffer = 200;
 
 
         /// <summary>
@@ -54,9 +54,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The max width value of the event node.
+        /// The width buffer value of the event node.
         /// </summary>
-        public const int EventNodeMaxWidthBuffer = 50;
+        public const int EventNodeWidthBuffer = 50;
 
 
         /// <summary>
@@ -66,9 +66,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The max width value of the option track node.
+        /// The width buffer value of the option track node.
         /// </summary>
-        public const int OptionTrackNodeMaxWidthBuffer = 25;
+        public const int OptionTrackNodeWidthBuffer = 25;
 
 
         /// <summary>
@@ -78,9 +78,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The max width value of the option window node.
+        /// The width buffer value of the option window node.
         /// </summary>
-        public const int OptionWindowMaxWidthBuffer = 50;
+        public const int OptionWindowNodeWidthBuffer = 50;
 
 
         /// <summary>
@@ -90,9 +90,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The max width value of the preview node.
+        /// The width buffer value of the preview node.
         /// </summary>
-        public const int PreviewNodeMaxWidthBuffer = 50;
+        public const int PreviewNodeWidthBuffer = 50;
 
 
         /// <summary>
@@ -102,9 +102,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The max width value of the start node.
+        /// The width buffer value of the start node.
         /// </summary>
-        public const int StartNodeMaxWidthBuffer = 200;
+        public const int StartNodeWidthBuffer = 200;
 
 
         /// <summary>
@@ -114,9 +114,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The max width value of the story node.
+        /// The width buffer value of the story node.
         /// </summary>
-        public const int StoryNodeMaxWidthBuffer = 50;
+        public const int StoryNodeWidthBuffer = 50;
 
 
         // ----------------------------- Node Creation Details -----------------------------

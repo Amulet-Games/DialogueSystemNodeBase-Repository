@@ -6,10 +6,11 @@ namespace AG.DS
     public class ChannelEdgeCallbacks
     {
         /// <summary>
-        /// Register different mouse related events to the edge in order to change the
-        /// <br>option input's and output port's connecting style accordingly.</br>
+        /// Register different actions to the given edge element.
+        /// <para></para>
+        /// This method is limited to channel typed edges, for default typed edges use <see cref="DefaultEdgeCallbacks.Register(Edge)"/> instead.
         /// </summary>
-        /// <param name="channelEdge">The channel edge of which this event is register to.</param>
+        /// <param name="channelEdge">The edge to assign the actions to.</param>
         public static void Register(Edge channelEdge)
         {
             /// Placeholder references.
@@ -37,49 +38,6 @@ namespace AG.DS
 
                 isOutputPortDisconnected = false;
                 isInputPortDisconnected = false;
-            }
-
-
-            // ----------------------------- Focus / Blur Events -----------------------------
-            void RegisterFocusBlurEvents()
-            {
-                SetAllowsFocus();
-
-                AddDefaultEdgeStyle();
-
-                RegisterFocusEvent();
-
-                RegisterBlurEvent();
-
-                void SetAllowsFocus()
-                {
-                    // Set its focusable property to true so that it can register to FocusEvent.
-                    channelEdge.focusable = true;
-                }
-
-                void AddDefaultEdgeStyle()
-                {
-                    // Add to the channel edge style class.
-                    channelEdge.AddToClassList(StylesConfig.Channel_Option_Edge);
-                }
-
-                void RegisterFocusEvent()
-                {
-                    channelEdge.RegisterCallback<FocusEvent>(callback =>
-                    {
-                        // Add to selected style class.
-                        channelEdge.AddToClassList(StylesConfig.Channel_Option_Edge_Selected);
-                    });
-                }
-
-                void RegisterBlurEvent()
-                {
-                    channelEdge.RegisterCallback<BlurEvent>(callback =>
-                    {
-                        // Remove from selected style class.
-                        channelEdge.RemoveFromClassList(StylesConfig.Channel_Option_Edge_Selected);
-                    });
-                }
             }
 
 
@@ -151,6 +109,49 @@ namespace AG.DS
 
                             UpdatePreviousOpponentsRef();
                         }
+                    });
+                }
+            }
+
+
+            // ----------------------------- Focus / Blur Events -----------------------------
+            void RegisterFocusBlurEvents()
+            {
+                SetAllowsFocus();
+
+                AddDefaultEdgeStyle();
+
+                RegisterFocusEvent();
+
+                RegisterBlurEvent();
+
+                void SetAllowsFocus()
+                {
+                    // Set its focusable property to true so that it can register to FocusEvent.
+                    channelEdge.focusable = true;
+                }
+
+                void AddDefaultEdgeStyle()
+                {
+                    // Add to the channel edge style class.
+                    channelEdge.AddToClassList(StylesConfig.Channel_Option_Edge);
+                }
+
+                void RegisterFocusEvent()
+                {
+                    channelEdge.RegisterCallback<FocusEvent>(callback =>
+                    {
+                        // Add to selected style class.
+                        channelEdge.AddToClassList(StylesConfig.Channel_Option_Edge_Selected);
+                    });
+                }
+
+                void RegisterBlurEvent()
+                {
+                    channelEdge.RegisterCallback<BlurEvent>(callback =>
+                    {
+                        // Remove from selected style class.
+                        channelEdge.RemoveFromClassList(StylesConfig.Channel_Option_Edge_Selected);
                     });
                 }
             }

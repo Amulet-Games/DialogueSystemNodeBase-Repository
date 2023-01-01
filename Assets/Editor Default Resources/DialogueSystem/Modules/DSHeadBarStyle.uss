@@ -1,9 +1,9 @@
-.headBar_MainBox {
+.headBar_Main_Box {
 	background-color: #1D1D1E;
 	height: 60px;
 }
 
-.headBar_LeftSide_SubBox {
+.headBar_LeftSide_Box {
 
 	align-self: flex-start;
 	flex-direction: row;

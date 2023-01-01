@@ -26,8 +26,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the event node's model module class.
         /// </summary>
-        /// <param name="node">The connecting node to set for.</param>
-        public EventNodeModel(EventNode node)
+        public EventNodeModel()
         {
             EventMolder = new();
         }

@@ -1,12 +1,11 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using UnityEngine.UIElements;
 
 namespace AG.DS
 {
     public abstract partial class SegmentFrameBase
     {
-        [Serializable]
         public abstract class ModifierLayout
         <
             TModifier,
@@ -19,12 +18,6 @@ namespace AG.DS
             where TSegmentData : SegmentDataFrameBase.ModifierLayout<TModifierData>
         {
             /// <summary>
-            /// Is segment showing or hidden.
-            /// </summary>
-            public bool IsHidden;
-
-
-            /// <summary>
             /// The box UIElement that stores the title and content section's visual elements.
             /// </summary>
             public Box MainBox;
@@ -34,6 +27,12 @@ namespace AG.DS
             /// List of modifiers.
             /// </summary>
             public List<TModifier> Modifiers;
+
+
+            /// <summary>
+            /// Is segment showing or hidden.
+            /// </summary>
+            protected bool IsHidden;
 
 
             // ----------------------------- Constructor -----------------------------
@@ -48,10 +47,10 @@ namespace AG.DS
 
             // ----------------------------- Callbacks -----------------------------
             /// <summary>
-            /// Action that invoked after modifier is added.
+            /// The action to invoke when a modifier is created.
             /// </summary>
-            /// <param name="modifier">The new created modifier that'll be added to segment list.</param>
-            public void ModifierAddedAction(TModifier modifier)
+            /// <param name="modifier">The new created modifier.</param>
+            public void ModifierCreatedAction(TModifier modifier)
             {
                 // Add modifier to the internal list.
                 Modifiers.Add(modifier);
@@ -68,10 +67,10 @@ namespace AG.DS
 
 
             /// <summary>
-            /// Action that invoked after modifier is removed.
+            /// The action to invoke when the modifier's remove button is clicked.
             /// </summary>
-            /// <param name="modifier">The modifier that'll be removed from segment list.</param>
-            public void ModifierRemovedAction(TModifier modifier)
+            /// <param name="modifier">The modifier that is going to be removed.</param>
+            public void ModifierRemoveButtonClickAction(TModifier modifier)
             {
                 // Remove modifier from the internal list.
                 Modifiers.Remove(modifier);
@@ -119,13 +118,13 @@ namespace AG.DS
             /// <br>If loading values between segments is what you want, use the LoadSegmentValues method instead.</br>
             /// </summary>
             /// <param name="data">The given data to load from.</param>
-            /// <param name="modifierAddedAction">Action to invoke after a modifier is added.</param>
-            /// <param name="modifierRemovedAction">Action to invoke after a modifier is removed.</param>
+            /// <param name="modifierCreatedAction">The action to invoke when a modifier is created.</param>
+            /// <param name="modifierRemoveButtonClickAction">The action to invoke when the modifier's remove button is clicked.</param>
             public abstract void LoadMolderSegmentValues
             (
                 TSegmentData data,
-                Action<TModifier> modifierAddedAction,
-                Action<TModifier> modifierRemovedAction
+                Action<TModifier> modifierCreatedAction,
+                Action<TModifier> modifierRemoveButtonClickAction
             );
 
 
@@ -178,7 +177,7 @@ namespace AG.DS
             /// </summary>
             void UpdateSegmentIsHidden()
             {
-                VisualElementHelper.ToggleElementDisplay
+                VisualElementHelper.UpdateElementDisplay
                 (
                     condition: IsHidden,
                     element: MainBox

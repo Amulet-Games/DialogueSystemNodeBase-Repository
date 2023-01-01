@@ -8,8 +8,7 @@ namespace AG.DS
     public partial class SegmentDataFrameBase
     {
         [Serializable]
-        public abstract class ModifierLayout<TModifierData>
-            : SegmentDataBase
+        public abstract class ModifierLayout<TModifierData> : SegmentDataBase
             where TModifierData : ModifierDataBase
         {
             /// <summary>

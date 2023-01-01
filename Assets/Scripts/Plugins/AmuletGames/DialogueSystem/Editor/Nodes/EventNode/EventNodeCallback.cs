@@ -1,6 +1,5 @@
-using UnityEditor.Experimental.GraphView;
-using UnityEngine.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -11,132 +10,62 @@ namespace AG.DS
         EventNodeModel
     >
     {
+        /// <summary>
+        /// The last pointer position found within the connecting node module. 
+        /// </summary>
+        Vector2 pointerMovePosition;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the event node callback module class.
         /// </summary>
         /// <param name="node">The connecting node module to set for.</param>
         /// <param name="model">The connecting model module to set for.</param>
-        /// <param name="details">The connecting creation details to set for.</param>
         public EventNodeCallback
         (
             EventNode node,
-            EventNodeModel model,
-            NodeCreationDetails details
+            EventNodeModel model
         )
         {
             Node = node;
             Model = model;
-            Details = details;
         }
 
 
         // ----------------------------- Callbacks -----------------------------
         /// <inheritdoc />
-        public override void PostCreatedAction()
+        public override void NodeCreatedAction()
         {
             AddSerializeCache();
+
+            RegisterEvents();
 
             void AddSerializeCache()
             {
                 var serializeHandler = Node.GraphViewer.SerializeHandler;
 
-                // Node
+                // Add node to serialize handler's cache.
                 serializeHandler.AddCacheNode(node: Node);
 
-                // Port
+                // Add ports to serialize handler's cache.
                 serializeHandler.AddCachePort(port: Model.InputPort);
                 serializeHandler.AddCachePort(port: Model.OutputPort);
             }
-        }
 
-
-        /// <inheritdoc />
-        public override void DelayedManualCreatedAction()
-        {
-            AlignConnectorPosition();
-
-            ConnectConnectorPort();
-
-            ShowNodeOnGraph();
-
-            void AlignConnectorPosition()
+            void RegisterEvents()
             {
-                // Create a new vector2 result variable to cache the node's current local bound position.
-                Vector2 result = Node.localBound.position;
+                // Register to PointerEnterEvent.
+                RegisterPointerEnterEvent();
 
-                switch (Details.HorizontalAlignType)
-                {
-                    case C_Alignment_HorizontalType.Left:
+                // Register to PointerLeaveEvent.
+                RegisterPointerLeaveEvent();
 
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.OutputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                // Register to PointerMoveEvent.
+                RegisterPointerMoveEvent();
 
-                        // Width offset.
-                        result.x -= Node.localBound.width;
-
-                        break;
-                    case C_Alignment_HorizontalType.Middle:
-
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
-
-                        // Width offset.
-                        result.x -= Node.localBound.width / 2;
-
-                        break;
-                    case C_Alignment_HorizontalType.Right:
-
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
-                        break;
-                }
-
-                // Apply the final position result to the node.
-                Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
-            }
-
-            void ConnectConnectorPort()
-            {
-                // If connnector port is null then return.
-                if (Details.ConnectorPort == null)
-                    return;
-
-                // Create local reference for the connector port.
-                Port connectorPort = Details.ConnectorPort;
-
-                // If the connector port is connecting to another port, disconnect them first.
-                if (connectorPort.connected)
-                {
-                    Node.GraphViewer.DisconnectPort(port: connectorPort);
-                }
-
-                // Connect the ports and retrieve the new edge.
-                Edge edge;
-                if (connectorPort.IsInput())
-                {
-                    edge = Node.GraphViewer.ConnectPorts
-                           (
-                               Model.OutputPort,
-                               connectorPort
-                           );
-                }
-                else
-                {
-                    edge = Node.GraphViewer.ConnectPorts
-                           (
-                               outputPort: connectorPort,
-                               inputPort: Model.InputPort
-                           );
-                }
-
-                // Register default edge callbacks to the edge.
-                DefaultEdgeCallbacks.Register(defaultEdge: edge);
-            }
-
-            void ShowNodeOnGraph()
-            {
-                Node.RemoveFromClassList(StylesConfig.Global_Visible_Hidden);
+                // Register to GeometryChangedEvent.
+                RegisterGeometryChangedEvent();
             }
         }
 
@@ -144,74 +73,54 @@ namespace AG.DS
         /// <inheritdoc />
         public override void PreManualRemovedAction()
         {
-            DisconnectInputPort();
+            // Disconnect input port.
+            Model.InputPort.DisconnectPort();
 
-            DisconnectOutputPort();
-
-            void DisconnectInputPort()
-            {
-                Model.InputPort.NodePreManualRemovedAction();
-            }
-
-            void DisconnectOutputPort()
-            {
-                Model.OutputPort.NodePreManualRemovedAction();
-            }
+            // Disconnect output port.
+            Model.OutputPort.DisconnectPort();
         }
 
 
         /// <inheritdoc />
         public override void PostManualRemovedAction()
         {
-            RemoveSerializeCache();
+            var serializeHandler = Node.GraphViewer.SerializeHandler;
 
-            void RemoveSerializeCache()
-            {
-                var serializeHandler = Node.GraphViewer.SerializeHandler;
+            // Remove node from serialize handler's cache.
+            serializeHandler.RemoveCacheNode(node: Node);
 
-                // Node
-                serializeHandler.RemoveCacheNode(node: Node);
-
-                // Port
-                serializeHandler.RemoveCachePort(port: Model.InputPort);
-                serializeHandler.RemoveCachePort(port: Model.OutputPort);
-            }
+            // Remove ports from serialize handler's cache.
+            serializeHandler.RemoveCachePort(port: Model.InputPort);
+            serializeHandler.RemoveCachePort(port: Model.OutputPort);
         }
 
 
-        // ----------------------------- Set Node Min Max Width Task -----------------------------
-        /// <inheritdoc />
-        protected override void SetNodeMinMaxWidth()
+        // ----------------------------- Register additional Events Tasks -----------------------------
+        /// <summary>
+        /// Register new pointer move actions to the connecting node module.
+        /// </summary>
+        void RegisterPointerMoveEvent()
         {
-            SetNodeMinWidth();
-
-            SetMaxWidthProperties();
-
-            void SetNodeMinWidth()
+            Node.RegisterCallback<PointerMoveEvent>(callback =>
             {
-                Node.style.minWidth = NodesConfig.EventNodeMinWidth;
-            }
+                pointerMovePosition = callback.position;
+            });
+        }
 
-            void SetMaxWidthProperties()
+
+        /// <summary>
+        /// Register new geometry changed actions to the connecting node module.
+        /// </summary>
+        void RegisterGeometryChangedEvent()
+        {
+            Node.RegisterCallback<GeometryChangedEvent>(callback =>
             {
-                // Node
-                Node.style.maxWidth =
-                    NodesConfig.EventNodeMinWidth + NodesConfig.EventNodeMaxWidthBuffer;
-
-                // Node title field
-                TextField nodeTitleField = Model.NodeTitle_TextContainer.TextField;
-                nodeTitleField.RegisterCallback<GeometryChangedEvent>(GeometryChangedAction);
-
-                void GeometryChangedAction(GeometryChangedEvent evt)
+                if (!Node.worldBound.Contains(pointerMovePosition))
                 {
-                    // Set the title field max width once it's fully created in the editor.
-                    nodeTitleField.style.maxWidth =
-                        nodeTitleField.contentRect.width + NodesConfig.EventNodeMaxWidthBuffer;
-
-                    // Unregister the action once the setup is done.
-                    nodeTitleField.UnregisterCallback<GeometryChangedEvent>(GeometryChangedAction);
+                    // Remove from hover class.
+                    Node.NodeBorder.RemoveFromClassList(StylesConfig.Node_Border_Hover);
                 }
-            }
+            });
         }
     }
 }

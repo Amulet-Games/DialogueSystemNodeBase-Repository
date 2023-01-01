@@ -15,13 +15,19 @@
         public DefaultPort OutputPort;
 
 
+        /// <summary>
+        /// Object conatiner for the dialogue system's character scriptable object.
+        /// </summary>
+        public ObjectContainer<DialogueCharacter> CharacterObjectContainer;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue node model module class.
         /// </summary>
-        /// <param name="node">The connecting node to set for.</param>
-        public DialogueNodeModel(DialogueNode node)
+        public DialogueNodeModel()
         {
+            CharacterObjectContainer = new();
         }
     }
 }

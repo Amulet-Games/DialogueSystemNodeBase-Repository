@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -42,7 +42,7 @@ namespace AG.DS
         {
             this.dsWindow = dsWindow;
 
-            SerializeHandler = new SerializeHandler(this);
+            SerializeHandler = new(this);
             nodeCreationRequestWindow = NodeCreationRequestWindow.CreateInstance(this, dsWindow);
             NodeCreationConnectorWindow = NodeCreationConnectorWindow.CreateInstance(this, dsWindow);
         }
@@ -82,7 +82,7 @@ namespace AG.DS
             {
                 // GOAL: Add a visible grid to the background.
 
-                GridBackground grid = new GridBackground();
+                GridBackground grid = new();
                 Insert(index: 0, element: grid);
                 grid.StretchToParentSize();
             }
@@ -144,10 +144,20 @@ namespace AG.DS
         }
 
 
+        // ----------------------------- Destruct -----------------------------
+        /// <summary>
+        /// Destruct for the class. Called during <see cref="DialogueEditorWindow.OnDisable"/>.
+        /// </summary>
+        public void Destruct()
+        {
+            // Remove the class from the window root hierarchy.
+            dsWindow.rootVisualElement.Remove(this);
+        }
+
+
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Action to detect if user has changed anything on the graph and if so,
-        /// <br>invoke the DSGraphViewChangedEvent.</br>
+        /// The action to invoke when new changes occured to the graph.
         /// </summary>
         /// <param name="change">Set of changes in the graph that can be intercepted.</param>
         /// <returns>Return values can be ignored.</returns>
@@ -161,7 +171,7 @@ namespace AG.DS
                         || change.movedElements != null
                 )
                 {
-                    // invoke DSGraphViewChangedEvent.
+                    // invoke GraphViewChangedEvent.
                     GraphViewChangedEvent.Invoke();
                 }
             }
@@ -171,8 +181,37 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Action that called each time when graph elements are selected and deleted, and override the
+        /// The action to invoke when the user requested to display the node creation window.
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="PostSetup()"/></br>
+        /// </summary>
+        /// <param name="context">A struct that represents the context when the user initiates creating a graph node.</param>
+        void NodeCreationRequestAction(NodeCreationContext context)
+        {
+            if (Event.current != null)
+            {
+                // If user opened up the node creation request window by pressing space bar.
+                nodeCreationRequestWindow.Open(
+                    screenPositionToShow: GetCurrentEventMousePosition()
+                );
+            }
+            else
+            {
+                // If the user opened up the node creation request window through contextual menu.
+                nodeCreationRequestWindow.Open(
+                    screenPositionToShow: context.screenMousePosition
+                );
+            }
+        }
+
+
+        /// <summary>
+        /// The action to invoke when graph elements are selected and deleted, and override the
         /// <br>base graph viewer behaviour on how to react if different types of elements are deleted.</br>
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="PostSetup()"/></br>
         /// </summary>
         /// <param name="operationName">Name of operation for undo/redo labels.</param>
         /// <param name="askUser">Whether or not to ask the user.</param>
@@ -200,8 +239,8 @@ namespace AG.DS
             {
                 edgeType = typeof(Edge);
 
-                nodesToDelete = new List<NodeBase>();
-                edgesToDelete = new List<Edge>();
+                nodesToDelete = new();
+                edgesToDelete = new();
 
                 selectionCount = selection.Count;
                 nodesToDeleteCount = 0;
@@ -227,7 +266,7 @@ namespace AG.DS
                     }
                 }
             }
-        
+
             void DeleteEdgesFromList()
             {
                 for (int i = 0; i < edgesToDelete.Count; i++)
@@ -257,43 +296,26 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Action that called when user requests to display the node creation window.
-        /// </summary>
-        /// <param name="context">A struct that represents the context when the user initiates creating a graph node.</param>
-        void NodeCreationRequestAction(NodeCreationContext context)
-        {
-            if (Event.current != null)
-            {
-                // If user opened up the node creation request window by pressing space bar.
-                nodeCreationRequestWindow.Open(
-                    screenPositionToShow: GetCurrentEventMousePosition()
-                );
-            }
-            else
-            {
-                // If the user opened up the node creation request window through contextual menu.
-                nodeCreationRequestWindow.Open(
-                    screenPositionToShow: context.screenMousePosition
-                );
-            }
-        }
-
-
-        /// <summary>
-        /// Action that called when the graph viewer module has gained focus.
+        /// The action to invoke when when the graph viewer module gained focus.
         /// <para></para>
         /// <br>Different than "Focus In", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="PostSetup"/></br>
         /// </summary>
         /// <param name="evt">Registering event.</param>
         void GraphFocusAction(FocusEvent evt) => dsWindow.IsGraphViewerFocus = true;
 
 
         /// <summary>
-        /// Action that called when the graph viewer module has lost focus.
+        /// The action to invoke when when the graph viewer module lost focus.
         /// <para></para>
         /// <br>Different than "Focus Out", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="PostSetup"/></br>
         /// </summary>
         /// <param name="evt">Registering event.</param>
         void GraphBlurAction(BlurEvent evt) => dsWindow.IsGraphViewerFocus = false;
@@ -310,7 +332,7 @@ namespace AG.DS
         /// <returns>List of compatible ports.</returns>
         public override List<Port> GetCompatiblePorts(Port connectFromPort, NodeAdapter nodeAdapter)
         {
-            List<Port> compatiblePorts = new List<Port>();
+            List<Port> compatiblePorts = new();
 
             ports.ForEach((connectToPort) =>
             {
@@ -423,12 +445,12 @@ namespace AG.DS
         /// <summary>
         /// Creates an new edge and connects the two given ports with it.
         /// </summary>
-        /// <param name="outputPort"></param>
-        /// <param name="inputPort"></param>
+        /// <param name="outputPort">The output port to set for.</param>
+        /// <param name="inputPort">The input port to set for.</param>
         public Edge ConnectPorts(Port outputPort, Port inputPort)
         {
             // Create an new edge.
-            Edge edge = new Edge()
+            Edge edge = new()
             {
                 output = outputPort,
                 input = inputPort

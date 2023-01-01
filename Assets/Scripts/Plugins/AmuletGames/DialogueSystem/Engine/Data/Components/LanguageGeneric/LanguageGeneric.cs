@@ -17,7 +17,9 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the language generic component class. 
         /// </summary>
-        public LanguageGeneric() =>
-            ValueByLanguageType = new SerializableDictionary<G_LanguageType, T>();
+        public LanguageGeneric()
+        {
+            ValueByLanguageType = new();
+        }
     }
 }

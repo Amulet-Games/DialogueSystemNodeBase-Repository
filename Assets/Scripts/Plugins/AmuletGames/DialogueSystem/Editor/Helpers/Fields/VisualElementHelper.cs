@@ -9,7 +9,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="condition">The condition to base on.</param>
         /// <param name="element">The targeting visual element.</param>
-        public static void ToggleElementDisplay(bool condition, VisualElement element)
+        public static void UpdateElementDisplay(bool condition, VisualElement element)
         {
             if (condition)
             {
@@ -47,7 +47,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="condition">The condition to base on.</param>
         /// <param name="element">The targeting visual element.</param>
-        public static void ToggleElementInteractable(bool condition, VisualElement element)
+        public static void UpdateElementInteractable(bool condition, VisualElement element)
         {
             if (condition)
             {

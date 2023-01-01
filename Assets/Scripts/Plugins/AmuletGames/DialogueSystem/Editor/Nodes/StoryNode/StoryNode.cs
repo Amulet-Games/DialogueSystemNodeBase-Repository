@@ -29,21 +29,21 @@ namespace AG.DS
 
             CreateNodePorts();
 
-            RefreshPorts();
+            PostProcessNodeWidth();
+
+            PostProcessNodePosition();
 
             AddStyleSheet();
 
-            ManualCreatedAction();
-
-            PostCreatedAction();
+            NodeCreatedAction();
 
             void SetupFrameFields()
             {
-                StoryNodeModel model = new(node: this);
+                StoryNodeModel model = new();
 
                 Presenter = new(node: this, model: model);
                 Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model, details: details);
+                Callback = new(node: this, model: model);
             }
 
             void CreateNodeElements()
@@ -54,6 +54,20 @@ namespace AG.DS
             void CreateNodePorts()
             {
                 Presenter.CreateNodePorts();
+            }
+
+            void PostProcessNodeWidth()
+            {
+                Presenter.PostProcessNodeWidth
+                (
+                    minWidth: NodesConfig.StoryNodeMinWidth,
+                    widthBuffer: NodesConfig.StoryNodeWidthBuffer
+                );
+            }
+
+            void PostProcessNodePosition()
+            {
+                Presenter.PostProcessNodePosition(details);
             }
 
             void AddStyleSheet()
@@ -83,23 +97,21 @@ namespace AG.DS
 
             CreateNodePorts();
 
-            RefreshPorts();
+            PostProcessNodeWidth();
 
             AddStyleSheet();
 
             LoadNode(data);
 
-            LoadCreatedAction();
-
-            PostCreatedAction();
+            NodeCreatedAction();
 
             void SetupFrameFields()
             {
-                StoryNodeModel model = new(node: this);
+                StoryNodeModel model = new();
 
                 Presenter = new(node: this, model: model);
                 Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model, details: null);
+                Callback = new(node: this, model: model);
             }
 
             void CreateNodeElements()
@@ -110,6 +122,15 @@ namespace AG.DS
             void CreateNodePorts()
             {
                 Presenter.CreateNodePorts();
+            }
+
+            void PostProcessNodeWidth()
+            {
+                Presenter.PostProcessNodeWidth
+                (
+                    minWidth: NodesConfig.StoryNodeMinWidth,
+                    widthBuffer: NodesConfig.StoryNodeWidthBuffer
+                );
             }
 
             void AddStyleSheet()

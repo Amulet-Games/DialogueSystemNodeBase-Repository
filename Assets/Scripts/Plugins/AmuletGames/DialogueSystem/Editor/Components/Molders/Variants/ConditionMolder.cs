@@ -22,8 +22,8 @@ namespace AG.DS
             new ConditionModifier().CreateInstanceElements
             (
                 data: null,
-                addToSegmentAction: ModifierAddedAction,
-                removeFromSegmentAction: ModifierRemovedAction
+                modifierCreatedAction: ModifierCreatedAction,
+                removeButtonClickAction: ModifierRemoveButtonClickAction
             );
         }
     }

@@ -1,4 +1,5 @@
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -39,13 +40,13 @@ namespace AG.DS
 
             void AddContentButton_ConditionModifier()
             {
-                IntegrantFactory.CreateNewContentButton
+                ButtonFactory.CreateNewContentButton
                 (
                     node: Node,
-                    btnText: StringsConfig.AddConditionLabelText,
-                    btnIconSprite: AssetsConfig.AddConditionModifierButtonIconSprite,
-                    btnIconImageUSS01: StylesConfig.Integrant_ContentButton_AddCondition_Image,
-                    action: ContentButtonClickedAction
+                    buttonText: StringsConfig.AddConditionLabelText,
+                    buttonIconSprite: AssetsConfig.AddConditionModifierButtonIconSprite,
+                    buttonClickAction: ContentButtonClickedAction,
+                    buttonIconUSS01: StylesConfig.Integrant_ContentButton_AddCondition_Image
                 );
             }
 
@@ -59,7 +60,7 @@ namespace AG.DS
                 Node.mainContainer.Add(LanguageFieldFactory.GetNewTextField
                 (
                     languageTextContainer: Model.HeaderTextContainer,
-                    fieldIcon: AssetsConfig.HeadlineTextFieldIcon,
+                    fieldIcon: AssetsConfig.HeadlineTextFieldIconSprite,
                     isMultiLine: false,
                     placeholderText: StringsConfig.OptionTrackNodeHeadlinePlaceholderText,
                     fieldUSS01: StylesConfig.OptionTrackNode_Header_TextField
@@ -68,7 +69,7 @@ namespace AG.DS
 
             void AddConditionSegment()
             {
-                Model.ConditionSegment.SetupSegment(Node);
+                Model.ConditionSegment.CreateRootElements(Node);
             }
         }
 
@@ -85,13 +86,16 @@ namespace AG.DS
                 portlabel: StringsConfig.NodeOutputLabelText,
                 isSiblings: false
             );
+
+            // Refresh ports.
+            Node.RefreshPorts();
         }
 
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Action that invoked after the content button is pressed.
-        /// <para>ContentButtonClickedAction - IntegrantsMaker - ContentButtonMainBox.</para>
+        /// The action to invoke when the content button is clicked.
+        /// <para>See: <see cref="CreateNodeElements"/></para>
         /// </summary>
         void ContentButtonClickedAction()
         {
@@ -99,8 +103,8 @@ namespace AG.DS
             new ConditionModifier().CreateInstanceElements
             (
                 data: null,
-                addToSegmentAction: Model.ConditionSegment.ModifierAddedAction,
-                removeFromSegmentAction: Model.ConditionSegment.ModifierRemovedAction
+                modifierCreatedAction: Model.ConditionSegment.ModifierCreatedAction,
+                removeButtonClickAction: Model.ConditionSegment.ModifierRemoveButtonClickAction
             );
 
             // Reveal the condition segment on the connecting node.
@@ -112,22 +116,11 @@ namespace AG.DS
         /// <inheritdoc />
         public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
         {
-            bool isInputSingleOptionChannelConnected;
-            bool isOutputPortConnected;
-
-            SetupLocalFields();
-
             AppendDisconnectInputSingleOptionChannelAction();
 
             AppendDisconnectOutputPortAction();
 
             AppendDisconnectAllPortsAction();
-
-            void SetupLocalFields()
-            {
-                isInputSingleOptionChannelConnected = Model.InputSingleOptionChannel.Port.connected;
-                isOutputPortConnected = Model.OutputPort.connected;
-            }
 
             void AppendDisconnectInputSingleOptionChannelAction()
             {
@@ -145,6 +138,9 @@ namespace AG.DS
 
             void AppendDisconnectAllPortsAction()
             {
+                var isInputSingleOptionChannelConnected = Model.InputSingleOptionChannel.Port.connected;
+                var isOutputPortConnected = Model.OutputPort.connected;
+
                 // Disconnect All
                 evt.menu.AppendAction
                 (
@@ -158,13 +154,98 @@ namespace AG.DS
                 void DisconnectAllActionEvent()
                 {
                     // Disconnect input single option channel port.
-                    if (isInputSingleOptionChannelConnected)
-                        Model.InputSingleOptionChannel.DisconnectPort();
+                    Model.InputSingleOptionChannel.DisconnectPort();
 
                     // Disconnect Output port.
-                    if (isOutputPortConnected)
-                        Model.OutputPort.DisconnectPort();
+                    Model.OutputPort.DisconnectPort();
                 }
+            }
+        }
+
+
+        // ----------------------------- Post Process Position Details Services -----------------------------
+        /// <inheritdoc />
+        protected override void PostProcessPositionDetails(NodeCreationDetails details)
+        {
+            CheckIsOptionChannelCreation();
+
+            ShowNodeOnGraph();
+
+            void CheckIsOptionChannelCreation()
+            {
+                if (details.ConnectorType == P_ConnectorType.OptionChannel)
+                {
+                    Model.InputSingleOptionChannel.PostProcessPositionDetails(
+                        opponentChannelPort: details.ConnectorPort
+                    );
+                }
+                else
+                {
+                    AlignConnectorPosition();
+
+                    ConnectConnectorPort();
+                }
+
+                void AlignConnectorPosition()
+                {
+                    // Create a new vector2 result variable to cache the node's current local bound position.
+                    Vector2 result = Node.localBound.position;
+
+                    switch (details.HorizontalAlignType)
+                    {
+                        case C_Alignment_HorizontalType.Left:
+
+                            // Height offset.
+                            result.y -= (Node.titleContainer.worldBound.height + Model.OutputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+
+                            // Width offset.
+                            result.x -= Node.localBound.width;
+
+                            break;
+                        case C_Alignment_HorizontalType.Middle:
+
+                            // Height offset.
+                            result.y -= (Node.titleContainer.worldBound.height + Model.InputSingleOptionChannel.Port.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+
+                            // Width offset.
+                            result.x -= Node.localBound.width / 2;
+                            break;
+                    }
+
+                    // Apply the final position result to the node.
+                    Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
+                }
+
+                void ConnectConnectorPort()
+                {
+                    // If connnector port is null then return.
+                    if (details.ConnectorPort == null)
+                        return;
+
+                    // Create local reference for the connector port.
+                    Port connectorPort = details.ConnectorPort;
+
+                    // If the connector port is connecting to another port, disconnect them first.
+                    if (connectorPort.connected)
+                    {
+                        Node.GraphViewer.DisconnectPort(port: connectorPort);
+                    }
+
+                    // Connect the ports and retrieve the new edge.
+                    Edge edge = Node.GraphViewer.ConnectPorts
+                                (
+                                    outputPort: Model.OutputPort,
+                                    inputPort: connectorPort
+                                );
+
+                    // Register default edge callbacks to the edge.
+                    DefaultEdgeCallbacks.Register(edge: edge);
+                }
+            }
+
+            void ShowNodeOnGraph()
+            {
+                Node.RemoveFromClassList(StylesConfig.Global_Visible_Hidden);
             }
         }
     }

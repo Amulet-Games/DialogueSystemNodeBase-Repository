@@ -38,7 +38,7 @@ namespace AG.DS
 
             void CreateFloatField()
             {
-                floatField = new FloatField();
+                floatField = new();
             }
 
             void ConnectFieldToContainer()
@@ -60,8 +60,8 @@ namespace AG.DS
 
             void RegisterFieldEvents()
             {
-                FloatFieldCallbacks.RegisterFieldFocusInEvent(floatField);
-                FloatFieldCallbacks.RegisterFieldFocusOutEvent(floatContainer);
+                FloatFieldCallbacks.RegisterFocusInEvent(floatField);
+                FloatFieldCallbacks.RegisterFocusOutEvent(floatContainer);
             }
 
             void ShowEmptyStyle()

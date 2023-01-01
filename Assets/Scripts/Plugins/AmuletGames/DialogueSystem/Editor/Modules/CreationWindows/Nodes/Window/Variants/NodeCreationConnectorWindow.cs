@@ -46,7 +46,7 @@ namespace AG.DS
                 // Setup instance's internal references
                 instance.DsWindow = dsWindow;
                 instance.GraphViewer = graphViewer;
-                instance.Details = new NodeCreationDetails();
+                instance.Details = new();
             }
 
             void SetupValues()

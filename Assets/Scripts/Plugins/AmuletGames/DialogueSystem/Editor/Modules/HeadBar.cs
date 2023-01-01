@@ -1,5 +1,5 @@
-using UnityEditor.UIElements;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -93,10 +93,10 @@ namespace AG.DS
 
             void SetupBoxContainers()
             {
-                AddToClassList(StylesConfig.HeadBar_MainBox);
+                AddToClassList(StylesConfig.HeadBar_Main_Box);
 
-                headBar_LeftSide_SubBox = new Box();
-                headBar_LeftSide_SubBox.AddToClassList(StylesConfig.HeadBar_LeftSide_SubBox);
+                headBar_LeftSide_SubBox = new();
+                headBar_LeftSide_SubBox.AddToClassList(StylesConfig.HeadBar_LeftSide_Box);
             }
 
             void SetupButton_Save()
@@ -104,8 +104,8 @@ namespace AG.DS
                 saveButton = ButtonFactory.GetNewButton
                 (
                     isAlert: false,
-                    btnText: StringsConfig.HeadBarSaveButtonLabelText,
-                    btnPressedAction: dsWindow.SaveWindowAction,
+                    buttonText: StringsConfig.HeadBarSaveButtonLabelText,
+                    buttonClickAction: SaveButtonClickAction,
                     buttonUSS01: StylesConfig.HeadBar_SaveGraph_Button
                 );
             }
@@ -115,8 +115,8 @@ namespace AG.DS
                 loadButton = ButtonFactory.GetNewButton
                 (
                     isAlert: false,
-                    btnText: StringsConfig.HeadBarLoadButtonLabelText,
-                    btnPressedAction: () => dsWindow.LoadWindowAction(false),
+                    buttonText: StringsConfig.HeadBarLoadButtonLabelText,
+                    buttonClickAction: LoadButtonClickAction,
                     buttonUSS01: StylesConfig.HeadBar_LoadGraph_Button
                 );
             }
@@ -152,10 +152,10 @@ namespace AG.DS
                             actionName: languages[i].ToString(),
 
                             // Menu item action.
-                            action: ToolbarMenuCallbacks.RegisterDropdownMenuAction
+                            action: ToolbarMenuCallbacks.GetDropdownMenuAction
                                     (
-                                        menuItemClickedAction: DropdownMenuItemClickedAction,
-                                        actionPara: languages[i]
+                                        dropdownMenuAction: DropdownMenuItemClickAction,
+                                        dropdownMenuActionParameter: languages[i]
                                     )
                         );
                     }
@@ -164,7 +164,7 @@ namespace AG.DS
                 void ChangeChildElementsPickingMode()
                 {
                     // Add hover style to the child's Label visual element only,
-                    // the Arrow Visual Element is languageDropdown[1]
+                    // the Arrow Visual Element is languageDropdown[0]
                     languageDropdownMenu[0].pickingMode = PickingMode.Position;
                 }
             }
@@ -206,46 +206,73 @@ namespace AG.DS
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// Action that called when the headBar module has gained focus.
+        /// The action to invoke when the headBar module gained focus.
         /// <para></para>
         /// <br>Different than "Focus In", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="PostSetup"/></br>
         /// </summary>
         /// <param name="evt">Registering event.</param>
         void HeadBarFocusAction(FocusEvent evt) => dsWindow.IsHeadBarFocus = true;
 
 
         /// <summary>
-        /// Action that called when the headBar module has lost focus.
+        /// The action to invoke when the headBar module lost focus.
         /// <para></para>
         /// <br>Different than "Focus Out", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="PostSetup"/></br>
         /// </summary>
         /// <param name="evt">Registering event.</param>
         void HeadBarBlurAction(BlurEvent evt) => dsWindow.IsHeadBarFocus = false;
 
 
         /// <summary>
-        /// Action that invoked when any of the dropdown menu item is clicked.
-        /// DropdownMenuItemClickedAction - Internal - LanguageDropdownMenu
+        /// The action to invoke when the save button is clicked.
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="SetupHeadBarElements"/></br>
         /// </summary>
-        /// <param name="switchToLanguage">The new language type to change to.</param>
-        public void DropdownMenuItemClickedAction(G_LanguageType switchToLanguage) =>
-            ChangeGraphLanguage(switchToLanguage);
+        void SaveButtonClickAction() => dsWindow.SaveWindowAction();
 
 
         /// <summary>
-        /// Action that invoked when the graph title field's value is changed.
-        /// <para>GraphTitleChangedEvent - Internal - GraphTitleField.</para>
+        /// The action to invoke when the load button is clicked.
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="SetupHeadBarElements"/></br>
         /// </summary>
-        /// <param name="newContainerName">The new value received from the graph title field.</param>
-        public void GraphTitleFieldChangedAction(string newContainerName)
+        void LoadButtonClickAction() => dsWindow.LoadWindowAction(false);
+
+
+        /// <summary>
+        /// The action to invoke when a dropdown menu item is clicked.
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="SetupHeadBarElements"/></br>
+        /// </summary>
+        /// <param name="newLanguage">The new language type to change to.</param>
+        public void DropdownMenuItemClickAction(G_LanguageType newLanguage) => ChangeGraphLanguage(newLanguage);
+
+
+        /// <summary>
+        /// The action to invoke when the graph title field's value is changed.
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="GraphTitleChangedEvent.Register(HeadBar)"/></br>
+        /// </summary>
+        /// <param name="newValue">The new value received from the graph title field.</param>
+        public void GraphTitleFieldChangedAction(string newValue)
         {
             // Rename the dialogue system data asset by the new value.
             AssetDatabase.RenameAsset
             (
                 pathName: AssetDatabase.GetAssetPath(instanceID: dsWindow.DsDataInstanceId),
-                newName: newContainerName
+                newName: newValue
             );
             
             // Save the changes.
@@ -257,7 +284,9 @@ namespace AG.DS
         /// <summary>
         /// Update all the language fields within the editor to suit the current selected language,
         /// and update the custom graph editor's title.
-        /// <para>LoadFromDSDataEvent - Static Event</para>
+        /// <para></para>
+        /// References:
+        /// <br>See: <see cref="LoadFromDSDataEvent.Register(SerializeHandler, HeadBar)"/></br>
         /// </summary>
         public void UpdateLanguageAndTitleAction(DialogueSystemData dsData)
         {
@@ -265,7 +294,7 @@ namespace AG.DS
             ChangeGraphLanguage(newLanguage: LanguagesConfig.SelectedLanguage);
 
             // Update the graph title.
-            UpdateGraphTitleFieldNonAlert(newTitleText: dsData.name);
+            UpdateGraphTitleFieldNonAlert(newValue: dsData.name);
         }
 
 
@@ -304,8 +333,7 @@ namespace AG.DS
         /// <summary>
         /// Update the graph title field value without invoking the field's valueChangedCallback event.
         /// </summary>
-        /// <param name="newTitleText">The new title text for the custom graph editor.</param>
-        void UpdateGraphTitleFieldNonAlert(string newTitleText) => 
-                graphTitleField.SetValueWithoutNotify(newTitleText);
+        /// <param name="newValue">The new title text for the custom graph editor.</param>
+        void UpdateGraphTitleFieldNonAlert(string newValue) => graphTitleField.SetValueWithoutNotify(newValue);
     }
 }

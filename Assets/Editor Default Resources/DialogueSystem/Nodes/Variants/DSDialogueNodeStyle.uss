@@ -4,3 +4,65 @@
 
 
 /* ---------------------------------------------------------------- Node Elements Styles ---------------------------------------------------------------- */
+
+/*< -------------------- DS Character -------------------- >*/
+.segment_Dialogue_Character_ObjectField {
+
+	height: 28px;
+	width: auto;
+
+	align-self: center;
+
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	-unity-overflow-clip-box: content-box;
+
+	/* top - right - bottom - left */
+	margin: 6px 6px 6px 6px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Character_ObjectField
+.unity-object-field__input {
+
+	background-color: rgba(51, 51, 51, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.segment_Dialogue_Character_ObjectField
+.unity-object-field__input:hover {
+
+	background-color: rgba(62, 62, 62, 1);
+}
+
+.segment_Dialogue_Character_ObjectField
+.objectField_Icon {
+
+	height: 16px;
+	width: 16px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 5px;
+	padding: 0px 0px 0px 0px;
+}
+
+.segment_Dialogue_Character_ObjectField
+.unity-object-field__input
+.unity-object-field-display
+.unity-object-field-display__label {
+
+	font-size: 16px;
+
+	align-self: Center;
+
+	/* top - right - bottom - left */
+	margin: 2.25px 5px 0px 5px;
+	padding: 0px 0px 0px 0px;
+}

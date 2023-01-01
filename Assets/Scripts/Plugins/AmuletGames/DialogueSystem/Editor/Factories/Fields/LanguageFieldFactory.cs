@@ -44,7 +44,7 @@ namespace AG.DS
 
             void CreateTextField()
             {
-                textField = new TextField("");
+                textField = new("");
             }
 
             void ConnectFieldToContainer()
@@ -92,8 +92,8 @@ namespace AG.DS
 
             void RegisterFieldEvents()
             {
-                LanguageTextFieldCallbacks.RegisterFieldFocusInEvent(textField);
-                LanguageTextFieldCallbacks.RegisterFieldFocusOutEvent(languageTextContainer);
+                LanguageTextFieldCallbacks.RegisterFocusInEvent(textField);
+                LanguageTextFieldCallbacks.RegisterFocusOutEvent(languageTextContainer);
             }
 
             void AddFieldToStyleClass()
@@ -137,7 +137,7 @@ namespace AG.DS
 
             void CreateObjectField()
             {
-                objectField = new ObjectField();
+                objectField = new();
             }
 
             void ConnectFieldToContainer()
@@ -179,8 +179,8 @@ namespace AG.DS
             void RegisterFieldEvents()
             {
                 LanguageAudioClipFieldCallbacks.RegisterValueChangedEvent(languageAudioClipContainer);
-                LanguageAudioClipFieldCallbacks.RegisterFieldFocusInEvent(objectField);
-                LanguageAudioClipFieldCallbacks.RegisterFieldFocusOutEvent(objectField);
+                LanguageAudioClipFieldCallbacks.RegisterFocusInEvent(objectField);
+                LanguageAudioClipFieldCallbacks.RegisterFocusOutEvent(objectField);
             }
 
             void AddFieldToStyleClass()

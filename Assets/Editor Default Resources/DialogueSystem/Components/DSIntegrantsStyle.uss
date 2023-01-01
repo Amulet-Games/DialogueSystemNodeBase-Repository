@@ -1,5 +1,5 @@
 /*< -------------------- Common -------------------- >*/
-.integrant_ContentButton_MainBox {
+.integrant_ContentButton_Main_Box {
 
 	background-color: rgba(70, 70, 70, 1);
 
@@ -13,7 +13,7 @@
 	border-width: 0px 0px 0px 0px;
 }
 
-.integrant_ContentButton_MainBox:hover {
+.integrant_ContentButton_Main_Box:hover {
 
 	background-color: rgba(88, 88, 88, 1);
 }
@@ -36,7 +36,8 @@
 }
 
 .integrant_ContentButton_AddEntry_Image,
-.integrant_ContentButton_AddCondition_Image {
+.integrant_ContentButton_AddCondition_Image,
+.integrant_ContentButton_AddMessage_Image {
 
 	height: 30px;
 	width: 30px;

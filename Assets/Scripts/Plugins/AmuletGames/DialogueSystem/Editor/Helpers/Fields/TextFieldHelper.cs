@@ -10,7 +10,7 @@ namespace AG.DS
         /// <br>otherwise remove the field from the empty style class.</br>
         /// </summary>
         /// <param name="textContainer">The container of which the text field is connecting to.</param>
-        public static void ToggleEmptyStyle(TextContainerFrameBase textContainer)
+        public static void ToggleEmptyStyle(TextContainerBase textContainer)
         {
             TextField textField = textContainer.TextField;
 
@@ -46,7 +46,7 @@ namespace AG.DS
         /// Add the text field to the empty style class.
         /// </summary>
         /// <param name="textContainer">The container of which the text field is connecting to.</param>
-        public static void ShowEmptyStyle(TextContainerFrameBase textContainer)
+        public static void ShowEmptyStyle(TextContainerBase textContainer)
         {
             TextField textField = textContainer.TextField;
 

@@ -65,9 +65,15 @@ namespace AG.DS
 
         // ----------------------------- Destruct -----------------------------
         /// <summary>
-        /// 
+        /// Destruct for the class. Called during <see cref="DialogueEditorWindow.OnDisable"/>.
         /// </summary>
-        public void Destruct() => Instance = null;
+        public void Destruct()
+        {
+            // Remove the singleton reference of the class.
+            // Forcing the window to recreate this element again on its next new setup.
+            Instance = null;
+        }
+
 
         // ----------------------------- Makers -----------------------------
         /// <summary>
@@ -94,15 +100,15 @@ namespace AG.DS
 
             void SetupBoxContainer()
             {
-                mainBox = new Box();
-                mainBox.AddToClassList(StylesConfig.InputHint_Hint_MainBox);
+                mainBox = new();
+                mainBox.AddToClassList(StylesConfig.InputHint_Main_Box);
             }
 
             void SetupImage()
             {
                 inputHintIconImage = ImageFactory.GetNewImage
                 (
-                    imageUSS01: StylesConfig.InputHint_HintIcon_Image
+                    imageUSS01: StylesConfig.InputHint_Icon_Image
                 );
 
                 inputHintIconImage.sprite = AssetsConfig.LanguageFieldHintIconSprite;
@@ -113,7 +119,7 @@ namespace AG.DS
                 hintLabel = LabelFactory.GetNewLabel
                 (
                     labelText: "",
-                    labelUSS01: StylesConfig.InputHint_HintText_Label
+                    labelUSS01: StylesConfig.InputHint_Text_Label
                 );
             }
 

@@ -13,13 +13,13 @@ namespace AG.DS
         /// <param name="node">Reference of the connecting node component of the channel that this port is created for.</param>
         /// <param name="channel">The channel that this port is created for.</param>
         /// <param name="data">The given multi option channel data to load from.</param>
-        /// <param name="ChannelRemovedAction">The action to invoke when the channel remove button is pressed.</param>
+        /// <param name="removeButtonClickAction">The action to invoke when the channel remove button is clicked.</param>
         public static void CreateInstanceElements<TEdge>
         (
             NodeBase node,
             MultiOptionChannel channel,
             MultiOptionChannelData data,
-            Action ChannelRemovedAction
+            Action removeButtonClickAction
         )
             where TEdge : Edge, new()
         {
@@ -42,13 +42,12 @@ namespace AG.DS
 
             void CreateNewInstance()
             {
-                newPort = new OptionPort
-                                (
-                                    portOrientation: Orientation.Horizontal,
-                                    portDirection: isOutput ? Direction.Output : Direction.Input,
-                                    portCapacity: Capacity.Single,
-                                    type: typeof(float)
-                                );
+                newPort = new(
+                                portOrientation: Orientation.Horizontal,
+                                portDirection: isOutput ? Direction.Output : Direction.Input,
+                                portCapacity: Capacity.Single,
+                                type: typeof(float)
+                             );
 
                 channel.Port = newPort;
             }
@@ -125,8 +124,13 @@ namespace AG.DS
             void SetupRemoveChannelButton()
             {
                 // Get a new channel remove button.
-                var channelRemoveButton =
-                    ChannelFactory.CreateRemoveChannelButton(action: ChannelRemovedAction);
+                var channelRemoveButton = ButtonFactory.GetNewButton
+                (
+                    isAlert: true,
+                    buttonSprite: AssetsConfig.RemoveButtonIcon1Sprite,
+                    buttonClickAction: removeButtonClickAction,
+                    buttonUSS01: StylesConfig.Channel_Option_Output_RemoveChannel_Button
+                );
 
                 // Add it to the port's container.
                 newPort.contentContainer.Add(channelRemoveButton);

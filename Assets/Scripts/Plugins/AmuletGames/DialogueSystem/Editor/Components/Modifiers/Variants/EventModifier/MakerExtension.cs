@@ -11,13 +11,13 @@ namespace AG.DS
         public override void CreateInstanceElements
         (
             EventModifierData data,
-            Action<EventModifier> addToSegmentAction,
-            Action<EventModifier> removeFromSegmentAction
+            Action<EventModifier> modifierCreatedAction,
+            Action<EventModifier> removeButtonClickAction
         )
         {
             ObjectField eventSOField;
 
-            Button modifierRemoveButton;
+            Button modifierRemoveButton = null;
 
             SetupModifierBox();
 
@@ -33,8 +33,8 @@ namespace AG.DS
 
             void SetupModifierBox()
             {
-                MainBox = new Box();
-                MainBox.AddToClassList(StylesConfig.Modifier_Event_MainBox);
+                MainBox = new();
+                MainBox.AddToClassList(StylesConfig.Modifier_Event_Main_Box);
             }
 
             void SetupEventSOField()
@@ -49,9 +49,11 @@ namespace AG.DS
 
             void SetupModifierRemoveButton()
             {
-                modifierRemoveButton = ModifierFactory.GetNewModifierRemoveButton
+                modifierRemoveButton = ButtonFactory.GetNewButton
                 (
-                    action: () => removeFromSegmentAction.Invoke(this),
+                    isAlert: true,
+                    buttonSprite: AssetsConfig.RemoveButtonIcon2Sprite,
+                    buttonClickAction: () => removeButtonClickAction.Invoke(this),
                     buttonUSS01: StylesConfig.Modifier_Event_RemoveModifier_Button
                 );
             }
@@ -71,7 +73,7 @@ namespace AG.DS
 
             void InvokeModifierCreatedAction()
             {
-                addToSegmentAction.Invoke(this);
+                modifierCreatedAction.Invoke(this);
             }
         }
     }
