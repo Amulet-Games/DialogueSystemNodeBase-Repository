@@ -1,5 +1,4 @@
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -28,8 +27,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the story node presenter module class.
         /// </summary>
-        /// <param name="node">Node of which this presenter is connecting upon.</param>
-        /// <param name="model">Model of which this presenter is connecting upon.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public StoryNodePresenter(StoryNode node, StoryNodeModel model)
         {
             Node = node;
@@ -39,236 +38,38 @@ namespace AG.DS
 
         // ----------------------------- Makers -----------------------------
         /// <inheritdoc />
-        public override void CreateNodeElements()
+        public override void CreatePortElements()
         {
-            // First content box 
-            Box firstContentBox;
-            ObjectField characterObjectField;
-            ObjectField audioClipObjectField;
-            TextField firstTextlineTextField;
-
-            // Trigger type box
-            Box secondLineTriggerTypeBox;
-            Label secondLineTriggerTypeLabel;
-            EnumField secondLineTriggerTypeEnumField;
-
-            // Delta time duration cell box
-            Label durationLabel;
-            FloatField durationFloatField;
-
-            // Second textline
-            TextField secondTextlineTextField;
-
-            base.CreateNodeElements();
-
-            SetupBoxContainer();
-
-            SetupCharacterObjectField();
-
-            SetupAudioClipObjectField();
-
-            SetupFirstTextlineTextField();
-
-            SetupSecondLineTriggerTypeLabel();
-
-            SetupSecondLineTriggerTypeEnumField();
-
-            SetupDurationLabel();
-
-            SetupDurationFloatField();
-
-            SetupSecondTextlineTextField();
-
-            AddFieldsToBox();
-
-            AddBoxToMainContainer();
-
-            SegmentCreatedAction();
-
-            void SetupBoxContainer()
-            {
-                firstContentBox = new();
-                firstContentBox.AddToClassList(StylesConfig.Segment_Dialogue_Content_Box);
-
-                secondContentBox = new();
-                secondContentBox.AddToClassList(StylesConfig.Segment_Dialogue_SecondContent_Box);
-
-                secondLineTriggerTypeBox = new();
-                secondLineTriggerTypeBox.AddToClassList(StylesConfig.Segment_Dialogue_SecondLineTriggerType_Box);
-
-                deltaTimeDurationCellBox = new();
-                deltaTimeDurationCellBox.AddToClassList(StylesConfig.Segment_Dialogue_Duration_Box);
-            }
-
-            void SetupCharacterObjectField()
-            {
-                characterObjectField = ObjectFieldFactory.GetNewObjectField
-                (
-                    objectContainer: Model.CharacterObjectContainer,
-                    fieldIcon: AssetsConfig.LanguageFieldHintIconSprite,
-                    fieldUSS01: StylesConfig.Segment_Dialogue_Character_ObjectField
-                );
-            }
-
-            void SetupAudioClipObjectField()
-            {
-                audioClipObjectField = LanguageFieldFactory.GetNewAudioClipField
-                (
-                    languageAudioClipContainer: Model.AudioClipContainer,
-                    fieldIcon: AssetsConfig.LanguageFieldHintIconSprite,
-                    fieldUSS01: StylesConfig.Segment_Dialogue_AudioClip_ObjectField
-                );
-            }
-
-            void SetupFirstTextlineTextField()
-            {
-                firstTextlineTextField = LanguageFieldFactory.GetNewTextField
-                (
-                    languageTextContainer: Model.FirstTextlineTextContainer,
-                    fieldIcon: AssetsConfig.LanguageFieldHintIconSprite,
-                    isMultiLine: true,
-                    placeholderText: StringsConfig.DialogueSegmentTextlinePlaceholderText,
-                    fieldUSS01: StylesConfig.Segment_Dialogue_First_Textline_TextField
-                );
-            }
-
-            void SetupSecondLineTriggerTypeLabel()
-            {
-                secondLineTriggerTypeLabel = LabelFactory.GetNewLabel
-                (
-                    labelText: StringsConfig.SecondLineTriggerTypeLabelText,
-                    labelUSS01: StylesConfig.Segment_Dialogue_SecondLineTriggerType_Label
-                );
-            }
-
-            void SetupSecondLineTriggerTypeEnumField()
-            {
-                secondLineTriggerTypeEnumField = EnumFieldFactory.GetNewEnumField
-                (
-                    enumContainer: Model.SecondLineTriggerTypeEnumContainer,
-                    containerValueChangedAction: SecondLineTriggerTypeEnumContainerValueChangedAction,
-                    fieldUSS01: StylesConfig.Segment_Dialogue_SecondLineTriggerType_EnumField
-                );
-            }
-
-            void SetupDurationLabel()
-            {
-                durationLabel = LabelFactory.GetNewLabel
-                (
-                    labelText: StringsConfig.DurationLabelText,
-                    labelUSS01: StylesConfig.Segment_Dialogue_Duration_Label
-                );
-            }
-
-            void SetupDurationFloatField()
-            {
-                durationFloatField = FloatFieldFactory.GetNewFloatField
-                (
-                    floatContainer: Model.DurationFloatContainer,
-                    fieldUSS01: StylesConfig.Segment_Dialogue_Duration_FloatField
-                );
-            }
-
-            void SetupSecondTextlineTextField()
-            {
-                secondTextlineTextField = LanguageFieldFactory.GetNewTextField
-                (
-                    languageTextContainer: Model.SecondTextlineTextContainer,
-                    fieldIcon: AssetsConfig.LanguageFieldHintIconSprite,
-                    isMultiLine: true,
-                    placeholderText: StringsConfig.DialogueSegmentTextlinePlaceholderText,
-                    fieldUSS01: StylesConfig.Segment_Dialogue_Second_Textline_TextField
-                );
-            }
-
-            void AddFieldsToBox()
-            {
-                firstContentBox.Add(characterObjectField);
-                firstContentBox.Add(audioClipObjectField);
-                firstContentBox.Add(firstTextlineTextField);
-                firstContentBox.Add(secondContentBox);
-
-                secondContentBox.Add(secondLineTriggerTypeBox);
-                secondLineTriggerTypeBox.Add(secondLineTriggerTypeLabel);
-                secondLineTriggerTypeBox.Add(secondLineTriggerTypeEnumField);
-
-                secondContentBox.Add(deltaTimeDurationCellBox);
-                deltaTimeDurationCellBox.Add(durationLabel);
-                deltaTimeDurationCellBox.Add(durationFloatField);
-
-                secondContentBox.Add(secondTextlineTextField);
-            }
-
-            void AddBoxToMainContainer()
-            {
-                Node.mainContainer.Add(firstContentBox);
-            }
-
-            void SegmentCreatedAction()
-            {
-                // Update delta time duration display.
-                UpdateDeltaTimeDurationBoxDisplay();
-            }
-        }
-
-
-        /// <inheritdoc />
-        public override void CreateNodePorts()
-        {
-            // Input port.
-            Model.InputPort = DefaultPort.CreateRootElements<Edge>
+            Model.InputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
             (
-                node: Node,
+                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
-                portlabel: StringsConfig.NodeInputLabelText,
-                isSiblings: false
+                label: StringConfig.Instance.DefaultPort_Input_LabelText
             );
 
-            // Output port.
-            Model.OutputPort = DefaultPort.CreateRootElements<Edge>
+            Model.OutputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
             (
-                node: Node,
+                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
-                portlabel: StringsConfig.NodeOutputLabelText,
-                isSiblings: false
+                label: StringConfig.Instance.DefaultPort_Output_LabelText
             );
 
-            // Refresh ports.
+            Node.Add(Model.InputDefaultPort);
+            Node.Add(Model.OutputDefaultPort);
             Node.RefreshPorts();
         }
 
 
-        // ----------------------------- Callbacks -----------------------------
-        /// <summary>
-        /// Action that invoked when the second line trigger type enum container value is changed.
-        /// </summary>
-        void SecondLineTriggerTypeEnumContainerValueChangedAction() => UpdateDeltaTimeDurationBoxDisplay();
-
-
-        // ----------------------------- Update Display Tasks -----------------------------
-        /// <summary>
-        /// Hide or show the segment's delta time duration box when the second line trigger type is changed.
-        /// </summary>
-        void UpdateDeltaTimeDurationBoxDisplay()
-        {
-            VisualElementHelper.UpdateElementDisplay
-            (
-                condition: Model.SecondLineTriggerTypeEnumContainer.IsInputTriggerType(),
-                element: deltaTimeDurationCellBox
-            );
-        }
-
-
-        // ----------------------------- Add Contextual Menu Items Services -----------------------------
+        // ----------------------------- Add Contextual Menu Items -----------------------------
         /// <inheritdoc />
-        public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
+        public override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
         }
 
 
-        // ----------------------------- Post Process Position Details Services -----------------------------
+        // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
         protected override void PostProcessPositionDetails(NodeCreationDetails details)
         {
@@ -278,83 +79,155 @@ namespace AG.DS
 
             ShowNodeOnGraph();
 
+            PostProcessSetupApplyDesign();
+
             void AlignConnectorPosition()
             {
-                // Create a new vector2 result variable to cache the node's current local bound position.
                 Vector2 result = Node.localBound.position;
 
-                switch (details.HorizontalAlignType)
+                switch (details.HorizontalAlignmentType)
                 {
-                    case C_Alignment_HorizontalType.Left:
+                    case HorizontalAlignmentType.LEFT:
 
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.OutputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                        result.y -= (Node.titleContainer.worldBound.height
+                                  + Model.OutputDefaultPort.localBound.position.y
+                                  + NodeConfig.ManualCreateYOffset)
+                                  / Node.GraphViewer.scale;
 
-                        // Width offset.
                         result.x -= Node.localBound.width;
 
                         break;
-                    case C_Alignment_HorizontalType.Middle:
+                    case HorizontalAlignmentType.MIDDLE:
 
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                        result.y -= (Node.titleContainer.worldBound.height
+                                  + Model.InputDefaultPort.localBound.position.y
+                                  + NodeConfig.ManualCreateYOffset)
+                                  / Node.GraphViewer.scale;
 
-                        // Width offset.
                         result.x -= Node.localBound.width / 2;
 
                         break;
-                    case C_Alignment_HorizontalType.Right:
+                    case HorizontalAlignmentType.RIGHT:
 
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                        result.y -= (Node.titleContainer.worldBound.height
+                                  + Model.InputDefaultPort.localBound.position.y
+                                  + NodeConfig.ManualCreateYOffset)
+                                  / Node.GraphViewer.scale;
+
                         break;
                 }
 
-                // Apply the final position result to the node.
                 Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
             }
 
             void ConnectConnectorPort()
             {
-                // If connnector port is null then return.
+                // If connector port is null then return.
                 if (details.ConnectorPort == null)
                     return;
 
-                // Create local reference for the connector port.
-                Port connectorPort = details.ConnectorPort;
+                var port = (DefaultPort)details.ConnectorPort;
+                var isInput = port.IsInput();
 
-                // If the connector port is connecting to another port, disconnect them first.
-                if (connectorPort.connected)
+                if (port.connected)
                 {
-                    Node.GraphViewer.DisconnectPort(port: connectorPort);
+                    port.Disconnect(Node.GraphViewer);
                 }
 
-                // Connect the ports and retrieve the new edge.
-                Edge edge;
-                if (connectorPort.IsInput())
-                {
-                    edge = Node.GraphViewer.ConnectPorts
-                           (
-                               outputPort: Model.OutputPort,
-                               inputPort: connectorPort
-                           );
-                }
-                else
-                {
-                    edge = Node.GraphViewer.ConnectPorts
-                           (
-                               outputPort: connectorPort,
-                               inputPort: Model.InputPort
-                           );
-                }
+                var edge = EdgeManager.Instance.Connect
+                (
+                    output: !isInput ? port : Model.OutputDefaultPort,
+                    input: isInput ? port : Model.InputDefaultPort
+                );
 
-                // Register default edge callbacks to the edge.
-                DefaultEdgeCallbacks.Register(edge: edge);
+                Node.GraphViewer.Add(edge);
             }
 
             void ShowNodeOnGraph()
             {
-                Node.RemoveFromClassList(StylesConfig.Global_Visible_Hidden);
+                Node.RemoveFromClassList(StyleConfig.Instance.Global_Visible_Hidden);
+            }
+        }
+
+
+        // ----------------------------- Post Process Setup Apply Design -----------------------------
+        void PostProcessSetupApplyDesign()
+        {
+            var margin = 10;
+
+            SetupPreferenceImage();
+
+            SetupGraphViewerZoom();
+
+            DisablePerferenceNode();
+
+            CreateSampleNode();
+
+            void SetupPreferenceImage()
+            {
+                Image preferenceImage;
+                preferenceImage = CommonImagePresenter.CreateElements(imageUSS01: StyleConfig.Instance.StoryNode_PreferenceImage_Image);
+                Node.ContentContainer.Add(preferenceImage);
+
+                preferenceImage.sprite = ConfigResourcesManager.Instance.SpriteConfig.ApplyDesignSampleImage;
+                preferenceImage.style.opacity = 0.6f;
+
+                preferenceImage.style.marginBottom = margin;
+                preferenceImage.style.marginTop = margin;
+                preferenceImage.style.marginLeft = margin;
+                preferenceImage.style.marginRight = margin;
+                Node.ContentContainer.style.backgroundColor = new Color(r: 1, g: 1, b: 1, a: 0.35f);
+
+
+                Node.NodeBorder.style.borderBottomColor = new Color(r: 0, g: 0, b: 0, a: 0);
+                Node.NodeBorder.style.borderLeftColor = new Color(r: 0, g: 0, b: 0, a: 0);
+                Node.NodeBorder.style.borderRightColor = new Color(r: 0, g: 0, b: 0, a: 0);
+                Node.NodeBorder.style.borderTopColor = new Color(r: 0, g: 0, b: 0, a: 0);
+
+                Node.capabilities = Capabilities.Movable;
+            }
+            
+            void SetupGraphViewerZoom()
+            {
+                Node.GraphViewer.SetupZoom(ContentZoomer.DefaultMinScale, 6f);
+            }
+
+            void DisablePerferenceNode()
+            {
+                Node.SetEnabled(false);
+            }
+
+            void CreateSampleNode()
+            {
+                Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedAction);
+
+                void GeometryChangedAction(GeometryChangedEvent evt)
+                {
+                    var details = new NodeCreationDetails(
+                        horizontalAlignType: HorizontalAlignmentType.FREE);
+
+                    var createPosition = Node.localBound.position;
+                    createPosition.x += margin;
+                    createPosition.y += Node.titleContainer.layout.height + Node.inputContainer.parent.layout.height + margin;
+                    details.SetPositionCreate(value: createPosition);
+
+                    var target = new EventNode(details: details, graphViewer: Node.GraphViewer);
+
+                    target.capabilities = Capabilities.Movable;
+                    target.SetEnabled(false);
+                    target.style.opacity = 1;
+                    target.titleContainer.ElementAt(index: 1).style.backgroundColor = new Color(0.357f, 0.537f, 0.75f, 1);
+
+                    target.NodeBorder.style.borderBottomColor = new Color(r: 0, g: 0, b: 0, a: 0);
+                    target.NodeBorder.style.borderLeftColor = new Color(r: 0, g: 0, b: 0, a: 0);
+                    target.NodeBorder.style.borderRightColor = new Color(r: 0, g: 0, b: 0, a: 0);
+                    target.NodeBorder.style.borderTopColor = new Color(r: 0, g: 0, b: 0, a: 0);
+
+                    Node.BringToFront();
+
+                    // Unregister the action once the setup is done.
+                    Node.UnregisterCallback<GeometryChangedEvent>(GeometryChangedAction);
+                }
             }
         }
     }

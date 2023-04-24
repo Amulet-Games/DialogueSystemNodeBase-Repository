@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c425441c98a614e9f12eb70d522e41, type: 3}
+  m_Name: SpriteConfig1
+  m_EditorClassIdentifier: 
+  EditButtonIconSprite: {fileID: 21300000, guid: bfd03f3d05893184a8ca4dc3780500c2, type: 3}
+  MoveDownButtonIconSprite: {fileID: 21300000, guid: c1e241b752c5a424e93271867d126405, type: 3}
+  MoveUpButtonIconSprite: {fileID: 21300000, guid: 81166389d3b2799488f063d41894b087, type: 3}
+  RemoveButtonIconSprite: {fileID: 21300000, guid: 461baa3ae24877b4abbe184d5b83f8c6, type: 3}
+  ObjectFieldSelectorIconSprite: {fileID: 21300000, guid: e67efd2fc7bb95e4084695826c350e50, type: 3}
+  LinkConditionIconSprite: {fileID: 21300000, guid: 9d3ef865572e44603b9851d2029dfc6b, type: 3}
+  UnlinkConditionIconSprite: {fileID: 21300000, guid: fded6c667f63b524ea130804643fe786, type: 3}
+  AddConditionModifierButtonIconSprite: {fileID: 21300000, guid: 8ee07045343650f409ed2cfc8acb7e32, type: 3}
+  AddEntryButtonIconSprite: {fileID: 21300000, guid: 151785b89ea5c47729fefda27509d6df, type: 3}
+  AddEventModifierButtonIconSprite: {fileID: 21300000, guid: 4d9f578eee56a22468aad41c49557a14, type: 3}
+  AddMessageModifierButtonIconSprite: {fileID: 21300000, guid: b74ee3fa3df474d4a8b6be6511ca30f8, type: 3}
+  DropdownArrowIcon1Sprite: {fileID: 21300000, guid: a2e0941619c6c7f48880f6edee3321ac, type: 3}
+  DropdownArrowIcon2Sprite: {fileID: 21300000, guid: 7b70c1c1dbd114943b47d7800581186e, type: 3}
+  AudioClipFieldIconSprite: {fileID: 21300000, guid: 0bdd3a99a3ded58478d11ad38c153a7c, type: 3}
+  AutoProgressTypeIconSprite: {fileID: 21300000, guid: 987a083c62a26f7478a9b1af17aff2f7, type: 3}
+  ChangeFieldTypeButtonDisableIconSprite: {fileID: 21300000, guid: 95f6974efc9e54d4fbc809a449c3189c, type: 3}
+  ChangeFieldTypeButtonHoverIconSprite: {fileID: 21300000, guid: 0a88d38db92b8a0439e40b5c4bdd0057, type: 3}
+  ChangeFieldTypeButtonNormalIconSprite: {fileID: 21300000, guid: c89c414e95387ab45a9dd24b1ebecdb7, type: 3}
+  EventFieldIconSprite: {fileID: 21300000, guid: cbc310a39f98e454e89aa39b15053996, type: 3}
+  ImageFieldIconSprite: {fileID: 21300000, guid: e89b03bfb674de44bbcfdcbbbc4ee745, type: 3}
+  KeyboardInputFieldIconSprite: {fileID: 21300000, guid: ff3308159fb56094d9421fc8d8b9fbb9, type: 3}
+  LanguageFieldHintIconSprite: {fileID: 21300000, guid: dfee969be4ebb0b41b125788e835c842, type: 3}
+  OptionBranchIconSprite: {fileID: 21300000, guid: eb4bfeac88deba8499ec3b2be8f4cabd, type: 3}
+  OptionRootIconSprite: {fileID: 21300000, guid: 37490b35d1d47e949b01d0b5966ce419, type: 3}
+  ScriptableObjectFieldIconSprite: {fileID: 21300000, guid: 145c931dac52abf46a97bfc9cce7d8fe, type: 3}
+  SpeakerFieldIconSprite: {fileID: 21300000, guid: bb2c168ad8fc9234e94ac63c2db1c9e2, type: 3}
+  TextFieldIcon1Sprite: {fileID: 21300000, guid: aefa42d0ca08b2240b582d0d59ac092d, type: 3}
+  FolderExpandButtonCloseIconSprite: {fileID: 21300000, guid: f400409290bd4704787bb1c0df61e6fa, type: 3}
+  FolderExpandButtonOpenIconSprite: {fileID: 21300000, guid: 5656e28c500ef9747836469b2c90143e, type: 3}
+  BiggerOperatorButtonIconSprite: {fileID: 21300000, guid: 406dd0467341d494aa7e7aaf5e33d61f, type: 3}
+  EqualOperatorButtonIconSprite: {fileID: 21300000, guid: 98f3243c8f8b38f479699e47a9e406a6, type: 3}
+  EqualOrBiggerOperatorButtonIconSprite: {fileID: 21300000, guid: f94152a46a8177c41adfab748e6aaa51, type: 3}
+  EqualOrSmallerOperatorButtonIconSprite: {fileID: 21300000, guid: ed16ef746760d004096e8c2adda069fe, type: 3}
+  FalseOperatorButtonIconSprite: {fileID: 21300000, guid: cbb8ce12d8c86c94fa45b6e2ab4e5894, type: 3}
+  MatchOperatorButtonIconSprite: {fileID: 21300000, guid: 9cf48d86b203b6e44a474f1f9c799a72, type: 3}
+  SmallerOperatorButtonIconSprite: {fileID: 21300000, guid: 83a04416aa1769a499f12d66ed0a1683, type: 3}
+  TrueOperatorButtonIconSprite: {fileID: 21300000, guid: 59d58d2f98fd7a24aa003681ccd403aa, type: 3}
+  SegmentExpandButtonIconSprite: {fileID: 21300000, guid: 98443ba30dba8b142967eebed916d246, type: 3}
+  ApplyDesignSampleImage: {fileID: 21300000, guid: d61468e08b9d8ab499fdbc13333a2519, type: 3}
+  CharacterFieldIconSprite: {fileID: 21300000, guid: 2041db62825328246b33aa9370368077, type: 3}
+  ChangeFieldTypeButtonIconSprite: {fileID: 21300000, guid: b855dcd523cea804faffae8f8bde0619, type: 3}
+  ChangeFieldTypeButtonBlockedIconSprite: {fileID: 21300000, guid: cddfb1db3bf6041a1b35307e93beac98, type: 3}
+  RemoveButtonIcon2Sprite: {fileID: 21300000, guid: 48cf9d50daccd4696aea9e6805c5cb45, type: 3}

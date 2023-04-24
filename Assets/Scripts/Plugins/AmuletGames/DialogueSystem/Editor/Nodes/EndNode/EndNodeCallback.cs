@@ -11,8 +11,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the end node callback module class.
         /// </summary>
-        /// <param name="node">Node of which this presenter is connecting upon.</param>
-        /// <param name="model">Model of which this presenter is connecting upon.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public EndNodeCallback
         (
             EndNode node,
@@ -24,54 +24,13 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Callbacks -----------------------------
+        // ----------------------------- Register Events Service -----------------------------
         /// <inheritdoc />
-        public override void NodeCreatedAction()
+        public override void RegisterEvents()
         {
-            AddSerializeCache();
+            RegisterPointerEnterEvent();
 
-            RegisterEvents();
-
-            void AddSerializeCache()
-            {
-                var serializeHandler = Node.GraphViewer.SerializeHandler;
-
-                // Add node to serialize handler's cache.
-                serializeHandler.AddCacheNode(node: Node);
-
-                // Add port to serialize handler's cache.
-                serializeHandler.AddCachePort(port: Model.InputPort);
-            }
-
-            void RegisterEvents()
-            {
-                // Register to PointerEnterEvent.
-                RegisterPointerEnterEvent();
-
-                // Register to PointerLeaveEvent.
-                RegisterPointerLeaveEvent();
-            }
-        }
-
-
-        /// <inheritdoc />
-        public override void PreManualRemovedAction()
-        {
-            // Disconnect input port.
-            Model.InputPort.DisconnectPort();
-        }
-
-
-        /// <inheritdoc />
-        public override void PostManualRemovedAction()
-        {
-            var serializeHandler = Node.GraphViewer.SerializeHandler;
-
-            // Remove node from serialize handler's cache.
-            serializeHandler.RemoveCacheNode(node: Node);
-
-            // Remove port from serialize handler's cache.
-            serializeHandler.RemoveCachePort(port: Model.InputPort);
+            RegisterPointerLeaveEvent();
         }
     }
 }

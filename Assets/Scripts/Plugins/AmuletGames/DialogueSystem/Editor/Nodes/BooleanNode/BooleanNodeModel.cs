@@ -1,40 +1,62 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class BooleanNodeModel : NodeModelBase
+    public class BooleanNodeModel : NodeModelFrameBase<BooleanNode>
     {
         /// <summary>
         /// A special node's UI style that combined the use of segment, modifier and content button together.
         /// </summary>
-        public ConditionMolder ConditionMolder;
-
-
-        // ----------------------------- Ports -----------------------------
-        /// <summary>
-        /// Port that allows other nodes to connect to this node.
-        /// </summary>
-        public DefaultPort InputPort;
+        public BooleanNodeStitcher booleanNodeStitcher;
 
 
         /// <summary>
-        /// Port that allows this node to branch out and move on from the "True" marked branch.
+        /// The input default port of the node.
         /// </summary>
-        public DefaultPort TrueOutputPort;
+        public DefaultPort InputDefaultPort;
 
 
         /// <summary>
-        /// Port that allows this node to branch out and move on from the "False" marked branch.
+        /// The true output default port of the node.
         /// </summary>
-        public DefaultPort FalseOutputPort;
+        public DefaultPort TrueOutputDefaultPort;
+
+
+        /// <summary>
+        /// The false output default port of the node.
+        /// </summary>
+        public DefaultPort FalseOutputDefaultPort;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Construtor of the boolean node model module class.
+        /// Constructor of the boolean node model module class.
         /// </summary>
-        public BooleanNodeModel()
+        /// <param name="node">The node module to set for.</param>
+        public BooleanNodeModel(BooleanNode node)
         {
-            ConditionMolder = new();
+            Node = node;
+            booleanNodeStitcher = new();
+        }
+
+
+        // ----------------------------- Remove Cache Ports All -----------------------------
+        /// <inheritdoc />
+        public override void RemoveCachePortsAll()
+        {
+            var serializeHandler = Node.GraphViewer.SerializeHandler;
+            serializeHandler.RemoveCachePort(port: InputDefaultPort);
+            serializeHandler.RemoveCachePort(port: TrueOutputDefaultPort);
+            serializeHandler.RemoveCachePort(port: FalseOutputDefaultPort);
+        }
+
+
+        // ----------------------------- Disconnect Ports All -----------------------------
+        /// <inheritdoc />
+        public override void DisconnectPortsAll()
+        {
+            InputDefaultPort.Disconnect(Node.GraphViewer);
+            TrueOutputDefaultPort.Disconnect(Node.GraphViewer);
+            FalseOutputDefaultPort.Disconnect(Node.GraphViewer);
         }
     }
 }

@@ -3,6 +3,6 @@ using UnityEngine;
 
 namespace AG.DS
 {
-    [Serializable, CreateAssetMenu(menuName = "Dialogue System/New Character")]
+    [Serializable, CreateAssetMenu(menuName = "### AG ###/Dialogue System/New Dialogue Character")]
     public class DialogueCharacter : ScriptableObject { }
 }

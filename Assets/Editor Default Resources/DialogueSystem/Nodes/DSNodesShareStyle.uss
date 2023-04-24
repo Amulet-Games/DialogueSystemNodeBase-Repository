@@ -6,7 +6,7 @@
 
 .node_Border{
 
-	background-color: rgba(35, 35, 35, 1);
+	background-color: rgba(0, 0, 0, 0);
 	border-color: rgba(59, 219, 218, 0.8);
 
 	overflow: visible;
@@ -18,7 +18,7 @@
 	margin: 0px 0px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
-	border-radius: 3px 3px 3px 3px;
+	border-radius: 6px 6px 6px 6px;
 }
 
 .node:checked
@@ -27,20 +27,20 @@
 .node_Border:focus {
 
 	/* top - right - bottom - left */
-	margin: -2.75px -2.75px -2.75px -2.75px;
-	border-width: 2.75px 2.75px 2.75px 2.75px;
+	margin: -2px -2px -2px -2px;
+	border-width: 2px 2px 2px 2px;
 }
 
 
 /* ----------------------------------------------------------- Node Title ----------------------------------------------------------- */
 .node_Border #title {
+	
+	background-color: rgba(0, 0, 0, 0);
 
-	height: 30px;
+	height: 35px;
 }
 
-.node_NodeTitle_Main_Box {
-
-	background-color: rgba(0, 0, 0, 0);
+.node_Title_Container {
 
 	overflow: hidden;
 
@@ -57,7 +57,7 @@
 	border-width: 0px 0px 0px 0px;
 }
 
-.node_NodeTitle_TextField {
+.node_Title_TextField {
 
 	white-space: nowrap;
 
@@ -70,7 +70,7 @@
 	padding: 0px 0px 0px 0px;
 }
 
-.node_NodeTitle_TextField
+.node_Title_TextField
 .unity-text-field__input {
 
 	background-color: rgba(0, 0, 0, 0);
@@ -92,7 +92,7 @@
 	border-width: 0px 0px 0px 0px;
 }
 
-.node_NodeTitle_TextField
+.node_Title_TextField
 .unity-text-field__input:focus {
 
 	background-color: rgba(46, 46, 46, 1);
@@ -130,32 +130,16 @@
 	border-width: 0px 0px 0px 0px;
 }
 
-/* -------------------------------------------------------- Default Display None --------------------------------------------------------- */
-#title-label {
-	display: none;
-}
-
-#title-button-container {
-	display: none;
-}
-
-#collapse-button {
-	display: none;
-}
-
-.node_Border #contents #divider {
-	display: none;
-}
-
-#selection-border {
-	display: None;
-}
-
 
 /* -------------------------------------------------------- Input / Output Containers --------------------------------------------------------- */
+#top {
+
+	flex-direction: row;
+}
+
 .node_Input_Container {
 
-	background-color: rgba(44, 44, 44, 1);
+	background-color: rgba(42, 42, 42, 1);
 
 	height: auto;
 	width: auto;
@@ -169,12 +153,12 @@
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 0px;
-	padding: 11px 0px 11px 0px;
+	padding: 10px 0px 10px 0px;
 }
 
 .node_Output_Container {
 
-	background-color: rgba(44, 44, 44, 1);
+	background-color: rgba(42, 42, 42, 1);
 
 	height: auto;
 	width: auto;
@@ -188,10 +172,18 @@
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 0px;
-	padding: 11px 0px 11px 0px;
+	padding: 10px 0px 10px 0px;
 }
 
-.node_Output_Container_Window {
+
+/* -------------------------------------------------------- Content Containers --------------------------------------------------------- */
+.node_Content_Container {
+
+	background-color: rgba(35, 35, 35, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 4px 4px;
 }
 
 
@@ -201,8 +193,7 @@
 .textField_Empty
 .unity-text-field__input {
 
-	color: rgba(150, 150, 150, 1);
-	font-size: 16px;
+	color: rgba(101, 101, 101, 1);
 }
 
 /*< -------------------- Object Field -------------------- >*/
@@ -212,7 +203,7 @@
 	color: rgba(150, 150, 150, 1);
 }
 
-/*< -------------------- float Field -------------------- >*/
+/*< -------------------- Float Field -------------------- >*/
 .floatField_Empty
 .unity-float-field__input {
 
@@ -226,16 +217,11 @@
 .unity-text-field:hover,
 .unity-text-field__input:hover {
 
-	background-color: rgba(62, 62, 62, 1);
+	/*background-color: rgba(62, 62, 62, 1);*/
 }
 
 /*< -------------------- Float Field -------------------- >*/
 .unity-float-field__input:hover {
-
-	background-color: rgba(62, 62, 62, 1);
-}
-
-.unity-object-field__input:hover {
 
 	background-color: rgba(62, 62, 62, 1);
 }
@@ -253,7 +239,7 @@
 .unity-text-field:focus,
 .unity-text-field__input:focus {
 
-	background-color: rgba(42, 42, 42, 1);
+	/*background-color: rgba(42, 42, 42, 1);*/
 }
 
 /*< -------------------- Float Field -------------------- >*/

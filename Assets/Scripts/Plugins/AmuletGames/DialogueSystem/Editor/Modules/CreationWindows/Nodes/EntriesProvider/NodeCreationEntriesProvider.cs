@@ -42,7 +42,7 @@ namespace AG.DS
 
         // ----------------------------- Setup -----------------------------
         /// <summary>
-        /// Setup for the class, used to initialize internal fields.
+        /// Setup for the class.
         /// </summary>
         public static void Setup()
         {
@@ -54,8 +54,8 @@ namespace AG.DS
             SearchTreeEntry dialogueNodeChildEntry;
             SearchTreeEntry endNodeChildEntry;
             SearchTreeEntry eventNodeChildEntry;
-            SearchTreeEntry optionTrackNodeChildEntry;
-            SearchTreeEntry optionWindowNodeChildEntry;
+            SearchTreeEntry optionBranchNodeChildEntry;
+            SearchTreeEntry optionRootNodeChildEntry;
             SearchTreeEntry previewNodeChildEntry;
             SearchTreeEntry startNodeChildEntry;
             SearchTreeEntry storyNodeChildEntry;
@@ -75,8 +75,8 @@ namespace AG.DS
                 dialogueNodeChildEntry = GetNewDialogueNodeChildEntry(entryLevel: 1);
                 endNodeChildEntry = GetNewEndNodeChildEntry(entryLevel: 1);
                 eventNodeChildEntry = GetNewEventNodeChildEntry(entryLevel: 1);
-                optionTrackNodeChildEntry = GetNewOptionTrackNodeChildEntry(entryLevel: 1);
-                optionWindowNodeChildEntry = GetNewOptionWindowNodeChildEntry(entryLevel: 1);
+                optionBranchNodeChildEntry = GetNewOptionBranchNodeChildEntry(entryLevel: 1);
+                optionRootNodeChildEntry = GetNewOptionRootNodeChildEntry(entryLevel: 1);
                 previewNodeChildEntry = GetNewPreviewNodeChildEntry(entryLevel: 1);
                 startNodeChildEntry = GetNewStartNodeChildEntry(entryLevel: 1);
                 storyNodeChildEntry = GetNewStoryNodeChildEntry(entryLevel: 1);
@@ -97,8 +97,8 @@ namespace AG.DS
                     GetNewDialogueNodeChildEntry(entryLevel: 2),
                     GetNewEndNodeChildEntry(entryLevel:2),
                     GetNewEventNodeChildEntry(entryLevel:2),
-                    GetNewOptionTrackNodeChildEntry(entryLevel:2),
-                    GetNewOptionWindowNodeChildEntry(entryLevel:2),
+                    GetNewOptionBranchNodeChildEntry(entryLevel:2),
+                    GetNewOptionRootNodeChildEntry(entryLevel:2),
                     GetNewPreviewNodeChildEntry(entryLevel: 2),
                     GetNewStartNodeChildEntry(entryLevel:2),
                     GetNewStoryNodeChildEntry(entryLevel:2),
@@ -117,7 +117,7 @@ namespace AG.DS
                     booleanNodeChildEntry,
                     dialogueNodeChildEntry,
                     eventNodeChildEntry,
-                    optionTrackNodeChildEntry,
+                    optionBranchNodeChildEntry,
                     previewNodeChildEntry,
                     startNodeChildEntry,
                     storyNodeChildEntry
@@ -133,7 +133,7 @@ namespace AG.DS
                     dialogueNodeChildEntry,
                     endNodeChildEntry,
                     eventNodeChildEntry,
-                    optionWindowNodeChildEntry,
+                    optionRootNodeChildEntry,
                     previewNodeChildEntry,
                     storyNodeChildEntry
                 };
@@ -148,7 +148,7 @@ namespace AG.DS
                     ancestorEntry,
 
                     // Child entry.
-                    optionWindowNodeChildEntry
+                    optionRootNodeChildEntry
                 };
                 // Output
                 OptionChannelOutputEntries = new()
@@ -157,7 +157,7 @@ namespace AG.DS
                     ancestorEntry,
 
                     // Child entry.
-                    optionTrackNodeChildEntry
+                    optionBranchNodeChildEntry
                 };
             }
         }

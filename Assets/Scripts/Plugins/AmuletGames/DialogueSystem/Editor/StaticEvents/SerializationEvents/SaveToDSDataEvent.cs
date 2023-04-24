@@ -21,12 +21,12 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register actions from different modules to the event.
+        /// Register the given action to the event.
         /// </summary>
-        /// <param name="serializeHandler">Dialogue system's serialize handler module.</param>
-        public static void Register(SerializeHandler serializeHandler)
+        /// <param name="action">The action to register with.</param>
+        public static void Register(Action<DialogueSystemData> action)
         {
-            mEvent += serializeHandler.SaveEdgesAndNodesAction;
+            mEvent += action;
         }
 
 

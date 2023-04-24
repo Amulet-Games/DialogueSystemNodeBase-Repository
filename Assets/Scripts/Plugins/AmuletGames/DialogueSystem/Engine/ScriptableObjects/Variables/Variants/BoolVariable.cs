@@ -5,7 +5,7 @@ namespace AG
     [Serializable]
     public class BoolVariable : VariableFrameBase<bool>
     {
-        // ----------------------------- Compare Value Services -----------------------------
+        // ----------------------------- Comparison Methods -----------------------------
         /// <inheritdoc />
         public override bool True() => VariableValue == true;
 

@@ -14,35 +14,41 @@ namespace AG.DS
     > 
         : NodeBase
         where TNode : NodeBase
-        where TNodeModel : NodeModelBase
+        where TNodeModel : NodeModelFrameBase<TNode>
         where TNodePresenter : NodePresenterFrameBase<TNode, TNodeModel>
         where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeModel, TNodeData>
         where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeModel>
         where TNodeData : NodeDataBase
     {
         /// <summary>
-        /// Reference of the connecting serializer module.
+        /// Reference of the model module.
+        /// </summary>
+        protected TNodeModel Model;
+
+
+        /// <summary>
+        /// Reference of the presenter module.
         /// </summary>
         protected TNodePresenter Presenter;
 
 
         /// <summary>
-        /// Reference of the connecting callback module.
+        /// Reference of the callback module.
         /// </summary>
         protected TNodeCallback Callback;
 
 
         /// <summary>
-        /// Reference of the connecting serializer module.
+        /// Reference of the serializer module.
         /// </summary>
-        protected TNodeSerializer Serializer;
+        public TNodeSerializer Serializer;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the node component frame base class.
+        /// Constructor of the node frame base class.
         /// </summary>
-        /// <param name="nodeTitle">The title text to set for.</param>
+        /// <param name="nodeTitle">The node title to set for.</param>
         /// <param name="graphViewer">The graph viewer module to set for.</param>
         public NodeFrameBase
         (
@@ -52,51 +58,37 @@ namespace AG.DS
         {
             SetupBaseFields();
 
-            AddElementToGraph();
+            AddToGraph();
 
             AddStyleSheet();
 
+            OverrideBorderDefaultStyle();
+
             OverrideContainersDefaultStyle();
 
-            OverrideBorderDefaultStyle();
+            RemoveUnusedElements();
+
+            AddCustomElements();
 
             void SetupBaseFields()
             {
-                // Set a new node GUID.
                 NodeGUID = Guid.NewGuid().ToString();
 
-                // Set default title.
                 title = nodeTitle;
 
-                // Implement refs.
                 GraphViewer = graphViewer;
             }
 
-            void AddElementToGraph()
+            void AddToGraph()
             {
-                GraphViewer.AddElement(this);
+                GraphViewer.Add(this);
             }
 
             void AddStyleSheet()
             {
-                // Setup the base node's USS styles.
-                styleSheets.Add(StylesConfig.DSGlobalStyle);
-                styleSheets.Add(StylesConfig.DSNodesShareStyle);
-            }
-
-            void OverrideContainersDefaultStyle()
-            {
-                // Override defualt picking mode.
-                titleContainer.pickingMode = PickingMode.Position;
-                mainContainer.pickingMode = PickingMode.Position;
-
-                // Remove the default USS names.
-                outputContainer.name = "";
-                inputContainer.name = "";
-
-                // Add to custom USS class.
-                outputContainer.AddToClassList(StylesConfig.Node_Output_Container);
-                inputContainer.AddToClassList(StylesConfig.Node_Input_Container);
+                var styleSheetConfig = ConfigResourcesManager.Instance.StyleSheetConfig;
+                styleSheets.Add(styleSheetConfig.DSGlobalStyle);
+                styleSheets.Add(styleSheetConfig.DSNodesShareStyle);
             }
 
             void OverrideBorderDefaultStyle()
@@ -113,34 +105,79 @@ namespace AG.DS
 
                 // Remove the default USS names and add to custom class.
                 NodeBorder.name = "";
-                NodeBorder.AddToClassList(StylesConfig.Node_Border);
+                NodeBorder.AddToClassList(StyleConfig.Instance.Node_Border);
+            }
+
+            void OverrideContainersDefaultStyle()
+            {
+                // Title Container
+                titleContainer.pickingMode = PickingMode.Position;
+
+                // Top Container
+                NodeBorder.Insert(index: 1, element: topContainer);
+
+                // Input Container
+                inputContainer.name = "";
+                inputContainer.AddToClassList(StyleConfig.Instance.Node_Input_Container);
+
+                // Output Container
+                outputContainer.name = "";
+                outputContainer.AddToClassList(StyleConfig.Instance.Node_Output_Container);
+
+                // Main Container
+                mainContainer.pickingMode = PickingMode.Position;
+            }
+
+            void RemoveUnusedElements()
+            {
+                // Remove #selection-border from the node.
+                Remove(ElementAt(0));
+
+                // Remove #title-label from the title container.
+                titleContainer.Remove(titleContainer.ElementAt(0));
+
+                // Remove #title-button-container from the title container.
+                titleContainer.Remove(titleContainer.ElementAt(0));
+
+                // Remove the #divider visual element from the top container.
+                topContainer.Remove(topContainer.ElementAt(1));
+
+                // Remove the #contents visual element from the node's border
+                NodeBorder.Remove(NodeBorder.ElementAt(2));
+            }
+
+            void AddCustomElements()
+            {
+                // Create a new Content Container and add to the node.
+                ContentContainer = new();
+                ContentContainer.AddToClassList(StyleConfig.Instance.Node_Content_Container);
+                
+                mainContainer.Add(ContentContainer);
             }
         }
 
 
-        // ----------------------------- Callbacks -----------------------------
+        // ----------------------------- Action -----------------------------
         /// <inheritdoc />
-        protected override void NodeCreatedAction() => Callback.NodeCreatedAction();
+        protected override void NodeCreatedAction()
+        {
+            Callback.RegisterEvents();
+        }
 
 
         /// <inheritdoc />
-        public override void PreManualRemovedAction() => Callback.PreManualRemovedAction();
+        public override void PreManualRemoveAction()
+        {
+            Model.RemoveCachePortsAll();
+            Model.DisconnectPortsAll();
 
-
-        /// <inheritdoc />
-        public override void PostManualRemovedAction() => Callback.PostManualRemovedAction();
+            Callback.UnregisterEvents();
+        }
 
 
         // ----------------------------- Serialization -----------------------------
         /// <inheritdoc />
-        public override void SaveNode(DialogueSystemData dsData) => Serializer.SaveNode(dsData);
-
-
-        /// <summary>
-        /// Load the node values from the given connecting data module class.
-        /// </summary>
-        /// <param name="data">The given connecting data module class to load from.</param>
-        protected void LoadNode(TNodeData data) => Serializer.LoadNode(data);
+        public override void Save(DialogueSystemData dsData) => Serializer.Save(dsData);
 
 
         // ----------------------------- Overrides -----------------------------
@@ -151,7 +188,7 @@ namespace AG.DS
         /// <param name="evt">The event holding the menu to populate.</param>
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
-            Presenter.AddContextualManuItems(evt);
+            Presenter.AddContextualMenuItems(evt);
             evt.menu.AppendSeparator();
         }
     }

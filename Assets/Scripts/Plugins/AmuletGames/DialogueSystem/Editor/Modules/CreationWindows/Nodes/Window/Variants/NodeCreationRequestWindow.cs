@@ -10,8 +10,8 @@ namespace AG.DS
         /// Create a new dialgoue system's node creation request window.
         /// <br>Since the class is a scriptable object, the method is also a constructor for the class.</br>
         /// </summary>
-        /// <param name="graphViewer">Dialogue system's graph view module.</param>
-        /// <param name="dsWindow">Dialogue system's editor window module.</param>
+        /// <param name="graphViewer">The graph viewer module to set for.</param>
+        /// <param name="dsWindow">The editor window module to set for.</param>
         /// <returns>A new dialogue system's search window module.</returns>
         public static NodeCreationRequestWindow CreateInstance
         (
@@ -42,7 +42,7 @@ namespace AG.DS
                 instance.DsWindow = dsWindow;
                 instance.Details = new
                 (
-                    horizontalAlignType: C_Alignment_HorizontalType.Middle,
+                    horizontalAlignType: HorizontalAlignmentType.MIDDLE,
                     connectorPort: null
                 );
             }

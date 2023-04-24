@@ -23,85 +23,81 @@ namespace AG.DS
         public VisualElement NodeBorder;
 
 
-        // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// The callback action to invoke when the node has finished its creation process and added on the graph fully.
+        /// The element that contains other visual elements within the node content section.
+        /// </summary>
+        public VisualElement ContentContainer;
+
+
+        // ----------------------------- Action -----------------------------
+        /// <summary>
+        /// Action to invoke when the node is created and added to the graph.
         /// </summary>
         protected abstract void NodeCreatedAction();
 
 
         /// <summary>
-        /// The callback action to invoke when the nodes is deleted by users from the graph manually.
-        /// <br>This action happens before the node is being removed from the graph.</br>
+        /// Action to invoke just before the node is going to be removed from the graph manually.
         /// </summary>
-        public abstract void PreManualRemovedAction();
+        public abstract void PreManualRemoveAction();
 
 
         /// <summary>
-        /// The callback action to invoke when the nodes is deleted by users from the graph manually.
-        /// <br>This action happens before the node is removed from the graph.</br>
+        /// Action to invoke right after the node has been removed from the graph manually.
         /// </summary>
-        public abstract void PostManualRemovedAction();
+        public virtual void PostManualRemoveAction() { }
 
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the node values to its connecting data module class.
+        /// Save the node values to the dialogue system data.
         /// </summary>
-        /// <param name="dsData">The given dialogue system data to save to.</param>
-        public abstract void SaveNode(DialogueSystemData dsData);
+        /// <param name="dsData">The dialogue system data to save to.</param>
+        public abstract void Save(DialogueSystemData dsData);
 
 
-        // ----------------------------- Delete Elements Services -----------------------------
+        // ----------------------------- Add -----------------------------
         /// <summary>
-        /// Delete the desired visual element that are created within the node.
+        /// Add the given port to the node.
         /// </summary>
-        /// <param name="visualElement">The visual element to be deleted.</param>
-        /// <param name="containerType">The container that the visual element was added in.</param>
-        public void DeleteVisualElement(VisualElement visualElement, N_ContainerType containerType)
+        /// <param name="port">The targeting port.</param>
+        /// <param name="isRefresh">Is refreshing the node's port container afterward.</param>
+        public void Add(PortBase port, bool isRefresh = false)
         {
-            switch (containerType)
+            if (port.direction == Direction.Input)
             {
-                case N_ContainerType.Extension:
-                    extensionContainer.Remove(visualElement);
-                    RefreshExpandedState();
-                    break;
-                case N_ContainerType.Top:
-                    topContainer.Remove(visualElement);
-                    break;
-                case N_ContainerType.TitleButton:
-                    titleButtonContainer.Remove(visualElement);
-                    break;
-                case N_ContainerType.Title:
-                    titleContainer.Remove(visualElement);
-                    break;
-                case N_ContainerType.Main:
-                    mainContainer.Remove(visualElement);
-                    break;
+                inputContainer.Add(port);
             }
+            else
+            {
+                outputContainer.Add(port);
+            }
+
+            if (isRefresh)
+                RefreshPorts();
+
+            GraphViewer.SerializeHandler.AddCachePort(port);
         }
 
 
+        // ----------------------------- Remove -----------------------------
         /// <summary>
-        /// Delete the desired port that are located within the node.
+        /// Remove the given port from the node.
         /// </summary>
-        /// <param name="port">The port to be deleted.</param>
-        /// <param name="directionType">The direction type of the port within the node.</param>
-        public void DeletePortElement(Port port, Direction directionType)
+        /// <param name="port">The targeting port.</param>
+        public void Remove(PortBase port)
         {
-            switch (directionType)
+            if (port.direction == Direction.Input)
             {
-                case Direction.Output:
-                    outputContainer.Remove(port);
-                    break;
-
-                case Direction.Input:
-                    inputContainer.Remove(port);
-                    break;
+                inputContainer.Remove(port);
+            }
+            else
+            {
+                outputContainer.Remove(port);
             }
 
-            // Update ports layout to see the changes.
             RefreshPorts();
+            GraphViewer.SerializeHandler.RemoveCachePort(port);
         }
     }
 }

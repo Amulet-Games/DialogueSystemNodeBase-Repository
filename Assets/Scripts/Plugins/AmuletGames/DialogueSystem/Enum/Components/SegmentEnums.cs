@@ -8,19 +8,4 @@ namespace AG.DS
         Hide = 1,
         GrayOut = 2
     }
-
-
-    /*< -------------------- Dialogue -------------------- >*/
-    public enum S_Dialogue_TextlineNumberType
-    {
-        Single,
-        Dual
-    }
-
-
-    public enum S_Dialogue_SecondLineTriggerType
-    {
-        DeltaTime,
-        Input
-    }
 }

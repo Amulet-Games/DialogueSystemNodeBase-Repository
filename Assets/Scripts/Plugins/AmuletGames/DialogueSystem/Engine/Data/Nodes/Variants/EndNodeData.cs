@@ -8,14 +8,18 @@ namespace AG.DS
     public class EndNodeData : NodeDataBase
     {
         /// <summary>
-        /// The data's input port GUID value.
+        /// The data's input port data.
         /// </summary>
-        [SerializeField] public string InputPortGUID;
+        [SerializeField] public PortDataBase InputPortData;
 
 
+        // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// The data's dialogue over handle type enum value.
+        /// Constructor of the end node data class.
         /// </summary>
-        [SerializeField] public int DialogueOverHandleTypeEnumIndex;
+        public EndNodeData()
+        {
+            InputPortData = new();
+        }
     }
 }

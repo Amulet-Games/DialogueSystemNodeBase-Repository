@@ -3,13 +3,27 @@ using UnityEngine;
 
 namespace AG.DS
 {
-    [CreateAssetMenu(menuName = "Dialogue System/New Dialogue System Data")]
+    [CreateAssetMenu(menuName = "### AG ###/Dialogue System/New Dialogue System Data")]
     public class DialogueSystemData : ScriptableObject
     {
+        [Space(5), Header("Customization")]
+        /// <summary>
+        /// The minimum size of the dialogue editor window when it's floating or modal.
+        /// </summary>
+        public Vector2 WindowMinSize = new(x: 200, y: 200);
+
+
+        /// <summary>
+        /// The size of the dialogue editor window when it's first opened.
+        /// </summary>
+        public Vector2 WindowStartSizeScreenRatio = new(x: 0.7f, y: 0.7f);
+
+
+        [Space(5), Header("Data")]
         /// <summary>
         /// Edge data list.
         /// </summary>
-        public List<EdgeData> EdgeData;
+        public List<EdgeDataBase> EdgeData;
 
 
         /// <summary>
@@ -37,15 +51,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Option track node data list.
+        /// Option branch node data list.
         /// </summary>
-        public List<OptionTrackNodeData> OptionTrackNodeData;
+        public List<OptionBranchNodeData> OptionBranchNodeData;
 
 
         /// <summary>
-        /// Option window node data list.
+        /// Option root node data list.
         /// </summary>
-        public List<OptionWindowNodeData> OptionWindowNodeData;
+        public List<OptionRootNodeData> OptionRootNodeData;
 
 
         /// <summary>
@@ -66,31 +80,12 @@ namespace AG.DS
         public List<StoryNodeData> StoryNodeData;
 
 
-        // ----------------------------- Contructor -----------------------------
+        // ----------------------------- Get Data -----------------------------
         /// <summary>
-        /// Constructor of the dialogue system data class.
+        /// Return a list of all saved node data.
         /// </summary>
-        public DialogueSystemData()
-        {
-            EdgeData = new();
-            BooleanNodeData = new();
-            DialogueNodeData = new();
-            EndNodeData = new();
-            EventNodeData = new();
-            OptionTrackNodeData = new();
-            OptionWindowNodeData = new();
-            PreviewNodeData = new();
-            StartNodeData = new();
-            StoryNodeData = new();
-        }
-
-
-        // ----------------------------- Get Node Savables Services -----------------------------
-        /// <summary>
-        /// Get all the node model savables from the scriptable asset.
-        /// </summary>
-        /// <returns>A new list that have combined all saved node's models from the asset.</returns>
-        public List<NodeDataBase> NodesData()
+        /// <returns>A list of all saved node data.</returns>
+        public List<NodeDataBase> GetDataNodes()
         {
             List<NodeDataBase> nodesData = new();
 
@@ -98,8 +93,8 @@ namespace AG.DS
             nodesData.AddRange(DialogueNodeData);
             nodesData.AddRange(EndNodeData);
             nodesData.AddRange(EventNodeData);
-            nodesData.AddRange(OptionTrackNodeData);
-            nodesData.AddRange(OptionWindowNodeData);
+            nodesData.AddRange(OptionBranchNodeData);
+            nodesData.AddRange(OptionRootNodeData);
             nodesData.AddRange(PreviewNodeData);
             nodesData.AddRange(StartNodeData);
             nodesData.AddRange(StoryNodeData);
@@ -108,18 +103,18 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Clear Node Savables Services -----------------------------
+        // ----------------------------- Clear Data -----------------------------
         /// <summary>
-        /// Clear all the node savables inside the scriptable asset.
+        /// Clear all the saved node data.
         /// </summary>
-        public void ClearNodesData()
+        public void ClearDataNodes()
         {
             BooleanNodeData.Clear();
             DialogueNodeData.Clear();
             EndNodeData.Clear();
             EventNodeData.Clear();
-            OptionTrackNodeData.Clear();
-            OptionWindowNodeData.Clear();
+            OptionBranchNodeData.Clear();
+            OptionRootNodeData.Clear();
             PreviewNodeData.Clear();
             StartNodeData.Clear();
             StoryNodeData.Clear();

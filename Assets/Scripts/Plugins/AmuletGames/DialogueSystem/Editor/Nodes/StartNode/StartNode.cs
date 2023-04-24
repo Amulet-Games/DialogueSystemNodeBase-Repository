@@ -12,22 +12,20 @@
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Construtor of the start node component class.
+        /// Constructor of the start node component class.
         /// </summary>
-        /// <param name="details">The connecting creation details to set for.</param>
-        /// <param name="graphViewer">Reference of the dialogue system's graph viewer module.</param>
+        /// <param name="details">The node creation details to set for.</param>
+        /// <param name="graphViewer">The graph viewer module to set for.</param>
         public StartNode
         (
             NodeCreationDetails details,
             GraphViewer graphViewer
         )
-            : base(StringsConfig.StartNodeDefaultTitleText, graphViewer)
+            : base(nodeTitle: StringConfig.Instance.StartNode_TitleText, graphViewer: graphViewer)
         {
             SetupFrameFields();
 
             CreateNodeElements();
-
-            CreateNodePorts();
 
             PostProcessNodeWidth();
 
@@ -39,29 +37,25 @@
 
             void SetupFrameFields()
             {
-                StartNodeModel model = new();
-
-                Presenter = new(node: this, model: model);
-                Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model);
+                Model = new(node: this);
+                Presenter = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, model: Model);
             }
 
             void CreateNodeElements()
             {
-                Presenter.CreateNodeElements();
-            }
-
-            void CreateNodePorts()
-            {
-                Presenter.CreateNodePorts();
+                Presenter.CreateTitleElements();
+                Presenter.CreatePortElements();
+                Presenter.CreateContentElements();
             }
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessNodeWidth
+                Presenter.PostProcessSetWidthValues
                 (
-                    minWidth: NodesConfig.StartNodeMinWidth,
-                    widthBuffer: NodesConfig.StartNodeWidthBuffer
+                    minWidth: NodeConfig.StartNodeMinWidth,
+                    widthBuffer: NodeConfig.StartNodeWidthBuffer
                 );
             }
 
@@ -72,70 +66,64 @@
 
             void AddStyleSheet()
             {
-                styleSheets.Add(StylesConfig.DSStartNodeStyle);
+                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSStartNodeStyle);
             }
         }
 
 
         // ----------------------------- Constructor (Load) -----------------------------
         /// <summary>
-        /// Construtor of the start node component class.
+        /// Constructor of the start node component class.
         /// <para>Specifically used when the node is created by the previously saved data.</para>
         /// </summary>
-        /// <param name="data">The given node data to load from.</param>
-        /// <param name="graphViewer">Reference of the dialogue system's graph viewer module.</param>
+        /// <param name="data">The node data to load from.</param>
+        /// <param name="graphViewer">The graph viewer module to set for.</param>
         public StartNode
         (
             StartNodeData data,
             GraphViewer graphViewer
         )
-            : base(StringsConfig.StartNodeDefaultTitleText, graphViewer)
+            : base(nodeTitle: StringConfig.Instance.StartNode_TitleText, graphViewer: graphViewer)
         {
             SetupFrameFields();
 
             CreateNodeElements();
 
-            CreateNodePorts();
-
             PostProcessNodeWidth();
 
             AddStyleSheet();
 
-            LoadNode(data);
+            Serializer.Load(data);
 
             NodeCreatedAction();
 
             void SetupFrameFields()
             {
-                StartNodeModel model = new();
-
-                Presenter = new(node: this, model: model);
-                Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model);
+                Model = new(node: this);
+                Presenter = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, model: Model);
             }
 
             void CreateNodeElements()
             {
-                Presenter.CreateNodeElements();
-            }
-
-            void CreateNodePorts()
-            {
-                Presenter.CreateNodePorts();
+                Presenter.CreateTitleElements();
+                Presenter.CreatePortElements();
+                Presenter.CreateContentElements();
             }
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessNodeWidth
+                Presenter.PostProcessSetWidthValues
                 (
-                    minWidth: NodesConfig.StartNodeMinWidth,
-                    widthBuffer: NodesConfig.StartNodeWidthBuffer
+                    minWidth: NodeConfig.StartNodeMinWidth,
+                    widthBuffer: NodeConfig.StartNodeWidthBuffer
                 );
             }
 
             void AddStyleSheet()
             {
-                styleSheets.Add(StylesConfig.DSStartNodeStyle);
+                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSStartNodeStyle);
             }
         }
     }

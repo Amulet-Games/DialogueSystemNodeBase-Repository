@@ -10,20 +10,20 @@ namespace AG.DS
     public class NodeDataBase
     {
         /// <summary>
-        /// The data's node GUID value.
+        /// The data's GUID value.
         /// </summary>
-        [SerializeField] public string NodeGUID;
+        [SerializeField] public string GUID;
 
 
         /// <summary>
-        /// The data's node position value.
+        /// The data's position value.
         /// </summary>
-        [SerializeField] public SerializableVector2 NodePosition;
+        [SerializeField] public SerializableVector2 Position;
 
 
         /// <summary>
-        /// The data's node title text value.
+        /// The data's title text value.
         /// </summary>
-        [SerializeField] public string NodeTitleText;
+        [SerializeField] public string TitleText;
     }
 }

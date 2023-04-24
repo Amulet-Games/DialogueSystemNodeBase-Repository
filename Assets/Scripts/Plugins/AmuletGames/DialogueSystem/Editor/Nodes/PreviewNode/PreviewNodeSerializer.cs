@@ -12,8 +12,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the preivew node serializer module class.
         /// </summary>
-        /// <param name="node">The connecting node module to set for.</param>
-        /// <param name="model">The connecting model module to set for.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public PreviewNodeSerializer(PreviewNode node, PreviewNodeModel model)
         {
             Node = node;
@@ -23,31 +23,31 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void SaveNode(DialogueSystemData dsData)
+        public override void Save(DialogueSystemData dsData)
         {
             PreviewNodeData data = new();
 
             SaveBaseValues(data: data);
 
-            SavePortsGUID();
+            SavePorts();
 
             SaveSpriteObjectContainers();
 
             AddData();
 
-            void SavePortsGUID()
+            void SavePorts()
             {
-                data.InputPortGUID = Model.InputPort.name;
-                data.OutputPortGUID = Model.OutputPort.name;
+                Model.InputDefaultPort.Save(data.InputPortData);
+                Model.OutputDefaultPort.Save(data.OutputPortData);
             }
 
             void SaveSpriteObjectContainers()
             {
                 // Left side sprite.
-                data.LeftPortraitSprite = Model.LeftSpriteContainer.Value;
+                data.LeftPortraitSprite = Model.LeftPortraitObjectFieldModel.Value;
 
                 // Right side sprite. 
-                data.RightPortraitSprite = Model.RightSpriteContainer.Value;
+                data.RightPortraitSprite = Model.RightPortraitObjectFieldModel.Value;
             }
 
             void AddData()
@@ -59,34 +59,31 @@ namespace AG.DS
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void LoadNode(PreviewNodeData data)
+        public override void Load(PreviewNodeData data)
         {
             LoadBaseValues(data);
 
-            LoadPortsGUID();
+            LoadPorts();
 
             LoadSpriteObjectContainers();
 
-            void LoadPortsGUID()
+            void LoadPorts()
             {
-                Model.InputPort.name = data.InputPortGUID;
-                Model.OutputPort.name = data.OutputPortGUID;
+                Model.InputDefaultPort.Load(data.InputPortData);
+                Model.OutputDefaultPort.Load(data.OutputPortData);
             }
 
             void LoadSpriteObjectContainers()
             {
                 // Left side sprite.
-                Model.LeftSpriteContainer.LoadContainerValue(data.LeftPortraitSprite);
+                Model.LeftPortraitObjectFieldModel.Load(data.LeftPortraitSprite);
 
                 // Right side sprite. 
-                Model.RightSpriteContainer.LoadContainerValue(data.RightPortraitSprite);
+                Model.RightPortraitObjectFieldModel.Load(data.RightPortraitSprite);
 
-                // Update preivew images.
-                ImageElementHelper.UpdateImagePreview
-                    (sprite: Model.LeftSpriteContainer.Value, image: Model.LeftPortraitImage);
-
-                ImageElementHelper.UpdateImagePreview
-                    (sprite: Model.RightSpriteContainer.Value, image: Model.RightPortraitImage);
+                // Update preview images.
+                Model.LeftPortraitImage.image = Model.LeftPortraitObjectFieldModel.Value.texture;
+                Model.RightPortraitImage.image = Model.RightPortraitObjectFieldModel.Value.texture;
             }
         }
     }

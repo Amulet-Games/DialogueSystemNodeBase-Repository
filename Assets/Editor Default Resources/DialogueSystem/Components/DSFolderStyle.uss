@@ -1,0 +1,126 @@
+/* =========================================================== Folder =========================================================== */
+
+/*< ---------------------------------------------------------- Main Container >*/
+.folder_MainContainer {
+	
+	background-color: rgba(51, 51, 51, 1);
+
+	/* top - right - bottom - left */
+	margin: 5px 5px 5px 5px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+
+/*< ---------------------------------------------------------- Title Container >*/
+.folder_Title_Container {
+	
+	background-color: rgba(0, 0, 0, 0);
+
+	height: 28px;
+
+	flex-direction: row;
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.folder_Expanded
+.folder_Title_Container {
+	
+	border-radius: 4px 4px 0px 0px;
+}
+
+
+/*< ---------------------------------------------------------- Expand Folder Button >*/
+.folder_ExpandFolder_Button {
+	
+	background-color: rgba(0, 0, 0, 0);
+	border-color: rgba(0, 0, 0, 0);
+
+	-unity-background-image-tint-color: rgba(130, 130, 130, 1);
+
+	height: 13px;
+	width: 12px;
+	
+	-unity-slice-bottom: 1;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 3px 0px 0px 5px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.folder_ExpandFolder_Button:hover {
+	
+	background-color: rgba(89, 89, 89, 0.85);
+}
+
+
+/*< ---------------------------------------------------------- Title Text Field >*/
+.folder_Title_TextField {
+
+	background-color: rgba(0, 0, 0, 0);
+
+	height: 28px;
+	width: 230px;
+
+	align-self: center;
+	
+	flex-grow: 1;
+
+	white-space: nowrap;
+
+	/* top - right - bottom - left */
+	margin: 1px 0px 0px 7px;
+	padding: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.folder_Title_TextField:focus {
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0.5px;
+}
+
+.folder_Title_TextField
+.unity-text-field__input {
+
+	background-color: rgba(0, 0, 0, 0);
+
+	color: rgba(255, 255, 255, 1);
+
+	font-size: 16px;
+
+	align-self: center;
+	
+	-unity-font: url('project:/Assets/Data/Fonts/Inter/static/Inter-Medium.ttf');
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.folder_Title_TextField
+.unity-text-field__input:focus {
+	
+	/* top - right - bottom - left */
+	padding: 2px 3px 2px 3px;
+	border-width: 1px 1px 1px 1px;
+}
+
+
+/*< ---------------------------------------------------------- Content Container >*/
+.folder_ContentContainer {
+
+	background-color: rgba(0, 0, 0, 0);
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}

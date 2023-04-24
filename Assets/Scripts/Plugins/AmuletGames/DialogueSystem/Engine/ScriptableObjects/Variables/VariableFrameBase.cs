@@ -12,7 +12,7 @@ namespace AG
         [SerializeField] public T VariableValue;
 
 
-        // ----------------------------- Compare Value Services -----------------------------
+        // ----------------------------- Comparison Methods -----------------------------
         /// <summary>
         /// Returns true if the variable's value is equal to the comparing variable.
         /// </summary>

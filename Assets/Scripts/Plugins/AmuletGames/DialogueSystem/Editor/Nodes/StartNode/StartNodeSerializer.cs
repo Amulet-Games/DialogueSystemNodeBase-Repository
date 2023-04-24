@@ -12,8 +12,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the start node serializer module class.
         /// </summary>
-        /// <param name="node">Node of which this serializer is connecting upon.</param>
-        /// <param name="model">Model of which this serializer is connecting upon.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public StartNodeSerializer(StartNode node, StartNodeModel model)
         {
             Node = node;
@@ -23,19 +23,19 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void SaveNode(DialogueSystemData dsData)
+        public override void Save(DialogueSystemData dsData)
         {
             StartNodeData data = new();
 
             SaveBaseValues(data: data);
 
-            SavePortsGUID();
+            SavePorts();
 
             AddData();
 
-            void SavePortsGUID()
+            void SavePorts()
             {
-                data.OutputPortGUID = Model.OutputPort.name;
+                Model.OutputDefaultPort.Save(data.OutputPortData);
             }
 
             void AddData()
@@ -47,15 +47,15 @@ namespace AG.DS
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void LoadNode(StartNodeData data)
+        public override void Load(StartNodeData data)
         {
             LoadBaseValues(data);
 
-            LoadPortsGUID();
+            LoadPorts();
 
-            void LoadPortsGUID()
+            void LoadPorts()
             {
-                Model.OutputPort.name = data.OutputPortGUID;
+                Model.OutputDefaultPort.Load(data.OutputPortData);
             }
         }
     }

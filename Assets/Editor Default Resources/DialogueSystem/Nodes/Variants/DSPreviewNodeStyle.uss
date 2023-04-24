@@ -1,4 +1,4 @@
-.node #title {
+.node_NodeTitle_Main_Box {
 	background-color: rgba(184, 150, 74, 1);
 }
 
@@ -6,7 +6,7 @@
 /* ---------------------------------------------------------------- Node Elements Styles ---------------------------------------------------------------- */
 
 /*< -------------------- Image Preview -------------------- >*/
-.previewNode_Image_Box {
+.previewNode_PreviewImage_Box {
 
 	background-color: rgba(51, 51, 51, 1);
 
@@ -19,7 +19,7 @@
 	border-radius: 4px 4px 4px 4px;
 }
 
-.previewNode_Image {
+.previewNode_PreviewImage_Image {
 
 	height: 140px;
 	width: 150px;
@@ -29,17 +29,17 @@
 	padding: 0px 0px 0px 0px;
 }
 
-.previewNode_Image_L {
+.previewNode_PreviewImage_Image_L {
 
 	margin-right: auto;
 }
 
-.previewNode_Image_R {
+.previewNode_PreviewImage_Image_R {
 
 	margin-left: auto;
 }
 
-.previewNode_ObjectField_Box {
+.previewNode_PreviewSprite_Box {
 
 	background-color: rgba(35, 35, 35, 1);
 
@@ -57,12 +57,10 @@
 	border-width: 0px 0px 0px 0px;
 }
 
-.previewNode_ObjectField {
+.previewNode_PreviewSprite_ObjectField {
 
 	height: 28px;
-	width: auto;
-
-	max-width: 170px;
+	width: 170px;
 
 	align-self: center;
 
@@ -74,34 +72,38 @@
 	/* top - right - bottom - left */
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
 }
 
-.previewNode_ObjectField_L {
+.previewNode_PreviewSprite_ObjectField:hover {
+	
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.previewNode_PreviewSprite_ObjectField:focus {
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.previewNode_PreviewSprite_ObjectField_L {
 
 	/* top - right - bottom - left */
 	margin: 6px auto 6px 6px;
 }
 
-.previewNode_ObjectField_R {
+.previewNode_PreviewSprite_ObjectField_R {
 
 	/* top - right - bottom - left */
-	margin: 6px 3px 6px auto
+	margin: 6px 6px 6px auto
 }
 
-.previewNode_ObjectField
-.objectField_Icon {
-
-	height: 20px;
-	width: 20px;
-
-	align-self: center;
-
-	/* top - right - bottom - left */
-	margin: 0px 0px 0px 3px;
-	padding: 0px 0px 0px 0px;
-}
-
-.previewNode_ObjectField
+.previewNode_PreviewSprite_ObjectField
 .unity-object-field__input {
 	
 	background-color: rgba(51, 51, 51, 1);
@@ -111,18 +113,35 @@
 	border-radius: 4px 4px 4px 4px;
 }
 
-.previewNode_ObjectField
-.unity-object-field__input:hover {
+.previewNode_PreviewSprite_ObjectField:hover
+.unity-object-field__input,
 
-	background-color: rgba(62, 62, 62, 1);
+.previewNode_PreviewSprite_ObjectField:focus
+.unity-object-field__input{
+	
+	/* top - right - bottom - left */
+	margin: -1.5px -1.5px -1.5px -1.5px;
 }
 
-.previewNode_ObjectField_L
+.previewNode_PreviewSprite_ObjectField
+.objectField_Icon {
+
+	height: 20px;
+	width: 20px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 1px 3px;
+	padding: 0px 0px 0px 0px;
+}
+
+.previewNode_PreviewSprite_ObjectField_L
 .unity-object-field__input 
 .unity-object-field-display 
 .unity-object-field-display__icon,
 
-.previewNode_ObjectField_R
+.previewNode_PreviewSprite_ObjectField_R
 .unity-object-field__input 
 .unity-object-field-display 
 .unity-object-field-display__icon {
@@ -135,12 +154,28 @@
 	padding: 0px 0px 0px 3px;
 }
 
-.previewNode_ObjectField_L
+.previewNode_PreviewSprite_ObjectField
+.unity-object-field__input
+.unity-object-field__selector {
+
+	/* top - right - bottom - left */
+	margin: 0px 2px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.previewNode_PreviewSprite_ObjectField
+.unity-object-field__input
+.unity-object-field__selector:hover {
+	
+	background-color: rgba(76, 76, 76, 1);
+}
+
+.previewNode_PreviewSprite_ObjectField_L
 .unity-object-field__input
 .unity-object-field-display
 .unity-object-field-display__label,
 
-.previewNode_ObjectField_R
+.previewNode_PreviewSprite_ObjectField_R
 .unity-object-field__input
 .unity-object-field-display
 .unity-object-field-display__label {
@@ -150,6 +185,18 @@
 	align-self: Center;
 
 	/* top - right - bottom - left */
-	margin: 1px 6px 0px 4px;
+	margin: 0px 6px 0px 4px;
 	padding: 0px 0px 0px 0px;
+}
+
+.previewNode_MiddleEmpty_Box {
+
+	min-width: 100px;
+
+	background-color: rgba(0, 0, 0, 0);
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
 }

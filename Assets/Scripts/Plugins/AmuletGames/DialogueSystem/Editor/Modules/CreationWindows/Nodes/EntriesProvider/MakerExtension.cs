@@ -20,7 +20,7 @@ namespace AG.DS
         {
             return new SearchTreeGroupEntry
             (
-                content: new GUIContent(text: StringsConfig.AncestorEntryLabelText),
+                content: new GUIContent(text: StringConfig.Instance.SearchEntry_AncestorEntry_LabelText),
                 level: 0
             );
         }
@@ -35,7 +35,7 @@ namespace AG.DS
         {
             return new SearchTreeGroupEntry
             (
-                content: new GUIContent(text: StringsConfig.NodesFamilyEntryLabelText),
+                content: new GUIContent(text: StringConfig.Instance.SearchEntry_FamilyEntry_Nodes_LabelText),
                 level: entryLevel
             );
         }
@@ -50,7 +50,7 @@ namespace AG.DS
         {
             return GetNewNodeEntry
             (
-                entryName: StringsConfig.BooleanNodeChildEntryLabelText,
+                entryName: StringConfig.Instance.SearchEntry_ChildEntry_BooleanNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Boolean
             );
@@ -66,7 +66,7 @@ namespace AG.DS
         {
             return GetNewNodeEntry
             (
-                entryName: StringsConfig.DialogueNodeChildEntryLabelText,
+                entryName: StringConfig.Instance.SearchEntry_ChildEntry_DialogueNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Dialogue
             );
@@ -82,7 +82,7 @@ namespace AG.DS
         {
             return GetNewNodeEntry
             (
-                entryName: StringsConfig.EndNodeChildEntryLabelText,
+                entryName: StringConfig.Instance.SearchEntry_ChildEntry_EndNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.End
             );
@@ -98,7 +98,7 @@ namespace AG.DS
         {
             return GetNewNodeEntry
             (
-                entryName: StringsConfig.EventNodeChildEntryLabelText,
+                entryName: StringConfig.Instance.SearchEntry_ChildEntry_EventNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Event
             );
@@ -106,33 +106,33 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Returns a new option track node child entry.
+        /// Returns a new option branch node child entry.
         /// </summary>
-        /// <param name="entryLevel">The entry level of the new option track node child entry to set for.</param>
-        /// <returns>A new option track node child entry.</returns>
-        public static NodeCreationEntry GetNewOptionTrackNodeChildEntry(int entryLevel)
+        /// <param name="entryLevel">The entry level of the new option branch node child entry to set for.</param>
+        /// <returns>A new option branch node child entry.</returns>
+        public static NodeCreationEntry GetNewOptionBranchNodeChildEntry(int entryLevel)
         {
             return GetNewNodeEntry
             (
-                entryName: StringsConfig.OptionTrackNodeChildEntryLabelText,
+                entryName: StringConfig.Instance.SearchEntry_ChildEntry_OptionBranchNode_LabelText,
                 entryLevel: entryLevel,
-                entryNodeType: N_NodeType.OptionTrack
+                entryNodeType: N_NodeType.OptionBranch
             );
         }
 
 
         /// <summary>
-        /// Returns a new option window node child entry.
+        /// Returns a new option root node child entry.
         /// </summary>
-        /// <param name="entryLevel">The entry level of the new option window node child entry to set for.</param>
-        /// <returns>A new option window node child entry.</returns>
-        public static NodeCreationEntry GetNewOptionWindowNodeChildEntry(int entryLevel)
+        /// <param name="entryLevel">The entry level of the new option root node child entry to set for.</param>
+        /// <returns>A new option root node child entry.</returns>
+        public static NodeCreationEntry GetNewOptionRootNodeChildEntry(int entryLevel)
         {
             return GetNewNodeEntry
             (
-                entryName: StringsConfig.OptionWindowNodeChildEntryLabelText,
+                entryName: StringConfig.Instance.SearchEntry_ChildEntry_OptionRootNode_LabelText,
                 entryLevel: entryLevel,
-                entryNodeType: N_NodeType.OptionWindow
+                entryNodeType: N_NodeType.OptionRoot
             );
         }
 
@@ -146,7 +146,7 @@ namespace AG.DS
         {
             return GetNewNodeEntry
             (
-                entryName: StringsConfig.PreviewWindowNodeChildEntryLabelText,
+                entryName: StringConfig.Instance.SearchEntry_ChildEntry_PreviewNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Preview
             );
@@ -162,7 +162,7 @@ namespace AG.DS
         {
             return GetNewNodeEntry
             (
-                entryName: StringsConfig.StartNodeChildEntryLabelText,
+                entryName: StringConfig.Instance.SearchEntry_ChildEntry_StartNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Start
             );
@@ -178,7 +178,7 @@ namespace AG.DS
         {
             return GetNewNodeEntry
             (
-                entryName: StringsConfig.StoryNodeChildEntryLabelText,
+                entryName: StringConfig.Instance.SearchEntry_ChildEntry_StoryNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Story
             );

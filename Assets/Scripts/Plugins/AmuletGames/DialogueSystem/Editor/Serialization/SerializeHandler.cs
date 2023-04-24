@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,9 +19,15 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Internal cache of the edges that the handler is going to save.
+        /// </summary>
+        List<EdgeBase> edges;
+
+
+        /// <summary>
         /// Internal cache of the ports that the handler is going to save.
         /// </summary>
-        Dictionary<string, PortBase> portBaseByPortGUID;
+        Dictionary<string, PortBase> portByPortGUID;
 
 
         /// <summary>
@@ -31,27 +36,33 @@ namespace AG.DS
         int nodesCount;
 
 
+        /// <summary>
+        /// Counter of the edge cache.
+        /// </summary>
+        int edgesCount;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue system's serialize handler class.
         /// </summary>
-        /// <param name="graphViewer">Dialogue system's graph viewer module.</param>
+        /// <param name="graphViewer">The graph viewer module to set for.</param>
         public SerializeHandler(GraphViewer graphViewer)
         {
             this.graphViewer = graphViewer;
 
             nodes = new();
-            portBaseByPortGUID = new();
+            edges = new();
+            portByPortGUID = new();
         }
 
 
         // ----------------------------- Save -----------------------------
         /// <summary>
         /// Save all the edges and nodes that are on the graph.
-        /// <para>SaveToDSDataEvent - Static Event</para>
         /// </summary>
         /// <param name="dsData">The dialogue system data to save the data to.</param>
-        public void SaveEdgesAndNodesAction(DialogueSystemData dsData)
+        public void SaveEdgesAndNodes(DialogueSystemData dsData)
         {
             SaveEdges(dsData);
             SaveNodes(dsData);
@@ -67,32 +78,20 @@ namespace AG.DS
         /// <param name="dsData">The dialogue system data to save the data to.</param>
         void SaveEdges(DialogueSystemData dsData)
         {
-            ClearSavables();
+            ClearEdgeData();
 
-            CreateSavables();
+            CreateEdgeData();
 
-            void ClearSavables()
+            void ClearEdgeData()
             {
                 dsData.EdgeData.Clear();
             }
 
-            void CreateSavables()
+            void CreateEdgeData()
             {
-                foreach (var pair in portBaseByPortGUID)
+                for (int i = 0; i < edgesCount; i++)
                 {
-                    // If the port is an input port or it's not connected.
-                    if (pair.Value.IsInput() || !pair.Value.connected)
-                        continue;
-
-                    foreach (Edge connection in pair.Value.connections)
-                    {
-                        // Otherwise create a new edge data foreach connections the port has.
-                        dsData.EdgeData.Add(new EdgeData
-                        (
-                            inputPortGUID: connection.input.name,
-                            outputPortGUID: pair.Value.name
-                        ));
-                    }
+                    edges[i].Save(dsData);
                 }
             }
         }
@@ -104,20 +103,20 @@ namespace AG.DS
         /// <param name="dsData">The dialogue system data to save the data to.</param>
         void SaveNodes(DialogueSystemData dsData)
         {
-            ClearSavables();
+            ClearNodeData();
 
-            CreateSavables();
+            CreateNodeData();
 
-            void ClearSavables()
+            void ClearNodeData()
             {
-                dsData.ClearNodesData();
+                dsData.ClearDataNodes();
             }
 
-            void CreateSavables()
+            void CreateNodeData()
             {
                 for (int i = 0; i < nodesCount; i++)
                 {
-                    nodes[i].SaveNode(dsData);
+                    nodes[i].Save(dsData);
                 }
             }
         }
@@ -126,19 +125,15 @@ namespace AG.DS
         // ----------------------------- Load -----------------------------
         /// <summary>
         /// Load all the edges and nodes data that were stored on the scriptable object asset.
-        /// <para>LoadFromDsDataEvent - Static Event</para>
         /// </summary>
         /// <param name="dsData">The dialogue system data to load the data from.</param>
-        public void LoadEdgesAndNodesAction(DialogueSystemData dsData)
+        public void LoadEdgesAndNodes(DialogueSystemData dsData)
         {
             ClearGraph();
             ClearCache();
 
             LoadNodes(dsData);
             LoadEdges(dsData);
-
-            // Invoke edge loaded setup event.
-            EdgesLoadingCompletedEvent.Invoke();
 
             // Set dirty when the loading is finished.
             EditorUtility.SetDirty(dsData);
@@ -162,9 +157,9 @@ namespace AG.DS
 
             LoadEventNodes();
 
-            LoadOptionTrackNodes();
+            LoadOptionBranchNodes();
 
-            LoadOptionWindowNodes();
+            LoadOptionRootNodes();
 
             LoadPreviewNodes();
 
@@ -204,20 +199,20 @@ namespace AG.DS
                     new EventNode(dsData.EventNodeData[i], graphViewer);
             }
 
-            void LoadOptionTrackNodes()
+            void LoadOptionBranchNodes()
             {
-                dataCount = dsData.OptionTrackNodeData.Count;
+                dataCount = dsData.OptionBranchNodeData.Count;
 
                 for (int i = 0; i < dataCount; i++)
-                    new OptionTrackNode(dsData.OptionTrackNodeData[i], graphViewer);
+                    new OptionBranchNode(dsData.OptionBranchNodeData[i], graphViewer);
             }
 
-            void LoadOptionWindowNodes()
+            void LoadOptionRootNodes()
             {
-                dataCount = dsData.OptionWindowNodeData.Count;
+                dataCount = dsData.OptionRootNodeData.Count;
 
                 for (int i = 0; i < dataCount; i++)
-                    new OptionWindowNode(dsData.OptionWindowNodeData[i], graphViewer);
+                    new OptionRootNode(dsData.OptionRootNodeData[i], graphViewer);
             }
 
             void LoadPreviewNodes()
@@ -253,26 +248,26 @@ namespace AG.DS
         /// <param name="dsData">The dialogue system data to load the data from.</param>
         void LoadEdges(DialogueSystemData dsData)
         {
-            int dataCount = dsData.EdgeData.Count;
+            var dataCount = dsData.EdgeData.Count;
+
             for (int i = 0; i < dataCount; i++)
             {
-                // Searching through the internal port's dictionary cache to find the output that the data is refering to.
-                if (portBaseByPortGUID.TryGetValue(dsData.EdgeData[i].OutputPortGUID, out PortBase outputPort))
+                var data = dsData.EdgeData[i];
+
+                // Try to find the output port that matches the data's output port GUID.
+                if (portByPortGUID.TryGetValue(data.OutputPortGUID, out PortBase output))
                 {
-                    // Searching through the internal port's dictionary cache to find the input that the data is refering to.
-                    if (portBaseByPortGUID.TryGetValue(dsData.EdgeData[i].InputPortGUID, out PortBase inputPort))
+                    // Try to find the input port that matches the data's input port GUID.
+                    if (portByPortGUID.TryGetValue(data.InputPortGUID, out PortBase input))
                     {
-                        // Connect and register callback to them.
-                        outputPort.ConnectionLoadedAction(
-                            graphViewer.ConnectPorts(outputPort, inputPort)
-                        );
+                        EdgeManager.Instance.Connect(output, input, data.PortType);
                     }
                 }
             }
         }
 
 
-        // ----------------------------- Add / Remove Node Services -----------------------------
+        // ----------------------------- Add Cache -----------------------------
         /// <summary>
         /// Add the given node to the node cache.
         /// </summary>
@@ -285,6 +280,35 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Add the given edge to the edge cache.
+        /// </summary>
+        /// <param name="edge">The edge to add to the cache.</param>
+        public void AddCacheEdge(EdgeBase edge)
+        {
+            edges.Add(edge);
+            edgesCount++;
+        }
+
+
+        /// <summary>
+        /// Add the given port to the port cache.
+        /// </summary>
+        /// <param name="port">The port to add to the cache.</param>
+        public void AddCachePort(PortBase port)
+        {
+            if (!portByPortGUID.ContainsKey(port.name))
+            {
+                portByPortGUID.Add(key: port.name, value: port);
+            }
+            else
+            {
+                Debug.LogWarning("A port with the same cache key has already been added!");
+            }
+        }
+
+
+        // ----------------------------- Remove Cache -----------------------------
+        /// <summary>
         /// Remove the given node from the node cache.
         /// </summary>
         /// <param name="node">The node to remove from the cache.</param>
@@ -295,21 +319,14 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Add / Remove Port Services -----------------------------
         /// <summary>
-        /// Add the given port to the port cache.
+        /// Remove the given edge from the edge cache.
         /// </summary>
-        /// <param name="port">The port to add to the cache.</param>
-        public void AddCachePort(PortBase port)
+        /// <param name="node">The edge to remove from the cache.</param>
+        public void RemoveCacheEdge(EdgeBase edge)
         {
-            if (!portBaseByPortGUID.ContainsKey(port.name))
-            {
-                portBaseByPortGUID.Add(key: port.name, value: port);
-            }
-            else
-            {
-                Debug.LogWarning("A port with the same cache key has already been added!");
-            }
+            edges.Remove(edge);
+            edgesCount--;
         }
 
 
@@ -319,9 +336,9 @@ namespace AG.DS
         /// <param name="node">The port to remove from the cache.</param>
         public void RemoveCachePort(PortBase port)
         {
-            if (portBaseByPortGUID.ContainsKey(port.name))
+            if (portByPortGUID.ContainsKey(port.name))
             {
-                portBaseByPortGUID.Remove(port.name);
+                portByPortGUID.Remove(port.name);
             }
             else
             {
@@ -330,15 +347,13 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Clear Graph Elements Tasks -----------------------------
+        // ----------------------------- Clear Graph Elements -----------------------------
         /// <summary>
-        /// Find all the edges and nodes that are on the graph and delete them all.
+        /// Remove all the node and edge elements on the graph.
         /// </summary>
         void ClearGraph()
         {
             // Removes all edges.
-            var edges = graphViewer.edges.ToList();
-            var edgesCount = edges.Count;
             for (int i = 0; i < edgesCount; i++)
             {
                 graphViewer.RemoveElement(edges[i]);
@@ -353,7 +368,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Clear the internal cached lists.
+        /// Clear the internal cache.
         /// </summary>
         void ClearCache()
         {
@@ -361,8 +376,12 @@ namespace AG.DS
             nodes.Clear();
             nodesCount = 0;
 
+            // Edges
+            edges.Clear();
+            edgesCount = 0;
+
             // Ports
-            portBaseByPortGUID.Clear();
+            portByPortGUID.Clear();
         }
     }
 }

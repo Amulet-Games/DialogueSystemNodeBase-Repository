@@ -1,11 +1,9 @@
 namespace AG.DS
 {
-    public class PortEnums { }
-
-    // ----------------------------- Port Enums -----------------------------
-    public enum P_ConnectorType
+    public enum PortType
     {
-        Default,
-        OptionChannel
+        DEFAULT = 0,
+
+        OPTION = 1
     }
 }

@@ -1,34 +1,54 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class EventNodeModel : NodeModelBase
+    public class EventNodeModel : NodeModelFrameBase<EventNode>
     {
         /// <summary>
-        /// A special node's UI style that combined the use of segment, modifier and content button together.
+        /// Model for the event modifier model group.
         /// </summary>
-        public EventMolder EventMolder;
-
-
-        // ----------------------------- Ports -----------------------------
-        /// <summary>
-        /// Port that allows the other nodes to connect to this node.
-        /// </summary>
-        public DefaultPort InputPort;
+        public EventModifierModelGroupModel EventModifierModelGroupModel;
 
 
         /// <summary>
-        /// Port that allows this node to move forward to the other node.
+        /// The input default port of the node.
         /// </summary>
-        public DefaultPort OutputPort;
+        public DefaultPort InputDefaultPort;
+
+
+        /// <summary>
+        /// The output default port of the node.
+        /// </summary>
+        public DefaultPort OutputDefaultPort;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the event node's model module class.
         /// </summary>
-        public EventNodeModel()
+        /// <param name="node">The node module to set for.</param>
+        public EventNodeModel(EventNode node)
         {
-            EventMolder = new();
+            Node = node;
+            EventModifierModelGroupModel = new();
+        }
+
+
+        // ----------------------------- Remove Cache Ports All -----------------------------
+        /// <inheritdoc />
+        public override void RemoveCachePortsAll()
+        {
+            var serializeHandler = Node.GraphViewer.SerializeHandler;
+            serializeHandler.RemoveCachePort(port: InputDefaultPort);
+            serializeHandler.RemoveCachePort(port: OutputDefaultPort);
+        }
+
+
+        // ----------------------------- Disconnect Ports All -----------------------------
+        /// <inheritdoc />
+        public override void DisconnectPortsAll()
+        {
+            InputDefaultPort.Disconnect(Node.GraphViewer);
+            OutputDefaultPort.Disconnect(Node.GraphViewer);
         }
     }
 }

@@ -1,4 +1,7 @@
-.inputHint_Main_Box {
+/* =========================================================== Headbar =========================================================== */
+
+/*< ---------------------------------------------------------- Main >*/
+.inputHint_Main {
 
 	background-color: rgba(255, 74, 116, 1);
 	border-color: rgba(135, 143, 204, 1);
@@ -14,7 +17,9 @@
 	border-radius: 3px 3px 3px 3px;
 }
 
-.inputHint_Icon_Image {
+
+/*< ---------------------------------------------------------- Icon Image >*/
+.inputHint_IconImage {
 
 	background-color: rgba(255, 112, 102, 1);
 
@@ -31,7 +36,9 @@
 	border-radius: 0px 0px 3px 0px;
 }
 
-.inputHint_Text_Label {
+
+/*< ---------------------------------------------------------- Text Label >*/
+.inputHint_TextLabel {
 
 	color: rgba(255, 255, 255, 1);
 

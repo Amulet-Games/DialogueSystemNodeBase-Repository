@@ -12,8 +12,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the event node serializer module class.
         /// </summary>
-        /// <param name="node">The connecting node module to set for.</param>
-        /// <param name="model">The connecting model module to set for.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public EventNodeSerializer(EventNode node, EventNodeModel model)
         {
             Node = node;
@@ -23,27 +23,27 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void SaveNode(DialogueSystemData dsData)
+        public override void Save(DialogueSystemData dsData)
         {
             EventNodeData data = new();
 
             SaveBaseValues(data: data);
 
-            SavePortsGUID();
+            SavePorts();
 
-            SaveEventMolder();
+            SaveEventModifierModelGroup();
 
             AddData();
 
-            void SavePortsGUID()
+            void SavePorts()
             {
-                data.InputPortGUID = Model.InputPort.name;
-                data.OutputPortGUID = Model.OutputPort.name;
+                Model.InputDefaultPort.Save(data.InputPortData);
+                Model.OutputDefaultPort.Save(data.OutputPortData);
             }
 
-            void SaveEventMolder()
+            void SaveEventModifierModelGroup()
             {
-                Model.EventMolder.SaveMolderValues(data.EventMolderData);
+                Model.EventModifierModelGroupModel.Save(data.EventModifierModelGroupData);
             }
 
             void AddData()
@@ -55,23 +55,23 @@ namespace AG.DS
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void LoadNode(EventNodeData data)
+        public override void Load(EventNodeData data)
         {
             LoadBaseValues(data);
 
-            LoadPortsGUID();
+            LoadPorts();
 
-            LoadEventMolder();
+            LoadEventModifierModelGroup();
 
-            void LoadPortsGUID()
+            void LoadPorts()
             {
-                Model.InputPort.name = data.InputPortGUID;
-                Model.OutputPort.name = data.OutputPortGUID;
+                Model.InputDefaultPort.Load(data.InputPortData);
+                Model.OutputDefaultPort.Load(data.OutputPortData);
             }
 
-            void LoadEventMolder()
+            void LoadEventModifierModelGroup()
             {
-                Model.EventMolder.LoadMolderValues(data.EventMolderData);
+                Model.EventModifierModelGroupModel.Load(data.EventModifierModelGroupData);
             }
         }
     }

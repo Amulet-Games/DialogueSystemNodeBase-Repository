@@ -14,8 +14,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the boolean node serializer module class.
         /// </summary>
-        /// <param name="node">Node of which this serializer is connecting upon.</param>
-        /// <param name="model">Model of which this serializer is connecting upon.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public BooleanNodeSerializer(BooleanNode node, BooleanNodeModel model)
         {
             Node = node;
@@ -25,51 +25,51 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void SaveNode(DialogueSystemData dsData)
+        public override void Save(DialogueSystemData dsData)
         {
             BooleanNodeData data = new();
 
             SaveBaseValues(data: data);
 
-            SavePortsGUID();
+            SavePorts();
 
             SaveBranchingOpponentNodesGUID();
 
-            SaveConditionMolder();
+            SaveBooleanNodeStitcher();
 
             AddData();
 
-            void SavePortsGUID()
+            void SavePorts()
             {
-                data.InputPortGUID = Model.InputPort.name;
-                data.TrueOutputPortGUID = Model.TrueOutputPort.name;
-                data.FalseOutputPortGUID = Model.FalseOutputPort.name;
+                Model.InputDefaultPort.Save(data.InputPortData);
+                Model.TrueOutputDefaultPort.Save(data.TrueOutputPortData);
+                Model.FalseOutputDefaultPort.Save(data.FalseOutputPortData);
             }
 
             void SaveBranchingOpponentNodesGUID()
             {
                 // True output opponent node
-                data.TrueOutputOpponentNodeGUID = Model.TrueOutputPort.connected
+                data.TrueOutputOpponentNodeGUID = Model.TrueOutputDefaultPort.connected
 
                     // Connecting opponenet node's GUID.
-                    ? ((NodeBase)Model.TrueOutputPort.connections.First().input.node).NodeGUID
+                    ? ((NodeBase)Model.TrueOutputDefaultPort.connections.First().input.node).NodeGUID
 
                     // Save as empty string.
                     : "";
 
 
-                data.FalseOutputOpponentNodeGUID = Model.FalseOutputPort.connected
+                data.FalseOutputOpponentNodeGUID = Model.FalseOutputDefaultPort.connected
 
                     // Connecting opponent node's GUID.
-                    ? ((NodeBase)Model.FalseOutputPort.connections.First().input.node).NodeGUID
+                    ? ((NodeBase)Model.FalseOutputDefaultPort.connections.First().input.node).NodeGUID
 
                     // Save as empty string.
                     : "";
             }
 
-            void SaveConditionMolder()
+            void SaveBooleanNodeStitcher()
             {
-                Model.ConditionMolder.SaveMolderValues(data.ConditionMolderData);
+                Model.booleanNodeStitcher.SaveStitcherValues(data.BooleanNodeStitcherData);
             }
 
             void AddData()
@@ -81,24 +81,24 @@ namespace AG.DS
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void LoadNode(BooleanNodeData data)
+        public override void Load(BooleanNodeData data)
         {
             LoadBaseValues(data);
 
-            LoadPortsGUID();
+            LoadPorts();
 
-            LoadConditionMolder();
+            LoadBooleanNodeStitcher();
 
-            void LoadPortsGUID()
+            void LoadPorts()
             {
-                Model.InputPort.name = data.InputPortGUID;
-                Model.TrueOutputPort.name = data.TrueOutputPortGUID;
-                Model.FalseOutputPort.name = data.FalseOutputPortGUID;
+                Model.InputDefaultPort.Load(data.InputPortData);
+                Model.TrueOutputDefaultPort.Load(data.TrueOutputPortData);
+                Model.FalseOutputDefaultPort.Load(data.FalseOutputPortData);
             }
 
-            void LoadConditionMolder()
+            void LoadBooleanNodeStitcher()
             {
-                Model.ConditionMolder.LoadMolderValues(data.ConditionMolderData);
+                Model.booleanNodeStitcher.LoadStitcherValues(data.BooleanNodeStitcherData);
             }
         }
     }

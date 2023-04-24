@@ -37,7 +37,7 @@ namespace AG.#Namespace#
         }
 
 
-        // ----------------------------- Add Contextual Menu Items Services -----------------------------
+        // ----------------------------- Add Contextual Menu Items -----------------------------
         /// <inheritdoc />
         public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
         {

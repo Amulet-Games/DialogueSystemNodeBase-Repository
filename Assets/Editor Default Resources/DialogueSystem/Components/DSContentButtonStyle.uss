@@ -1,0 +1,68 @@
+/*< -------------------- Common -------------------- >*/
+.contentButton_Main {
+
+	/*background-color: rgba(70, 70, 70, 1);
+
+	flex-direction: row;
+	flex-grow: 0;
+	flex-shrink: 0;
+	justify-content: flex-end;
+
+	/* top - right - bottom - left */
+	/*padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;*/
+}
+
+.contentButton_Main:hover {
+
+	/*background-color: rgba(88, 88, 88, 1);*/
+}
+
+
+/*< -------------------- Content Button -------------------- >*/
+.contentButton_AddCondition_Label {
+	
+	/*height: 30px;
+
+	-unity-text-align: middle-left;
+
+	font-size: 17px;*/
+
+	/* top - right - bottom - left */
+	/*margin: 0px 0px 0px 23px;
+	padding: 0px 0px 1px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;*/
+}
+
+.contentButton_AddEntry_Image,
+.contentButton_AddCondition_Image,
+.contentButton_AddMessage_Image {
+
+	/*height: 30px;
+	width: 30px;
+
+	align-self: flex-end;
+
+	flex-shrink: 0;
+	flex-direction: row;*/
+
+	/* top - right - bottom - left */
+	/*margin: 0px 13.5px 1px 10.5px;
+	padding: 2.5px 0px 0px 0px;*/
+}
+
+.contentButton_AddEvent_Image {
+
+	/*height: 30px;
+	width: 32px;
+
+	align-self: flex-end;
+	
+	flex-shrink: 0;
+	flex-direction: row;
+
+	/* top - right - bottom - left */
+	/*margin: 0px 13.5px 0px 10.5px;
+	padding: 1.5px 0px 0px 0px;*/
+}

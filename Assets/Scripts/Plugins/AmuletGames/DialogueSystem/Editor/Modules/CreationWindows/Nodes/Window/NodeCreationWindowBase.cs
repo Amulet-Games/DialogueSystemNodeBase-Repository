@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEditor;
-using UnityEngine.UIElements;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -41,7 +41,7 @@ namespace AG.DS
         /// <param name="context">Contextual data to pass to the search window when it is first created.</param>
         public bool OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
         {
-            Vector2 placePosition;
+            Vector2 createPosition;
 
             InvokeSelectedEntryEvent();
 
@@ -69,7 +69,7 @@ namespace AG.DS
                 }
                 else
                 {
-                    // Use the mouse posiiont which was cached earlier.
+                    // Use the mouse position which was cached earlier.
                     preWindowCenterDir = context.screenMousePosition - DsWindow.position.position;
                 }
                 
@@ -81,13 +81,13 @@ namespace AG.DS
                 );
 
                 // And calculate its position in the graph viewer.
-                placePosition = GraphViewer.contentViewContainer.WorldToLocal(p: postWindowCenterDir);
+                createPosition = GraphViewer.contentViewContainer.WorldToLocal(p: postWindowCenterDir);
             }
 
             void PostUpdateCreationDetails()
             {
-                // Post update the creation details.
-                Details.PostUpdateValues(placePosition);
+                // Update the node creation details.
+                Details.SetPositionCreate(value: createPosition);
             }
 
             void CreateNodes()
@@ -108,11 +108,11 @@ namespace AG.DS
                     case N_NodeType.Event:
                         new EventNode(Details, GraphViewer);
                         break;
-                    case N_NodeType.OptionTrack:
-                        new OptionTrackNode(Details, GraphViewer);
+                    case N_NodeType.OptionBranch:
+                        new OptionBranchNode(Details, GraphViewer);
                         break;
-                    case N_NodeType.OptionWindow:
-                        new OptionWindowNode(Details, GraphViewer);
+                    case N_NodeType.OptionRoot:
+                        new OptionRootNode(Details, GraphViewer);
                         break;
                     case N_NodeType.Preview:
                         new PreviewNode(Details, GraphViewer);
@@ -139,7 +139,7 @@ namespace AG.DS
         public abstract List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context);
 
 
-        // ----------------------------- Open Window Services -----------------------------
+        // ----------------------------- Open Window -----------------------------
         /// <summary>
         /// Open the node creation request search window.
         /// </summary>

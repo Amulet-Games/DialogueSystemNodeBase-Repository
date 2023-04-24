@@ -5,37 +5,51 @@ namespace AG.DS
     public static class PortExtensions
     {
         /// <summary>
-        /// Extension method that returns the port sibling index within its parent hierarchy.
+        /// Returns the port's sibling index within its parent hierarchy.
         /// </summary>
         /// <param name="port">Extension port</param>
+        /// <param name="additionNumber">An additional number that it can be used to combine with the result.</param>
         /// <returns>The sibling index of the port within its parent hierarchy.</returns>
-        public static int GetSiblingIndex(this Port port) => port.parent.IndexOf(port);
+        public static int GetSiblingIndex
+        (
+            this Port port,
+            int additionNumber = 0
+        )
+        {
+            return port.parent.IndexOf(port) + additionNumber;
+        }
 
 
         /// <summary>
-        /// Extension method that returns the port sibling index within its parent hierarchy
-        /// <br>combine with the given additional number.</br>
+        /// Returns ture if the port's direction is input.
         /// </summary>
         /// <param name="port">Extension port</param>
-        /// <param name="addByNumber">The number to combine with the port sibling index.</param>
-        /// <returns>The sibling index of the port within its parent hierarchy.</returns>
-        public static int GetSiblingIndexAdd(this Port port, int addByNumber) =>
-            port.parent.IndexOf(port) + addByNumber;
+        /// <returns>True if the port's direction is input.</returns>
+        public static bool IsInput(this Port port)
+        {
+            return port.direction == Direction.Input;
+        }
 
 
         /// <summary>
-        /// Extension method that returns ture if the port's direction is equal to "Input".
+        /// Returns ture if the port's capacity is single.
         /// </summary>
         /// <param name="port">Extension port</param>
-        /// <returns>True if the port's direction is equal to "Input".</returns>
-        public static bool IsInput(this Port port) => port.direction == Direction.Input;
+        /// <returns>True if the port's capacity is single.</returns>
+        public static bool IsSingle(this Port port)
+        {
+            return port.capacity == Port.Capacity.Single;
+        }
 
 
         /// <summary>
-        /// Extension method that returns ture if the port's capacity is equal to "Single".
+        /// Returns true if the port is added to the connect style.
         /// </summary>
-        /// <param name="port">Extension port</param>
-        /// <returns>True if the port's capacity is equal to "Single".</returns>
-        public static bool IsSingle(this Port port) => port.capacity == Port.Capacity.Single;
+        /// <param name="port">Extension port.</param>
+        /// <returns>True if the port is added to the connect style.</returns>
+        public static bool IsShowingConnectStyle(this Port port)
+        {
+            return port.ClassListContains(StyleConfig.Instance.Port_Connect);
+        }
     }
 }

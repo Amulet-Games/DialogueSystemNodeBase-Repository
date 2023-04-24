@@ -1,33 +1,61 @@
 ﻿namespace AG.DS
 {
     /// <inheritdoc />
-    public class DialogueNodeModel : NodeModelBase
+    public class DialogueNodeModel : NodeModelFrameBase<DialogueNode>
     {
         /// <summary>
-        /// Port that allows the other nodes to connect to this node.
+        /// Model for the dialogue system's character scriptable object object field.
         /// </summary>
-        public DefaultPort InputPort;
+        public CommonObjectFieldModel<DialogueCharacter> CharacterObjectFieldModel;
 
 
         /// <summary>
-        /// Port that allows this node to move forward to the other node.
+        /// A special node's UI style that combined the use of segment, modifier and content button together.
         /// </summary>
-        public DefaultPort OutputPort;
+        public MessageModifierModelGroup DialogueNodeStitcher;
 
 
         /// <summary>
-        /// Object conatiner for the dialogue system's character scriptable object.
+        /// The input default port of the node.
         /// </summary>
-        public ObjectContainer<DialogueCharacter> CharacterObjectContainer;
+        public DefaultPort InputDefaultPort;
+
+
+        /// <summary>
+        /// The output default port of the node.
+        /// </summary>
+        public DefaultPort OutputDefaultPort;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue node model module class.
         /// </summary>
-        public DialogueNodeModel()
+        /// <param name="node">The node module to set for.</param>
+        public DialogueNodeModel(DialogueNode node)
         {
-            CharacterObjectContainer = new();
+            Node = node;
+            CharacterObjectFieldModel = new();
+            DialogueNodeStitcher = new();
+        }
+
+
+        // ----------------------------- Remove Cache Ports All -----------------------------
+        /// <inheritdoc />
+        public override void RemoveCachePortsAll()
+        {
+            var serializeHandler = Node.GraphViewer.SerializeHandler;
+            serializeHandler.RemoveCachePort(port: InputDefaultPort);
+            serializeHandler.RemoveCachePort(port: OutputDefaultPort);
+        }
+
+
+        // ----------------------------- Disconnect Ports All -----------------------------
+        /// <inheritdoc />
+        public override void DisconnectPortsAll()
+        {
+            InputDefaultPort.Disconnect(Node.GraphViewer);
+            OutputDefaultPort.Disconnect(Node.GraphViewer);
         }
     }
 }

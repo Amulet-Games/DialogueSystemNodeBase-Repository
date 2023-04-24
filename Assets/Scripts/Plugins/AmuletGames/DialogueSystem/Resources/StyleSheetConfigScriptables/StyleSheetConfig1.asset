@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03fde206020d0414180cedbe8347db9a, type: 3}
+  m_Name: StyleSheetConfig1
+  m_EditorClassIdentifier: 
+  DSInputOptionChannelStyle: {fileID: 7433441132597879392, guid: 39e39112f827c56439084b286a9c3d2f, type: 3}
+  DSOutputOptionChannelStyle: {fileID: 7433441132597879392, guid: 6c2a2d802dbf2bb4ca19a2c6faf97d91, type: 3}
+  DSEventModifierStyle: {fileID: 7433441132597879392, guid: c2a521368a943b64fa56deb463cf30ef, type: 3}
+  DSEventModifierGroupStyle: {fileID: 7433441132597879392, guid: 9c64af7ba10ee3b48a7fc8b4e19aef64, type: 3}
+  DSContentButtonStyle: {fileID: 7433441132597879392, guid: 8d818c46996077948981637687c1f346, type: 3}
+  DSFolderStyle: {fileID: 7433441132597879392, guid: f28e4dafcc9566e48ae85ddcded49202, type: 3}
+  DSGraphViewerStyle: {fileID: 7433441132597879392, guid: 8a9568d13f1b5ec419a5357082f3f86f, type: 3}
+  DSHeadbarStyle: {fileID: 7433441132597879392, guid: 53c0d455741951241ae78d15a50cc57f, type: 3}
+  DSInputHintStyle: {fileID: 7433441132597879392, guid: 0b3d07e7c06a53b419849c220ce28863, type: 3}
+  DSBooleanNodeStyle: {fileID: 7433441132597879392, guid: 3ae144f0e03b7f44194c54e113bde664, type: 3}
+  DSDialogueNodeStyle: {fileID: 7433441132597879392, guid: c486e0fbac2abc0478d86f2efd9e2530, type: 3}
+  DSEndNodeStyle: {fileID: 7433441132597879392, guid: 64ce1c3ccebe0be4cafd28e52bcb0675, type: 3}
+  DSEventNodeStyle: {fileID: 7433441132597879392, guid: ae523909fb93a5e4e9d646f76f3d54f2, type: 3}
+  DSOptionBranchNodeStyle: {fileID: 7433441132597879392, guid: d5e2e5f749ebe6f4aa293dc8e89854f4, type: 3}
+  DSOptionRootNodeStyle: {fileID: 7433441132597879392, guid: caca672bd9dc4a54ea556724b749855f, type: 3}
+  DSPreviewNodeStyle: {fileID: 7433441132597879392, guid: dcb9b72d4c5b2484fa5026742d4f4c1b, type: 3}
+  DSStartNodeStyle: {fileID: 7433441132597879392, guid: 75d40b219d60bea449cf773c32534845, type: 3}
+  DSStoryNodeStyle: {fileID: 7433441132597879392, guid: 4dfe9ea756acd054ea42e167ec759ca4, type: 3}
+  DSNodesShareStyle: {fileID: 7433441132597879392, guid: 7032114cadd063f4098146372e3d3c0b, type: 3}
+  DSPortStyle: {fileID: 7433441132597879392, guid: b00727118f591514ca4af58104d93f95, type: 3}
+  DSGlobalStyle: {fileID: 7433441132597879392, guid: 9b5e16d70bc9fef4baaaa1efc2d58378, type: 3}
+  DSModifierStyle: {fileID: 7433441132597879392, guid: 99aeac0040b49004684fcda1a71c0530, type: 3}
+  DSRootedModifierStyle: {fileID: 7433441132597879392, guid: 3b64ec0a103d89341bd3b0dd3ad4ba50, type: 3}
+  DSSegmentStyle: {fileID: 7433441132597879392, guid: 90f599269e981334e852ba57bd96282d, type: 3}

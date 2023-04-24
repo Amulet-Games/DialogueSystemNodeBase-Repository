@@ -10,19 +10,13 @@ namespace AG.DS
     public abstract class NodeModelBase
     {
         /// <summary>
-        /// Box container for the elements that are located in node's title area. 
+        /// Model for the node's title text field.
         /// </summary>
-        public Box TitleMainBox;
+        public NodeTitleTextFieldModel NodeTitleTextFieldModel;
 
 
         /// <summary>
-        /// Text container for the node's title field.
-        /// </summary>
-        public TextContainer NodeTitleTextContainer;
-
-
-        /// <summary>
-        /// Button that'll reveal the node's title field when clicked.
+        /// Button that edit the node title when clicked.
         /// </summary>
         public Button EditTitleButton;
 
@@ -33,7 +27,7 @@ namespace AG.DS
         /// </summary>
         public NodeModelBase()
         {
-            NodeTitleTextContainer = new();
+            NodeTitleTextFieldModel = new();
         }
     }
 }

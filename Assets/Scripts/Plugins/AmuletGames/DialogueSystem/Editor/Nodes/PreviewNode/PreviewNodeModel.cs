@@ -1,56 +1,76 @@
-using UnityEngine.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class PreviewNodeModel : NodeModelBase
+    public class PreviewNodeModel : NodeModelFrameBase<PreviewNode>
     {
         /// <summary>
-        /// Object container for showing the left side character sprite in the preview image.
+        /// Object field model for the left side portrait image.
         /// </summary>
-        public ObjectContainer<Sprite> LeftSpriteContainer;
+        public CommonObjectFieldModel<Sprite> LeftPortraitObjectFieldModel;
 
 
         /// <summary>
-        /// Object container for showing the right side character sprite in the preview image.
+        /// Object field model for the right side portrait image.
         /// </summary>
-        public ObjectContainer<Sprite> RightSpriteContainer;
+        public CommonObjectFieldModel<Sprite> RightPortraitObjectFieldModel;
 
 
         /// <summary>
-        /// Image element for showing off the preview image of the left side character speaking.
+        /// Image element for the left side portrait image.
         /// </summary>
         public Image LeftPortraitImage;
 
 
         /// <summary>
-        /// Image element for showing off the preview image of the right side character speaking.
+        /// Image element for the right side portrait image.
         /// </summary>
         public Image RightPortraitImage;
 
 
-        // ----------------------------- Ports -----------------------------
         /// <summary>
-        /// Port that allows the other nodes to connect to this node.
+        /// The input default port of the node.
         /// </summary>
-        public DefaultPort InputPort;
+        public DefaultPort InputDefaultPort;
 
 
         /// <summary>
-        /// Port that allows this node to move forward to the other node.
+        /// The output default port of the node.
         /// </summary>
-        public DefaultPort OutputPort;
+        public DefaultPort OutputDefaultPort;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the preview node's model module class.
         /// </summary>
-        public PreviewNodeModel()
+        /// <param name="node">The node module to set for.</param>
+        public PreviewNodeModel(PreviewNode node)
         {
-            LeftSpriteContainer = new();
-            RightSpriteContainer = new();
+            Node = node;
+            LeftPortraitObjectFieldModel = new();
+            RightPortraitObjectFieldModel = new();
+        }
+
+
+        // ----------------------------- Remove Cache Ports All -----------------------------
+        /// <inheritdoc />
+        public override void RemoveCachePortsAll()
+        {
+            var serializeHandler = Node.GraphViewer.SerializeHandler;
+            serializeHandler.RemoveCachePort(port: InputDefaultPort);
+            serializeHandler.RemoveCachePort(port: OutputDefaultPort);
+        }
+
+
+        // ----------------------------- Disconnect Ports All -----------------------------
+        /// <inheritdoc />
+        public override void DisconnectPortsAll()
+        {
+            InputDefaultPort.Disconnect(Node.GraphViewer);
+            OutputDefaultPort.Disconnect(Node.GraphViewer);
         }
     }
 }

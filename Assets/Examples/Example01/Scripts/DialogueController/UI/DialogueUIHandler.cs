@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+//using TMPro;
 using UnityEngine.Events;
 
 namespace AG
@@ -15,8 +15,8 @@ namespace AG
         public Canvas dialogueUICanvas;
 
         [Header("Text UI (Drops).")]
-        public TMP_Text speakerNameText;
-        public TMP_Text speakerDialText;
+        //public TMP_Text speakerNameText;
+        //public TMP_Text speakerDialText;
 
         [Header("Image UI (Drops).")]
         public Image avatarImage;
@@ -62,8 +62,8 @@ namespace AG
         #region Text UI.
         public void SetSpeakerText(string _name, string _dialText)
         {
-            speakerNameText.text = _name;
-            speakerDialText.text = _dialText;
+            //speakerNameText.text = _name;
+            //speakerDialText.text = _dialText;
         }
         #endregion
 
@@ -93,7 +93,7 @@ namespace AG
             for (int i = 0; i < _optionTexts.Count; i++)
             {
                 dialogueOptions[i].ShowOption();
-                dialogueOptions[i].optionText.text = _optionTexts[i];
+                //dialogueOptions[i].optionText.text = _optionTexts[i];
 
                 dialogueOptions[i].optionBtn.onClick = new Button.ButtonClickedEvent();
                 dialogueOptions[i].optionBtn.onClick.AddListener(_optionActions[i]);

@@ -14,20 +14,18 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the preview node component class.
         /// </summary>
-        /// <param name="details">The connecting creation details to set for.</param>
-        /// <param name="graphViewer">Reference of the dialogue system's graph viewer module.</param>
+        /// <param name="details">The node creation details to set for.</param>
+        /// <param name="graphViewer">The graph viewer module to set for.</param>
         public PreviewNode
         (
             NodeCreationDetails details,
             GraphViewer graphViewer
         )
-            : base(StringsConfig.PreviewNodeDefaultTitleText, graphViewer)
+            : base(StringConfig.Instance.PreviewNode_TitleText, graphViewer)
         {
             SetupFrameFields();
 
             CreateNodeElements();
-
-            CreateNodePorts();
 
             PostProcessNodeWidth();
 
@@ -39,29 +37,25 @@ namespace AG.DS
 
             void SetupFrameFields()
             {
-                PreviewNodeModel model = new();
-
-                Presenter = new(node: this, model: model);
-                Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model);
+                Model = new(node: this);
+                Presenter = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, model: Model);
             }
 
             void CreateNodeElements()
             {
-                Presenter.CreateNodeElements();
-            }
-
-            void CreateNodePorts()
-            {
-                Presenter.CreateNodePorts();
+                Presenter.CreateTitleElements();
+                Presenter.CreatePortElements();
+                Presenter.CreateContentElements();
             }
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessNodeWidth
+                Presenter.PostProcessSetWidthValues
                 (
-                    minWidth: NodesConfig.PreviewNodeMinWidth,
-                    widthBuffer: NodesConfig.PreviewNodeWidthBuffer
+                    minWidth: NodeConfig.PreviewNodeMinWidth,
+                    widthBuffer: NodeConfig.PreviewNodeWidthBuffer
                 );
             }
 
@@ -72,7 +66,7 @@ namespace AG.DS
 
             void AddStyleSheet()
             {
-                styleSheets.Add(StylesConfig.DSPreviewNodeStyle);
+                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSPreviewNodeStyle);
             }
         }
 
@@ -82,60 +76,54 @@ namespace AG.DS
         /// Constructor of the preview node component class.
         /// <para>Specifically used when the node is created by the previously saved data.</para>
         /// </summary>
-        /// <param name="data">The given node data to load from.</param>
-        /// <param name="graphViewer">Reference of the dialogue system's graph viewer module.</param>
+        /// <param name="data">The node data to load from.</param>
+        /// <param name="graphViewer">The graph viewer module to set for.</param>
         public PreviewNode
         (
             PreviewNodeData data,
             GraphViewer graphViewer
         )
-            : base(StringsConfig.PreviewNodeDefaultTitleText, graphViewer)
+            : base(StringConfig.Instance.PreviewNode_TitleText, graphViewer)
         {
             SetupFrameFields();
 
             CreateNodeElements();
 
-            CreateNodePorts();
-
             PostProcessNodeWidth();
 
             AddStyleSheet();
 
-            LoadNode(data);
+            Serializer.Load(data);
 
             NodeCreatedAction();
 
             void SetupFrameFields()
             {
-                PreviewNodeModel model = new();
-
-                Presenter = new(node: this, model: model);
-                Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model);
+                Model = new(node: this);
+                Presenter = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, model: Model);
             }
 
             void CreateNodeElements()
             {
-                Presenter.CreateNodeElements();
-            }
-
-            void CreateNodePorts()
-            {
-                Presenter.CreateNodePorts();
+                Presenter.CreateTitleElements();
+                Presenter.CreatePortElements();
+                Presenter.CreateContentElements();
             }
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessNodeWidth
+                Presenter.PostProcessSetWidthValues
                 (
-                    minWidth: NodesConfig.PreviewNodeMinWidth,
-                    widthBuffer: NodesConfig.PreviewNodeWidthBuffer
+                    minWidth: NodeConfig.PreviewNodeMinWidth,
+                    widthBuffer: NodeConfig.PreviewNodeWidthBuffer
                 );
             }
 
             void AddStyleSheet()
             {
-                styleSheets.Add(StylesConfig.DSPreviewNodeStyle);
+                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSPreviewNodeStyle);
             }
         }
     }

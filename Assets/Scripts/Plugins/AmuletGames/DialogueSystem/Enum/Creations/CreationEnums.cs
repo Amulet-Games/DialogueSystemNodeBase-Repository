@@ -1,20 +1,35 @@
 namespace AG.DS
 {
-    public class CreationEnums { }
-
-    // ----------------------------- Creation Enums -----------------------------
-    public enum C_Alignment_HorizontalType
+    public enum HorizontalAlignmentType
     {
-        Left,
-        Middle,
-        Right
+        LEFT,
+
+        MIDDLE,
+
+        RIGHT,
+
+        FREE
     }
 
 
-    public enum C_Alignment_VerticalType
+    public enum VerticalAlignmentType
     {
-        Top,
-        Middle,
-        Bottom
+        TOP,
+
+        MIDDLE,
+
+        BOTTOM,
+
+        FREE
+    }
+
+
+    public enum ConnectorType
+    {
+        NONE,
+
+        DEFAULT,
+
+        OPTION
     }
 }

@@ -8,21 +8,21 @@ namespace AG.DS
     public class BooleanNodeData : NodeDataBase
     {
         /// <summary>
-        /// The data's input port GUID value.
+        /// The data's input port data.
         /// </summary>
-        [SerializeField] public string InputPortGUID;
+        [SerializeField] public PortDataBase InputPortData;
 
 
         /// <summary>
-        /// The data's true output port's GUID value.
+        /// The data's true output port data.
         /// </summary>
-        [SerializeField] public string TrueOutputPortGUID;
+        [SerializeField] public PortDataBase TrueOutputPortData;
 
 
         /// <summary>
-        /// The data's false output port's GUID value.
+        /// The data's false output port data.
         /// </summary>
-        [SerializeField] public string FalseOutputPortGUID;
+        [SerializeField] public PortDataBase FalseOutputPortData;
 
 
         /// <summary>
@@ -38,9 +38,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The data's condition molder data.
+        /// The data's boolean node stitcher data.
         /// </summary>
-        [SerializeField] public ConditionMolderData ConditionMolderData;
+        [SerializeField] public BooleanNodeStitcherData BooleanNodeStitcherData;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -49,7 +49,10 @@ namespace AG.DS
         /// </summary>
         public BooleanNodeData()
         {
-            ConditionMolderData = new();
+            InputPortData = new();
+            TrueOutputPortData = new();
+            FalseOutputPortData = new();
+            BooleanNodeStitcherData = new();
         }
     }
 }

@@ -9,7 +9,7 @@ namespace AG
         const float FloatingPointComparisonThershold = 0.01f;
 
 
-        // ----------------------------- Compare Value Services -----------------------------
+        // ----------------------------- Comparison Methods -----------------------------
         /// <inheritdoc />
         public override bool Equal(float target) => Mathf.Approximately(VariableValue, target);
 

@@ -30,20 +30,20 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the node values to its connecting data module class.
+        /// Save the node values to the given data.
         /// </summary>
-        /// <param name="dsData">The given dialogue system data to save to.</param>
-        public abstract void SaveNode(DialogueSystemData dsData);
+        /// <param name="dsData">The data to save to.</param>
+        public abstract void Save(DialogueSystemData dsData);
 
 
         /// <summary>
-        /// Load the node values from the given connecting data module class.
+        /// Load the node values from the given data.
         /// </summary>
-        /// <param name="data">The given connecting data module class to load from.</param>
-        public abstract void LoadNode(TNodeData data);
+        /// <param name="data">The data to load from.</param>
+        public abstract void Load(TNodeData data);
 
 
-        // ----------------------------- Serialize Base Values Services -----------------------------
+        // ----------------------------- Save / Load Base Values -----------------------------
         /// <summary>
         /// Method for saving the node's base values.
         /// </summary>
@@ -56,13 +56,13 @@ namespace AG.DS
 
             void SaveNodeDetails()
             {
-                data.NodeGUID = Node.NodeGUID;
-                data.NodePosition = (SerializableVector2)Node.GetPosition().position;
+                data.GUID = Node.NodeGUID;
+                data.Position = (SerializableVector2)Node.GetPosition().position;
             }
 
             void SaveNodeTitleField()
             {
-                data.NodeTitleText = Model.NodeTitleTextContainer.Value;
+                data.TitleText = Model.NodeTitleTextFieldModel.TextField.value;
             }
         }
 
@@ -79,11 +79,11 @@ namespace AG.DS
 
             void LoadNodeDetails()
             {
-                Node.NodeGUID = data.NodeGUID;
+                Node.NodeGUID = data.GUID;
                 Node.SetPosition
                 (
                     newPos: new Rect(
-                                    position: (Vector2)data.NodePosition,
+                                    position: (Vector2)data.Position,
                                     size: Vector2Utility.Zero
                                     )
                 );
@@ -91,7 +91,7 @@ namespace AG.DS
 
             void LoadNodeTitleField()
             {
-                Model.NodeTitleTextContainer.LoadContainerValue(data.NodeTitleText);
+                Model.NodeTitleTextFieldModel.Load(data.TitleText);
             }
         }
     }

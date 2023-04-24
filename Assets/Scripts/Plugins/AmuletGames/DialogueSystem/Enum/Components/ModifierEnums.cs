@@ -14,4 +14,12 @@ namespace AG.DS
         Bigger,
         Smaller
     }
+
+
+    /*< -------------------- Message -------------------- >*/
+    public enum M_Message_ProgressType
+    {
+        Duration,
+        Input
+    }
 }

@@ -6,87 +6,61 @@ namespace AG.DS
     public class NodeCreationConnectorWindow : NodeCreationWindowBase
     {
         /// <summary>
-        /// The node creation entries to show when the window first opened up or reloaded.
+        /// The node creation entries of the connector window.
         /// </summary>
         List<SearchTreeEntry> toShowEntries;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Create a new dialgoue system's node creation request window.
+        /// Create a new dialgoue system's node creation connector window.
         /// <br>Since the class is a scriptable object, the method is also a constructor for the class.</br>
         /// </summary>
-        /// <param name="graphViewer">Dialogue system's graph viewer module.</param>
-        /// <param name="dsWindow">Dialogue system's editor window module.</param>
-        /// <returns>A new dialogue system's search window module.</returns>
+        /// <param name="graphViewer">The graph viewer module to set for.</param>
+        /// <param name="dsWindow">The editor window module to set for.</param>
+        /// <returns>A new dialogue system's node creation connector window.</returns>
         public static NodeCreationConnectorWindow CreateInstance
         (
             GraphViewer graphViewer,
             DialogueEditorWindow dsWindow
         )
         {
-            NodeCreationConnectorWindow instance;
+            var instance = CreateInstance<NodeCreationConnectorWindow>();
 
-            CreateInstance();
-
-            SetupInternalRefs();
-
-            SetupValues();
+            instance.DsWindow = dsWindow;
+            instance.GraphViewer = graphViewer;
+            instance.Details = new();
+            instance.isUpdatePositionSelectEntry = false;
 
             return instance;
-
-            void CreateInstance()
-            {
-                // Create a new search window instance.
-                instance = CreateInstance<NodeCreationConnectorWindow>();
-            }
-
-            void SetupInternalRefs()
-            {
-                // Setup instance's internal references
-                instance.DsWindow = dsWindow;
-                instance.GraphViewer = graphViewer;
-                instance.Details = new();
-            }
-
-            void SetupValues()
-            {
-                instance.isUpdatePositionSelectEntry = false;
-            }
         }
 
 
         // ----------------------------- Overrides -----------------------------
         /// <inheritdoc />
-        public override List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context) =>
-            toShowEntries;
+        public override List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context) => toShowEntries;
 
 
-        // ----------------------------- Update Context Services -----------------------------
+        // ----------------------------- Update Context -----------------------------
         /// <summary>
         /// Method for Updating window's node creation details and entries.
         /// </summary>
-        /// <param name="horizontalAlignType">The new horizontal align type to set for.</param>
-        /// <param name="creationConnectorType">The new creation connector type to set for.</param>
-        /// <param name="connectorPort">The new connector port reference to set for. </param>
-        /// <param name="toShowSearchEntries">The new set of search entries to set for.</param>
+        /// <param name="horizontalAlignmentType">The horizontal align type to set for.</param>
+        /// <param name="connectorType">The connector type to set for. </param>
+        /// <param name="connectorPort">The connector port to set for. </param>
+        /// <param name="toShowSearchEntries">The search entries to set for.</param>
         public void UpdateWindowContext
         (
-            C_Alignment_HorizontalType horizontalAlignType,
-            P_ConnectorType creationConnectorType,
-            Port connectorPort,
+            HorizontalAlignmentType horizontalAlignmentType,
+            ConnectorType connectorType,
+            PortBase connectorPort,
             List<SearchTreeEntry> toShowSearchEntries
         )
         {
-            // Update node creation details.
-            Details.PreUpdateValues
-            (
-                horizontalAlignType,
-                creationConnectorType,
-                connectorPort
-            );
+            Details.SetTypeHorizontalAligment(value: horizontalAlignmentType);
+            Details.SetTypeConnector(value: connectorType);
+            Details.SetPortConnector(value: connectorPort);
 
-            // Update toShowEntries.
             toShowEntries = toShowSearchEntries;
         }
     }

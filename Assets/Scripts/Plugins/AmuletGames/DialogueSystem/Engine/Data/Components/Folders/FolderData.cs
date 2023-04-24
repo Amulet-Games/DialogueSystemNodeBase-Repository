@@ -7,9 +7,9 @@ namespace AG.DS
     public class FolderData
     {
         /// <summary>
-        /// The data's isExpanded value.
+        /// The data's isExpand value.
         /// </summary>
-        [SerializeField] public bool IsExpanded;
+        [SerializeField] public bool IsExpand;
 
 
         /// <summary>

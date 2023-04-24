@@ -12,7 +12,7 @@ namespace AG.DS
         /// <param name="additionalValueChangedAction">The additional action to assign with, it's optional.</param>
         public static void RegisterValueChangedEvent
         (
-            EnumContainerBase enumContainer,
+            EnumFieldModelBase enumContainer,
             Action additionalValueChangedAction = null
         )
         {

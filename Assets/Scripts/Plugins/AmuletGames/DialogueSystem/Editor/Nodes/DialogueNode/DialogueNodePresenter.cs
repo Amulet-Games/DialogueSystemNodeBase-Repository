@@ -15,8 +15,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the dialogue node presenter module class.
         /// </summary>
-        /// <param name="node">Node of which this presenter is connecting upon.</param>
-        /// <param name="model">Model of which this presenter is connecting upon.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public DialogueNodePresenter(DialogueNode node, DialogueNodeModel model)
         {
             Node = node;
@@ -26,135 +26,118 @@ namespace AG.DS
 
         // ----------------------------- Makers -----------------------------
         /// <inheritdoc />
-        public override void CreateNodeElements()
+        public override void CreateContentElements()
         {
-            base.CreateNodeElements();
-
-            AddContentButton_LineModifier();
-
             AddCharacterObjectField();
 
-            void AddContentButton_LineModifier()
-            {
-                ButtonFactory.CreateNewContentButton
-                (
-                    node: Node,
-                    buttonText: StringsConfig.AddLineLabelText,
-                    buttonIconSprite: AssetsConfig.AddMessageModifierButtonIconSprite,
-                    buttonClickAction: ContentButtonClickedAction,
-                    buttonIconUSS01: StylesConfig.Integrant_ContentButton_AddMessage_Image
-                );
-            }
+            AddCharacterObjectFieldIcon();
+
+            AddDialogueNodeStitcher();
 
             void AddCharacterObjectField()
             {
-                // New object field
-                var characterObjectField = ObjectFieldFactory.GetNewObjectField
-                (
-                    objectContainer: Model.CharacterObjectContainer,
-                    fieldIcon: AssetsConfig.CharacterFieldIconSprite,
-                    fieldUSS01: StylesConfig.Segment_Dialogue_Character_ObjectField
-                );
+                Model.CharacterObjectFieldModel.ObjectField =
+                    CommonObjectFieldPresenter.CreateElements<DialogueCharacter>
+                    (
+                        fieldUSS01: StyleConfig.Instance.DialogueNode_Character_ObjectField
+                    );
 
-                // Add to node
-                Node.mainContainer.Add(characterObjectField);
+                new CommonObjectFieldCallback<DialogueCharacter>(
+                    model: Model.CharacterObjectFieldModel).RegisterEvents();
+
+                Node.ContentContainer.Add(Model.CharacterObjectFieldModel.ObjectField);
+            }
+
+            void AddCharacterObjectFieldIcon()
+            {
+                Model.CharacterObjectFieldModel.ObjectField.RemoveFieldIcon();
+                Model.CharacterObjectFieldModel.ObjectField.AddFieldIcon
+                (
+                    iconSprite: ConfigResourcesManager.Instance.SpriteConfig.CharacterFieldIconSprite
+                );
+            }
+            
+            void AddDialogueNodeStitcher()
+            {
+                // Create all the root elements required in the node stitcher.
+                Model.DialogueNodeStitcher.CreateElements(node: Node);
             }
         }
 
 
         /// <inheritdoc />
-        public override void CreateNodePorts()
+        public override void CreatePortElements()
         {
-            // Input port.
-            Model.InputPort = DefaultPort.CreateRootElements<Edge>
+            Model.InputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
             (
-                node: Node,
+                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
-                portlabel: StringsConfig.NodeInputLabelText,
-                isSiblings: false
+                label: StringConfig.Instance.DefaultPort_Input_LabelText
             );
 
-            // Output port.
-            Model.OutputPort = DefaultPort.CreateRootElements<Edge>
+            Model.OutputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
             (
-                node: Node,
+                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
-                portlabel: StringsConfig.NodeOutputLabelText,
-                isSiblings: false
+                label: StringConfig.Instance.DefaultPort_Output_LabelText
             );
 
-            // Refresh ports.
+            Node.Add(Model.InputDefaultPort);
+            Node.Add(Model.OutputDefaultPort);
             Node.RefreshPorts();
         }
 
 
-        // ----------------------------- Callbacks -----------------------------
-        /// <summary>
-        /// The action to invoke when the content button is clicked.
-        /// <para>See: <see cref="AddContextualManuItems"/></para>
-        /// </summary>
-        void ContentButtonClickedAction()
-        {
-        }
-
-
-        // ----------------------------- Add Contextual Menu Items Services -----------------------------
+        // ----------------------------- Add Contextual Menu Items -----------------------------
         /// <inheritdoc />
-        public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
+        public override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
-            AppendDisconnectInputPortAction();
+            var defaultInput = Model.InputDefaultPort;
+            var defaultOutput = Model.OutputDefaultPort;
 
-            AppendDisconnectOuputPortAction();
+            // Disconnect Input
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectInputPort_LabelText,
+                action: action => defaultInput.Disconnect(Node.GraphViewer),
+                status: defaultInput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
 
-            AppendDisconnectAllPortsAction();
+            // Disconnect Output
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectOutputPort_LabelText,
+                action: action => defaultOutput.Disconnect(Node.GraphViewer),
+                status: defaultOutput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
 
-            void AppendDisconnectInputPortAction()
-            {
-                Model.InputPort.AddContextualManuItems
-                (
-                    evt: evt,
-                    itemName: StringsConfig.DisconnectInputPortLabelText
-                );
-            }
+            // Disconnect All
+            var isAnyConnected = defaultInput.connected
+                              || defaultOutput.connected;
 
-            void AppendDisconnectOuputPortAction()
-            {
-                Model.OutputPort.AddContextualManuItems
-                (
-                    evt: evt,
-                    itemName: StringsConfig.DisconnectOutputPortLabelText
-                );
-            }
-
-            void AppendDisconnectAllPortsAction()
-            {
-                var isInputPortConnected = Model.InputPort.connected;
-                var isOutputPortConnected = Model.OutputPort.connected;
-
-                // Disconnect All
-                evt.menu.AppendAction
-                (
-                    actionName: StringsConfig.DisconnectAllPortLabelText,
-                    action: actionEvent => DisconnectAllActionEvent(),
-                    status: isInputPortConnected || isOutputPortConnected
-                            ? DropdownMenuAction.Status.Normal
-                            : DropdownMenuAction.Status.Disabled
-                );
-
-                void DisconnectAllActionEvent()
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectAllPort_LabelText,
+                action: action =>
                 {
-                    // Disconnect Input port.
-                    Model.InputPort.DisconnectPort();
-                    // Disconnect Ouput port.
-                    Model.OutputPort.DisconnectPort();
-                }
-            }
+                    defaultInput.Disconnect(Node.GraphViewer);
+
+                    defaultOutput.Disconnect(Node.GraphViewer);
+                },
+                status: isAnyConnected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
         }
 
 
-        // ----------------------------- Post Process Position Details Services -----------------------------
+        // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
         protected override void PostProcessPositionDetails(NodeCreationDetails details)
         {
@@ -166,81 +149,69 @@ namespace AG.DS
 
             void AlignConnectorPosition()
             {
-                // Create a new vector2 result variable to cache the node's current local bound position.
                 Vector2 result = Node.localBound.position;
 
-                switch (details.HorizontalAlignType)
+                switch (details.HorizontalAlignmentType)
                 {
-                    case C_Alignment_HorizontalType.Left:
+                    case HorizontalAlignmentType.LEFT:
 
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.OutputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                        result.y -= (Node.titleContainer.worldBound.height
+                                  + Model.OutputDefaultPort.localBound.position.y
+                                  + NodeConfig.ManualCreateYOffset)
+                                  / Node.GraphViewer.scale;
 
-                        // Width offset.
                         result.x -= Node.localBound.width;
 
                         break;
-                    case C_Alignment_HorizontalType.Middle:
+                    case HorizontalAlignmentType.MIDDLE:
 
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                        result.y -= (Node.titleContainer.worldBound.height
+                                  + Model.InputDefaultPort.localBound.position.y
+                                  + NodeConfig.ManualCreateYOffset)
+                                  / Node.GraphViewer.scale;
 
-                        // Width offset.
                         result.x -= Node.localBound.width / 2;
 
                         break;
-                    case C_Alignment_HorizontalType.Right:
+                    case HorizontalAlignmentType.RIGHT:
 
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                        result.y -= (Node.titleContainer.worldBound.height
+                                  + Model.InputDefaultPort.localBound.position.y
+                                  + NodeConfig.ManualCreateYOffset)
+                                  / Node.GraphViewer.scale;
+
                         break;
                 }
 
-                // Apply the final position result to the node.
                 Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
             }
 
             void ConnectConnectorPort()
             {
-                // If connnector port is null then return.
+                // If connector port is null then return.
                 if (details.ConnectorPort == null)
                     return;
 
-                // Create local reference for the connector port.
-                Port connectorPort = details.ConnectorPort;
+                var port = (DefaultPort)details.ConnectorPort;
+                var isInput = port.IsInput();
 
-                // If the connector port is connecting to another port, disconnect them first.
-                if (connectorPort.connected)
+                if (port.connected)
                 {
-                    Node.GraphViewer.DisconnectPort(port: connectorPort);
+                    port.Disconnect(Node.GraphViewer);
                 }
 
-                // Connect the ports and retrieve the new edge.
-                Edge edge;
-                if (connectorPort.IsInput())
-                {
-                    edge = Node.GraphViewer.ConnectPorts
-                           (
-                               outputPort: Model.OutputPort,
-                               inputPort: connectorPort
-                           );
-                }
-                else
-                {
-                    edge = Node.GraphViewer.ConnectPorts
-                           (
-                               outputPort: connectorPort,
-                               inputPort: Model.InputPort
-                           );
-                }
+                var edge = EdgeManager.Instance.Connect
+                (
+                    output: !isInput ? port : Model.OutputDefaultPort,
+                    input: isInput ? port : Model.InputDefaultPort
+                );
 
-                // Register default edge callbacks to the edge.
-                DefaultEdgeCallbacks.Register(edge: edge);
+                Node.GraphViewer.Add(edge);
             }
 
             void ShowNodeOnGraph()
             {
-                Node.RemoveFromClassList(StylesConfig.Global_Visible_Hidden);
+                Node.RemoveFromClassList(StyleConfig.Instance.Global_Visible_Hidden);
             }
         }
     }

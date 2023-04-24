@@ -1,12 +1,12 @@
-﻿.node #title {
+﻿.node_NodeTitle_Main_Box {
 	background-color: rgba(52, 124, 143, 1);
 }
 
 
 /* ---------------------------------------------------------------- Node Elements Styles ---------------------------------------------------------------- */
 
-/*< -------------------- DS Character -------------------- >*/
-.segment_Dialogue_Character_ObjectField {
+/*< -------------------- Character Object Field -------------------- >*/
+.dialogueNode_Character_ObjectField {
 
 	height: 28px;
 	width: auto;
@@ -22,9 +22,26 @@
 	margin: 6px 6px 6px 6px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
 }
 
-.segment_Dialogue_Character_ObjectField
+.dialogueNode_Character_ObjectField:hover {
+
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.dialogueNode_Character_ObjectField:focus{
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.dialogueNode_Character_ObjectField
 .unity-object-field__input {
 
 	background-color: rgba(51, 51, 51, 1);
@@ -34,13 +51,17 @@
 	border-radius: 4px 4px 4px 4px;
 }
 
-.segment_Dialogue_Character_ObjectField
-.unity-object-field__input:hover {
+.dialogueNode_Character_ObjectField:hover
+.unity-object-field__input,
 
-	background-color: rgba(62, 62, 62, 1);
+.dialogueNode_Character_ObjectField:focus
+.unity-object-field__input{
+	
+	/* top - right - bottom - left */
+	margin: -1.5px -1.5px -1.5px -1.5px;
 }
 
-.segment_Dialogue_Character_ObjectField
+.dialogueNode_Character_ObjectField
 .objectField_Icon {
 
 	height: 16px;
@@ -53,16 +74,44 @@
 	padding: 0px 0px 0px 0px;
 }
 
-.segment_Dialogue_Character_ObjectField
+.dialogueNode_Character_ObjectField
+.unity-object-field__input
+.unity-object-field__selector {
+
+	height: 17px;
+	width: 19px;
+
+	/* top - right - bottom - left */
+	margin: 0px 2px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.dialogueNode_Character_ObjectField
+.unity-object-field__input
+.unity-object-field__selector:hover {
+	
+	background-color: rgba(76, 76, 76, 1);
+}
+
+.dialogueNode_Character_ObjectField
 .unity-object-field__input
 .unity-object-field-display
 .unity-object-field-display__label {
 
 	font-size: 16px;
 
-	align-self: Center;
+	align-self: center;
 
 	/* top - right - bottom - left */
-	margin: 2.25px 5px 0px 5px;
+	margin: 1px 5px 0px 5px;
 	padding: 0px 0px 0px 0px;
+}
+
+/*< -------------------- Character Object Field -------------------- >*/
+.dialogueNode_Stitcher_Modifiers_Box {
+	
+	background-color: rgba(0, 0, 0, 0);
+	
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
 }

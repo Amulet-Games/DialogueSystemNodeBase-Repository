@@ -1,22 +1,38 @@
-using System;
-
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class StartNodeModel : NodeModelBase
+    public class StartNodeModel : NodeModelFrameBase<StartNode>
     {
         /// <summary>
-        /// Port that allows this node to move forward to the other node.
+        /// The output default port of the node.
         /// </summary>
-        public DefaultPort OutputPort;
+        public DefaultPort OutputDefaultPort;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Construtor of the start node model module class.
+        /// Constructor of the start node model module class.
         /// </summary>
-        public StartNodeModel()
+        /// <param name="node">The node module to set for.</param>
+        public StartNodeModel(StartNode node)
         {
+            Node = node;
+        }
+
+
+        // ----------------------------- Remove Cache Ports All -----------------------------
+        /// <inheritdoc />
+        public override void RemoveCachePortsAll()
+        {
+            Node.GraphViewer.SerializeHandler.RemoveCachePort(port: OutputDefaultPort);
+        }
+
+
+        // ----------------------------- Disconnect Ports All -----------------------------
+        /// <inheritdoc />
+        public override void DisconnectPortsAll()
+        {
+            OutputDefaultPort.Disconnect(Node.GraphViewer);
         }
     }
 }

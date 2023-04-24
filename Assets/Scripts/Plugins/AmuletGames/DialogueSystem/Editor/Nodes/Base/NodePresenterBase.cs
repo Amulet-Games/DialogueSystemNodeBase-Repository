@@ -12,6 +12,6 @@ namespace AG.DS
         /// <para>This method is used inside the node frame base class, "BuildContextualManu" method.</para>
         /// </summary>
         /// <param name="evt">The event holding the menu to populate.</param>
-        public abstract void AddContextualManuItems(ContextualMenuPopulateEvent evt);
+        public abstract void AddContextualMenuItems(ContextualMenuPopulateEvent evt);
     }
 }

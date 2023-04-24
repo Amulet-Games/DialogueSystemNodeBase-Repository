@@ -22,13 +22,12 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register actions from different modules to the event.
+        /// Register the given action to the event.
         /// </summary>
-        /// <param name="window">Dialogue system's editor window module.</param>
-        public static void Register(DialogueEditorWindow window)
+        /// <param name="action">The action to register with.</param>
+        public static void Register(Action action)
         {
-            mEvent += AssetDatabase.SaveAssets;
-            mEvent += window.SetHasUnsavedChangesToFalse;
+            mEvent += action;
         }
 
 

@@ -1,14 +1,20 @@
-﻿using System.Collections;
-using Unity.EditorCoroutines.Editor;
-using UnityEditor.Callbacks;
+﻿using System;
 using UnityEditor;
-using UnityEngine.UIElements;
+using UnityEditor.Callbacks;
 using UnityEngine;
+using UnityEngine.UIElements;
+using Object = UnityEngine.Object;
 
 namespace AG.DS
 {
     public class DialogueEditorWindow : EditorWindow
     {
+        /// <summary>
+        /// The singleton reference of the class.
+        /// </summary>
+        static DialogueEditorWindow instance;
+
+
         /// <summary>
         /// Reference of the connecting dialogue system data.
         /// </summary>
@@ -30,7 +36,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the headBar module.
         /// </summary>
-        HeadBar headBar;
+        Headbar headBar;
 
 
         /// <summary>
@@ -54,13 +60,7 @@ namespace AG.DS
         /// <summary>
         /// Is the headbar module in focus at the moment?
         /// </summary>
-        public bool IsHeadBarFocus;
-
-
-        /// <summary>
-        /// The singleton reference of the class.
-        /// </summary>
-        static DialogueEditorWindow instance;
+        public bool IsHeadbarFocus;
 
 
         /// <summary>
@@ -88,9 +88,7 @@ namespace AG.DS
                 // If the static reference of dialogue editor window already exists somewhere
                 if (instance != null)
                 {
-                    // Print out a warning message and return the method immediately.
-                    Debug.LogWarning(StringsConfig.WindowAlreadyOpenedWarningText);
-                    return false;
+                    throw new Exception($"Singleton {typeof(DialogueEditorWindow)} can only be setup once.");
                 }
 
                 // This setup only happens the first time when the editor window is shown.
@@ -120,54 +118,73 @@ namespace AG.DS
 
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
-        /// This method is called when custom graph editor becomes enabled and active.
+        /// This method is called after the <see cref="EditorWindow.GetWindow(Type)"/> method.
+        /// <para></para>
+        /// <br>When scripts are reloaded after compilation has finished, OnDisable will be called,</br>
+        /// <br>followed by OnEnable after the script has been loaded.</br>
         /// </summary>
         void OnEnable()
         {
-            // OnEnable is called manually when isShowWindowSetup is true.
-            if (isSkipOnEnable) return;
-
-            PreSetup();
-
-            Setup();
-
-            PostSetup();
-
-            DelaySetup();
-
-            LoadSavedData();
-
-            void DelaySetup()
+            if (isSkipOnEnable)
             {
-                EditorCoroutineUtility.StartCoroutine(routine: DelayedSetup(), owner: this);
+                isSkipOnEnable = false;
+                return;
             }
 
-            void LoadSavedData()
+            // Reframe window
             {
-                LoadWindowAction(isForceLoadWindow: true);
+                rootVisualElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+
+                void GeometryChangedEvent(GeometryChangedEvent evt)
+                {
+                    graphViewer.ReframeGraphAll();
+
+                    // Unregister the action once the setup is done.
+                    rootVisualElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+                }
             }
+
+            // Load window
+            LoadWindowAction(isForceLoadWindow: true);
         }
 
 
         /// <summary>
-        /// This method is called when the behaviour becomes disabled.
-        /// This is also called when the object is destroyed and can be used for any cleanup code.
-        /// When scripts are reloaded after compilation has finished, OnDisable will be called, 
-        /// followed by an OnEnable after the script has been loaded.
+        /// <br>This is called when the window is closed and can be used to cleanup any static references.</br>
         /// </summary>
-        void OnDisable()
+        void OnDestroy()
         {
-            graphViewer.Destruct();
+            // Dispose Singletons
+            {
+                ConfigResourcesManager.Instance.Dispose();
 
-            InputHint.Instance.Destruct();
+                LanguageManager.Instance.Dispose();
+
+                StyleConfig.Instance.Dispose();
+
+                StringConfig.Instance.Dispose();
+
+                EdgeManager.Instance.Dispose();
+            }
+
+            // Dispose Static Events
+            {
+                // Serialization Events
+                SaveToDSDataEvent.Clear();
+                LoadFromDSDataEvent.Clear();
+                ApplyChangesToDiskEvent.Clear();
+
+                // Changed Events
+                GraphViewChangedEvent.Clear();
+                LanguageChangedEvent.Clear();
+                TreeEntrySelectedEvent.Clear();
+                WindowChangedEvent.Clear();
+            }
         }
 
 
         /// <summary>
-        /// Ask the serialie handler to save all the graph elements on the custom graph editor.
-        /// <para></para>
-        /// References:
-        /// <br>See: <see cref="HeadBar.SaveButtonClickAction"/></br>
+        /// Ask the serialize handler to save all the graph elements on the custom graph editor.
         /// </summary>
         public void SaveWindowAction()
         {
@@ -178,17 +195,13 @@ namespace AG.DS
             }
             else
             {
-                Debug.LogWarning(StringsConfig.WindowAlreadySavedWarningText);
+                Debug.LogWarning(StringConfig.Instance.Editor_WindowAlreadySaved_WarningText);
             }
         }
 
 
         /// <summary>
         /// Ask the serialie handler to load the saved graph elements and create them again on the graph.
-        /// <para></para>
-        /// References:
-        /// <br>See: <see cref="HeadBar.LoadButtonClickAction"/></br>
-        /// <br>See: <see cref="OnEnable"/></br>
         /// </summary>
         public void LoadWindowAction(bool isForceLoadWindow)
         {
@@ -202,7 +215,7 @@ namespace AG.DS
             }
             else
             {
-                Debug.LogWarning(StringsConfig.WindowAlreadyLoadedWarningText);
+                Debug.LogWarning(StringConfig.Instance.Editor_WindowAlreadyLoaded_WarningText);
             }
 
             void LoadWindow()
@@ -242,314 +255,166 @@ namespace AG.DS
         /// </summary>
         /// <param name="selectedDsData">The dialogue system data that was selected by the user in the editor's project window.</param>
         /// <param name="instanceId">The instance id of the dialogue system data asset.</param>
-        void Init(DialogueSystemData selectedDsData, int instanceId)
+        public void Init(DialogueSystemData selectedDsData, int instanceId)
         {
-            ResetIsShowWindowSetup();
+            InitDialogueSystemDataFields();
 
-            SetupContainerRefs();
+            InitWindowDetails();
 
-            SetupWindowDetail();
+            SetupWindow();
 
-            ExecuteOnEnable();
-
-            void ResetIsShowWindowSetup()
-            {
-                isSkipOnEnable = false;
-            }
-
-            void SetupContainerRefs()
+            void InitDialogueSystemDataFields()
             {
                 DsDataInstanceId = instanceId;
                 DsData = selectedDsData;
             }
 
-            void SetupWindowDetail()
+            void InitWindowDetails()
             {
-                titleContent = new GUIContent(text: StringsConfig.DialogueEditorWindowLabelText);
-                minSize = new Vector2(2000, 1080);
+                minSize = new Vector2(
+                    x: selectedDsData.WindowMinSize.x,
+                    y: selectedDsData.WindowMinSize.y);
+
+                var mainWindowPosition = EditorGUIUtility.GetMainWindowPosition();
+                this.CenterOnMainWindow(
+                    customWidth: mainWindowPosition.width * selectedDsData.WindowStartSizeScreenRatio.x,
+                    customHeight: mainWindowPosition.height * selectedDsData.WindowStartSizeScreenRatio.y);
             }
 
-            void ExecuteOnEnable()
+            void SetupWindow()
             {
-                OnEnable();
-            }
-        }
+                PreSetup();
 
+                Setup();
 
-        // ----------------------------- Pre Setup -----------------------------
-        /// <summary>
-        /// Pre setup for the class. It's executed before any other module class's pre setup method.
-        /// <para></para>
-        /// <br>Its main responsibility is to call the other module class's pre setup method,</br>
-        /// <br>and set up static events for the custom graph editor by clearing them and registering actions again.</br>
-        /// </summary>
-        void PreSetup()
-        {
-            CreateGraphViewer();
+                PostSetup();
 
-            CreateInputHint();
-
-            CreateHeaderBar();
-
-            CreateHotkeysHandler();
-
-            SetupEvents();
-
-            void CreateGraphViewer()
-            {
-                graphViewer = new(this);
-            }
-
-            void CreateInputHint()
-            {
-                if (InputHint.Instance != null)
-                {
-                    Debug.LogWarning(StringsConfig.InputHintAlreadyExistsWarningText);
-                    return;
-                }
-                else
-                {
-                    new InputHint(graphViewer);
-                }
-            }
-
-            void CreateHeaderBar()
-            {
-                headBar = new(this);
-            }
-
-            void CreateHotkeysHandler()
-            {
-                hotkeysHandler = new(this);
-            }
-
-            void SetupEvents()
-            {
-                ClearInternalEvents();
-
-                ClearStaticEvents();
-
-                RegisterInternalEvents();
-
-                RegisterStaticEvents();
-
-                MultiCastEvents();
-
-                void ClearInternalEvents()
-                {
-                    UnRegisterKeyDownEvent();
-
-                    UnRegisterKeyUpEvent();
-
-                    void UnRegisterKeyDownEvent()
-                    {
-                        rootVisualElement.UnregisterCallback<KeyDownEvent>(hotkeysHandler.HotkeysDownAction);
-                    }
-
-                    void UnRegisterKeyUpEvent()
-                    {
-                        rootVisualElement.UnregisterCallback<KeyUpEvent>(hotkeysHandler.HotkeysUpAction);
-                    }
-                }
-
-                void ClearStaticEvents()
-                {
-                    // Serialization Events
-                    SaveToDSDataEvent.Clear();
-                    LoadFromDSDataEvent.Clear();
-                    ApplyChangesToDiskEvent.Clear();
-                    EdgesLoadingCompletedEvent.Clear();
-
-                    // Changed Events
-                    GraphViewChangedEvent.Clear();
-                    LanguageChangedEvent.Clear();
-                    GraphTitleChangedEvent.Clear();
-                    TreeEntrySelectedEvent.Clear();
-                    WindowChangedEvent.Clear();
-                }
-
-                void RegisterInternalEvents()
-                {
-                    RegisterKeyDownEvent();
-
-                    RegisterKeyUpEvent();
-
-                    void RegisterKeyDownEvent()
-                    {
-                        rootVisualElement.RegisterCallback<KeyDownEvent>(hotkeysHandler.HotkeysDownAction);
-                    }
-
-                    void RegisterKeyUpEvent()
-                    {
-                        rootVisualElement.RegisterCallback<KeyUpEvent>(hotkeysHandler.HotkeysUpAction);
-                    }
-                }
-
-                void RegisterStaticEvents()
-                {
-                    // Serialization Events
-                    SaveToDSDataEvent.Register(graphViewer.SerializeHandler);
-                    LoadFromDSDataEvent.Register(graphViewer.SerializeHandler, headBar);
-                    ApplyChangesToDiskEvent.Register(this);
-
-                    // Changed Events
-                    GraphTitleChangedEvent.Register(headBar);
-                    WindowChangedEvent.Register(this);
-                }
-
-                void MultiCastEvents()
-                {
-                    WindowChangedEvent.MultiCast();
-                }
+                GeometryChangedSetup();
             }
         }
 
 
         // ----------------------------- Setup -----------------------------
         /// <summary>
-        /// Setup for the class. It's executed before any other module class's setup method.
-        /// <para></para>
-        /// <br>Its main responsibility is to call the other module class's setup method.</br>
+        /// Pre setup for the class.
+        /// </summary>
+        void PreSetup()
+        {
+            // Create modules
+            {
+                graphViewer = new(dsWindow: this);
+                headBar = new(dsWindow: this);
+                hotkeysHandler = new(dsWindow: this);
+            }
+
+            // Register internal events
+            {
+                rootVisualElement.RegisterCallback<KeyDownEvent>(callback: hotkeysHandler.HotkeysDownAction);
+                rootVisualElement.RegisterCallback<KeyUpEvent>(callback: hotkeysHandler.HotkeysUpAction);
+            }
+
+            // Register static events
+            {
+                // Serialization events
+                SaveToDSDataEvent.Register(action: graphViewer.SerializeHandler.SaveEdgesAndNodes);
+
+                LoadFromDSDataEvent.Register(action: graphViewer.SerializeHandler.LoadEdgesAndNodes);
+                LoadFromDSDataEvent.Register(action: headBar.RefreshTitleAndLanguage);
+
+                ApplyChangesToDiskEvent.Register(action: AssetDatabase.SaveAssets);
+                ApplyChangesToDiskEvent.Register(action: SetHasUnsavedChangesToFalse);
+
+                // Changed events
+                GraphViewChangedEvent.Register(action: SetHasUnsavedChangesToTrue);
+
+                TreeEntrySelectedEvent.Register(action: SetHasUnsavedChangesToTrue);
+
+                WindowChangedEvent.Register(action: SetHasUnsavedChangesToTrue);
+            }
+        }
+
+
+        /// <summary>
+        /// Setup for the class.
         /// </summary>
         void Setup()
         {
-            SetupLanguagesConfig();
-
-            SetupStylesConfig();
-
-            SetupAssetsConfig();
-
-            SetupStringUtility();
-
-            SetupNodeCreationEntriesProvider();
-
-            void SetupLanguagesConfig()
+            // Setup singletons
             {
-                LanguagesConfig.Setup();
+                ConfigResourcesManager.Setup();
+
+                LanguageManager.Setup();
+
+                StyleConfig.Setup();
+
+                StringConfig.Setup();
+
+                EdgeManager.Setup();
             }
 
-            void SetupStylesConfig()
-            {
-                StylesConfig.Setup();
-            }
-
-            void SetupAssetsConfig()
-            {
-                AssetsConfig.Setup();
-            }
-
-            void SetupStringUtility()
-            {
-                StringUtility.Setup();
-            }
-
-            void SetupNodeCreationEntriesProvider()
+            // Setup node creation entries provider
             {
                 NodeCreationEntriesProvider.Setup();
             }
         }
 
 
-        // ----------------------------- Post Setup -----------------------------
         /// <summary>
-        /// Post setup for the class. It's executed before any other module class's post setup method.
-        /// <para></para>
-        /// <br>Its main responsibility is to call the other module class's post setup method.</br>
+        /// Post setup for the class.
         /// </summary>
         void PostSetup()
         {
-            SetupGraphViewer();
-
-            SetupInputHint();
-
-            SetupHeadBar();
-
-            void SetupGraphViewer()
+            // Post setup modules
             {
                 graphViewer.PostSetup();
-            }
 
-            void SetupInputHint()
-            {
-                InputHint.Instance.PostSetup();
-            }
-
-            void SetupHeadBar()
-            {
                 headBar.PostSetup();
+
+                InputHint.PostSetup(graphViewer: graphViewer);
             }
         }
 
 
-        // ----------------------------- Delayed Setup -----------------------------
         /// <summary>
-        /// Delay setup for the class. It'll executed after the post setup method and at the end of that frame.
-        /// <para></para>
-        /// <br>Its main responsibility is to executes the internal setups that were needed the 1 frame of delay.</br>
+        /// Geometry Changed Setup for the class.
         /// </summary>
-        /// <returns></returns>
-        IEnumerator DelayedSetup()
+        void GeometryChangedSetup()
         {
-            yield return new WaitForEndOfFrame();
+            rootVisualElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
 
-            SetupEvent();
-
-            SetupReframeGraphView();
-
-            void SetupEvent()
+            void GeometryChangedEvent(GeometryChangedEvent evt)
             {
-                UnRegisterFocusBlurEvent();
-
-                RegisterFocusBlurEvent();
-
-                void UnRegisterFocusBlurEvent()
+                // Register dock area events
                 {
-                    // Get the dock area from the window's parent
-                    VisualElement dockArea = rootVisualElement.parent.ElementAt(0);
-
-                    dockArea.UnregisterCallback<FocusEvent>(DockAreaFocusAction);
-                    dockArea.UnregisterCallback<BlurEvent>(DockAreaBlurAction);
+                    var dockArea = rootVisualElement.parent.ElementAt(0);
+                    dockArea.RegisterCallback<FocusEvent>(DockAreaFocusAction);
+                    dockArea.RegisterCallback<BlurEvent>(DockAreaBlurAction);
                 }
 
-                void RegisterFocusBlurEvent()
-                {
-                    // Get the dock area from the window's parent
-                    VisualElement dockArea = rootVisualElement.parent.ElementAt(0);
-
-                    dockArea.RegisterCallback<FocusEvent>(_ => graphViewer.Focus());
-                    dockArea.RegisterCallback<BlurEvent>(_ => graphViewer.Blur());
-                }
-                
-            }
-
-            void SetupReframeGraphView()
-            {
+                // Reframe window
                 graphViewer.ReframeGraphAll();
+
+                // Unregister the action once the setup is done.
+                rootVisualElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
             }
         }
 
 
-        // ----------------------------- Set Has Unsaved Changes Services -----------------------------
+        // ----------------------------- Set Has Unsaved Changes -----------------------------
         /// <summary>
         /// Force Unity to recognize the custom graph editor has unsaved changes,
         /// <br>so that it asks the user to save it each time when they're trying to close it without saving.</br>
-        /// <para></para>
-        /// References:
-        /// <br>See: <see cref="WindowChangedEvent.Register"/></br>
         /// </summary>
-        public void SetHasUnsavedChangesToTrue() => hasUnsavedChanges = true;
+        void SetHasUnsavedChangesToTrue() => hasUnsavedChanges = true;
 
 
         /// <summary>
         /// Tell Unity that user has saved the graph so that it won't stop user to close the custom graph editor.
-        /// <para></para>
-        /// References:
-        /// <br>See: <see cref="ApplyChangesToDiskEvent.Register"/></br>
         /// </summary>
-        public void SetHasUnsavedChangesToFalse() => hasUnsavedChanges = false;
+        void SetHasUnsavedChangesToFalse() => hasUnsavedChanges = false;
 
 
-        // ----------------------------- Retrieve Is Hotkey Available Services -----------------------------
+        // ----------------------------- Retrieve Is Hotkey Function Available -----------------------------
         /// <summary>
         /// Returns true if the editor window and either the graph viewer or the headbar is in focus.
         /// </summary>
@@ -557,7 +422,7 @@ namespace AG.DS
         public bool IsHotkeysFunctionAvailable()
         {
             // If either the graph viewer or headbar is in focus.
-            if (IsGraphViewerFocus || IsHeadBarFocus)
+            if (IsGraphViewerFocus || IsHeadbarFocus)
             {
                 // Hotkeys are allowed.
                 return true;

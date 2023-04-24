@@ -42,14 +42,14 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the hotkeys catcher module class.
         /// </summary>
-        /// <param name="dsWindow">Dialogue system's editor window module.</param>
+        /// <param name="dsWindow">The editor window module to set for.</param>
         public HotkeysHandler(DialogueEditorWindow dsWindow)
         {
             this.dsWindow = dsWindow;
         }
 
 
-        // ----------------------------- Callbacks -----------------------------
+        // ----------------------------- Event -----------------------------
         /// <summary>
         /// Action that invoked when the user has pressed any hotkeys in a empty space inside the window.
         /// </summary>
@@ -91,7 +91,7 @@ namespace AG.DS
         public void HotkeysUpAction(KeyUpEvent evt) => isKeyReleased = true;
 
 
-        // ----------------------------- Keys Confirmation Tasks -----------------------------
+        // ----------------------------- Retrieve Key Down -----------------------------
         /// <summary>
         /// Returns true if the support key is held down at the moment. 
         /// </summary>

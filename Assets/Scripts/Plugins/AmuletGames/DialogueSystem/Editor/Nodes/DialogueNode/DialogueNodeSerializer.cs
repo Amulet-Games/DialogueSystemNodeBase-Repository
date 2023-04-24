@@ -12,8 +12,8 @@
         /// <summary>
         /// Constructor of the dialogue node serializer module class.
         /// </summary>
-        /// <param name="node">Node of which this serializer is connecting upon.</param>
-        /// <param name="model">Model of which this serializer is connecting upon.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public DialogueNodeSerializer(DialogueNode node, DialogueNodeModel model)
         {
             Node = node;
@@ -23,27 +23,34 @@
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void SaveNode(DialogueSystemData dsData)
+        public override void Save(DialogueSystemData dsData)
         {
             DialogueNodeData data = new();
 
             SaveBaseValues(data: data);
 
-            SavePortsGUID();
+            SavePorts();
 
             SaveCharacterObjectContainer();
 
+            SaveDialogueNodeStitcher();
+
             AddData();
 
-            void SavePortsGUID()
+            void SavePorts()
             {
-                data.InputPortGUID = Model.InputPort.name;
-                data.OutputPortGUID = Model.OutputPort.name;
+                Model.InputDefaultPort.Save(data.InputPortData);
+                Model.OutputDefaultPort.Save(data.OutputPortData);
             }
 
             void SaveCharacterObjectContainer()
             {
-                data.DialogueCharacter = Model.CharacterObjectContainer.Value;
+                data.DialogueCharacter = Model.CharacterObjectFieldModel.Value;
+            }
+
+            void SaveDialogueNodeStitcher()
+            {
+                Model.DialogueNodeStitcher.SaveStitcherValues(data.DialogueNodeStitcherData);
             }
 
             void AddData()
@@ -55,23 +62,30 @@
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void LoadNode(DialogueNodeData data)
+        public override void Load(DialogueNodeData data)
         {
             LoadBaseValues(data);
 
-            LoadPortsGUID();
+            LoadPorts();
 
             LoadCharacterObjectContainer();
 
-            void LoadPortsGUID()
-            {
-                Model.InputPort.name = data.InputPortGUID;
-                Model.OutputPort.name = data.OutputPortGUID;
-            }
+            LoadDialogueNodeStitcher();
 
+            void LoadPorts()
+            {
+                Model.InputDefaultPort.Load(data.InputPortData);
+                Model.OutputDefaultPort.Load(data.OutputPortData);
+            }
+        
             void LoadCharacterObjectContainer()
             {
-                Model.CharacterObjectContainer.LoadContainerValue(data.DialogueCharacter);
+                Model.CharacterObjectFieldModel.Load(data.DialogueCharacter);
+            }
+
+            void LoadDialogueNodeStitcher()
+            {
+                Model.DialogueNodeStitcher.LoadStitcherValues(data.DialogueNodeStitcherData);
             }
         }
     }

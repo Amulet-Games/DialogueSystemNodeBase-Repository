@@ -16,8 +16,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the preview node presenter module class.
         /// </summary>
-        /// <param name="node">Node of which this presenter is connecting upon.</param>
-        /// <param name="model">Model of which this presenter is connecting upon.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public PreviewNodePresenter(PreviewNode node, PreviewNodeModel model)
         {
             Node = node;
@@ -27,176 +27,201 @@ namespace AG.DS
 
         // ----------------------------- Makers -----------------------------
         /// <inheritdoc />
-        public override void CreateNodeElements()
+        public override void CreateContentElements()
         {
-            base.CreateNodeElements();
+            base.CreateContentElements();
 
-            AddPortraitImages();
+            SetupElements();
 
-            AddSpriteObjectFields();
-
-            void AddPortraitImages()
+            void SetupElements()
             {
-                // New box container.
-                Box portraitImageElementsBox = new();
-                portraitImageElementsBox.AddToClassList(StylesConfig.PreviewNode_Image_Box);
+                Box previewImageBox;
+                Box previewSpriteBox;
+                Box middleEmptyBox;
 
-                // New images.
-                Model.LeftPortraitImage = ImageFactory.GetNewImage
-                (
-                    imageUSS01: StylesConfig.PreviewNode_Image,
-                    imageUSS02: StylesConfig.PreviewNode_Image_L
-                );
+                SetupContainers();
 
-                Model.RightPortraitImage = ImageFactory.GetNewImage
-                (
-                    imageUSS01: StylesConfig.PreviewNode_Image,
-                    imageUSS02: StylesConfig.PreviewNode_Image_R
-                );
+                SetupLeftPortraitImage();
 
-                // Add to box
-                portraitImageElementsBox.Add(Model.LeftPortraitImage);
-                portraitImageElementsBox.Add(Model.RightPortraitImage);
+                SetupRightPortraitImage();
 
-                // Add to node
-                Node.mainContainer.Add(portraitImageElementsBox);
-            }
+                SetupLeftPortraitObjectField();
 
-            void AddSpriteObjectFields()
-            {
-                // New box container.
-                Box imageObjectFieldsBox = new();
-                imageObjectFieldsBox.AddToClassList(StylesConfig.PreviewNode_ObjectField_Box);
+                SetupRightPortraitObjectField();
 
-                // New object fields.
-                var leftSpriteField = ObjectFieldFactory.GetNewObjectField
-                (
-                    objectContainer: Model.LeftSpriteContainer,
-                    containerValueChangedAction: LeftSpriteObjectContainerValueChangedAction,
-                    fieldIcon: AssetsConfig.ImageFieldIconSprite,
-                    fieldUSS01: StylesConfig.PreviewNode_ObjectField,
-                    fieldUSS02: StylesConfig.PreviewNode_ObjectField_L
-                );
+                AddElementsToContainer();
 
-                var rightSpriteField = ObjectFieldFactory.GetNewObjectField
-                (
-                    objectContainer: Model.RightSpriteContainer,
-                    containerValueChangedAction: RightSpriteObjectContainerValueChangedAction,
-                    fieldIcon: AssetsConfig.ImageFieldIconSprite,
-                    fieldUSS01: StylesConfig.PreviewNode_ObjectField,
-                    fieldUSS02: StylesConfig.PreviewNode_ObjectField_R
-                );
+                AddContainerToNode();
 
-                // Add to box
-                imageObjectFieldsBox.Add(leftSpriteField);
-                imageObjectFieldsBox.Add(rightSpriteField);
-
-                // Add to node
-                Node.mainContainer.Add(imageObjectFieldsBox);
-            }
-        }
-
-
-        /// <inheritdoc />
-        public override void CreateNodePorts()
-        {
-            // Input port.
-            Model.InputPort = DefaultPort.CreateRootElements<Edge>
-            (
-                node: Node,
-                direction: Direction.Input,
-                capacity: Port.Capacity.Single,
-                portlabel: StringsConfig.NodeInputLabelText,
-                isSiblings: false
-            );
-
-            // Output port.
-            Model.OutputPort = DefaultPort.CreateRootElements<Edge>
-            (
-                node: Node,
-                direction: Direction.Output,
-                capacity: Port.Capacity.Single,
-                portlabel: StringsConfig.NodeOutputLabelText,
-                isSiblings: false
-            );
-
-            // Refresh ports.
-            Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Callbacks -----------------------------
-        /// <summary>
-        /// Action that invoked when the left sprite object container value is changed.
-        /// </summary>
-        void LeftSpriteObjectContainerValueChangedAction()
-            => ImageElementHelper.UpdateImagePreview
-                (sprite: Model.LeftSpriteContainer.Value, image: Model.LeftPortraitImage);
-
-
-        /// <summary>
-        /// Action that invoked when the right sprite object container value is changed.
-        /// </summary>
-        void RightSpriteObjectContainerValueChangedAction()
-                => ImageElementHelper.UpdateImagePreview
-                    (sprite: Model.RightSpriteContainer.Value, image: Model.RightPortraitImage);
-
-
-        // ----------------------------- Add Contextual Menu Items Services -----------------------------
-        /// <inheritdoc />
-        public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
-        {
-            AppendDisconnectInputPortAction();
-
-            AppendDisconnectOuputPortAction();
-
-            AppendDisconnectAllPortsAction();
-
-            void AppendDisconnectInputPortAction()
-            {
-                Model.InputPort.AddContextualManuItems
-                (
-                    evt: evt,
-                    itemName: StringsConfig.DisconnectInputPortLabelText
-                );
-            }
-
-            void AppendDisconnectOuputPortAction()
-            {
-                Model.OutputPort.AddContextualManuItems
-                (
-                    evt: evt,
-                    itemName: StringsConfig.DisconnectOutputPortLabelText
-                );
-            }
-
-            void AppendDisconnectAllPortsAction()
-            {
-                var isInputPortConnected = Model.InputPort.connected;
-                var isOutputPortConnected = Model.OutputPort.connected;
-
-                // Disconnect All
-                evt.menu.AppendAction
-                (
-                    actionName: StringsConfig.DisconnectAllPortLabelText,
-                    action: actionEvent => DisconnectAllActionEvent(),
-                    status: isInputPortConnected || isOutputPortConnected
-                            ? DropdownMenuAction.Status.Normal
-                            : DropdownMenuAction.Status.Disabled
-                );
-
-                void DisconnectAllActionEvent()
+                void SetupContainers()
                 {
-                    // Disconnect Input port.
-                    Model.InputPort.DisconnectPort();
-                    // Disconnect Ouput port.
-                    Model.OutputPort.DisconnectPort();
+                    previewImageBox = new();
+                    previewImageBox.AddToClassList(StyleConfig.Instance.PreviewNode_PreviewImage_Box);
+
+                    previewSpriteBox = new();
+                    previewSpriteBox.AddToClassList(StyleConfig.Instance.PreviewNode_PreviewSprite_Box);
+
+                    middleEmptyBox = new();
+                    middleEmptyBox.AddToClassList(StyleConfig.Instance.PreviewNode_MiddleEmpty_Box);
+                }
+
+                void SetupLeftPortraitImage()
+                {
+                    Model.LeftPortraitImage = CommonImagePresenter.CreateElements
+                    (
+                        imageUSS01: StyleConfig.Instance.PreviewNode_PreviewImage_Image,
+                        imageUSS02: StyleConfig.Instance.PreviewNode_PreviewImage_Image_L
+                    );
+                }
+
+                void SetupRightPortraitImage()
+                {
+                    Model.RightPortraitImage = CommonImagePresenter.CreateElements
+                    (
+                        imageUSS01: StyleConfig.Instance.PreviewNode_PreviewImage_Image,
+                        imageUSS02: StyleConfig.Instance.PreviewNode_PreviewImage_Image_R
+                    );
+                }
+
+                void SetupLeftPortraitObjectField()
+                {
+                    Model.LeftPortraitObjectFieldModel.ObjectField =
+                        CommonObjectFieldPresenter.CreateElements<Sprite>
+                        (
+                            fieldUSS01: StyleConfig.Instance.PreviewNode_PreviewSprite_ObjectField,
+                            fieldUSS02: StyleConfig.Instance.PreviewNode_PreviewSprite_ObjectField_L
+                        );
+
+                    new CommonObjectFieldCallback<Sprite>(
+                        model: Model.LeftPortraitObjectFieldModel,
+                        additionalChangeEvent: LeftPortraitObjectFieldChangeEvent).RegisterEvents();
+                }
+
+                void SetupRightPortraitObjectField()
+                {
+                    Model.RightPortraitObjectFieldModel.ObjectField =
+                        CommonObjectFieldPresenter.CreateElements<Sprite>
+                        (
+                            fieldUSS01: StyleConfig.Instance.PreviewNode_PreviewSprite_ObjectField,
+                            fieldUSS02: StyleConfig.Instance.PreviewNode_PreviewSprite_ObjectField_R
+                        );
+
+                    new CommonObjectFieldCallback<Sprite>(
+                        model: Model.RightPortraitObjectFieldModel,
+                        additionalChangeEvent: RightPortraitObjectFieldChangeEvent).RegisterEvents();
+                }
+
+                void AddElementsToContainer()
+                {
+                    previewImageBox.Add(Model.LeftPortraitImage);
+                    previewImageBox.Add(Model.RightPortraitImage);
+
+                    previewSpriteBox.Add(Model.LeftPortraitObjectFieldModel.ObjectField);
+                    previewSpriteBox.Add(middleEmptyBox);
+                    previewSpriteBox.Add(Model.RightPortraitObjectFieldModel.ObjectField);
+                }
+
+                void AddContainerToNode()
+                {
+                    Node.ContentContainer.Add(previewImageBox);
+                    Node.ContentContainer.Add(previewSpriteBox);
                 }
             }
         }
 
 
-        // ----------------------------- Post Process Position Details Services -----------------------------
+        /// <inheritdoc />
+        public override void CreatePortElements()
+        {
+            Model.InputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
+            (
+                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                direction: Direction.Input,
+                capacity: Port.Capacity.Single,
+                label: StringConfig.Instance.DefaultPort_Input_LabelText
+            );
+
+            Model.OutputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
+            (
+                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                direction: Direction.Output,
+                capacity: Port.Capacity.Single,
+                label: StringConfig.Instance.DefaultPort_Output_LabelText
+            );
+
+            Node.Add(Model.InputDefaultPort);
+            Node.Add(Model.OutputDefaultPort);
+            Node.RefreshPorts();
+        }
+
+
+        // ----------------------------- Callback -----------------------------
+        /// <summary>
+        /// The action to invoke when the left portrait object field value is changed.
+        /// </summary>
+        void LeftPortraitObjectFieldChangeEvent(ChangeEvent<Sprite> evt)
+        {
+            Model.LeftPortraitImage.image = Model.LeftPortraitObjectFieldModel.Value.texture;
+        }
+
+
+        /// <summary>
+        /// The action to invoke when the right portrait object field value is changed.
+        /// </summary>
+        void RightPortraitObjectFieldChangeEvent(ChangeEvent<Sprite> evt)
+        {
+            Model.RightPortraitImage.image = Model.RightPortraitObjectFieldModel.Value.texture;
+        }
+
+
+        // ----------------------------- Add Contextual Menu Items -----------------------------
+        /// <inheritdoc />
+        public override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
+        {
+            var defaultInput = Model.InputDefaultPort;
+            var defaultOutput = Model.OutputDefaultPort;
+
+            // Disconnect Input
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectInputPort_LabelText,
+                action: action => defaultInput.Disconnect(Node.GraphViewer),
+                status: defaultInput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
+
+            // Disconnect Output
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectOutputPort_LabelText,
+                action: action => defaultOutput.Disconnect(Node.GraphViewer),
+                status: defaultOutput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
+
+            // Disconnect All
+            var isAnyConnected = defaultInput.connected
+                              || defaultOutput.connected;
+
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectAllPort_LabelText,
+                action: action =>
+                {
+                    defaultInput.Disconnect(Node.GraphViewer);
+
+                    defaultOutput.Disconnect(Node.GraphViewer);
+                },
+                status: isAnyConnected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
+        }
+
+
+        // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
         protected override void PostProcessPositionDetails(NodeCreationDetails details)
         {
@@ -208,81 +233,69 @@ namespace AG.DS
 
             void AlignConnectorPosition()
             {
-                // Create a new vector2 result variable to cache the node's current local bound position.
                 Vector2 result = Node.localBound.position;
 
-                switch (details.HorizontalAlignType)
+                switch (details.HorizontalAlignmentType)
                 {
-                    case C_Alignment_HorizontalType.Left:
+                    case HorizontalAlignmentType.LEFT:
 
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.OutputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                        result.y -= (Node.titleContainer.worldBound.height
+                                  + Model.OutputDefaultPort.localBound.position.y
+                                  + NodeConfig.ManualCreateYOffset)
+                                  / Node.GraphViewer.scale;
 
-                        // Width offset.
                         result.x -= Node.localBound.width;
 
                         break;
-                    case C_Alignment_HorizontalType.Middle:
+                    case HorizontalAlignmentType.MIDDLE:
 
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                        result.y -= (Node.titleContainer.worldBound.height
+                                  + Model.InputDefaultPort.localBound.position.y
+                                  + NodeConfig.ManualCreateYOffset)
+                                  / Node.GraphViewer.scale;
 
-                        // Width offset.
                         result.x -= Node.localBound.width / 2;
 
                         break;
-                    case C_Alignment_HorizontalType.Right:
+                    case HorizontalAlignmentType.RIGHT:
 
-                        // Height offset.
-                        result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                        result.y -= (Node.titleContainer.worldBound.height
+                                  + Model.InputDefaultPort.localBound.position.y
+                                  + NodeConfig.ManualCreateYOffset)
+                                  / Node.GraphViewer.scale;
+
                         break;
                 }
 
-                // Apply the final position result to the node.
                 Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
             }
 
             void ConnectConnectorPort()
             {
-                // If connnector port is null then return.
+                // If connector port is null then return.
                 if (details.ConnectorPort == null)
                     return;
 
-                // Create local reference for the connector port.
-                Port connectorPort = details.ConnectorPort;
+                var port = (DefaultPort)details.ConnectorPort;
+                var isInput = port.IsInput();
 
-                // If the connector port is connecting to another port, disconnect them first.
-                if (connectorPort.connected)
+                if (port.connected)
                 {
-                    Node.GraphViewer.DisconnectPort(port: connectorPort);
+                    port.Disconnect(Node.GraphViewer);
                 }
 
-                // Connect the ports and retrieve the new edge.
-                Edge edge;
-                if (connectorPort.IsInput())
-                {
-                    edge = Node.GraphViewer.ConnectPorts
-                           (
-                               Model.OutputPort,
-                               connectorPort
-                           );
-                }
-                else
-                {
-                    edge = Node.GraphViewer.ConnectPorts
-                           (
-                               outputPort: connectorPort,
-                               inputPort: Model.InputPort
-                           );
-                }
+                var edge = EdgeManager.Instance.Connect
+                (
+                    output: !isInput ? port : Model.OutputDefaultPort,
+                    input: isInput ? port : Model.InputDefaultPort
+                );
 
-                // Register default edge callbacks to the edge.
-                DefaultEdgeCallbacks.Register(edge: edge);
+                Node.GraphViewer.Add(edge);
             }
 
             void ShowNodeOnGraph()
             {
-                Node.RemoveFromClassList(StylesConfig.Global_Visible_Hidden);
+                Node.RemoveFromClassList(StyleConfig.Instance.Global_Visible_Hidden);
             }
         }
     }

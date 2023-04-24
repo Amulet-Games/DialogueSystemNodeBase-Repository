@@ -1,28 +1,38 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class EndNodeModel : NodeModelBase
+    public class EndNodeModel : NodeModelFrameBase<EndNode>
     {
         /// <summary>
-        /// Holds the enum field that determines what to do with the dialogue when it reaches its end.
+        /// The input default port of the node.
         /// </summary>
-        public DialogueOverHandleTypeEnumContainer dialogueOverHandleType_EnumContainer;
-
-
-        // ----------------------------- Ports -----------------------------
-        /// <summary>
-        /// Port that allows the other nodes to connect to this node.
-        /// </summary>
-        public DefaultPort InputPort;
+        public DefaultPort InputDefaultPort;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the end node model module class.
         /// </summary>
-        public EndNodeModel()
+        /// <param name="node">The node module to set for.</param>
+        public EndNodeModel(EndNode node)
         {
-            dialogueOverHandleType_EnumContainer = new();
+            Node = node;
+        }
+
+
+        // ----------------------------- Remove Cache Ports All -----------------------------
+        /// <inheritdoc />
+        public override void RemoveCachePortsAll()
+        {
+            Node.GraphViewer.SerializeHandler.RemoveCachePort(port: InputDefaultPort);
+        }
+
+
+        // ----------------------------- Disconnect Ports All -----------------------------
+        /// <inheritdoc />
+        public override void DisconnectPortsAll()
+        {
+            InputDefaultPort.Disconnect(Node.GraphViewer);
         }
     }
 }

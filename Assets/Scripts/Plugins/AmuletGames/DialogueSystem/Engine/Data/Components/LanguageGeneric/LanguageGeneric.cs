@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AG.DS
@@ -8,7 +7,7 @@ namespace AG.DS
     public class LanguageGeneric<T>
     {
         /// <summary>
-        /// A serializable dictionary that takes language index as TKey and typed object as TValue.
+        /// A serializable dictionary that takes language index as TKey and type object as TValue.
         /// </summary>
         [SerializeField] public SerializableDictionary<G_LanguageType, T> ValueByLanguageType;
 

@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
-using TMPro;
+//using TMPro;
 
 namespace AG
 {
@@ -9,7 +9,7 @@ namespace AG
     public class DialogueOption : MonoBehaviour
     {
         [Header("UI (Drops.)")]
-        public TMP_Text optionText;
+        //public TMP_Text optionText;
         public Button optionBtn;
 
         [Header("Canvas (Drops.)")]

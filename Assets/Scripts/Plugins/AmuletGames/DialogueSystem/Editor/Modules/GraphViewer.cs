@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -37,7 +35,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the graph viewer module class.
         /// </summary>
-        /// <param name="dsWindow">Dialogue system's editor window module.</param>
+        /// <param name="dsWindow">The editor window module to set for.</param>
         public GraphViewer(DialogueEditorWindow dsWindow)
         {
             this.dsWindow = dsWindow;
@@ -50,11 +48,7 @@ namespace AG.DS
 
         // ----------------------------- Post Setup -----------------------------
         /// <summary>
-        /// Post setup for the class, used to initialize internal fields, create a new graph viewer module
-        /// <br>and setups it's initial properties.</br>
-        /// <para></para>
-        /// <br>It's called by dialogue editor window, and executed after the creation of other module classes.</br>
-        /// <br>But also before the serialize handler loading the dialogue system data.</br>
+        /// Post setup for the class.
         /// </summary>
         public void PostSetup()
         {
@@ -80,8 +74,7 @@ namespace AG.DS
 
             void SetupGridBackground()
             {
-                // GOAL: Add a visible grid to the background.
-
+                // Add a visible grid to the background.
                 GridBackground grid = new();
                 Insert(index: 0, element: grid);
                 grid.StretchToParentSize();
@@ -134,24 +127,13 @@ namespace AG.DS
 
             void AddStyleSheet()
             {
-                styleSheets.Add(StylesConfig.DSGraphViewStyle);
+                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSGraphViewerStyle);
             }
 
             void AddGraphToWindowRoot()
             {
                 dsWindow.rootVisualElement.Add(this);
             }
-        }
-
-
-        // ----------------------------- Destruct -----------------------------
-        /// <summary>
-        /// Destruct for the class. Called during <see cref="DialogueEditorWindow.OnDisable"/>.
-        /// </summary>
-        public void Destruct()
-        {
-            // Remove the class from the window root hierarchy.
-            dsWindow.rootVisualElement.Remove(this);
         }
 
 
@@ -165,10 +147,10 @@ namespace AG.DS
         {
             if (!dsWindow.hasUnsavedChanges)
             {
-                // If users created new edges, removed any visual elements or moved any visual elements,
+                // If user created any new edges, removed any visual elements or moved any visual elements,
                 if (change.edgesToCreate != null
-                    || change.elementsToRemove != null
-                        || change.movedElements != null
+                 || change.elementsToRemove != null
+                 || change.movedElements != null
                 )
                 {
                     // invoke GraphViewChangedEvent.
@@ -182,9 +164,6 @@ namespace AG.DS
 
         /// <summary>
         /// The action to invoke when the user requested to display the node creation window.
-        /// <para></para>
-        /// References:
-        /// <br>See: <see cref="PostSetup()"/></br>
         /// </summary>
         /// <param name="context">A struct that represents the context when the user initiates creating a graph node.</param>
         void NodeCreationRequestAction(NodeCreationContext context)
@@ -207,84 +186,37 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The action to invoke when graph elements are selected and deleted, and override the
-        /// <br>base graph viewer behaviour on how to react if different types of elements are deleted.</br>
-        /// <para></para>
-        /// References:
-        /// <br>See: <see cref="PostSetup()"/></br>
+        /// The action to invoke when deleting any selected graph elements. 
         /// </summary>
         /// <param name="operationName">Name of operation for undo/redo labels.</param>
         /// <param name="askUser">Whether or not to ask the user.</param>
         void GraphDeleteSelectionAction(string operationName, AskUser askUser)
         {
-            Type edgeType;
-
-            List<NodeBase> nodesToDelete;
-            List<Edge> edgesToDelete;
-
-            int selectionCount;
-            int nodesToDeleteCount;
-
-            SetupDeletingList();
-
-            RearrangeDeletingList();
-
-            DeleteEdgesFromList();
-
-            DeleteNodesFromList();
+            DeleteSelectedElements();
 
             InvokeDSWindowChangedEvent();
 
-            void SetupDeletingList()
+            void DeleteSelectedElements()
             {
-                edgeType = typeof(Edge);
-
-                nodesToDelete = new();
-                edgesToDelete = new();
-
-                selectionCount = selection.Count;
-                nodesToDeleteCount = 0;
-            }
-
-            void RearrangeDeletingList()
-            {
+                var selectionCount = selection.Count;
                 for (int i = 0; i < selectionCount; i++)
                 {
-                    // If the selected graph element is a node.
                     if (selection[i] is NodeBase node)
                     {
-                        nodesToDelete.Add(node);
-                        nodesToDeleteCount++;
-                        continue;
-                    }
+                        node.PreManualRemoveAction();
 
-                    // If the selected graph element is an edge.
-                    if (selection[i].GetType() == edgeType)
+                        Remove(node);
+
+                        node.PostManualRemoveAction();
+                    }
+                    else if (selection[i] != null && selection[i] is EdgeBase edge)
                     {
-                        edgesToDelete.Add((Edge)selection[i]);
-                        continue;
+                        edge.PreManualRemoveAction();
+
+                        Remove(edge);
+
+                        edge.PostManualRemoveAction();
                     }
-                }
-            }
-
-            void DeleteEdgesFromList()
-            {
-                for (int i = 0; i < edgesToDelete.Count; i++)
-                {
-                    edgesToDelete[i].PreManualRemovedAction();
-                    DisconnectPort(edge: edgesToDelete[i]);
-                }
-            }
-
-            void DeleteNodesFromList()
-            {
-                for (int i = 0; i < nodesToDeleteCount; i++)
-                {
-                    nodesToDelete[i].PreManualRemovedAction();
-
-                    RemoveElement(graphElement: nodesToDelete[i]);
-
-                    nodesToDelete[i].PostManualRemovedAction();
                 }
             }
 
@@ -300,9 +232,6 @@ namespace AG.DS
         /// <para></para>
         /// <br>Different than "Focus In", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
-        /// <para></para>
-        /// References:
-        /// <br>See: <see cref="PostSetup"/></br>
         /// </summary>
         /// <param name="evt">Registering event.</param>
         void GraphFocusAction(FocusEvent evt) => dsWindow.IsGraphViewerFocus = true;
@@ -313,9 +242,6 @@ namespace AG.DS
         /// <para></para>
         /// <br>Different than "Focus Out", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
-        /// <para></para>
-        /// References:
-        /// <br>See: <see cref="PostSetup"/></br>
         /// </summary>
         /// <param name="evt">Registering event.</param>
         void GraphBlurAction(BlurEvent evt) => dsWindow.IsGraphViewerFocus = false;
@@ -361,110 +287,64 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Reframe Graph Services -----------------------------
+        // ----------------------------- Reframe Graph -----------------------------
         /// <summary>
         /// Focus view all elements in the graph.
         /// </summary>
         public void ReframeGraphAll() => FrameAll();
 
 
-        // ----------------------------- Retrieve Current Event Mouse Position Services -----------------------------
+        // ----------------------------- Retrieve Current Event Mouse Position -----------------------------
         /// <summary>
         /// Returns the vector2 value of the current mouse position on screen whenver an unity's event is invoked.
         /// <para>Note that if there's no event getting invoked currently, this method may give you an null reference exception.</para>
         /// </summary>
-        public static Vector2 GetCurrentEventMousePosition() =>
-            GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
+        public static Vector2 GetCurrentEventMousePosition() => GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
 
 
-        // ----------------------------- Manipulate Port Connection Services -----------------------------
+        // ----------------------------- Remove -----------------------------
         /// <summary>
-        /// Disconnects the given single port from its connecting opponent port.
+        /// Remove the given edge from the graph, and remove it from the serialize handler's cache.
         /// </summary>
-        /// <param name="port">The target port to start the disconnection from.</param>
-        public void DisconnectPort(Port port)
-        { 
-            Edge edge = port.connections.First();
-
-            port.Disconnect(edge);
-
-            if (port.IsInput())
-            {
-                edge.output.Disconnect(edge);
-            }
-            else
-            {
-                edge.input.Disconnect(edge);
-            }
-
+        /// <param name="edge">The targeting edge.</param>
+        public void Remove(EdgeBase edge)
+        {
             RemoveElement(edge);
+            SerializeHandler.RemoveCacheEdge(edge);
         }
 
 
         /// <summary>
-        /// Disconnects any single port that are connecting through the given edge.
+        /// Remove the given noe from the graph, and remove it from the serialize handler's cache.
         /// </summary>
-        /// <param name="edge">The edge of the two ports that are disconnecting.</param>
-        public void DisconnectPort(Edge edge)
+        /// <param name="edge">The targeting edge.</param>
+        public void Remove(NodeBase node)
         {
-            edge.input.Disconnect(edge);
-            edge.output.Disconnect(edge);
-            RemoveElement(edge);
+            RemoveElement(node);
+            SerializeHandler.RemoveCacheNode(node);
+        }
+
+
+        // ----------------------------- Add -----------------------------
+        /// <summary>
+        /// Add the given edge to the graph, and add it to the serialize handler's cache.
+        /// </summary>
+        /// <param name="edge">The targeting edge.</param>
+        public void Add(EdgeBase edge)
+        {
+            AddElement(edge);
+            SerializeHandler.AddCacheEdge(edge);
         }
 
 
         /// <summary>
-        /// Disconnects multi edge port from each of its connecting opponent port.
+        /// Add the given node to the graph, and add it to the serialize handler's cache.
         /// </summary>
-        /// <param name="port">The target port to start the disconnection from.</param>
-        public void DisconnectPortMulti(Port port)
+        /// <param name="node">The target node.</param>
+        public void Add(NodeBase node)
         {
-            Edge[] connections = port.connections.ToArray();
-            Edge edge;
-
-            for (int i = 0; i < connections.Length; i++)
-            {
-                edge = connections[i];
-
-                port.Disconnect(edge);
-
-                if (port.IsInput())
-                {
-                    edge.output.Disconnect(edge);
-                }
-                else
-                {
-                    edge.input.Disconnect(edge);
-                }
-
-                RemoveElement(edge);
-            }
-        }
-
-
-        /// <summary>
-        /// Creates an new edge and connects the two given ports with it.
-        /// </summary>
-        /// <param name="outputPort">The output port to set for.</param>
-        /// <param name="inputPort">The input port to set for.</param>
-        public Edge ConnectPorts(Port outputPort, Port inputPort)
-        {
-            // Create an new edge.
-            Edge edge = new()
-            {
-                output = outputPort,
-                input = inputPort
-            };
-
-            // Connect to the edge.
-            edge.output.Connect(edge);
-            edge.input.Connect(edge);
-
-            // Add the edge to the graph.
-            Add(edge);
-
-            // Return edge
-            return edge;
+            AddElement(node);
+            SerializeHandler.AddCacheNode(node);
         }
     }
 }

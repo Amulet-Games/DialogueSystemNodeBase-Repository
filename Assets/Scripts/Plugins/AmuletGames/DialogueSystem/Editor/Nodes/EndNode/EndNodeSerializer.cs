@@ -12,8 +12,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the end node serializer module class.
         /// </summary>
-        /// <param name="node">Node of which this serializer is connecting upon.</param>
-        /// <param name="model">Model of which this serializer is connecting upon.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public EndNodeSerializer(EndNode node, EndNodeModel model)
         {
             Node = node;
@@ -23,27 +23,19 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void SaveNode(DialogueSystemData dsData)
+        public override void Save(DialogueSystemData dsData)
         {
             EndNodeData data = new();
 
             SaveBaseValues(data: data);
 
-            SavePortsGUID();
-
-            SaveDialogueOverHandleType();
+            SavePorts();
 
             AddData();
 
-            void SavePortsGUID()
+            void SavePorts()
             {
-                data.InputPortGUID = Model.InputPort.name;
-            }
-
-            void SaveDialogueOverHandleType()
-            {
-                data.DialogueOverHandleTypeEnumIndex =
-                    Model.dialogueOverHandleType_EnumContainer.Value;
+                Model.InputDefaultPort.Save(data.InputPortData);
             }
 
             void AddData()
@@ -55,25 +47,15 @@ namespace AG.DS
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void LoadNode(EndNodeData data)
+        public override void Load(EndNodeData data)
         {
             LoadBaseValues(data);
 
-            LoadPortsGUID();
+            LoadPorts();
 
-            LoadDialogueOverHandleType();
-
-            void LoadPortsGUID()
+            void LoadPorts()
             {
-                Model.InputPort.name = data.InputPortGUID;
-            }
-
-            void LoadDialogueOverHandleType()
-            {
-                Model.dialogueOverHandleType_EnumContainer.LoadContainerValue
-                (
-                    data: data.DialogueOverHandleTypeEnumIndex
-                );
+                Model.InputDefaultPort.Load(data.InputPortData);
             }
         }
     }

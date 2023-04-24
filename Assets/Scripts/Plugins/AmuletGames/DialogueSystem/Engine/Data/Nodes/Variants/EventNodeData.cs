@@ -8,21 +8,21 @@ namespace AG.DS
     public class EventNodeData : NodeDataBase
     {
         /// <summary>
-        /// The data's input port GUID value.
+        /// The data's input port data.
         /// </summary>
-        [SerializeField] public string InputPortGUID;
+        [SerializeField] public PortDataBase InputPortData;
 
 
         /// <summary>
-        /// The data's output port GUID value.
+        /// The data's output port data.
         /// </summary>
-        [SerializeField] public string OutputPortGUID;
+        [SerializeField] public PortDataBase OutputPortData;
 
 
         /// <summary>
-        /// The data's event molder data.
+        /// The data's event modifier model group data.
         /// </summary>
-        [SerializeField] public EventMolderData EventMolderData;
+        [SerializeField] public EventModifierModelGroupData EventModifierModelGroupData;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -31,7 +31,9 @@ namespace AG.DS
         /// </summary>
         public EventNodeData()
         {
-            EventMolderData = new();
+            InputPortData = new();
+            OutputPortData = new();
+            EventModifierModelGroupData = new();
         }
     }
 }

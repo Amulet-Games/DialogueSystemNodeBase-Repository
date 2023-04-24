@@ -1,6 +1,7 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.Windows;
 
 namespace AG.DS
 {
@@ -15,8 +16,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the end node presenter module class.
         /// </summary>
-        /// <param name="node">Node of which this presenter is connecting upon.</param>
-        /// <param name="model">Model of which this presenter is connecting upon.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public EndNodePresenter(EndNode node, EndNodeModel model)
         {
             Node = node;
@@ -26,81 +27,50 @@ namespace AG.DS
 
         // ----------------------------- Makers -----------------------------
         /// <inheritdoc />
-        public override void CreateNodeElements()
+        public override void CreatePortElements()
         {
-            base.CreateNodeElements();
-
-            AddGraphEndHandleTypeEnumField();
-
-            void AddGraphEndHandleTypeEnumField()
-            {
-                // Create a new graph end handle type enum field within the node.
-                Node.mainContainer.Add(EnumFieldFactory.GetNewEnumField
-                (
-                    enumContainer: Model.dialogueOverHandleType_EnumContainer,
-                    fieldUSS01: StylesConfig.EndNode_GraphEndHandleType_EnumField
-                ));
-            }
-        }
-
-
-        /// <inheritdoc />
-        public override void CreateNodePorts()
-        {
-            // Input port.
-            Model.InputPort = DefaultPort.CreateRootElements<Edge>
+            Model.InputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
             (
-                node: Node,
+                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
-                portlabel: StringsConfig.NodeInputLabelText,
-                isSiblings: false
+                label: StringConfig.Instance.DefaultPort_Input_LabelText
             );
 
-            // Refresh ports.
+            Node.Add(Model.InputDefaultPort);
             Node.RefreshPorts();
         }
 
 
-        // ----------------------------- Add Contextual Menu Items Services -----------------------------
+        // ----------------------------- Add Contextual Menu Items -----------------------------
         /// <inheritdoc />
-        public override void AddContextualManuItems(ContextualMenuPopulateEvent evt)
+        public override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
-            AppendDisconnectInputPortAction();
+            var defaultInput = Model.InputDefaultPort;
 
-            AppendDisconnectAllPortsAction();
+            // Disconnect Input
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectInputPort_LabelText,
+                action: action => defaultInput.Disconnect(Node.GraphViewer),
+                status: defaultInput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
 
-            void AppendDisconnectInputPortAction()
-            {
-                Model.InputPort.AddContextualManuItems
-                (
-                    evt: evt,
-                    itemName: StringsConfig.DisconnectInputPortLabelText
-                );
-            }
-
-            void AppendDisconnectAllPortsAction()
-            {
-                // Disconnect All
-                evt.menu.AppendAction
-                (
-                    actionName: StringsConfig.DisconnectAllPortLabelText,
-                    action: actionEvent => DisconnectAllActionEvent(),
-                    status: Model.InputPort.connected
-                            ? DropdownMenuAction.Status.Normal
-                            : DropdownMenuAction.Status.Disabled
-                );
-
-                void DisconnectAllActionEvent()
-                {
-                    // Disconnect Input port.
-                    Model.InputPort.DisconnectPort();
-                }
-            }
+            // Disconnect All
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectAllPort_LabelText,
+                action: action => defaultInput.Disconnect(Node.GraphViewer),
+                status: defaultInput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
         }
 
 
-        // ----------------------------- Post Process Position Details Services -----------------------------
+        // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
         protected override void PostProcessPositionDetails(NodeCreationDetails details)
         {
@@ -112,51 +82,45 @@ namespace AG.DS
 
             void AlignConnectorPosition()
             {
-                // Create a new vector2 result variable to cache the node's current local bound position.
                 Vector2 result = Node.localBound.position;
 
-                // Height offset.
-                result.y -= (Node.titleContainer.worldBound.height + Model.InputPort.localBound.position.y + NodesConfig.ManualCreateYOffset) / Node.GraphViewer.scale;
+                result.y -= (Node.titleContainer.worldBound.height
+                          + Model.InputDefaultPort.localBound.position.y
+                          + NodeConfig.ManualCreateYOffset)
+                          / Node.GraphViewer.scale;
 
-                if (details.HorizontalAlignType == C_Alignment_HorizontalType.Middle)
+                if (details.HorizontalAlignmentType == HorizontalAlignmentType.MIDDLE)
                 {
-                    // width offset.
                     result.x -= Node.localBound.width / 2;
                 }
 
-                // Apply the final position result to the node.
                 Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
             }
 
             void ConnectConnectorPort()
             {
-                // If connnector port is null then return.
+                // If connector port is null then return.
                 if (details.ConnectorPort == null)
                     return;
 
-                // Create local reference for the connector port.
-                Port connectorPort = details.ConnectorPort;
-
-                // If the connector port is connecting to another port, disconnect them first.
-                if (connectorPort.connected)
+                var port = details.ConnectorPort;
+                if (port.connected)
                 {
-                    Node.GraphViewer.DisconnectPort(port: connectorPort);
+                    port.Disconnect(Node.GraphViewer);
                 }
 
-                // Connect the ports and retrieve the new edge.
-                Edge edge = Node.GraphViewer.ConnectPorts
-                            (
-                                outputPort: connectorPort,
-                                inputPort: Model.InputPort
-                            );
+                var edge = EdgeManager.Instance.Connect
+                (
+                    output: (DefaultPort)port,
+                    input: Model.InputDefaultPort
+                );
 
-                // Register default edge callbacks to the edge.
-                DefaultEdgeCallbacks.Register(edge: edge);
+                Node.GraphViewer.Add(edge);
             }
 
             void ShowNodeOnGraph()
             {
-                Node.RemoveFromClassList(StylesConfig.Global_Visible_Hidden);
+                Node.RemoveFromClassList(StyleConfig.Instance.Global_Visible_Hidden);
             }
         }
     }

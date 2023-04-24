@@ -1,0 +1,25 @@
+﻿GridBackground {
+	--grid-background-color: #282828;
+	--line-color: rgba(51, 51, 51, 0.4);
+	--thick-line-color: rgba(93, 96, 92, 0.3);
+	--spacing: 11;
+}
+
+
+/* -----------------------------------------------------------  Edges ----------------------------------------------------------- */
+
+/*< -------------------- Default Edge -------------------- >*/
+.default_Edge.edge_Selected,
+.default_Edge:checked {
+
+	--selected-edge-color: rgba(59, 219, 218, 1);
+}
+
+
+/*< -------------------- Option Edge -------------------- >*/
+.option_Edge.edge_Selected,
+.option_Edge:checked {
+
+	--selected-edge-color: rgba(216, 71, 132, 1);
+	--edge-width: 4;
+}

@@ -1,0 +1,289 @@
+/* =========================================================== Event Modfiier =========================================================== */
+
+/*< ---------------------------------------------------------- Helper Button Container >*/
+.eventModifier_HelperButton_Container {
+
+	background-color: rgba(0, 0, 0, 0);
+
+	align-items: center;
+
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-direction: row;
+
+	justify-content: flex-end;
+}
+
+
+/*< ---------------------------------------------------------- Move Up Button >*/
+.eventModifier_MoveUp_Button {
+
+	background-color: rgba(0, 0, 0, 0);
+	border-color: rgba(0, 0, 0, 0);
+
+	height: 21px;
+	width: 21px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 2.5px 2px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.eventModifier_MoveUp_Button:disabled {
+
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
+}
+
+.eventModifier_MoveUp_Button:enabled:hover {
+
+	background-color: rgba(255, 255, 255, 0.133);
+}
+
+
+/*< ---------------------------------------------------------- Move Down Button >*/
+.eventModifier_MoveDown_Button {
+
+	background-color: rgba(0, 0, 0, 0);
+	border-color: rgba(0, 0, 0, 0);
+
+	height: 21px;
+	width: 21px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 2.5px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.eventModifier_MoveDown_Button:disabled {
+
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
+}
+
+.eventModifier_MoveDown_Button:enabled:hover {
+
+	background-color: rgba(255, 255, 255, 0.133);
+}
+
+
+/*< ---------------------------------------------------------- Rename Button >*/
+.eventModifier_Rename_Button {
+
+	background-color: rgba(0, 0, 0, 0);
+	border-color: rgba(0, 0, 0, 0);
+
+	height: 24px;
+	width: 24px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 2px -2px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.eventModifier_Rename_Button:disabled {
+	
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
+}
+
+.eventModifier_Rename_Button:enabled:hover {
+	
+	background-color: rgba(255, 255, 255, 0.133);
+}
+
+
+/*< ---------------------------------------------------------- Remove Button >*/
+.eventModifier_Remove_Button {
+
+	background-color: rgba(0, 0, 0, 0);
+	border-color: rgba(0, 0, 0, 0);
+
+	height: 27px;
+	width: 26.5px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 3px 2.5px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.eventModifier_Remove_Button:disabled {
+
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
+}
+
+.eventModifier_Remove_Button:enabled:hover {
+
+	background-color: rgba(255, 255, 255, 0.133);
+}
+
+
+/*< ---------------------------------------------------------- Dialogue Event Container >*/
+.eventModifier_DialogueEvent_Container {
+	
+	background-color: rgba(42, 42, 42, 1);
+
+	/* top - right - bottom - left */
+	margin: 0px 6px 0px 6px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+
+/*< ---------------------------------------------------------- Dialogue Event Label >*/
+.eventModifier_DialogueEvent_Label {
+	
+	color: rgba(210, 210, 210, 1);
+
+	-unity-font: url('project:/Assets/Data/Fonts/Inter/static/Inter-regular.ttf');
+	
+	letter-spacing: 6px;
+	word-spacing: 10px;
+
+	/* top - right - bottom - left */
+	margin: 3px 0px 0px 6px;
+	padding: 0px 0px 0px 0px;
+}
+
+
+/*< ---------------------------------------------------------- Dialogue Event Object Field >*/
+.eventModifier_DialogueEvent_ObjectField {
+
+	height: 27px;
+	width: Auto;
+
+	align-self: center;
+
+	flex-grow: 1;
+	flex-shrink: 1;
+
+	-unity-overflow-clip-box: content-box;
+
+	/* top - right - bottom - left */
+	margin: 4.5px 6px 6px 5px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+
+.eventModifier_DialogueEvent_ObjectField:hover {
+
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px 0.5px 0.5px 0.5px;
+}
+
+
+.eventModifier_DialogueEvent_ObjectField:focus {
+
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px 0.5px 0.5px 0.5px;
+}
+
+
+.eventModifier_DialogueEvent_ObjectField
+.unity-object-field__input {
+
+	background-color: rgba(32, 32, 32, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+
+.eventModifier_DialogueEvent_ObjectField:hover
+.unity-object-field__input,
+
+.eventModifier_DialogueEvent_ObjectField:focus
+.unity-object-field__input{
+
+	/* top - right - bottom - left */
+	margin: -1px -1px -1px -1px;
+}
+
+
+/*< ---------------------------------------------------------- Dialogue Event Object Field Icon >*/
+.eventModifier_DialogueEvent_ObjectField
+.objectField_Icon {
+
+	height: 18.5px;
+	width: 17px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0.5px 4.5px;
+	padding: 0px 0px 0px 0px;
+}
+
+
+/*< ---------------------------------------------------------- Dialogue Event Object Field Selector >*/
+.eventModifier_DialogueEvent_ObjectField
+.unity-object-field__input
+.unity-object-field__selector {
+	
+	background-color: rgba(0, 0, 0, 0);
+
+	height: 18px;
+	width: 20px;
+
+	/* top - right - bottom - left */
+	margin: 0px 2px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+
+.eventModifier_DialogueEvent_ObjectField
+.unity-object-field__input
+.unity-object-field__selector:hover {
+	
+	background-color: rgba(76, 76, 76, 1);
+}
+
+
+/*< ---------------------------------------------------------- Dialogue Event Object Field Label >*/
+.eventModifier_DialogueEvent_ObjectField
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label {
+	
+	color: rgba(255, 255, 255, 1);
+
+	font-size: 13px;
+
+	align-self: Center;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium.asset');
+	
+	/* top - right - bottom - left */
+	margin: 0px 3px 0px 5px;
+	padding: 0px 0px 0px 0px;
+}
+
+.eventModifier_DialogueEvent_ObjectField.objectField_Empty
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label {
+	
+	color: rgba(101, 101, 101, 1);
+}

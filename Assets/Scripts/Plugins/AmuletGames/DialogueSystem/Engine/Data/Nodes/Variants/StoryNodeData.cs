@@ -8,15 +8,15 @@ namespace AG.DS
     public class StoryNodeData : NodeDataBase
     {
         /// <summary>
-        /// The data's input port GUID value.
+        /// The data's input port data.
         /// </summary>
-        [SerializeField] public string InputPortGUID;
+        [SerializeField] public PortDataBase InputPortData;
 
 
         /// <summary>
-        /// The data's output port GUID value.
+        /// The data's output port data.
         /// </summary>
-        [SerializeField] public string OutputPortGUID;
+        [SerializeField] public PortDataBase OutputPortData;
 
 
         /// <summary>
@@ -59,5 +59,16 @@ namespace AG.DS
         /// The data's CSV GUID value.
         /// </summary>
         [SerializeField] public string CsvGUID;
+
+
+        // ----------------------------- Constructor -----------------------------
+        /// <summary>
+        /// Constructor of the story node data class.
+        /// </summary>
+        public StoryNodeData()
+        {
+            InputPortData = new();
+            OutputPortData = new();
+        }
     }
 }

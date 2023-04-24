@@ -1,0 +1,879 @@
+/*< -------------------- Condition -------------------- >*/
+.modifier_Condition_Main_Box {
+
+	background-color: rgba(35, 35, 35, 1);
+
+	align-self: flex-end;
+
+	justify-content: space-between;
+
+	flex-direction: row;
+	flex-grow: 1;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_FirstTerm_ObjectField {
+	
+	height: 28px;
+	width: Auto;
+
+	min-width: 230px;
+
+	align-self: flex-start;
+
+	flex-grow: 1;
+	flex-shrink: 1;
+
+	-unity-overflow-clip-box: content-box;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 6px 6px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Condition_FirstTerm_ObjectField:hover {
+	
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Condition_FirstTerm_ObjectField:focus {
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Condition_FirstTerm_ObjectField
+.unity-object-field__input {
+	
+	background-color: rgba(51, 51, 51, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Condition_FirstTerm_ObjectField:hover
+.unity-object-field__input,
+
+.modifier_Condition_FirstTerm_ObjectField:focus
+.unity-object-field__input{
+	
+	/* top - right - bottom - left */
+	margin: -1.5px -1.5px -1.5px -1.5px;
+}
+
+.modifier_Condition_FirstTerm_ObjectField
+.objectField_Icon {
+
+	height: 13px;
+	width: 15px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 5px;
+	padding: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_FirstTerm_ObjectField
+.unity-object-field__input
+.unity-object-field__selector {
+
+	/* top - right - bottom - left */
+	margin: 0px 2px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Condition_FirstTerm_ObjectField
+.unity-object-field__input
+.unity-object-field__selector:hover {
+	
+	background-color: rgba(76, 76, 76, 1);
+}
+
+.modifier_Condition_FirstTerm_ObjectField
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label {
+
+	font-size: 16px;
+
+	align-self: Center;
+
+	/* top - right - bottom - left */
+	margin: 0px 5px 0px 5px;
+	padding: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Operator_EnumField {
+
+	height: 28px;
+	width: 28px;
+
+	align-self: flex-start;
+	
+	flex-shrink: 0;
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 6px 6px;
+}
+
+.modifier_Condition_Operator_EnumField
+.unity-enum-field__input {
+	
+	background-color: rgba(58, 58, 58, 1);
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 3px 0px 3px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Condition_Operator_EnumField
+.unity-enum-field__input:hover {
+
+	background-color: rgba(80, 80, 80, 1);
+}
+
+.modifier_Condition_SecondTerm_TextField {
+
+	background-color: rgba(51, 51, 51, 1);
+
+	height: 28px;
+	width: 230px;
+
+	align-self: flex-start;
+
+	white-space: normal;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 6px 6px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Condition_SecondTerm_TextField:focus {
+	
+	background-color: rgba(62, 62, 62, 1);
+}
+
+.modifier_Condition_SecondTerm_TextField
+.textField_Icon {
+
+	height: 18px;
+	width: 18px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 3px;
+	padding: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_SecondTerm_TextField
+.unity-text-field__input {
+
+	background-color: rgba(42, 42, 42, 1);
+
+	font-size: 15px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 2.5px 0px 3px;
+	padding: 2px 4px 2px 5px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 3px 3px 3px 3px;
+}
+
+.modifier_Condition_SecondTerm_TextField
+.unity-text-field__input:hover {
+
+	/* top - right - bottom - left */
+	padding: 3px 3px 3px 4px;
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Condition_SecondTerm_FloatField {
+
+	background-color: rgba(55, 55, 55, 1);
+
+	height: 28px;
+	width: 230px;
+
+	align-self: flex-start;
+
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 6px 6px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Condition_SecondTerm_FloatField:hover {
+
+	background-color: rgba(62, 62, 62, 1);
+}
+
+.modifier_Condition_SecondTerm_FloatField:focus {
+
+	background-color: rgba(62, 62, 62, 1);
+}
+
+.modifier_Condition_SecondTerm_FloatField
+.floatField_Icon {
+
+	height: 18px;
+	width: 18px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 3px;
+	padding: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_SecondTerm_FloatField
+.unity-float-field__input {
+	
+	background-color: rgba(42, 42, 42, 1);
+
+	font-size: 16px;
+
+	align-items: stretch;
+	align-self: center;
+
+	flex-grow: 1;
+	flex-shrink: 1;
+
+	-unity-text-align: middle-left;
+
+	/* top - right - bottom - left */
+	margin: 0px 2.5px 0px 4px;
+	padding: 2px 8px 2px 8px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 3px 3px 3px 3px;
+}
+
+.modifier_Condition_SecondTerm_FloatField:hover
+.unity-float-field__input {
+
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	padding: 2px 7px 2px 6.5px;
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Condition_SecondTerm_FloatField:focus
+.unity-float-field__input {
+	
+	border-color: rgba(58, 121, 187, 1);
+	
+	/* top - right - bottom - left */
+	padding: 2px 7px 2px 6.5px;
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Condition_SecondTerm_ObjectField {
+
+	height: 28px;
+	width: Auto;
+
+	min-width: 230px;
+
+	align-self: flex-start;
+
+	flex-grow: 0;
+	flex-shrink: 0;
+
+	-unity-overflow-clip-box: content-box;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 6px 6px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Condition_SecondTerm_ObjectField:hover {
+	
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Condition_SecondTerm_ObjectField:focus {
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Condition_SecondTerm_ObjectField
+.unity-object-field__input {
+
+	background-color: rgba(51, 51, 51, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Condition_SecondTerm_ObjectField:hover
+.unity-object-field__input,
+
+.modifier_Condition_SecondTerm_ObjectField:focus
+.unity-object-field__input{
+	
+	/* top - right - bottom - left */
+	margin: -1.5px -1.5px -1.5px -1.5px;
+}
+
+.modifier_Condition_SecondTerm_ObjectField
+.objectField_Icon {
+
+	height: 13px;
+	width: 15px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 5px;
+	padding: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_SecondTerm_ObjectField
+.unity-object-field__input
+.unity-object-field__selector {
+
+	/* top - right - bottom - left */
+	margin: 0px 2px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Condition_SecondTerm_ObjectField
+.unity-object-field__input
+.unity-object-field__selector:hover {
+	
+	background-color: rgba(76, 76, 76, 1);
+}
+
+.modifier_Condition_SecondTerm_ObjectField
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label {
+
+	font-size: 16px;
+
+	align-self: Center;
+
+	/* top - right - bottom - left */
+	margin: 0px 5px 0px 5px;
+	padding: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Button_Box {
+	
+	background-color: rgba(0, 0, 0, 0);
+
+	align-self: flex-start;
+
+	/* top - right - bottom - left */
+	margin: -4px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_ChangeFieldType_Button {
+
+	background-color: rgba(0, 0, 0, 0);
+
+	height: 19px;
+	width: 16px;
+
+	/* top - right - bottom - left */
+	margin: 0px 2px 0px 4px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_ChangeFieldType_Button:hover {
+
+	background-color: rgba(80, 80, 80, 1);
+}
+
+.modifier_Condition_Remove_Button {
+
+	background-color: rgba(0, 0, 0, 0);
+
+	height: 18px;
+	width: 16px;
+
+	/* top - right - bottom - left */
+	margin: -3px 2px 0px 4px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Condition_Remove_Button:hover {
+
+	background-color: rgba(80, 80, 80, 1);
+}
+
+/*< -------------------- Event -------------------- >*/
+.modifier_Event_Main_Box {
+	
+	background-color: rgba(35, 35, 35, 1);
+
+	flex-direction: row;
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Event_ObjectField {
+
+	height: 28px;
+	width: Auto;
+
+	align-self: center;
+
+	flex-grow: 1;
+	flex-shrink: 1;
+
+	-unity-overflow-clip-box: content-box;
+
+	/* top - right - bottom - left */
+	margin: 0px 6px 6px 6px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Event_ObjectField:hover {
+
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Event_ObjectField:focus {
+
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Event_ObjectField
+.unity-object-field__input {
+	
+	background-color: rgba(51, 51, 51, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Event_ObjectField:hover
+.unity-object-field__input,
+
+.modifier_Event_ObjectField:focus
+.unity-object-field__input{
+
+	/* top - right - bottom - left */
+	margin: -1.5px -1.5px -1.5px -1.5px;
+}
+
+.modifier_Event_ObjectField
+.objectField_Icon {
+	
+	height: 18px;
+	width: 18px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 3px;
+	padding: 0px 0px 0px 2px;
+}
+
+.modifier_Event_ObjectField
+.unity-object-field__input
+.unity-object-field__selector {
+
+	height: 17px;
+	width: 19px;
+
+	/* top - right - bottom - left */
+	margin: 0px 2px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Event_ObjectField
+.unity-object-field__input
+.unity-object-field__selector:hover {
+	
+	background-color: rgba(76, 76, 76, 1);
+}
+
+.modifier_Event_ObjectField
+.unity-object-field__input 
+.unity-object-field-display 
+.unity-object-field-display__label {
+	
+	font-size: 16px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 5px;
+	padding: 0px 0px 0px 0px;
+}
+
+.modifier_Event_Remove_Button {
+	
+	background-color: rgba(58, 58, 58, 1);
+
+	height: 28px;
+	width: 28px;
+	
+	align-self: center;
+
+	-unity-slice-top: 0;
+	-unity-slice-right: 3;
+	-unity-slice-bottom: 0;
+	-unity-slice-left: 3;
+
+	/* top - right - bottom - left */
+	margin: 0px 6px 6px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Event_Remove_Button:hover,
+.modifier_Event_Remove_Button:focus.{
+	
+	background-color: rgba(80, 80, 80, 1);
+}
+
+/*< -------------------- Message -------------------- >*/
+.modifier_Message_Button_Container {
+
+	background-color: rgba(0, 0, 0, 0);
+
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-direction: row;
+
+	justify-content: flex-end;
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+}
+
+.modifier_Message_MoveUp_Button {
+
+	background-color: rgba(0, 0, 0, 0);
+	border-color: rgba(0, 0, 0, 0);
+
+	height: 21px;
+	width: 20px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 8px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Message_MoveUp_Button:disabled {
+
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.31);
+}
+
+.modifier_Message_MoveUp_Button:enabled:hover {
+
+	background-color: rgba(255, 255, 255, 0.133);
+}
+
+.modifier_Message_MoveDown_Button {
+
+	background-color: rgba(0, 0, 0, 0);
+	border-color: rgba(0, 0, 0, 0);
+
+	height: 21px;
+	width: 20px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 8px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Message_MoveDown_Button:disabled {
+
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.31);
+}
+
+.modifier_Message_MoveDown_Button:enabled:hover {
+
+	background-color: rgba(255, 255, 255, 0.133);
+}
+
+.modifier_Message_Rename_Button {
+
+	background-color: rgba(0, 0, 0, 0);
+	border-color: rgba(0, 0, 0, 0);
+
+	height: 23px;
+	width: 22px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 8px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Message_Rename_Button:disabled {
+
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.31);
+}
+
+.modifier_Message_Rename_Button:enabled:hover {
+
+	background-color: rgba(255, 255, 255, 0.133);
+}
+
+.modifier_Message_Remove_Button {
+
+	background-color: rgba(0, 0, 0, 0);
+	border-color: rgba(0, 0, 0, 0);
+
+	height: 23px;
+	width: 22px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 8px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Message_Remove_Button:disabled {
+
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.31);
+}
+
+.modifier_Message_Remove_Button:enabled:hover {
+
+	background-color: rgba(255, 255, 255, 0.133);
+}
+
+.modifier_Message_Text_TextField {
+
+	background-color: rgba(42, 42, 42, 1);
+
+	min-height: 30px;
+	height: auto;
+	width: auto;
+
+	white-space: normal;
+
+	/* top - right - bottom - left */
+	margin: 0px 6px 6px 6px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Message_Text_TextField:hover {
+	
+	background-color: rgba(42, 42, 42, 1);
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Message_Text_TextField:focus {
+	
+	background-color: rgba(42, 42, 42, 1);
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Message_Text_TextField
+.unity-text-field__input {
+
+	background-color: rgba(42, 42, 42, 1);
+	
+	font-size: 16px;
+
+	align-self: flex-start;
+
+	/* top - right - bottom - left */
+	margin: 5px 0px 2px 3px;
+	padding: 0px 7px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.modifier_Message_Text_TextField:hover
+.unity-text-field__input,
+
+.modifier_Message_Text_TextField:focus
+.unity-text-field__input {
+	
+	/* top - right - bottom - left */
+	margin: 4px -1.5px 0.5px 3px;
+}
+
+.modifier_Message_Text_TextField
+.textField_Icon {
+
+	height: 21px;
+	width: 20px;
+
+	align-self: flex-start;
+	
+	/* top - right - bottom - left */
+	margin: 4.5px 0px 0px 3px;
+	padding: 0px 0px 0px 0px;
+}
+
+.modifier_Message_Text_TextField:hover
+.textField_Icon,
+.modifier_Message_Text_TextField:focus
+.textField_Icon {
+
+	/* top - right - bottom - left */
+	margin: 3px 0px 1px 2px;
+}
+
+.modifier_Message_Audio_ObjectField {
+
+	min-height: 30px;
+	height: auto;
+	width: auto;
+
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 6px 6px 6px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Message_Audio_ObjectField:hover{
+	
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Message_Audio_ObjectField:focus{
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px 1px 1px 1px;
+}
+
+.modifier_Message_Audio_ObjectField
+.unity-object-field__input {
+	
+	background-color: rgba(42, 42, 42, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Message_Audio_ObjectField:hover
+.unity-object-field__input,
+
+.modifier_Message_Audio_ObjectField:focus
+.unity-object-field__input{
+	
+	/* top - right - bottom - left */
+	margin: -1.5px -1.5px -1.5px -1.5px;
+}
+
+.modifier_Message_Audio_ObjectField
+.objectField_Icon {
+
+	height: 21px;
+	width: 20px;
+
+	align-self: center;
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 3px;
+	padding: 0px 0px 0px 0px;
+}
+
+.modifier_Message_Audio_ObjectField
+.unity-object-field__input
+.unity-object-field__selector {
+	
+	background-color: rgba(42, 42, 42, 1);
+
+	/* top - right - bottom - left */
+	margin: 1px 2px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.modifier_Message_Audio_ObjectField
+.unity-object-field__input
+.unity-object-field__selector:hover {
+	
+	background-color: rgba(76, 76, 76, 1);
+}
+
+.modifier_Message_Audio_ObjectField
+.unity-object-field__input
+.unity-object-field-display
+.unity-object-field-display__label {
+
+	font-size: 16px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 1px 5px 0px 3px;
+	padding: 0px 0px 0px 0px;
+}

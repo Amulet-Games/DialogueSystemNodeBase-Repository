@@ -29,7 +29,7 @@ namespace AG.DS
         public static UndoRedoHandler Instance;
 
 
-        // ----------------------------- Undo Redo Services -----------------------------
+        // ----------------------------- Undo / Redo -----------------------------
         /// <summary>
         /// Reverse the last edited reversible object's data to its before state.
         /// </summary>
@@ -66,7 +66,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Push Undo Stack Services -----------------------------
+        // ----------------------------- Push Undo Stack -----------------------------
         /// <summary>
         /// Generate a new reversible data and apply the given reversible object's data to it.
         /// <br>Then push it to the undo / redo stack.</br>
@@ -95,7 +95,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Enqueue Reversible Data Services -----------------------------
+        // ----------------------------- Enqueue Reversible Data -----------------------------
         /// <summary>
         /// Enqueue the given reversible data to the inernal queue so that it can be reused later.
         /// </summary>
@@ -104,7 +104,7 @@ namespace AG.DS
             reversibleDataPool.Enqueue(target);
 
 
-        // ----------------------------- Create Reversible Data Tasks -----------------------------
+        // ----------------------------- Create Reversible Data -----------------------------
         /// <summary>
         /// Generate a new reversible data and apply the given reversible data to it.
         /// </summary>

@@ -14,22 +14,18 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the story node component class.
         /// </summary>
-        /// <param name="details">The connecting creation details to set for.</param>
-        /// <param name="graphViewer">Reference of the dialogue system's graph viewer module.</param>
+        /// <param name="details">The node creation details to set for.</param>
+        /// <param name="graphViewer">The graph viewer module to set for.</param>
         public StoryNode
         (
             NodeCreationDetails details,
             GraphViewer graphViewer
         )
-            : base(StringsConfig.StoryNodeDefaultTitleText, graphViewer)
+            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleText, graphViewer: graphViewer)
         {
             SetupFrameFields();
 
             CreateNodeElements();
-
-            CreateNodePorts();
-
-            PostProcessNodeWidth();
 
             PostProcessNodePosition();
 
@@ -39,30 +35,15 @@ namespace AG.DS
 
             void SetupFrameFields()
             {
-                StoryNodeModel model = new();
-
-                Presenter = new(node: this, model: model);
-                Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model);
+                Model = new(node: this);
+                Presenter = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, model: Model);
             }
 
             void CreateNodeElements()
             {
-                Presenter.CreateNodeElements();
-            }
-
-            void CreateNodePorts()
-            {
-                Presenter.CreateNodePorts();
-            }
-
-            void PostProcessNodeWidth()
-            {
-                Presenter.PostProcessNodeWidth
-                (
-                    minWidth: NodesConfig.StoryNodeMinWidth,
-                    widthBuffer: NodesConfig.StoryNodeWidthBuffer
-                );
+                Presenter.CreatePortElements();
             }
 
             void PostProcessNodePosition()
@@ -72,7 +53,7 @@ namespace AG.DS
 
             void AddStyleSheet()
             {
-                styleSheets.Add(StylesConfig.DSStoryNodeStyle);
+                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSStoryNodeStyle);
             }
         }
 
@@ -82,60 +63,41 @@ namespace AG.DS
         /// Constructor of the story node component class.
         /// <para>Specifically used when the node is created by the previously saved data.</para>
         /// </summary>
-        /// <param name="data">The given node data to load from.</param>
-        /// <param name="graphViewer">Reference of the dialogue system's graph viewer module.</param>
+        /// <param name="data">The node data to load from.</param>
+        /// <param name="graphViewer">The graph viewer module to set for.</param>
         public StoryNode
         (
             StoryNodeData data,
             GraphViewer graphViewer
         )
-            : base(StringsConfig.StoryNodeDefaultTitleText, graphViewer)
+            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleText, graphViewer: graphViewer)
         {
             SetupFrameFields();
 
             CreateNodeElements();
 
-            CreateNodePorts();
-
-            PostProcessNodeWidth();
-
             AddStyleSheet();
 
-            LoadNode(data);
+            Serializer.Load(data);
 
             NodeCreatedAction();
 
             void SetupFrameFields()
             {
-                StoryNodeModel model = new();
-
-                Presenter = new(node: this, model: model);
-                Serializer = new(node: this, model: model);
-                Callback = new(node: this, model: model);
+                Model = new(node: this);
+                Presenter = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, model: Model);
             }
 
             void CreateNodeElements()
             {
-                Presenter.CreateNodeElements();
-            }
-
-            void CreateNodePorts()
-            {
-                Presenter.CreateNodePorts();
-            }
-
-            void PostProcessNodeWidth()
-            {
-                Presenter.PostProcessNodeWidth
-                (
-                    minWidth: NodesConfig.StoryNodeMinWidth,
-                    widthBuffer: NodesConfig.StoryNodeWidthBuffer
-                );
+                Presenter.CreatePortElements();
             }
 
             void AddStyleSheet()
             {
-                styleSheets.Add(StylesConfig.DSStoryNodeStyle);
+                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSStoryNodeStyle);
             }
         }
     }

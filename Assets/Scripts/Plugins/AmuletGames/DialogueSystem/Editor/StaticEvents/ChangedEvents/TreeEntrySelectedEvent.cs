@@ -8,7 +8,7 @@ namespace AG.DS
         /// TreeEntrySelectedEvent, which'll be invoked when a search entry is selected in the search
         /// <br>tree window by user.</br> 
         /// </summary>
-        public static event Action Event;
+        static event Action mEvent;
 
 
         /// <summary>
@@ -16,7 +16,17 @@ namespace AG.DS
         /// </summary>
         public static void Clear()
         {
-            Event = null;
+            mEvent = null;
+        }
+
+
+        /// <summary>
+        /// Register the given action to the event.
+        /// </summary>
+        /// <param name="action">The action to register with.</param>
+        public static void Register(Action action)
+        {
+            mEvent += action;
         }
 
 
@@ -25,7 +35,7 @@ namespace AG.DS
         /// </summary>
         public static void Invoke()
         {
-            Event?.Invoke();
+            mEvent?.Invoke();
         }
     }
 }

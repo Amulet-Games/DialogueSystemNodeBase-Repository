@@ -5,7 +5,7 @@ namespace AG
     [Serializable]
     public class StringVariable : VariableFrameBase<string>
     {
-        // ----------------------------- Compare Value Services -----------------------------
+        // ----------------------------- Comparison Methods -----------------------------
         /// <inheritdoc />
         public override bool Equal(string target) => VariableValue == target;
     }

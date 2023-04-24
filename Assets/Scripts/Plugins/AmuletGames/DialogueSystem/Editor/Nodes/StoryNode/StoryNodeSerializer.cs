@@ -12,8 +12,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the story node serializer module class.
         /// </summary>
-        /// <param name="node">Node of which this serializer is connecting upon.</param>
-        /// <param name="model">Model of which this serializer is connecting upon.</param>
+        /// <param name="node">The node module to set for.</param>
+        /// <param name="model">The model module to set for.</param>
         public StoryNodeSerializer(StoryNode node, StoryNodeModel model)
         {
             Node = node;
@@ -23,15 +23,13 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void SaveNode(DialogueSystemData dsData)
+        public override void Save(DialogueSystemData dsData)
         {
             StoryNodeData data = new();
 
             SaveBaseValues(data: data);
 
-            SavePortsGUID();
-
-            SaveFirstContentBoxContainers();
+            SavePorts();
 
             SaveSecondContentBoxContainers();
 
@@ -39,34 +37,16 @@ namespace AG.DS
 
             AddData();
 
-            void SavePortsGUID()
+            void SavePorts()
             {
-                data.InputPortGUID = Model.InputPort.name;
-                data.OutputPortGUID = Model.OutputPort.name;
-            }
-
-            void SaveFirstContentBoxContainers()
-            {
-                // Character SO.
-                data.DialogueCharacter = Model.CharacterObjectContainer.Value;
-
-                // Audio clip.
-                Model.AudioClipContainer.SaveContainerValue(data.AudioClipLanguageGeneric);
-
-                // First textline text.
-                Model.FirstTextlineTextContainer.SaveContainerValue(data.FirstTextlineTextLanguageGeneric);
+                Model.InputDefaultPort.Save(data.InputPortData);
+                Model.OutputDefaultPort.Save(data.OutputPortData);
             }
 
             void SaveSecondContentBoxContainers()
             {
                 // Second line trigger type enum.
                 data.SecondLineTriggerTypeEnumIndex = Model.SecondLineTriggerTypeEnumContainer.Value;
-
-                // Duration float.
-                data.DurationFloat = Model.DurationFloatContainer.Value;
-
-                // Second textline text.
-                Model.SecondTextlineTextContainer.SaveContainerValue(data.SecondTextlineTextLanguageGeneric);
             }
 
             void Save_CSV_GUID()
@@ -84,46 +64,26 @@ namespace AG.DS
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void LoadNode(StoryNodeData data)
+        public override void Load(StoryNodeData data)
         {
             LoadBaseValues(data);
 
-            LoadPortsGUID();
-
-            LoadFirstContentBoxContainers();
+            LoadPorts();
 
             LoadSecondContentBoxContainers();
 
             Load_CSV_Guid();
 
-            void LoadPortsGUID()
+            void LoadPorts()
             {
-                Model.InputPort.name = data.InputPortGUID;
-                Model.OutputPort.name = data.OutputPortGUID;
-            }
-
-            void LoadFirstContentBoxContainers()
-            {
-                // Character SO.
-                Model.CharacterObjectContainer.LoadContainerValue(data.DialogueCharacter);
-
-                // Audio clip.
-                Model.AudioClipContainer.LoadContainerValue(data.AudioClipLanguageGeneric);
-
-                // First textline text.
-                Model.FirstTextlineTextContainer.LoadContainerValue(data.FirstTextlineTextLanguageGeneric);
+                Model.InputDefaultPort.Load(data.InputPortData);
+                Model.OutputDefaultPort.Load(data.OutputPortData);
             }
 
             void LoadSecondContentBoxContainers()
             {
                 // Second line trigger type enum.
-                Model.SecondLineTriggerTypeEnumContainer.LoadContainerValue(data.SecondLineTriggerTypeEnumIndex);
-
-                // Duration float.
-                Model.DurationFloatContainer.LoadContainerValue(data.DurationFloat);
-
-                // Second textline text.
-                Model.SecondTextlineTextContainer.LoadContainerValue(data.SecondTextlineTextLanguageGeneric);
+                Model.SecondLineTriggerTypeEnumContainer.Load(data.SecondLineTriggerTypeEnumIndex);
             }
 
             void Load_CSV_Guid()

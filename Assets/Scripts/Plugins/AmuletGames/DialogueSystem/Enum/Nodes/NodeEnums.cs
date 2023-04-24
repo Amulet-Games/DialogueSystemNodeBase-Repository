@@ -9,8 +9,8 @@ namespace AG.DS
         Dialogue,
         End,
         Event,
-        OptionTrack,
-        OptionWindow,
+        OptionBranch,
+        OptionRoot,
         Preview,
         Start,
         Story
@@ -23,6 +23,6 @@ namespace AG.DS
         Top,
         TitleButton,
         Title,
-        Main
+        Content
     }
 }
