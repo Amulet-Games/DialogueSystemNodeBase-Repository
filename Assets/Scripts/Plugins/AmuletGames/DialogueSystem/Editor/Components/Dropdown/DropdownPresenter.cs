@@ -29,7 +29,7 @@ namespace AG.DS
 
             GetChildElements();
 
-            SetupDetails();
+            SetupDetail();
 
             RemoveDefaultStyleClass();
 
@@ -48,7 +48,7 @@ namespace AG.DS
                 menuArrowImage = toolbarMenu.ElementAt(1);
             }
 
-            void SetupDetails()
+            void SetupDetail()
             {
                 toolbarMenu.text = dropdownText;
                 

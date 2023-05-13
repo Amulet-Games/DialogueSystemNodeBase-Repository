@@ -29,7 +29,7 @@ namespace AG.DS
         /// <summary>
         /// Disconnect any edges.
         /// </summary>
-        /// <param name="graphViewer">The graph viewer module to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public abstract void Disconnect(GraphViewer graphViewer);
     }
 }

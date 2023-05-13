@@ -122,7 +122,7 @@ namespace AG.DS
         /// Set the connecting node's minimum and maximum width value.
         /// </summary>
         /// <param name="minWidth">The minimum node's width to set for.</param>
-        /// <param name="widthBuffer">The width buffer to to set for, combine it with the minimum width to get the node's maximum width.</param>
+        /// <param name="widthBuffer">The width buffer to set for, combine it with the minimum width to get the node's maximum width.</param>
         public void PostProcessSetWidthValues(float minWidth, float widthBuffer)
         {
             SetWidthValueNode();

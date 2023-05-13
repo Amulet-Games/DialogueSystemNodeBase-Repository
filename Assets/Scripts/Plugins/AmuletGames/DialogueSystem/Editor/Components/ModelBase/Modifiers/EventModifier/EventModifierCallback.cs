@@ -66,7 +66,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Reset Internal Service -----------------------------
+        // ----------------------------- Reset Internal -----------------------------
         /// <summary>
         /// Reset all the internal properties within the callback class.
         /// </summary>
@@ -94,7 +94,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Register Events Service -----------------------------
+        // ----------------------------- Register Events -----------------------------
         /// <summary>
         /// Register events to the event modifier.
         /// </summary>

@@ -28,15 +28,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the graph viewer module.
+        /// Reference of the graph viewer element.
         /// </summary>
         GraphViewer graphViewer;
 
 
         /// <summary>
-        /// Reference of the headBar module.
+        /// Reference of the headBar element.
         /// </summary>
-        Headbar headBar;
+        Headbar headbar;
 
 
         /// <summary>
@@ -52,18 +52,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Is the graph viewer module in focus at the moment?
-        /// </summary>
-        public bool IsGraphViewerFocus;
-
-
-        /// <summary>
-        /// Is the headbar module in focus at the moment?
-        /// </summary>
-        public bool IsHeadbarFocus;
-
-
-        /// <summary>
         /// Are we skipping the next OnEnable method call?
         /// </summary>
         static bool isSkipOnEnable;
@@ -74,8 +62,8 @@ namespace AG.DS
         /// Callback attribute for opening an asset in Unity (e.g the callback is fired when double clicking an asset in the Project Browser).
         /// <para>Read More https://docs.unity3d.com/2020.1/Documentation/ScriptReference/Callbacks.OnOpenAssetAttribute.html</para>
         /// </summary>
-        /// <param name="instanceId">The instance id of the opened asset. Required paramenter for the callback attribute.</param>
-        /// <param name="line">Can be ignored. Required paramenter for the callback attribute.</param>
+        /// <param name="instanceId">The instance id of the opened asset. Required parameter for the callback attribute.</param>
+        /// <param name="line">Can be ignored. Required parameter for the callback attribute.</param>
         [OnOpenAsset(0)]
         public static bool ShowWindow(int instanceId, int line)
         {
@@ -107,12 +95,12 @@ namespace AG.DS
 
         /// <summary>
         /// Performs a save action on the contents of the window.
-        /// <br>The method is overrided to include saving all the visual elements in this window.</br>
+        /// <br>The method is override to include saving all the visual elements in this window.</br>
         /// <para>Read More https://docs.unity3d.com/ScriptReference/EditorWindow.SaveChanges.html</para>
         /// </summary>
         public override void SaveChanges()
         {
-            SaveWindowAction();
+            SaveWindow();
         }
 
 
@@ -145,7 +133,7 @@ namespace AG.DS
             }
 
             // Load window
-            LoadWindowAction(isForceLoadWindow: true);
+            LoadWindow(isForceLoadWindow: true);
         }
 
 
@@ -186,7 +174,7 @@ namespace AG.DS
         /// <summary>
         /// Ask the serialize handler to save all the graph elements on the custom graph editor.
         /// </summary>
-        public void SaveWindowAction()
+        public void SaveWindow()
         {
             if (hasUnsavedChanges)
             {
@@ -201,9 +189,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Ask the serialie handler to load the saved graph elements and create them again on the graph.
+        /// Ask the serialize handler to load the saved graph elements and create them again on the graph.
         /// </summary>
-        public void LoadWindowAction(bool isForceLoadWindow)
+        public void LoadWindow(bool isForceLoadWindow)
         {
             if (isForceLoadWindow)
             {
@@ -303,8 +291,10 @@ namespace AG.DS
             // Create modules
             {
                 graphViewer = new(dsWindow: this);
-                headBar = new(dsWindow: this);
                 hotkeysHandler = new(dsWindow: this);
+
+                headbar = HeadbarPresenter.CreateElements(dsWindow: this);
+                new HeadbarCallback(headbar, dsWindow: this).RegisterEvents();
             }
 
             // Register internal events
@@ -319,7 +309,7 @@ namespace AG.DS
                 SaveToDSDataEvent.Register(action: graphViewer.SerializeHandler.SaveEdgesAndNodes);
 
                 LoadFromDSDataEvent.Register(action: graphViewer.SerializeHandler.LoadEdgesAndNodes);
-                LoadFromDSDataEvent.Register(action: headBar.RefreshTitleAndLanguage);
+                LoadFromDSDataEvent.Register(action: headbar.RefreshTitleAndLanguage);
 
                 ApplyChangesToDiskEvent.Register(action: AssetDatabase.SaveAssets);
                 ApplyChangesToDiskEvent.Register(action: SetHasUnsavedChangesToFalse);
@@ -367,10 +357,6 @@ namespace AG.DS
             // Post setup modules
             {
                 graphViewer.PostSetup();
-
-                headBar.PostSetup();
-
-                InputHint.PostSetup(graphViewer: graphViewer);
             }
         }
 
@@ -416,15 +402,15 @@ namespace AG.DS
 
         // ----------------------------- Retrieve Is Hotkey Function Available -----------------------------
         /// <summary>
-        /// Returns true if the editor window and either the graph viewer or the headbar is in focus.
+        /// Returns true if either the graph viewer element or the headbar element is in focus.
         /// </summary>
-        /// <returns>True if the editor window and either the graph viewer or the headbar is in focus.</returns>
+        /// <returns>True if either the graph viewer element or the headbar element is in focus.</returns>
         public bool IsHotkeysFunctionAvailable()
         {
             // If either the graph viewer or headbar is in focus.
-            if (IsGraphViewerFocus || IsHeadbarFocus)
+            if (graphViewer.IsFocus || headbar.IsFocus)
             {
-                // Hotkeys are allowed.
+                // Allows hotkey functions to pass.
                 return true;
             }
 

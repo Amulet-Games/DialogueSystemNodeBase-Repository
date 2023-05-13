@@ -25,7 +25,7 @@ namespace AG.DS
 
             CreateImage();
 
-            SetupDetails();
+            SetupDetail();
 
             AddImageToStyleClass();
 
@@ -36,7 +36,7 @@ namespace AG.DS
                 image = new();
             }
 
-            void SetupDetails()
+            void SetupDetail()
             {
                 if (imageSprite != null)
                     image.sprite = imageSprite;

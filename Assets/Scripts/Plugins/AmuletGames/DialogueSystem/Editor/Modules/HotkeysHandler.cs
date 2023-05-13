@@ -27,7 +27,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the dialogue system dialogue editor window.
+        /// Reference of the dialogue dialogue editor window.
         /// </summary>
         DialogueEditorWindow dsWindow;
 
@@ -42,7 +42,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the hotkeys catcher module class.
         /// </summary>
-        /// <param name="dsWindow">The editor window module to set for.</param>
+        /// <param name="dsWindow">The dialogue editor window module to set for.</param>
         public HotkeysHandler(DialogueEditorWindow dsWindow)
         {
             this.dsWindow = dsWindow;
@@ -70,14 +70,14 @@ namespace AG.DS
                 // Saving
                 if (evt.keyCode == SaveKey)
                 {
-                    dsWindow.SaveWindowAction();
+                    dsWindow.SaveWindow();
                     isKeyReleased = false;
                 }
 
                 // Loading
                 if (evt.keyCode == LoadKey)
                 {
-                    dsWindow.LoadWindowAction(false);
+                    dsWindow.LoadWindow(false);
                     isKeyReleased = false;
                 }
             }

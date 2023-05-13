@@ -15,7 +15,7 @@ namespace AG.DS
 
 
             /// <summary>
-            /// Button to remove the cell model from the gorup. 
+            /// Button to remove the cell model from the group. 
             /// </summary>
             public Button RemoveButton;
         }
@@ -147,7 +147,7 @@ namespace AG.DS
         /// <summary>
         /// Disconnect every cell model's port.
         /// </summary>
-        /// <param name="graphViewer">The graph viewer module to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public void Disconnect(GraphViewer graphViewer)
         {
             for (int i = 0; i < Cells.Count; i++)
@@ -162,7 +162,7 @@ namespace AG.DS
         /// Methods for adding menu items to the node's contextual menu, items are added at the end of the current item list.
         /// <para>This method is used inside the node frame base class, "BuildContextualManu" method.</para>
         /// </summary>
-        /// <param name="graphViewer">The graph viewer module to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="evt">The event holding the menu to populate.</param>
         public void AddContextualMenuItems
         (

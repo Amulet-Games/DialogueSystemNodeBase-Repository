@@ -18,7 +18,7 @@ namespace AG.DS
         public abstract void Setup(TEdge edge);
 
 
-        // ----------------------------- Register Events Service -----------------------------
+        // ----------------------------- Register Events -----------------------------
         /// <summary>
         /// Register events to the edge.
         /// </summary>

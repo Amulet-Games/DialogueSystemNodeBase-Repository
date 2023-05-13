@@ -13,12 +13,12 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Create a new dialgoue system's node creation connector window.
+        /// Create a new node creation connector window.
         /// <br>Since the class is a scriptable object, the method is also a constructor for the class.</br>
         /// </summary>
-        /// <param name="graphViewer">The graph viewer module to set for.</param>
-        /// <param name="dsWindow">The editor window module to set for.</param>
-        /// <returns>A new dialogue system's node creation connector window.</returns>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <param name="dsWindow">The dialogue editor window module to set for.</param>
+        /// <returns>A new node creation connector window.</returns>
         public static NodeCreationConnectorWindow CreateInstance
         (
             GraphViewer graphViewer,

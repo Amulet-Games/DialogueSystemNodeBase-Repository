@@ -1,3 +1,5 @@
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     public class FolderCallback
@@ -12,14 +14,14 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the folder callback class.
         /// </summary>
-        /// <param name="folder"></param>
+        /// <param name="folder">The folder model to set for.</param>
         public FolderCallback(FolderModel folder)
         {
             this.folder = folder;
         }
 
 
-        // ----------------------------- Register Events Service -----------------------------
+        // ----------------------------- Register Events -----------------------------
         /// <summary>
         /// Register events to the folder.
         /// </summary>
@@ -39,7 +41,7 @@ namespace AG.DS
             new CommonButtonCallback(
                 isAlert: false,
                 button: folder.ExpandButton,
-                clickEvent: folder.ExpandButtonClickEvent).RegisterEvents();
+                clickEvent: ExpandButtonClickEvent).RegisterEvents();
         }
 
 
@@ -50,6 +52,17 @@ namespace AG.DS
         {
             new FolderTitleTextFieldCallback(
                 model: folder.TitleTextFieldModel).RegisterEvents();
+        }
+
+
+        // ----------------------------- Event -----------------------------
+        /// <summary>
+        /// The event to invoke when the folder's expand button is clicked.
+        /// </summary>
+        /// <param name="evt"></param>
+        void ExpandButtonClickEvent(ClickEvent evt)
+        {
+            folder.SetIsExpand(value: !folder.IsExpand);
         }
     }
 }

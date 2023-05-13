@@ -49,7 +49,7 @@ namespace AG.DS
         /// Constructor of the node frame base class.
         /// </summary>
         /// <param name="nodeTitle">The node title to set for.</param>
-        /// <param name="graphViewer">The graph viewer module to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public NodeFrameBase
         (
             string nodeTitle,

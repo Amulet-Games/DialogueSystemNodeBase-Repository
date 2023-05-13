@@ -24,7 +24,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Register Events Service -----------------------------
+        // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
         public override void RegisterEvents()
         {
@@ -47,7 +47,7 @@ namespace AG.DS
             => LanguageChangedEvent.Register(m_LanguageChangedEvent);
 
 
-        // ----------------------------- UnRegister Events Service -----------------------------
+        // ----------------------------- UnRegister Events -----------------------------
         /// <inheritdoc />
         public override void UnregisterEvents()
         {

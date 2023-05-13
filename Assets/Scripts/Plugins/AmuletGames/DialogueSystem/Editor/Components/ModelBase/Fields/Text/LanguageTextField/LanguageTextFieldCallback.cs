@@ -27,7 +27,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Register Events Service -----------------------------
+        // ----------------------------- Register Events -----------------------------
         /// <summary>
         /// Register events to the language text field.
         /// </summary>

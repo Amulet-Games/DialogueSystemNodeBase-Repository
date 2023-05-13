@@ -34,7 +34,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Register Events Service -----------------------------
+        // ----------------------------- Register Events -----------------------------
         /// <summary>
         /// Register events to the node title text field.
         /// </summary>

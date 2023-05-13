@@ -9,19 +9,19 @@ namespace AG.DS
     public abstract class NodeCreationWindowBase : EditorWindow, ISearchWindowProvider
     {
         /// <summary>
-        /// Reference of the dialogue system's graph viewer module.
+        /// Reference of the graph viewer element.
         /// </summary>
         protected GraphViewer GraphViewer;
 
 
         /// <summary>
-        /// Reference of the dialogue system's editor window.
+        /// Reference of the dialogue editor window module.
         /// </summary>
         protected DialogueEditorWindow DsWindow;
 
 
         /// <summary>
-        /// Reference of the dialogue system's node creation details.
+        /// Reference of the node creation details.
         /// </summary>
         protected NodeCreationDetails Details;
 
@@ -92,7 +92,7 @@ namespace AG.DS
 
             void CreateNodes()
             {
-                // Retrieves the underlying node type by the convering the entryId inside the search entry.
+                // Retrieves the underlying node type by conversing the entryId inside the search entry.
                 var selectedNodeType = (N_NodeType)((NodeCreationEntry)searchTreeEntry).EntryId;
                 switch (selectedNodeType)
                 {

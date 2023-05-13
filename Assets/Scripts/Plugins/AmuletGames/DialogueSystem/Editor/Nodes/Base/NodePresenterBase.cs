@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <summary>
-    /// Holds the methods for creating the UIElements of the connecting node modele.
+    /// Holds the methods for creating the UIElements of the connecting node model.
     /// </summary>
     public abstract class NodePresenterBase
     {

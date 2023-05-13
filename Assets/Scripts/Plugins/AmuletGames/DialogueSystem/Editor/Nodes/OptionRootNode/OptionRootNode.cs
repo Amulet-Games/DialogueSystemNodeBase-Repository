@@ -15,7 +15,7 @@
         /// Constructor of the option root node component class.
         /// </summary>
         /// <param name="details">The node creation details to set for.</param>
-        /// <param name="graphViewer">The graph viewer module to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public OptionRootNode
         (
             NodeCreationDetails details,
@@ -80,7 +80,7 @@
         /// <para>Specifically used when the node is created by the previously saved data.</para>
         /// </summary>
         /// <param name="data">The node data to load from.</param>
-        /// <param name="graphViewer">The graph viewer module to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public OptionRootNode
         (
             OptionRootNodeData data,

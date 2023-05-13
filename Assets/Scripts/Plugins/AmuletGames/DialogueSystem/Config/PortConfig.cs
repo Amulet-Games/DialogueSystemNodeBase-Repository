@@ -11,7 +11,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The default dialogue system's port color.
+        /// The default port color.
         /// </summary>
         public static Color DefaultPortColor { get; } = new Color(1, 1, 1);
     }

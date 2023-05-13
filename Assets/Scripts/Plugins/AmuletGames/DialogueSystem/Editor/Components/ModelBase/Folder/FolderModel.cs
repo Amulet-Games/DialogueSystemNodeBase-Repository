@@ -49,28 +49,6 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Callback -----------------------------
-        /// <summary>
-        /// The event to invoke when the expand button is clicked.
-        /// </summary>
-        /// <param name="evt">The registering event.</param>
-        public void ExpandButtonClickEvent(ClickEvent evt)
-        {
-            SetIsExpand(value: !IsExpand);
-        }
-
-
-        /// <summary>
-        /// The action to invoke when the folder is created.
-        /// </summary>
-        public void FolderCreatedAction()
-        {
-            SetIsExpand(value: true);
-
-            EditFolderTitle();
-        }
-
-
         // ----------------------------- Serialization -----------------------------
         /// <summary>
         /// Save the folder values to the given data.
@@ -79,7 +57,6 @@ namespace AG.DS
         public void Save(FolderData data)
         {
             data.TitleText = TitleTextFieldModel.TextField.value;
-
             data.IsExpand = IsExpand;
         }
 
@@ -91,7 +68,6 @@ namespace AG.DS
         public void Load(FolderData data)
         {
             TitleTextFieldModel.Load(data.TitleText);
-
             SetIsExpand(value: data.IsExpand);
         }
 
@@ -101,7 +77,7 @@ namespace AG.DS
         /// Set the folder's IsExpand value and update its display.
         /// </summary>
         /// <param name="value">The value to set for.</param>
-        void SetIsExpand(bool value)
+        public void SetIsExpand(bool value)
         {
             IsExpand = value;
 

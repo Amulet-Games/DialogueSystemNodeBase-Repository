@@ -15,7 +15,7 @@ namespace AG.DS
         /// Constructor of the preview node component class.
         /// </summary>
         /// <param name="details">The node creation details to set for.</param>
-        /// <param name="graphViewer">The graph viewer module to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public PreviewNode
         (
             NodeCreationDetails details,
@@ -77,7 +77,7 @@ namespace AG.DS
         /// <para>Specifically used when the node is created by the previously saved data.</para>
         /// </summary>
         /// <param name="data">The node data to load from.</param>
-        /// <param name="graphViewer">The graph viewer module to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public PreviewNode
         (
             PreviewNodeData data,

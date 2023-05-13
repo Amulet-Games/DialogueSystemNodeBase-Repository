@@ -26,7 +26,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Register Events Service -----------------------------
+        // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
         public override void RegisterEvents()
         {

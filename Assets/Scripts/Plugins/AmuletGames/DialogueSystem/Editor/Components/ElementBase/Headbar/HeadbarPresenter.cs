@@ -4,12 +4,19 @@ namespace AG.DS
 {
     public class HeadbarPresenter
     {
+        /// <summary>
+        /// Method for creating the UIElements for the headbar element.
+        /// </summary>
+        /// <param name="dsWindow">The dialogue editor window module to set for.</param>
+        /// <returns>A new headbar element.</returns>
         public static Headbar CreateElements(DialogueEditorWindow dsWindow)
         {
             Headbar headbar;
             VisualElement buttonsContainer;
 
             CreateHeadbar();
+
+            SetupDetail();
 
             SetupContainers();
 
@@ -33,8 +40,13 @@ namespace AG.DS
 
             void CreateHeadbar()
             {
-                headbar = new(dsWindow);
+                headbar = new();
                 headbar.AddToClassList(StyleConfig.Instance.Headbar_Main);
+            }
+
+            void SetupDetail()
+            {
+                headbar.focusable = true;
             }
 
             void SetupContainers()

@@ -17,7 +17,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The targeting graph viewer module.
+        /// Reference of the graph viewer element.
         /// </summary>
         GraphViewer graphViewer;
 
@@ -28,7 +28,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="cell">The option port group cell model to set for.</param>
         /// <param name="group">he option port group model to set for.</param>
-        /// <param name="graphViewer">he graph viewer module to set for.</param>
+        /// <param name="graphViewer">he graph viewer element to set for.</param>
         public OptionPortGroupCellCallback
         (
             OptionPortGroupModel.CellModel cell,

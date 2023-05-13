@@ -42,7 +42,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Register Events Service -----------------------------
+        // ----------------------------- Register Events -----------------------------
         /// <summary>
         /// Register events to the content button.
         /// </summary>
@@ -71,7 +71,7 @@ namespace AG.DS
 
         // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when isAlert is set to true and the content button is clicked.
+        /// The event to invoke when the content button is clicked.
         /// </summary>
         /// <param name="evt">The registering event.</param>
         void AlertClickEvent(ClickEvent evt)

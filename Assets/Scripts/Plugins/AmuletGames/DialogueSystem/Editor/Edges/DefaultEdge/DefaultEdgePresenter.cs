@@ -16,7 +16,7 @@ namespace AG.DS
 
             SetupFrameFields();
 
-            SetupDetails();
+            SetupDetail();
 
             AddToStyleClass();
 
@@ -34,7 +34,7 @@ namespace AG.DS
                 edge.input = model.Input;
             }
 
-            void SetupDetails()
+            void SetupDetail()
             {
                 edge.focusable = true;
             }

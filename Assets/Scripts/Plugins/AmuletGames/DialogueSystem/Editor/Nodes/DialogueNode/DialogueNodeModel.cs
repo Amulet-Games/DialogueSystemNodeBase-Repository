@@ -4,7 +4,7 @@
     public class DialogueNodeModel : NodeModelFrameBase<DialogueNode>
     {
         /// <summary>
-        /// Model for the dialogue system's character scriptable object object field.
+        /// Model for the character scriptable object object field.
         /// </summary>
         public CommonObjectFieldModel<DialogueCharacter> CharacterObjectFieldModel;
 

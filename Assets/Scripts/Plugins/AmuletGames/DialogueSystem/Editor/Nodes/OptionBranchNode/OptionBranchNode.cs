@@ -14,8 +14,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the option branch node component class.
         /// </summary>
-        /// <param name="graphViewer">Reference of the dialogue system's graph viewer module.</param>
         /// <param name="details">The node creation details to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public OptionBranchNode
         (
             NodeCreationDetails details,
@@ -81,7 +81,7 @@ namespace AG.DS
         /// <para>Specifically used when the node is created by the previously saved data.</para>
         /// </summary>
         /// <param name="data">The given node data to load from.</param>
-        /// <param name="graphViewer">Reference of the dialogue system's graph viewer module.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public OptionBranchNode
         (
             OptionBranchNodeData data,

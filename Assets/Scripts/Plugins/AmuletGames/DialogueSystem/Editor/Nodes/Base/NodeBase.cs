@@ -6,7 +6,7 @@ namespace AG.DS
     public abstract class NodeBase : Node
     {
         /// <summary>
-        /// Reference of the graph viewer module in the dialogue system.
+        /// Reference of the graph viewer element.
         /// </summary>
         public GraphViewer GraphViewer;
 

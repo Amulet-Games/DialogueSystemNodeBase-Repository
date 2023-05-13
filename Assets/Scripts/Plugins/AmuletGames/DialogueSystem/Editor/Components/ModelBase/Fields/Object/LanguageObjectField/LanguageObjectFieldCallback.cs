@@ -14,7 +14,7 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the langugae object field callback class.
+        /// Constructor of the language object field callback class.
         /// </summary>
         /// <param name="model">The targeting language object field model to set for.</param>
         public LanguageObjectFieldCallback(LanguageObjectFieldModel<TObject> model)

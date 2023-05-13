@@ -30,19 +30,19 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Temporary reference of the modifier that is in the first position of the group hirerachy.
+        /// Temporary reference of the modifier that is in the first position of the group hierarchy.
         /// </summary>
         EventModifierModel tempFirstModifier;
 
 
         /// <summary>
-        /// Temporary reference of the modifier that is in the last position of the group hirerachy.
+        /// Temporary reference of the modifier that is in the last position of the group hierarchy.
         /// </summary>
         EventModifierModel tempLastModifier;
 
 
         /// <summary>
-        /// Temporary reference of the modifier that is the only one exists in the group hirerachy.
+        /// Temporary reference of the modifier that is the only one exists in the group hierarchy.
         /// </summary>
         EventModifierModel tempSoleModifier;
 
@@ -76,7 +76,7 @@ namespace AG.DS
             // Swap-to element.
             var swapToElement = swapToModifier.FolderModel.MainContainer;
 
-            // Swap hirerachy position.
+            // Swap hierarchy position.
             modifiersCache[swapFromIndex - 1] = modifier;
             modifiersCache[swapFromIndex] = swapToModifier;
 
@@ -132,7 +132,7 @@ namespace AG.DS
             // Swap-to element.
             var swapToElement = swapToModifier.FolderModel.MainContainer;
 
-            // Swap hirerachy position.
+            // Swap hierarchy position.
             modifiersCache[swapFromIndex + 1] = modifier;
             modifiersCache[swapFromIndex] = swapToModifier;
 
@@ -319,7 +319,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Create Modifier Service -----------------------------
+        // ----------------------------- Create Modifier -----------------------------
         /// <summary>
         /// Method that is mainly used with content button, to create a new event modifier model to the group.
         /// </summary>
@@ -337,9 +337,7 @@ namespace AG.DS
 
             SetEnabledMoveDownButton();
 
-            UpdateCacheCount();
-
-            ExecuteFolderCreatedAction();
+            OnModifierCreated();
 
             void SetupModifier()
             {
@@ -356,18 +354,21 @@ namespace AG.DS
                     moveDownButtonClickEvent: evt => MoveDownButtonClickAction(model),
                     renameButtonClickEvent: evt => RenameButtonClickAction(model),
                     removeButtonClickEvent: evt => RemoveButtonClickAction(model)).RegisterEvents();
+
+                MainContainer.Add(model.FolderModel.MainContainer);
             }
 
             void AddModifierToCache()
             {
-                MainContainer.Add(model.FolderModel.MainContainer);
                 modifiersCache.Add(model);
+                cacheCount++;
+                nextIndex++;
             }
 
             void SetEnabledRemoveButton()
             {
                 // If the new modifier is the first modifier added to the group.
-                if (cacheCount == 0)
+                if (cacheCount == 1)
                 {
                     model.SetEnabledRemoveButton(value: false);
 
@@ -384,7 +385,7 @@ namespace AG.DS
 
             void SetEnabledMoveUpButton()
             {
-                // If the new modifier is in the first position of the group hirerachy.
+                // If the new modifier is in the first position of the group hierarchy.
                 if (tempFirstModifier == null)
                 {
                     model.SetEnabledMoveUpButton(value: false);
@@ -403,15 +404,10 @@ namespace AG.DS
                 tempLastModifier = model;
             }
 
-            void UpdateCacheCount()
+            void OnModifierCreated()
             {
-                cacheCount++;
-                nextIndex++;
-            }
-
-            void ExecuteFolderCreatedAction()
-            {
-                model.FolderModel.FolderCreatedAction();
+                model.FolderModel.SetIsExpand(value: true);
+                model.FolderModel.EditFolderTitle();
             }
         }
     }

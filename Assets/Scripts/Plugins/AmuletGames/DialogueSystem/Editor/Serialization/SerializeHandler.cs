@@ -7,7 +7,7 @@ namespace AG.DS
     public class SerializeHandler
     {
         /// <summary>
-        /// Reference of the dialogue system's graph viewer module.
+        /// Reference of the graph viewer element.
         /// </summary>
         GraphViewer graphViewer;
 
@@ -44,9 +44,9 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the dialogue system's serialize handler class.
+        /// Constructor of the serialize handler class.
         /// </summary>
-        /// <param name="graphViewer">The graph viewer module to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public SerializeHandler(GraphViewer graphViewer)
         {
             this.graphViewer = graphViewer;

@@ -101,7 +101,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Add Contextual Menu Items Service -----------------------------
+        // ----------------------------- Add Contextual Menu Items -----------------------------
         /// <inheritdoc />
         public override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
@@ -148,7 +148,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Post Process Position Details Service -----------------------------
+        // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
         protected override void PostProcessPositionDetails(NodeCreationDetails details)
         {

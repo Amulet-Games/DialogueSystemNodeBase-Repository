@@ -33,7 +33,7 @@ namespace AG.DS
         Vector2 pointerMovePosition;
 
 
-        // ----------------------------- Register Events Service -----------------------------
+        // ----------------------------- Register Events -----------------------------
         /// <summary>
         /// Register events to the node.
         /// </summary>
@@ -68,7 +68,7 @@ namespace AG.DS
             => Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
 
 
-        // ----------------------------- UnRegister Events Service -----------------------------
+        // ----------------------------- UnRegister Events -----------------------------
         /// <summary>
         /// Unregister events from the node.
         /// </summary>
