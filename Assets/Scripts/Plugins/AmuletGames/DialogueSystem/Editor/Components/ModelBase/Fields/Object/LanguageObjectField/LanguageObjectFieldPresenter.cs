@@ -6,12 +6,12 @@ namespace AG.DS
     public class LanguageObjectFieldPresenter
     {
         /// <summary>
-        /// Method for creating a new language object field UIElement.
+        /// Method for creating a new language object field element.
         /// </summary>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
         /// <param name="fieldUSS02">The second USS style to set for the field.</param>
-        /// <returns>A new language object field UIElement.</returns>
-        public static ObjectField CreateElements<TObject> 
+        /// <returns>A new language object field element.</returns>
+        public static ObjectField CreateElement<TObject> 
         (
             string fieldUSS01,
             string fieldUSS02 = null

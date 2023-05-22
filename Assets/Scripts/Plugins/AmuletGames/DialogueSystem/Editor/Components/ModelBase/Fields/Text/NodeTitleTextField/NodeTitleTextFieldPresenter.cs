@@ -5,12 +5,12 @@ namespace AG.DS
     public class NodeTitleTextFieldPresenter
     {
         /// <summary>
-        /// Method for creating a new node title text field UIElement.
+        /// Method for creating a new node title text field element.
         /// </summary>
         /// <param name="titleText">The title text to set for the field.</param>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
-        /// <returns>A new node title text field UIElement.</returns>
-        public static TextField CreateElements
+        /// <returns>A new node title text field element.</returns>
+        public static TextField CreateElement
         (
             string titleText,
             string fieldUSS01

@@ -160,7 +160,7 @@ namespace AG.DS
 
             void SetupSecondTermTextField()
             {
-                SecondTermTextFieldModel.TextField = CommonTextFieldPresenter.CreateElements
+                SecondTermTextFieldModel.TextField = CommonTextFieldPresenter.CreateElement
                 (
                     isMultiLine: false,
                     placeholderText: SecondTermTextFieldModel.PlaceholderText,
@@ -172,7 +172,7 @@ namespace AG.DS
 
             void SetupSecondTermFloatField()
             {
-                SecondTermFloatFieldModel.FloatField = CommonFloatFieldPresenter.CreateElements
+                SecondTermFloatFieldModel.FloatField = CommonFloatFieldPresenter.CreateElement
                 (
                     fieldUSS01: StyleConfig.Instance.Modifier_Condition_Rooted_SecondTerm_FloatField
                 );
@@ -200,7 +200,7 @@ namespace AG.DS
 
             void SetupChangeFieldTypeButton()
             {
-                changeFieldTypeButton = CommonButtonPresenter.CreateElements
+                changeFieldTypeButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.ChangeFieldTypeButtonIconSprite,
                     buttonUSS01: StyleConfig.Instance.Modifier_Condition_Rooted_ChangeFieldType_Button

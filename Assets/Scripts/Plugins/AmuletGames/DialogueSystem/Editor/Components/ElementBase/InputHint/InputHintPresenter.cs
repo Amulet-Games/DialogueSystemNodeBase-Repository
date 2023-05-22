@@ -3,11 +3,11 @@ namespace AG.DS
     public class InputHintPresenter
     {
         /// <summary>
-        /// Method for creating the UIElements for the input hint element.
+        /// Method for creating a new input hint element.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <returns>A new input hint element.</returns>
-        public static InputHint CreateElements(GraphViewer graphViewer)
+        public static InputHint CreateElement(GraphViewer graphViewer)
         {
             InputHint inputHint;
 
@@ -38,7 +38,7 @@ namespace AG.DS
 
             void SetupHintIconImage()
             {
-                inputHint.HintIconImage = CommonImagePresenter.CreateElements
+                inputHint.HintIconImage = CommonImagePresenter.CreateElement
                 (
                     imageSprite: ConfigResourcesManager.Instance.SpriteConfig.LanguageFieldHintIconSprite,
                     imageUSS01: StyleConfig.Instance.InputHint_IconImage
@@ -47,7 +47,7 @@ namespace AG.DS
 
             void SetupHintTextLabel()
             {
-                inputHint.HintTextLabel = CommonLabelPresenter.CreateElements
+                inputHint.HintTextLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: "",
                     labelUSS01: StyleConfig.Instance.InputHint_TextLabel

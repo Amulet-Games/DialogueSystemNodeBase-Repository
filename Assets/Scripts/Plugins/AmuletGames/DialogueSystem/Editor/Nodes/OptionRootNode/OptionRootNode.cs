@@ -14,11 +14,11 @@
         /// <summary>
         /// Constructor of the option root node component class.
         /// </summary>
-        /// <param name="details">The node creation details to set for.</param>
+        /// <param name="details">The node create details to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public OptionRootNode
         (
-            NodeCreationDetails details,
+            NodeCreateDetails details,
             GraphViewer graphViewer
         )
             : base(StringConfig.Instance.OptionRootNode_TitleText, graphViewer)
@@ -33,7 +33,7 @@
 
             AddStyleSheet();
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {
@@ -52,7 +52,7 @@
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessSetWidthValues
+                Presenter.SetNodeWidth
                 (
                     minWidth: NodeConfig.OptionRootNodeMinWidth,
                     widthBuffer: NodeConfig.OptionRootNodeWidthBuffer
@@ -61,7 +61,7 @@
 
             void PostProcessNodePosition()
             {
-                Presenter.PostProcessNodePosition(details);
+                Presenter.SetNodePosition(details);
             }
 
             void AddStyleSheet()
@@ -98,7 +98,7 @@
 
             Serializer.Load(data);
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {
@@ -117,7 +117,7 @@
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessSetWidthValues
+                Presenter.SetNodeWidth
                 (
                     minWidth: NodeConfig.OptionRootNodeMinWidth,
                     widthBuffer: NodeConfig.OptionRootNodeWidthBuffer

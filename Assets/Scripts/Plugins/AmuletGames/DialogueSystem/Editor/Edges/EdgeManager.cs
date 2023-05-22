@@ -119,7 +119,7 @@ namespace AG.DS
             edgeModel.Setup(output, input);
 
             // Create edge
-            var edge = new TEdgePresenter().CreateElements(edgeModel);
+            var edge = new TEdgePresenter().CreateElement(edgeModel);
 
             // Register callbacks
             var edgeCallback = new TEdgeCallback();

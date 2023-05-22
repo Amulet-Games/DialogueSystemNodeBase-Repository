@@ -94,7 +94,7 @@ namespace AG.DS
             Sprite iconSprite
         )
         {
-            var iconImage = CommonImagePresenter.CreateElements
+            var iconImage = CommonImagePresenter.CreateElement
             (
                 imageSprite: iconSprite,
                 imageUSS01: StyleConfig.Instance.TextField_Icon

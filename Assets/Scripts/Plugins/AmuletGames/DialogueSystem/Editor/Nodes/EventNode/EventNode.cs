@@ -14,11 +14,11 @@
         /// <summary>
         /// Constructor of the event node component class.
         /// </summary>
-        /// <param name="details">The node creation details to set for.</param>
+        /// <param name="details">The node create details to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public EventNode
         (
-            NodeCreationDetails details,
+            NodeCreateDetails details,
             GraphViewer graphViewer
         )
             : base(StringConfig.Instance.EventNode_TitleText, graphViewer)
@@ -33,7 +33,7 @@
 
             AddStyleSheet();
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {
@@ -52,7 +52,7 @@
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessSetWidthValues
+                Presenter.SetNodeWidth
                 (
                     minWidth: NodeConfig.EventNodeMinWidth,
                     widthBuffer: NodeConfig.EventNodeWidthBuffer
@@ -61,7 +61,7 @@
 
             void PostProcessNodePosition()
             {
-                Presenter.PostProcessNodePosition(details);
+                Presenter.SetNodePosition(details);
             }
 
             void AddStyleSheet()
@@ -100,7 +100,7 @@
 
             Serializer.Load(data);
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {
@@ -119,7 +119,7 @@
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessSetWidthValues
+                Presenter.SetNodeWidth
                 (
                     minWidth: NodeConfig.EventNodeMinWidth,
                     widthBuffer: NodeConfig.EventNodeWidthBuffer

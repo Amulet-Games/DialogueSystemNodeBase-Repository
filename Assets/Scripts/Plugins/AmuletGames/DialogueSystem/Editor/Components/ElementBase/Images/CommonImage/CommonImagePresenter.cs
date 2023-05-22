@@ -6,14 +6,14 @@ namespace AG.DS
     public class CommonImagePresenter
     {
         /// <summary>
-        /// Method for creating a new common Image UIElement.
+        /// Method for creating a new common Image element.
         /// </summary>
         /// <param name="pickingMode">The picking mode to set for the image.</param>
         /// <param name="imageSprite">The displaying sprite to set for the image.</param>
         /// <param name="imageUSS01">The first USS style to set for the image.</param>
         /// <param name="imageUSS02">The second USS style to set for the image.</param>
-        /// <returns>A new common Image UIElement.</returns>
-        public static Image CreateElements
+        /// <returns>A new common Image element.</returns>
+        public static Image CreateElement
         (
             PickingMode pickingMode = PickingMode.Ignore,
             Sprite imageSprite = null,

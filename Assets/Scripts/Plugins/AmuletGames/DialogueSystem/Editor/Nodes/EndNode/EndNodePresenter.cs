@@ -14,10 +14,10 @@ namespace AG.DS
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the end node presenter module class.
+        /// Constructor of the end node presenter class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
-        /// <param name="model">The model module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public EndNodePresenter(EndNode node, EndNodeModel model)
         {
             Node = node;
@@ -29,9 +29,9 @@ namespace AG.DS
         /// <inheritdoc />
         public override void CreatePortElements()
         {
-            Model.InputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
+            Model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.Instance.DefaultPort_Input_LabelText
@@ -72,7 +72,7 @@ namespace AG.DS
 
         // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
-        protected override void PostProcessPositionDetails(NodeCreationDetails details)
+        protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
         {
             AlignConnectorPosition();
 

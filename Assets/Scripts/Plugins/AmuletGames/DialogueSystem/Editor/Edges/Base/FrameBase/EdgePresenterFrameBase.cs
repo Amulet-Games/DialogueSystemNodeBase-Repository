@@ -14,8 +14,8 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new type edge element.
         /// </summary>
-        /// <param name="model">The type edge model module to set for.</param>
+        /// <param name="model">The type edge model to set for.</param>
         /// <returns>A new type edge element.</returns>
-        public abstract TEdge CreateElements(TEdgeModel model);
+        public abstract TEdge CreateElement(TEdgeModel model);
     }
 }

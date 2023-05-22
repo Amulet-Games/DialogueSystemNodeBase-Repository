@@ -30,19 +30,19 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Temporary reference of the modifier that is in the first position of the group hirerachy.
+        /// Temporary reference of the modifier that is in the first position of the group hierarchy.
         /// </summary>
         MessageModifier tempFirstModifier;
 
 
         /// <summary>
-        /// Temporary reference of the modifier that is in the last position of the group hirerachy.
+        /// Temporary reference of the modifier that is in the last position of the group hierarchy.
         /// </summary>
         MessageModifier tempLastModifier;
 
 
         /// <summary>
-        /// Temporary reference of the modifier that is the only one exists in the group hirerachy.
+        /// Temporary reference of the modifier that is the only one exists in the group hierarchy.
         /// </summary>
         MessageModifier tempSoleModifier;
 
@@ -59,10 +59,10 @@ namespace AG.DS
 
         // ----------------------------- Makers -----------------------------
         /// <summary>
-        /// Create all the UIElements for the message modifier model group.
+        /// Create all the elements for the message modifier model group.
         /// </summary>
         /// <param name="node">Node of which this stitcher is created for.</param>
-        public void CreateElements(NodeBase node)
+        public void CreateElement(NodeBase node)
         {
             SetupContentButton();
 
@@ -124,7 +124,7 @@ namespace AG.DS
         // ----------------------------- Callback -----------------------------
         /// <summary>
         /// The action to invoke when the content button is clicked.
-        /// <para>See: <see cref="CreateElements"/></para>
+        /// <para>See: <see cref="CreateElement"/></para>
         /// </summary>
         void ContentButtonClickAction()
         {
@@ -210,7 +210,7 @@ namespace AG.DS
             {
                 // Increase cache count.
                 cacheCount++;
-                // Increase creation count.
+                // Update counter.
                 nextIndex++;
             }
 
@@ -240,7 +240,7 @@ namespace AG.DS
             // Swap-to element.
             var swapToElement = swapToModifier.Folder.MainContainer;
 
-            // Swap hirerachy position.
+            // Swap hierarchy position.
             modifiers[swapFromIndex - 1] = modifier;
             modifiers[swapFromIndex] = swapToModifier;
 
@@ -302,7 +302,7 @@ namespace AG.DS
             // Swap-to element.
             var swapToElement = swapToModifier.Folder.MainContainer;
 
-            // Swap hirerachy position.
+            // Swap hierarchy position.
             modifiers[swapFromIndex + 1] = modifier;
             modifiers[swapFromIndex] = swapToModifier;
 
@@ -422,8 +422,6 @@ namespace AG.DS
         // ----------------------------- Serialization -----------------------------
         public void SaveStitcherValues(DialogueNodeStitcherData data)
         {
-            // instance modifiers
-            // creation count
         }
 
 

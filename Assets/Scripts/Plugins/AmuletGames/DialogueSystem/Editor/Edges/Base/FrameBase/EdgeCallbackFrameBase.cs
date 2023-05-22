@@ -5,7 +5,7 @@ namespace AG.DS
         where TEdge : EdgeBase
     {
         /// <summary>
-        /// Reference of the edge module.
+        /// Reference of the edge element.
         /// </summary>
         protected TEdge Edge;
 
@@ -14,7 +14,7 @@ namespace AG.DS
         /// <summary>
         /// Setup for the class.
         /// </summary>
-        /// <param name="edge">The edge base module to set for.</param>
+        /// <param name="edge">The type edge element to set for.</param>
         public abstract void Setup(TEdge edge);
 
 

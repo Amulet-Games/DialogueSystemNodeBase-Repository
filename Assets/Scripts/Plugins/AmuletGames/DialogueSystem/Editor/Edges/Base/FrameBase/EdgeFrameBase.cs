@@ -8,7 +8,7 @@ namespace AG.DS
         where TEdgeModel : EdgeModelBase
     {
         /// <summary>
-        /// Reference of the model module.
+        /// Reference of the edge model.
         /// </summary>
         public TEdgeModel Model;
     }

@@ -68,7 +68,7 @@ namespace AG.DS
         /// <summary>
         /// Add a new cell model to the group model.
         /// </summary>
-        /// <param name="node">The node base module to set for.</param>
+        /// <param name="node">The node base element to set for.</param>
         /// <param name="data">The option port group cell data to load from if provided.</param>
         public void AddCell
         (
@@ -83,10 +83,10 @@ namespace AG.DS
                 cell = new();
                 Cells.Add(cell);
 
-                OptionPortGroupCellPresenter.CreateElements
+                OptionPortGroupCellPresenter.CreateElement
                 (
                     model: cell,
-                    connectorWindow: node.GraphViewer.NodeCreationConnectorWindow,
+                    connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                     direction: direction
                 );
 
@@ -132,7 +132,7 @@ namespace AG.DS
         /// <summary>
         /// Load the group values from the given data.
         /// </summary>
-        /// <param name="node">The node base module to set for.</param>
+        /// <param name="node">The node base element to set for.</param>
         /// <param name="data">The data to load from.</param>
         public void Load(NodeBase node, OptionPortGroupData data)
         {

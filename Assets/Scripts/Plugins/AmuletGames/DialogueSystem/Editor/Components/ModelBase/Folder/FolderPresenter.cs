@@ -3,11 +3,11 @@ namespace AG.DS
     public class FolderPresenter
     {
         /// <summary>
-        /// Method for creating the UIElements for the folder model.
+        /// Method for creating the elements for the folder model.
         /// </summary>
         /// <param name="model">The targeting folder model to set for.</param>
         /// <param name="titleText">The title text to set for the folder.</param>
-        public static void CreateElements
+        public static void CreateElement
         (
             FolderModel model,
             string titleText
@@ -41,7 +41,7 @@ namespace AG.DS
 
             void SetupTitleTextField()
             {
-                model.TitleTextFieldModel.TextField = FolderTitleTextFieldPresenter.CreateElements
+                model.TitleTextFieldModel.TextField = FolderTitleTextFieldPresenter.CreateElement
                 (
                     titleText: titleText,
                     fieldUSS01: StyleConfig.Instance.Folder_Title_TextField
@@ -50,7 +50,7 @@ namespace AG.DS
 
             void SetupExpandButton()
             {
-                model.ExpandButton = CommonButtonPresenter.CreateElements
+                model.ExpandButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.FolderExpandButtonCloseIconSprite,
                     buttonUSS01: StyleConfig.Instance.Folder_ExpandFolder_Button

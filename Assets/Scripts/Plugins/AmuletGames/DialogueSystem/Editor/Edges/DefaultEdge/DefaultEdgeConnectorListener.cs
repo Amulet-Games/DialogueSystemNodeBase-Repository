@@ -12,11 +12,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the default edge connector listener class.
         /// </summary>
-        /// <param name="connectorWindow">The node creation connector window module to set for.</param>
-        public DefaultEdgeConnectorListener
-        (
-            NodeCreationConnectorWindow connectorWindow
-        )
+        /// <param name="connectorWindow">The node create connector window to set for.</param>
+        public DefaultEdgeConnectorListener(NodeCreateConnectorWindow connectorWindow)
             : base(connectorWindow)
         {
         }
@@ -82,7 +79,7 @@ namespace AG.DS
             if (edge.input != null)
             {
                 // If the edge that user dropped is from a input port.
-                NodeCreationConnectorWindow.UpdateWindowContext
+                NodeCreateConnectorWindow.UpdateWindowContext
                 (
                     horizontalAlignmentType: HorizontalAlignmentType.LEFT,
 
@@ -90,13 +87,13 @@ namespace AG.DS
 
                     connectorPort: (PortBase)edge.input,
 
-                    toShowSearchEntries: NodeCreationEntriesProvider.DefaultNodeInputEntries
+                    toShowSearchEntries: NodeCreateEntryProvider.DefaultNodeInputEntries
                 );
             }
             else
             {
                 // If the edge that user dropped is from a output port.
-                NodeCreationConnectorWindow.UpdateWindowContext
+                NodeCreateConnectorWindow.UpdateWindowContext
                 (
                     horizontalAlignmentType: HorizontalAlignmentType.RIGHT,
 
@@ -104,12 +101,12 @@ namespace AG.DS
 
                     connectorPort: (PortBase)edge.output,
 
-                    toShowSearchEntries: NodeCreationEntriesProvider.DefaultNodeOutputEntries
+                    toShowSearchEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries
                 );
             }
 
             // Open window.
-            NodeCreationConnectorWindow.Open(
+            NodeCreateConnectorWindow.Open(
                 screenPositionToShow: GraphViewer.GetCurrentEventMousePosition());
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <summary>
-    /// Holds all the UIElements reference of the connecting node module.
+    /// Holds all the element references of the node element.
     /// </summary>
     [Serializable]
     public abstract class NodeModelBase
@@ -23,7 +23,7 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the node model module base class.
+        /// Constructor of the node model base class.
         /// </summary>
         public NodeModelBase()
         {

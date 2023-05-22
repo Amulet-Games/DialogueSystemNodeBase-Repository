@@ -8,7 +8,7 @@ namespace AG.DS
     >
     {
         /// <inheritdoc />
-        public override DefaultEdge CreateElements(DefaultEdgeModel model)
+        public override DefaultEdge CreateElement(DefaultEdgeModel model)
         {
             DefaultEdge edge;
 

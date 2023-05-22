@@ -76,10 +76,10 @@ namespace AG.DS
         void ChangeEvent(ChangeEvent<string> evt)
         {
             // Since the folder title text field's isDelay value is set to true,
-            // this callback'll only be invoked when the user pressed Enter or Return key.
+            // this callback will only be invoked when the user pressed Enter or Return key.
 
             // If the field has a new value, the value needs to be different than the previous one,
-            // empty string'll also be count as new value.
+            // empty string will also be count as new value.
 
             newValue = evt.newValue;
         }
@@ -112,7 +112,7 @@ namespace AG.DS
             }
             else
             {
-                // Notice the dialogue system that there're unsaved changes.
+                // Notice the dialogue system that there are unsaved changes.
                 WindowChangedEvent.Invoke();
             }
 

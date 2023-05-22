@@ -14,15 +14,13 @@ namespace AG.DS
         where TNodeModel : NodeModelBase
     {
         /// <summary>
-        /// Responsible for communicating with the other module classes,
-        /// <br>and creating the frame base when it's first initialized.</br>
+        /// Reference of the node element.
         /// </summary>
         protected TNode Node;
 
 
         /// <summary>
-        /// Holds all the components and data that'll be used on the connecting node,
-        /// <br>and allows other framework classes to utilize them for different purposes.</br>.
+        /// Reference of the node model.
         /// </summary>
         protected TNodeModel Model;
 

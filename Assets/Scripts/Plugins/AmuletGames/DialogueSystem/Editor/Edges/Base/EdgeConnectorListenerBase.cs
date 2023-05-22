@@ -40,19 +40,19 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the node creation connector window module.
+        /// Reference of the node create connector window.
         /// </summary>
-        protected NodeCreationConnectorWindow NodeCreationConnectorWindow;
+        protected NodeCreateConnectorWindow NodeCreateConnectorWindow;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the edge connector listener base class.
         /// </summary>
-        /// <param name="nodeCreationConnectorWindow">The node creation connector window module to set for.</param>
-        public EdgeConnectorListenerBase(NodeCreationConnectorWindow nodeCreationConnectorWindow)
+        /// <param name="nodeCreateConnectorWindow">The node create connector window to set for.</param>
+        public EdgeConnectorListenerBase(NodeCreateConnectorWindow nodeCreateConnectorWindow)
         {
-            NodeCreationConnectorWindow = nodeCreationConnectorWindow;
+            NodeCreateConnectorWindow = nodeCreateConnectorWindow;
 
             m_EdgesToCreate = new();
             m_EdgesToDelete = new();
@@ -67,7 +67,7 @@ namespace AG.DS
         /// <summary>
         /// Called when a new edge is dropped on a port.
         /// </summary>
-        /// <param name="graphView">Reference to the graph view module.</param>
+        /// <param name="graphView">Reference to the graph view element.</param>
         /// <param name="edge">The edge being created.</param>
         public void OnDrop(GraphView graphView, Edge edge)
         {
@@ -93,7 +93,7 @@ namespace AG.DS
 }
 
 /*
- *  public virutal void OnDrop(GraphView graphView, Edge edge)
+ *  public virtual void OnDrop(GraphView graphView, Edge edge)
     {
         var m_EdgesToCreate = new List<Edge>(){edge};
         m_GraphViewChange.edgesToCreate = m_EdgesToCreate;

@@ -13,10 +13,10 @@ namespace AG.DS
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the option root node presenter module class.
+        /// Constructor of the option root node presenter class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
-        /// <param name="model">The model module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public OptionRootNodePresenter(OptionRootNode node, OptionRootNodeModel model)
         {
             Node = node;
@@ -34,7 +34,7 @@ namespace AG.DS
 
             void SetupContentButton()
             {
-                var contentButton = ContentButtonPresenter.CreateElements
+                var contentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.Instance.ContentButton_AddEntry_LabelText,
                     buttonIconSprite: ConfigResourcesManager.Instance.SpriteConfig.AddEntryButtonIconSprite
@@ -83,7 +83,7 @@ namespace AG.DS
 
                 void SetupOptionRootIconImage()
                 {
-                    optionRootIconImage = CommonImagePresenter.CreateElements
+                    optionRootIconImage = CommonImagePresenter.CreateElement
                     (
                         imageSprite: ConfigResourcesManager.Instance.SpriteConfig.OptionRootIconSprite,
                         imageUSS01: StyleConfig.Instance.OptionRootGroup_Icon_Image
@@ -92,7 +92,7 @@ namespace AG.DS
 
                 void SetupOptionRootTitleLabel()
                 {
-                    optionRootTitleLabel = CommonLabelPresenter.CreateElements
+                    optionRootTitleLabel = CommonLabelPresenter.CreateElement
                     (
                         labelText: StringConfig.Instance.OptionRootGroup_TitleLabelText,
                         labelUSS01: StyleConfig.Instance.OptionRootGroup_Title_Label
@@ -102,7 +102,7 @@ namespace AG.DS
                 void SetupOptionRootTitleTextField()
                 {
                     Model.OptionRootTitleTextFieldModel.TextField =
-                        LanguageTextFieldPresenter.CreateElements
+                        LanguageTextFieldPresenter.CreateElement
                         (
                             isMultiLine: false,
                             placeholderText: Model.OptionRootTitleTextFieldModel.PlaceholderText,
@@ -135,17 +135,17 @@ namespace AG.DS
         /// <inheritdoc />
         public override void CreatePortElements()
         {
-            Model.InputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
+            Model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Multi,
                 label: StringConfig.Instance.DefaultPort_Input_LabelText
             );
 
-            Model.OutputOptionPort = OptionPort.CreateElements<OptionEdge>
+            Model.OutputOptionPort = OptionPort.CreateElement<OptionEdge>
             (
-                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Output
             );
 
@@ -228,7 +228,7 @@ namespace AG.DS
 
         // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
-        protected override void PostProcessPositionDetails(NodeCreationDetails details)
+        protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
         {
             AlignConnectorPosition();
 

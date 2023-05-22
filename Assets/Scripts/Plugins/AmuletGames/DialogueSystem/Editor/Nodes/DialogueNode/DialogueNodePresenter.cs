@@ -13,10 +13,10 @@ namespace AG.DS
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the dialogue node presenter module class.
+        /// Constructor of the dialogue node presenter class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
-        /// <param name="model">The model module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public DialogueNodePresenter(DialogueNode node, DialogueNodeModel model)
         {
             Node = node;
@@ -37,7 +37,7 @@ namespace AG.DS
             void AddCharacterObjectField()
             {
                 Model.CharacterObjectFieldModel.ObjectField =
-                    CommonObjectFieldPresenter.CreateElements<DialogueCharacter>
+                    CommonObjectFieldPresenter.CreateElement<DialogueCharacter>
                     (
                         fieldUSS01: StyleConfig.Instance.DialogueNode_Character_ObjectField
                     );
@@ -60,7 +60,7 @@ namespace AG.DS
             void AddDialogueNodeStitcher()
             {
                 // Create all the root elements required in the node stitcher.
-                Model.DialogueNodeStitcher.CreateElements(node: Node);
+                Model.DialogueNodeStitcher.CreateElement(node: Node);
             }
         }
 
@@ -68,17 +68,17 @@ namespace AG.DS
         /// <inheritdoc />
         public override void CreatePortElements()
         {
-            Model.InputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
+            Model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.Instance.DefaultPort_Input_LabelText
             );
 
-            Model.OutputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
+            Model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.Instance.DefaultPort_Output_LabelText
@@ -139,7 +139,7 @@ namespace AG.DS
 
         // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
-        protected override void PostProcessPositionDetails(NodeCreationDetails details)
+        protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
         {
             AlignConnectorPosition();
 

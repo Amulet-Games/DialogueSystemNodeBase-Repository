@@ -11,20 +11,20 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the end node model module class.
+        /// Constructor of the end node model class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
         public EndNodeModel(EndNode node)
         {
             Node = node;
         }
 
 
-        // ----------------------------- Remove Cache Ports All -----------------------------
+        // ----------------------------- Remove Ports All -----------------------------
         /// <inheritdoc />
-        public override void RemoveCachePortsAll()
+        public override void RemovePortsAll()
         {
-            Node.GraphViewer.SerializeHandler.RemoveCachePort(port: InputDefaultPort);
+            Node.GraphViewer.Remove(port: InputDefaultPort);
         }
 
 

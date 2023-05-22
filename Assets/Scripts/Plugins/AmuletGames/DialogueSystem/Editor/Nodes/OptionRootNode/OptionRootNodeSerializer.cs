@@ -10,10 +10,10 @@ namespace AG.DS
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the option root node serializer module class.
+        /// Constructor of the option root node serializer class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
-        /// <param name="model">The model module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public OptionRootNodeSerializer(OptionRootNode node, OptionRootNodeModel model)
         {
             Node = node;

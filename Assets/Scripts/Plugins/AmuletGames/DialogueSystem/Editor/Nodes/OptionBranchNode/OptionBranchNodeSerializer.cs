@@ -10,10 +10,10 @@ namespace AG.DS
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the option branch node serializer module class.
+        /// Constructor of the option branch node serializer class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
-        /// <param name="model">The model module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public OptionBranchNodeSerializer(OptionBranchNode node, OptionBranchNodeModel model)
         {
             Node = node;

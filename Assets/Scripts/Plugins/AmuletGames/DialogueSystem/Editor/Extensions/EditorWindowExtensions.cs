@@ -6,12 +6,12 @@ namespace AG.DS
     public static class EditorWindowExtensions
     {
         /// <summary>
-        /// Place the editor window in the center of the Unity Editor's main window.
+        /// Place the editor window to the center of the unity editor's main window.
         /// </summary>
         /// <param name="window">Extension editor window.</param>
         /// <param name="customWidth">The custom width to set for.</param>
         /// <param name="customHeight">The custom height to set for.</param>
-        public static void CenterOnMainWindow(
+        public static void CenterToMainWindow(
             this EditorWindow window,
             float customWidth = -1,
             float customHeight = -1

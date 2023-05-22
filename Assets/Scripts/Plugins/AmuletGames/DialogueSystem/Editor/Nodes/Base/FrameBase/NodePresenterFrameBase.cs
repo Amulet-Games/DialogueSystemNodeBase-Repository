@@ -14,20 +14,20 @@ namespace AG.DS
         where TNodeModel : NodeModelBase
     {
         /// <summary>
-        /// Reference of the connecting node module.
+        /// Reference of the node element.
         /// </summary>
         protected TNode Node;
 
 
         /// <summary>
-        /// Reference of the connecting model module.
+        /// Reference of the node model.
         /// </summary>
         protected TNodeModel Model;
 
 
         // ----------------------------- Makers -----------------------------
         /// <summary>
-        /// Method for creating the title elements of the connecting node.
+        /// Method for creating the node's title elements.
         /// </summary>
         public void CreateTitleElements()
         {
@@ -51,7 +51,7 @@ namespace AG.DS
 
             void SetupTitleTextField()
             {
-                Model.NodeTitleTextFieldModel.TextField = NodeTitleTextFieldPresenter.CreateElements
+                Model.NodeTitleTextFieldModel.TextField = NodeTitleTextFieldPresenter.CreateElement
                 (
                     titleText: Node.title,
                     fieldUSS01: StyleConfig.Instance.Node_Title_TextField
@@ -63,7 +63,7 @@ namespace AG.DS
 
             void SetupEditTitleButton()
             {
-                Model.EditTitleButton = CommonButtonPresenter.CreateElements
+                Model.EditTitleButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.EditButtonIconSprite,
                     buttonUSS01: StyleConfig.Instance.Node_EditTitle_Button
@@ -92,13 +92,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for creating the port elements of the connecting node.
+        /// Method for creating the node's port elements.
         /// </summary>
         public virtual void CreatePortElements() { }
 
 
         /// <summary>
-        /// Create all the UIElements that exist within the connecting node.
+        /// Method for creating the node's content elements.
         /// </summary>
         public virtual void CreateContentElements() { }
 
@@ -117,13 +117,13 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Post Process Node Width -----------------------------
+        // ----------------------------- Set Node Width -----------------------------
         /// <summary>
-        /// Set the connecting node's minimum and maximum width value.
+        /// Set the node's minimum and maximum width value.
         /// </summary>
         /// <param name="minWidth">The minimum node's width to set for.</param>
         /// <param name="widthBuffer">The width buffer to set for, combine it with the minimum width to get the node's maximum width.</param>
-        public void PostProcessSetWidthValues(float minWidth, float widthBuffer)
+        public void SetNodeWidth(float minWidth, float widthBuffer)
         {
             SetWidthValueNode();
 
@@ -152,18 +152,18 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Post Process Node Position -----------------------------
+        // ----------------------------- Set Node Position -----------------------------
         /// <summary>
-        /// Set the connecting node's first position base on the creation details.
+        /// Set the node position base on the value from the details.
         /// </summary>
-        /// <param name="details">The connecting creation details to set for.</param>
-        public void PostProcessNodePosition(NodeCreationDetails details)
+        /// <param name="details">The node create details to set for.</param>
+        public void SetNodePosition(NodeCreateDetails details)
         {
             SetNodePosition();
 
             TemporaryHideNode();
 
-            PostProcessManualCreationProperties();
+            OnGeometryChangedAdjustNodePosition();
 
             void SetNodePosition()
             {
@@ -175,14 +175,14 @@ namespace AG.DS
                 Node.AddToClassList(StyleConfig.Instance.Global_Visible_Hidden);
             }
 
-            void PostProcessManualCreationProperties()
+            void OnGeometryChangedAdjustNodePosition()
             {
                 Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
 
                 void GeometryChangedEvent(GeometryChangedEvent evt)
                 {
-                    // Post process node position details.
-                    PostProcessPositionDetails(details);
+                    // Adjust the node's position after it's created.
+                    GeometryChangedAdjustNodePosition(details);
 
                     // Unregister the action once the setup is done.
                     Node.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
@@ -192,9 +192,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Adjust the node's position for the second time base on the creation details.
+        /// Adjust the node's position base on the value from the details.
         /// </summary>
-        /// <param name="details">The node creation details to set for.</param>
-        protected abstract void PostProcessPositionDetails(NodeCreationDetails details);
+        /// <param name="details">The node create details to set for.</param>
+        protected abstract void GeometryChangedAdjustNodePosition(NodeCreateDetails details);
     }
 }

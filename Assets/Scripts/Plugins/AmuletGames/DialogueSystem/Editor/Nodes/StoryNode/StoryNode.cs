@@ -14,14 +14,14 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the story node component class.
         /// </summary>
-        /// <param name="details">The node creation details to set for.</param>
+        /// <param name="details">The node create details to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public StoryNode
         (
-            NodeCreationDetails details,
+            NodeCreateDetails details,
             GraphViewer graphViewer
         )
-            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleText, graphViewer: graphViewer)
+            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleText, graphViewer)
         {
             SetupFrameFields();
 
@@ -31,7 +31,7 @@ namespace AG.DS
 
             AddStyleSheet();
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {
@@ -48,7 +48,7 @@ namespace AG.DS
 
             void PostProcessNodePosition()
             {
-                Presenter.PostProcessNodePosition(details);
+                Presenter.SetNodePosition(details);
             }
 
             void AddStyleSheet()
@@ -70,7 +70,7 @@ namespace AG.DS
             StoryNodeData data,
             GraphViewer graphViewer
         )
-            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleText, graphViewer: graphViewer)
+            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleText, graphViewer)
         {
             SetupFrameFields();
 
@@ -80,7 +80,7 @@ namespace AG.DS
 
             Serializer.Load(data);
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {

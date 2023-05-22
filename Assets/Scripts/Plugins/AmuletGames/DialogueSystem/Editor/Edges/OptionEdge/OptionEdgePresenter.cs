@@ -8,7 +8,7 @@ namespace AG.DS
     >
     {
         /// <inheritdoc />
-        public override OptionEdge CreateElements(OptionEdgeModel model)
+        public override OptionEdge CreateElement(OptionEdgeModel model)
         {
             OptionEdge edge;
 

@@ -7,12 +7,12 @@ namespace AG.DS
     public class GraphTitleTextFieldPresenter
     {
         /// <summary>
-        /// Method for creating a new graph title text field UIElement.
+        /// Method for creating a new graph title text field element.
         /// </summary>
         /// <param name="dsData">The dialogue system data to bind with after the field is created.</param>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
-        /// <returns>A new graph title text field UIElement.</returns>
-        public static TextField CreateElements
+        /// <returns>A new graph title text field element.</returns>
+        public static TextField CreateElement
         (
             DialogueSystemData dsData,
             string fieldUSS01

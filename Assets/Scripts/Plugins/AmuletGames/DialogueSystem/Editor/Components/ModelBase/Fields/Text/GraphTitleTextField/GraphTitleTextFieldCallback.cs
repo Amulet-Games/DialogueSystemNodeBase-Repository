@@ -12,7 +12,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The asset instance id of the connecting dialogue system data.
+        /// The asset instance id of the dialogue system data.
         /// </summary>
         int dsDataInstanceId;
 
@@ -22,7 +22,7 @@ namespace AG.DS
         /// Constructor of the graph title field callback class.
         /// </summary>
         /// <param name="model">The targeting graph title text field model to set for.</param>
-        /// <param name="dsDataInstanceId">The connecting dialogue system data's asset instance id to set for.</param>
+        /// <param name="dsDataInstanceId">The dialogue system data's asset instance id to set for.</param>
         public GraphTitleTextFieldCallback
         (
             GraphTitleTextFieldModel model,

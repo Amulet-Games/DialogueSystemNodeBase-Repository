@@ -29,24 +29,23 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the boolean node model module class.
+        /// Constructor of the boolean node model class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
         public BooleanNodeModel(BooleanNode node)
         {
             Node = node;
             booleanNodeStitcher = new();
         }
 
-
-        // ----------------------------- Remove Cache Ports All -----------------------------
+        
+        // ----------------------------- Remove Ports All -----------------------------
         /// <inheritdoc />
-        public override void RemoveCachePortsAll()
+        public override void RemovePortsAll()
         {
-            var serializeHandler = Node.GraphViewer.SerializeHandler;
-            serializeHandler.RemoveCachePort(port: InputDefaultPort);
-            serializeHandler.RemoveCachePort(port: TrueOutputDefaultPort);
-            serializeHandler.RemoveCachePort(port: FalseOutputDefaultPort);
+            Node.GraphViewer.Remove(port: InputDefaultPort);
+            Node.GraphViewer.Remove(port: TrueOutputDefaultPort);
+            Node.GraphViewer.Remove(port: FalseOutputDefaultPort);
         }
 
 

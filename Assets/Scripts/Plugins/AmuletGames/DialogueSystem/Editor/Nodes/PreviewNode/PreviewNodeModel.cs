@@ -44,9 +44,9 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the preview node's model module class.
+        /// Constructor of the preview node model class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
         public PreviewNodeModel(PreviewNode node)
         {
             Node = node;
@@ -55,13 +55,12 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Remove Cache Ports All -----------------------------
+        // ----------------------------- Remove Ports All -----------------------------
         /// <inheritdoc />
-        public override void RemoveCachePortsAll()
+        public override void RemovePortsAll()
         {
-            var serializeHandler = Node.GraphViewer.SerializeHandler;
-            serializeHandler.RemoveCachePort(port: InputDefaultPort);
-            serializeHandler.RemoveCachePort(port: OutputDefaultPort);
+            Node.GraphViewer.Remove(port: InputDefaultPort);
+            Node.GraphViewer.Remove(port: OutputDefaultPort);
         }
 
 

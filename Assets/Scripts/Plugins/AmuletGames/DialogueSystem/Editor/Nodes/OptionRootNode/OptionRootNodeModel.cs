@@ -31,9 +31,9 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the option root node model module class.
+        /// Constructor of the option root node model class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
         public OptionRootNodeModel(OptionRootNode node)
         {
             Node = node;
@@ -45,17 +45,17 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Remove Cache Ports All -----------------------------
+        // ----------------------------- Remove Ports All -----------------------------
         /// <inheritdoc />
-        public override void RemoveCachePortsAll()
+        public override void RemovePortsAll()
         {
-            var serializeHandler = Node.GraphViewer.SerializeHandler;
-
-            serializeHandler.RemoveCachePort(port: InputDefaultPort);
-            serializeHandler.RemoveCachePort(port: OutputOptionPort);
+            Node.GraphViewer.Remove(port: InputDefaultPort);
+            Node.GraphViewer.Remove(port: OutputOptionPort);
 
             for (int i = 0; i < OutputOptionPortGroupModel.Cells.Count; i++)
-                serializeHandler.RemoveCachePort(port: OutputOptionPortGroupModel.Cells[i].Port);
+            {
+                Node.GraphViewer.Remove(port: OutputOptionPortGroupModel.Cells[i].Port);
+            }
         }
 
 

@@ -19,11 +19,11 @@ namespace AG.DS
         /// Constructor of the option edge connector listener class.
         /// </summary>
         /// <param name="linkOptionPort">The link option port to set for.</param>
-        /// <param name="connectorWindow">The node creation connector window module to set for.</param>
+        /// <param name="connectorWindow">The node create connector window to set for.</param>
         public OptionEdgeConnectorListener
         (
             OptionPort linkOptionPort,
-            NodeCreationConnectorWindow connectorWindow
+            NodeCreateConnectorWindow connectorWindow
         )
             : base(connectorWindow)
         {
@@ -85,7 +85,7 @@ namespace AG.DS
             if (edge.input != null)
             {
                 // If the edge that user dropped is from a input port.
-                NodeCreationConnectorWindow.UpdateWindowContext
+                NodeCreateConnectorWindow.UpdateWindowContext
                 (
                     horizontalAlignmentType: HorizontalAlignmentType.LEFT,
 
@@ -93,13 +93,13 @@ namespace AG.DS
 
                     connectorPort: linkOptionPort,
 
-                    toShowSearchEntries: NodeCreationEntriesProvider.OptionChannelInputEntries
+                    toShowSearchEntries: NodeCreateEntryProvider.OptionChannelInputEntries
                 );
             }
             else
             {
                 // If the edge that user dropped is from a output port.
-                NodeCreationConnectorWindow.UpdateWindowContext
+                NodeCreateConnectorWindow.UpdateWindowContext
                 (
                     horizontalAlignmentType: HorizontalAlignmentType.RIGHT,
 
@@ -107,12 +107,12 @@ namespace AG.DS
 
                     connectorPort: linkOptionPort,
 
-                    toShowSearchEntries: NodeCreationEntriesProvider.OptionChannelOutputEntries
+                    toShowSearchEntries: NodeCreateEntryProvider.OptionChannelOutputEntries
                 );
             }
 
             // Open window.
-            NodeCreationConnectorWindow.Open(
+            NodeCreateConnectorWindow.Open(
                 screenPositionToShow: GraphViewer.GetCurrentEventMousePosition());
         }
     }

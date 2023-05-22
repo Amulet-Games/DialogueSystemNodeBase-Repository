@@ -5,11 +5,11 @@ namespace AG.DS
     public class HeadbarPresenter
     {
         /// <summary>
-        /// Method for creating the UIElements for the headbar element.
+        /// Method for creating the headbar element.
         /// </summary>
-        /// <param name="dsWindow">The dialogue editor window module to set for.</param>
+        /// <param name="dsData">The dialogue system data to set for.</param>
         /// <returns>A new headbar element.</returns>
-        public static Headbar CreateElements(DialogueEditorWindow dsWindow)
+        public static Headbar CreateElement(DialogueSystemData dsData)
         {
             Headbar headbar;
             VisualElement buttonsContainer;
@@ -31,8 +31,6 @@ namespace AG.DS
             AddElementsToContainer();
 
             AddElementsToHeadbar();
-
-            AddHeadbarToWindowRoot();
 
             AddStyleSheet();
 
@@ -57,7 +55,7 @@ namespace AG.DS
 
             void SetupSaveButton()
             {
-                headbar.SaveButton = CommonButtonPresenter.CreateElements
+                headbar.SaveButton = CommonButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.Instance.Headbar_SaveButton_LabelText,
                     buttonUSS01: StyleConfig.Instance.Headbar_SaveButton
@@ -66,7 +64,7 @@ namespace AG.DS
 
             void SetupLoadButton()
             {
-                headbar.LoadButton = CommonButtonPresenter.CreateElements
+                headbar.LoadButton = CommonButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.Instance.Headbar_LoadButton_LabelText,
                     buttonUSS01: StyleConfig.Instance.Headbar_LoadButton
@@ -76,18 +74,18 @@ namespace AG.DS
             void SetupLanguageToolbarMenu()
             {
                 var languageManager = LanguageManager.Instance;
-                headbar.LanguageToolbarMenu = DropdownPresenter.CreateElements
+                headbar.LanguageToolbarMenu = ToolbarMenuPresenter.CreateElement
                 (
-                    dropdownText: languageManager.GetShort(type: languageManager.SelectedLanguage),
+                    labelText: languageManager.GetShort(type: languageManager.SelectedLanguage),
                     arrowIcon: ConfigResourcesManager.Instance.SpriteConfig.DropdownArrowIcon1Sprite
                 );
             }
 
             void SetupGraphTitleField()
             {
-                headbar.GraphTitleTextFieldModel.TextField = GraphTitleTextFieldPresenter.CreateElements
+                headbar.GraphTitleTextFieldModel.TextField = GraphTitleTextFieldPresenter.CreateElement
                 (
-                    dsData: dsWindow.DsData,
+                    dsData: dsData,
                     fieldUSS01: StyleConfig.Instance.Headbar_GraphTitleTextField
                 );
             }
@@ -103,11 +101,6 @@ namespace AG.DS
             {
                 headbar.Add(buttonsContainer);
                 headbar.Add(headbar.GraphTitleTextFieldModel.TextField);
-            }
-
-            void AddHeadbarToWindowRoot()
-            {
-                dsWindow.rootVisualElement.Add(headbar);
             }
 
             void AddStyleSheet()

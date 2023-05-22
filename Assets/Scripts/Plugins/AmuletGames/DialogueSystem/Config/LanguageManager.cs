@@ -67,7 +67,7 @@ namespace AG.DS
                 G_LanguageType.German => " (Ger)",
                 G_LanguageType.Danish => " (Dan)",
                 G_LanguageType.Spanish => " (Span)",
-                G_LanguageType.Japanese => " (Jp)",
+                G_LanguageType.Japanese => " (Jpn)",
                 G_LanguageType.Latin => " (Lat)",
                 _ => " (Eng)",
             };

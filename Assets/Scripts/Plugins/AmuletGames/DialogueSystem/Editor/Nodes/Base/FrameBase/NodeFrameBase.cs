@@ -21,25 +21,25 @@ namespace AG.DS
         where TNodeData : NodeDataBase
     {
         /// <summary>
-        /// Reference of the model module.
+        /// Reference of the node model.
         /// </summary>
         protected TNodeModel Model;
 
 
         /// <summary>
-        /// Reference of the presenter module.
+        /// Reference of the node presenter.
         /// </summary>
         protected TNodePresenter Presenter;
 
 
         /// <summary>
-        /// Reference of the callback module.
+        /// Reference of the node callback.
         /// </summary>
         protected TNodeCallback Callback;
 
 
         /// <summary>
-        /// Reference of the serializer module.
+        /// Reference of the node serializer.
         /// </summary>
         public TNodeSerializer Serializer;
 
@@ -56,21 +56,7 @@ namespace AG.DS
             GraphViewer graphViewer
         )
         {
-            SetupBaseFields();
-
-            AddToGraph();
-
-            AddStyleSheet();
-
-            OverrideBorderDefaultStyle();
-
-            OverrideContainersDefaultStyle();
-
-            RemoveUnusedElements();
-
-            AddCustomElements();
-
-            void SetupBaseFields()
+            // Setup refs
             {
                 NodeGUID = Guid.NewGuid().ToString();
 
@@ -79,19 +65,14 @@ namespace AG.DS
                 GraphViewer = graphViewer;
             }
 
-            void AddToGraph()
-            {
-                GraphViewer.Add(this);
-            }
-
-            void AddStyleSheet()
+            // Add style sheet
             {
                 var styleSheetConfig = ConfigResourcesManager.Instance.StyleSheetConfig;
                 styleSheets.Add(styleSheetConfig.DSGlobalStyle);
                 styleSheets.Add(styleSheetConfig.DSNodesShareStyle);
             }
 
-            void OverrideBorderDefaultStyle()
+            // Override border default style
             {
                 // Get the node border from node's children.
                 NodeBorder = ElementAt(0);
@@ -108,27 +89,27 @@ namespace AG.DS
                 NodeBorder.AddToClassList(StyleConfig.Instance.Node_Border);
             }
 
-            void OverrideContainersDefaultStyle()
+            // Override containers default style
             {
-                // Title Container
+                // Title
                 titleContainer.pickingMode = PickingMode.Position;
 
-                // Top Container
+                // Top
                 NodeBorder.Insert(index: 1, element: topContainer);
 
-                // Input Container
+                // Input
                 inputContainer.name = "";
                 inputContainer.AddToClassList(StyleConfig.Instance.Node_Input_Container);
 
-                // Output Container
+                // Output
                 outputContainer.name = "";
                 outputContainer.AddToClassList(StyleConfig.Instance.Node_Output_Container);
 
-                // Main Container
+                // Main
                 mainContainer.pickingMode = PickingMode.Position;
             }
 
-            void RemoveUnusedElements()
+            // Remove unused elements
             {
                 // Remove #selection-border from the node.
                 Remove(ElementAt(0));
@@ -146,20 +127,25 @@ namespace AG.DS
                 NodeBorder.Remove(NodeBorder.ElementAt(2));
             }
 
-            void AddCustomElements()
+            // Add custom elements
             {
-                // Create a new Content Container and add to the node.
+                // Add content container to main container.
                 ContentContainer = new();
                 ContentContainer.AddToClassList(StyleConfig.Instance.Node_Content_Container);
-                
+
                 mainContainer.Add(ContentContainer);
+            }
+
+            // Add to graph
+            {
+                GraphViewer.Add(this);
             }
         }
 
 
         // ----------------------------- Action -----------------------------
         /// <inheritdoc />
-        protected override void NodeCreatedAction()
+        public override void CreatedAction()
         {
             Callback.RegisterEvents();
         }
@@ -168,7 +154,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override void PreManualRemoveAction()
         {
-            Model.RemoveCachePortsAll();
+            Model.RemovePortsAll();
             Model.DisconnectPortsAll();
 
             Callback.UnregisterEvents();

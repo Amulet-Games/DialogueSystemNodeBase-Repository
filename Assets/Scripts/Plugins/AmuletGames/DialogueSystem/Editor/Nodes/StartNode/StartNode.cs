@@ -14,14 +14,14 @@
         /// <summary>
         /// Constructor of the start node component class.
         /// </summary>
-        /// <param name="details">The node creation details to set for.</param>
+        /// <param name="details">The node create details to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public StartNode
         (
-            NodeCreationDetails details,
+            NodeCreateDetails details,
             GraphViewer graphViewer
         )
-            : base(nodeTitle: StringConfig.Instance.StartNode_TitleText, graphViewer: graphViewer)
+            : base(nodeTitle: StringConfig.Instance.StartNode_TitleText, graphViewer)
         {
             SetupFrameFields();
 
@@ -33,7 +33,7 @@
 
             AddStyleSheet();
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {
@@ -52,7 +52,7 @@
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessSetWidthValues
+                Presenter.SetNodeWidth
                 (
                     minWidth: NodeConfig.StartNodeMinWidth,
                     widthBuffer: NodeConfig.StartNodeWidthBuffer
@@ -61,7 +61,7 @@
 
             void PostProcessNodePosition()
             {
-                Presenter.PostProcessNodePosition(details);
+                Presenter.SetNodePosition(details);
             }
 
             void AddStyleSheet()
@@ -83,7 +83,7 @@
             StartNodeData data,
             GraphViewer graphViewer
         )
-            : base(nodeTitle: StringConfig.Instance.StartNode_TitleText, graphViewer: graphViewer)
+            : base(nodeTitle: StringConfig.Instance.StartNode_TitleText, graphViewer)
         {
             SetupFrameFields();
 
@@ -95,7 +95,7 @@
 
             Serializer.Load(data);
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {
@@ -114,7 +114,7 @@
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessSetWidthValues
+                Presenter.SetNodeWidth
                 (
                     minWidth: NodeConfig.StartNodeMinWidth,
                     widthBuffer: NodeConfig.StartNodeWidthBuffer

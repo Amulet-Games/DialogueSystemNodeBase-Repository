@@ -6,6 +6,13 @@ namespace AG.DS
     [CreateAssetMenu(menuName = "### AG ###/Dialogue System/New Dialogue System Data")]
     public class DialogueSystemData : ScriptableObject
     {
+        [Space(5), Header("Readonly")]
+        /// <summary>
+        /// The asset instance id of the data.
+        /// </summary>
+        [ReadOnlyInspector] public int InstanceId = 0;
+
+
         [Space(5), Header("Customization")]
         /// <summary>
         /// The minimum size of the dialogue editor window when it's floating or modal.
@@ -85,7 +92,7 @@ namespace AG.DS
         /// Return a list of all saved node data.
         /// </summary>
         /// <returns>A list of all saved node data.</returns>
-        public List<NodeDataBase> GetDataNodes()
+        public List<NodeDataBase> GetDataNode()
         {
             List<NodeDataBase> nodesData = new();
 
@@ -107,7 +114,7 @@ namespace AG.DS
         /// <summary>
         /// Clear all the saved node data.
         /// </summary>
-        public void ClearDataNodes()
+        public void ClearDataNode()
         {
             BooleanNodeData.Clear();
             DialogueNodeData.Clear();
@@ -119,5 +126,11 @@ namespace AG.DS
             StartNodeData.Clear();
             StoryNodeData.Clear();
         }
+
+
+        /// <summary>
+        /// Clear all saved edge data.
+        /// </summary>
+        public void ClearDataEdge() => EdgeData.Clear();
     }
 }

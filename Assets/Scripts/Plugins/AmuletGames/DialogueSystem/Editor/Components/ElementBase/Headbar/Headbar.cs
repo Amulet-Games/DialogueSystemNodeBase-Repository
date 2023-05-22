@@ -37,7 +37,7 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the headbar module class.
+        /// Constructor of the headbar element class.
         /// </summary>
         public Headbar()
         {

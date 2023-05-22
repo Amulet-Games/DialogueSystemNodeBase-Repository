@@ -14,11 +14,11 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the option branch node component class.
         /// </summary>
-        /// <param name="details">The node creation details to set for.</param>
+        /// <param name="details">The node create details to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public OptionBranchNode
         (
-            NodeCreationDetails details,
+            NodeCreateDetails details,
             GraphViewer graphViewer
         )
             : base(StringConfig.Instance.OptionBranchNode_TitleText, graphViewer)
@@ -33,7 +33,7 @@ namespace AG.DS
 
             AddStyleSheet();
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {
@@ -52,7 +52,7 @@ namespace AG.DS
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessSetWidthValues
+                Presenter.SetNodeWidth
                 (
                     minWidth: NodeConfig.OptionBranchNodeMinWidth,
                     widthBuffer: NodeConfig.OptionBranchNodeWidthBuffer
@@ -61,7 +61,7 @@ namespace AG.DS
 
             void PostProcessNodePosition()
             {
-                Presenter.PostProcessNodePosition(details);
+                Presenter.SetNodePosition(details);
             }
 
             void AddStyleSheet()
@@ -99,7 +99,7 @@ namespace AG.DS
 
             Serializer.Load(data);
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {
@@ -118,7 +118,7 @@ namespace AG.DS
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessSetWidthValues
+                Presenter.SetNodeWidth
                 (
                     minWidth: NodeConfig.OptionBranchNodeMinWidth,
                     widthBuffer: NodeConfig.OptionBranchNodeWidthBuffer

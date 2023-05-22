@@ -10,10 +10,10 @@ namespace AG.DS
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the story node serializer module class.
+        /// Constructor of the story node serializer class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
-        /// <param name="model">The model module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public StoryNodeSerializer(StoryNode node, StoryNodeModel model)
         {
             Node = node;

@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <summary>
-    /// Register events to the connecting node module.
+    /// Register events to the node element.
     /// </summary>
     public abstract class NodeCallbackBase
     {

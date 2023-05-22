@@ -10,10 +10,10 @@
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the dialogue node serializer module class.
+        /// Constructor of the dialogue node serializer class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
-        /// <param name="model">The model module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public DialogueNodeSerializer(DialogueNode node, DialogueNodeModel model)
         {
             Node = node;

@@ -13,9 +13,9 @@ namespace AG.DS
         /// <param name="connectorWindow">The connector window to set for.</param>
         /// <param name="direction">The direction type to set for.</param>
         /// <returns>A new option port element.</returns>
-        public static OptionPort CreateElements<TEdge>
+        public static OptionPort CreateElement<TEdge>
         (
-            NodeCreationConnectorWindow connectorWindow,
+            NodeCreateConnectorWindow connectorWindow,
             Direction direction
         )
             where TEdge : Edge, new()

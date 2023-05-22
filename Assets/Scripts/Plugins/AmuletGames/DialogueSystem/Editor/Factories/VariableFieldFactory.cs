@@ -8,7 +8,7 @@ namespace AG.DS
         /// <summary>
         /// Factory method for creating a new variable object input field UIElement.
         /// </summary>
-        /// <param name="variableContainer">Reference of the connecting variable object container component.</param>
+        /// <param name="variableContainer">The variable object container to set for.</param>
         /// <param name="fieldIcon">The icon to set for field, it shows up next to the its input area.</param>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
         /// <returns>A new variable object input field UIElement.</returns>

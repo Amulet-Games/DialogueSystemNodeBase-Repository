@@ -15,15 +15,13 @@ namespace AG.DS
         where TNodeData : NodeDataBase
     {
         /// <summary>
-        /// Responsible for communicating with the other module classes,
-        /// <br>and creating the frame base when it's first initialized.</br>
+        /// Reference of the node element.
         /// </summary>
         protected TNode Node;
 
 
         /// <summary>
-        /// Holds all the components that'll be used on the connecting node,
-        /// <br>and allows other framework classes to utilize them for different purposes.</br>.
+        /// Reference of the node model.
         /// </summary>
         protected TNodeModel Model;
 
@@ -47,7 +45,7 @@ namespace AG.DS
         /// <summary>
         /// Method for saving the node's base values.
         /// </summary>
-        /// <param name="data">The given connecting data module class to save to.</param>
+        /// <param name="data">The type node data to save to.</param>
         protected void SaveBaseValues(TNodeData data)
         {
             SaveNodeDetails();
@@ -70,7 +68,7 @@ namespace AG.DS
         /// <summary>
         /// Method for loading the node's base values.
         /// </summary>
-        /// <param name="data">The given connecting data module class to load from.</param>
+        /// <param name="data">The type node data to load from.</param>
         protected void LoadBaseValues(TNodeData data)
         {
             LoadNodeDetails();

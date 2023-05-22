@@ -9,7 +9,7 @@ namespace AG.DS
         /// <summary>
         /// Factory method for creating a new enum input field UIElement.
         /// </summary>
-        /// <param name="enumContainer">Reference of the connecting enum container component.</param>
+        /// <param name="enumContainer">Reference of the enum container component.</param>
         /// <param name="containerValueChangedAction">The action to invoke along side with the field's ValueChangeEvent.</param>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
         /// <returns>A new enum input field UIElement.</returns>
@@ -74,7 +74,7 @@ namespace AG.DS
         /// <summary>
         /// Factory method for creating a new iconic enum input field UIElement.
         /// </summary>
-        /// <param name="iconicEnumContainer">Reference of the connecting iconic enum container component.</param>
+        /// <param name="iconicEnumContainer">Reference of the iconic enum container component.</param>
         /// <param name="containerValueChangedAction">The action to invoke along side with the field's ValueChangeEvent.</param>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
         /// <param name="iconImageUSS01">The first USS style to set for the symbol image.</param>
@@ -120,7 +120,7 @@ namespace AG.DS
                 // Initialize the field's underlying type.
                 iconicEnumContainer.InitFieldValue();
 
-                // Retreive the input element from the field.
+                // Retrieve the input element from the field.
                 VisualElement inputElement = enumField.ElementAt(0);
 
                 // Remove all the child elements under the enum field's input element.

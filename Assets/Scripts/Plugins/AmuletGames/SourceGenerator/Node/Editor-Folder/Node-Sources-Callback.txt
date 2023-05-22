@@ -20,13 +20,13 @@ namespace AG.#Namespace#
         /// <param name="node">Node of which this presenter is connecting upon.</param>
         /// <param name="model">Model of which this presenter is connecting upon.</param>
         /// <param name="serializer">The connecting serializer module to set for.</param>
-        /// <param name="details">The connecting creation details to set for.</param>
+        /// <param name="details">The node create details to set for.</param>
         public #Name#NodeCallback
         (
             #Name#Node node,
             #Name#NodeModel model,
             #Name#NodeSerializer serializer,
-            NodeCreationDetails details
+            NodeCreateDetails details
         )
         {
             Node = node;

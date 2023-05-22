@@ -14,11 +14,11 @@ namespace AG.#Namespace#
         /// <summary>
         /// Constructor of the #name# node component class.
         /// </summary>
-        /// <param name="details">The connecting creation details to set for.</param>
+        /// <param name="details">The connecting create details to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public #Name#Node
         (
-            NodeCreationDetails details,
+            NodeCreateDetails details,
             GraphViewer graphViewer
         )
             : base(StringsConfig.#Name#NodeDefaultLabelText, graphViewer)

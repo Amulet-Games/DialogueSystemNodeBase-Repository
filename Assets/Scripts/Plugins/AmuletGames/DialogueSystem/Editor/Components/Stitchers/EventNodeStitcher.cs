@@ -65,7 +65,7 @@ namespace AG.DS
 
             void SetupContentButton()
             {
-                var contentButton = ContentButtonPresenter.CreateElements
+                var contentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.Instance.ContentButton_AddEvent_LabelText,
                     buttonIconSprite: ConfigResourcesManager.Instance.SpriteConfig.AddEventModifierButtonIconSprite

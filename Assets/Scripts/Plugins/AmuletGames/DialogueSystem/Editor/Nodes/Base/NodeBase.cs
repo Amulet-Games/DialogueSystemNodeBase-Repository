@@ -33,7 +33,7 @@ namespace AG.DS
         /// <summary>
         /// Action to invoke when the node is created and added to the graph.
         /// </summary>
-        protected abstract void NodeCreatedAction();
+        public abstract void CreatedAction();
 
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace AG.DS
             if (isRefresh)
                 RefreshPorts();
 
-            GraphViewer.SerializeHandler.AddCachePort(port);
+            GraphViewer.Add(port);
         }
 
 
@@ -97,7 +97,7 @@ namespace AG.DS
             }
 
             RefreshPorts();
-            GraphViewer.SerializeHandler.RemoveCachePort(port);
+            GraphViewer.Remove(port);
         }
     }
 }

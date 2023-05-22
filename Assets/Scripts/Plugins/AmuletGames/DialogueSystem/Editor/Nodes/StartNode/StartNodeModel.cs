@@ -11,20 +11,20 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the start node model module class.
+        /// Constructor of the start node model class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
         public StartNodeModel(StartNode node)
         {
             Node = node;
         }
 
 
-        // ----------------------------- Remove Cache Ports All -----------------------------
+        // ----------------------------- Remove Ports All -----------------------------
         /// <inheritdoc />
-        public override void RemoveCachePortsAll()
+        public override void RemovePortsAll()
         {
-            Node.GraphViewer.SerializeHandler.RemoveCachePort(port: OutputDefaultPort);
+            Node.GraphViewer.Remove(port: OutputDefaultPort);
         }
 
 

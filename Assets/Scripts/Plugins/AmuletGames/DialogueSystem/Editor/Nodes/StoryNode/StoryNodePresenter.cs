@@ -25,10 +25,10 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the story node presenter module class.
+        /// Constructor of the story node presenter class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
-        /// <param name="model">The model module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public StoryNodePresenter(StoryNode node, StoryNodeModel model)
         {
             Node = node;
@@ -40,17 +40,17 @@ namespace AG.DS
         /// <inheritdoc />
         public override void CreatePortElements()
         {
-            Model.InputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
+            Model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.Instance.DefaultPort_Input_LabelText
             );
 
-            Model.OutputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
+            Model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.Instance.DefaultPort_Output_LabelText
@@ -71,7 +71,7 @@ namespace AG.DS
 
         // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
-        protected override void PostProcessPositionDetails(NodeCreationDetails details)
+        protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
         {
             AlignConnectorPosition();
 
@@ -166,7 +166,7 @@ namespace AG.DS
             void SetupPreferenceImage()
             {
                 Image preferenceImage;
-                preferenceImage = CommonImagePresenter.CreateElements(imageUSS01: StyleConfig.Instance.StoryNode_PreferenceImage_Image);
+                preferenceImage = CommonImagePresenter.CreateElement(imageUSS01: StyleConfig.Instance.StoryNode_PreferenceImage_Image);
                 Node.ContentContainer.Add(preferenceImage);
 
                 preferenceImage.sprite = ConfigResourcesManager.Instance.SpriteConfig.ApplyDesignSampleImage;
@@ -203,7 +203,7 @@ namespace AG.DS
 
                 void GeometryChangedAction(GeometryChangedEvent evt)
                 {
-                    var details = new NodeCreationDetails(
+                    var details = new NodeCreateDetails(
                         horizontalAlignType: HorizontalAlignmentType.FREE);
 
                     var createPosition = Node.localBound.position;

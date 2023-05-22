@@ -85,7 +85,7 @@ namespace AG.DS
 
             void SetupSegmentTitle()
             {
-                titleLabel = CommonLabelPresenter.CreateElements
+                titleLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: titleText,
                     labelUSS01: StyleConfig.Instance.Segment_Common_Title_Label
@@ -94,7 +94,7 @@ namespace AG.DS
 
             void SetupExpandButton()
             {
-                ExpandButton = CommonButtonPresenter.CreateElements
+                ExpandButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.SegmentExpandButtonIconSprite,
                     buttonUSS01: StyleConfig.Instance.Segment_Common_ExpandSegment_Button

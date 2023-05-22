@@ -29,9 +29,9 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the option branch node model module class.
+        /// Constructor of the option branch node model class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
         public OptionBranchNodeModel(OptionBranchNode node)
         {
             Node = node;
@@ -43,13 +43,12 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Remove Cache Ports All -----------------------------
+        // ----------------------------- Remove Ports All -----------------------------
         /// <inheritdoc />
-        public override void RemoveCachePortsAll()
+        public override void RemovePortsAll()
         {
-            var serializeHandler = Node.GraphViewer.SerializeHandler;
-            serializeHandler.RemoveCachePort(port: InputOptionPort);
-            serializeHandler.RemoveCachePort(port: OutputDefaultPort);
+            Node.GraphViewer.Remove(port: InputOptionPort);
+            Node.GraphViewer.Remove(port: OutputDefaultPort);
         }
 
 

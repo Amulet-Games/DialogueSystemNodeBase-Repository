@@ -5,11 +5,11 @@ namespace AG.DS
     public class EventModifierPresenter
     {
         /// <summary>
-        /// Create all the UIElements for the event modifier.
+        /// Create all the elements for the event modifier.
         /// </summary>
         /// <param name="model">The targeting event modifier model to set for.</param>
         /// <param name="index">The index of the modifier to set for.</param>
-        public static void CreateElements
+        public static void CreateElement
         (
             EventModifierModel model,
             int index
@@ -57,7 +57,7 @@ namespace AG.DS
 
             void SetupFolder()
             {
-                FolderPresenter.CreateElements
+                FolderPresenter.CreateElement
                 (
                     model: model.FolderModel,
                     titleText: StringUtility.New(
@@ -74,7 +74,7 @@ namespace AG.DS
 
             void SetupMoveUpButton()
             {
-                model.MoveUpButton = CommonButtonPresenter.CreateElements
+                model.MoveUpButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.MoveUpButtonIconSprite,
                     buttonUSS01: StyleConfig.Instance.EventModifier_MoveUp_Button
@@ -83,7 +83,7 @@ namespace AG.DS
 
             void SetupMoveDownButton()
             {
-                model.MoveDownButton = CommonButtonPresenter.CreateElements
+                model.MoveDownButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.MoveDownButtonIconSprite,
                     buttonUSS01: StyleConfig.Instance.EventModifier_MoveDown_Button
@@ -92,7 +92,7 @@ namespace AG.DS
 
             void SetupRenameButton()
             {
-                model.RenameButton = CommonButtonPresenter.CreateElements
+                model.RenameButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.EditButtonIconSprite,
                     buttonUSS01: StyleConfig.Instance.EventModifier_Rename_Button
@@ -101,7 +101,7 @@ namespace AG.DS
 
             void SetupRemoveButton()
             {
-                model.RemoveButton = CommonButtonPresenter.CreateElements
+                model.RemoveButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.RemoveButtonIconSprite,
                     buttonUSS01: StyleConfig.Instance.EventModifier_Remove_Button
@@ -116,7 +116,7 @@ namespace AG.DS
 
             void SetupDialogueEventLabel()
             {
-                dialogueEventLabel = CommonLabelPresenter.CreateElements
+                dialogueEventLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: StringConfig.Instance.EventModifier_DialogueEvent_LabelText,
                     labelUSS01: StyleConfig.Instance.EventModifier_DialogueEvent_Label
@@ -126,7 +126,7 @@ namespace AG.DS
             void SetupDialogueEventObjectField()
             {
                 model.DialogueEventObjectFieldModel.ObjectField =
-                    CommonObjectFieldPresenter.CreateElements<DialogueEvent>
+                    CommonObjectFieldPresenter.CreateElement<DialogueEvent>
                     (
                         fieldUSS01: StyleConfig.Instance.EventModifier_DialogueEvent_ObjectField
                     );
@@ -149,7 +149,7 @@ namespace AG.DS
 
             void SetupStartDelayLabel()
             {
-                startDelayLabel = CommonLabelPresenter.CreateElements
+                startDelayLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: StringConfig.Instance.EventModifier_StartDelay_LabelText,
                     labelUSS01: StyleConfig.Instance.EventModifier_StartDelay_Label
@@ -165,7 +165,7 @@ namespace AG.DS
             void SetupDelaySecondsIntegerField()
             {
                 model.DelaySecondsIntegerFieldModel.IntegerField =
-                    CommonIntegerFieldPresenter.CreateElements
+                    CommonIntegerFieldPresenter.CreateElement
                     (
                         fieldUSS01: StyleConfig.Instance.EventModifier_DelaySeconds_IntegerField
                     );
@@ -173,7 +173,7 @@ namespace AG.DS
 
             void SetupDelaySecondsLabel()
             {
-                delaySecondsLabel = CommonLabelPresenter.CreateElements
+                delaySecondsLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: StringConfig.Instance.EventModifier_DelaySeconds_LabelText,
                     labelUSS01: StyleConfig.Instance.EventModifier_DelaySeconds_Label

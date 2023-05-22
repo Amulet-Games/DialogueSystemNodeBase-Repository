@@ -29,9 +29,9 @@
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the dialogue node model module class.
+        /// Constructor of the dialogue node model class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
         public DialogueNodeModel(DialogueNode node)
         {
             Node = node;
@@ -40,13 +40,12 @@
         }
 
 
-        // ----------------------------- Remove Cache Ports All -----------------------------
+        // ----------------------------- Remove Ports All -----------------------------
         /// <inheritdoc />
-        public override void RemoveCachePortsAll()
+        public override void RemovePortsAll()
         {
-            var serializeHandler = Node.GraphViewer.SerializeHandler;
-            serializeHandler.RemoveCachePort(port: InputDefaultPort);
-            serializeHandler.RemoveCachePort(port: OutputDefaultPort);
+            Node.GraphViewer.Remove(port: InputDefaultPort);
+            Node.GraphViewer.Remove(port: OutputDefaultPort);
         }
 
 

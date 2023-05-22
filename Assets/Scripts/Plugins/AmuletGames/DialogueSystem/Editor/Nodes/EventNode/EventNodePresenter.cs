@@ -13,10 +13,10 @@ namespace AG.DS
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the event node presenter module class.
+        /// Constructor of the event node presenter class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
-        /// <param name="model">The model module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public EventNodePresenter(EventNode node, EventNodeModel model)
         {
             Node = node;
@@ -36,7 +36,7 @@ namespace AG.DS
 
             void SetupContentButton()
             {
-                var contentButton = ContentButtonPresenter.CreateElements
+                var contentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.Instance.ContentButton_AddEvent_LabelText,
                     buttonIconSprite: ConfigResourcesManager.Instance.SpriteConfig.AddEventModifierButtonIconSprite
@@ -52,7 +52,7 @@ namespace AG.DS
 
             void SetupEventModifierModelGroup()
             {
-                EventModifierModelGroupPresenter.CreateElements(
+                EventModifierModelGroupPresenter.CreateElement(
                     model: Model.EventModifierModelGroupModel);
 
                 Node.ContentContainer.Add(Model.EventModifierModelGroupModel.MainContainer);
@@ -68,17 +68,17 @@ namespace AG.DS
         /// <inheritdoc />
         public override void CreatePortElements()
         {
-            Model.InputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
+            Model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.Instance.DefaultPort_Input_LabelText
             );
             
-            Model.OutputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
+            Model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.Instance.DefaultPort_Output_LabelText
@@ -150,7 +150,7 @@ namespace AG.DS
 
         // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
-        protected override void PostProcessPositionDetails(NodeCreationDetails details)
+        protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
         {
             AlignConnectorPosition();
 

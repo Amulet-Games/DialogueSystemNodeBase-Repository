@@ -13,10 +13,10 @@ namespace AG.DS
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the option branch node presenter module class.
+        /// Constructor of the option branch node presenter class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
-        /// <param name="model">The model module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public OptionBranchNodePresenter(OptionBranchNode node, OptionBranchNodeModel model)
         {
             Node = node;
@@ -34,7 +34,7 @@ namespace AG.DS
 
             void SetupContentButton()
             {
-                var contentButton = ContentButtonPresenter.CreateElements
+                var contentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.Instance.ContentButton_AddCondition_LabelText,
                     buttonIconSprite: ConfigResourcesManager.Instance.SpriteConfig.AddConditionModifierButtonIconSprite
@@ -83,7 +83,7 @@ namespace AG.DS
 
                 void SetupOptionBranchIconImage()
                 {
-                    optionBranchIconImage = CommonImagePresenter.CreateElements
+                    optionBranchIconImage = CommonImagePresenter.CreateElement
                     (
                         imageSprite: ConfigResourcesManager.Instance.SpriteConfig.OptionBranchIconSprite,
                         imageUSS01: StyleConfig.Instance.OptionBranchGroup_Icon_Image
@@ -92,7 +92,7 @@ namespace AG.DS
 
                 void SetupOptionBranchTitleLabel()
                 {
-                    optionBranchTitleLabel = CommonLabelPresenter.CreateElements
+                    optionBranchTitleLabel = CommonLabelPresenter.CreateElement
                     (
                         labelText: StringConfig.Instance.OptionBranchGroup_TitleLabelText,
                         labelUSS01: StyleConfig.Instance.OptionBranchGroup_Title_Label
@@ -102,7 +102,7 @@ namespace AG.DS
                 void SetupOptionBranchTitleTextField()
                 {
                     Model.OptionBranchTitleTextFieldModel.TextField =
-                        LanguageTextFieldPresenter.CreateElements
+                        LanguageTextFieldPresenter.CreateElement
                         (
                             isMultiLine: false,
                             placeholderText: Model.OptionBranchTitleTextFieldModel.PlaceholderText,
@@ -141,15 +141,15 @@ namespace AG.DS
         /// <inheritdoc />
         public override void CreatePortElements()
         {
-            Model.InputOptionPort = OptionPort.CreateElements<OptionEdge>
+            Model.InputOptionPort = OptionPort.CreateElement<OptionEdge>
             (
-                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input
             );
 
-            Model.OutputDefaultPort = DefaultPort.CreateElements<DefaultEdge>
+            Model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: Node.GraphViewer.NodeCreationConnectorWindow,
+                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.Instance.DefaultPort_Output_LabelText
@@ -224,7 +224,7 @@ namespace AG.DS
 
         // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
-        protected override void PostProcessPositionDetails(NodeCreationDetails details)
+        protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
         {
             AlignConnectorPosition();
 

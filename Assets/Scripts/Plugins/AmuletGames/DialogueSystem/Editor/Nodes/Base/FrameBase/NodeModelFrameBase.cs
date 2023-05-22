@@ -8,8 +8,7 @@ namespace AG.DS
         where TNode : NodeBase
     {
         /// <summary>
-        /// Responsible for communicating with the other module classes,
-        /// <br>and creating the frame base when it's first initialized.</br>
+        /// Reference of the node element.
         /// </summary>
         protected TNode Node;
 
@@ -18,7 +17,7 @@ namespace AG.DS
         /// <summary>
         /// Remove any ports that are in the node from the serialize handler cache.
         /// </summary>
-        public abstract void RemoveCachePortsAll();
+        public abstract void RemovePortsAll();
 
 
         // ----------------------------- Disconnect Ports All -----------------------------

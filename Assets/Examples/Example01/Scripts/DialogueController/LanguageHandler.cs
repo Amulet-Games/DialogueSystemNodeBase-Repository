@@ -14,7 +14,6 @@ namespace AG
         [Header("Static")]
         public static LanguageHandler singleton;
 
-        #region Callbacks.
         private void Awake()
         {
             if (singleton != null)
@@ -26,6 +25,5 @@ namespace AG
                 singleton = this;
             }
         }
-        #endregion
     }
 }

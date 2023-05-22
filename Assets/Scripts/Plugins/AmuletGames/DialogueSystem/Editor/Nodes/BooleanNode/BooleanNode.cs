@@ -14,11 +14,11 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the boolean node component class.
         /// </summary>
-        /// <param name="details">The node creation details to set for.</param>
+        /// <param name="details">The node create details to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public BooleanNode
         (
-            NodeCreationDetails details,
+            NodeCreateDetails details,
             GraphViewer graphViewer
         )
             : base(StringConfig.Instance.BooleanNode_TitleText, graphViewer)
@@ -27,13 +27,13 @@ namespace AG.DS
 
             CreateNodeElements();
 
-            PostProcessNodeWidth();
+            SetNodeWidth();
 
-            PostProcessNodePosition();
+            SetNodePosition();
 
             AddStyleSheet();
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {
@@ -50,18 +50,18 @@ namespace AG.DS
                 Presenter.CreateContentElements();
             }
 
-            void PostProcessNodeWidth()
+            void SetNodeWidth()
             {
-                Presenter.PostProcessSetWidthValues
+                Presenter.SetNodeWidth
                 (
                     minWidth: NodeConfig.BooleanNodeMinWidth,
                     widthBuffer: NodeConfig.BooleanNodeWidthBuffer
                 );
             }
 
-            void PostProcessNodePosition()
+            void SetNodePosition()
             {
-                Presenter.PostProcessNodePosition(details);
+                Presenter.SetNodePosition(details);
             }
 
             void AddStyleSheet()
@@ -100,7 +100,7 @@ namespace AG.DS
 
             Serializer.Load(data);
 
-            NodeCreatedAction();
+            CreatedAction();
 
             void SetupFrameFields()
             {
@@ -119,7 +119,7 @@ namespace AG.DS
 
             void PostProcessNodeWidth()
             {
-                Presenter.PostProcessSetWidthValues
+                Presenter.SetNodeWidth
                 (
                     minWidth: NodeConfig.BooleanNodeMinWidth,
                     widthBuffer: NodeConfig.BooleanNodeWidthBuffer
@@ -127,6 +127,54 @@ namespace AG.DS
             }
 
             void AddStyleSheet()
+            {
+                var styleSheetConfig = ConfigResourcesManager.Instance.StyleSheetConfig;
+                styleSheets.Add(styleSheetConfig.DSBooleanNodeStyle);
+                styleSheets.Add(styleSheetConfig.DSModifierStyle);
+                styleSheets.Add(styleSheetConfig.DSSegmentStyle);
+                styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
+                styleSheets.Add(styleSheetConfig.DSRootedModifierStyle);
+            }
+        }
+
+
+        // ----------------------------- Constructor (New) -----------------------------
+        /// <summary>
+        /// Constructor of the boolean node component class.
+        /// <para>Specifically used when the node is created by the previously saved data.</para>
+        /// </summary>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        public BooleanNode
+        (
+            GraphViewer graphViewer
+        )
+            : base(StringConfig.Instance.BooleanNode_TitleText, graphViewer)
+        {
+            // Setup frame fields
+            {
+                Model = new(node: this);
+                Presenter = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, model: Model);
+            }
+
+            // Create elements
+            {
+                Presenter.CreateTitleElements();
+                Presenter.CreatePortElements();
+                Presenter.CreateContentElements();
+            }
+
+            // Setup node width
+            {
+                Presenter.SetNodeWidth
+                (
+                    minWidth: NodeConfig.BooleanNodeMinWidth,
+                    widthBuffer: NodeConfig.BooleanNodeWidthBuffer
+                );
+            }
+
+            // Add style sheet
             {
                 var styleSheetConfig = ConfigResourcesManager.Instance.StyleSheetConfig;
                 styleSheets.Add(styleSheetConfig.DSBooleanNodeStyle);

@@ -16,9 +16,9 @@ namespace AG.DS
         /// <param name="label">The port's label to set for.</param>
         /// <param name="isSiblings">Is the container that the port is created in contains other ports?</param>
         /// <returns>A new default port element.</returns>
-        public static DefaultPort CreateElements<TEdge>
+        public static DefaultPort CreateElement<TEdge>
         (
-            NodeCreationConnectorWindow connectorWindow,
+            NodeCreateConnectorWindow connectorWindow,
             Direction direction,
             Capacity capacity,
             string label,

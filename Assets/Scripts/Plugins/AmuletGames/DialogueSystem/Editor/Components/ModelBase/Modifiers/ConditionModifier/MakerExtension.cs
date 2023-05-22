@@ -89,7 +89,7 @@ namespace AG.DS
 
             void SetupSecondTermTextField()
             {
-                SecondTermTextFieldModel.TextField = CommonTextFieldPresenter.CreateElements
+                SecondTermTextFieldModel.TextField = CommonTextFieldPresenter.CreateElement
                 (
                     isMultiLine: false,
                     placeholderText: SecondTermTextFieldModel.PlaceholderText,
@@ -101,7 +101,7 @@ namespace AG.DS
 
             void SetupSecondTermFloatField()
             {
-                SecondTermFloatFieldModel.FloatField = CommonFloatFieldPresenter.CreateElements
+                SecondTermFloatFieldModel.FloatField = CommonFloatFieldPresenter.CreateElement
                 (
                     fieldUSS01: StyleConfig.Instance.Modifier_Condition_SecondTerm_FloatField
                 );
@@ -129,7 +129,7 @@ namespace AG.DS
 
             void SetupChangeFieldTypeButton()
             {
-                changeFieldTypeButton = CommonButtonPresenter.CreateElements
+                changeFieldTypeButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.ChangeFieldTypeButtonIconSprite,
                     buttonUSS01: StyleConfig.Instance.Modifier_Condition_ChangeFieldType_Button
@@ -143,7 +143,7 @@ namespace AG.DS
 
             void SetupModifierRemoveButton()
             {
-                modifierRemoveButton = CommonButtonPresenter.CreateElements
+                modifierRemoveButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.RemoveButtonIcon2Sprite,
                     buttonUSS01: StyleConfig.Instance.Modifier_Condition_Remove_Button

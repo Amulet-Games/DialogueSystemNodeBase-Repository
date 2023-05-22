@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <summary>
-    /// Holds the methods for save and load the connecting node module's value to the data modele.
+    /// Holds the methods for save and load the node model's value.
     /// </summary>
     public abstract class NodeSerializerBase { }
 }

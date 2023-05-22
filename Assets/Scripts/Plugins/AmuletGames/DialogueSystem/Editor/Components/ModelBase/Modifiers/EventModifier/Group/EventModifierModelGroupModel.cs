@@ -275,7 +275,7 @@ namespace AG.DS
                 for (int cacheIndex = 1; cacheIndex <= cacheCount; cacheIndex++)
                 {
                     model = new();
-                    EventModifierPresenter.CreateElements
+                    EventModifierPresenter.CreateElement
                     (
                         model: model,
                         index: cacheIndex
@@ -342,7 +342,7 @@ namespace AG.DS
             void SetupModifier()
             {
                 model = new();
-                EventModifierPresenter.CreateElements
+                EventModifierPresenter.CreateElement
                 (
                     model: model,
                     index: nextIndex

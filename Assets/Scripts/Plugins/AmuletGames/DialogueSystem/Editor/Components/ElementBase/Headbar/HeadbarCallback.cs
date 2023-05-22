@@ -11,9 +11,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the dialogue editor window module.
+        /// Reference of the dialogue editor window.
         /// </summary>
         DialogueEditorWindow dsWindow;
+
+
+        /// <summary>
+        /// The asset instance id of the dialogue system data.
+        /// </summary>
+        int dsDataInstanceId;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -21,15 +27,18 @@ namespace AG.DS
         /// Constructor of the headbar callback class.
         /// </summary>
         /// <param name="headbar">The headbar element to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window module to set for.</param>
+        /// <param name="dsWindow">The dialogue editor window to set for.</param>
+        /// <param name="dsDataInstanceId">The dialogue system data asset instance id to set for.</param>
         public HeadbarCallback
         (
             Headbar headbar,
-            DialogueEditorWindow dsWindow
+            DialogueEditorWindow dsWindow,
+            int dsDataInstanceId
         )
         {
             this.headbar = headbar;
             this.dsWindow = dsWindow;
+            this.dsDataInstanceId = dsDataInstanceId;
         }
 
         // ----------------------------- Register Events -----------------------------
@@ -120,7 +129,7 @@ namespace AG.DS
         {
             new GraphTitleTextFieldCallback(
                 model: headbar.GraphTitleTextFieldModel,
-                dsDataInstanceId: dsWindow.DsDataInstanceId).RegisterEvents();
+                dsDataInstanceId: dsDataInstanceId).RegisterEvents();
         }
 
 
@@ -157,7 +166,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void SaveButtonClickEvent(ClickEvent evt)
         {
-            dsWindow.SaveWindow();
+            dsWindow.Save();
         }
 
 
@@ -167,7 +176,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void LoadButtonClickEvent(ClickEvent evt)
         {
-            dsWindow.LoadWindow(isForceLoadWindow: false);
+            dsWindow.Load(isForceLoadWindow: false);
         }
     }
 }

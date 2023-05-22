@@ -12,10 +12,10 @@ namespace AG.DS
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the boolean node serializer module class.
+        /// Constructor of the boolean node serializer class.
         /// </summary>
-        /// <param name="node">The node module to set for.</param>
-        /// <param name="model">The model module to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public BooleanNodeSerializer(BooleanNode node, BooleanNodeModel model)
         {
             Node = node;
@@ -51,7 +51,7 @@ namespace AG.DS
                 // True output opponent node
                 data.TrueOutputOpponentNodeGUID = Model.TrueOutputDefaultPort.connected
 
-                    // Connecting opponenet node's GUID.
+                    // Opponent node's GUID.
                     ? ((NodeBase)Model.TrueOutputDefaultPort.connections.First().input.node).NodeGUID
 
                     // Save as empty string.
@@ -60,7 +60,7 @@ namespace AG.DS
 
                 data.FalseOutputOpponentNodeGUID = Model.FalseOutputDefaultPort.connected
 
-                    // Connecting opponent node's GUID.
+                    // Opponent node's GUID.
                     ? ((NodeBase)Model.FalseOutputDefaultPort.connections.First().input.node).NodeGUID
 
                     // Save as empty string.
