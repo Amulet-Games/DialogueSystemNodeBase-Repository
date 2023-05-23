@@ -2,19 +2,19 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class HeadbarPresenter
+    public class HeadBarPresenter
     {
         /// <summary>
-        /// Method for creating the headbar element.
+        /// Method for creating the headBar element.
         /// </summary>
         /// <param name="dsData">The dialogue system data to set for.</param>
-        /// <returns>A new headbar element.</returns>
-        public static Headbar CreateElement(DialogueSystemData dsData)
+        /// <returns>A new headBar element.</returns>
+        public static HeadBar CreateElement(DialogueSystemData dsData)
         {
-            Headbar headbar;
+            HeadBar headBar;
             VisualElement buttonsContainer;
 
-            CreateHeadbar();
+            CreateHeadBar();
 
             SetupDetail();
 
@@ -30,51 +30,51 @@ namespace AG.DS
 
             AddElementsToContainer();
 
-            AddElementsToHeadbar();
+            AddElementsToHeadBar();
 
             AddStyleSheet();
 
-            return headbar;
+            return headBar;
 
-            void CreateHeadbar()
+            void CreateHeadBar()
             {
-                headbar = new();
-                headbar.AddToClassList(StyleConfig.Instance.Headbar_Main);
+                headBar = new();
+                headBar.AddToClassList(StyleConfig.Instance.HeadBar_Main);
             }
 
             void SetupDetail()
             {
-                headbar.focusable = true;
+                headBar.focusable = true;
             }
 
             void SetupContainers()
             {
                 buttonsContainer = new();
-                buttonsContainer.AddToClassList(StyleConfig.Instance.Headbar_ButtonContainer);
+                buttonsContainer.AddToClassList(StyleConfig.Instance.HeadBar_ButtonContainer);
             }
 
             void SetupSaveButton()
             {
-                headbar.SaveButton = CommonButtonPresenter.CreateElement
+                headBar.SaveButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonText: StringConfig.Instance.Headbar_SaveButton_LabelText,
-                    buttonUSS01: StyleConfig.Instance.Headbar_SaveButton
+                    buttonText: StringConfig.Instance.HeadBar_SaveButton_LabelText,
+                    buttonUSS01: StyleConfig.Instance.HeadBar_SaveButton
                 );
             }
 
             void SetupLoadButton()
             {
-                headbar.LoadButton = CommonButtonPresenter.CreateElement
+                headBar.LoadButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonText: StringConfig.Instance.Headbar_LoadButton_LabelText,
-                    buttonUSS01: StyleConfig.Instance.Headbar_LoadButton
+                    buttonText: StringConfig.Instance.HeadBar_LoadButton_LabelText,
+                    buttonUSS01: StyleConfig.Instance.HeadBar_LoadButton
                 );
             }
 
             void SetupLanguageToolbarMenu()
             {
                 var languageManager = LanguageManager.Instance;
-                headbar.LanguageToolbarMenu = ToolbarMenuPresenter.CreateElement
+                headBar.LanguageToolbarMenu = ToolbarMenuPresenter.CreateElement
                 (
                     labelText: languageManager.GetShort(type: languageManager.SelectedLanguage),
                     arrowIcon: ConfigResourcesManager.Instance.SpriteConfig.DropdownArrowIcon1Sprite
@@ -83,29 +83,29 @@ namespace AG.DS
 
             void SetupGraphTitleField()
             {
-                headbar.GraphTitleTextFieldModel.TextField = GraphTitleTextFieldPresenter.CreateElement
+                headBar.GraphTitleTextFieldModel.TextField = GraphTitleTextFieldPresenter.CreateElement
                 (
                     dsData: dsData,
-                    fieldUSS01: StyleConfig.Instance.Headbar_GraphTitleTextField
+                    fieldUSS01: StyleConfig.Instance.HeadBar_GraphTitleTextField
                 );
             }
 
             void AddElementsToContainer()
             {
-                buttonsContainer.Add(headbar.SaveButton);
-                buttonsContainer.Add(headbar.LoadButton);
-                buttonsContainer.Add(headbar.LanguageToolbarMenu);
+                buttonsContainer.Add(headBar.SaveButton);
+                buttonsContainer.Add(headBar.LoadButton);
+                buttonsContainer.Add(headBar.LanguageToolbarMenu);
             }
 
-            void AddElementsToHeadbar()
+            void AddElementsToHeadBar()
             {
-                headbar.Add(buttonsContainer);
-                headbar.Add(headbar.GraphTitleTextFieldModel.TextField);
+                headBar.Add(buttonsContainer);
+                headBar.Add(headBar.GraphTitleTextFieldModel.TextField);
             }
 
             void AddStyleSheet()
             {
-                headbar.styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSHeadbarStyle);
+                headBar.styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSHeadBarStyle);
             }
         }
     }

@@ -21,12 +21,12 @@ namespace AG.DS
         public string Global_ToolbarMenu_ArrowImage = "global_ToolbarMenu_ArrowImage";
         #endregion
 
-        #region Headbar USS Classes.
-        public string Headbar_Main = "headbar_Main";
-        public string Headbar_ButtonContainer = "headbar_ButtonContainer";
-        public string Headbar_SaveButton = "headbar_SaveButton";
-        public string Headbar_LoadButton = "headbar_LoadButton";
-        public string Headbar_GraphTitleTextField = "headbar_GraphTitleTextField";
+        #region HeadBar USS Classes.
+        public string HeadBar_Main = "headBar_Main";
+        public string HeadBar_ButtonContainer = "headBar_ButtonContainer";
+        public string HeadBar_SaveButton = "headBar_SaveButton";
+        public string HeadBar_LoadButton = "headBar_LoadButton";
+        public string HeadBar_GraphTitleTextField = "headBar_GraphTitleTextField";
         #endregion
 
         #region Input Hint USS Classes.

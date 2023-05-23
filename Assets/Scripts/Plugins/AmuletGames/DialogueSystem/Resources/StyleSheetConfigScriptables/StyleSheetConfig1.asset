@@ -19,7 +19,7 @@ MonoBehaviour:
   DSContentButtonStyle: {fileID: 7433441132597879392, guid: 8d818c46996077948981637687c1f346, type: 3}
   DSFolderStyle: {fileID: 7433441132597879392, guid: f28e4dafcc9566e48ae85ddcded49202, type: 3}
   DSGraphViewerStyle: {fileID: 7433441132597879392, guid: 8a9568d13f1b5ec419a5357082f3f86f, type: 3}
-  DSHeadbarStyle: {fileID: 7433441132597879392, guid: 53c0d455741951241ae78d15a50cc57f, type: 3}
+  DSHeadBarStyle: {fileID: 7433441132597879392, guid: 53c0d455741951241ae78d15a50cc57f, type: 3}
   DSInputHintStyle: {fileID: 7433441132597879392, guid: 0b3d07e7c06a53b419849c220ce28863, type: 3}
   DSBooleanNodeStyle: {fileID: 7433441132597879392, guid: 3ae144f0e03b7f44194c54e113bde664, type: 3}
   DSDialogueNodeStyle: {fileID: 7433441132597879392, guid: c486e0fbac2abc0478d86f2efd9e2530, type: 3}

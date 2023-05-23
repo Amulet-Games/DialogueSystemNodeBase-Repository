@@ -31,7 +31,7 @@ namespace AG.DS
         #region Modules.
         [Header("Modules")]
         public StyleSheet DSGraphViewerStyle;
-        public StyleSheet DSHeadbarStyle;
+        public StyleSheet DSHeadBarStyle;
         public StyleSheet DSInputHintStyle;
         #endregion
 

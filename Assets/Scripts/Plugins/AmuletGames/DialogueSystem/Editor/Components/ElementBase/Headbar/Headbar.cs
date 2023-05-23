@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class Headbar : VisualElement
+    public class HeadBar : VisualElement
     {
         /// <summary>
         /// Toolbar menu for the editor window language.
@@ -30,16 +30,16 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Is the headbar in focus at the moment?
+        /// Is the headBar in focus at the moment?
         /// </summary>
         public bool IsFocus;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the headbar element class.
+        /// Constructor of the headBar element class.
         /// </summary>
-        public Headbar()
+        public HeadBar()
         {
             GraphTitleTextFieldModel = new();
         }

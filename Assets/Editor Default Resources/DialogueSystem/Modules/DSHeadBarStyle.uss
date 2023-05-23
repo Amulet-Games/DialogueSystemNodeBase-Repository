@@ -1,7 +1,7 @@
-/* =========================================================== Headbar =========================================================== */
+/* =========================================================== HeadBar =========================================================== */
 
 /*< ---------------------------------------------------------- Main >*/
-.headbar_Main {
+.headBar_Main {
 	background-color: #1D1D1E;
 
 	height: 60px;
@@ -19,7 +19,7 @@
 
 
 /*< ---------------------------------------------------------- Button Container >*/
-.headbar_ButtonContainer {
+.headBar_ButtonContainer {
 	
 	align-items: center;
 	align-self: center;
@@ -35,7 +35,7 @@
 
 
 /*< ---------------------------------------------------------- Save Button >*/
-.headbar_SaveButton {
+.headBar_SaveButton {
 
 	background-color: #252729;
 	border-color: #212325;
@@ -54,7 +54,7 @@
 	border-radius: 3px 3px 3px 3px;
 }
 
-.headbar_SaveButton:hover {
+.headBar_SaveButton:hover {
 
 	border-bottom-color: #FFD35B;
 	color: #FFC937;
@@ -62,7 +62,7 @@
 
 
 /*< ---------------------------------------------------------- Load Button >*/
-.headbar_LoadButton {
+.headBar_LoadButton {
 
 	background-color: #252729;
 	border-color: #212325;
@@ -81,7 +81,7 @@
 	border-radius: 3px 3px 3px 3px;
 }
 
-.headbar_LoadButton:hover {
+.headBar_LoadButton:hover {
 
 	border-bottom-color: #FFD35B;
 	color: #FFC937;
@@ -170,7 +170,7 @@
 
 
 /*< ---------------------------------------------------------- Graph Title Text Field >*/
-.headbar_GraphTitleTextField {
+.headBar_GraphTitleTextField {
 
 	background-color: rgba(0, 0, 0, 0);
 
@@ -183,7 +183,7 @@
 	padding: 0px 35% 0px 35%;
 }
 
-.headbar_GraphTitleTextField 
+.headBar_GraphTitleTextField 
 .unity-base-text-field__input {
 
 	background-color: rgba(0, 0, 0, 0);
@@ -203,7 +203,7 @@
 	border-width: 0px 0px 2px 0px;
 }
 
-.headbar_GraphTitleTextField 
+.headBar_GraphTitleTextField 
 .unity-base-text-field__input:hover {
 
 	background-color: #252729;

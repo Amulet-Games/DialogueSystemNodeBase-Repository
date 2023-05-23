@@ -76,33 +76,19 @@
         }
 
 
-        // ----------------------------- Constructor (Load) -----------------------------
+        // ----------------------------- Constructor (New) -----------------------------
         /// <summary>
         /// Constructor of the event node component class.
         /// <para>Specifically used when the node is created by the previously saved data.</para>
         /// </summary>
-        /// <param name="data">The node data to load from.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public EventNode
         (
-            EventNodeData data,
             GraphViewer graphViewer
         )
             : base(StringConfig.Instance.EventNode_TitleText, graphViewer)
         {
-            SetupFrameFields();
-
-            CreateNodeElements();
-
-            PostProcessNodeWidth();
-
-            AddStyleSheet();
-
-            Serializer.Load(data);
-
-            CreatedAction();
-
-            void SetupFrameFields()
+            // Setup frame fields
             {
                 Model = new(node: this);
                 Presenter = new(node: this, model: Model);
@@ -110,14 +96,14 @@
                 Callback = new(node: this, model: Model);
             }
 
-            void CreateNodeElements()
+            // Create elements
             {
                 Presenter.CreateTitleElements();
                 Presenter.CreatePortElements();
                 Presenter.CreateContentElements();
             }
 
-            void PostProcessNodeWidth()
+            // Setup node width
             {
                 Presenter.SetNodeWidth
                 (
@@ -126,7 +112,7 @@
                 );
             }
 
-            void AddStyleSheet()
+            // Add style sheet
             {
                 var styleSheetConfig = ConfigResourcesManager.Instance.StyleSheetConfig;
                 styleSheets.Add(styleSheetConfig.DSEventNodeStyle);

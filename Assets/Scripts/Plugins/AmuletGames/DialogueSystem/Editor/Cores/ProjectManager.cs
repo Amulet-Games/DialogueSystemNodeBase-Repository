@@ -19,7 +19,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the headBar element.
         /// </summary>
-        Headbar headbar;
+        HeadBar headBar;
 
 
         /// <summary>
@@ -101,13 +101,13 @@ namespace AG.DS
                 // Graph Viewer
                 graphViewer = GraphViewerPresenter.CreateElement(projectManager: this);
 
-                // Headbar
-                headbar = HeadbarPresenter.CreateElement(DsData);
+                // HeadBar
+                headBar = HeadBarPresenter.CreateElement(DsData);
 
                 // Dialogue Editor Window
                 dsWindow = DialogueEditorWindowPresenter.CreateWindow(DsData, projectManager: this);
                 dsWindow.rootVisualElement.Add(graphViewer);
-                dsWindow.rootVisualElement.Add(headbar);
+                dsWindow.rootVisualElement.Add(headBar);
 
                 // Serialize Handler
                 serializeHandler = new(graphViewer);
@@ -136,9 +136,9 @@ namespace AG.DS
                     dsWindow,
                     nodeCreateRequestWindow).RegisterEvents();
 
-                // Headbar
-                new HeadbarCallback(
-                    headbar,
+                // HeadBar
+                new HeadBarCallback(
+                    headBar,
                     dsWindow,
                     DsData.InstanceId).RegisterEvents();
 
@@ -146,7 +146,7 @@ namespace AG.DS
                 new DialogueEditorWindowCallback(
                     dsWindow,
                     graphViewer,
-                    headbar).RegisterEventsSetup();
+                    headBar).RegisterEventsSetup();
             }
         }
 
@@ -163,7 +163,7 @@ namespace AG.DS
 
                 LoadFromDSDataEvent.Register(action: dsData => graphViewer.ClearGraph());
                 LoadFromDSDataEvent.Register(action: serializeHandler.LoadEdgesAndNodes);
-                LoadFromDSDataEvent.Register(action: headbar.RefreshTitleAndLanguage);
+                LoadFromDSDataEvent.Register(action: headBar.RefreshTitleAndLanguage);
 
                 ApplyChangesToDiskEvent.Register(action: AssetDatabase.SaveAssets);
                 ApplyChangesToDiskEvent.Register(action: () => dsWindow.SetHasUnsavedChanges(value: false));

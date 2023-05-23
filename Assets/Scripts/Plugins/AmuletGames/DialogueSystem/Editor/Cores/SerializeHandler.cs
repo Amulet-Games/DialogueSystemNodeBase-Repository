@@ -129,9 +129,7 @@ namespace AG.DS
                 for (int i = 0; i < dataCount; i++)
                 {
                     var node = new BooleanNode(graphViewer);
-
                     node.Serializer.Load(dsData.BooleanNodeData[i]);
-
                     node.CreatedAction();
                 }
             }
@@ -143,9 +141,7 @@ namespace AG.DS
                 for (int i = 0; i < dataCount; i++)
                 {
                     var node = new DialogueNode(graphViewer);
-
                     node.Serializer.Load(dsData.DialogueNodeData[i]);
-
                     node.CreatedAction();
                 }
             }
@@ -155,7 +151,11 @@ namespace AG.DS
                 dataCount = dsData.EndNodeData.Count;
 
                 for (int i = 0; i < dataCount; i++)
-                    new EndNode(dsData.EndNodeData[i], graphViewer);
+                {
+                    var node = new EndNode(graphViewer);
+                    node.Serializer.Load(dsData.EndNodeData[i]);
+                    node.CreatedAction();
+                }
             }
 
             void LoadEventNodes()
@@ -163,7 +163,11 @@ namespace AG.DS
                 dataCount = dsData.EventNodeData.Count;
 
                 for (int i = 0; i < dataCount; i++)
-                    new EventNode(dsData.EventNodeData[i], graphViewer);
+                {
+                    var node = new EventNode(graphViewer);
+                    node.Serializer.Load(dsData.EventNodeData[i]);
+                    node.CreatedAction();
+                }
             }
 
             void LoadOptionBranchNodes()
@@ -171,7 +175,11 @@ namespace AG.DS
                 dataCount = dsData.OptionBranchNodeData.Count;
 
                 for (int i = 0; i < dataCount; i++)
-                    new OptionBranchNode(dsData.OptionBranchNodeData[i], graphViewer);
+                {
+                    var node = new OptionBranchNode(graphViewer);
+                    node.Serializer.Load(dsData.OptionBranchNodeData[i]);
+                    node.CreatedAction();
+                }
             }
 
             void LoadOptionRootNodes()
@@ -179,7 +187,11 @@ namespace AG.DS
                 dataCount = dsData.OptionRootNodeData.Count;
 
                 for (int i = 0; i < dataCount; i++)
-                    new OptionRootNode(dsData.OptionRootNodeData[i], graphViewer);
+                {
+                    var node = new OptionRootNode(graphViewer);
+                    node.Serializer.Load(dsData.OptionRootNodeData[i]);
+                    node.CreatedAction();
+                }
             }
 
             void LoadPreviewNodes()
@@ -187,7 +199,11 @@ namespace AG.DS
                 dataCount = dsData.PreviewNodeData.Count;
 
                 for (int i = 0; i < dataCount; i++)
-                    new PreviewNode(dsData.PreviewNodeData[i], graphViewer);
+                {
+                    var node = new PreviewNode(graphViewer);
+                    node.Serializer.Load(dsData.PreviewNodeData[i]);
+                    node.CreatedAction();
+                }
             }
 
             void LoadStartNodes()
@@ -195,7 +211,11 @@ namespace AG.DS
                 dataCount = dsData.StartNodeData.Count;
 
                 for (int i = 0; i < dataCount; i++)
-                    new StartNode(dsData.StartNodeData[i], graphViewer);
+                {
+                    var node = new StartNode(graphViewer);
+                    node.Serializer.Load(dsData.StartNodeData[i]);
+                    node.CreatedAction();
+                }
             }
 
             void LoadStoryNodes()
@@ -203,7 +223,11 @@ namespace AG.DS
                 dataCount = dsData.StoryNodeData.Count;
 
                 for (int i = 0; i < dataCount; i++)
-                    new StoryNode(dsData.StoryNodeData[i], graphViewer);
+                {
+                    var node = new StoryNode(graphViewer);
+                    node.Serializer.Load(dsData.StoryNodeData[i]);
+                    node.CreatedAction();
+                }
             }
         }
 

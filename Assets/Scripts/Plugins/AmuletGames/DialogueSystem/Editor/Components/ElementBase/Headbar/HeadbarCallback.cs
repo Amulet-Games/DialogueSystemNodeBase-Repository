@@ -2,12 +2,12 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class HeadbarCallback
+    public class HeadBarCallback
     {
         /// <summary>
-        /// The targeting headbar element.
+        /// The targeting headBar element.
         /// </summary>
-        Headbar headbar;
+        HeadBar headBar;
 
 
         /// <summary>
@@ -24,26 +24,26 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the headbar callback class.
+        /// Constructor of the headBar callback class.
         /// </summary>
-        /// <param name="headbar">The headbar element to set for.</param>
+        /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="dsWindow">The dialogue editor window to set for.</param>
         /// <param name="dsDataInstanceId">The dialogue system data asset instance id to set for.</param>
-        public HeadbarCallback
+        public HeadBarCallback
         (
-            Headbar headbar,
+            HeadBar headBar,
             DialogueEditorWindow dsWindow,
             int dsDataInstanceId
         )
         {
-            this.headbar = headbar;
+            this.headBar = headBar;
             this.dsWindow = dsWindow;
             this.dsDataInstanceId = dsDataInstanceId;
         }
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the headbar.
+        /// Register events to the headBar.
         /// </summary>
         public void RegisterEvents()
         {
@@ -62,45 +62,45 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register FocusEvent to the headbar.
+        /// Register FocusEvent to the headBar.
         /// </summary>
         void RegisterFocusEvent() =>
-            headbar.RegisterCallback<FocusEvent>(FocusEvent);
+            headBar.RegisterCallback<FocusEvent>(FocusEvent);
 
 
         /// <summary>
-        /// Register BlurEvent to the headbar.
+        /// Register BlurEvent to the headBar.
         /// </summary>
         void RegisterBlurEvent() =>
-            headbar.RegisterCallback<BlurEvent>(BlurEvent);
+            headBar.RegisterCallback<BlurEvent>(BlurEvent);
 
 
         /// <summary>
-        /// Register ClickEvent to the headbar's save button.
+        /// Register ClickEvent to the headBar's save button.
         /// </summary>
         void RegisterSaveButtonClickEvent()
         {
             new CommonButtonCallback(
                 isAlert: false,
-                button: headbar.SaveButton,
+                button: headBar.SaveButton,
                 clickEvent: SaveButtonClickEvent).RegisterEvents();
         }
 
 
         /// <summary>
-        /// Register ClickEvent to the headbar's load button.
+        /// Register ClickEvent to the headBar's load button.
         /// </summary>
         void RegisterLoadButtonClickEvent()
         {
             new CommonButtonCallback(
                 isAlert: false,
-                button: headbar.LoadButton,
+                button: headBar.LoadButton,
                 clickEvent: LoadButtonClickEvent).RegisterEvents();
         }
 
 
         /// <summary>
-        /// Register action to each of the items in the headbar's language toolbar menu.
+        /// Register action to each of the items in the headBar's language toolbar menu.
         /// </summary>
         void RegisterLanguageToolbarMenuAction()
         {
@@ -109,12 +109,12 @@ namespace AG.DS
 
             for (int i = 0; i < languageManager.SupportLanguageLength; i++)
             {
-                headbar.LanguageToolbarMenu.menu.AppendAction
+                headBar.LanguageToolbarMenu.menu.AppendAction
                 (
                     actionName: languageManager.GetFull(supportLanguageTypes[i]),
                     action: callback =>
                     {
-                        headbar.ChangeGraphLanguage(supportLanguageTypes[i]);
+                        headBar.ChangeGraphLanguage(supportLanguageTypes[i]);
                         WindowChangedEvent.Invoke();
                     }
                 );
@@ -128,14 +128,14 @@ namespace AG.DS
         void RegisterGraphTitleTextFieldEvents()
         {
             new GraphTitleTextFieldCallback(
-                model: headbar.GraphTitleTextFieldModel,
+                model: headBar.GraphTitleTextFieldModel,
                 dsDataInstanceId: dsDataInstanceId).RegisterEvents();
         }
 
 
         // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when the headbar has given focus.
+        /// The event to invoke when the headBar has given focus.
         /// <para></para>
         /// <br>Different than "Focus In", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
@@ -143,12 +143,12 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusEvent(FocusEvent evt)
         {
-            headbar.IsFocus = true;
+            headBar.IsFocus = true;
         }
 
 
         /// <summary>
-        /// The event to invoke when the headbar has lost focus.
+        /// The event to invoke when the headBar has lost focus.
         /// <para></para>
         /// <br>Different than "Focus Out", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
@@ -156,12 +156,12 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void BlurEvent(BlurEvent evt)
         {
-            headbar.IsFocus = false;
+            headBar.IsFocus = false;
         }
 
 
         /// <summary>
-        /// The event to invoke when the headbar's save button is clicked.
+        /// The event to invoke when the headBar's save button is clicked.
         /// </summary>
         /// <param name="evt">The registering event.</param>
         void SaveButtonClickEvent(ClickEvent evt)
@@ -171,7 +171,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the headbar's load button is clicked.
+        /// The event to invoke when the headBar's load button is clicked.
         /// </summary>
         /// <param name="evt">The registering event.</param>
         void LoadButtonClickEvent(ClickEvent evt)

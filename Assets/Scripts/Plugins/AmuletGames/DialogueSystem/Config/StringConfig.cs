@@ -15,10 +15,10 @@ namespace AG.DS
         public readonly string Editor_WindowAlreadyLoaded_WarningText = "Action is ignored since there's nothing changed from the last time it loaded.";
         #endregion
 
-        #region Headbar Labels.
+        #region HeadBar Labels.
         public readonly string HeaderBar_GraphEditor_TitleText = "New Dialogue Editor Graph";
-        public readonly string Headbar_SaveButton_LabelText = "Save";
-        public readonly string Headbar_LoadButton_LabelText = "Load";
+        public readonly string HeadBar_SaveButton_LabelText = "Save";
+        public readonly string HeadBar_LoadButton_LabelText = "Load";
         #endregion
 
         #region Input Hint Texts.

@@ -17,9 +17,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the headbar element.
+        /// Reference of the headBar element.
         /// </summary>
-        Headbar headbar;
+        HeadBar headBar;
 
 
         /// <summary>
@@ -34,17 +34,17 @@ namespace AG.DS
         /// </summary>
         /// <param name="dsWindow">The dialogue editor window to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headbar">The headbar element to set for.</param>
+        /// <param name="headBar">The headBar element to set for.</param>
         public DialogueEditorWindowCallback
         (
             DialogueEditorWindow dsWindow,
             GraphViewer graphViewer,
-            Headbar headbar
+            HeadBar headBar
         )
         {
             this.dsWindow = dsWindow;
             this.graphViewer = graphViewer;
-            this.headbar = headbar;
+            this.headBar = headBar;
 
             hotkeyManager = HotkeyManager.Instance;
 
@@ -115,7 +115,7 @@ namespace AG.DS
                 return;
 
             // If hotkey is not available at the moment.
-            if (!graphViewer.IsFocus || !headbar.IsFocus)
+            if (!graphViewer.IsFocus || !headBar.IsFocus)
                 return;
 
             // If support key is being held down,
