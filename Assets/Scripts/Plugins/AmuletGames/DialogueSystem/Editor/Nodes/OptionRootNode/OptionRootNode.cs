@@ -1,4 +1,6 @@
-﻿namespace AG.DS
+﻿using UnityEngine.UIElements;
+
+namespace AG.DS
 {
     public class OptionRootNode : NodeFrameBase
     <
@@ -12,86 +14,23 @@
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the option root node component class.
+        /// Constructor of the option root node class.
         /// </summary>
-        /// <param name="details">The node create details to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public OptionRootNode
-        (
-            NodeCreateDetails details,
-            GraphViewer graphViewer
-        )
-            : base(StringConfig.Instance.OptionRootNode_TitleText, graphViewer)
+        public OptionRootNode(GraphViewer graphViewer)
         {
-            SetupFrameFields();
-
-            CreateNodeElements();
-
-            PostProcessNodeWidth();
-
-            PostProcessNodePosition();
-
-            AddStyleSheet();
-
-            CreatedAction();
-
-            void SetupFrameFields()
+            // Setup details
             {
                 Model = new(node: this);
                 Presenter = new(node: this, model: Model);
                 Serializer = new(node: this, model: Model);
                 Callback = new(node: this, model: Model);
-            }
+                GraphViewer = graphViewer;
 
-            void CreateNodeElements()
-            {
-                Presenter.CreateTitleElements();
-                Presenter.CreatePortElements();
-                Presenter.CreateContentElements();
-            }
+                title = StringConfig.OptionRootNode_TitleTextField_LabelText;
 
-            void PostProcessNodeWidth()
-            {
-                Presenter.SetNodeWidth
-                (
-                    minWidth: NodeConfig.OptionRootNodeMinWidth,
-                    widthBuffer: NodeConfig.OptionRootNodeWidthBuffer
-                );
-            }
-
-            void PostProcessNodePosition()
-            {
-                Presenter.SetNodePosition(details);
-            }
-
-            void AddStyleSheet()
-            {
-                var styleSheetConfig = ConfigResourcesManager.Instance.StyleSheetConfig;
-                styleSheets.Add(styleSheetConfig.DSOptionRootNodeStyle);
-                styleSheets.Add(styleSheetConfig.DSSegmentStyle);
-                styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
-            }
-        }
-    
-
-        // ----------------------------- Constructor (New) -----------------------------
-        /// <summary>
-        /// Constructor of the option root node component class.
-        /// <para>Specifically used when the node is created by the previously saved data.</para>
-        /// </summary>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public OptionRootNode
-        (
-            GraphViewer graphViewer
-        )
-            : base(StringConfig.Instance.OptionRootNode_TitleText, graphViewer)
-        {
-            // Setup frame fields
-            {
-                Model = new(node: this);
-                Presenter = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
-                Callback = new(node: this, model: Model);
+                style.minWidth = NodeConfig.OptionRootNodeMinWidth;
+                style.maxWidth = NodeConfig.OptionRootNodeMinWidth + NodeConfig.OptionRootNodeWidthBuffer;
             }
 
             // Create elements
@@ -102,13 +41,13 @@
             }
 
             // Setup node width
-            {
-                Presenter.SetNodeWidth
-                (
-                    minWidth: NodeConfig.OptionRootNodeMinWidth,
-                    widthBuffer: NodeConfig.OptionRootNodeWidthBuffer
-                );
-            }
+            //{
+            //    Presenter.SetNodeWidth
+            //    (
+            //        minWidth: NodeConfig.OptionRootNodeMinWidth,
+            //        widthBuffer: NodeConfig.OptionRootNodeWidthBuffer
+            //    );
+            //}
 
             // Add style sheet
             {
@@ -117,6 +56,60 @@
                 styleSheets.Add(styleSheetConfig.DSSegmentStyle);
                 styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
             }
+        }
+
+
+        // ----------------------------- Add Contextual Menu Items -----------------------------
+        /// <inheritdoc />
+        protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
+        {
+            var defaultInput = Model.InputDefaultPort;
+            var optionOutput = Model.OutputOptionPort;
+            var optionGroupOutput = Model.OutputOptionPortGroupModel;
+
+            // Disconnect Input
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.ContextualMenuItem_DisconnectInputPort_LabelText,
+                action: action => defaultInput.Disconnect(GraphViewer),
+                status: defaultInput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
+
+            // Disconnect Option Output
+            evt.menu.AppendAction
+            (
+                actionName: optionOutput.GetDisconnectPortContextualMenuItemLabel(),
+                action: action => optionOutput.Disconnect(GraphViewer),
+                status: optionOutput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
+
+            // Disconnect Option Output Group
+            optionGroupOutput.AddContextualMenuItems(GraphViewer, evt);
+
+            // Disconnect All
+            var isAnyConnected = defaultInput.connected
+                              || optionOutput.connected
+                              || optionGroupOutput.connected;
+
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.ContextualMenuItem_DisconnectAllPort_LabelText,
+                action: action =>
+                {
+                    defaultInput.Disconnect(GraphViewer);
+
+                    optionOutput.Disconnect(GraphViewer);
+
+                    optionGroupOutput.Disconnect(GraphViewer);
+                },
+                status: isAnyConnected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
         }
     }
 }

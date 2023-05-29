@@ -29,7 +29,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the node presenter.
         /// </summary>
-        protected TNodePresenter Presenter;
+        public TNodePresenter Presenter;
 
 
         /// <summary>
@@ -50,19 +50,15 @@ namespace AG.DS
         /// </summary>
         /// <param name="nodeTitle">The node title to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public NodeFrameBase
-        (
-            string nodeTitle,
-            GraphViewer graphViewer
-        )
+        public NodeFrameBase()
         {
-            // Setup refs
+            // Setup details
             {
                 NodeGUID = Guid.NewGuid().ToString();
 
-                title = nodeTitle;
+                //title = nodeTitle;
 
-                GraphViewer = graphViewer;
+                //GraphViewer = graphViewer;
             }
 
             // Add style sheet
@@ -137,9 +133,9 @@ namespace AG.DS
             }
 
             // Add to graph
-            {
-                GraphViewer.Add(this);
-            }
+            //{
+            //    GraphViewer.Add(this);
+            //}
         }
 
 
@@ -174,8 +170,15 @@ namespace AG.DS
         /// <param name="evt">The event holding the menu to populate.</param>
         public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
         {
-            Presenter.AddContextualMenuItems(evt);
+            AddContextualMenuItems(evt);
             evt.menu.AppendSeparator();
         }
+
+
+        /// <summary>
+        /// Methods for adding menu items to the node contextual menu, items are added at the end of the current item list.
+        /// </summary>
+        /// <param name="evt">The event holding the menu to populate.</param>
+        protected abstract void AddContextualMenuItems(ContextualMenuPopulateEvent evt);
     }
 }

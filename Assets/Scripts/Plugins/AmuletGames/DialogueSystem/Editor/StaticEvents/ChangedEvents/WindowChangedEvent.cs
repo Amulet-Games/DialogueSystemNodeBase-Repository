@@ -5,7 +5,7 @@ namespace AG.DS
     public static class WindowChangedEvent
     {
         /// <summary>
-        /// WindowChangedEvent, which'll be invoked if any of the visual element field's value have been changed.
+        /// The event to invoke when there are new changes happened to the dialogue editor window.
         /// </summary>
         static event Action mEvent;
 

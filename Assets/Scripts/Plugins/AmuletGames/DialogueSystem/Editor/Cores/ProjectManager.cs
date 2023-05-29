@@ -1,4 +1,4 @@
-using UnityEditor;
+using UnityEngine;
 
 namespace AG.DS
 {
@@ -7,7 +7,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the dialogue system data.
         /// </summary>
-        public DialogueSystemData DsData;
+        DialogueSystemData dsData;
 
 
         /// <summary>
@@ -41,6 +41,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the dialogue editor window callback.
+        /// </summary>
+        DialogueEditorWindowCallback dsWindowCallback;
+
+
+        /// <summary>
         /// Reference of the node create connector window.
         /// </summary>
         public NodeCreateConnectorWindow NodeCreateConnectorWindow;
@@ -59,7 +65,7 @@ namespace AG.DS
         /// <param name="dsData">The dialogue system data to set for.</param>
         public ProjectManager(DialogueSystemData dsData)
         {
-            DsData = dsData;
+            this.dsData = dsData;
 
             PreSetup();
 
@@ -75,19 +81,12 @@ namespace AG.DS
         void PreSetup()
         {
             // Setup singletons
-            {
-                ConfigResourcesManager.Setup();
-
-                LanguageManager.Setup();
-
-                HotkeyManager.Setup();
-
-                StyleConfig.Setup();
-
-                StringConfig.Setup();
-
-                EdgeManager.Setup();
-            }
+            ConfigResourcesManager.Setup();
+            LanguageManager.Setup();
+            HotkeyManager.Setup();
+            StyleConfig.Setup();
+            StringConfig.Setup();
+            EdgeManager.Setup();
         }
 
 
@@ -102,10 +101,10 @@ namespace AG.DS
                 graphViewer = GraphViewerPresenter.CreateElement(projectManager: this);
 
                 // HeadBar
-                headBar = HeadBarPresenter.CreateElement(DsData);
+                headBar = HeadBarPresenter.CreateElement(dsData);
 
                 // Dialogue Editor Window
-                dsWindow = DialogueEditorWindowPresenter.CreateWindow(DsData, projectManager: this);
+                dsWindow = DialogueEditorWindowPresenter.CreateWindow(dsData, projectManager: this);
                 dsWindow.rootVisualElement.Add(graphViewer);
                 dsWindow.rootVisualElement.Add(headBar);
 
@@ -131,22 +130,33 @@ namespace AG.DS
             // Register modules events
             {
                 // Graph Viewer
-                new GraphViewerCallback(
+                var graphViewerCallback = new GraphViewerCallback
+                (
                     graphViewer,
                     dsWindow,
-                    nodeCreateRequestWindow).RegisterEvents();
+                    nodeCreateRequestWindow
+                );
+
+                graphViewerCallback.SetCallbacks();
+                graphViewerCallback.RegisterEvents();
 
                 // HeadBar
                 new HeadBarCallback(
                     headBar,
                     dsWindow,
-                    DsData.InstanceId).RegisterEvents();
+                    dsData.InstanceId,
+                    projectManager: this).RegisterEvents();
 
                 // Dialogue Editor Window
-                new DialogueEditorWindowCallback(
+                dsWindowCallback = new DialogueEditorWindowCallback
+                (
                     dsWindow,
                     graphViewer,
-                    headBar).RegisterEventsSetup();
+                    headBar,
+                    projectManager: this
+                );
+
+                dsWindowCallback.RegisterEventsSetup();
             }
         }
 
@@ -157,59 +167,46 @@ namespace AG.DS
         void PostSetup()
         {
             // Register static events
+            new ProjectCallback(
+                dsWindow,
+                dsWindowCallback,
+                graphViewer,
+                headBar,
+                serializeHandler,
+                projectManager: this).RegisterEvents();
+        }
+
+
+        /// <summary>
+        /// Save all the graph elements on the custom graph editor.
+        /// </summary>
+        public void Save()
+        {
+            if (dsWindow.hasUnsavedChanges)
             {
-                // Serialization events
-                SaveToDSDataEvent.Register(action: serializeHandler.SaveEdgesAndNodes);
-
-                LoadFromDSDataEvent.Register(action: dsData => graphViewer.ClearGraph());
-                LoadFromDSDataEvent.Register(action: serializeHandler.LoadEdgesAndNodes);
-                LoadFromDSDataEvent.Register(action: headBar.RefreshTitleAndLanguage);
-
-                ApplyChangesToDiskEvent.Register(action: AssetDatabase.SaveAssets);
-                ApplyChangesToDiskEvent.Register(action: () => dsWindow.SetHasUnsavedChanges(value: false));
-
-                // Changed events
-                GraphViewChangedEvent.Register(action: () => dsWindow.SetHasUnsavedChanges(value: true));
-
-                TreeEntrySelectedEvent.Register(action: () => dsWindow.SetHasUnsavedChanges(value: true));
-
-                WindowChangedEvent.Register(action: () => dsWindow.SetHasUnsavedChanges(value: true));
+                SaveToDSDataEvent.Invoke(dsData);
+                ApplyChangesToDiskEvent.Invoke();
+            }
+            else
+            {
+                Debug.LogWarning(StringConfig.Instance.Editor_WindowAlreadySaved_WarningText);
             }
         }
 
 
         /// <summary>
-        /// Cleanup for the class.
+        /// Load the saved graph elements and create them again on the graph.
         /// </summary>
-        public void Cleanup()
+        public void Load(bool isForceLoadWindow)
         {
-            // Dispose singletons
+            if (isForceLoadWindow || dsWindow.hasUnsavedChanges)
             {
-                ConfigResourcesManager.Instance.Dispose();
-
-                LanguageManager.Instance.Dispose();
-
-                HotkeyManager.Instance.Dispose();
-
-                StyleConfig.Instance.Dispose();
-
-                StringConfig.Instance.Dispose();
-
-                EdgeManager.Instance.Dispose();
+                LoadFromDSDataEvent.Invoke(dsData);
+                ApplyChangesToDiskEvent.Invoke();
             }
-
-            // Clear static events
+            else
             {
-                // Serialization Events
-                SaveToDSDataEvent.Clear();
-                LoadFromDSDataEvent.Clear();
-                ApplyChangesToDiskEvent.Clear();
-
-                // Changed Events
-                GraphViewChangedEvent.Clear();
-                LanguageChangedEvent.Clear();
-                TreeEntrySelectedEvent.Clear();
-                WindowChangedEvent.Clear();
+                Debug.LogWarning(StringConfig.Instance.Editor_WindowAlreadyLoaded_WarningText);
             }
         }
     }

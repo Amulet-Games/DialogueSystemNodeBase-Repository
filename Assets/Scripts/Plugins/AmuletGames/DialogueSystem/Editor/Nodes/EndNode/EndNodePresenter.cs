@@ -1,7 +1,5 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
-using UnityEngine.Windows;
 
 namespace AG.DS
 {
@@ -34,39 +32,11 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
-                label: StringConfig.Instance.DefaultPort_Input_LabelText
+                label: StringConfig.DefaultPort_Input_LabelText
             );
 
             Node.Add(Model.InputDefaultPort);
             Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Add Contextual Menu Items -----------------------------
-        /// <inheritdoc />
-        public override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
-        {
-            var defaultInput = Model.InputDefaultPort;
-
-            // Disconnect Input
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectInputPort_LabelText,
-                action: action => defaultInput.Disconnect(Node.GraphViewer),
-                status: defaultInput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
-
-            // Disconnect All
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectAllPort_LabelText,
-                action: action => defaultInput.Disconnect(Node.GraphViewer),
-                status: defaultInput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
         }
 
 

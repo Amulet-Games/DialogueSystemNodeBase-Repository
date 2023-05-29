@@ -5,13 +5,13 @@ namespace AG.DS
     public class ContentButton : VisualElement
     {
         /// <summary>
-        /// The label element that displays the name of the button.
+        /// Label element for the button's name.
         /// </summary>
         public Label Label;
 
 
         /// <summary>
-        /// The icon image element of the button that is displayed next to the label element.
+        /// Image element for the button's icon.
         /// </summary>
         public Image IconImage;
     }

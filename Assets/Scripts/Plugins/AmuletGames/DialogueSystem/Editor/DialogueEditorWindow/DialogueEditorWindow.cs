@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEditor;
 using UnityEditor.Callbacks;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace AG.DS
@@ -9,27 +8,15 @@ namespace AG.DS
     public class DialogueEditorWindow : EditorWindow
     {
         /// <summary>
-        /// Reference of the dialogue system data.
-        /// </summary>
-        public DialogueSystemData DsData;
-
-
-        /// <summary>
         /// Reference of the project manager class.
         /// </summary>
         public ProjectManager ProjectManager;
 
 
         /// <summary>
-        /// Reference of the dialogue editor window callback.
-        /// </summary>
-        public DialogueEditorWindowCallback Callback;
-
-
-        /// <summary>
         /// Are we skipping the next OnEnable method call?
         /// </summary>
-        public bool SkipOnEnable;
+        public static bool SkipOnEnable;
 
 
         /// <summary>
@@ -42,10 +29,10 @@ namespace AG.DS
 
 
         /// <summary>
-        /// This method is called after the <see cref="EditorWindow.GetWindow(Type)"/> method.
-        /// <para></para>
-        /// <br>When scripts are reloaded after compilation has finished, OnDisable will be called,</br>
+        /// When scripts are reloaded after compilation has finished, OnDisable will be called,
         /// <br>followed by OnEnable after the script has been loaded.</br>
+        /// <para></para>
+        /// This will also be called in the <see cref="EditorWindow.GetWindow(Type)"/> method.
         /// </summary>
         void OnEnable()
         {
@@ -55,11 +42,7 @@ namespace AG.DS
                 return;
             }
 
-            // Register events
-            Callback.RegisterEventOnEnable();
-
-            // Load window
-            Load(isForceLoadWindow: true);
+            WindowOnEnableEvent.Invoke();
         }
 
 
@@ -68,50 +51,7 @@ namespace AG.DS
         /// </summary>
         void OnDestroy()
         {
-            ProjectManager.Cleanup();
-        }
-
-
-        /// <summary>
-        /// Ask the serialize handler to save all the graph elements on the custom graph editor.
-        /// </summary>
-        public void Save()
-        {
-            if (hasUnsavedChanges)
-            {
-                SaveToDSDataEvent.Invoke(DsData);
-                ApplyChangesToDiskEvent.Invoke();
-            }
-            else
-            {
-                Debug.LogWarning(StringConfig.Instance.Editor_WindowAlreadySaved_WarningText);
-            }
-        }
-
-
-        /// <summary>
-        /// Ask the serialize handler to load the saved graph elements and create them again on the graph.
-        /// </summary>
-        public void Load(bool isForceLoadWindow)
-        {
-            if (isForceLoadWindow)
-            {
-                LoadWindow();
-            }
-            else if (hasUnsavedChanges)
-            {
-                LoadWindow();
-            }
-            else
-            {
-                Debug.LogWarning(StringConfig.Instance.Editor_WindowAlreadyLoaded_WarningText);
-            }
-
-            void LoadWindow()
-            {
-                LoadFromDSDataEvent.Invoke(DsData);
-                ApplyChangesToDiskEvent.Invoke();
-            }
+            WindowOnDestroyEvent.Invoke();
         }
 
 
@@ -123,7 +63,7 @@ namespace AG.DS
         /// <param name="instanceId">The instance id of the opened asset. Required parameter for the callback attribute.</param>
         /// <param name="line">Can be ignored. Required parameter for the callback attribute.</param>
         [OnOpenAsset(0)]
-        public static bool ShowWindow(int instanceId, int line)
+        public static bool OnOpenDialogueSystemDataAsset(int instanceId, int line)
         {
             // Get the instance id from the opened asset and translate it to an object reference.
             Object openedAssetObject = EditorUtility.InstanceIDToObject(instanceId);
@@ -147,6 +87,6 @@ namespace AG.DS
         /// <br>The method is override to include saving all the visual elements in this window.</br>
         /// <para>Read More https://docs.unity3d.com/ScriptReference/EditorWindow.SaveChanges.html</para>
         /// </summary>
-        public override void SaveChanges() => Save();
+        public override void SaveChanges() => ProjectManager.Save();
     }
 }

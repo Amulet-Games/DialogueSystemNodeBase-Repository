@@ -22,6 +22,12 @@ namespace AG.DS
         int dsDataInstanceId;
 
 
+        /// <summary>
+        /// Reference of the project manager.
+        /// </summary>
+        ProjectManager projectManager;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the headBar callback class.
@@ -29,16 +35,19 @@ namespace AG.DS
         /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="dsWindow">The dialogue editor window to set for.</param>
         /// <param name="dsDataInstanceId">The dialogue system data asset instance id to set for.</param>
+        /// <param name="projectManager">The project manager to set for.</param>
         public HeadBarCallback
         (
             HeadBar headBar,
             DialogueEditorWindow dsWindow,
-            int dsDataInstanceId
+            int dsDataInstanceId,
+            ProjectManager projectManager
         )
         {
             this.headBar = headBar;
             this.dsWindow = dsWindow;
             this.dsDataInstanceId = dsDataInstanceId;
+            this.projectManager = projectManager;
         }
 
         // ----------------------------- Register Events -----------------------------
@@ -166,7 +175,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void SaveButtonClickEvent(ClickEvent evt)
         {
-            dsWindow.Save();
+            projectManager.Save();
         }
 
 
@@ -176,7 +185,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void LoadButtonClickEvent(ClickEvent evt)
         {
-            dsWindow.Load(isForceLoadWindow: false);
+            projectManager.Load(isForceLoadWindow: false);
         }
     }
 }

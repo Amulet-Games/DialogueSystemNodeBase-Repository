@@ -20,7 +20,7 @@ namespace AG.DS
         {
             return new SearchTreeGroupEntry
             (
-                content: new GUIContent(text: StringConfig.Instance.SearchEntry_AncestorEntry_LabelText),
+                content: new GUIContent(text: StringConfig.SearchEntry_AncestorEntry_LabelText),
                 level: 0
             );
         }
@@ -35,7 +35,7 @@ namespace AG.DS
         {
             return new SearchTreeGroupEntry
             (
-                content: new GUIContent(text: StringConfig.Instance.SearchEntry_FamilyEntry_Nodes_LabelText),
+                content: new GUIContent(text: StringConfig.SearchEntry_FamilyEntry_Nodes_LabelText),
                 level: entryLevel
             );
         }
@@ -50,7 +50,7 @@ namespace AG.DS
         {
             return CreateNodeEntry
             (
-                entryName: StringConfig.Instance.SearchEntry_ChildEntry_BooleanNode_LabelText,
+                entryName: StringConfig.SearchEntry_ChildEntry_BooleanNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Boolean
             );
@@ -66,7 +66,7 @@ namespace AG.DS
         {
             return CreateNodeEntry
             (
-                entryName: StringConfig.Instance.SearchEntry_ChildEntry_DialogueNode_LabelText,
+                entryName: StringConfig.SearchEntry_ChildEntry_DialogueNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Dialogue
             );
@@ -82,7 +82,7 @@ namespace AG.DS
         {
             return CreateNodeEntry
             (
-                entryName: StringConfig.Instance.SearchEntry_ChildEntry_EndNode_LabelText,
+                entryName: StringConfig.SearchEntry_ChildEntry_EndNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.End
             );
@@ -98,7 +98,7 @@ namespace AG.DS
         {
             return CreateNodeEntry
             (
-                entryName: StringConfig.Instance.SearchEntry_ChildEntry_EventNode_LabelText,
+                entryName: StringConfig.SearchEntry_ChildEntry_EventNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Event
             );
@@ -114,7 +114,7 @@ namespace AG.DS
         {
             return CreateNodeEntry
             (
-                entryName: StringConfig.Instance.SearchEntry_ChildEntry_OptionBranchNode_LabelText,
+                entryName: StringConfig.SearchEntry_ChildEntry_OptionBranchNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.OptionBranch
             );
@@ -130,7 +130,7 @@ namespace AG.DS
         {
             return CreateNodeEntry
             (
-                entryName: StringConfig.Instance.SearchEntry_ChildEntry_OptionRootNode_LabelText,
+                entryName: StringConfig.SearchEntry_ChildEntry_OptionRootNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.OptionRoot
             );
@@ -146,7 +146,7 @@ namespace AG.DS
         {
             return CreateNodeEntry
             (
-                entryName: StringConfig.Instance.SearchEntry_ChildEntry_PreviewNode_LabelText,
+                entryName: StringConfig.SearchEntry_ChildEntry_PreviewNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Preview
             );
@@ -162,7 +162,7 @@ namespace AG.DS
         {
             return CreateNodeEntry
             (
-                entryName: StringConfig.Instance.SearchEntry_ChildEntry_StartNode_LabelText,
+                entryName: StringConfig.SearchEntry_ChildEntry_StartNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Start
             );
@@ -178,7 +178,7 @@ namespace AG.DS
         {
             return CreateNodeEntry
             (
-                entryName: StringConfig.Instance.SearchEntry_ChildEntry_StoryNode_LabelText,
+                entryName: StringConfig.SearchEntry_ChildEntry_StoryNode_LabelText,
                 entryLevel: entryLevel,
                 entryNodeType: N_NodeType.Story
             );

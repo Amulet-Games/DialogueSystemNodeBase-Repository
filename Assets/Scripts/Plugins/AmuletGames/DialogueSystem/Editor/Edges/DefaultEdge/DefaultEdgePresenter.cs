@@ -14,8 +14,6 @@ namespace AG.DS
 
             CreateEdge();
 
-            SetupFrameFields();
-
             SetupDetail();
 
             AddToStyleClass();
@@ -27,15 +25,11 @@ namespace AG.DS
                 edge = new DefaultEdge();
             }
 
-            void SetupFrameFields()
+            void SetupDetail()
             {
                 edge.Model = model;
                 edge.output = model.Output;
                 edge.input = model.Input;
-            }
-
-            void SetupDetail()
-            {
                 edge.focusable = true;
             }
 

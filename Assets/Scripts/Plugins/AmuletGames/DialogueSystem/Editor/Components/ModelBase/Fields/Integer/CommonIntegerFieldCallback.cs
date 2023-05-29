@@ -13,7 +13,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the common integer field callback class.
         /// </summary>
-        /// <param name="model">The targeting common integer field model to set for.</param>
+        /// <param name="model">The common integer field model to set for.</param>
         public CommonIntegerFieldCallback(CommonIntegerFieldModel model)
         {
             this.model = model;

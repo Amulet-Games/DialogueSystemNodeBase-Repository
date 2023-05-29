@@ -1,3 +1,5 @@
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     public class StoryNode : NodeFrameBase
@@ -21,7 +23,7 @@ namespace AG.DS
             NodeCreateDetails details,
             GraphViewer graphViewer
         )
-            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleText, graphViewer)
+            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleTextField_LabelText, graphViewer)
         {
             SetupFrameFields();
 
@@ -68,7 +70,7 @@ namespace AG.DS
         (
             GraphViewer graphViewer
         )
-            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleText, graphViewer)
+            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleTextField_LabelText, graphViewer)
         {
             // Setup frame fields
             {
@@ -87,6 +89,13 @@ namespace AG.DS
             {
                 styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSStoryNodeStyle);
             }
+        }
+
+
+        // ----------------------------- Add Contextual Menu Items -----------------------------
+        /// <inheritdoc />
+        protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
+        {
         }
     }
 }

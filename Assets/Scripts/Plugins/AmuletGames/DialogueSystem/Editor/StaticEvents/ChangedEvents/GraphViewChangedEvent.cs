@@ -5,7 +5,7 @@ namespace AG.DS
     public class GraphViewChangedEvent
     {
         /// <summary>
-        /// GraphViewChangedEvent, which'll be invoked when the user has made any changes on the graph.
+        /// The event to invoke when certain changes have occurred in the graph.
         /// </summary>
         static event Action mEvent;
 

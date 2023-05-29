@@ -61,7 +61,7 @@ namespace AG.DS
 
             void InvokeSelectedEntryEvent()
             {
-                TreeEntrySelectedEvent.Invoke();
+                SearchTreeEntrySelectedEvent.Invoke();
             }
 
             void CalculateGraphMousePosition()
@@ -103,31 +103,49 @@ namespace AG.DS
                 switch (selectedNodeType)
                 {
                     case N_NodeType.Boolean:
-                        new BooleanNode(Details, GraphViewer);
+                        var booleanNode = new BooleanNode(GraphViewer);
+                        booleanNode.CreatedAction();
+                        booleanNode.Presenter.SetNodePosition(Details);
                         break;
                     case N_NodeType.Dialogue:
-                        new DialogueNode(Details, GraphViewer);
+                        var dialogueNode = new DialogueNode(GraphViewer);
+                        dialogueNode.CreatedAction();
+                        dialogueNode.Presenter.SetNodePosition(Details);
                         break;
                     case N_NodeType.End:
-                        new EndNode(Details, GraphViewer);
+                        var endNode = new EndNode(GraphViewer);
+                        endNode.CreatedAction();
+                        endNode.Presenter.SetNodePosition(Details);
                         break;
                     case N_NodeType.Event:
-                        new EventNode(Details, GraphViewer);
+                        var eventNode = new EventNode(GraphViewer);
+                        eventNode.CreatedAction();
+                        eventNode.Presenter.SetNodePosition(Details);
                         break;
                     case N_NodeType.OptionBranch:
-                        new OptionBranchNode(Details, GraphViewer);
+                        var optionBranchNode = new OptionBranchNode(GraphViewer);
+                        optionBranchNode.CreatedAction();
+                        optionBranchNode.Presenter.SetNodePosition(Details);
                         break;
                     case N_NodeType.OptionRoot:
-                        new OptionRootNode(Details, GraphViewer);
+                        var optionRootNode = new OptionRootNode(GraphViewer);
+                        optionRootNode.CreatedAction();
+                        optionRootNode.Presenter.SetNodePosition(Details);
                         break;
                     case N_NodeType.Preview:
-                        new PreviewNode(Details, GraphViewer);
+                        var previewNode = new PreviewNode(GraphViewer);
+                        previewNode.CreatedAction();
+                        previewNode.Presenter.SetNodePosition(Details);
                         break;
                     case N_NodeType.Start:
-                        new StartNode(Details, GraphViewer);
+                        var startNode = new StartNode(GraphViewer);
+                        startNode.CreatedAction();
+                        startNode.Presenter.SetNodePosition(Details);
                         break;
                     case N_NodeType.Story:
-                        new StoryNode(Details, GraphViewer);
+                        var storyNode = new StoryNode(GraphViewer);
+                        storyNode.CreatedAction();
+                        storyNode.Presenter.SetNodePosition(Details);
                         break;
                 }
             }

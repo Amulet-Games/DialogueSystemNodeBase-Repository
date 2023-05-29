@@ -5,8 +5,7 @@ namespace AG.DS
     public class LanguageChangedEvent
     {
         /// <summary>
-        /// LanguageChangedEvent, which'll be invoked when the editor window's language is changed
-        /// <br>to a new one.</br>
+        /// The event to invoke when the user changed dialogue editor window's language.
         /// </summary>
         static event Action mEvent;
 

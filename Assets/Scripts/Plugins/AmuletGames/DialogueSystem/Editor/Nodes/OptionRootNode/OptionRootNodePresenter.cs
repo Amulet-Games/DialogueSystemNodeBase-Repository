@@ -40,10 +40,10 @@ namespace AG.DS
                     buttonIconSprite: ConfigResourcesManager.Instance.SpriteConfig.AddEntryButtonIconSprite
                 );
 
-                new ContentButtonCallback(
-                    isAlert: true,
-                    contentButton: contentButton,
-                    clickEvent: ContentButtonClickEvent).RegisterEvents();
+                //new ContentButtonCallback(
+                //    isAlert: true,
+                //    contentButton: contentButton,
+                //    clickEvent: ContentButtonClickEvent).RegisterEvents();
 
                 Node.titleContainer.Add(contentButton);
             }
@@ -54,8 +54,8 @@ namespace AG.DS
                 VisualElement outerContainer;
                 VisualElement InnerContainer;
 
-                Image optionRootIconImage;
-                Label optionRootTitleLabel;
+                Image rootIconImage;
+                Label rootTitleLabel;
 
                 SetupContainers();
 
@@ -72,56 +72,56 @@ namespace AG.DS
                 void SetupContainers()
                 {
                     mainContainer = new();
-                    mainContainer.AddToClassList(StyleConfig.Instance.OptionRootGroup_MainContainer);
+                    mainContainer.AddToClassList(StyleConfig.Instance.OptionRootNode_MainContainer);
 
                     outerContainer = new();
-                    outerContainer.AddToClassList(StyleConfig.Instance.OptionRootGroup_OuterContainer);
+                    outerContainer.AddToClassList(StyleConfig.Instance.OptionRootNode_OuterContainer);
 
                     InnerContainer = new();
-                    InnerContainer.AddToClassList(StyleConfig.Instance.OptionRootGroup_InnerContainer);
+                    InnerContainer.AddToClassList(StyleConfig.Instance.OptionRootNodeInnerContainer);
                 }
 
                 void SetupOptionRootIconImage()
                 {
-                    optionRootIconImage = CommonImagePresenter.CreateElement
+                    rootIconImage = CommonImagePresenter.CreateElement
                     (
                         imageSprite: ConfigResourcesManager.Instance.SpriteConfig.OptionRootIconSprite,
-                        imageUSS01: StyleConfig.Instance.OptionRootGroup_Icon_Image
+                        imageUSS01: StyleConfig.Instance.OptionRootNode_Icon_Image
                     );
                 }
 
                 void SetupOptionRootTitleLabel()
                 {
-                    optionRootTitleLabel = CommonLabelPresenter.CreateElement
+                    rootTitleLabel = CommonLabelPresenter.CreateElement
                     (
-                        labelText: StringConfig.Instance.OptionRootGroup_TitleLabelText,
-                        labelUSS01: StyleConfig.Instance.OptionRootGroup_Title_Label
+                        labelText: StringConfig.OptionRootNode_RootTitleLabel_LabelText,
+                        labelUSS01: StyleConfig.Instance.OptionRootNode_Title_Label
                     );
                 }
 
                 void SetupOptionRootTitleTextField()
                 {
-                    Model.OptionRootTitleTextFieldModel.TextField =
+                    Model.RootTitleTextFieldModel.TextField =
                         LanguageTextFieldPresenter.CreateElement
                         (
                             isMultiLine: false,
-                            placeholderText: Model.OptionRootTitleTextFieldModel.PlaceholderText,
-                            fieldUSS01: StyleConfig.Instance.OptionRootGroup_Title_TextField
+                            placeholderText: Model.RootTitleTextFieldModel.PlaceholderText,
+                            fieldUSS01: StyleConfig.Instance.OptionRootNode_Title_TextField
                         );
 
-                    new LanguageTextFieldCallback(
-                        model: Model.OptionRootTitleTextFieldModel).RegisterEvents();
+                    //new LanguageTextFieldCallback(
+                    //    model: Model.RootTitleTextFieldModel).RegisterEvents();
                 }
 
                 void AddElementsToContainer()
                 {
                     mainContainer.Add(outerContainer);
 
-                    outerContainer.Add(optionRootIconImage);
+                    outerContainer.Add(rootIconImage);
                     outerContainer.Add(InnerContainer);
 
-                    InnerContainer.Add(optionRootTitleLabel);
-                    InnerContainer.Add(Model.OptionRootTitleTextFieldModel.TextField);
+                    InnerContainer.Add(rootTitleLabel);
+                    InnerContainer.Add(Model.RootTitleTextFieldModel.TextField);
                 }
 
                 void AddContainersToNode()
@@ -140,7 +140,7 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Multi,
-                label: StringConfig.Instance.DefaultPort_Input_LabelText
+                label: StringConfig.DefaultPort_Input_LabelText
             );
 
             Model.OutputOptionPort = OptionPort.CreateElement<OptionEdge>
@@ -152,77 +152,6 @@ namespace AG.DS
             Node.Add(Model.InputDefaultPort);
             Node.Add(Model.OutputOptionPort);
             Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Callback -----------------------------
-        /// <summary>
-        /// The event to invoke when the content button is clicked.
-        /// </summary>
-        public void ContentButtonClickEvent(ClickEvent evt)
-        {
-            // Release the focus of the node's border.
-            Node.NodeBorder.Blur();
-
-            // Create a new output multi option channel.
-            Model.OutputOptionPortGroupModel.AddCell(Node);
-
-            // Update ports layout.
-            Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Add Contextual Menu Items -----------------------------
-        /// <inheritdoc />
-        public override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
-        {
-            var defaultInput = Model.InputDefaultPort;
-            var optionOutput = Model.OutputOptionPort;
-            var optionGroupOutput = Model.OutputOptionPortGroupModel;
-
-            // Disconnect Input
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectInputPort_LabelText,
-                action: action => defaultInput.Disconnect(Node.GraphViewer),
-                status: defaultInput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
-
-            // Disconnect Option Output
-            evt.menu.AppendAction
-            (
-                actionName: optionOutput.GetDisconnectPortContextualMenuItemLabel(),
-                action: action => optionOutput.Disconnect(Node.GraphViewer),
-                status: optionOutput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
-
-            // Disconnect Option Output Group
-            optionGroupOutput.AddContextualMenuItems(Node.GraphViewer, evt);
-
-            // Disconnect All
-            var isAnyConnected = defaultInput.connected
-                              || optionOutput.connected
-                              || optionGroupOutput.connected;
-
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectAllPort_LabelText,
-                action: action =>
-                {
-                    defaultInput.Disconnect(Node.GraphViewer);
-
-                    optionOutput.Disconnect(Node.GraphViewer);
-
-                    optionGroupOutput.Disconnect(Node.GraphViewer);
-                },
-                status: isAnyConnected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
         }
 
 

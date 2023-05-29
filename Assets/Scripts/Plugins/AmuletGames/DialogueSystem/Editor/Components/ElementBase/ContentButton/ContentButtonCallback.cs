@@ -27,7 +27,7 @@ namespace AG.DS
         /// Constructor of the content button callback class.
         /// </summary>
         /// <param name="isAlert">The isAlert value to set for.</param>
-        /// <param name="contentButton">The targeting content button to set for.</param>
+        /// <param name="contentButton">The content button to set for.</param>
         /// <param name="clickEvent">The clickEvent to set for.</param>
         public ContentButtonCallback
         (

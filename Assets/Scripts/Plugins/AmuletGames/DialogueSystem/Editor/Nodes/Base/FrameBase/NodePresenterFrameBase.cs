@@ -57,8 +57,8 @@ namespace AG.DS
                     fieldUSS01: StyleConfig.Instance.Node_Title_TextField
                 );
 
-                new NodeTitleTextFieldCallback(
-                    model: Model.NodeTitleTextFieldModel).RegisterEvents();
+                //new NodeTitleTextFieldCallback(
+                //    model: Model.NodeTitleTextFieldModel).RegisterEvents();
             }
 
             void SetupEditTitleButton()
@@ -69,15 +69,15 @@ namespace AG.DS
                     buttonUSS01: StyleConfig.Instance.Node_EditTitle_Button
                 );
 
-                new CommonButtonCallback(
-                    isAlert: false,
-                    button: Model.EditTitleButton,
-                    clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
+                //new CommonButtonCallback(
+                //    isAlert: false,
+                //    button: Model.EditTitleButton,
+                //    clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
             }
 
             void AddElementsToContainer()
             {
-                // Node title Field.
+                // Node title field.
                 nodeTitleContainer.Add(Model.NodeTitleTextFieldModel.TextField);
 
                 // Edit node title button.
@@ -103,20 +103,6 @@ namespace AG.DS
         public virtual void CreateContentElements() { }
 
 
-        // ----------------------------- Callbacks -----------------------------
-        /// <summary>
-        /// The event to invoke when the node title edit button is clicked.
-        /// </summary>
-        /// <param name="evt">Registering event.</param>
-        void NodeTitleEditButtonClickEvent(ClickEvent evt)
-        {
-            var nodeTitleField = Model.NodeTitleTextFieldModel.TextField;
-
-            nodeTitleField.focusable = true;
-            nodeTitleField.Focus();
-        }
-
-
         // ----------------------------- Set Node Width -----------------------------
         /// <summary>
         /// Set the node's minimum and maximum width value.
@@ -125,30 +111,30 @@ namespace AG.DS
         /// <param name="widthBuffer">The width buffer to set for, combine it with the minimum width to get the node's maximum width.</param>
         public void SetNodeWidth(float minWidth, float widthBuffer)
         {
-            SetWidthValueNode();
+            //SetWidthValueNode();
 
-            SetWidthValueNodeTitleTextField();
+            //SetWidthValueNodeTitleTextField();
 
-            void SetWidthValueNode()
-            {
-                Node.style.minWidth = minWidth;
-                Node.style.maxWidth = minWidth + widthBuffer;
-            }
+            //void SetWidthValueNode()
+            //{
+            //    Node.style.minWidth = minWidth;
+            //    Node.style.maxWidth = minWidth + widthBuffer;
+            //}
 
-            void SetWidthValueNodeTitleTextField()
-            {
-                var nodeTitleField = Model.NodeTitleTextFieldModel.TextField;
-                nodeTitleField.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+            //void SetWidthValueNodeTitleTextField()
+            //{
+            //    var nodeTitleField = Model.NodeTitleTextFieldModel.TextField;
+            //    nodeTitleField.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
 
-                void GeometryChangedEvent(GeometryChangedEvent evt)
-                {
-                    // Set the title field max width once it's fully created in the editor.
-                    nodeTitleField.style.maxWidth = nodeTitleField.contentRect.width + widthBuffer;
+            //    void GeometryChangedEvent(GeometryChangedEvent evt)
+            //    {
+            //        // Set the title field max width once it's fully created in the editor.
+            //        nodeTitleField.style.maxWidth = nodeTitleField.contentRect.width + widthBuffer;
 
-                    // Unregister the action once the setup is done.
-                    nodeTitleField.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-                }
-            }
+            //        // Unregister the action once the setup is done.
+            //        nodeTitleField.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+            //    }
+            //}
         }
 
 

@@ -33,7 +33,7 @@ namespace AG.DS
         /// Constructor of the common button callback class.
         /// </summary>
         /// <param name="isAlert">The isAlert value to set for.</param>
-        /// <param name="button">The targeting button to set for.</param>
+        /// <param name="button">The button to set for.</param>
         /// <param name="clickEvent">The clickEvent to set for.</param>
         public CommonButtonCallback
         (

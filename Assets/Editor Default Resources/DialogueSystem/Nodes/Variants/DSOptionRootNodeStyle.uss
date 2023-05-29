@@ -456,10 +456,10 @@
 }
 
 
-/* =========================================================== Option Root Group =========================================================== */
+/* =========================================================== Option Root Node =========================================================== */
 
 /*< ---------------------------------------------------------- Main Container >*/
-.optionRootGroup_MainContainer {
+.optionRootNode_MainContainer {
 
 	background-color: rgba(51, 51, 51, 1);
 
@@ -472,7 +472,7 @@
 
 
 /*< ---------------------------------------------------------- Outer Container >*/
-.optionRootGroup_OuterContainer {
+.optionRootNode_OuterContainer {
 
 	background-color: rgba(42, 42, 42, 1);
 	
@@ -487,7 +487,7 @@
 
 
 /*< ---------------------------------------------------------- Icon Image >*/
-.optionRootGroup_Icon_Image {
+.optionRootNode_Icon_Image {
 	
 	height: 39px;
 	width: 39px;
@@ -504,7 +504,7 @@
 
 
 /*< ---------------------------------------------------------- Inner Container >*/
-.optionRootGroup_InnerContainer {
+.optionRootNode_InnerContainer {
 	
 	background-color: rgba(0, 0, 0, 0);
 	
@@ -516,7 +516,7 @@
 
 
 /*< ---------------------------------------------------------- Title Label >*/
-.optionRootGroup_Title_Label {
+.optionRootNode_Title_Label {
 	
 	color: rgba(255, 255, 255, 1);
 	
@@ -534,7 +534,7 @@
 
 
 /*< ---------------------------------------------------------- Title Text Field >*/
-.optionRootGroup_Title_TextField {
+.optionRootNode_Title_TextField {
 
 	background-color: rgba(32, 32, 32, 1);
 
@@ -551,7 +551,7 @@
 	border-radius: 4px 4px 4px 4px;
 }
 
-.optionRootGroup_Title_TextField:hover {
+.optionRootNode_Title_TextField:hover {
 	
 	border-color: rgba(101, 101, 101, 1);
 
@@ -560,7 +560,7 @@
 	border-width: 0.5px 0.5px 0.5px 0.5px;
 }
 
-.optionRootGroup_Title_TextField:focus {
+.optionRootNode_Title_TextField:focus {
 	
 	border-color: rgba(58, 121, 187, 1);
 
@@ -569,13 +569,13 @@
 	border-width: 0.5px 0.5px 0.5px 0.5px;
 }
 
-.optionRootGroup_Title_TextField.textField_Empty
+.optionRootNode_Title_TextField.textField_Empty
 .unity-text-field__input {
 	
 	color: rgba(101, 101, 101, 1);
 }
 
-.optionRootGroup_Title_TextField
+.optionRootNode_Title_TextField
 .unity-text-field__input {
 
 	background-color: rgba(32, 32, 32, 1);

@@ -27,13 +27,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override void RegisterEvents()
         {
-            RegisterPointerEnterEvent();
-
-            RegisterPointerLeaveEvent();
-
-            RegisterPointerMoveEvent();
-
-            RegisterGeometryChangedEvent();
+            base.RegisterEvents();
         }
     }
 }

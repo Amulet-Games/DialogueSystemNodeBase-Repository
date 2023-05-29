@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -112,40 +113,50 @@ namespace AG.DS
         /// <param name="askUser">Whether or not to ask the user.</param>
         void DeleteSelection(string operationName, AskUser askUser)
         {
-            DeleteSelectedElements();
-
-            InvokeDSWindowChangedEvent();
-
-            void DeleteSelectedElements()
+            // Delete selected elements
             {
-                var selectionCount = graphViewer.selection.Count;
-                for (int i = 0; i < selectionCount; i++)
+                List<NodeBase> nodesToDelete = new();
+                List<EdgeBase> edgesToDelete = new();
+
+                // Cache selected elements
+                for (int i = 0; i < graphViewer.selection.Count; i++)
                 {
-                    var selection = graphViewer.selection[i];
-
-                    if (selection is NodeBase node)
+                    if (graphViewer.selection[i] is NodeBase node)
                     {
-                        node.PreManualRemoveAction();
-
-                        graphViewer.Remove(node);
-
-                        node.PostManualRemoveAction();
+                        nodesToDelete.Add(node);
                     }
-                    else if (selection != null && selection is EdgeBase edge)
+                    else if (graphViewer.selection[i] is EdgeBase edge)
                     {
-                        edge.PreManualRemoveAction();
-
-                        graphViewer.Remove(edge);
-
-                        edge.PostManualRemoveAction();
+                        edgesToDelete.Add(edge);
                     }
+                }
+
+                // Delete nodes
+                for (int i = 0; i < nodesToDelete.Count; i++)
+                {
+                    nodesToDelete[i].PreManualRemoveAction();
+
+                    graphViewer.Remove(nodesToDelete[i]);
+
+                    nodesToDelete[i].PostManualRemoveAction();
+                }
+
+                // Delete edges
+                for (int i = 0; i < edgesToDelete.Count; i++)
+                {
+                    if (edgesToDelete[i] == null)
+                        continue;
+
+                    edgesToDelete[i].PreManualRemoveAction();
+
+                    graphViewer.Remove(edgesToDelete[i]);
+
+                    edgesToDelete[i].PostManualRemoveAction();
                 }
             }
 
-            void InvokeDSWindowChangedEvent()
-            {
-                WindowChangedEvent.Invoke();
-            }
+            // Invoke changed event
+            WindowChangedEvent.Invoke();
         }
 
 

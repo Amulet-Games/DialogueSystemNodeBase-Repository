@@ -21,7 +21,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the graph title field callback class.
         /// </summary>
-        /// <param name="model">The targeting graph title text field model to set for.</param>
+        /// <param name="model">The graph title text field model to set for.</param>
         /// <param name="dsDataInstanceId">The dialogue system data's asset instance id to set for.</param>
         public GraphTitleTextFieldCallback
         (

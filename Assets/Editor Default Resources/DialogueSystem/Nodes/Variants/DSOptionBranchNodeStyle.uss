@@ -419,10 +419,10 @@
 }
 
 
-/* =========================================================== Option Branch Group =========================================================== */
+/* =========================================================== Option Branch Node =========================================================== */
 
 /*< ---------------------------------------------------------- Main Container >*/
-.optionBranchGroup_MainContainer {
+.optionBranchNode_MainContainer {
 
 	background-color: rgba(51, 51, 51, 1);
 
@@ -435,7 +435,7 @@
 
 
 /*< ---------------------------------------------------------- Outer Container >*/
-.optionBranchGroup_OuterContainer {
+.optionBranchNode_OuterContainer {
 
 	background-color: rgba(42, 42, 42, 1);
 	
@@ -450,7 +450,7 @@
 
 
 /*< ---------------------------------------------------------- Icon Image >*/
-.optionBranchGroup_Icon_Image {
+.optionBranchNode_Icon_Image {
 	
 	height: 39px;
 	width: 39px;
@@ -467,7 +467,7 @@
 
 
 /*< ---------------------------------------------------------- Inner Container >*/
-.optionBranchGroup_InnerContainer {
+.optionBranchNode_InnerContainer {
 	
 	background-color: rgba(0, 0, 0, 0);
 	
@@ -479,7 +479,7 @@
 
 
 /*< ---------------------------------------------------------- Title Label >*/
-.optionBranchGroup_Title_Label {
+.optionBranchNode_Title_Label {
 	
 	color: rgba(255, 255, 255, 1);
 	
@@ -496,7 +496,7 @@
 
 
 /*< ---------------------------------------------------------- Title Text Field >*/
-.optionBranchGroup_Title_TextField {
+.optionBranchNode_Title_TextField {
 
 	background-color: rgba(32, 32, 32, 1);
 
@@ -513,7 +513,7 @@
 	border-radius: 4px 4px 4px 4px;
 }
 
-.optionBranchGroup_Title_TextField:hover {
+.optionBranchNode_Title_TextField:hover {
 	
 	border-color: rgba(101, 101, 101, 1);
 
@@ -522,7 +522,7 @@
 	border-width: 0.5px 0.5px 0.5px 0.5px;
 }
 
-.optionBranchGroup_Title_TextField:focus {
+.optionBranchNode_Title_TextField:focus {
 	
 	border-color: rgba(58, 121, 187, 1);
 
@@ -531,13 +531,13 @@
 	border-width: 0.5px 0.5px 0.5px 0.5px;
 }
 
-.optionBranchGroup_Title_TextField.textField_Empty
+.optionBranchNode_Title_TextField.textField_Empty
 .unity-text-field__input {
 	
 	color: rgba(101, 101, 101, 1);
 }
 
-.optionBranchGroup_Title_TextField
+.optionBranchNode_Title_TextField
 .unity-text-field__input {
 
 	background-color: rgba(32, 32, 32, 1);

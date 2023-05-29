@@ -28,6 +28,18 @@ namespace AG.DS
         HotkeyManager hotkeyManager;
 
 
+        /// <summary>
+        /// Reference of the project manager.
+        /// </summary>
+        ProjectManager projectManager;
+
+
+        /// <summary>
+        /// Has the user released the previously pressed hotkey?
+        /// </summary>
+        bool isHotkeyReleased;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue editor window callback class.
@@ -35,20 +47,21 @@ namespace AG.DS
         /// <param name="dsWindow">The dialogue editor window to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
+        /// <param name="projectManager">The project manager to set for.</param>
         public DialogueEditorWindowCallback
         (
             DialogueEditorWindow dsWindow,
             GraphViewer graphViewer,
-            HeadBar headBar
+            HeadBar headBar,
+            ProjectManager projectManager
         )
         {
             this.dsWindow = dsWindow;
             this.graphViewer = graphViewer;
             this.headBar = headBar;
+            this.projectManager = projectManager;
 
             hotkeyManager = HotkeyManager.Instance;
-
-            dsWindow.Callback = this;
         }
 
 
@@ -111,7 +124,7 @@ namespace AG.DS
         void KeyDownEvent(KeyDownEvent evt)
         {
             // If the user hasn't released the previous pressed hotkey.
-            if (!hotkeyManager.IsKeyReleased)
+            if (!isHotkeyReleased)
                 return;
 
             // If hotkey is not available at the moment.
@@ -124,15 +137,15 @@ namespace AG.DS
                 // Saving
                 if (evt.keyCode == hotkeyManager.SaveKey)
                 {
-                    dsWindow.Save();
-                    hotkeyManager.SetIsKeyReleased(value: false);
+                    projectManager.Save();
+                    isHotkeyReleased = false;
                 }
 
                 // Loading
                 if (evt.keyCode == hotkeyManager.LoadKey)
                 {
-                    dsWindow.Load(false);
-                    hotkeyManager.SetIsKeyReleased(value: false);
+                    projectManager.Load(false);
+                    isHotkeyReleased = false;
                 }
             }
         }
@@ -144,7 +157,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void KeyUpEvent(KeyUpEvent evt)
         {
-            hotkeyManager.SetIsKeyReleased(value: true);
+            isHotkeyReleased = true;
         }
 
 
@@ -193,7 +206,7 @@ namespace AG.DS
             graphViewer.ReframeGraphAll();
 
             // Unregister event after it has done executed once.
-            dsWindow.rootVisualElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+            dsWindow.rootVisualElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEventOnEnable);
         }
     }
 }

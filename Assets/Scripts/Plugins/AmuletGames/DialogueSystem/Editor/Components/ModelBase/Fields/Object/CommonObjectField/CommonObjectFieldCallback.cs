@@ -22,7 +22,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the common object field callback class.
         /// </summary>
-        /// <param name="model">The targeting common object field model to set for.</param>
+        /// <param name="model">The common object field model to set for.</param>
         /// <param name="additionalChangeEvent">The additional ChangeEvent to set for.</param>
         public CommonObjectFieldCallback
         (

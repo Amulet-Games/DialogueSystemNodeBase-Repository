@@ -44,7 +44,7 @@ namespace AG.DS
 
             void SaveHeaderTextContainer()
             {
-                Model.OptionRootTitleTextFieldModel.Save(data.HeadlineText);
+                Model.RootTitleTextFieldModel.Save(data.HeadlineText);
             }
 
             void AddData()
@@ -75,7 +75,7 @@ namespace AG.DS
 
             void LoadHeaderTextContainer()
             {
-                Model.OptionRootTitleTextFieldModel.Load(data.HeadlineText);
+                Model.RootTitleTextFieldModel.Load(data.HeadlineText);
             }
 
             void RefreshPortsLayout()

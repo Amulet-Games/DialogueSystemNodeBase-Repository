@@ -1,3 +1,5 @@
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     /// <inheritdoc />
@@ -28,9 +30,43 @@ namespace AG.DS
         /// <inheritdoc />
         public override void RegisterEvents()
         {
-            RegisterPointerEnterEvent();
+            base.RegisterEvents();
 
-            RegisterPointerLeaveEvent();
+            RegisterNodeTitleTextFieldEvents();
+
+            RegisterNodeTitleEditButtonClickEvent();
+        }
+
+
+        /// <summary>
+        /// Register events to the node title text field.
+        /// </summary>
+        void RegisterNodeTitleTextFieldEvents()
+            => new NodeTitleTextFieldCallback(
+                model: Model.NodeTitleTextFieldModel,
+                widthBuffer: NodeConfig.StartNodeWidthBuffer).RegisterEvents();
+
+
+        /// <summary>
+        /// Register ClickEvent to the node title edit button.
+        /// </summary>
+        void RegisterNodeTitleEditButtonClickEvent()
+            => new CommonButtonCallback(
+                isAlert: false,
+                button: Model.EditTitleButton,
+                clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
+
+
+        // ----------------------------- Event -----------------------------
+        /// <summary>
+        /// The event to invoke when the node title edit button is clicked.
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void NodeTitleEditButtonClickEvent(ClickEvent evt)
+        {
+            var titleTextField = Model.NodeTitleTextFieldModel.TextField;
+            titleTextField.focusable = true;
+            titleTextField.Focus();
         }
     }
 }

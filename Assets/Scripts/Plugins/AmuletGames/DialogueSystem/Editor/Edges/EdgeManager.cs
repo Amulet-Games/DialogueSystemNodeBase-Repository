@@ -10,23 +10,12 @@ namespace AG.DS
         public static EdgeManager Instance { get; private set; } = null;
 
 
-        // ----------------------------- Setup -----------------------------
         /// <summary>
         /// Setup for the class.
         /// </summary>
         public static void Setup()
         {
             Instance ??= new();
-        }
-
-
-        // ----------------------------- Dispose -----------------------------
-        /// <summary>
-        /// Dispose for the class.
-        /// </summary>
-        public void Dispose()
-        {
-            Instance = null;
         }
 
 

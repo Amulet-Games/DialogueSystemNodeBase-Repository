@@ -5,8 +5,7 @@ namespace AG.DS
     public class SaveToDSDataEvent
     {
         /// <summary>
-        /// SaveToDSDataEvent, which'll be invoked when user clicked the save button
-        /// <br>on the editor's headBar.</br>
+        /// The event to invoke when the user clicked the save button in the headBar element.
         /// </summary>
         static event Action<DialogueSystemData> mEvent;
 
@@ -33,10 +32,10 @@ namespace AG.DS
         /// <summary>
         /// Invoke event.
         /// </summary>
-        /// <param name="eventPara">The scriptable object asset parameter that is needed for this event to be invoked.</param>
-        public static void Invoke(DialogueSystemData eventPara)
+        /// <param name="dsData">The dialogue system data to invoke with.</param>
+        public static void Invoke(DialogueSystemData dsData)
         {
-            mEvent?.Invoke(eventPara);
+            mEvent?.Invoke(dsData);
         }
     }
 }

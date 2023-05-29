@@ -1,4 +1,6 @@
-﻿namespace AG.DS
+﻿using UnityEngine.UIElements;
+
+namespace AG.DS
 {
     public class StartNode : NodeFrameBase
     <
@@ -12,76 +14,10 @@
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the start node component class.
-        /// </summary>
-        /// <param name="details">The node create details to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public StartNode
-        (
-            NodeCreateDetails details,
-            GraphViewer graphViewer
-        )
-            : base(nodeTitle: StringConfig.Instance.StartNode_TitleText, graphViewer)
-        {
-            SetupFrameFields();
-
-            CreateNodeElements();
-
-            PostProcessNodeWidth();
-
-            PostProcessNodePosition();
-
-            AddStyleSheet();
-
-            CreatedAction();
-
-            void SetupFrameFields()
-            {
-                Model = new(node: this);
-                Presenter = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
-                Callback = new(node: this, model: Model);
-            }
-
-            void CreateNodeElements()
-            {
-                Presenter.CreateTitleElements();
-                Presenter.CreatePortElements();
-                Presenter.CreateContentElements();
-            }
-
-            void PostProcessNodeWidth()
-            {
-                Presenter.SetNodeWidth
-                (
-                    minWidth: NodeConfig.StartNodeMinWidth,
-                    widthBuffer: NodeConfig.StartNodeWidthBuffer
-                );
-            }
-
-            void PostProcessNodePosition()
-            {
-                Presenter.SetNodePosition(details);
-            }
-
-            void AddStyleSheet()
-            {
-                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSStartNodeStyle);
-            }
-        }
-
-
-        // ----------------------------- Constructor (New) -----------------------------
-        /// <summary>
-        /// Constructor of the start node component class.
-        /// <para>Specifically used when the node is created by the previously saved data.</para>
+        /// Constructor of the start node class.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public StartNode
-        (
-            GraphViewer graphViewer
-        )
-            : base(nodeTitle: StringConfig.Instance.StartNode_TitleText, graphViewer)
+        public StartNode(GraphViewer graphViewer)
         {
             // Setup frame fields
             {
@@ -89,6 +25,12 @@
                 Presenter = new(node: this, model: Model);
                 Serializer = new(node: this, model: Model);
                 Callback = new(node: this, model: Model);
+                GraphViewer = graphViewer;
+
+                title = StringConfig.StartNode_TitleTextField_LabelText;
+
+                style.minWidth = NodeConfig.StartNodeMinWidth;
+                style.maxWidth = NodeConfig.StartNodeMinWidth + NodeConfig.StartNodeWidthBuffer;
             }
 
             // Create elements
@@ -99,18 +41,46 @@
             }
 
             // Setup node width
-            {
-                Presenter.SetNodeWidth
-                (
-                    minWidth: NodeConfig.StartNodeMinWidth,
-                    widthBuffer: NodeConfig.StartNodeWidthBuffer
-                );
-            }
+            //{
+            //    Presenter.SetNodeWidth
+            //    (
+            //        minWidth: NodeConfig.StartNodeMinWidth,
+            //        widthBuffer: NodeConfig.StartNodeWidthBuffer
+            //    );
+            //}
 
             // Add style sheet
             {
                 styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSStartNodeStyle);
             }
+        }
+
+
+        // ----------------------------- Add Contextual Menu Items -----------------------------
+        /// <inheritdoc />
+        protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
+        {
+            var defaultOutput = Model.OutputDefaultPort;
+
+            // Disconnect Output
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.ContextualMenuItem_DisconnectOutputPort_LabelText,
+                action: action => defaultOutput.Disconnect(GraphViewer),
+                status: defaultOutput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
+
+            // Disconnect All
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.ContextualMenuItem_DisconnectAllPort_LabelText,
+                action: action => defaultOutput.Disconnect(GraphViewer),
+                status: defaultOutput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
         }
     }
 }

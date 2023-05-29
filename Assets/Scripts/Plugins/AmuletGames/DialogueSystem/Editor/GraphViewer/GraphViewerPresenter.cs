@@ -8,7 +8,6 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new graph viewer element.
         /// </summary>
-        /// <param name="serializeHandler">The serialize handler to set for.</param>
         /// <param name="projectManager">The project manager to set for.</param>
         /// <returns>A new graph viewer element.</returns>
         public static GraphViewer CreateElement(ProjectManager projectManager)
@@ -71,6 +70,7 @@ namespace AG.DS
             void SetupInputHint()
             {
                 InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
+                InputHint.Instance.HideElement();
                 graphViewer.contentViewContainer.Add(InputHint.Instance);
             }
 

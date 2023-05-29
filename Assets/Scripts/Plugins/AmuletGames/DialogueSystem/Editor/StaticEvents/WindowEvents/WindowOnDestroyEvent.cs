@@ -2,11 +2,10 @@ using System;
 
 namespace AG.DS
 {
-    public class TreeEntrySelectedEvent
+    public class WindowOnDestroyEvent
     {
         /// <summary>
-        /// TreeEntrySelectedEvent, which'll be invoked when a search entry is selected in the search
-        /// <br>tree window by user.</br> 
+        /// The event to invoke when the dialogue editor window is closed.
         /// </summary>
         static event Action mEvent;
 

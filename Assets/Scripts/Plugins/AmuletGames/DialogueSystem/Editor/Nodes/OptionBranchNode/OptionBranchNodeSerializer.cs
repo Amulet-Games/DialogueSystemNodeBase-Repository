@@ -45,7 +45,7 @@ namespace AG.DS
 
             void SaveHeaderTextContainer()
             {
-                Model.OptionBranchTitleTextFieldModel.Save(data.HeadlineText);
+                Model.BranchTitleTextFieldModel.Save(data.HeadlineText);
             }
 
             void SaveOptionBranchNodeStitcher()
@@ -80,7 +80,7 @@ namespace AG.DS
 
             void LoadHeaderTextContainer()
             {
-                Model.OptionBranchTitleTextFieldModel.Load(data.HeadlineText);
+                Model.BranchTitleTextFieldModel.Load(data.HeadlineText);
             }
 
             void LoadOptionBranchNodeStitcher()

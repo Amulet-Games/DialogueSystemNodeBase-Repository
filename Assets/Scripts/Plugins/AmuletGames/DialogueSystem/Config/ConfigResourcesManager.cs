@@ -32,23 +32,12 @@ namespace AG.DS
         const string PATH = "Config Resources Manager";
 
 
-        // ----------------------------- Setup -----------------------------
         /// <summary>
         /// Setup for the class.
         /// </summary>
         public static void Setup()
         {
             Instance ??= Resources.Load<ConfigResourcesManager>(PATH);
-        }
-
-
-        // ----------------------------- Dispose -----------------------------
-        /// <summary>
-        /// Dispose for the class.
-        /// </summary>
-        public void Dispose()
-        {
-            Instance = null;
         }
     }
 }

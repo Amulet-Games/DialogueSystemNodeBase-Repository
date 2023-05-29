@@ -1,5 +1,3 @@
-using System;
-
 namespace AG.DS
 {
     public class StyleConfig
@@ -173,7 +171,7 @@ namespace AG.DS
         public readonly string Node_Title_TextField = "node_Title_TextField";
         public readonly string Node_EditTitle_Button = "node_EditTitle_Button";
 
-        /*< -------------------- Input / Ouput Container -------------------- >*/
+        /*< -------------------- Input / Output Container -------------------- >*/
         public readonly string Node_Input_Container = "node_Input_Container";
         public readonly string Node_Output_Container = "node_Output_Container";
 
@@ -187,21 +185,21 @@ namespace AG.DS
         #endregion
 
         #region Node Option Branch USS Classes.
-        public readonly string OptionBranchGroup_MainContainer = "optionBranchGroup_MainContainer";
-        public readonly string OptionBranchGroup_OuterContainer = "optionBranchGroup_OuterContainer";
-        public readonly string OptionBranchGroup_Icon_Image = "optionBranchGroup_Icon_Image";
-        public readonly string OptionBranchGroup_InnerContainer = "optionBranchGroup_InnerContainer";
-        public readonly string OptionBranchGroup_Title_Label = "optionBranchGroup_Title_Label";
-        public readonly string OptionBranchGroup_Title_TextField = "optionBranchGroup_Title_TextField";
+        public readonly string OptionBranchNode_MainContainer = "optionBranchNode_MainContainer";
+        public readonly string OptionBranchNode_OuterContainer = "optionBranchNode_OuterContainer";
+        public readonly string OptionBranchNode_Icon_Image = "optionBranchNode_Icon_Image";
+        public readonly string OptionBranchNode_InnerContainer = "optionBranchNode_InnerContainer";
+        public readonly string OptionBranchNode_Title_Label = "optionBranchNode_Title_Label";
+        public readonly string OptionBranchNode_Title_TextField = "optionBranchNode_Title_TextField";
         #endregion
 
         #region Node Option Root USS Classes.
-        public readonly string OptionRootGroup_MainContainer = "optionRootGroup_MainContainer";
-        public readonly string OptionRootGroup_OuterContainer = "optionRootGroup_OuterContainer";
-        public readonly string OptionRootGroup_Icon_Image = "optionRootGroup_Icon_Image";
-        public readonly string OptionRootGroup_InnerContainer = "optionRootGroup_InnerContainer";
-        public readonly string OptionRootGroup_Title_Label = "optionRootGroup_Title_Label";
-        public readonly string OptionRootGroup_Title_TextField = "optionRootGroup_Title_TextField";
+        public readonly string OptionRootNode_MainContainer = "optionRootNode_MainContainer";
+        public readonly string OptionRootNode_OuterContainer = "optionRootNode_OuterContainer";
+        public readonly string OptionRootNode_Icon_Image = "optionRootNode_Icon_Image";
+        public readonly string OptionRootNodeInnerContainer = "optionRootNode_InnerContainer";
+        public readonly string OptionRootNode_Title_Label = "optionRootNode_Title_Label";
+        public readonly string OptionRootNode_Title_TextField = "optionRootNode_Title_TextField";
         #endregion
 
         #region Node Preview USS Classes.
@@ -278,23 +276,12 @@ namespace AG.DS
         #endregion
 
 
-        // ----------------------------- Setup -----------------------------
         /// <summary>
-        /// Setup for the class, used to initialize internal fields.
+        /// Setup for the class.
         /// </summary>
         public static void Setup()
         {
             Instance ??= new();
-        }
-
-
-        // ----------------------------- Dispose -----------------------------
-        /// <summary>
-        /// Dispose for the class.
-        /// </summary>
-        public void Dispose()
-        {
-            Instance = null;
         }
     }
 }

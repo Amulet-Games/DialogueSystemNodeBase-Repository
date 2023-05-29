@@ -16,7 +16,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the language object field callback class.
         /// </summary>
-        /// <param name="model">The targeting language object field model to set for.</param>
+        /// <param name="model">The language object field model to set for.</param>
         public LanguageObjectFieldCallback(LanguageObjectFieldModel<TObject> model)
         {
             this.model = model;
@@ -101,7 +101,7 @@ namespace AG.DS
         {
             InputHint.ShowHint
             (
-                hintText: StringConfig.Instance.InputHint_LanguageFieldHint_LabelText,
+                hintText: StringConfig.InputHint_HintTextLabel_LabelText,
                 targetWorldBoundRect: model.ObjectField.worldBound
             );
         }

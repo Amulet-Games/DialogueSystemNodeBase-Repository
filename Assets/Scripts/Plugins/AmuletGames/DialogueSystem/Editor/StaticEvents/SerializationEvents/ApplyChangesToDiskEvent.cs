@@ -1,13 +1,12 @@
 using System;
-using UnityEditor;
 
 namespace AG.DS
 {
     public class ApplyChangesToDiskEvent
     {
         /// <summary>
-        /// ApplyChangesToDiskEvent, which'll be invoked immediately after saved Data or load data
-        /// <br>event has finished, also it'll be invoked if the graph's title has changed to a new one.</br>
+        /// The event to invoke after the saving or loading data serialization event,
+        /// <br>also it'll be invoked when the dialogue editor window graph's title is edited.</br>
         /// </summary>
         static event Action mEvent;
 

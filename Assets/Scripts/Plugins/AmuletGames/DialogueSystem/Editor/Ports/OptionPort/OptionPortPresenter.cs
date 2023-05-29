@@ -54,8 +54,8 @@ namespace AG.DS
                 port.name = Guid.NewGuid().ToString();
 
                 port.portName = isInput
-                    ? StringConfig.Instance.OptionPort_Disconnect_Input_LabelText
-                    : StringConfig.Instance.OptionPort_Disconnect_Output_LabelText;
+                    ? StringConfig.OptionPort_Input_LabelText_Disconnect
+                    : StringConfig.OptionPort_Output_LabelText_Disconnect;
 
                 port.portColor = PortConfig.OptionPortColor;
             }

@@ -6,9 +6,15 @@ namespace AG.DS
     public class OptionRootNodeModel : NodeModelFrameBase<OptionRootNode>
     {
         /// <summary>
-        /// Text field model for the option root title.
+        /// Content button for adding output option port to the node.
         /// </summary>
-        public LanguageTextFieldModel OptionRootTitleTextFieldModel;
+        public ContentButton ContentButton;
+
+
+        /// <summary>
+        /// Text field model for the root title.
+        /// </summary>
+        public LanguageTextFieldModel RootTitleTextFieldModel;
 
 
         /// <summary>
@@ -37,10 +43,7 @@ namespace AG.DS
         public OptionRootNodeModel(OptionRootNode node)
         {
             Node = node;
-
-            OptionRootTitleTextFieldModel = new(
-                placeholderText: StringConfig.Instance.OptionRootGroup_FieldPlaceholderText);
-            
+            RootTitleTextFieldModel = new(placeholderText: StringConfig.OptionRootNode_RootTitleTextField_PlaceholderText);
             OutputOptionPortGroupModel = new(direction: Direction.Output);
         }
 

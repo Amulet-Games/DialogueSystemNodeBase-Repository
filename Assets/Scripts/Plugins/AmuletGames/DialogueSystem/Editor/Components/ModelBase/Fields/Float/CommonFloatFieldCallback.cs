@@ -13,7 +13,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the common float field callback class.
         /// </summary>
-        /// <param name="model">The targeting common float field model to set for.</param>
+        /// <param name="model">The common float field model to set for.</param>
         public CommonFloatFieldCallback(CommonFloatFieldModel model)
         {
             this.model = model;

@@ -4,7 +4,6 @@ namespace AG.DS
 {
     /// <summary>
     /// Class that stores the config data relating to node creation.
-    /// <br>Unlike other config classes, the values here can be altered and saved.</br>
     /// </summary>
     [Serializable]
     public class NodeConfig
@@ -118,9 +117,8 @@ namespace AG.DS
         public const int StoryNodeWidthBuffer = 50;
 
 
-        // ----------------------------- Node Create Details -----------------------------
         /// <summary>
-        /// The value to use when calculating the final position of the node in the Y axis on the graph when it's created by user manually.
+        /// The value to use when calculating the final position of the node in relation to the Y axis of the graph.
         /// </summary>
         public const float ManualCreateYOffset = 25.5f;
     }

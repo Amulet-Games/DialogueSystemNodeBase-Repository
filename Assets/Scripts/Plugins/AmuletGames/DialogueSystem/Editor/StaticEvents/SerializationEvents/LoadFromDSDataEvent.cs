@@ -5,8 +5,8 @@ namespace AG.DS
     public class LoadFromDSDataEvent
     {
         /// <summary>
-        /// LoadFromDSDataEvent, which'll be invoked automatically when the editor window is first opened
-        /// <br>or manually by user clicking the load button on the editor's headBar.</br>
+        /// The event to invoke when the dialogue editor window is first opened,
+        /// <br>or when the user clicked the load button in the headBar element.</br>
         /// </summary>
         static event Action<DialogueSystemData> mEvent;
 
@@ -33,10 +33,10 @@ namespace AG.DS
         /// <summary>
         /// Invoke event.
         /// </summary>
-        /// <param name="eventPara">The scriptable object asset parameter that is needed for this event to be invoked.</param>
-        public static void Invoke(DialogueSystemData eventPara)
+        /// <param name="dsData">The dialogue system data to invoke with.</param>
+        public static void Invoke(DialogueSystemData dsData)
         {
-            mEvent?.Invoke(eventPara);
+            mEvent?.Invoke(dsData);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
-                label: StringConfig.Instance.DefaultPort_Input_LabelText
+                label: StringConfig.DefaultPort_Input_LabelText
             );
 
             Model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
@@ -53,19 +53,12 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
-                label: StringConfig.Instance.DefaultPort_Output_LabelText
+                label: StringConfig.DefaultPort_Output_LabelText
             );
 
             Node.Add(Model.InputDefaultPort);
             Node.Add(Model.OutputDefaultPort);
             Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Add Contextual Menu Items -----------------------------
-        /// <inheritdoc />
-        public override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
-        {
         }
 
 

@@ -33,36 +33,12 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Is the action key that the user pressed before released now?
-        /// </summary>
-        public bool IsKeyReleased { get; private set; }
-
-
-        // ----------------------------- Setup -----------------------------
-        /// <summary>
         /// Setup for the class.
         /// </summary>
         public static void Setup()
         {
             Instance ??= new();
         }
-
-
-        // ----------------------------- Dispose -----------------------------
-        /// <summary>
-        /// Dispose for the class.
-        /// </summary>
-        public void Dispose()
-        {
-            Instance = null;
-        }
-
-
-        /// <summary>
-        /// Method for setting the isKeyReleased value;
-        /// </summary>
-        /// <param name="value">The new value to set to.</param>
-        public void SetIsKeyReleased(bool value) => IsKeyReleased = value;
 
 
         // ----------------------------- Retrieve Key Down -----------------------------

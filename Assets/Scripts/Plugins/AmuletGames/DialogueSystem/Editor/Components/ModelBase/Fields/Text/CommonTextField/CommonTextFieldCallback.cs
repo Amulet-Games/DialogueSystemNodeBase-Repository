@@ -20,7 +20,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the common text field callback class.
         /// </summary>
-        /// <param name="field">The targeting common text field model to set for.</param>
+        /// <param name="field">The common text field model to set for.</param>
         public CommonTextFieldCallback(CommonTextFieldModel model)
         {
             this.model = model;

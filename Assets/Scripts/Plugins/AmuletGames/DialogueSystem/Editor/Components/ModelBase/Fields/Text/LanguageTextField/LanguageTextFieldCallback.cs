@@ -20,7 +20,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the language text field callback class.
         /// </summary>
-        /// <param name="model">The targeting language text field model to set for.</param>
+        /// <param name="model">The language text field model to set for.</param>
         public LanguageTextFieldCallback(LanguageTextFieldModel model)
         {
             this.model = model;
@@ -64,7 +64,7 @@ namespace AG.DS
 
             InputHint.ShowHint
             (
-                hintText: StringConfig.Instance.InputHint_LanguageFieldHint_LabelText,
+                hintText: StringConfig.Instance.InputHint_HintTextLabel_LabelText,
                 targetWorldBoundRect: field.worldBound
             );
 

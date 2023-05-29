@@ -34,18 +34,18 @@ namespace AG.DS
 
             void SetupContentButton()
             {
-                var contentButton = ContentButtonPresenter.CreateElement
+                Model.ContentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.Instance.ContentButton_AddCondition_LabelText,
                     buttonIconSprite: ConfigResourcesManager.Instance.SpriteConfig.AddConditionModifierButtonIconSprite
                 );
 
-                new ContentButtonCallback(
-                    isAlert: true,
-                    contentButton: contentButton,
-                    clickEvent: ContentButtonClickEvent).RegisterEvents();
+                //new ContentButtonCallback(
+                //    isAlert: true,
+                //    contentButton: Model.OptionBranchContentButton,
+                //    clickEvent: ContentButtonClickEvent).RegisterEvents();
 
-                Node.titleContainer.Add(contentButton);
+                Node.titleContainer.Add(Model.ContentButton);
             }
 
             void SetupOptionBranchGroup()
@@ -54,16 +54,16 @@ namespace AG.DS
                 VisualElement outerContainer;
                 VisualElement InnerContainer;
 
-                Image optionBranchIconImage;
-                Label optionBranchTitleLabel;
+                Image branchIconImage;
+                Label branchTitleLabel;
 
                 SetupContainers();
 
-                SetupOptionBranchIconImage();
+                SetupBranchIconImage();
 
-                SetupOptionBranchTitleLabel();
+                SetupBranchTitleLabel();
 
-                SetupOptionBranchTitleTextField();
+                SetupBranchTitleTextField();
 
                 AddElementsToContainer();
 
@@ -72,68 +72,62 @@ namespace AG.DS
                 void SetupContainers()
                 {
                     mainContainer = new();
-                    mainContainer.AddToClassList(StyleConfig.Instance.OptionBranchGroup_MainContainer);
+                    mainContainer.AddToClassList(StyleConfig.Instance.OptionBranchNode_MainContainer);
 
                     outerContainer = new();
-                    outerContainer.AddToClassList(StyleConfig.Instance.OptionBranchGroup_OuterContainer);
+                    outerContainer.AddToClassList(StyleConfig.Instance.OptionBranchNode_OuterContainer);
 
                     InnerContainer = new();
-                    InnerContainer.AddToClassList(StyleConfig.Instance.OptionBranchGroup_InnerContainer);
+                    InnerContainer.AddToClassList(StyleConfig.Instance.OptionBranchNode_InnerContainer);
                 }
 
-                void SetupOptionBranchIconImage()
+                void SetupBranchIconImage()
                 {
-                    optionBranchIconImage = CommonImagePresenter.CreateElement
+                    branchIconImage = CommonImagePresenter.CreateElement
                     (
                         imageSprite: ConfigResourcesManager.Instance.SpriteConfig.OptionBranchIconSprite,
-                        imageUSS01: StyleConfig.Instance.OptionBranchGroup_Icon_Image
+                        imageUSS01: StyleConfig.Instance.OptionBranchNode_Icon_Image
                     );
                 }
 
-                void SetupOptionBranchTitleLabel()
+                void SetupBranchTitleLabel()
                 {
-                    optionBranchTitleLabel = CommonLabelPresenter.CreateElement
+                    branchTitleLabel = CommonLabelPresenter.CreateElement
                     (
-                        labelText: StringConfig.Instance.OptionBranchGroup_TitleLabelText,
-                        labelUSS01: StyleConfig.Instance.OptionBranchGroup_Title_Label
+                        labelText: StringConfig.OptionBranchNode_BranchTitleLabel_LabelText,
+                        labelUSS01: StyleConfig.Instance.OptionBranchNode_Title_Label
                     );
                 }
 
-                void SetupOptionBranchTitleTextField()
+                void SetupBranchTitleTextField()
                 {
-                    Model.OptionBranchTitleTextFieldModel.TextField =
+                    Model.BranchTitleTextFieldModel.TextField =
                         LanguageTextFieldPresenter.CreateElement
                         (
                             isMultiLine: false,
-                            placeholderText: Model.OptionBranchTitleTextFieldModel.PlaceholderText,
-                            fieldUSS01: StyleConfig.Instance.OptionBranchGroup_Title_TextField
+                            placeholderText: Model.BranchTitleTextFieldModel.PlaceholderText,
+                            fieldUSS01: StyleConfig.Instance.OptionBranchNode_Title_TextField
                         );
 
-                    new LanguageTextFieldCallback(
-                        model: Model.OptionBranchTitleTextFieldModel).RegisterEvents();
+                    //new LanguageTextFieldCallback(
+                    //    model: Model.BranchTitleTextFieldModel).RegisterEvents();
                 }
 
                 void AddElementsToContainer()
                 {
                     mainContainer.Add(outerContainer);
 
-                    outerContainer.Add(optionBranchIconImage);
+                    outerContainer.Add(branchIconImage);
                     outerContainer.Add(InnerContainer);
 
-                    InnerContainer.Add(optionBranchTitleLabel);
-                    InnerContainer.Add(Model.OptionBranchTitleTextFieldModel.TextField);
+                    InnerContainer.Add(branchTitleLabel);
+                    InnerContainer.Add(Model.BranchTitleTextFieldModel.TextField);
                 }
 
                 void AddContainersToNode()
                 {
                     Node.ContentContainer.Add(mainContainer);
                 }
-            }
-
-            void AddOptionBranchNodeStitcher()
-            {
-                // Create all the root elements required in the node stitcher.
-                Model.OptionBranchNodeStitcher.CreateRootElements(Node);
             }
         }
 
@@ -152,73 +146,12 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
-                label: StringConfig.Instance.DefaultPort_Output_LabelText
+                label: StringConfig.DefaultPort_Output_LabelText
             );
 
             Node.Add(Model.InputOptionPort);
             Node.Add(Model.OutputDefaultPort);
             Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Callback -----------------------------
-        /// <summary>
-        /// The event to invoke when the content button is clicked.
-        /// </summary>
-        void ContentButtonClickEvent(ClickEvent evt)
-        {
-            // Release the focus of the node's border.
-            Node.NodeBorder.Blur();
-
-            // Add a new instance modifier to the node.
-            Model.OptionBranchNodeStitcher.AddInstanceModifier(data: null);
-        }
-
-
-        // ----------------------------- Add Contextual Menu Items -----------------------------
-        /// <inheritdoc />
-        public override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
-        {
-            var optionInput = Model.InputOptionPort;
-            var defaultOutput = Model.OutputDefaultPort;
-
-            // Disconnect Option Input
-            evt.menu.AppendAction
-            (
-                actionName: optionInput.GetDisconnectPortContextualMenuItemLabel(),
-                action: action => optionInput.Disconnect(Node.GraphViewer),
-                status: optionInput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
-
-            // Disconnect Output
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectOutputPort_LabelText,
-                action: action => defaultOutput.Disconnect(Node.GraphViewer),
-                status: defaultOutput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
-
-            // Disconnect All
-            var isAnyConnected = optionInput.connected
-                              || defaultOutput.connected;
-
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectAllPort_LabelText,
-                action: action =>
-                {
-                    optionInput.Disconnect(Node.GraphViewer);
-
-                    defaultOutput.Disconnect(Node.GraphViewer);
-                },
-                status: isAnyConnected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
         }
 
 

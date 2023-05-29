@@ -1,6 +1,5 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -41,7 +40,7 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
-                label: StringConfig.Instance.DefaultPort_Input_LabelText
+                label: StringConfig.DefaultPort_Input_LabelText
             );
 
             Model.TrueOutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
@@ -49,7 +48,7 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
-                label: StringConfig.Instance.DefaultPort_True_LabelText
+                label: StringConfig.DefaultPort_True_LabelText
             );
 
             Model.FalseOutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
@@ -57,7 +56,7 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
-                label: StringConfig.Instance.DefaultPort_False_LabelText,
+                label: StringConfig.DefaultPort_False_LabelText,
                 isSiblings: true
             );
 
@@ -65,67 +64,6 @@ namespace AG.DS
             Node.Add(Model.TrueOutputDefaultPort);
             Node.Add(Model.FalseOutputDefaultPort);
             Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Add Contextual Menu Items -----------------------------
-        /// <inheritdoc />
-        public override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
-        {
-            var defaultInput = Model.InputDefaultPort;
-            var defaultTrueOutput = Model.TrueOutputDefaultPort;
-            var defaultFalseOutput = Model.FalseOutputDefaultPort;
-
-            // Disconnect Input
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectInputPort_LabelText,
-                action: action => defaultInput.Disconnect(Node.GraphViewer),
-                status: defaultInput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
-
-            // Disconnect True Output
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectTrueOutputPort_LabelText,
-                action: action => defaultTrueOutput.Disconnect(Node.GraphViewer),
-                status: defaultTrueOutput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
-
-            // Disconnect False Output
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectFalseOutputPort_LabelText,
-                action: action => defaultFalseOutput.Disconnect(Node.GraphViewer),
-                status: defaultFalseOutput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
-
-            // Disconnect All
-            var isAnyConnected = defaultInput.connected
-                              || defaultTrueOutput.connected
-                              || defaultFalseOutput.connected;
-
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectAllPort_LabelText,
-                action: action =>
-                {
-                    defaultInput.Disconnect(Node.GraphViewer);
-
-                    defaultTrueOutput.Disconnect(Node.GraphViewer);
-
-                    defaultFalseOutput.Disconnect(Node.GraphViewer);
-                },
-                status: isAnyConnected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
         }
 
 

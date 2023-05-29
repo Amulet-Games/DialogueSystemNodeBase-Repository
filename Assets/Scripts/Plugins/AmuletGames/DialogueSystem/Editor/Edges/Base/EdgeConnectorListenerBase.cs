@@ -71,7 +71,7 @@ namespace AG.DS
         /// <param name="edge">The edge being created.</param>
         public void OnDrop(GraphView graphView, Edge edge)
         {
-            OnDrop((GraphViewer)graphView, edge);
+            OnDrop((GraphViewer)graphView, (TEdge)edge);
 
             graphView.graphViewChanged(m_GraphViewChange);
         }
@@ -91,97 +91,3 @@ namespace AG.DS
         public abstract void OnDropOutsidePort(Edge edge, Vector2 position);
     }
 }
-
-/*
- *  public virtual void OnDrop(GraphView graphView, Edge edge)
-    {
-        var m_EdgesToCreate = new List<Edge>(){edge};
-        m_GraphViewChange.edgesToCreate = m_EdgesToCreate;
-
-        // We can't just add these edges to delete to the m_GraphViewChange
-        // because we want the proper deletion code in GraphView to also
-        // be called. Of course, that code (in DeleteElements) also
-        // sends a GraphViewChange.
-        var m_EdgesToDelete = new List<GraphElement>();
-
-        // If the input port is single,
-        // add the edge that it's using to connect to the m_EdgesToDelete.
-        if (edge.input.capacity == Port.Capacity.Single)
-            foreach (Edge edgeToDelete in edge.input.connections)
-                if (edgeToDelete != edge)
-                    m_EdgesToDelete.Add(edgeToDelete);
-
-        // If the output port is single,
-        // add the edge that it's using to connect to the m_EdgesToDelete.
-        if (edge.output.capacity == Port.Capacity.Single)
-            foreach (Edge edgeToDelete in edge.output.connections)
-                if (edgeToDelete != edge)
-                    m_EdgesToDelete.Add(edgeToDelete);
-
-        if (m_EdgesToDelete.Count > 0)
-            graphView.DeleteElements(m_EdgesToDelete);
-
-        var edgesToCreate = m_EdgesToCreate;
-        if (graphView.graphViewChanged != null)
-        {
-            edgesToCreate = graphView.graphViewChanged(m_GraphViewChange).edgesToCreate;
-        }
-
-        // Add the edge on the graph and connect the ports from both side.
-        for (int i = 0; i < edgesToCreate.Count; i++)
-        {
-            graphView.AddElement(edgesToCreate[i]);
-            edge.input.Connect(edgesToCreate[i]);
-            edge.output.Connect(edgesToCreate[i]);
-
-            // Execute the EdgeConnectedAction
-            EdgeConnectedAction(edgesToCreate[i]);
-        }
-    }
- */
-
-/*
-    void ConnectPorts(GraphView graphView, Edge edge)
-    {
-        m_EdgesToCreate.Clear();
-        m_EdgesToCreate.Add(edge);
-
-        // We can't just add these edges to delete to the m_GraphViewChange
-        // because we want the proper deletion code in GraphView to also
-        // be called. Of course, that code (in DeleteElements) also
-        // sends a GraphViewChange.
-        m_EdgesToDelete.Clear();
-
-        // If the input port is single,
-        // add the edge that it's using to connect to the m_EdgesToDelete.
-        if (edge.input.capacity == Port.Capacity.Single)
-            foreach (Edge edgeToDelete in edge.input.connections)
-                if (edgeToDelete != edge)
-                    m_EdgesToDelete.Add(edgeToDelete);
-
-        // If the output port is single,
-        // add the edge that it's using to connect to the m_EdgesToDelete.
-        if (edge.output.capacity == Port.Capacity.Single)
-            foreach (Edge edgeToDelete in edge.output.connections)
-                if (edgeToDelete != edge)
-                    m_EdgesToDelete.Add(edgeToDelete);
-
-        if (m_EdgesToDelete.Count > 0)
-            graphView.DeleteElements(m_EdgesToDelete);
-
-        var edgesToCreate = m_EdgesToCreate;
-        if (graphView.graphViewChanged != null)
-        {
-            edgesToCreate = graphView.graphViewChanged(m_GraphViewChange).edgesToCreate;
-        }
-
-        // Add the edge on the graph and connect the ports from both side.
-        for (int i = 0; i < edgesToCreate.Count; i++)
-        {
-            OnDropCreateEdge(
-                output: edge.output,
-                input: edge.input,
-                graphView: graphView);
-        }
-    }
- */

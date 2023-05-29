@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 701948597a2eb684a8e5f3183a5c91ba, type: 3}
-  m_Name: DialogueSystemData
+  m_Name: DialogueSystemData2
   m_EditorClassIdentifier: 
   WindowMinSize: {x: 200, y: 200}
   WindowStartSizeScreenRatio: {x: 0.7, y: 0.7}

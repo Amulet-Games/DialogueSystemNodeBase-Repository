@@ -27,7 +27,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the folder title text field callback class.
         /// </summary>
-        /// <param name="model">The targeting folder title text field model to set for.</param>
+        /// <param name="model">The folder title text field model to set for.</param>
         public FolderTitleTextFieldCallback(FolderTitleTextFieldModel model)
         {
             field = model.TextField;

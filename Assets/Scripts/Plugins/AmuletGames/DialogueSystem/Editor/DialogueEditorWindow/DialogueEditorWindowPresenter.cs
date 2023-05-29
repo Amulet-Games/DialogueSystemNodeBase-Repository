@@ -28,13 +28,12 @@ namespace AG.DS
 
             void CreateWindow()
             {
-                window = (DialogueEditorWindow)EditorWindow.GetWindow(typeof(DialogueEditorWindow));
-                window.SkipOnEnable = true;
+                DialogueEditorWindow.SkipOnEnable = true;
+                window = EditorWindow.CreateWindow<DialogueEditorWindow>();
             }
 
             void SetupDetail()
             {
-                window.DsData = dsData;
                 window.ProjectManager = projectManager;
                 window.minSize = new Vector2(
                     x: dsData.WindowMinSize.x,

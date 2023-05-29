@@ -57,7 +57,7 @@ namespace AG.DS
             {
                 headBar.SaveButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonText: StringConfig.Instance.HeadBar_SaveButton_LabelText,
+                    buttonText: StringConfig.HeadBar_SaveButton_LabelText,
                     buttonUSS01: StyleConfig.Instance.HeadBar_SaveButton
                 );
             }
@@ -66,7 +66,7 @@ namespace AG.DS
             {
                 headBar.LoadButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonText: StringConfig.Instance.HeadBar_LoadButton_LabelText,
+                    buttonText: StringConfig.HeadBar_LoadButton_LabelText,
                     buttonUSS01: StyleConfig.Instance.HeadBar_LoadButton
                 );
             }

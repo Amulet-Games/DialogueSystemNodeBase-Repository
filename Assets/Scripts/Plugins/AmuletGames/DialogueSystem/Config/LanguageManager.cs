@@ -2,9 +2,6 @@ using System;
 
 namespace AG.DS
 {
-    /// <summary>
-    /// Class that managers the languages that'll be used in the dialogue system.
-    /// </summary>
     public class LanguageManager
     {
         /// <summary>
@@ -31,7 +28,6 @@ namespace AG.DS
         public int SupportLanguageLength { get; private set; }
 
 
-        // ----------------------------- Setup -----------------------------
         /// <summary>
         /// Setup for the class.
         /// </summary>
@@ -40,16 +36,6 @@ namespace AG.DS
             Instance ??= new();
             Instance.SupportLanguageTypes = (G_LanguageType[])Enum.GetValues(typeof(G_LanguageType));
             Instance.SupportLanguageLength = Instance.SupportLanguageTypes.Length;
-        }
-
-
-        // ----------------------------- Dispose -----------------------------
-        /// <summary>
-        /// Dispose for the class.
-        /// </summary>
-        public void Dispose()
-        {
-            Instance = null;
         }
 
 

@@ -73,7 +73,7 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
-                label: StringConfig.Instance.DefaultPort_Input_LabelText
+                label: StringConfig.DefaultPort_Input_LabelText
             );
 
             Model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
@@ -81,59 +81,12 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
-                label: StringConfig.Instance.DefaultPort_Output_LabelText
+                label: StringConfig.DefaultPort_Output_LabelText
             );
 
             Node.Add(Model.InputDefaultPort);
             Node.Add(Model.OutputDefaultPort);
             Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Add Contextual Menu Items -----------------------------
-        /// <inheritdoc />
-        public override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
-        {
-            var defaultInput = Model.InputDefaultPort;
-            var defaultOutput = Model.OutputDefaultPort;
-
-            // Disconnect Input
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectInputPort_LabelText,
-                action: action => defaultInput.Disconnect(Node.GraphViewer),
-                status: defaultInput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
-
-            // Disconnect Output
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectOutputPort_LabelText,
-                action: action => defaultOutput.Disconnect(Node.GraphViewer),
-                status: defaultOutput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
-
-            // Disconnect All
-            var isAnyConnected = defaultInput.connected
-                              || defaultOutput.connected;
-
-            evt.menu.AppendAction
-            (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectAllPort_LabelText,
-                action: action =>
-                {
-                    defaultInput.Disconnect(Node.GraphViewer);
-
-                    defaultOutput.Disconnect(Node.GraphViewer);
-                },
-                status: isAnyConnected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
         }
 
 

@@ -1,3 +1,6 @@
+using UnityEngine;
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     /// <inheritdoc />
@@ -7,6 +10,12 @@ namespace AG.DS
         BooleanNodeModel
     >
     {
+        /// <summary>
+        /// The last pointer position found within the node. 
+        /// </summary>
+        Vector2 pointerMovePosition;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the boolean node callback class.
@@ -28,13 +37,51 @@ namespace AG.DS
         /// <inheritdoc />
         public override void RegisterEvents()
         {
-            RegisterPointerEnterEvent();
-
-            RegisterPointerLeaveEvent();
+            base.RegisterEvents();
 
             RegisterPointerMoveEvent();
 
             RegisterGeometryChangedEvent();
+        }
+
+
+        /// <summary>
+        /// Register PointerMoveEvent to the node.
+        /// </summary>
+        void RegisterPointerMoveEvent()
+            => Node.RegisterCallback<PointerMoveEvent>(PointerMoveEvent);
+
+
+        /// <summary>
+        /// Register GeometryChangedEvent to the node.
+        /// </summary>
+        void RegisterGeometryChangedEvent()
+            => Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+
+
+        // ----------------------------- Event -----------------------------
+        /// <summary>
+        /// The event to invoke when the pointer's state has changed.
+        /// <br>Like position or pressure change, or a different button is pressed.</br>
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void PointerMoveEvent(PointerMoveEvent evt)
+        {
+            pointerMovePosition = evt.position;
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the node's geometry has changed.
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void GeometryChangedEvent(GeometryChangedEvent evt)
+        {
+            if (!Node.worldBound.Contains(pointerMovePosition))
+            {
+                // Remove from hover class.
+                Node.NodeBorder.RemoveFromClassList(StyleConfig.Instance.Node_Border_Hover);
+            }
         }
     }
 }

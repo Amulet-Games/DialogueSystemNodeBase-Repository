@@ -23,14 +23,26 @@ namespace AG.DS
         string newValue;
 
 
+        /// <summary>
+        /// The width buffer of the node title text field.
+        /// </summary>
+        float widthBuffer;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the node title text field callback class.
         /// </summary>
-        /// <param name="model">The targeting node title text field model to set for.</param>
-        public NodeTitleTextFieldCallback(NodeTitleTextFieldModel model)
+        /// <param name="model">The node title text field model to set for.</param>
+        /// <param name="widthBuffer">The width buffer to set for.</param>
+        public NodeTitleTextFieldCallback
+        (
+            NodeTitleTextFieldModel model,
+            float widthBuffer
+        )
         {
             field = model.TextField;
+            this.widthBuffer = widthBuffer;
         }
 
 
@@ -45,6 +57,8 @@ namespace AG.DS
             RegisterFieldInputFocusInEvent();
 
             RegisterFieldInputFocusOutEvent();
+
+            RegisterGeometryChangedEvent();
         }
 
 
@@ -68,6 +82,13 @@ namespace AG.DS
             field.GetElementInput().RegisterCallback<FocusOutEvent>(FieldInputFocusOutEvent);
 
 
+        /// <summary>
+        /// Register GeometryChangedEvent to the field.
+        /// </summary>
+        void RegisterGeometryChangedEvent() =>
+            field.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+
+
         // ----------------------------- Event -----------------------------
         /// <summary>
         /// The event to invoke when the field value has changed.
@@ -75,11 +96,11 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void ChangeEvent(ChangeEvent<string> evt)
         {
-            // Since the folder title text field's isDelay value is set to true,
-            // this callback'll only be invoked when the user pressed Enter or Return key.
+            // Since the node title text field's isDelay value is set to true,
+            // this callback will only be invoked when the user pressed Enter or Return key.
 
             // If the field has a new value, the value needs to be different than the previous one,
-            // empty string'll also be count as new value.
+            // empty string will also be count as new value.
 
             newValue = evt.newValue;
         }
@@ -112,7 +133,7 @@ namespace AG.DS
             }
             else
             {
-                // Notice the dialogue system that there're unsaved changes.
+                // Notice the dialogue system that there are unsaved changes.
                 WindowChangedEvent.Invoke();
             }
 
@@ -120,6 +141,20 @@ namespace AG.DS
             var fieldInputElement = field.GetElementInput();
             fieldInputElement.focusable = false;
             fieldInputElement.pickingMode = PickingMode.Ignore;
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the field's geometry has changed.
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void GeometryChangedEvent(GeometryChangedEvent evt)
+        {
+            // Set the max width.
+            field.style.maxWidth = field.contentRect.width + widthBuffer;
+
+            // Unregister event after it has done executed once.
+            field.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
         }
     }
 }

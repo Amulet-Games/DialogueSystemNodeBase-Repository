@@ -1,4 +1,6 @@
-﻿namespace AG.DS
+﻿using UnityEngine.UIElements;
+
+namespace AG.DS
 {
     public class EndNode : NodeFrameBase
     <
@@ -12,75 +14,10 @@
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the end node component class.
-        /// </summary>
-        /// <param name="details">The node create details to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public EndNode
-        (
-            NodeCreateDetails details,
-            GraphViewer graphViewer
-        )
-            : base(StringConfig.Instance.EndNode_TitleText, graphViewer)
-        {
-            SetupFrameFields();
-
-            CreateNodeElements();
-
-            PostProcessNodeWidth();
-
-            PostProcessNodePosition();
-
-            AddStyleSheet();
-
-            CreatedAction();
-
-            void SetupFrameFields()
-            {
-                Model = new(node: this);
-                Presenter = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
-                Callback = new(node: this, model: Model);
-            }
-
-            void CreateNodeElements()
-            {
-                Presenter.CreateTitleElements();
-                Presenter.CreatePortElements();
-            }
-
-            void PostProcessNodeWidth()
-            {
-                Presenter.SetNodeWidth
-                (
-                    minWidth: NodeConfig.EndNodeMinWidth,
-                    widthBuffer: NodeConfig.EndNodeWidthBuffer
-                );
-            }
-
-            void PostProcessNodePosition()
-            {
-                Presenter.SetNodePosition(details);
-            }
-
-            void AddStyleSheet()
-            {
-                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSEndNodeStyle);
-            }
-        }
-
-
-        // ----------------------------- Constructor (New) -----------------------------
-        /// <summary>
-        /// Constructor of the end node component class.
-        /// <para>Specifically used when the node is created by the previously saved data.</para>
+        /// Constructor of the end node class.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public EndNode
-        (
-            GraphViewer graphViewer
-        )
-            : base(StringConfig.Instance.EndNode_TitleText, graphViewer)
+        public EndNode(GraphViewer graphViewer)
         {
             // Setup frame fields
             {
@@ -88,6 +25,12 @@
                 Presenter = new(node: this, model: Model);
                 Serializer = new(node: this, model: Model);
                 Callback = new(node: this, model: Model);
+                GraphViewer = graphViewer;
+
+                title = StringConfig.EndNode_TitleTextField_LabelText;
+
+                style.minWidth = NodeConfig.EndNodeMinWidth;
+                style.maxWidth = NodeConfig.EndNodeMinWidth + NodeConfig.EndNodeWidthBuffer;
             }
 
             // Create elements
@@ -97,18 +40,46 @@
             }
 
             // Setup node width
-            {
-                Presenter.SetNodeWidth
-                (
-                    minWidth: NodeConfig.EndNodeMinWidth,
-                    widthBuffer: NodeConfig.EndNodeWidthBuffer
-                );
-            }
+            //{
+            //    Presenter.SetNodeWidth
+            //    (
+            //        minWidth: NodeConfig.EndNodeMinWidth,
+            //        widthBuffer: NodeConfig.EndNodeWidthBuffer
+            //    );
+            //}
 
             // Add style sheet
             {
                 styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSEndNodeStyle);
             }
+        }
+
+
+        // ----------------------------- Add Contextual Menu Items -----------------------------
+        /// <inheritdoc />
+        protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
+        {
+            var defaultInput = Model.InputDefaultPort;
+
+            // Disconnect Input
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.ContextualMenuItem_DisconnectInputPort_LabelText,
+                action: action => defaultInput.Disconnect(GraphViewer),
+                status: defaultInput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
+
+            // Disconnect All
+            evt.menu.AppendAction
+            (
+                actionName: StringConfig.ContextualMenuItem_DisconnectAllPort_LabelText,
+                action: action => defaultInput.Disconnect(GraphViewer),
+                status: defaultInput.connected
+                        ? DropdownMenuAction.Status.Normal
+                        : DropdownMenuAction.Status.Disabled
+            );
         }
     }
 }

@@ -4,9 +4,15 @@ namespace AG.DS
     public class OptionBranchNodeModel : NodeModelFrameBase<OptionBranchNode>
     {
         /// <summary>
-        /// Text field model for the option branch title.
+        /// Content button for adding conditions to the node.
         /// </summary>
-        public LanguageTextFieldModel OptionBranchTitleTextFieldModel;
+        public ContentButton ContentButton;
+
+
+        /// <summary>
+        /// Text field model for the branch title.
+        /// </summary>
+        public LanguageTextFieldModel BranchTitleTextFieldModel;
 
 
         /// <summary>
@@ -35,10 +41,7 @@ namespace AG.DS
         public OptionBranchNodeModel(OptionBranchNode node)
         {
             Node = node;
-            
-            OptionBranchTitleTextFieldModel = new(
-                placeholderText: StringConfig.Instance.OptionBranchGroup_FieldPlaceholderText);
-            
+            BranchTitleTextFieldModel = new(placeholderText: StringConfig.OptionBranchNode_BranchTitleTextField_PlaceholderText);
             OptionBranchNodeStitcher = new();
         }
 

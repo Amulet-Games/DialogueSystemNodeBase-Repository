@@ -44,7 +44,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the event modifier callback class.
         /// </summary>
-        /// <param name="model">The targeting event modifier model to set for.</param>
+        /// <param name="model">The event modifier model to set for.</param>
         /// <param name="moveUpButtonClickEvent">The MoveUpButtonClickEvent to set for,</param>
         /// <param name="moveDownButtonClickEvent">The MoveDownButtonClickEvent to set for.</param>
         /// <param name="renameButtonClickEvent">The RenameButtonClickEvent to set for.</param>
