@@ -9,7 +9,7 @@ namespace AG.DS
         public static void CreateElement(EventModifierModelGroupModel model)
         {
             model.MainContainer = new();
-            model.MainContainer.AddToClassList(StyleConfig.Instance.EventModifierGroup_MainContainer);
+            model.MainContainer.AddToClassList(StyleConfig.EventModifierGroup_MainContainer);
         }
     }
 }

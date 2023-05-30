@@ -25,10 +25,45 @@ namespace AG.DS
         /// </summary>
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
+        public EdgeBase Connect<T>(T output, T input) where T : PortBase
+        {
+            return output switch
+            {
+                DefaultPort _ => Connect(output as DefaultPort, input as DefaultPort),
+                OptionPort _ => Connect(output as OptionPort, input as OptionPort),
+                _ => throw new Exception("Connecting ports' type is invalid!")
+            };
+        }
+
+
+        /// <summary>
+        /// Method for connecting the two given ports.
+        /// </summary>
+        /// <param name="output">The output port to set for.</param>
+        /// <param name="input">The input port to set for.</param>
+        /// <param name="portType">The port type to set for.</param>
+        /// <returns>A new edge base element.</returns>
+        public EdgeBase Connect(PortBase output, PortBase input, PortType portType)
+        {
+            return portType switch
+            {
+                PortType.DEFAULT => Connect((DefaultPort)output, (DefaultPort)input),
+                PortType.OPTION => Connect((OptionPort)output, (OptionPort)input),
+                _ => throw new Exception("Port type not match.")
+            };
+        }
+        
+        
+        /// <summary>
+        /// Method for connecting the two given ports.
+        /// </summary>
+        /// <param name="output">The output port to set for.</param>
+        /// <param name="input">The input port to set for.</param>
         /// <returns>A new default edge element.</returns>
         public DefaultEdge Connect(DefaultPort output, DefaultPort input)
         {
-            return Connect<
+            return Connect
+            <
                 DefaultEdge,
                 DefaultEdgeModel,
                 DefaultEdgePresenter,
@@ -50,7 +85,8 @@ namespace AG.DS
         /// <returns>A new option edge element.</returns>
         public OptionEdge Connect(OptionPort output, OptionPort input)
         {
-            return Connect<
+            return Connect
+            <
                 OptionEdge,
                 OptionEdgeModel,
                 OptionEdgePresenter,
@@ -61,24 +97,6 @@ namespace AG.DS
                 output,
                 input
             );
-        }
-
-
-        /// <summary>
-        /// Method for connecting the two given ports.
-        /// </summary>
-        /// <param name="output">The output port to set for.</param>
-        /// <param name="input">The input port to set for.</param>
-        /// <param name="portType">The port type to set for.</param>
-        /// <returns>A new edge base element.</returns>
-        public EdgeBase Connect(PortBase output, PortBase input, PortType portType)
-        {
-            return portType switch
-            {
-                PortType.DEFAULT => Connect((DefaultPort)output, (DefaultPort)input),
-                PortType.OPTION => Connect((OptionPort)output, (OptionPort)input),
-                _ => throw new Exception("Port type not match.")
-            };
         }
 
 

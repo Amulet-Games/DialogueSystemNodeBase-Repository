@@ -48,7 +48,7 @@ namespace AG.DS
                 var selectorElement = commonObjectField.ElementAt(0).ElementAt(1);
 
                 selectorElement.style.backgroundImage =
-                    ConfigResourcesManager.Instance.SpriteConfig.ObjectFieldSelectorIconSprite.texture;
+                    ConfigResourcesManager.SpriteConfig.ObjectFieldSelectorIconSprite.texture;
             }
 
             void ShowEmptyStyle()

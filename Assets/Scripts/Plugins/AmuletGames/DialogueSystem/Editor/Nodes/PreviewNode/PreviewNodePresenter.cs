@@ -29,103 +29,88 @@ namespace AG.DS
         /// <inheritdoc />
         public override void CreateContentElements()
         {
-            base.CreateContentElements();
+            Box previewImageBox;
+            Box previewSpriteBox;
+            Box middleEmptyBox;
 
-            SetupElements();
+            SetupContainers();
 
-            void SetupElements()
+            SetupLeftPortraitImage();
+
+            SetupRightPortraitImage();
+
+            SetupLeftPortraitObjectField();
+
+            SetupRightPortraitObjectField();
+
+            AddElementsToContainer();
+
+            AddContainerToNode();
+
+            void SetupContainers()
             {
-                Box previewImageBox;
-                Box previewSpriteBox;
-                Box middleEmptyBox;
+                previewImageBox = new();
+                previewImageBox.AddToClassList(StyleConfig.PreviewNode_PreviewImage_Box);
 
-                SetupContainers();
+                previewSpriteBox = new();
+                previewSpriteBox.AddToClassList(StyleConfig.PreviewNode_PreviewSprite_Box);
 
-                SetupLeftPortraitImage();
+                middleEmptyBox = new();
+                middleEmptyBox.AddToClassList(StyleConfig.PreviewNode_MiddleEmpty_Box);
+            }
 
-                SetupRightPortraitImage();
+            void SetupLeftPortraitImage()
+            {
+                Model.LeftPortraitImage = CommonImagePresenter.CreateElement
+                (
+                    imageUSS01: StyleConfig.PreviewNode_PreviewImage_Image,
+                    imageUSS02: StyleConfig.PreviewNode_PreviewImage_Image_L
+                );
+            }
 
-                SetupLeftPortraitObjectField();
+            void SetupRightPortraitImage()
+            {
+                Model.RightPortraitImage = CommonImagePresenter.CreateElement
+                (
+                    imageUSS01: StyleConfig.PreviewNode_PreviewImage_Image,
+                    imageUSS02: StyleConfig.PreviewNode_PreviewImage_Image_R
+                );
+            }
 
-                SetupRightPortraitObjectField();
-
-                AddElementsToContainer();
-
-                AddContainerToNode();
-
-                void SetupContainers()
-                {
-                    previewImageBox = new();
-                    previewImageBox.AddToClassList(StyleConfig.Instance.PreviewNode_PreviewImage_Box);
-
-                    previewSpriteBox = new();
-                    previewSpriteBox.AddToClassList(StyleConfig.Instance.PreviewNode_PreviewSprite_Box);
-
-                    middleEmptyBox = new();
-                    middleEmptyBox.AddToClassList(StyleConfig.Instance.PreviewNode_MiddleEmpty_Box);
-                }
-
-                void SetupLeftPortraitImage()
-                {
-                    Model.LeftPortraitImage = CommonImagePresenter.CreateElement
+            void SetupLeftPortraitObjectField()
+            {
+                Model.LeftPortraitObjectFieldModel.ObjectField =
+                    CommonObjectFieldPresenter.CreateElement<Sprite>
                     (
-                        imageUSS01: StyleConfig.Instance.PreviewNode_PreviewImage_Image,
-                        imageUSS02: StyleConfig.Instance.PreviewNode_PreviewImage_Image_L
+                        fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
+                        fieldUSS02: StyleConfig.PreviewNode_PreviewSprite_ObjectField_L
                     );
-                }
+            }
 
-                void SetupRightPortraitImage()
-                {
-                    Model.RightPortraitImage = CommonImagePresenter.CreateElement
+            void SetupRightPortraitObjectField()
+            {
+                Model.RightPortraitObjectFieldModel.ObjectField =
+                    CommonObjectFieldPresenter.CreateElement<Sprite>
                     (
-                        imageUSS01: StyleConfig.Instance.PreviewNode_PreviewImage_Image,
-                        imageUSS02: StyleConfig.Instance.PreviewNode_PreviewImage_Image_R
+                        fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
+                        fieldUSS02: StyleConfig.PreviewNode_PreviewSprite_ObjectField_R
                     );
-                }
+            }
 
-                void SetupLeftPortraitObjectField()
-                {
-                    Model.LeftPortraitObjectFieldModel.ObjectField =
-                        CommonObjectFieldPresenter.CreateElement<Sprite>
-                        (
-                            fieldUSS01: StyleConfig.Instance.PreviewNode_PreviewSprite_ObjectField,
-                            fieldUSS02: StyleConfig.Instance.PreviewNode_PreviewSprite_ObjectField_L
-                        );
+            void AddElementsToContainer()
+            {
+                previewImageBox.Add(Model.LeftPortraitImage);
+                previewImageBox.Add(Model.RightPortraitImage);
 
-                    new CommonObjectFieldCallback<Sprite>(
-                        model: Model.LeftPortraitObjectFieldModel,
-                        additionalChangeEvent: LeftPortraitObjectFieldChangeEvent).RegisterEvents();
-                }
+                previewSpriteBox.Add(Model.LeftPortraitObjectFieldModel.ObjectField);
+                previewSpriteBox.Add(middleEmptyBox);
+                previewSpriteBox.Add(Model.RightPortraitObjectFieldModel.ObjectField);
+            }
 
-                void SetupRightPortraitObjectField()
-                {
-                    Model.RightPortraitObjectFieldModel.ObjectField =
-                        CommonObjectFieldPresenter.CreateElement<Sprite>
-                        (
-                            fieldUSS01: StyleConfig.Instance.PreviewNode_PreviewSprite_ObjectField,
-                            fieldUSS02: StyleConfig.Instance.PreviewNode_PreviewSprite_ObjectField_R
-                        );
-
-                    new CommonObjectFieldCallback<Sprite>(
-                        model: Model.RightPortraitObjectFieldModel,
-                        additionalChangeEvent: RightPortraitObjectFieldChangeEvent).RegisterEvents();
-                }
-
-                void AddElementsToContainer()
-                {
-                    previewImageBox.Add(Model.LeftPortraitImage);
-                    previewImageBox.Add(Model.RightPortraitImage);
-
-                    previewSpriteBox.Add(Model.LeftPortraitObjectFieldModel.ObjectField);
-                    previewSpriteBox.Add(middleEmptyBox);
-                    previewSpriteBox.Add(Model.RightPortraitObjectFieldModel.ObjectField);
-                }
-
-                void AddContainerToNode()
-                {
-                    Node.ContentContainer.Add(previewImageBox);
-                    Node.ContentContainer.Add(previewSpriteBox);
-                }
+            void AddContainerToNode()
+            {
+                Node.ContentContainer.Add(previewImageBox);
+                Node.ContentContainer.Add(previewSpriteBox);
             }
         }
 
@@ -155,25 +140,6 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Callback -----------------------------
-        /// <summary>
-        /// The action to invoke when the left portrait object field value is changed.
-        /// </summary>
-        void LeftPortraitObjectFieldChangeEvent(ChangeEvent<Sprite> evt)
-        {
-            Model.LeftPortraitImage.image = Model.LeftPortraitObjectFieldModel.Value.texture;
-        }
-
-
-        /// <summary>
-        /// The action to invoke when the right portrait object field value is changed.
-        /// </summary>
-        void RightPortraitObjectFieldChangeEvent(ChangeEvent<Sprite> evt)
-        {
-            Model.RightPortraitImage.image = Model.RightPortraitObjectFieldModel.Value.texture;
-        }
-
-
         // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
         protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
@@ -182,11 +148,9 @@ namespace AG.DS
 
             ConnectConnectorPort();
 
-            ShowNodeOnGraph();
-
             void AlignConnectorPosition()
             {
-                Vector2 result = Node.localBound.position;
+                Vector2 result = details.CreatePosition;
 
                 switch (details.HorizontalAlignmentType)
                 {
@@ -244,11 +208,6 @@ namespace AG.DS
                 );
 
                 Node.GraphViewer.Add(edge);
-            }
-
-            void ShowNodeOnGraph()
-            {
-                Node.RemoveFromClassList(StyleConfig.Instance.Global_Visible_Hidden);
             }
         }
     }

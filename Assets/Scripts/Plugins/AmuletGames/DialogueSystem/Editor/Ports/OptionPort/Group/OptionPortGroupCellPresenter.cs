@@ -34,8 +34,8 @@ namespace AG.DS
             {
                 model.RemoveButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.RemoveButtonIconSprite,
-                    buttonUSS01: StyleConfig.Instance.OptionPortGroup_RemoveButton
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
+                    buttonUSS01: StyleConfig.OptionPortGroup_RemoveButton
                 );
 
                 model.Port.contentContainer.Add(model.RemoveButton);

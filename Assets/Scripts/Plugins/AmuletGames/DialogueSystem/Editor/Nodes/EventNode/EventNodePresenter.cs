@@ -1,6 +1,5 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -36,18 +35,13 @@ namespace AG.DS
 
             void SetupContentButton()
             {
-                var contentButton = ContentButtonPresenter.CreateElement
+                Model.ContentButton = ContentButtonPresenter.CreateElement
                 (
-                    buttonText: StringConfig.Instance.ContentButton_AddEvent_LabelText,
-                    buttonIconSprite: ConfigResourcesManager.Instance.SpriteConfig.AddEventModifierButtonIconSprite
+                    buttonText: StringConfig.ContentButton_AddEvent_LabelText,
+                    buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEventModifierButtonIconSprite
                 );
 
-                new ContentButtonCallback(
-                    isAlert: true,
-                    contentButton: contentButton,
-                    clickEvent: ContentButtonClickEvent).RegisterEvents();
-
-                Node.titleContainer.Add(contentButton);
+                Node.titleContainer.Add(Model.ContentButton);
             }
 
             void SetupEventModifierModelGroup()
@@ -90,17 +84,6 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Event -----------------------------
-        /// <summary>
-        /// The event to invoke when the content button is clicked.
-        /// </summary>
-        /// <param name="evt">The registering event</param>
-        public void ContentButtonClickEvent(ClickEvent evt)
-        {
-            Model.EventModifierModelGroupModel.CreateModifier();
-        }
-
-
         // ----------------------------- Post Process Position Details -----------------------------
         /// <inheritdoc />
         protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
@@ -109,11 +92,9 @@ namespace AG.DS
 
             ConnectConnectorPort();
 
-            ShowNodeOnGraph();
-
             void AlignConnectorPosition()
             {
-                Vector2 result = Node.localBound.position;
+                Vector2 result = details.CreatePosition;
 
                 switch (details.HorizontalAlignmentType)
                 {
@@ -171,11 +152,6 @@ namespace AG.DS
                 );
 
                 Node.GraphViewer.Add(edge);
-            }
-
-            void ShowNodeOnGraph()
-            {
-                Node.RemoveFromClassList(StyleConfig.Instance.Global_Visible_Hidden);
             }
         }
     }

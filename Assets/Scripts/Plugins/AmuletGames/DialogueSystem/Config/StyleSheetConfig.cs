@@ -6,12 +6,6 @@ namespace AG.DS
     [CreateAssetMenu(menuName = "### AG ###/Dialogue System/Config/New Style Sheets Config")]
     public class StyleSheetConfig : ScriptableObject
     {
-        #region Channels.
-        [Header("Channels")]
-        public StyleSheet DSInputOptionChannelStyle;
-        public StyleSheet DSOutputOptionChannelStyle;
-        #endregion
-
         #region Modifiers.
         [Header("Modifiers")]
         public StyleSheet DSEventModifierStyle;

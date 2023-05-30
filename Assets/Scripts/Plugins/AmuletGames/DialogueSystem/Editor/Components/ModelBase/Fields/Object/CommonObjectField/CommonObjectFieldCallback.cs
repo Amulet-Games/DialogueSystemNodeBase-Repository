@@ -55,7 +55,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register addtional ChangeEvent to the field.
+        /// Register additional ChangeEvent to the field.
         /// </summary>
         void RegisterAdditionalChangeEvent()
         {

@@ -55,17 +55,12 @@ namespace AG.DS
             // Setup details
             {
                 NodeGUID = Guid.NewGuid().ToString();
-
-                //title = nodeTitle;
-
-                //GraphViewer = graphViewer;
             }
 
             // Add style sheet
             {
-                var styleSheetConfig = ConfigResourcesManager.Instance.StyleSheetConfig;
-                styleSheets.Add(styleSheetConfig.DSGlobalStyle);
-                styleSheets.Add(styleSheetConfig.DSNodesShareStyle);
+                styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
+                styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodesShareStyle);
             }
 
             // Override border default style
@@ -82,7 +77,7 @@ namespace AG.DS
 
                 // Remove the default USS names and add to custom class.
                 NodeBorder.name = "";
-                NodeBorder.AddToClassList(StyleConfig.Instance.Node_Border);
+                NodeBorder.AddToClassList(StyleConfig.Node_Border);
             }
 
             // Override containers default style
@@ -95,11 +90,11 @@ namespace AG.DS
 
                 // Input
                 inputContainer.name = "";
-                inputContainer.AddToClassList(StyleConfig.Instance.Node_Input_Container);
+                inputContainer.AddToClassList(StyleConfig.Node_Input_Container);
 
                 // Output
                 outputContainer.name = "";
-                outputContainer.AddToClassList(StyleConfig.Instance.Node_Output_Container);
+                outputContainer.AddToClassList(StyleConfig.Node_Output_Container);
 
                 // Main
                 mainContainer.pickingMode = PickingMode.Position;
@@ -127,15 +122,10 @@ namespace AG.DS
             {
                 // Add content container to main container.
                 ContentContainer = new();
-                ContentContainer.AddToClassList(StyleConfig.Instance.Node_Content_Container);
+                ContentContainer.AddToClassList(StyleConfig.Node_Content_Container);
 
                 mainContainer.Add(ContentContainer);
             }
-
-            // Add to graph
-            //{
-            //    GraphViewer.Add(this);
-            //}
         }
 
 

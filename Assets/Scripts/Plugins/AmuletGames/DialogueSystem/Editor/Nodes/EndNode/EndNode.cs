@@ -39,18 +39,9 @@ namespace AG.DS
                 Presenter.CreatePortElements();
             }
 
-            // Setup node width
-            //{
-            //    Presenter.SetNodeWidth
-            //    (
-            //        minWidth: NodeConfig.EndNodeMinWidth,
-            //        widthBuffer: NodeConfig.EndNodeWidthBuffer
-            //    );
-            //}
-
             // Add style sheet
             {
-                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSEndNodeStyle);
+                styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSEndNodeStyle);
             }
         }
 

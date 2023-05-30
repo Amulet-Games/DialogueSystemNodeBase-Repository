@@ -87,17 +87,17 @@ namespace AG.DS
             // Change expanded style class.
             if (IsExpand)
             {
-                MainContainer.AddToClassList(StyleConfig.Instance.Folder_Expanded);
+                MainContainer.AddToClassList(StyleConfig.Folder_Expanded);
             }
             else
             {
-                MainContainer.RemoveFromClassList(StyleConfig.Instance.Folder_Expanded);
+                MainContainer.RemoveFromClassList(StyleConfig.Folder_Expanded);
             }
 
             // Change expand folder button's sprite
             ExpandButton.style.backgroundImage = IsExpand
-                ? ConfigResourcesManager.Instance.SpriteConfig.FolderExpandButtonOpenIconSprite.texture
-                : ConfigResourcesManager.Instance.SpriteConfig.FolderExpandButtonCloseIconSprite.texture;
+                ? ConfigResourcesManager.SpriteConfig.FolderExpandButtonOpenIconSprite.texture
+                : ConfigResourcesManager.SpriteConfig.FolderExpandButtonCloseIconSprite.texture;
         }
 
 
@@ -122,10 +122,9 @@ namespace AG.DS
         /// </summary>
         public void EditFolderTitle()
         {
-            var textFieldInput = TitleTextFieldModel.TextField.GetElementInput();
-
-            textFieldInput.focusable = true;
-            textFieldInput.Focus();
+            var fieldInput = TitleTextFieldModel.TextField.GetElementInput();
+            fieldInput.focusable = true;
+            fieldInput.Focus();
         }
     }
 }

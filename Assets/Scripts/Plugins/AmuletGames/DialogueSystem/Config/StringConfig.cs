@@ -2,11 +2,6 @@ namespace AG.DS
 {
     public class StringConfig
     {
-        /// <summary>
-        /// The singleton reference of the class.
-        /// </summary>
-        public static StringConfig Instance { get; private set; } = null;
-
         #region Window Labels.
         public const string Editor_WindowDefaultTitleText = "New Dialogue Editor Graph";
         public const string Editor_WindowAlreadyOpened_WarningText = "Action is ignored since a dialogue editor window is already opened.";
@@ -72,34 +67,34 @@ namespace AG.DS
         #endregion
 
         #region Content Button Labels.
-        public readonly string ContentButton_AddCondition_LabelText = "Add Condition";
-        public readonly string ContentButton_AddEvent_LabelText = "Add Event";
-        public readonly string ContentButton_AddEntry_LabelText = "Add Entry";
-        public readonly string ContentButton_AddMessage_LabelText = "Add Message";
+        public const string ContentButton_AddCondition_LabelText = "Add Condition";
+        public const string ContentButton_AddEvent_LabelText = "Add Event";
+        public const string ContentButton_AddEntry_LabelText = "Add Entry";
+        public const string ContentButton_AddMessage_LabelText = "Add Message";
         #endregion
 
         #region TextField Placeholder Texts.
-        public string DialogueSegmentCharacterPlaceholderText = "Character";
-        public string DialogueSegmentTextlinePlaceholderText = "Textline";
-        public string ConditionModifierCompareToStringPlaceholderText = "String";
+        public const string DialogueSegmentCharacterPlaceholderText = "Character";
+        public const string DialogueSegmentTextlinePlaceholderText = "Textline";
+        public const string ConditionModifierCompareToStringPlaceholderText = "String";
         #endregion
 
         #region Segment Title Labels.
-        public string EventSegmentTitleLabelText = "Scriptable Events";
-        public string ConditionSegmentTitleLabelText = "Conditions";
+        public const string EventSegmentTitleLabelText = "Scriptable Events";
+        public const string ConditionSegmentTitleLabelText = "Conditions";
         #endregion
 
         #region Event Modifier Texts.
-        public readonly string EventModifier_Folder_TitleText = "Event ";
-        public readonly string EventModifier_DialogueEvent_LabelText = "Dialogue Event";
-        public readonly string EventModifier_StartDelay_LabelText = "Start Delay";
-        public readonly string EventModifier_DelaySeconds_LabelText = "seconds";
+        public const string EventModifier_Folder_TitleText = "Event ";
+        public const string EventModifier_DialogueEvent_LabelText = "Dialogue Event";
+        public const string EventModifier_StartDelay_LabelText = "Start Delay";
+        public const string EventModifier_DelaySeconds_LabelText = "seconds";
         #endregion
 
         #region Message Modifier Texts.
-        public string MessageModifier_Folder_TitleText = "Message ";
-        public string MessageModifierProgressTypeLabelText = "Progress Type";
-        public string DurationLabelText = "Duration";
+        public const string MessageModifier_Folder_TitleText = "Message ";
+        public const string MessageModifierProgressTypeLabelText = "Progress Type";
+        public const string DurationLabelText = "Duration";
         #endregion
 
         #region Option Root Node Texts.
@@ -111,14 +106,5 @@ namespace AG.DS
         public const string OptionBranchNode_BranchTitleLabel_LabelText = "Branch Title";
         public const string OptionBranchNode_BranchTitleTextField_PlaceholderText = "“Yeah I had it in the Indian restaurant.”";
         #endregion
-
-
-        /// <summary>
-        /// Setup for the class.
-        /// </summary>
-        public static void Setup()
-        {
-            Instance ??= new();
-        }
     }
 }

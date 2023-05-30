@@ -79,8 +79,6 @@
 	background-color: rgba(32, 32, 32, 1);
 	
 	height: 30px;
-	
-	overflow: visible;
 
 	/* top - right - bottom - left */
 	margin: 0.5px 4px 0px 2px;

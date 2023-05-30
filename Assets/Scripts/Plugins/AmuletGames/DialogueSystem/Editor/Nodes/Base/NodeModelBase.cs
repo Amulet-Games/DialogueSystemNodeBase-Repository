@@ -16,7 +16,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Button that edit the node title when clicked.
+        /// Button for editing the node title.
         /// </summary>
         public Button EditTitleButton;
 

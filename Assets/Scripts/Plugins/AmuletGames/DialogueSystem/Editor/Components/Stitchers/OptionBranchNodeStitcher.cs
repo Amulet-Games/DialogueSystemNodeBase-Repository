@@ -65,9 +65,9 @@ namespace AG.DS
                 Segment.CreateRootElements
                 (
                     node: node,
-                    titleText: StringConfig.Instance.ConditionSegmentTitleLabelText,
-                    titleBoxUSS01: StyleConfig.Instance.Segment_Condition_Title_Box,
-                    contentBoxUSS01: StyleConfig.Instance.Segment_Condition_Content_Box
+                    titleText: StringConfig.ConditionSegmentTitleLabelText,
+                    titleBoxUSS01: StyleConfig.Segment_Condition_Title_Box,
+                    contentBoxUSS01: StyleConfig.Segment_Condition_Content_Box
                 );
             }
 
@@ -76,7 +76,7 @@ namespace AG.DS
                 unmetOptionDisplayTypeEnumField = EnumFieldFactory.GetNewEnumField
                 (
                     enumContainer: unmetOptionDisplayTypeEnumContainer,
-                    fieldUSS01: StyleConfig.Instance.Segment_Condition_UnmetOptionDisplayType_EnumField
+                    fieldUSS01: StyleConfig.Segment_Condition_UnmetOptionDisplayType_EnumField
                 );
             }
 

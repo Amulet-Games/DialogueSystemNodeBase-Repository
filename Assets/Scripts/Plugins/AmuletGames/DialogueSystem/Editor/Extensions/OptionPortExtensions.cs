@@ -14,7 +14,7 @@ namespace AG.DS
             int siblingIndex
         )
         {
-            port.AddToClassList(StyleConfig.Instance.Port_Connect);
+            port.AddToClassList(StyleConfig.Port_Connect);
 
             port.portName = StringUtility.New
                             (
@@ -36,12 +36,12 @@ namespace AG.DS
         {
             if (port.IsInput())
             {
-                port.RemoveFromClassList(StyleConfig.Instance.Port_Connect);
+                port.RemoveFromClassList(StyleConfig.Port_Connect);
                 port.portName = StringConfig.OptionPort_Input_LabelText_Disconnect;
             }
             else
             {
-                port.RemoveFromClassList(StyleConfig.Instance.Port_Connect);
+                port.RemoveFromClassList(StyleConfig.Port_Connect);
                 port.portName = StringConfig.OptionPort_Output_LabelText_Disconnect;
             }
         }

@@ -69,14 +69,14 @@ namespace AG.DS
             void SetupBoxContainer()
             {
                 MainBox = new();
-                MainBox.AddToClassList(StyleConfig.Instance.Segment_Common_Main_Box);
+                MainBox.AddToClassList(StyleConfig.Segment_Common_Main_Box);
 
                 titleBox = new();
-                titleBox.AddToClassList(StyleConfig.Instance.Segment_Common_Title_Box);
+                titleBox.AddToClassList(StyleConfig.Segment_Common_Title_Box);
                 titleBox.AddToClassList(titleBoxUSS01);
 
                 TitleButtonBox = new();
-                TitleButtonBox.AddToClassList(StyleConfig.Instance.Segment_Common_Title_Button_Box);
+                TitleButtonBox.AddToClassList(StyleConfig.Segment_Common_Title_Button_Box);
 
                 ContentBox = new();
                 ContentBox.pickingMode = PickingMode.Ignore;
@@ -88,7 +88,7 @@ namespace AG.DS
                 titleLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: titleText,
-                    labelUSS01: StyleConfig.Instance.Segment_Common_Title_Label
+                    labelUSS01: StyleConfig.Segment_Common_Title_Label
                 );
             }
 
@@ -96,8 +96,8 @@ namespace AG.DS
             {
                 ExpandButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.SegmentExpandButtonIconSprite,
-                    buttonUSS01: StyleConfig.Instance.Segment_Common_ExpandSegment_Button
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.SegmentExpandButtonIconSprite,
+                    buttonUSS01: StyleConfig.Segment_Common_ExpandSegment_Button
                 );
 
                 new CommonButtonCallback(

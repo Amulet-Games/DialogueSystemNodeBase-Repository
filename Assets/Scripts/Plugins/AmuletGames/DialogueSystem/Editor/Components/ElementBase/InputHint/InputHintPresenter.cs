@@ -28,7 +28,7 @@ namespace AG.DS
             void CreateInputHint()
             {
                 inputHint = new();
-                inputHint.AddToClassList(StyleConfig.Instance.InputHint_Main);
+                inputHint.AddToClassList(StyleConfig.InputHint_Main);
             }
 
             void SetupDetail()
@@ -40,8 +40,8 @@ namespace AG.DS
             {
                 inputHint.HintIconImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.Instance.SpriteConfig.LanguageFieldHintIconSprite,
-                    imageUSS01: StyleConfig.Instance.InputHint_IconImage
+                    imageSprite: ConfigResourcesManager.SpriteConfig.LanguageFieldHintIconSprite,
+                    imageUSS01: StyleConfig.InputHint_IconImage
                 );
             }
 
@@ -50,7 +50,7 @@ namespace AG.DS
                 inputHint.HintTextLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: "",
-                    labelUSS01: StyleConfig.Instance.InputHint_TextLabel
+                    labelUSS01: StyleConfig.InputHint_TextLabel
                 );
             }
 
@@ -62,8 +62,8 @@ namespace AG.DS
 
             void AddStyleSheet()
             {
-                inputHint.styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSGlobalStyle);
-                inputHint.styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSInputHintStyle);
+                inputHint.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
+                inputHint.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSInputHintStyle);
             }
         }
     }

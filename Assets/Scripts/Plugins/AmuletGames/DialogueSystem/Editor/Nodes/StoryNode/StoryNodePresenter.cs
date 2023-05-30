@@ -70,13 +70,11 @@ namespace AG.DS
 
             ConnectConnectorPort();
 
-            ShowNodeOnGraph();
-
             PostProcessSetupApplyDesign();
 
             void AlignConnectorPosition()
             {
-                Vector2 result = Node.localBound.position;
+                Vector2 result = details.CreatePosition;
 
                 switch (details.HorizontalAlignmentType)
                 {
@@ -135,11 +133,6 @@ namespace AG.DS
 
                 Node.GraphViewer.Add(edge);
             }
-
-            void ShowNodeOnGraph()
-            {
-                Node.RemoveFromClassList(StyleConfig.Instance.Global_Visible_Hidden);
-            }
         }
 
 
@@ -152,17 +145,17 @@ namespace AG.DS
 
             SetupGraphViewerZoom();
 
-            DisablePerferenceNode();
+            DisableReferenceNode();
 
             CreateSampleNode();
 
             void SetupPreferenceImage()
             {
                 Image preferenceImage;
-                preferenceImage = CommonImagePresenter.CreateElement(imageUSS01: StyleConfig.Instance.StoryNode_PreferenceImage_Image);
+                preferenceImage = CommonImagePresenter.CreateElement(imageUSS01: StyleConfig.StoryNode_PreferenceImage_Image);
                 Node.ContentContainer.Add(preferenceImage);
 
-                preferenceImage.sprite = ConfigResourcesManager.Instance.SpriteConfig.ApplyDesignSampleImage;
+                preferenceImage.sprite = ConfigResourcesManager.SpriteConfig.ApplyDesignSampleImage;
                 preferenceImage.style.opacity = 0.6f;
 
                 preferenceImage.style.marginBottom = margin;
@@ -185,7 +178,7 @@ namespace AG.DS
                 Node.GraphViewer.SetupZoom(ContentZoomer.DefaultMinScale, 6f);
             }
 
-            void DisablePerferenceNode()
+            void DisableReferenceNode()
             {
                 Node.SetEnabled(false);
             }
@@ -204,7 +197,7 @@ namespace AG.DS
                     createPosition.y += Node.titleContainer.layout.height + Node.inputContainer.parent.layout.height + margin;
                     details.SetPositionCreate(value: createPosition);
 
-                    var target = new EventNode(details: details, graphViewer: Node.GraphViewer);
+                    var target = new EventNode(graphViewer: Node.GraphViewer);
 
                     target.capabilities = Capabilities.Movable;
                     target.SetEnabled(false);

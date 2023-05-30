@@ -49,7 +49,7 @@ namespace AG.DS
         /// <returns>True if the port is added to the connect style.</returns>
         public static bool IsShowingConnectStyle(this Port port)
         {
-            return port.ClassListContains(StyleConfig.Instance.Port_Connect);
+            return port.ClassListContains(StyleConfig.Port_Connect);
         }
     }
 }

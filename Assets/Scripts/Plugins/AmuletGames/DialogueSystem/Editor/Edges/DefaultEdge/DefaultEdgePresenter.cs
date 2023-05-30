@@ -10,33 +10,18 @@ namespace AG.DS
         /// <inheritdoc />
         public override DefaultEdge CreateElement(DefaultEdgeModel model)
         {
-            DefaultEdge edge;
+            // Create edge
+            var edge = new DefaultEdge();
 
-            CreateEdge();
+            // Setup detail
+            edge.Model = model;
+            edge.output = model.Output;
+            edge.input = model.Input;
+            edge.focusable = true;
 
-            SetupDetail();
-
-            AddToStyleClass();
-
+            // Add style
+            edge.AddToClassList(StyleConfig.Default_Edge);
             return edge;
-
-            void CreateEdge()
-            {
-                edge = new DefaultEdge();
-            }
-
-            void SetupDetail()
-            {
-                edge.Model = model;
-                edge.output = model.Output;
-                edge.input = model.Input;
-                edge.focusable = true;
-            }
-
-            void AddToStyleClass()
-            {
-                edge.AddToClassList(StyleConfig.Instance.Default_Edge);
-            }
         }
     }
 }

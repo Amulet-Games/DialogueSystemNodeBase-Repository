@@ -46,7 +46,7 @@ namespace AG.DS
             void SetupContainers()
             {
                 nodeTitleContainer = new();
-                nodeTitleContainer.AddToClassList(StyleConfig.Instance.Node_Title_Container);
+                nodeTitleContainer.AddToClassList(StyleConfig.Node_Title_Container);
             }
 
             void SetupTitleTextField()
@@ -54,25 +54,17 @@ namespace AG.DS
                 Model.NodeTitleTextFieldModel.TextField = NodeTitleTextFieldPresenter.CreateElement
                 (
                     titleText: Node.title,
-                    fieldUSS01: StyleConfig.Instance.Node_Title_TextField
+                    fieldUSS01: StyleConfig.Node_Title_TextField
                 );
-
-                //new NodeTitleTextFieldCallback(
-                //    model: Model.NodeTitleTextFieldModel).RegisterEvents();
             }
 
             void SetupEditTitleButton()
             {
                 Model.EditTitleButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.EditButtonIconSprite,
-                    buttonUSS01: StyleConfig.Instance.Node_EditTitle_Button
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
+                    buttonUSS01: StyleConfig.Node_EditTitle_Button
                 );
-
-                //new CommonButtonCallback(
-                //    isAlert: false,
-                //    button: Model.EditTitleButton,
-                //    clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
             }
 
             void AddElementsToContainer()
@@ -80,7 +72,7 @@ namespace AG.DS
                 // Node title field.
                 nodeTitleContainer.Add(Model.NodeTitleTextFieldModel.TextField);
 
-                // Edit node title button.
+                // Edit title button.
                 nodeTitleContainer.Add(Model.EditTitleButton);
             }
 
@@ -103,41 +95,6 @@ namespace AG.DS
         public virtual void CreateContentElements() { }
 
 
-        // ----------------------------- Set Node Width -----------------------------
-        /// <summary>
-        /// Set the node's minimum and maximum width value.
-        /// </summary>
-        /// <param name="minWidth">The minimum node's width to set for.</param>
-        /// <param name="widthBuffer">The width buffer to set for, combine it with the minimum width to get the node's maximum width.</param>
-        public void SetNodeWidth(float minWidth, float widthBuffer)
-        {
-            //SetWidthValueNode();
-
-            //SetWidthValueNodeTitleTextField();
-
-            //void SetWidthValueNode()
-            //{
-            //    Node.style.minWidth = minWidth;
-            //    Node.style.maxWidth = minWidth + widthBuffer;
-            //}
-
-            //void SetWidthValueNodeTitleTextField()
-            //{
-            //    var nodeTitleField = Model.NodeTitleTextFieldModel.TextField;
-            //    nodeTitleField.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-
-            //    void GeometryChangedEvent(GeometryChangedEvent evt)
-            //    {
-            //        // Set the title field max width once it's fully created in the editor.
-            //        nodeTitleField.style.maxWidth = nodeTitleField.contentRect.width + widthBuffer;
-
-            //        // Unregister the action once the setup is done.
-            //        nodeTitleField.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-            //    }
-            //}
-        }
-
-
         // ----------------------------- Set Node Position -----------------------------
         /// <summary>
         /// Set the node position base on the value from the details.
@@ -145,34 +102,15 @@ namespace AG.DS
         /// <param name="details">The node create details to set for.</param>
         public void SetNodePosition(NodeCreateDetails details)
         {
-            SetNodePosition();
+            Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
 
-            TemporaryHideNode();
-
-            OnGeometryChangedAdjustNodePosition();
-
-            void SetNodePosition()
+            void GeometryChangedEvent(GeometryChangedEvent evt)
             {
-                Node.SetPosition(newPos: new Rect(details.CreatePosition, Vector2Utility.Zero));
-            }
+                // Adjust the node's position after it's created.
+                GeometryChangedAdjustNodePosition(details);
 
-            void TemporaryHideNode()
-            {
-                Node.AddToClassList(StyleConfig.Instance.Global_Visible_Hidden);
-            }
-
-            void OnGeometryChangedAdjustNodePosition()
-            {
-                Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-
-                void GeometryChangedEvent(GeometryChangedEvent evt)
-                {
-                    // Adjust the node's position after it's created.
-                    GeometryChangedAdjustNodePosition(details);
-
-                    // Unregister the action once the setup is done.
-                    Node.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-                }
+                // Unregister the action once the setup is done.
+                Node.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
             }
         }
 

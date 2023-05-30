@@ -5,24 +5,26 @@ namespace AG.DS
     [CreateAssetMenu(menuName = "### AG ###/Dialogue System/Config Resources Manager")]
     public class ConfigResourcesManager : ScriptableObject
     {
+        [SerializeField] private SpriteConfig spriteConfig;
+        [SerializeField] private StyleSheetConfig styleSheetConfig;
+
+
         /// <summary>
         /// The singleton reference of the class.
         /// </summary>
         public static ConfigResourcesManager Instance { get; private set; } = null;
 
 
-        [Space(5)]
         /// <summary>
         /// The sprite config to use in the dialogue system.
         /// </summary>
-        public SpriteConfig SpriteConfig;
+        public static SpriteConfig SpriteConfig => Instance.spriteConfig;
 
 
-        [Space(5)]
         /// <summary>
         /// The style sheet config to use in the dialogue system.
         /// </summary>
-        public StyleSheetConfig StyleSheetConfig;
+        public static StyleSheetConfig StyleSheetConfig => Instance.styleSheetConfig;
 
 
         /// <summary>

@@ -78,7 +78,7 @@ namespace AG.DS
             ConditionComparisonTypeEnumContainer = new();
 
             // Second term
-            SecondTermTextFieldModel = new(placeholderText: StringConfig.Instance.ConditionModifierCompareToStringPlaceholderText);
+            SecondTermTextFieldModel = new(placeholderText: StringConfig.ConditionModifierCompareToStringPlaceholderText);
             SecondTermFloatFieldModel = new();
             SecondTermVariableContainer = new();
 
@@ -131,10 +131,10 @@ namespace AG.DS
             void SetupModifierBox()
             {
                 MainBox = new();
-                MainBox.AddToClassList(StyleConfig.Instance.Modifier_Condition_Rooted_Main_Box);
+                MainBox.AddToClassList(StyleConfig.Modifier_Condition_Rooted_Main_Box);
 
                 buttonBox = new();
-                buttonBox.AddToClassList(StyleConfig.Instance.Modifier_Condition_Rooted_Button_Box);
+                buttonBox.AddToClassList(StyleConfig.Modifier_Condition_Rooted_Button_Box);
             }
 
             void SetupFirstTermObjectField()
@@ -142,8 +142,8 @@ namespace AG.DS
                 firstTermObjectField = VariableFieldFactory.GetNewObjectField
                 (
                     variableContainer: FirstTermVariableContainer,
-                    fieldIcon: ConfigResourcesManager.Instance.SpriteConfig.ScriptableObjectFieldIconSprite,
-                    fieldUSS01: StyleConfig.Instance.Modifier_Condition_Rooted_FirstTerm_ObjectField
+                    fieldIcon: ConfigResourcesManager.SpriteConfig.ScriptableObjectFieldIconSprite,
+                    fieldUSS01: StyleConfig.Modifier_Condition_Rooted_FirstTerm_ObjectField
                 );
             }
 
@@ -153,8 +153,8 @@ namespace AG.DS
                 (
                     iconicEnumContainer: ConditionComparisonTypeEnumContainer,
                     containerValueChangedAction: EnumContainerValueChangedAction,
-                    fieldUSS01: StyleConfig.Instance.Modifier_Condition_Rooted_Operator_EnumField,
-                    iconImageUSS01: StyleConfig.Instance.Modifier_Condition_Rooted_Operator_Icon
+                    fieldUSS01: StyleConfig.Modifier_Condition_Rooted_Operator_EnumField,
+                    iconImageUSS01: StyleConfig.Modifier_Condition_Rooted_Operator_Icon
                 );
             }
 
@@ -164,7 +164,7 @@ namespace AG.DS
                 (
                     isMultiLine: false,
                     placeholderText: SecondTermTextFieldModel.PlaceholderText,
-                    fieldUSS01: StyleConfig.Instance.Modifier_Condition_Rooted_SecondTerm_TextField
+                    fieldUSS01: StyleConfig.Modifier_Condition_Rooted_SecondTerm_TextField
                 );
 
                 new CommonTextFieldCallback(model: SecondTermTextFieldModel).RegisterEvents();
@@ -174,7 +174,7 @@ namespace AG.DS
             {
                 SecondTermFloatFieldModel.FloatField = CommonFloatFieldPresenter.CreateElement
                 (
-                    fieldUSS01: StyleConfig.Instance.Modifier_Condition_Rooted_SecondTerm_FloatField
+                    fieldUSS01: StyleConfig.Modifier_Condition_Rooted_SecondTerm_FloatField
                 );
 
                 new CommonFloatFieldCallback(model: SecondTermFloatFieldModel).RegisterEvents();
@@ -184,7 +184,7 @@ namespace AG.DS
             {
                 SecondTermFloatFieldModel.FloatField.AddFieldIcon
                 (
-                    iconSprite: ConfigResourcesManager.Instance.SpriteConfig.KeyboardInputFieldIconSprite
+                    iconSprite: ConfigResourcesManager.SpriteConfig.KeyboardInputFieldIconSprite
                 );
             }
 
@@ -193,8 +193,8 @@ namespace AG.DS
                 secondTermObjectField = VariableFieldFactory.GetNewObjectField
                 (
                     variableContainer: SecondTermVariableContainer,
-                    fieldIcon: ConfigResourcesManager.Instance.SpriteConfig.ScriptableObjectFieldIconSprite,
-                    fieldUSS01: StyleConfig.Instance.Modifier_Condition_Rooted_SecondTerm_ObjectField
+                    fieldIcon: ConfigResourcesManager.SpriteConfig.ScriptableObjectFieldIconSprite,
+                    fieldUSS01: StyleConfig.Modifier_Condition_Rooted_SecondTerm_ObjectField
                 );
             }
 
@@ -202,8 +202,8 @@ namespace AG.DS
             {
                 changeFieldTypeButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.ChangeFieldTypeButtonIconSprite,
-                    buttonUSS01: StyleConfig.Instance.Modifier_Condition_Rooted_ChangeFieldType_Button
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.ChangeFieldTypeButtonIconSprite,
+                    buttonUSS01: StyleConfig.Modifier_Condition_Rooted_ChangeFieldType_Button
                 );
 
                 new CommonButtonCallback(
@@ -310,7 +310,7 @@ namespace AG.DS
             data.ConditionComparisonTypeEnumIndex = ConditionComparisonTypeEnumContainer.Value;
             data.SecondTermText = SecondTermTextFieldModel.TextField.value;
             data.SecondTermFloat = SecondTermFloatFieldModel.Value;
-            SecondTermVariableContainer.Save(data.SecondTermVariableGoupData);
+            SecondTermVariableContainer.Save(data.SecondTermVariableGroupData);
 
             // Save isShowKeyboardInputField
             data.IsShowKeyboardInputField = isShowKeyboardInputField;
@@ -328,7 +328,7 @@ namespace AG.DS
             ConditionComparisonTypeEnumContainer.Load(data.ConditionComparisonTypeEnumIndex);
             SecondTermTextFieldModel.Load(data.SecondTermText);
             SecondTermFloatFieldModel.Load(data.SecondTermFloat);
-            SecondTermVariableContainer.Load(data.SecondTermVariableGoupData);
+            SecondTermVariableContainer.Load(data.SecondTermVariableGroupData);
 
             // Load isShowKeyboardInputField.
             isShowKeyboardInputField = data.IsShowKeyboardInputField;
@@ -447,7 +447,7 @@ namespace AG.DS
         /// </summary>
         void LockFieldTypeChangeButton()
         {
-            var spriteConfig = ConfigResourcesManager.Instance.SpriteConfig;
+            var spriteConfig = ConfigResourcesManager.SpriteConfig;
 
             if (ConditionComparisonTypeEnumContainer.IsTrueOrFalseComparisonType())
             {

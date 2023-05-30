@@ -64,7 +64,7 @@ namespace AG.DS
 
             InputHint.ShowHint
             (
-                hintText: StringConfig.Instance.InputHint_HintTextLabel_LabelText,
+                hintText: StringConfig.InputHint_HintTextLabel_LabelText,
                 targetWorldBoundRect: field.worldBound
             );
 

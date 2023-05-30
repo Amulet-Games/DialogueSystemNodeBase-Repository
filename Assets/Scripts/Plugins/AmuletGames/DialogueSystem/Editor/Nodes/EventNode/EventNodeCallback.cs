@@ -42,6 +42,12 @@ namespace AG.DS
             RegisterPointerMoveEvent();
 
             RegisterGeometryChangedEvent();
+
+            RegisterNodeTitleTextFieldEvents();
+
+            RegisterNodeTitleEditButtonClickEvent();
+
+            RegisterContentButtonClickEvent();
         }
 
 
@@ -57,6 +63,35 @@ namespace AG.DS
         /// </summary>
         void RegisterGeometryChangedEvent()
             => Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+            
+
+        /// <summary>
+        /// Register events to the node title text field.
+        /// </summary>
+        void RegisterNodeTitleTextFieldEvents()
+            => new NodeTitleTextFieldCallback(
+                model: Model.NodeTitleTextFieldModel,
+                widthBuffer: NodeConfig.EventNodeWidthBuffer).RegisterEvents();
+
+
+        /// <summary>
+        /// Register ClickEvent to the node title edit button.
+        /// </summary>
+        void RegisterNodeTitleEditButtonClickEvent()
+            => new CommonButtonCallback(
+                isAlert: false,
+                button: Model.EditTitleButton,
+                clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
+
+
+        /// <summary>
+        /// Register ClickEvent to the node content button.
+        /// </summary>
+        void RegisterContentButtonClickEvent()
+            => new ContentButtonCallback(
+                isAlert: true,
+                contentButton: Model.ContentButton,
+                clickEvent: ContentButtonClickEvent).RegisterEvents();
 
 
         // ----------------------------- Event -----------------------------
@@ -80,8 +115,20 @@ namespace AG.DS
             if (!Node.worldBound.Contains(pointerMovePosition))
             {
                 // Remove from hover class.
-                Node.NodeBorder.RemoveFromClassList(StyleConfig.Instance.Node_Border_Hover);
+                Node.NodeBorder.RemoveFromClassList(StyleConfig.Node_Border_Hover);
             }
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the node title edit button is clicked.
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void NodeTitleEditButtonClickEvent(ClickEvent evt)
+        {
+            var fieldInput = Model.NodeTitleTextFieldModel.TextField.GetElementInput();
+            fieldInput.focusable = true;
+            fieldInput.Focus();
         }
 
 

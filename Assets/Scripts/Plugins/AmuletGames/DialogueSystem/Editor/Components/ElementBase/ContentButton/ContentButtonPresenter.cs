@@ -33,7 +33,7 @@ namespace AG.DS
             void SetupContainer()
             {
                 contentButton = new();
-                contentButton.AddToClassList(StyleConfig.Instance.ContentButton_Main);
+                contentButton.AddToClassList(StyleConfig.ContentButton_Main);
             }
 
             void AddButtonLabel()
@@ -41,7 +41,7 @@ namespace AG.DS
                 contentButton.Label = CommonLabelPresenter.CreateElement
                 (
                     labelText: buttonText,
-                    labelUSS01: StyleConfig.Instance.ContentButton_Title_Label
+                    labelUSS01: StyleConfig.ContentButton_Title_Label
                 );
             }
 
@@ -50,7 +50,7 @@ namespace AG.DS
                 contentButton.IconImage = CommonImagePresenter.CreateElement
                 (
                     imageSprite: buttonIconSprite,
-                    imageUSS01: StyleConfig.Instance.ContentButton_Icon_Image
+                    imageUSS01: StyleConfig.ContentButton_Icon_Image
                 );
             }
 

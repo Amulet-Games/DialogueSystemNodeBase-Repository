@@ -64,7 +64,7 @@ namespace AG.DS
         /// <param name="evt">The registering event</param>
         void PointerEnterEvent(PointerEnterEvent evt)
         {
-            Node.NodeBorder.AddToClassList(StyleConfig.Instance.Node_Border_Hover);
+            Node.NodeBorder.AddToClassList(StyleConfig.Node_Border_Hover);
         }
 
 
@@ -74,7 +74,7 @@ namespace AG.DS
         /// <param name="evt">The registering event</param>
         void PointerLeaveEvent(PointerLeaveEvent evt)
         {
-            Node.NodeBorder.RemoveFromClassList(StyleConfig.Instance.Node_Border_Hover);
+            Node.NodeBorder.RemoveFromClassList(StyleConfig.Node_Border_Hover);
         }
     }
 }

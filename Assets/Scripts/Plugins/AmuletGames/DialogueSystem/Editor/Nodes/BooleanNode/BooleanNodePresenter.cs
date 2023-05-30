@@ -75,11 +75,9 @@ namespace AG.DS
 
             ConnectConnectorPort();
 
-            ShowNodeOnGraph();
-
             void AlignConnectorPosition()
             {
-                Vector2 result = Node.localBound.position;
+                Vector2 result = details.CreatePosition;
 
                 switch (details.HorizontalAlignmentType)
                 {
@@ -137,11 +135,6 @@ namespace AG.DS
                 );
 
                 Node.GraphViewer.Add(edge);
-            }
-
-            void ShowNodeOnGraph()
-            {
-                Node.RemoveFromClassList(StyleConfig.Instance.Global_Visible_Hidden);
             }
         }
     }

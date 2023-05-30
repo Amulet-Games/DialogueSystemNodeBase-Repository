@@ -14,63 +14,10 @@ namespace AG.DS
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the story node component class.
-        /// </summary>
-        /// <param name="details">The node create details to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public StoryNode
-        (
-            NodeCreateDetails details,
-            GraphViewer graphViewer
-        )
-            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleTextField_LabelText, graphViewer)
-        {
-            SetupFrameFields();
-
-            CreateNodeElements();
-
-            PostProcessNodePosition();
-
-            AddStyleSheet();
-
-            CreatedAction();
-
-            void SetupFrameFields()
-            {
-                Model = new(node: this);
-                Presenter = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
-                Callback = new(node: this, model: Model);
-            }
-
-            void CreateNodeElements()
-            {
-                Presenter.CreatePortElements();
-            }
-
-            void PostProcessNodePosition()
-            {
-                Presenter.SetNodePosition(details);
-            }
-
-            void AddStyleSheet()
-            {
-                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSStoryNodeStyle);
-            }
-        }
-
-
-        // ----------------------------- Constructor (New) -----------------------------
-        /// <summary>
-        /// Constructor of the story node component class.
-        /// <para>Specifically used when the node is created by the previously saved data.</para>
+        /// Constructor of the story node class.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public StoryNode
-        (
-            GraphViewer graphViewer
-        )
-            : base(nodeTitle: StringConfig.Instance.StoryNode_TitleTextField_LabelText, graphViewer)
+        public StoryNode(GraphViewer graphViewer)
         {
             // Setup frame fields
             {
@@ -78,6 +25,9 @@ namespace AG.DS
                 Presenter = new(node: this, model: Model);
                 Serializer = new(node: this, model: Model);
                 Callback = new(node: this, model: Model);
+                GraphViewer = graphViewer;
+
+                title = StringConfig.StoryNode_TitleTextField_LabelText;
             }
 
             // Create elements
@@ -87,7 +37,7 @@ namespace AG.DS
 
             // Add style sheet
             {
-                styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSStoryNodeStyle);
+                styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSStoryNodeStyle);
             }
         }
 

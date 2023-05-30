@@ -26,11 +26,11 @@ namespace AG.DS
         {
             if (field.value != null)
             {
-                field.RemoveFromClassList(StyleConfig.Instance.ObjectField_Empty);
+                field.RemoveFromClassList(StyleConfig.ObjectField_Empty);
             }
             else
             {
-                field.AddToClassList(StyleConfig.Instance.ObjectField_Empty);
+                field.AddToClassList(StyleConfig.ObjectField_Empty);
             }
         }
 
@@ -41,9 +41,9 @@ namespace AG.DS
         /// <param name="field">Extension object field.</param>
         public static void HideEmptyStyle(this ObjectField field)
         {
-            if (field.ClassListContains(StyleConfig.Instance.ObjectField_Empty))
+            if (field.ClassListContains(StyleConfig.ObjectField_Empty))
             {
-                field.RemoveFromClassList(StyleConfig.Instance.ObjectField_Empty);
+                field.RemoveFromClassList(StyleConfig.ObjectField_Empty);
             }
         }
 
@@ -55,9 +55,9 @@ namespace AG.DS
         public static void ShowEmptyStyle(this ObjectField field)
         {
             // If the field isn't added to the empty style class yet.
-            if (!field.ClassListContains(StyleConfig.Instance.ObjectField_Empty))
+            if (!field.ClassListContains(StyleConfig.ObjectField_Empty))
             {
-                field.AddToClassList(StyleConfig.Instance.ObjectField_Empty);
+                field.AddToClassList(StyleConfig.ObjectField_Empty);
             }
         }
 
@@ -87,7 +87,7 @@ namespace AG.DS
             var iconImage = CommonImagePresenter.CreateElement
             (
                 imageSprite: iconSprite,
-                imageUSS01: StyleConfig.Instance.ObjectField_Icon
+                imageUSS01: StyleConfig.ObjectField_Icon
             );
 
             field.GetElementDisplay().Add(iconImage);

@@ -91,17 +91,17 @@ namespace AG.DS
                 // Add to custom USS class.
                 if (isInput)
                 {
-                    port.AddToClassList(StyleConfig.Instance.Option_Input_Port);
-                    port.m_ConnectorBox.AddToClassList(StyleConfig.Instance.Option_Input_Connector);
-                    port.m_ConnectorText.AddToClassList(StyleConfig.Instance.Option_Input_Label);
-                    port.m_ConnectorBoxCap.AddToClassList(StyleConfig.Instance.Option_Input_Cap);
+                    port.AddToClassList(StyleConfig.Option_Input_Port);
+                    port.m_ConnectorBox.AddToClassList(StyleConfig.Option_Input_Connector);
+                    port.m_ConnectorText.AddToClassList(StyleConfig.Option_Input_Label);
+                    port.m_ConnectorBoxCap.AddToClassList(StyleConfig.Option_Input_Cap);
                 }
                 else
                 {
-                    port.AddToClassList(StyleConfig.Instance.Option_Output_Port);
-                    port.m_ConnectorBox.AddToClassList(StyleConfig.Instance.Option_Output_Connector);
-                    port.m_ConnectorText.AddToClassList(StyleConfig.Instance.Option_Output_Label);
-                    port.m_ConnectorBoxCap.AddToClassList(StyleConfig.Instance.Option_Output_Cap);
+                    port.AddToClassList(StyleConfig.Option_Output_Port);
+                    port.m_ConnectorBox.AddToClassList(StyleConfig.Option_Output_Connector);
+                    port.m_ConnectorText.AddToClassList(StyleConfig.Option_Output_Label);
+                    port.m_ConnectorBoxCap.AddToClassList(StyleConfig.Option_Output_Cap);
                 }
             }
         }

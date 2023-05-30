@@ -39,7 +39,7 @@ namespace AG.DS
             void CreateHeadBar()
             {
                 headBar = new();
-                headBar.AddToClassList(StyleConfig.Instance.HeadBar_Main);
+                headBar.AddToClassList(StyleConfig.HeadBar_Main);
             }
 
             void SetupDetail()
@@ -50,7 +50,7 @@ namespace AG.DS
             void SetupContainers()
             {
                 buttonsContainer = new();
-                buttonsContainer.AddToClassList(StyleConfig.Instance.HeadBar_ButtonContainer);
+                buttonsContainer.AddToClassList(StyleConfig.HeadBar_ButtonContainer);
             }
 
             void SetupSaveButton()
@@ -58,7 +58,7 @@ namespace AG.DS
                 headBar.SaveButton = CommonButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.HeadBar_SaveButton_LabelText,
-                    buttonUSS01: StyleConfig.Instance.HeadBar_SaveButton
+                    buttonUSS01: StyleConfig.HeadBar_SaveButton
                 );
             }
 
@@ -67,7 +67,7 @@ namespace AG.DS
                 headBar.LoadButton = CommonButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.HeadBar_LoadButton_LabelText,
-                    buttonUSS01: StyleConfig.Instance.HeadBar_LoadButton
+                    buttonUSS01: StyleConfig.HeadBar_LoadButton
                 );
             }
 
@@ -77,7 +77,7 @@ namespace AG.DS
                 headBar.LanguageToolbarMenu = ToolbarMenuPresenter.CreateElement
                 (
                     labelText: languageManager.GetShort(type: languageManager.SelectedLanguage),
-                    arrowIcon: ConfigResourcesManager.Instance.SpriteConfig.DropdownArrowIcon1Sprite
+                    arrowIcon: ConfigResourcesManager.SpriteConfig.DropdownArrowIcon1Sprite
                 );
             }
 
@@ -86,7 +86,7 @@ namespace AG.DS
                 headBar.GraphTitleTextFieldModel.TextField = GraphTitleTextFieldPresenter.CreateElement
                 (
                     dsData: dsData,
-                    fieldUSS01: StyleConfig.Instance.HeadBar_GraphTitleTextField
+                    fieldUSS01: StyleConfig.HeadBar_GraphTitleTextField
                 );
             }
 
@@ -105,7 +105,7 @@ namespace AG.DS
 
             void AddStyleSheet()
             {
-                headBar.styleSheets.Add(ConfigResourcesManager.Instance.StyleSheetConfig.DSHeadBarStyle);
+                headBar.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSHeadBarStyle);
             }
         }
     }

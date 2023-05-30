@@ -89,22 +89,22 @@ namespace AG.DS
                 // Add custom USS class.
                 if (isInput)
                 {
-                    port.AddToClassList(StyleConfig.Instance.Default_Input_Port);
-                    port.m_ConnectorBox.AddToClassList(StyleConfig.Instance.Default_Input_Connector);
-                    port.m_ConnectorText.AddToClassList(StyleConfig.Instance.Default_Input_Label);
-                    port.m_ConnectorBoxCap.AddToClassList(StyleConfig.Instance.Default_Input_Cap);
+                    port.AddToClassList(StyleConfig.Default_Input_Port);
+                    port.m_ConnectorBox.AddToClassList(StyleConfig.Default_Input_Connector);
+                    port.m_ConnectorText.AddToClassList(StyleConfig.Default_Input_Label);
+                    port.m_ConnectorBoxCap.AddToClassList(StyleConfig.Default_Input_Cap);
                 }
                 else
                 {
-                    port.AddToClassList(StyleConfig.Instance.Default_Output_Port);
-                    port.m_ConnectorBox.AddToClassList(StyleConfig.Instance.Default_Output_Connector);
-                    port.m_ConnectorText.AddToClassList(StyleConfig.Instance.Default_Output_Label);
-                    port.m_ConnectorBoxCap.AddToClassList(StyleConfig.Instance.Default_Output_Cap);
+                    port.AddToClassList(StyleConfig.Default_Output_Port);
+                    port.m_ConnectorBox.AddToClassList(StyleConfig.Default_Output_Connector);
+                    port.m_ConnectorText.AddToClassList(StyleConfig.Default_Output_Label);
+                    port.m_ConnectorBoxCap.AddToClassList(StyleConfig.Default_Output_Cap);
                 }
 
                 if (isSiblings)
                 {
-                    port.AddToClassList(StyleConfig.Instance.Port_Sibling);
+                    port.AddToClassList(StyleConfig.Port_Sibling);
                 }
             }
         }

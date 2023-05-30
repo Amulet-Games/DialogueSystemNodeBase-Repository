@@ -127,7 +127,7 @@ namespace AG.DS
             if (!Node.worldBound.Contains(pointerMovePosition))
             {
                 // Remove from hover class.
-                Node.NodeBorder.RemoveFromClassList(StyleConfig.Instance.Node_Border_Hover);
+                Node.NodeBorder.RemoveFromClassList(StyleConfig.Node_Border_Hover);
             }
         }
 
@@ -146,9 +146,9 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void NodeTitleEditButtonClickEvent(ClickEvent evt)
         {
-            var titleTextField = Model.NodeTitleTextFieldModel.TextField;
-            titleTextField.focusable = true;
-            titleTextField.Focus();
+            var fieldInput = Model.NodeTitleTextFieldModel.TextField.GetElementInput();
+            fieldInput.focusable = true;
+            fieldInput.Focus();
         }
 
 

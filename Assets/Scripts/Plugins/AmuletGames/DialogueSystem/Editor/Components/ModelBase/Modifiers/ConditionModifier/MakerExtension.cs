@@ -60,10 +60,10 @@ namespace AG.DS
             void SetupModifierBox()
             {
                 MainBox = new();
-                MainBox.AddToClassList(StyleConfig.Instance.Modifier_Condition_Main_Box);
+                MainBox.AddToClassList(StyleConfig.Modifier_Condition_Main_Box);
 
                 buttonSideBox = new();
-                buttonSideBox.AddToClassList(StyleConfig.Instance.Modifier_Condition_Button_Box);
+                buttonSideBox.AddToClassList(StyleConfig.Modifier_Condition_Button_Box);
             }
 
             void SetupFirstTermObjectField()
@@ -71,8 +71,8 @@ namespace AG.DS
                 firstTermObjectField = VariableFieldFactory.GetNewObjectField
                 (
                     variableContainer: FirstTermVariableContainer,
-                    fieldIcon: ConfigResourcesManager.Instance.SpriteConfig.ScriptableObjectFieldIconSprite,
-                    fieldUSS01: StyleConfig.Instance.Modifier_Condition_FirstTerm_ObjectField
+                    fieldIcon: ConfigResourcesManager.SpriteConfig.ScriptableObjectFieldIconSprite,
+                    fieldUSS01: StyleConfig.Modifier_Condition_FirstTerm_ObjectField
                 );
             }
 
@@ -82,8 +82,8 @@ namespace AG.DS
                 (
                     iconicEnumContainer: ConditionComparisonTypeEnumContainer,
                     containerValueChangedAction: EnumContainerValueChangedAction,
-                    fieldUSS01: StyleConfig.Instance.Modifier_Condition_Operator_EnumField,
-                    iconImageUSS01: StyleConfig.Instance.Modifier_Condition_Operator_Icon
+                    fieldUSS01: StyleConfig.Modifier_Condition_Operator_EnumField,
+                    iconImageUSS01: StyleConfig.Modifier_Condition_Operator_Icon
                 );
             }
 
@@ -93,7 +93,7 @@ namespace AG.DS
                 (
                     isMultiLine: false,
                     placeholderText: SecondTermTextFieldModel.PlaceholderText,
-                    fieldUSS01: StyleConfig.Instance.Modifier_Condition_Rooted_SecondTerm_TextField
+                    fieldUSS01: StyleConfig.Modifier_Condition_Rooted_SecondTerm_TextField
                 );
 
                 new CommonTextFieldCallback(model: SecondTermTextFieldModel).RegisterEvents();
@@ -103,7 +103,7 @@ namespace AG.DS
             {
                 SecondTermFloatFieldModel.FloatField = CommonFloatFieldPresenter.CreateElement
                 (
-                    fieldUSS01: StyleConfig.Instance.Modifier_Condition_SecondTerm_FloatField
+                    fieldUSS01: StyleConfig.Modifier_Condition_SecondTerm_FloatField
                 );
 
                 new CommonFloatFieldCallback(model: SecondTermFloatFieldModel).RegisterEvents();
@@ -113,7 +113,7 @@ namespace AG.DS
             {
                 SecondTermFloatFieldModel.FloatField.AddFieldIcon
                 (
-                    iconSprite: ConfigResourcesManager.Instance.SpriteConfig.KeyboardInputFieldIconSprite
+                    iconSprite: ConfigResourcesManager.SpriteConfig.KeyboardInputFieldIconSprite
                 );
             }
 
@@ -122,8 +122,8 @@ namespace AG.DS
                 secondTermObjectField = VariableFieldFactory.GetNewObjectField
                 (
                     variableContainer: SecondTermVariableContainer,
-                    fieldIcon: ConfigResourcesManager.Instance.SpriteConfig.ScriptableObjectFieldIconSprite,
-                    fieldUSS01: StyleConfig.Instance.Modifier_Condition_SecondTerm_ObjectField
+                    fieldIcon: ConfigResourcesManager.SpriteConfig.ScriptableObjectFieldIconSprite,
+                    fieldUSS01: StyleConfig.Modifier_Condition_SecondTerm_ObjectField
                 );
             }
 
@@ -131,8 +131,8 @@ namespace AG.DS
             {
                 changeFieldTypeButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.ChangeFieldTypeButtonIconSprite,
-                    buttonUSS01: StyleConfig.Instance.Modifier_Condition_ChangeFieldType_Button
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.ChangeFieldTypeButtonIconSprite,
+                    buttonUSS01: StyleConfig.Modifier_Condition_ChangeFieldType_Button
                 );
 
                 new CommonButtonCallback(
@@ -145,8 +145,8 @@ namespace AG.DS
             {
                 modifierRemoveButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.RemoveButtonIcon2Sprite,
-                    buttonUSS01: StyleConfig.Instance.Modifier_Condition_Remove_Button
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIcon2Sprite,
+                    buttonUSS01: StyleConfig.Modifier_Condition_Remove_Button
                 );
 
                 new CommonButtonCallback(

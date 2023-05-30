@@ -41,7 +41,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusEvent(FocusEvent evt)
         {
-            Edge.AddToClassList(StyleConfig.Instance.Edge_Selected);
+            Edge.AddToClassList(StyleConfig.Edge_Selected);
         }
 
 
@@ -51,7 +51,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void BlurEvent(BlurEvent evt)
         {
-            Edge.RemoveFromClassList(StyleConfig.Instance.Edge_Selected);
+            Edge.RemoveFromClassList(StyleConfig.Edge_Selected);
         }
     }
 }

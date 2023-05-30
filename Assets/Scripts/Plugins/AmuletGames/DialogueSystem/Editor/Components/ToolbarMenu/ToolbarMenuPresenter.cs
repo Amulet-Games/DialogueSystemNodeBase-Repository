@@ -62,11 +62,9 @@ namespace AG.DS
 
             void AddStyleClass()
             {
-                var styleConfig = StyleConfig.Instance;
-
-                toolbarMenu.AddToClassList(styleConfig.Global_ToolbarMenu);
-                menuTextLabel.AddToClassList(styleConfig.Global_ToolbarMenu_TextLabel);
-                menuArrowImage.AddToClassList(styleConfig.Global_ToolbarMenu_ArrowImage);
+                toolbarMenu.AddToClassList(StyleConfig.Global_ToolbarMenu);
+                menuTextLabel.AddToClassList(StyleConfig.Global_ToolbarMenu_TextLabel);
+                menuArrowImage.AddToClassList(StyleConfig.Global_ToolbarMenu_ArrowImage);
 
                 if (menuUSS01 != null)
                 {

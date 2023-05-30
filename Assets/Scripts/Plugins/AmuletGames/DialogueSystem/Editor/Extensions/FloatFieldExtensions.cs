@@ -14,11 +14,11 @@ namespace AG.DS
         {
             if (field.value != 0)
             {
-                field.RemoveFromClassList(StyleConfig.Instance.FloatField_Empty);
+                field.RemoveFromClassList(StyleConfig.FloatField_Empty);
             }
             else
             {
-                field.AddToClassList(StyleConfig.Instance.FloatField_Empty);
+                field.AddToClassList(StyleConfig.FloatField_Empty);
             }
         }
 
@@ -29,9 +29,9 @@ namespace AG.DS
         /// <param name="field">Extension float field.</param>
         public static void HideEmptyStyle(this FloatField field)
         {
-            if (field.ClassListContains(StyleConfig.Instance.FloatField_Empty))
+            if (field.ClassListContains(StyleConfig.FloatField_Empty))
             {
-                field.RemoveFromClassList(StyleConfig.Instance.FloatField_Empty);
+                field.RemoveFromClassList(StyleConfig.FloatField_Empty);
             }
         }
 
@@ -42,9 +42,9 @@ namespace AG.DS
         /// <param name="field">Extension float field.</param>
         public static void ShowEmptyStyle(this FloatField field)
         {
-            if (!field.ClassListContains(StyleConfig.Instance.FloatField_Empty))
+            if (!field.ClassListContains(StyleConfig.FloatField_Empty))
             {
-                field.AddToClassList(StyleConfig.Instance.FloatField_Empty);
+                field.AddToClassList(StyleConfig.FloatField_Empty);
             }
         }
 
@@ -63,7 +63,7 @@ namespace AG.DS
             var iconImage = CommonImagePresenter.CreateElement
             (
                 imageSprite: iconSprite,
-                imageUSS01: StyleConfig.Instance.FloatField_Icon
+                imageUSS01: StyleConfig.FloatField_Icon
             );
 
             field.Add(iconImage);

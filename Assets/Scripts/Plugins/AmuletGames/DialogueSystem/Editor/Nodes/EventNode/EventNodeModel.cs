@@ -4,6 +4,12 @@ namespace AG.DS
     public class EventNodeModel : NodeModelFrameBase<EventNode>
     {
         /// <summary>
+        /// Content button for adding events to the node.
+        /// </summary>
+        public ContentButton ContentButton;
+
+
+        /// <summary>
         /// Model for the event modifier model group.
         /// </summary>
         public EventModifierModelGroupModel EventModifierModelGroupModel;

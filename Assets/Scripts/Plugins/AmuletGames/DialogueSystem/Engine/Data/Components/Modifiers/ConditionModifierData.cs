@@ -33,7 +33,7 @@ namespace AG.DS
         /// <summary>
         /// The data's second term variable group data.
         /// </summary>
-        [SerializeField] public VariableGroupData SecondTermVariableGoupData;
+        [SerializeField] public VariableGroupData SecondTermVariableGroupData;
 
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace AG.DS
         public ConditionModifierData()
         {
             FirstTermVariableGroupData = new();
-            SecondTermVariableGoupData = new();
+            SecondTermVariableGroupData = new();
         }
     }
 }

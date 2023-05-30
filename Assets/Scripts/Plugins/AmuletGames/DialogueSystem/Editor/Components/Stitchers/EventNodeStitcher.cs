@@ -67,8 +67,8 @@ namespace AG.DS
             {
                 var contentButton = ContentButtonPresenter.CreateElement
                 (
-                    buttonText: StringConfig.Instance.ContentButton_AddEvent_LabelText,
-                    buttonIconSprite: ConfigResourcesManager.Instance.SpriteConfig.AddEventModifierButtonIconSprite
+                    buttonText: StringConfig.ContentButton_AddEvent_LabelText,
+                    buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEventModifierButtonIconSprite
                 );
 
                 new ContentButtonCallback(
@@ -85,9 +85,9 @@ namespace AG.DS
                 segment.CreateRootElements
                 (
                     node: node,
-                    titleText: StringConfig.Instance.EventSegmentTitleLabelText,
-                    titleBoxUSS01: StyleConfig.Instance.Segment_Event_Title_Box,
-                    contentBoxUSS01: StyleConfig.Instance.Segment_Event_Content_Box
+                    titleText: StringConfig.EventSegmentTitleLabelText,
+                    titleBoxUSS01: StyleConfig.Segment_Event_Title_Box,
+                    contentBoxUSS01: StyleConfig.Segment_Event_Content_Box
                 );
             }
 

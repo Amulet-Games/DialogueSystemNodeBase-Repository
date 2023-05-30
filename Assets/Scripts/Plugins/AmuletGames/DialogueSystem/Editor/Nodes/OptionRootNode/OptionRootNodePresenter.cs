@@ -1,5 +1,4 @@
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -34,18 +33,13 @@ namespace AG.DS
 
             void SetupContentButton()
             {
-                var contentButton = ContentButtonPresenter.CreateElement
+                Model.ContentButton = ContentButtonPresenter.CreateElement
                 (
-                    buttonText: StringConfig.Instance.ContentButton_AddEntry_LabelText,
-                    buttonIconSprite: ConfigResourcesManager.Instance.SpriteConfig.AddEntryButtonIconSprite
+                    buttonText: StringConfig.ContentButton_AddEntry_LabelText,
+                    buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEntryButtonIconSprite
                 );
 
-                //new ContentButtonCallback(
-                //    isAlert: true,
-                //    contentButton: contentButton,
-                //    clickEvent: ContentButtonClickEvent).RegisterEvents();
-
-                Node.titleContainer.Add(contentButton);
+                Node.titleContainer.Add(Model.ContentButton);
             }
 
             void SetupOptionRootGroup()
@@ -72,21 +66,21 @@ namespace AG.DS
                 void SetupContainers()
                 {
                     mainContainer = new();
-                    mainContainer.AddToClassList(StyleConfig.Instance.OptionRootNode_MainContainer);
+                    mainContainer.AddToClassList(StyleConfig.OptionRootNode_MainContainer);
 
                     outerContainer = new();
-                    outerContainer.AddToClassList(StyleConfig.Instance.OptionRootNode_OuterContainer);
+                    outerContainer.AddToClassList(StyleConfig.OptionRootNode_OuterContainer);
 
                     InnerContainer = new();
-                    InnerContainer.AddToClassList(StyleConfig.Instance.OptionRootNodeInnerContainer);
+                    InnerContainer.AddToClassList(StyleConfig.OptionRootNodeInnerContainer);
                 }
 
                 void SetupOptionRootIconImage()
                 {
                     rootIconImage = CommonImagePresenter.CreateElement
                     (
-                        imageSprite: ConfigResourcesManager.Instance.SpriteConfig.OptionRootIconSprite,
-                        imageUSS01: StyleConfig.Instance.OptionRootNode_Icon_Image
+                        imageSprite: ConfigResourcesManager.SpriteConfig.OptionRootIconSprite,
+                        imageUSS01: StyleConfig.OptionRootNode_Icon_Image
                     );
                 }
 
@@ -95,7 +89,7 @@ namespace AG.DS
                     rootTitleLabel = CommonLabelPresenter.CreateElement
                     (
                         labelText: StringConfig.OptionRootNode_RootTitleLabel_LabelText,
-                        labelUSS01: StyleConfig.Instance.OptionRootNode_Title_Label
+                        labelUSS01: StyleConfig.OptionRootNode_Title_Label
                     );
                 }
 
@@ -106,11 +100,8 @@ namespace AG.DS
                         (
                             isMultiLine: false,
                             placeholderText: Model.RootTitleTextFieldModel.PlaceholderText,
-                            fieldUSS01: StyleConfig.Instance.OptionRootNode_Title_TextField
+                            fieldUSS01: StyleConfig.OptionRootNode_Title_TextField
                         );
-
-                    //new LanguageTextFieldCallback(
-                    //    model: Model.RootTitleTextFieldModel).RegisterEvents();
                 }
 
                 void AddElementsToContainer()
@@ -159,92 +150,13 @@ namespace AG.DS
         /// <inheritdoc />
         protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
         {
-            AlignConnectorPosition();
-
-            ConnectConnectorPort();
-
-            ShowNodeOnGraph();
-
-            void AlignConnectorPosition()
-            {
-                Vector2 result = Node.localBound.position;
-
-                switch (details.HorizontalAlignmentType)
-                {
-                    case HorizontalAlignmentType.LEFT:
-
-                        result.y -= (Node.titleContainer.worldBound.height
-                                  + Model.OutputOptionPort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / Node.GraphViewer.scale;
-
-                        result.x -= Node.localBound.width;
-
-                        break;
-                    case HorizontalAlignmentType.MIDDLE:
-
-                        result.y -= (Node.titleContainer.worldBound.height
-                                  + Model.InputDefaultPort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / Node.GraphViewer.scale;
-
-                        result.x -= Node.localBound.width / 2;
-
-                        break;
-                    case HorizontalAlignmentType.RIGHT:
-
-                        result.y -= (Node.titleContainer.worldBound.height
-                                  + Model.InputDefaultPort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / Node.GraphViewer.scale;
-
-                        break;
-                }
-
-                Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
-            }
-
-            void ConnectConnectorPort()
-            {
-                // If connector port is null then return.
-                if (details.ConnectorPort == null)
-                    return;
-
-                var port = details.ConnectorPort;
-                if (port.connected)
-                {
-                    port.Disconnect(Node.GraphViewer);
-                }
-
-                EdgeBase edge = null;
-                switch (details.ConnectorType)
-                {
-                    case ConnectorType.DEFAULT:
-
-                        edge = EdgeManager.Instance.Connect
-                        (
-                            output: (DefaultPort)port,
-                            input: Model.InputDefaultPort
-                        );
-
-                        break;
-                    case ConnectorType.OPTION:
-
-                        edge = EdgeManager.Instance.Connect
-                        (
-                            output: Model.OutputOptionPort,
-                            input: (OptionPort)port
-                        );
-                        break;
-                }
-
-                Node.GraphViewer.Add(edge);
-            }
-
-            void ShowNodeOnGraph()
-            {
-                Node.RemoveFromClassList(StyleConfig.Instance.Global_Visible_Hidden);
-            }
+            Node.SetPosition
+            (
+                details,
+                leftSideAlignmentReferencePort: Model.OutputOptionPort,
+                rightSideAlignmentReferencePort: Model.InputDefaultPort,
+                middleAlignmentReferencePort: Model.InputDefaultPort
+            );
         }
     }
 }

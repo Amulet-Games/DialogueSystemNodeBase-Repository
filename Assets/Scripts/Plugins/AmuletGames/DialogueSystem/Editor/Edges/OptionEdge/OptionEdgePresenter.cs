@@ -10,40 +10,21 @@ namespace AG.DS
         /// <inheritdoc />
         public override OptionEdge CreateElement(OptionEdgeModel model)
         {
-            OptionEdge edge;
+            // Create edge
+            var edge = new OptionEdge();
 
-            CreateEdge();
+            // Setup detail
+            edge.Model = model;
+            edge.output = model.Output;
+            edge.input = model.Input;
+            edge.focusable = true;
 
-            SetupDetail();
+            // Add style
+            edge.AddToClassList(StyleConfig.Option_Edge);
 
-            AddToStyleClass();
-
-            ShowConnectedStyle();
-
+            // Show connected style by default
+            edge.ShowConnectStyle();
             return edge;
-
-            void CreateEdge()
-            {
-                edge = new OptionEdge();
-            }
-
-            void SetupDetail()
-            {
-                edge.Model = model;
-                edge.output = model.Output;
-                edge.input = model.Input;
-                edge.focusable = true;
-            }
-
-            void AddToStyleClass()
-            {
-                edge.AddToClassList(StyleConfig.Instance.Option_Edge);
-            }
-
-            void ShowConnectedStyle()
-            {
-                edge.ShowConnectStyle();
-            }
         }
     }
 }

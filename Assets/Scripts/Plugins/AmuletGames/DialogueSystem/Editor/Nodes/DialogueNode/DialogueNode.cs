@@ -40,18 +40,9 @@ namespace AG.DS
                 Presenter.CreateContentElements();
             }
 
-            // Setup node width
-            //{
-            //    Presenter.SetNodeWidth
-            //    (
-            //        minWidth: NodeConfig.DialogueNodeMinWidth,
-            //        widthBuffer: NodeConfig.DialogueNodeWidthBuffer
-            //    );
-            //}
-
             // Add style sheet
             {
-                var styleSheetConfig = ConfigResourcesManager.Instance.StyleSheetConfig;
+                var styleSheetConfig = ConfigResourcesManager.StyleSheetConfig;
                 styleSheets.Add(styleSheetConfig.DSDialogueNodeStyle);
                 styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
                 styleSheets.Add(styleSheetConfig.DSModifierStyle);

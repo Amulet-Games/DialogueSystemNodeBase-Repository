@@ -86,7 +86,7 @@ namespace AG.DS
             void SetupBoxContainers()
             {
                 modifierContainer = new();
-                modifierContainer.AddToClassList(StyleConfig.Instance.MessageModifierGroup_Content_Container);
+                modifierContainer.AddToClassList(StyleConfig.MessageModifierGroup_Content_Container);
             }
 
             void AddFieldsToBox()

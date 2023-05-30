@@ -39,7 +39,7 @@ namespace AG.DS
                 Model.CharacterObjectFieldModel.ObjectField =
                     CommonObjectFieldPresenter.CreateElement<DialogueCharacter>
                     (
-                        fieldUSS01: StyleConfig.Instance.DialogueNode_Character_ObjectField
+                        fieldUSS01: StyleConfig.DialogueNode_Character_ObjectField
                     );
 
                 new CommonObjectFieldCallback<DialogueCharacter>(
@@ -53,7 +53,7 @@ namespace AG.DS
                 Model.CharacterObjectFieldModel.ObjectField.RemoveFieldIcon();
                 Model.CharacterObjectFieldModel.ObjectField.AddFieldIcon
                 (
-                    iconSprite: ConfigResourcesManager.Instance.SpriteConfig.CharacterFieldIconSprite
+                    iconSprite: ConfigResourcesManager.SpriteConfig.CharacterFieldIconSprite
                 );
             }
             
@@ -98,11 +98,9 @@ namespace AG.DS
 
             ConnectConnectorPort();
 
-            ShowNodeOnGraph();
-
             void AlignConnectorPosition()
             {
-                Vector2 result = Node.localBound.position;
+                Vector2 result = details.CreatePosition;
 
                 switch (details.HorizontalAlignmentType)
                 {
@@ -160,11 +158,6 @@ namespace AG.DS
                 );
 
                 Node.GraphViewer.Add(edge);
-            }
-
-            void ShowNodeOnGraph()
-            {
-                Node.RemoveFromClassList(StyleConfig.Instance.Global_Visible_Hidden);
             }
         }
     }

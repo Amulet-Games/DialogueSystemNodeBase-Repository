@@ -14,11 +14,11 @@ namespace AG.DS
         {
             if (value)
             {
-                element.RemoveFromClassList(StyleConfig.Instance.Global_Display_None);
+                element.RemoveFromClassList(StyleConfig.Global_Display_None);
             }
             else
             {
-                element.AddToClassList(StyleConfig.Instance.Global_Display_None);
+                element.AddToClassList(StyleConfig.Global_Display_None);
             }
         }
 
@@ -29,7 +29,7 @@ namespace AG.DS
         /// <param name="element">The tageting visual element.</param>
         public static void ShowElement(this VisualElement element)
         {
-            element.RemoveFromClassList(StyleConfig.Instance.Global_Display_None);
+            element.RemoveFromClassList(StyleConfig.Global_Display_None);
         }
 
 
@@ -39,7 +39,7 @@ namespace AG.DS
         /// <param name="element">The tageting visual element.</param>
         public static void HideElement(this VisualElement element)
         {
-            element.AddToClassList(StyleConfig.Instance.Global_Display_None);
+            element.AddToClassList(StyleConfig.Global_Display_None);
         }
     }
 }

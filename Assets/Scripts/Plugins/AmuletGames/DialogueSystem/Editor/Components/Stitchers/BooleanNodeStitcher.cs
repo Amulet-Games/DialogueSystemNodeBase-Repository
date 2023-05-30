@@ -79,9 +79,9 @@ namespace AG.DS
                 segment.CreateRootElements
                 (
                     node: node,
-                    titleText: StringConfig.Instance.ConditionSegmentTitleLabelText,
-                    titleBoxUSS01: StyleConfig.Instance.Segment_Condition_Title_Box,
-                    contentBoxUSS01: StyleConfig.Instance.Segment_Condition_Content_Box
+                    titleText: StringConfig.ConditionSegmentTitleLabelText,
+                    titleBoxUSS01: StyleConfig.Segment_Condition_Title_Box,
+                    contentBoxUSS01: StyleConfig.Segment_Condition_Content_Box
                 );
             }
 

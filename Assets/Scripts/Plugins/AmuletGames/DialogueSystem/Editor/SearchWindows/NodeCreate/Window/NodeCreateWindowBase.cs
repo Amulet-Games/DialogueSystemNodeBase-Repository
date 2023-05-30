@@ -106,46 +106,55 @@ namespace AG.DS
                         var booleanNode = new BooleanNode(GraphViewer);
                         booleanNode.CreatedAction();
                         booleanNode.Presenter.SetNodePosition(Details);
+                        GraphViewer.Add(booleanNode);
                         break;
                     case N_NodeType.Dialogue:
                         var dialogueNode = new DialogueNode(GraphViewer);
                         dialogueNode.CreatedAction();
                         dialogueNode.Presenter.SetNodePosition(Details);
+                        GraphViewer.Add(dialogueNode);
                         break;
                     case N_NodeType.End:
                         var endNode = new EndNode(GraphViewer);
                         endNode.CreatedAction();
                         endNode.Presenter.SetNodePosition(Details);
+                        GraphViewer.Add(endNode);
                         break;
                     case N_NodeType.Event:
                         var eventNode = new EventNode(GraphViewer);
                         eventNode.CreatedAction();
                         eventNode.Presenter.SetNodePosition(Details);
+                        GraphViewer.Add(eventNode);
                         break;
                     case N_NodeType.OptionBranch:
                         var optionBranchNode = new OptionBranchNode(GraphViewer);
                         optionBranchNode.CreatedAction();
                         optionBranchNode.Presenter.SetNodePosition(Details);
+                        GraphViewer.Add(optionBranchNode);
                         break;
                     case N_NodeType.OptionRoot:
                         var optionRootNode = new OptionRootNode(GraphViewer);
                         optionRootNode.CreatedAction();
                         optionRootNode.Presenter.SetNodePosition(Details);
+                        GraphViewer.Add(optionRootNode);
                         break;
                     case N_NodeType.Preview:
                         var previewNode = new PreviewNode(GraphViewer);
                         previewNode.CreatedAction();
                         previewNode.Presenter.SetNodePosition(Details);
+                        GraphViewer.Add(previewNode);
                         break;
                     case N_NodeType.Start:
                         var startNode = new StartNode(GraphViewer);
                         startNode.CreatedAction();
                         startNode.Presenter.SetNodePosition(Details);
+                        GraphViewer.Add(startNode);
                         break;
                     case N_NodeType.Story:
                         var storyNode = new StoryNode(GraphViewer);
                         storyNode.CreatedAction();
                         storyNode.Presenter.SetNodePosition(Details);
+                        GraphViewer.Add(storyNode);
                         break;
                 }
             }

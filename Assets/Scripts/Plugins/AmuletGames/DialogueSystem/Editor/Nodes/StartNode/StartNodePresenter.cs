@@ -1,5 +1,4 @@
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 
 namespace AG.DS
 {
@@ -51,54 +50,12 @@ namespace AG.DS
         /// <inheritdoc />
         protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
         {
-            AlignConnectorPosition();
-
-            ConnectConnectorPort();
-
-            ShowNodeOnGraph();
-
-            void AlignConnectorPosition()
-            {
-                Vector2 result = Node.localBound.position;
-
-                result.y -= (Node.titleContainer.worldBound.height
-                          + Model.OutputDefaultPort.localBound.position.y
-                          + NodeConfig.ManualCreateYOffset)
-                          / Node.GraphViewer.scale;
-
-                result.x -= details.HorizontalAlignmentType == HorizontalAlignmentType.MIDDLE
-                    ? Node.localBound.width / 2
-                    : Node.localBound.width;
-
-                Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
-            }
-
-            void ConnectConnectorPort()
-            {
-                // If connector port is null then return.
-                if (details.ConnectorPort == null)
-                    return;
-
-                var port = details.ConnectorPort;
-
-                if (port.connected)
-                {
-                    port.Disconnect(Node.GraphViewer);
-                }
-
-                var edge = EdgeManager.Instance.Connect
-                (
-                    output: Model.OutputDefaultPort,
-                    input: (DefaultPort)port
-                );
-
-                Node.GraphViewer.Add(edge);
-            }
-
-            void ShowNodeOnGraph()
-            {
-                Node.RemoveFromClassList(StyleConfig.Instance.Global_Visible_Hidden);
-            }
+            Node.SetPosition
+            (
+                details,
+                leftSideAlignmentReferencePort: Model.OutputDefaultPort,
+                middleAlignmentReferencePort: Model.OutputDefaultPort
+            );
         }
     }
 }

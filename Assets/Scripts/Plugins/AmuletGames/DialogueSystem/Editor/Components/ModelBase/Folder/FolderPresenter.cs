@@ -30,13 +30,13 @@ namespace AG.DS
             void SetupMainContainer()
             {
                 model.MainContainer = new();
-                model.MainContainer.AddToClassList(StyleConfig.Instance.Folder_MainContainer);
+                model.MainContainer.AddToClassList(StyleConfig.Folder_MainContainer);
             }
 
             void SetupTitleContainer()
             {
                 model.TitleContainer = new();
-                model.TitleContainer.AddToClassList(StyleConfig.Instance.Folder_Title_Container);
+                model.TitleContainer.AddToClassList(StyleConfig.Folder_Title_Container);
             }
 
             void SetupTitleTextField()
@@ -44,7 +44,7 @@ namespace AG.DS
                 model.TitleTextFieldModel.TextField = FolderTitleTextFieldPresenter.CreateElement
                 (
                     titleText: titleText,
-                    fieldUSS01: StyleConfig.Instance.Folder_Title_TextField
+                    fieldUSS01: StyleConfig.Folder_Title_TextField
                 );
             }
 
@@ -52,15 +52,15 @@ namespace AG.DS
             {
                 model.ExpandButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.FolderExpandButtonCloseIconSprite,
-                    buttonUSS01: StyleConfig.Instance.Folder_ExpandFolder_Button
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.FolderExpandButtonCloseIconSprite,
+                    buttonUSS01: StyleConfig.Folder_ExpandFolder_Button
                 );
             }
 
             void SetupContentContainer()
             {
                 model.ContentContainer = new();
-                model.ContentContainer.AddToClassList(StyleConfig.Instance.Folder_ContentContainer);
+                model.ContentContainer.AddToClassList(StyleConfig.Folder_ContentContainer);
             }
 
             void AddElementsToContainer()

@@ -82,7 +82,7 @@ namespace AG.DS
             Folder = new();
             
             messageTextModel = new(
-                placeholderText: StringConfig.Instance.DialogueSegmentTextlinePlaceholderText);
+                placeholderText: StringConfig.DialogueSegmentTextlinePlaceholderText);
             
             messageAudioObjectModel = new();
 
@@ -139,7 +139,7 @@ namespace AG.DS
                 (
                     model: Folder,
                     titleText: StringUtility.New(
-                                   text01: StringConfig.Instance.MessageModifier_Folder_TitleText,
+                                   text01: StringConfig.MessageModifier_Folder_TitleText,
                                    text02: index.ToString()).ToString()
                 );
 
@@ -149,18 +149,18 @@ namespace AG.DS
             void SetupContainers()
             {
                 modifierButtonContainer = new();
-                modifierButtonContainer.AddToClassList(StyleConfig.Instance.Modifier_Message_Button_Container);
+                modifierButtonContainer.AddToClassList(StyleConfig.Modifier_Message_Button_Container);
 
                 progressTypeBox = new();
-                progressTypeBox.AddToClassList(StyleConfig.Instance.Modifier_Message_ProgressType_Box);
+                progressTypeBox.AddToClassList(StyleConfig.Modifier_Message_ProgressType_Box);
             }
 
             void SetupMoveUpButton()
             {
                 moveUpButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.MoveUpButtonIconSprite,
-                    buttonUSS01: StyleConfig.Instance.Modifier_Message_MoveUp_Button
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.MoveUpButtonIconSprite,
+                    buttonUSS01: StyleConfig.Modifier_Message_MoveUp_Button
                 );
 
                 new CommonButtonCallback(
@@ -173,8 +173,8 @@ namespace AG.DS
             {
                 moveDownButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.MoveDownButtonIconSprite,
-                    buttonUSS01: StyleConfig.Instance.Modifier_Message_MoveDown_Button
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.MoveDownButtonIconSprite,
+                    buttonUSS01: StyleConfig.Modifier_Message_MoveDown_Button
                 );
 
                 new CommonButtonCallback(
@@ -187,8 +187,8 @@ namespace AG.DS
             {
                 renameButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.EditButtonIconSprite,
-                    buttonUSS01: StyleConfig.Instance.Modifier_Message_Rename_Button
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
+                    buttonUSS01: StyleConfig.Modifier_Message_Rename_Button
                 );
 
                 new CommonButtonCallback(
@@ -201,8 +201,8 @@ namespace AG.DS
             {
                 removeButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.Instance.SpriteConfig.RemoveButtonIconSprite,
-                    buttonUSS01: StyleConfig.Instance.Modifier_Message_Remove_Button
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
+                    buttonUSS01: StyleConfig.Modifier_Message_Remove_Button
                 );
 
                 new CommonButtonCallback(
@@ -217,7 +217,7 @@ namespace AG.DS
                 (
                     isMultiLine: true,
                     placeholderText: messageTextModel.PlaceholderText,
-                    fieldUSS01: StyleConfig.Instance.Modifier_Message_Text_TextField
+                    fieldUSS01: StyleConfig.Modifier_Message_Text_TextField
                 );
 
                 new LanguageTextFieldCallback(model: messageTextModel).RegisterEvents();
@@ -227,7 +227,7 @@ namespace AG.DS
             {
                 messageTextModel.TextField.AddFieldIcon
                 (
-                    iconSprite: ConfigResourcesManager.Instance.SpriteConfig.TextFieldIcon1Sprite
+                    iconSprite: ConfigResourcesManager.SpriteConfig.TextFieldIcon1Sprite
                 );
             }
 
@@ -236,7 +236,7 @@ namespace AG.DS
                 messageAudioObjectModel.ObjectField =
                     LanguageObjectFieldPresenter.CreateElement<AudioClip>
                     (
-                        fieldUSS01: StyleConfig.Instance.Modifier_Message_Audio_ObjectField
+                        fieldUSS01: StyleConfig.Modifier_Message_Audio_ObjectField
                     );
 
                 new LanguageObjectFieldCallback<AudioClip>(
@@ -248,7 +248,7 @@ namespace AG.DS
                 messageAudioObjectModel.ObjectField.RemoveFieldIcon();
                 messageAudioObjectModel.ObjectField.AddFieldIcon
                 (
-                    iconSprite: ConfigResourcesManager.Instance.SpriteConfig.AudioClipFieldIconSprite
+                    iconSprite: ConfigResourcesManager.SpriteConfig.AudioClipFieldIconSprite
                 );
             }
 
@@ -256,8 +256,8 @@ namespace AG.DS
             {
                 progressTypeLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.Instance.MessageModifierProgressTypeLabelText,
-                    labelUSS01: StyleConfig.Instance.Modifier_Message_ProgressType_Label
+                    labelText: StringConfig.MessageModifierProgressTypeLabelText,
+                    labelUSS01: StyleConfig.Modifier_Message_ProgressType_Label
                 );
             }
 
@@ -267,7 +267,7 @@ namespace AG.DS
                 (
                     enumContainer: progressTypeEnumModel,
                     containerValueChangedAction: ProgressTypeEnumContainerValueChangedAction,
-                    fieldUSS01: StyleConfig.Instance.Modifier_Message_ProgressType_EnumField
+                    fieldUSS01: StyleConfig.Modifier_Message_ProgressType_EnumField
                 );
             }
 

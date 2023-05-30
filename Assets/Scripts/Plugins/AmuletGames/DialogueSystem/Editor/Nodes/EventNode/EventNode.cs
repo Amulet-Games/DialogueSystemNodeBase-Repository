@@ -14,81 +14,10 @@ namespace AG.DS
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the event node component class.
-        /// </summary>
-        /// <param name="details">The node create details to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public EventNode
-        (
-            NodeCreateDetails details,
-            GraphViewer graphViewer
-        )
-            : base(StringConfig.Instance.EventNode_TitleTextField_LabelText, graphViewer)
-        {
-            SetupFrameFields();
-
-            CreateNodeElements();
-
-            PostProcessNodeWidth();
-
-            PostProcessNodePosition();
-
-            AddStyleSheet();
-
-            CreatedAction();
-
-            void SetupFrameFields()
-            {
-                Model = new(node: this);
-                Presenter = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
-                Callback = new(node: this, model: Model);
-            }
-
-            void CreateNodeElements()
-            {
-                Presenter.CreateTitleElements();
-                Presenter.CreatePortElements();
-                Presenter.CreateContentElements();
-            }
-
-            void PostProcessNodeWidth()
-            {
-                Presenter.SetNodeWidth
-                (
-                    minWidth: NodeConfig.EventNodeMinWidth,
-                    widthBuffer: NodeConfig.EventNodeWidthBuffer
-                );
-            }
-
-            void PostProcessNodePosition()
-            {
-                Presenter.SetNodePosition(details);
-            }
-
-            void AddStyleSheet()
-            {
-                var styleSheetConfig = ConfigResourcesManager.Instance.StyleSheetConfig;
-                styleSheets.Add(styleSheetConfig.DSEventNodeStyle);
-                styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
-                styleSheets.Add(styleSheetConfig.DSFolderStyle);
-                styleSheets.Add(styleSheetConfig.DSEventModifierStyle);
-                styleSheets.Add(styleSheetConfig.DSEventModifierGroupStyle);
-            }
-        }
-
-
-        // ----------------------------- Constructor (New) -----------------------------
-        /// <summary>
-        /// Constructor of the event node component class.
-        /// <para>Specifically used when the node is created by the previously saved data.</para>
+        /// Constructor of the event node class.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public EventNode
-        (
-            GraphViewer graphViewer
-        )
-            : base(StringConfig.Instance.EventNode_TitleTextField_LabelText, graphViewer)
+        public EventNode(GraphViewer graphViewer)
         {
             // Setup frame fields
             {
@@ -96,6 +25,12 @@ namespace AG.DS
                 Presenter = new(node: this, model: Model);
                 Serializer = new(node: this, model: Model);
                 Callback = new(node: this, model: Model);
+                GraphViewer = graphViewer;
+
+                title = StringConfig.EventNode_TitleTextField_LabelText;
+
+                style.minWidth = NodeConfig.EventNodeMinWidth;
+                style.maxWidth = NodeConfig.EventNodeMinWidth + NodeConfig.EventNodeWidthBuffer;
             }
 
             // Create elements
@@ -105,18 +40,9 @@ namespace AG.DS
                 Presenter.CreateContentElements();
             }
 
-            // Setup node width
-            {
-                Presenter.SetNodeWidth
-                (
-                    minWidth: NodeConfig.EventNodeMinWidth,
-                    widthBuffer: NodeConfig.EventNodeWidthBuffer
-                );
-            }
-
             // Add style sheet
             {
-                var styleSheetConfig = ConfigResourcesManager.Instance.StyleSheetConfig;
+                var styleSheetConfig = ConfigResourcesManager.StyleSheetConfig;
                 styleSheets.Add(styleSheetConfig.DSEventNodeStyle);
                 styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
                 styleSheets.Add(styleSheetConfig.DSFolderStyle);
@@ -136,7 +62,7 @@ namespace AG.DS
             // Disconnect Input
             evt.menu.AppendAction
             (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectInputPort_LabelText,
+                actionName: StringConfig.ContextualMenuItem_DisconnectInputPort_LabelText,
                 action: action => defaultInput.Disconnect(GraphViewer),
                 status: defaultInput.connected
                         ? DropdownMenuAction.Status.Normal
@@ -146,7 +72,7 @@ namespace AG.DS
             // Disconnect Output
             evt.menu.AppendAction
             (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectOutputPort_LabelText,
+                actionName: StringConfig.ContextualMenuItem_DisconnectOutputPort_LabelText,
                 action: action => defaultOutput.Disconnect(GraphViewer),
                 status: defaultOutput.connected
                         ? DropdownMenuAction.Status.Normal
@@ -159,7 +85,7 @@ namespace AG.DS
 
             evt.menu.AppendAction
             (
-                actionName: StringConfig.Instance.ContextualMenuItem_DisconnectAllPort_LabelText,
+                actionName: StringConfig.ContextualMenuItem_DisconnectAllPort_LabelText,
                 action: action =>
                 {
                     defaultInput.Disconnect(GraphViewer);

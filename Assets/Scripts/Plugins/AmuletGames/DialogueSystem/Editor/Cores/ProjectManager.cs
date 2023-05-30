@@ -84,8 +84,6 @@ namespace AG.DS
             ConfigResourcesManager.Setup();
             LanguageManager.Setup();
             HotkeyManager.Setup();
-            StyleConfig.Setup();
-            StringConfig.Setup();
             EdgeManager.Setup();
         }
 
@@ -189,7 +187,7 @@ namespace AG.DS
             }
             else
             {
-                Debug.LogWarning(StringConfig.Instance.Editor_WindowAlreadySaved_WarningText);
+                Debug.LogWarning(StringConfig.Editor_WindowAlreadySaved_WarningText);
             }
         }
 
@@ -206,7 +204,7 @@ namespace AG.DS
             }
             else
             {
-                Debug.LogWarning(StringConfig.Instance.Editor_WindowAlreadyLoaded_WarningText);
+                Debug.LogWarning(StringConfig.Editor_WindowAlreadyLoaded_WarningText);
             }
         }
     }

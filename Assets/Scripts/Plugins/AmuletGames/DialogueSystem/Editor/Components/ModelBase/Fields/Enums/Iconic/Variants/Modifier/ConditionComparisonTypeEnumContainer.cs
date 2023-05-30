@@ -36,8 +36,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override void UpdateIconImage()
         {
-            var spriteConfig = ConfigResourcesManager.Instance.SpriteConfig;
-
+            var spriteConfig = ConfigResourcesManager.SpriteConfig;
             switch ((M_Condition_ComparisonType)Value)
             {
                 case M_Condition_ComparisonType.True:

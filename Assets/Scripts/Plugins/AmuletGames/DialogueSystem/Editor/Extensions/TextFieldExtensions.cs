@@ -40,12 +40,12 @@ namespace AG.DS
         {
             if (!string.IsNullOrEmpty(field.text))
             {
-                field.RemoveFromClassList(StyleConfig.Instance.TextField_Empty);
+                field.RemoveFromClassList(StyleConfig.TextField_Empty);
             }
             else
             {
                 field.SetValueWithoutNotify(placeholderText);
-                field.AddToClassList(StyleConfig.Instance.TextField_Empty);
+                field.AddToClassList(StyleConfig.TextField_Empty);
             }
         }
 
@@ -56,10 +56,10 @@ namespace AG.DS
         /// <param name="field">Extension text field.</param>
         public static void HideEmptyStyle(this TextField field)
         {
-            if (field.ClassListContains(StyleConfig.Instance.TextField_Empty))
+            if (field.ClassListContains(StyleConfig.TextField_Empty))
             {
                 field.SetValueWithoutNotify(string.Empty);
-                field.RemoveFromClassList(StyleConfig.Instance.TextField_Empty);
+                field.RemoveFromClassList(StyleConfig.TextField_Empty);
             }
         }
 
@@ -75,10 +75,10 @@ namespace AG.DS
             string placeholderText
         )
         {
-            if (!field.ClassListContains(StyleConfig.Instance.TextField_Empty))
+            if (!field.ClassListContains(StyleConfig.TextField_Empty))
             {
                 field.SetValueWithoutNotify(placeholderText);
-                field.AddToClassList(StyleConfig.Instance.TextField_Empty);
+                field.AddToClassList(StyleConfig.TextField_Empty);
             }
         }
 
@@ -97,7 +97,7 @@ namespace AG.DS
             var iconImage = CommonImagePresenter.CreateElement
             (
                 imageSprite: iconSprite,
-                imageUSS01: StyleConfig.Instance.TextField_Icon
+                imageUSS01: StyleConfig.TextField_Icon
             );
 
             field.Add(iconImage);
