@@ -1,9 +1,6 @@
 namespace AG.DS
 {
-    public abstract class EdgeFrameBase
-    <
-        TEdgeModel
-    >
+    public abstract class EdgeFrameBase<TEdgeModel>
         : EdgeBase
         where TEdgeModel : EdgeModelBase
     {

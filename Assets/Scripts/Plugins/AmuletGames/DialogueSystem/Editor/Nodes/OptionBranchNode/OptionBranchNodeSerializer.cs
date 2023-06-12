@@ -55,7 +55,7 @@ namespace AG.DS
 
             void AddData()
             {
-                dsData.OptionBranchNodeData.Add(data);
+                dsData.NodeData.Add(data);
             }
         }
 

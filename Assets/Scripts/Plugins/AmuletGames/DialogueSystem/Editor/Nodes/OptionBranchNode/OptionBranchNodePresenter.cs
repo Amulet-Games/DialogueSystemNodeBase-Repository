@@ -1,5 +1,4 @@
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -11,22 +10,52 @@ namespace AG.DS
         OptionBranchNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the option branch node presenter class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public OptionBranchNodePresenter(OptionBranchNode node, OptionBranchNodeModel model)
+        /// <inheritdoc />
+        public override OptionBranchNode CreateElements(OptionBranchNodeModel model, GraphViewer graphViewer)
         {
-            Node = node;
-            Model = model;
+            var node = new OptionBranchNode(model, graphViewer);
+
+            CreateTitleElements(node, model);
+            CreatePortElements(node, model);
+            CreateContentElements(node, model);
+
+            return node;
         }
 
 
-        // ----------------------------- Makers -----------------------------
-        /// <inheritdoc />
-        public override void CreateContentElements()
+        /// <summary>
+        /// Method for creating the node's port elements.
+        /// </summary>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
+        void CreatePortElements(OptionBranchNode node, OptionBranchNodeModel model)
+        {
+            model.InputOptionPort = OptionPort.CreateElement<OptionEdge>
+            (
+                connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                direction: Direction.Input
+            );
+
+            model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            (
+                connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                direction: Direction.Output,
+                capacity: Port.Capacity.Single,
+                label: StringConfig.DefaultPort_Output_LabelText
+            );
+
+            node.Add(model.InputOptionPort);
+            node.Add(model.OutputDefaultPort);
+            node.RefreshPorts();
+        }
+
+
+        /// <summary>
+        /// Method for creating the node's content elements.
+        /// </summary>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
+        void CreateContentElements(OptionBranchNode node, OptionBranchNodeModel model)
         {
             SetupContentButton();
 
@@ -34,13 +63,13 @@ namespace AG.DS
 
             void SetupContentButton()
             {
-                Model.ContentButton = ContentButtonPresenter.CreateElement
+                model.ContentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.ContentButton_AddCondition_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddConditionModifierButtonIconSprite
                 );
 
-                Node.titleContainer.Add(Model.ContentButton);
+                node.titleContainer.Add(model.ContentButton);
             }
 
             void SetupOptionBranchGroup()
@@ -96,13 +125,12 @@ namespace AG.DS
 
                 void SetupBranchTitleTextField()
                 {
-                    Model.BranchTitleTextFieldModel.TextField =
-                        LanguageTextFieldPresenter.CreateElement
-                        (
-                            isMultiLine: false,
-                            placeholderText: Model.BranchTitleTextFieldModel.PlaceholderText,
-                            fieldUSS01: StyleConfig.OptionBranchNode_Title_TextField
-                        );
+                    model.BranchTitleTextFieldModel.TextField = LanguageTextFieldPresenter.CreateElement
+                    (
+                        isMultiLine: false,
+                        placeholderText: model.BranchTitleTextFieldModel.PlaceholderText,
+                        fieldUSS01: StyleConfig.OptionBranchNode_Title_TextField
+                    );
                 }
 
                 void AddElementsToContainer()
@@ -113,51 +141,14 @@ namespace AG.DS
                     outerContainer.Add(InnerContainer);
 
                     InnerContainer.Add(branchTitleLabel);
-                    InnerContainer.Add(Model.BranchTitleTextFieldModel.TextField);
+                    InnerContainer.Add(model.BranchTitleTextFieldModel.TextField);
                 }
 
                 void AddContainersToNode()
                 {
-                    Node.ContentContainer.Add(mainContainer);
+                    node.ContentContainer.Add(mainContainer);
                 }
             }
-        }
-
-
-        /// <inheritdoc />
-        public override void CreatePortElements()
-        {
-            Model.InputOptionPort = OptionPort.CreateElement<OptionEdge>
-            (
-                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
-                direction: Direction.Input
-            );
-
-            Model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
-            (
-                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
-                direction: Direction.Output,
-                capacity: Port.Capacity.Single,
-                label: StringConfig.DefaultPort_Output_LabelText
-            );
-
-            Node.Add(Model.InputOptionPort);
-            Node.Add(Model.OutputDefaultPort);
-            Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Post Process Position Details -----------------------------
-        /// <inheritdoc />
-        protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
-        {
-            Node.SetPosition
-            (
-                details,
-                leftSideAlignmentReferencePort: Model.OutputDefaultPort,
-                rightSideAlignmentReferencePort: Model.InputOptionPort,
-                middleAlignmentReferencePort: Model.InputOptionPort
-            );
         }
     }
 }

@@ -31,7 +31,7 @@ namespace AG.DS
             {
                 DefaultPort _ => Connect(output as DefaultPort, input as DefaultPort),
                 OptionPort _ => Connect(output as OptionPort, input as OptionPort),
-                _ => throw new Exception("Connecting ports' type is invalid!")
+                _ => throw new ArgumentException("Invalid port type: " + output.GetType().Name)
             };
         }
 
@@ -49,7 +49,7 @@ namespace AG.DS
             {
                 PortType.DEFAULT => Connect((DefaultPort)output, (DefaultPort)input),
                 PortType.OPTION => Connect((OptionPort)output, (OptionPort)input),
-                _ => throw new Exception("Port type not match.")
+                _ => throw new ArgumentException("Invalid port type: " + portType)
             };
         }
         
@@ -110,6 +110,7 @@ namespace AG.DS
         /// <typeparam name="TPort">Type port</typeparam>
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
+        /// <returns>A new type edge element.</returns>
         TEdge Connect<TEdge, TEdgeModel, TEdgePresenter, TEdgeCallback, TPort>
         (
             TPort output,
@@ -128,10 +129,8 @@ namespace AG.DS
             // Create edge
             var edge = new TEdgePresenter().CreateElement(edgeModel);
 
-            // Register callbacks
-            var edgeCallback = new TEdgeCallback();
-            edgeCallback.Setup(edge);
-            edgeCallback.RegisterEvents();
+            // Register events
+            new TEdgeCallback().Setup(edge).RegisterEvents();
 
             return edge;
         }

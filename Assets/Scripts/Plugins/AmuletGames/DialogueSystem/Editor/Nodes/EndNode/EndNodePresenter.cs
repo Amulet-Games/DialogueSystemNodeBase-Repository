@@ -9,46 +9,35 @@ namespace AG.DS
         EndNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the end node presenter class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public EndNodePresenter(EndNode node, EndNodeModel model)
+        /// <inheritdoc />
+        public override EndNode CreateElements(EndNodeModel model, GraphViewer graphViewer)
         {
-            Node = node;
-            Model = model;
+            var node = new EndNode(model, graphViewer);
+
+            CreateTitleElements(node, model);
+            CreatePortElements(node, model);
+
+            return node;
         }
 
 
-        // ----------------------------- Makers -----------------------------
-        /// <inheritdoc />
-        public override void CreatePortElements()
+        /// <summary>
+        /// Method for creating the node's port elements.
+        /// </summary>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
+        void CreatePortElements(EndNode node, EndNodeModel model)
         {
-            Model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            Node.Add(Model.InputDefaultPort);
-            Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Post Process Position Details -----------------------------
-        /// <inheritdoc />
-        protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
-        {
-            Node.SetPosition
-            (
-                details,
-                rightSideAlignmentReferencePort: Model.InputDefaultPort,
-                middleAlignmentReferencePort: Model.InputDefaultPort
-            );
+            node.Add(model.InputDefaultPort);
+            node.RefreshPorts();
         }
     }
 }

@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class EndNodeModel : NodeModelFrameBase<EndNode>
+    public class EndNodeModel : NodeModelFrameBase
     {
         /// <summary>
         /// The input default port of the node.
@@ -13,26 +13,20 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the end node model class.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        public EndNodeModel(EndNode node)
+        public EndNodeModel()
         {
-            Node = node;
         }
 
 
-        // ----------------------------- Remove Ports All -----------------------------
+        // ----------------------------- Remove Ports -----------------------------
         /// <inheritdoc />
-        public override void RemovePortsAll()
+        public override void RemovePorts(GraphViewer graphViewer)
         {
-            Node.GraphViewer.Remove(port: InputDefaultPort);
-        }
+            // Remove from graph viewer cache
+            graphViewer.Remove(port: InputDefaultPort);
 
-
-        // ----------------------------- Disconnect Ports All -----------------------------
-        /// <inheritdoc />
-        public override void DisconnectPortsAll()
-        {
-            InputDefaultPort.Disconnect(Node.GraphViewer);
+            // Disconnect each ports
+            InputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

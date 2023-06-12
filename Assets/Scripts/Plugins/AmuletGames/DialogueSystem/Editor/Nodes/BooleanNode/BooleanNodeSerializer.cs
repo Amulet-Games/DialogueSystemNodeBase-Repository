@@ -74,7 +74,7 @@ namespace AG.DS
 
             void AddData()
             {
-                dsData.BooleanNodeData.Add(data);
+                dsData.NodeData.Add(data);
             }
         }
 

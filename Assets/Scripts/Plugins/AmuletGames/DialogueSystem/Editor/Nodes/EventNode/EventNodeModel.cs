@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class EventNodeModel : NodeModelFrameBase<EventNode>
+    public class EventNodeModel : NodeModelFrameBase
     {
         /// <summary>
         /// Content button for adding events to the node.
@@ -31,29 +31,23 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the event node model class.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        public EventNodeModel(EventNode node)
+        public EventNodeModel()
         {
-            Node = node;
             EventModifierModelGroupModel = new();
         }
 
 
-        // ----------------------------- Remove Ports All -----------------------------
+        // ----------------------------- Remove Ports -----------------------------
         /// <inheritdoc />
-        public override void RemovePortsAll()
+        public override void RemovePorts(GraphViewer graphViewer)
         {
-            Node.GraphViewer.Remove(port: InputDefaultPort);
-            Node.GraphViewer.Remove(port: OutputDefaultPort);
-        }
+            // Remove from graph viewer cache
+            graphViewer.Remove(port: InputDefaultPort);
+            graphViewer.Remove(port: OutputDefaultPort);
 
-
-        // ----------------------------- Disconnect Ports All -----------------------------
-        /// <inheritdoc />
-        public override void DisconnectPortsAll()
-        {
-            InputDefaultPort.Disconnect(Node.GraphViewer);
-            OutputDefaultPort.Disconnect(Node.GraphViewer);
+            // Disconnect each ports
+            InputDefaultPort.Disconnect(graphViewer);
+            OutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

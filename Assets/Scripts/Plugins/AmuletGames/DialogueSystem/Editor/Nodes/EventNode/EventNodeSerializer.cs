@@ -48,7 +48,7 @@ namespace AG.DS
 
             void AddData()
             {
-                dsData.EventNodeData.Add(data);
+                dsData.NodeData.Add(data);
             }
         }
 

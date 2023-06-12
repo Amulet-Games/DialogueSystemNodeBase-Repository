@@ -62,7 +62,7 @@ namespace AG.DS
         void RegisterGeometryChangedEvent()
             => Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
 
-        
+
         /// <summary>
         /// Register events to the node title text field.
         /// </summary>

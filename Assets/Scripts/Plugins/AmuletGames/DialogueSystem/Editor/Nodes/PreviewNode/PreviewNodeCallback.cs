@@ -40,7 +40,7 @@ namespace AG.DS
 
             RegisterRightPortraitObjectFieldChangeEvent();
         }
-        
+
 
         /// <summary>
         /// Register events to the node title text field.

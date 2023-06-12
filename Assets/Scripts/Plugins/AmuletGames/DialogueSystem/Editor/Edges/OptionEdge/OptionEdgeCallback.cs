@@ -18,11 +18,12 @@ namespace AG.DS
 
         // ----------------------------- Setup -----------------------------
         /// <inheritdoc />
-        public override void Setup(OptionEdge edge)
+        public override EdgeCallbackFrameBase<OptionEdge> Setup(OptionEdge edge)
         {
             Edge = edge;
             output = edge.Model.Output;
             input = edge.Model.Input;
+            return this;
         }
 
 

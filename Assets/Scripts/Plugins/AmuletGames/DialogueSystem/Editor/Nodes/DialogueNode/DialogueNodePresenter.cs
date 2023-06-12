@@ -1,6 +1,4 @@
 ﻿using UnityEditor.Experimental.GraphView;
-using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -11,22 +9,54 @@ namespace AG.DS
         DialogueNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the dialogue node presenter class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public DialogueNodePresenter(DialogueNode node, DialogueNodeModel model)
+        /// <inheritdoc />
+        public override DialogueNode CreateElements(DialogueNodeModel model, GraphViewer graphViewer)
         {
-            Node = node;
-            Model = model;
+            var node = new DialogueNode(model, graphViewer);
+
+            CreateTitleElements(node, model);
+            CreatePortElements(node, model);
+            CreateContentElements(node, model);
+
+            return node;
         }
 
 
-        // ----------------------------- Makers -----------------------------
-        /// <inheritdoc />
-        public override void CreateContentElements()
+        /// <summary>
+        /// Method for creating the node's port elements.
+        /// </summary>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
+        void CreatePortElements(DialogueNode node, DialogueNodeModel model)
+        {
+            model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            (
+                connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                direction: Direction.Input,
+                capacity: Port.Capacity.Single,
+                label: StringConfig.DefaultPort_Input_LabelText
+            );
+
+            model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            (
+                connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                direction: Direction.Output,
+                capacity: Port.Capacity.Single,
+                label: StringConfig.DefaultPort_Output_LabelText
+            );
+
+            node.Add(model.InputDefaultPort);
+            node.Add(model.OutputDefaultPort);
+            node.RefreshPorts();
+        }
+
+
+        /// <summary>
+        /// Method for creating the node's content elements.
+        /// </summary>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
+        void CreateContentElements(DialogueNode node, DialogueNodeModel model)
         {
             AddCharacterObjectField();
 
@@ -36,22 +66,22 @@ namespace AG.DS
 
             void AddCharacterObjectField()
             {
-                Model.CharacterObjectFieldModel.ObjectField =
+                model.CharacterObjectFieldModel.ObjectField =
                     CommonObjectFieldPresenter.CreateElement<DialogueCharacter>
                     (
                         fieldUSS01: StyleConfig.DialogueNode_Character_ObjectField
                     );
 
                 new CommonObjectFieldCallback<DialogueCharacter>(
-                    model: Model.CharacterObjectFieldModel).RegisterEvents();
+                    model: model.CharacterObjectFieldModel).RegisterEvents();
 
-                Node.ContentContainer.Add(Model.CharacterObjectFieldModel.ObjectField);
+                node.ContentContainer.Add(model.CharacterObjectFieldModel.ObjectField);
             }
 
             void AddCharacterObjectFieldIcon()
             {
-                Model.CharacterObjectFieldModel.ObjectField.RemoveFieldIcon();
-                Model.CharacterObjectFieldModel.ObjectField.AddFieldIcon
+                model.CharacterObjectFieldModel.ObjectField.RemoveFieldIcon();
+                model.CharacterObjectFieldModel.ObjectField.AddFieldIcon
                 (
                     iconSprite: ConfigResourcesManager.SpriteConfig.CharacterFieldIconSprite
                 );
@@ -60,104 +90,7 @@ namespace AG.DS
             void AddDialogueNodeStitcher()
             {
                 // Create all the root elements required in the node stitcher.
-                Model.DialogueNodeStitcher.CreateElement(node: Node);
-            }
-        }
-
-
-        /// <inheritdoc />
-        public override void CreatePortElements()
-        {
-            Model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
-            (
-                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
-                direction: Direction.Input,
-                capacity: Port.Capacity.Single,
-                label: StringConfig.DefaultPort_Input_LabelText
-            );
-
-            Model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
-            (
-                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
-                direction: Direction.Output,
-                capacity: Port.Capacity.Single,
-                label: StringConfig.DefaultPort_Output_LabelText
-            );
-
-            Node.Add(Model.InputDefaultPort);
-            Node.Add(Model.OutputDefaultPort);
-            Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Post Process Position Details -----------------------------
-        /// <inheritdoc />
-        protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
-        {
-            AlignConnectorPosition();
-
-            ConnectConnectorPort();
-
-            void AlignConnectorPosition()
-            {
-                Vector2 result = details.CreatePosition;
-
-                switch (details.HorizontalAlignmentType)
-                {
-                    case HorizontalAlignmentType.LEFT:
-
-                        result.y -= (Node.titleContainer.worldBound.height
-                                  + Model.OutputDefaultPort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / Node.GraphViewer.scale;
-
-                        result.x -= Node.localBound.width;
-
-                        break;
-                    case HorizontalAlignmentType.MIDDLE:
-
-                        result.y -= (Node.titleContainer.worldBound.height
-                                  + Model.InputDefaultPort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / Node.GraphViewer.scale;
-
-                        result.x -= Node.localBound.width / 2;
-
-                        break;
-                    case HorizontalAlignmentType.RIGHT:
-
-                        result.y -= (Node.titleContainer.worldBound.height
-                                  + Model.InputDefaultPort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / Node.GraphViewer.scale;
-
-                        break;
-                }
-
-                Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
-            }
-
-            void ConnectConnectorPort()
-            {
-                // If connector port is null then return.
-                if (details.ConnectorPort == null)
-                    return;
-
-                var port = (DefaultPort)details.ConnectorPort;
-                var isInput = port.IsInput();
-
-                if (port.connected)
-                {
-                    port.Disconnect(Node.GraphViewer);
-                }
-
-                var edge = EdgeManager.Instance.Connect
-                (
-                    output: !isInput ? port : Model.OutputDefaultPort,
-                    input: isInput ? port : Model.InputDefaultPort
-                );
-
-                Node.GraphViewer.Add(edge);
+                model.DialogueNodeStitcher.CreateElement(node);
             }
         }
     }

@@ -6,9 +6,9 @@ namespace AG.DS
     public class NodeCreateEntry : SearchTreeEntry
     {
         /// <summary>
-        /// Id of the node create entry.
+        /// The type of the node that this create entry creates.
         /// </summary>
-        public int EntryId { get; }
+        public NodeType NodeType { get; }
 
 
         // ----------------------------- Constructor -----------------------------
@@ -17,17 +17,17 @@ namespace AG.DS
         /// </summary>
         /// <param name="content">The GUIContent(text and icon) to set for.</param>
         /// <param name="level">The level of the entry to set for.</param>
-        /// <param name="userData">The id to set for the entry.</param>
+        /// <param name="nodeType">The node type to set for.</param>
         public NodeCreateEntry
         (
             GUIContent content,
             int level,
-            int entryId
+            NodeType nodeType
         )
             : base(content)
         {
             this.level = level;
-            EntryId = entryId;
+            NodeType = nodeType;
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class PreviewNodeModel : NodeModelFrameBase<PreviewNode>
+    public class PreviewNodeModel : NodeModelFrameBase
     {
         /// <summary>
         /// Object field model for the left side portrait image.
@@ -46,30 +46,24 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the preview node model class.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        public PreviewNodeModel(PreviewNode node)
+        public PreviewNodeModel()
         {
-            Node = node;
             LeftPortraitObjectFieldModel = new();
             RightPortraitObjectFieldModel = new();
         }
 
 
-        // ----------------------------- Remove Ports All -----------------------------
+        // ----------------------------- Remove Ports -----------------------------
         /// <inheritdoc />
-        public override void RemovePortsAll()
+        public override void RemovePorts(GraphViewer graphViewer)
         {
-            Node.GraphViewer.Remove(port: InputDefaultPort);
-            Node.GraphViewer.Remove(port: OutputDefaultPort);
-        }
+            // Remove from graph viewer cache
+            graphViewer.Remove(port: InputDefaultPort);
+            graphViewer.Remove(port: OutputDefaultPort);
 
-
-        // ----------------------------- Disconnect Ports All -----------------------------
-        /// <inheritdoc />
-        public override void DisconnectPortsAll()
-        {
-            InputDefaultPort.Disconnect(Node.GraphViewer);
-            OutputDefaultPort.Disconnect(Node.GraphViewer);
+            // Disconnect each ports
+            InputDefaultPort.Disconnect(graphViewer);
+            OutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

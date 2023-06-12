@@ -16,27 +16,22 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the end node class.
         /// </summary>
+        /// <param name="model">The node model to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public EndNode(GraphViewer graphViewer)
+        public EndNode(EndNodeModel model, GraphViewer graphViewer)
         {
-            // Setup frame fields
+            // Setup details
             {
-                Model = new(node: this);
-                Presenter = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
-                Callback = new(node: this, model: Model);
+                Model = model;
                 GraphViewer = graphViewer;
+
+                Callback = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
 
                 title = StringConfig.EndNode_TitleTextField_LabelText;
 
                 style.minWidth = NodeConfig.EndNodeMinWidth;
                 style.maxWidth = NodeConfig.EndNodeMinWidth + NodeConfig.EndNodeWidthBuffer;
-            }
-
-            // Create elements
-            {
-                Presenter.CreateTitleElements();
-                Presenter.CreatePortElements();
             }
 
             // Add style sheet

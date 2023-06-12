@@ -16,28 +16,22 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the option root node class.
         /// </summary>
+        /// <param name="model">The node model to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public OptionRootNode(GraphViewer graphViewer)
+        public OptionRootNode(OptionRootNodeModel model, GraphViewer graphViewer)
         {
             // Setup details
             {
-                Model = new(node: this);
-                Presenter = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
-                Callback = new(node: this, model: Model);
+                Model = model;
                 GraphViewer = graphViewer;
+
+                Callback = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
 
                 title = StringConfig.OptionRootNode_TitleTextField_LabelText;
 
                 style.minWidth = NodeConfig.OptionRootNodeMinWidth;
                 style.maxWidth = NodeConfig.OptionRootNodeMinWidth + NodeConfig.OptionRootNodeWidthBuffer;
-            }
-
-            // Create elements
-            {
-                Presenter.CreateTitleElements();
-                Presenter.CreatePortElements();
-                Presenter.CreateContentElements();
             }
 
             // Add style sheet

@@ -1,7 +1,7 @@
 ﻿namespace AG.DS
 {
     /// <inheritdoc />
-    public class DialogueNodeModel : NodeModelFrameBase<DialogueNode>
+    public class DialogueNodeModel : NodeModelFrameBase
     {
         /// <summary>
         /// Model for the character scriptable object object field.
@@ -31,10 +31,8 @@
         /// <summary>
         /// Constructor of the dialogue node model class.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        public DialogueNodeModel(DialogueNode node)
+        public DialogueNodeModel()
         {
-            Node = node;
             CharacterObjectFieldModel = new();
             DialogueNodeStitcher = new();
         }
@@ -42,19 +40,15 @@
 
         // ----------------------------- Remove Ports All -----------------------------
         /// <inheritdoc />
-        public override void RemovePortsAll()
+        public override void RemovePorts(GraphViewer graphViewer)
         {
-            Node.GraphViewer.Remove(port: InputDefaultPort);
-            Node.GraphViewer.Remove(port: OutputDefaultPort);
-        }
+            // Remove from graph viewer cache
+            graphViewer.Remove(port: InputDefaultPort);
+            graphViewer.Remove(port: OutputDefaultPort);
 
-
-        // ----------------------------- Disconnect Ports All -----------------------------
-        /// <inheritdoc />
-        public override void DisconnectPortsAll()
-        {
-            InputDefaultPort.Disconnect(Node.GraphViewer);
-            OutputDefaultPort.Disconnect(Node.GraphViewer);
+            // Disconnect each ports
+            InputDefaultPort.Disconnect(graphViewer);
+            OutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

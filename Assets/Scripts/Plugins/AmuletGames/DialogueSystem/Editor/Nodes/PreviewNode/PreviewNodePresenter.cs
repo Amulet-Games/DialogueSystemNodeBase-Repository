@@ -11,23 +11,54 @@ namespace AG.DS
         PreviewNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-
-        /// <summary>
-        /// Constructor of the preview node presenter class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public PreviewNodePresenter(PreviewNode node, PreviewNodeModel model)
+        /// <inheritdoc />
+        public override PreviewNode CreateElements(PreviewNodeModel model, GraphViewer graphViewer)
         {
-            Node = node;
-            Model = model;
+            var node = new PreviewNode(model, graphViewer);
+
+            CreateTitleElements(node, model);
+            CreatePortElements(node, model);
+            CreateContentElements(node, model);
+
+            return node;
         }
 
 
-        // ----------------------------- Makers -----------------------------
-        /// <inheritdoc />
-        public override void CreateContentElements()
+        /// <summary>
+        /// Method for creating the node's port elements.
+        /// </summary>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
+        void CreatePortElements(PreviewNode node, PreviewNodeModel model)
+        {
+            model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            (
+                connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                direction: Direction.Input,
+                capacity: Port.Capacity.Single,
+                label: StringConfig.DefaultPort_Input_LabelText
+            );
+
+            model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            (
+                connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                direction: Direction.Output,
+                capacity: Port.Capacity.Single,
+                label: StringConfig.DefaultPort_Output_LabelText
+            );
+
+            node.Add(model.InputDefaultPort);
+            node.Add(model.OutputDefaultPort);
+            node.RefreshPorts();
+        }
+
+
+        /// <summary>
+        /// Method for creating the node's content elements.
+        /// </summary>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
+        void CreateContentElements(PreviewNode node, PreviewNodeModel model)
         {
             Box previewImageBox;
             Box previewSpriteBox;
@@ -61,7 +92,7 @@ namespace AG.DS
 
             void SetupLeftPortraitImage()
             {
-                Model.LeftPortraitImage = CommonImagePresenter.CreateElement
+                model.LeftPortraitImage = CommonImagePresenter.CreateElement
                 (
                     imageUSS01: StyleConfig.PreviewNode_PreviewImage_Image,
                     imageUSS02: StyleConfig.PreviewNode_PreviewImage_Image_L
@@ -70,7 +101,7 @@ namespace AG.DS
 
             void SetupRightPortraitImage()
             {
-                Model.RightPortraitImage = CommonImagePresenter.CreateElement
+                model.RightPortraitImage = CommonImagePresenter.CreateElement
                 (
                     imageUSS01: StyleConfig.PreviewNode_PreviewImage_Image,
                     imageUSS02: StyleConfig.PreviewNode_PreviewImage_Image_R
@@ -79,7 +110,7 @@ namespace AG.DS
 
             void SetupLeftPortraitObjectField()
             {
-                Model.LeftPortraitObjectFieldModel.ObjectField =
+                model.LeftPortraitObjectFieldModel.ObjectField =
                     CommonObjectFieldPresenter.CreateElement<Sprite>
                     (
                         fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
@@ -89,7 +120,7 @@ namespace AG.DS
 
             void SetupRightPortraitObjectField()
             {
-                Model.RightPortraitObjectFieldModel.ObjectField =
+                model.RightPortraitObjectFieldModel.ObjectField =
                     CommonObjectFieldPresenter.CreateElement<Sprite>
                     (
                         fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
@@ -99,115 +130,18 @@ namespace AG.DS
 
             void AddElementsToContainer()
             {
-                previewImageBox.Add(Model.LeftPortraitImage);
-                previewImageBox.Add(Model.RightPortraitImage);
+                previewImageBox.Add(model.LeftPortraitImage);
+                previewImageBox.Add(model.RightPortraitImage);
 
-                previewSpriteBox.Add(Model.LeftPortraitObjectFieldModel.ObjectField);
+                previewSpriteBox.Add(model.LeftPortraitObjectFieldModel.ObjectField);
                 previewSpriteBox.Add(middleEmptyBox);
-                previewSpriteBox.Add(Model.RightPortraitObjectFieldModel.ObjectField);
+                previewSpriteBox.Add(model.RightPortraitObjectFieldModel.ObjectField);
             }
 
             void AddContainerToNode()
             {
-                Node.ContentContainer.Add(previewImageBox);
-                Node.ContentContainer.Add(previewSpriteBox);
-            }
-        }
-
-
-        /// <inheritdoc />
-        public override void CreatePortElements()
-        {
-            Model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
-            (
-                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
-                direction: Direction.Input,
-                capacity: Port.Capacity.Single,
-                label: StringConfig.DefaultPort_Input_LabelText
-            );
-
-            Model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
-            (
-                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
-                direction: Direction.Output,
-                capacity: Port.Capacity.Single,
-                label: StringConfig.DefaultPort_Output_LabelText
-            );
-
-            Node.Add(Model.InputDefaultPort);
-            Node.Add(Model.OutputDefaultPort);
-            Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Post Process Position Details -----------------------------
-        /// <inheritdoc />
-        protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
-        {
-            AlignConnectorPosition();
-
-            ConnectConnectorPort();
-
-            void AlignConnectorPosition()
-            {
-                Vector2 result = details.CreatePosition;
-
-                switch (details.HorizontalAlignmentType)
-                {
-                    case HorizontalAlignmentType.LEFT:
-
-                        result.y -= (Node.titleContainer.worldBound.height
-                                  + Model.OutputDefaultPort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / Node.GraphViewer.scale;
-
-                        result.x -= Node.localBound.width;
-
-                        break;
-                    case HorizontalAlignmentType.MIDDLE:
-
-                        result.y -= (Node.titleContainer.worldBound.height
-                                  + Model.InputDefaultPort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / Node.GraphViewer.scale;
-
-                        result.x -= Node.localBound.width / 2;
-
-                        break;
-                    case HorizontalAlignmentType.RIGHT:
-
-                        result.y -= (Node.titleContainer.worldBound.height
-                                  + Model.InputDefaultPort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / Node.GraphViewer.scale;
-
-                        break;
-                }
-
-                Node.SetPosition(newPos: new Rect(result, Vector2Utility.Zero));
-            }
-
-            void ConnectConnectorPort()
-            {
-                // If connector port is null then return.
-                if (details.ConnectorPort == null)
-                    return;
-
-                var port = (DefaultPort)details.ConnectorPort;
-                var isInput = port.IsInput();
-
-                if (port.connected)
-                {
-                    port.Disconnect(Node.GraphViewer);
-                }
-
-                var edge = EdgeManager.Instance.Connect
-                (
-                    output: !isInput ? port : Model.OutputDefaultPort,
-                    input: isInput ? port : Model.InputDefaultPort
-                );
-
-                Node.GraphViewer.Add(edge);
+                node.ContentContainer.Add(previewImageBox);
+                node.ContentContainer.Add(previewSpriteBox);
             }
         }
     }

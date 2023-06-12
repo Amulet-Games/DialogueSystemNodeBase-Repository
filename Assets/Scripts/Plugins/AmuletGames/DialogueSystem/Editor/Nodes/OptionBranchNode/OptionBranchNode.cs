@@ -16,28 +16,22 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the option branch node class.
         /// </summary>
+        /// <param name="model">The node model to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public OptionBranchNode(GraphViewer graphViewer)
+        public OptionBranchNode(OptionBranchNodeModel model, GraphViewer graphViewer)
         {
             // Setup details
             {
-                Model = new(node: this);
-                Presenter = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
-                Callback = new(node: this, model: Model);
+                Model = model;
                 GraphViewer = graphViewer;
+
+                Callback = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
 
                 title = StringConfig.OptionBranchNode_TitleTextField_LabelText;
 
                 style.minWidth = NodeConfig.OptionBranchNodeMinWidth;
                 style.maxWidth = NodeConfig.OptionBranchNodeMinWidth + NodeConfig.OptionBranchNodeWidthBuffer;
-            }
-
-            // Create elements
-            {
-                Presenter.CreateTitleElements();
-                Presenter.CreatePortElements();
-                Presenter.CreateContentElements();
             }
 
             // Add style sheet

@@ -16,23 +16,19 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the story node class.
         /// </summary>
+        /// <param name="model">The node model to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public StoryNode(GraphViewer graphViewer)
+        public StoryNode(StoryNodeModel model, GraphViewer graphViewer)
         {
             // Setup frame fields
             {
-                Model = new(node: this);
-                Presenter = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
-                Callback = new(node: this, model: Model);
+                Model = model;
                 GraphViewer = graphViewer;
 
-                title = StringConfig.StoryNode_TitleTextField_LabelText;
-            }
+                Callback = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
 
-            // Create elements
-            {
-                Presenter.CreatePortElements();
+                title = StringConfig.StoryNode_TitleTextField_LabelText;
             }
 
             // Add style sheet

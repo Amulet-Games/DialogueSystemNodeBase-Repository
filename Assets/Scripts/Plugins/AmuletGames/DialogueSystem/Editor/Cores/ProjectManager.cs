@@ -85,6 +85,7 @@ namespace AG.DS
             LanguageManager.Setup();
             HotkeyManager.Setup();
             EdgeManager.Setup();
+            NodeManager.Setup();
         }
 
 

@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class BooleanNodeModel : NodeModelFrameBase<BooleanNode>
+    public class BooleanNodeModel : NodeModelFrameBase
     {
         /// <summary>
         /// A special node's UI style that combined the use of segment, modifier and content button together.
@@ -31,31 +31,25 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the boolean node model class.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        public BooleanNodeModel(BooleanNode node)
+        public BooleanNodeModel()
         {
-            Node = node;
             booleanNodeStitcher = new();
         }
 
         
-        // ----------------------------- Remove Ports All -----------------------------
+        // ----------------------------- Remove Ports -----------------------------
         /// <inheritdoc />
-        public override void RemovePortsAll()
+        public override void RemovePorts(GraphViewer graphViewer)
         {
-            Node.GraphViewer.Remove(port: InputDefaultPort);
-            Node.GraphViewer.Remove(port: TrueOutputDefaultPort);
-            Node.GraphViewer.Remove(port: FalseOutputDefaultPort);
-        }
+            // Remove from graph viewer cache
+            graphViewer.Remove(port: InputDefaultPort);
+            graphViewer.Remove(port: TrueOutputDefaultPort);
+            graphViewer.Remove(port: FalseOutputDefaultPort);
 
-
-        // ----------------------------- Disconnect Ports All -----------------------------
-        /// <inheritdoc />
-        public override void DisconnectPortsAll()
-        {
-            InputDefaultPort.Disconnect(Node.GraphViewer);
-            TrueOutputDefaultPort.Disconnect(Node.GraphViewer);
-            FalseOutputDefaultPort.Disconnect(Node.GraphViewer);
+            // Disconnect each ports
+            InputDefaultPort.Disconnect(graphViewer);
+            TrueOutputDefaultPort.Disconnect(graphViewer);
+            FalseOutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

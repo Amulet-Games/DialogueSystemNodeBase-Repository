@@ -10,22 +10,52 @@ namespace AG.DS
         OptionRootNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the option root node presenter class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public OptionRootNodePresenter(OptionRootNode node, OptionRootNodeModel model)
+        /// <inheritdoc />
+        public override OptionRootNode CreateElements(OptionRootNodeModel model, GraphViewer graphViewer)
         {
-            Node = node;
-            Model = model;
+            var node = new OptionRootNode(model, graphViewer);
+
+            CreateTitleElements(node, model);
+            CreatePortElements(node, model);
+            CreateContentElements(node, model);
+
+            return node;
         }
 
 
-        // ----------------------------- Makers -----------------------------
-        /// <inheritdoc />
-        public override void CreateContentElements()
+        /// <summary>
+        /// Method for creating the node's port elements.
+        /// </summary>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
+        void CreatePortElements(OptionRootNode node, OptionRootNodeModel model)
+        {
+            model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            (
+                connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                direction: Direction.Input,
+                capacity: Port.Capacity.Multi,
+                label: StringConfig.DefaultPort_Input_LabelText
+            );
+
+            model.OutputOptionPort = OptionPort.CreateElement<OptionEdge>
+            (
+                connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                direction: Direction.Output
+            );
+
+            node.Add(model.InputDefaultPort);
+            node.Add(model.OutputOptionPort);
+            node.RefreshPorts();
+        }
+
+
+        /// <summary>
+        /// Method for creating the node's content elements.
+        /// </summary>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
+        void CreateContentElements(OptionRootNode node, OptionRootNodeModel model)
         {
             SetupContentButton();
 
@@ -33,13 +63,13 @@ namespace AG.DS
 
             void SetupContentButton()
             {
-                Model.ContentButton = ContentButtonPresenter.CreateElement
+                model.ContentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.ContentButton_AddEntry_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEntryButtonIconSprite
                 );
 
-                Node.titleContainer.Add(Model.ContentButton);
+                node.titleContainer.Add(model.ContentButton);
             }
 
             void SetupOptionRootGroup()
@@ -95,13 +125,12 @@ namespace AG.DS
 
                 void SetupOptionRootTitleTextField()
                 {
-                    Model.RootTitleTextFieldModel.TextField =
-                        LanguageTextFieldPresenter.CreateElement
-                        (
-                            isMultiLine: false,
-                            placeholderText: Model.RootTitleTextFieldModel.PlaceholderText,
-                            fieldUSS01: StyleConfig.OptionRootNode_Title_TextField
-                        );
+                    model.RootTitleTextFieldModel.TextField = LanguageTextFieldPresenter.CreateElement
+                    (
+                        isMultiLine: false,
+                        placeholderText: model.RootTitleTextFieldModel.PlaceholderText,
+                        fieldUSS01: StyleConfig.OptionRootNode_Title_TextField
+                    );
                 }
 
                 void AddElementsToContainer()
@@ -112,51 +141,14 @@ namespace AG.DS
                     outerContainer.Add(InnerContainer);
 
                     InnerContainer.Add(rootTitleLabel);
-                    InnerContainer.Add(Model.RootTitleTextFieldModel.TextField);
+                    InnerContainer.Add(model.RootTitleTextFieldModel.TextField);
                 }
 
                 void AddContainersToNode()
                 {
-                    Node.ContentContainer.Add(mainContainer);
+                    node.ContentContainer.Add(mainContainer);
                 }
             }
-        }
-
-
-        /// <inheritdoc />
-        public override void CreatePortElements()
-        {
-            Model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
-            (
-                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
-                direction: Direction.Input,
-                capacity: Port.Capacity.Multi,
-                label: StringConfig.DefaultPort_Input_LabelText
-            );
-
-            Model.OutputOptionPort = OptionPort.CreateElement<OptionEdge>
-            (
-                connectorWindow: Node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
-                direction: Direction.Output
-            );
-
-            Node.Add(Model.InputDefaultPort);
-            Node.Add(Model.OutputOptionPort);
-            Node.RefreshPorts();
-        }
-
-
-        // ----------------------------- Post Process Position Details -----------------------------
-        /// <inheritdoc />
-        protected override void GeometryChangedAdjustNodePosition(NodeCreateDetails details)
-        {
-            Node.SetPosition
-            (
-                details,
-                leftSideAlignmentReferencePort: Model.OutputOptionPort,
-                rightSideAlignmentReferencePort: Model.InputDefaultPort,
-                middleAlignmentReferencePort: Model.InputDefaultPort
-            );
         }
     }
 }

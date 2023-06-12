@@ -3,7 +3,7 @@ namespace AG.DS
     public class NodeEnums { }
 
     // ----------------------------- Node Enums Base -----------------------------
-    public enum N_NodeType
+    public enum NodeType
     {
         Boolean,
         Dialogue,

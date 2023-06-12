@@ -32,7 +32,7 @@ namespace AG.DS
             List<SearchTreeEntry> toShowSearchEntries
         )
         {
-            Details.SetTypeHorizontalAligment(value: horizontalAlignmentType);
+            Details.SetTypeHorizontalAlignment(value: horizontalAlignmentType);
             Details.SetTypeConnector(value: connectorType);
             Details.SetPortConnector(value: connectorPort);
 

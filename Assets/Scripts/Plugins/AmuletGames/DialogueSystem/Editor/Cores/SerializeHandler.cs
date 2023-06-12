@@ -101,133 +101,11 @@ namespace AG.DS
         /// <param name="dsData">The dialogue system data to load the data from.</param>
         void LoadNodes(DialogueSystemData dsData)
         {
-            // Temp counter variable for each of the data list.
-            int dataCount;
+            var dataCount = dsData.NodeData.Count;
 
-            LoadBooleanNodes();
-
-            LoadDialogueNodes();
-
-            LoadEndNodes();
-
-            LoadEventNodes();
-
-            LoadOptionBranchNodes();
-
-            LoadOptionRootNodes();
-
-            LoadPreviewNodes();
-
-            LoadStartNodes();
-
-            LoadStoryNodes();
-
-            void LoadBooleanNodes()
+            for (int i = 0; i < dataCount; i++)
             {
-                dataCount = dsData.BooleanNodeData.Count;
-
-                for (int i = 0; i < dataCount; i++)
-                {
-                    var node = new BooleanNode(graphViewer);
-                    node.Serializer.Load(dsData.BooleanNodeData[i]);
-                    node.CreatedAction();
-                }
-            }
-
-            void LoadDialogueNodes()
-            {
-                dataCount = dsData.DialogueNodeData.Count;
-
-                for (int i = 0; i < dataCount; i++)
-                {
-                    var node = new DialogueNode(graphViewer);
-                    node.Serializer.Load(dsData.DialogueNodeData[i]);
-                    node.CreatedAction();
-                }
-            }
-
-            void LoadEndNodes()
-            {
-                dataCount = dsData.EndNodeData.Count;
-
-                for (int i = 0; i < dataCount; i++)
-                {
-                    var node = new EndNode(graphViewer);
-                    node.Serializer.Load(dsData.EndNodeData[i]);
-                    node.CreatedAction();
-                }
-            }
-
-            void LoadEventNodes()
-            {
-                dataCount = dsData.EventNodeData.Count;
-
-                for (int i = 0; i < dataCount; i++)
-                {
-                    var node = new EventNode(graphViewer);
-                    node.Serializer.Load(dsData.EventNodeData[i]);
-                    node.CreatedAction();
-                }
-            }
-
-            void LoadOptionBranchNodes()
-            {
-                dataCount = dsData.OptionBranchNodeData.Count;
-
-                for (int i = 0; i < dataCount; i++)
-                {
-                    var node = new OptionBranchNode(graphViewer);
-                    node.Serializer.Load(dsData.OptionBranchNodeData[i]);
-                    node.CreatedAction();
-                }
-            }
-
-            void LoadOptionRootNodes()
-            {
-                dataCount = dsData.OptionRootNodeData.Count;
-
-                for (int i = 0; i < dataCount; i++)
-                {
-                    var node = new OptionRootNode(graphViewer);
-                    node.Serializer.Load(dsData.OptionRootNodeData[i]);
-                    node.CreatedAction();
-                }
-            }
-
-            void LoadPreviewNodes()
-            {
-                dataCount = dsData.PreviewNodeData.Count;
-
-                for (int i = 0; i < dataCount; i++)
-                {
-                    var node = new PreviewNode(graphViewer);
-                    node.Serializer.Load(dsData.PreviewNodeData[i]);
-                    node.CreatedAction();
-                }
-            }
-
-            void LoadStartNodes()
-            {
-                dataCount = dsData.StartNodeData.Count;
-
-                for (int i = 0; i < dataCount; i++)
-                {
-                    var node = new StartNode(graphViewer);
-                    node.Serializer.Load(dsData.StartNodeData[i]);
-                    node.CreatedAction();
-                }
-            }
-
-            void LoadStoryNodes()
-            {
-                dataCount = dsData.StoryNodeData.Count;
-
-                for (int i = 0; i < dataCount; i++)
-                {
-                    var node = new StoryNode(graphViewer);
-                    node.Serializer.Load(dsData.StoryNodeData[i]);
-                    node.CreatedAction();
-                }
+                graphViewer.Add(NodeManager.Instance.Spawn(graphViewer, data: dsData.NodeData[i]));
             }
         }
 
@@ -251,7 +129,7 @@ namespace AG.DS
                     // Try to find the input port that matches the data's input port GUID.
                     if (graphViewer.PortByPortGUID.TryGetValue(data.InputPortGUID, out PortBase input))
                     {
-                        EdgeManager.Instance.Connect(output, input, data.PortType);
+                        graphViewer.Add(EdgeManager.Instance.Connect(output, input, data.PortType));
                     }
                 }
             }

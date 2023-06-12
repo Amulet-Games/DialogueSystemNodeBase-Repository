@@ -75,7 +75,7 @@ namespace AG.DS
 
             RegisterKeyUpEvent();
 
-            RegisterGeometryChangedEvent();
+            RegisterGeometryChangedEventSetup();
         }
 
 
@@ -103,10 +103,10 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register GeometryChangedEvent to the dialogue editor window.
+        /// Register GeometryChangedEvent to the dialogue editor window when it's first setup.
         /// </summary>
-        void RegisterGeometryChangedEvent() =>
-            dsWindow.rootVisualElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+        void RegisterGeometryChangedEventSetup() =>
+            dsWindow.rootVisualElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEventSetup);
 
 
         /// <summary>
@@ -162,9 +162,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the dialogue editor window has been created and setup.
+        /// The event to invoke when the dialogue editor window's geometry has changed and when it is first setup.
         /// </summary>
-        void GeometryChangedEvent(GeometryChangedEvent evt)
+        void GeometryChangedEventSetup(GeometryChangedEvent evt)
         {
             // Register events to the window's dock area
             {
@@ -177,7 +177,7 @@ namespace AG.DS
             graphViewer.ReframeGraphAll();
 
             // Unregister event after it has done executed once.
-            dsWindow.rootVisualElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+            dsWindow.rootVisualElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEventSetup);
 
 
             /// <summary>
@@ -196,8 +196,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the dialogue editor window's position or dimension has changed
-        /// <br>and its OnEnable callback is triggered. 
+        /// The event to invoke when the dialogue editor window's geometry has changed and when its OnEnable callback is triggered.
         /// </summary>
         /// <param name="evt"></param>
         void GeometryChangedEventOnEnable(GeometryChangedEvent evt)

@@ -34,98 +34,16 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Boolean node data list.
+        /// Node data list.
         /// </summary>
-        public List<BooleanNodeData> BooleanNodeData;
-
-
-        /// <summary>
-        /// Dialogue node data list.
-        /// </summary>
-        public List<DialogueNodeData> DialogueNodeData;
-
-
-        /// <summary>
-        /// End node data list.
-        /// </summary>
-        public List<EndNodeData> EndNodeData;
-
-
-        /// <summary>
-        /// Event node data list.
-        /// </summary>
-        public List<EventNodeData> EventNodeData;
-
-
-        /// <summary>
-        /// Option branch node data list.
-        /// </summary>
-        public List<OptionBranchNodeData> OptionBranchNodeData;
-
-
-        /// <summary>
-        /// Option root node data list.
-        /// </summary>
-        public List<OptionRootNodeData> OptionRootNodeData;
-
-
-        /// <summary>
-        /// Preview node data list.
-        /// </summary>
-        public List<PreviewNodeData> PreviewNodeData;
-
-
-        /// <summary>
-        /// Start node data list.
-        /// </summary>
-        public List<StartNodeData> StartNodeData;
-
-
-        /// <summary>
-        /// Story node data list.
-        /// </summary>
-        public List<StoryNodeData> StoryNodeData;
-
-
-        // ----------------------------- Get Data -----------------------------
-        /// <summary>
-        /// Return a list of all saved node data.
-        /// </summary>
-        /// <returns>A list of all saved node data.</returns>
-        public List<NodeDataBase> GetDataNode()
-        {
-            List<NodeDataBase> nodesData = new();
-
-            nodesData.AddRange(BooleanNodeData);
-            nodesData.AddRange(DialogueNodeData);
-            nodesData.AddRange(EndNodeData);
-            nodesData.AddRange(EventNodeData);
-            nodesData.AddRange(OptionBranchNodeData);
-            nodesData.AddRange(OptionRootNodeData);
-            nodesData.AddRange(PreviewNodeData);
-            nodesData.AddRange(StartNodeData);
-            nodesData.AddRange(StoryNodeData);
-
-            return nodesData;
-        }
+        public List<NodeDataBase> NodeData;
 
 
         // ----------------------------- Clear Data -----------------------------
         /// <summary>
         /// Clear all the saved node data.
         /// </summary>
-        public void ClearDataNode()
-        {
-            BooleanNodeData.Clear();
-            DialogueNodeData.Clear();
-            EndNodeData.Clear();
-            EventNodeData.Clear();
-            OptionBranchNodeData.Clear();
-            OptionRootNodeData.Clear();
-            PreviewNodeData.Clear();
-            StartNodeData.Clear();
-            StoryNodeData.Clear();
-        }
+        public void ClearDataNode() => NodeData.Clear();
 
 
         /// <summary>

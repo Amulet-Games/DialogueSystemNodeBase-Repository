@@ -40,7 +40,7 @@ namespace AG.DS
 
             void AddData()
             {
-                dsData.EndNodeData.Add(data);
+                dsData.NodeData.Add(data);
             }
         }
 

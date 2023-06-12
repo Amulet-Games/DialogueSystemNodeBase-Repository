@@ -3,7 +3,7 @@ using System;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class StoryNodeModel : NodeModelFrameBase<StoryNode>
+    public class StoryNodeModel : NodeModelFrameBase
     {
         /// <summary>
         /// Enum container for the users to choose how they want to trigger the second line of dialogue
@@ -40,11 +40,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the story node model class.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        public StoryNodeModel(StoryNode node)
+        public StoryNodeModel()
         {
-            Node = node;
-
             // Second content
             SecondLineTriggerTypeEnumContainer = new();
 
@@ -55,19 +52,15 @@ namespace AG.DS
 
         // ----------------------------- Remove Ports All -----------------------------
         /// <inheritdoc />
-        public override void RemovePortsAll()
+        public override void RemovePorts(GraphViewer graphViewer)
         {
-            Node.GraphViewer.Remove(port: InputDefaultPort);
-            Node.GraphViewer.Remove(port: OutputDefaultPort);
-        }
+            // Remove from graph viewer cache
+            graphViewer.Remove(port: InputDefaultPort);
+            graphViewer.Remove(port: OutputDefaultPort);
 
-
-        // ----------------------------- Disconnect Ports All -----------------------------
-        /// <inheritdoc />
-        public override void DisconnectPortsAll()
-        {
-            InputDefaultPort.Disconnect(Node.GraphViewer);
-            OutputDefaultPort.Disconnect(Node.GraphViewer);
+            // Disconnect each ports
+            InputDefaultPort.Disconnect(graphViewer);
+            OutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

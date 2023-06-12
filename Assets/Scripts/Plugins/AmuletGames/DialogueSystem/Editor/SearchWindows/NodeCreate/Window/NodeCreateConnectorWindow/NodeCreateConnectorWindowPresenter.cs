@@ -25,7 +25,7 @@ namespace AG.DS
             window.GraphViewer = graphViewer;
             window.SerializeHandler = serializeHandler;
             window.Details = new();
-            window.IsUpdatePositionSelectEntry = false;
+            window.IsUpdateScreenMousePosition = false;
 
             return window;
         }

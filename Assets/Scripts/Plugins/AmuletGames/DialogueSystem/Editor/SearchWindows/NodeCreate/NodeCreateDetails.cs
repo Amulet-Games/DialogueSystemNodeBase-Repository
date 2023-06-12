@@ -27,12 +27,6 @@ namespace AG.DS
         public PortBase ConnectorPort { get; private set; }
 
 
-        /// <summary>
-        /// The vector2 position of the graph to create the node onto.
-        /// </summary>
-        public Vector2 CreatePosition { get; private set; }
-
-
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the node create details class.
@@ -63,7 +57,7 @@ namespace AG.DS
         /// Set a new value to the horizontal alignment type.
         /// </summary>
         /// <param name="value">The horizontal alignment type to set for.</param>
-        public void SetTypeHorizontalAligment(HorizontalAlignmentType value) => HorizontalAlignmentType = value;
+        public void SetTypeHorizontalAlignment(HorizontalAlignmentType value) => HorizontalAlignmentType = value;
 
 
         /// <summary>
@@ -78,12 +72,5 @@ namespace AG.DS
         /// </summary>
         /// <param name="value">The connector port to set for.</param>
         public void SetPortConnector(PortBase value) => ConnectorPort = value;
-
-
-        /// <summary>
-        /// Set a new value to the create position.
-        /// </summary>
-        /// <param name="value">The position to set for.</param>
-        public void SetPositionCreate(Vector2 value) => CreatePosition = value;
     }
 }

@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class OptionBranchNodeModel : NodeModelFrameBase<OptionBranchNode>
+    public class OptionBranchNodeModel : NodeModelFrameBase
     {
         /// <summary>
         /// Content button for adding conditions to the node.
@@ -37,30 +37,24 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the option branch node model class.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        public OptionBranchNodeModel(OptionBranchNode node)
+        public OptionBranchNodeModel()
         {
-            Node = node;
             BranchTitleTextFieldModel = new(placeholderText: StringConfig.OptionBranchNode_BranchTitleTextField_PlaceholderText);
             OptionBranchNodeStitcher = new();
         }
 
 
-        // ----------------------------- Remove Ports All -----------------------------
+        // ----------------------------- Remove Ports -----------------------------
         /// <inheritdoc />
-        public override void RemovePortsAll()
+        public override void RemovePorts(GraphViewer graphViewer)
         {
-            Node.GraphViewer.Remove(port: InputOptionPort);
-            Node.GraphViewer.Remove(port: OutputDefaultPort);
-        }
+            // Remove from graph viewer cache
+            graphViewer.Remove(port: InputOptionPort);
+            graphViewer.Remove(port: OutputDefaultPort);
 
-
-        // ----------------------------- Disconnect Ports All -----------------------------
-        /// <inheritdoc />
-        public override void DisconnectPortsAll()
-        {
-            InputOptionPort.Disconnect(Node.GraphViewer);
-            OutputDefaultPort.Disconnect(Node.GraphViewer);
+            // Disconnect each ports
+            InputOptionPort.Disconnect(graphViewer);
+            OutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

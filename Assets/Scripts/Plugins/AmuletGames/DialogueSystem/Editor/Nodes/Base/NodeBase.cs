@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
+﻿using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -33,12 +31,6 @@ namespace AG.DS
 
         // ----------------------------- Action -----------------------------
         /// <summary>
-        /// Action to invoke when the node is created and added to the graph.
-        /// </summary>
-        public abstract void CreatedAction();
-
-
-        /// <summary>
         /// Action to invoke just before the node is going to be removed from the graph manually.
         /// </summary>
         public abstract void PreManualRemoveAction();
@@ -52,9 +44,9 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the node values to the dialogue system data.
+        /// Save the node values to the given data.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to save to.</param>
+        /// <param name="dsData">The data to save to.</param>
         public abstract void Save(DialogueSystemData dsData);
 
 
@@ -100,78 +92,6 @@ namespace AG.DS
 
             RefreshPorts();
             GraphViewer.Remove(port);
-        }
-
-        
-        // ----------------------------- Set Position -----------------------------
-        public void SetPosition
-        (
-           NodeCreateDetails details,
-           PortBase leftSideAlignmentReferencePort = null,
-           PortBase rightSideAlignmentReferencePort = null,
-           PortBase middleAlignmentReferencePort = null
-        )
-        {
-            // Set Position
-            {
-                Vector2 targetPos = details.CreatePosition;
-                switch (details.HorizontalAlignmentType)
-                {
-                    case HorizontalAlignmentType.LEFT:
-
-                        targetPos.y -= (titleContainer.worldBound.height
-                                  + leftSideAlignmentReferencePort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / GraphViewer.scale;
-
-                        targetPos.x -= localBound.width;
-
-                        break;
-                    case HorizontalAlignmentType.MIDDLE:
-
-                        targetPos.y -= (titleContainer.worldBound.height
-                                  + middleAlignmentReferencePort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / GraphViewer.scale;
-
-                        targetPos.x -= localBound.width / 2;
-
-                        break;
-                    case HorizontalAlignmentType.RIGHT:
-
-                        targetPos.y -= (titleContainer.worldBound.height
-                                  + rightSideAlignmentReferencePort.localBound.position.y
-                                  + NodeConfig.ManualCreateYOffset)
-                                  / GraphViewer.scale;
-
-                        break;
-                }
-
-                SetPosition(newPos: new Rect(targetPos, Vector2Utility.Zero));
-            }
-
-            // Connect connector port
-            {
-                // If connector port is null then return.
-                if (details.ConnectorPort == null)
-                    return;
-
-                var port = details.ConnectorPort;
-                var isInput = port.IsInput();
-
-                if (port.connected)
-                {
-                    port.Disconnect(GraphViewer);
-                }
-
-                var edge = EdgeManager.Instance.Connect
-                (
-                    output: !isInput ? port : leftSideAlignmentReferencePort,
-                    input: isInput ? port : rightSideAlignmentReferencePort
-                );
-
-                GraphViewer.Add(edge);
-            }
         }
     }
 }

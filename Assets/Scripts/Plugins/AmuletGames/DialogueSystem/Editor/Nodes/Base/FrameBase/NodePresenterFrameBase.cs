@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -14,111 +13,49 @@ namespace AG.DS
         where TNodeModel : NodeModelBase
     {
         /// <summary>
-        /// Reference of the node element.
+        /// Method for creating the elements for the node.
         /// </summary>
-        protected TNode Node;
+        /// <param name="model">The node model to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <returns>The type node element.</returns>
+        public abstract TNode CreateElements(TNodeModel model, GraphViewer graphViewer);
 
 
-        /// <summary>
-        /// Reference of the node model.
-        /// </summary>
-        protected TNodeModel Model;
-
-
-        // ----------------------------- Makers -----------------------------
         /// <summary>
         /// Method for creating the node's title elements.
         /// </summary>
-        public void CreateTitleElements()
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
+        protected void CreateTitleElements
+        (
+            TNode node,
+            TNodeModel model
+        )
         {
-            VisualElement nodeTitleContainer;
+            // Create container
+            VisualElement titleContainer = new();
+            titleContainer.AddToClassList(StyleConfig.Node_Title_Container);
 
-            SetupContainers();
+            // Title text field
+            model.NodeTitleTextFieldModel.TextField = NodeTitleTextFieldPresenter.CreateElement
+            (
+                titleText: node.title,
+                fieldUSS01: StyleConfig.Node_Title_TextField
+            );
 
-            SetupTitleTextField();
+            // Edit title button
+            model.EditTitleButton = CommonButtonPresenter.CreateElement
+            (
+                buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
+                buttonUSS01: StyleConfig.Node_EditTitle_Button
+            );
 
-            SetupEditTitleButton();
+            // Add to container
+            titleContainer.Add(model.NodeTitleTextFieldModel.TextField);
+            titleContainer.Add(model.EditTitleButton);
 
-            AddElementsToContainer();
-
-            AddContainerToNode();
-
-            void SetupContainers()
-            {
-                nodeTitleContainer = new();
-                nodeTitleContainer.AddToClassList(StyleConfig.Node_Title_Container);
-            }
-
-            void SetupTitleTextField()
-            {
-                Model.NodeTitleTextFieldModel.TextField = NodeTitleTextFieldPresenter.CreateElement
-                (
-                    titleText: Node.title,
-                    fieldUSS01: StyleConfig.Node_Title_TextField
-                );
-            }
-
-            void SetupEditTitleButton()
-            {
-                Model.EditTitleButton = CommonButtonPresenter.CreateElement
-                (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
-                    buttonUSS01: StyleConfig.Node_EditTitle_Button
-                );
-            }
-
-            void AddElementsToContainer()
-            {
-                // Node title field.
-                nodeTitleContainer.Add(Model.NodeTitleTextFieldModel.TextField);
-
-                // Edit title button.
-                nodeTitleContainer.Add(Model.EditTitleButton);
-            }
-
-            void AddContainerToNode()
-            {
-                Node.titleContainer.Add(nodeTitleContainer);
-            }
+            // Add to node
+            node.titleContainer.Add(titleContainer);
         }
-
-
-        /// <summary>
-        /// Method for creating the node's port elements.
-        /// </summary>
-        public virtual void CreatePortElements() { }
-
-
-        /// <summary>
-        /// Method for creating the node's content elements.
-        /// </summary>
-        public virtual void CreateContentElements() { }
-
-
-        // ----------------------------- Set Node Position -----------------------------
-        /// <summary>
-        /// Set the node position base on the value from the details.
-        /// </summary>
-        /// <param name="details">The node create details to set for.</param>
-        public void SetNodePosition(NodeCreateDetails details)
-        {
-            Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-
-            void GeometryChangedEvent(GeometryChangedEvent evt)
-            {
-                // Adjust the node's position after it's created.
-                GeometryChangedAdjustNodePosition(details);
-
-                // Unregister the action once the setup is done.
-                Node.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-            }
-        }
-
-
-        /// <summary>
-        /// Adjust the node's position base on the value from the details.
-        /// </summary>
-        /// <param name="details">The node create details to set for.</param>
-        protected abstract void GeometryChangedAdjustNodePosition(NodeCreateDetails details);
     }
 }

@@ -16,28 +16,22 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the event node class.
         /// </summary>
+        /// <param name="model">The node model to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public EventNode(GraphViewer graphViewer)
+        public EventNode(EventNodeModel model, GraphViewer graphViewer)
         {
-            // Setup frame fields
+            // Setup details
             {
-                Model = new(node: this);
-                Presenter = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
-                Callback = new(node: this, model: Model);
+                Model = model;
                 GraphViewer = graphViewer;
+
+                Callback = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
 
                 title = StringConfig.EventNode_TitleTextField_LabelText;
 
                 style.minWidth = NodeConfig.EventNodeMinWidth;
                 style.maxWidth = NodeConfig.EventNodeMinWidth + NodeConfig.EventNodeWidthBuffer;
-            }
-
-            // Create elements
-            {
-                Presenter.CreateTitleElements();
-                Presenter.CreatePortElements();
-                Presenter.CreateContentElements();
             }
 
             // Add style sheet

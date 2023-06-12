@@ -14,7 +14,7 @@ namespace AG.DS
     > 
         : NodeBase
         where TNode : NodeBase
-        where TNodeModel : NodeModelFrameBase<TNode>
+        where TNodeModel : NodeModelFrameBase
         where TNodePresenter : NodePresenterFrameBase<TNode, TNodeModel>
         where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeModel, TNodeData>
         where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeModel>
@@ -23,19 +23,13 @@ namespace AG.DS
         /// <summary>
         /// Reference of the node model.
         /// </summary>
-        protected TNodeModel Model;
-
-
-        /// <summary>
-        /// Reference of the node presenter.
-        /// </summary>
-        public TNodePresenter Presenter;
+        public TNodeModel Model;
 
 
         /// <summary>
         /// Reference of the node callback.
         /// </summary>
-        protected TNodeCallback Callback;
+        public TNodeCallback Callback;
 
 
         /// <summary>
@@ -48,8 +42,6 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the node frame base class.
         /// </summary>
-        /// <param name="nodeTitle">The node title to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public NodeFrameBase()
         {
             // Setup details
@@ -131,17 +123,9 @@ namespace AG.DS
 
         // ----------------------------- Action -----------------------------
         /// <inheritdoc />
-        public override void CreatedAction()
-        {
-            Callback.RegisterEvents();
-        }
-
-
-        /// <inheritdoc />
         public override void PreManualRemoveAction()
         {
-            Model.RemovePortsAll();
-            Model.DisconnectPortsAll();
+            Model.RemovePorts(GraphViewer);
 
             Callback.UnregisterEvents();
         }

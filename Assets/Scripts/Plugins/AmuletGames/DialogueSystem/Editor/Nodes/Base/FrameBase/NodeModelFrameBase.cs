@@ -1,29 +1,12 @@
 namespace AG.DS
 {
-    public abstract class NodeModelFrameBase
-    <
-        TNode
-    >
-        : NodeModelBase
-        where TNode : NodeBase
+    public abstract class NodeModelFrameBase : NodeModelBase
     {
-        /// <summary>
-        /// Reference of the node element.
-        /// </summary>
-        protected TNode Node;
-
-
-        // ----------------------------- Remove Cache Ports All -----------------------------
+        // ----------------------------- Remove Ports -----------------------------
         /// <summary>
         /// Remove any ports that are in the node from the serialize handler cache.
         /// </summary>
-        public abstract void RemovePortsAll();
-
-
-        // ----------------------------- Disconnect Ports All -----------------------------
-        /// <summary>
-        /// Disconnect any ports that are in the node.
-        /// </summary>
-        public abstract void DisconnectPortsAll();
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        public abstract void RemovePorts(GraphViewer graphViewer);
     }
 }

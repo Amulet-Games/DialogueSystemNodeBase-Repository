@@ -33,9 +33,16 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Will the window update the cached screen mouse position when selected a node create entry?
+        /// When calculating the node create position, should the window use the cached screen mouse position as one of the variable
+        /// <br>or get a new screen mouse position from the graph viewer element?</br>
         /// </summary>
-        public bool IsUpdatePositionSelectEntry;
+        public bool IsUpdateScreenMousePosition;
+
+
+        /// <summary>
+        /// The vector2 position of where the node is created on the graph.
+        /// </summary>
+        Vector2 createPosition;
 
 
         // ----------------------------- Callbacks -----------------------------
@@ -47,39 +54,25 @@ namespace AG.DS
         /// <param name="context">Contextual data to pass to the search window when it is first created.</param>
         public bool OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
         {
-            Vector2 createPosition;
+            // Invoke search tree entry selected event.
+            SearchTreeEntrySelectedEvent.Invoke();
 
-            InvokeSelectedEntryEvent();
-
-            CalculateGraphMousePosition();
-
-            PostUpdateCreateDetails();
-
-            CreateNodes();
-
-            return true;
-
-            void InvokeSelectedEntryEvent()
+            // Get create position.
             {
-                SearchTreeEntrySelectedEvent.Invoke();
-            }
-
-            void CalculateGraphMousePosition()
-            {
-                // The 2d direction from mouse screen position to window center position.
+                // 2D direction from mouse screen position to window center position.
                 Vector2 preWindowCenterDir;
-                if (IsUpdatePositionSelectEntry)
+                if (IsUpdateScreenMousePosition)
                 {
-                    // Update mouse position again.
+                    // Update the mouse position again.
                     preWindowCenterDir = GraphViewer.GetCurrentEventMousePosition() - DsWindow.position.position;
                 }
                 else
                 {
-                    // Use the mouse position which was cached earlier.
+                    // Use the mouse position that was cached earlier.
                     preWindowCenterDir = context.screenMousePosition - DsWindow.position.position;
                 }
-                
-                // Get the screen space mouse position and convert its coordinates to window(?) space.
+
+                // Convert the direction from screen space to window space(?)
                 Vector2 postWindowCenterDir = DsWindow.rootVisualElement.ChangeCoordinatesTo
                 (
                     dest: DsWindow.rootVisualElement.parent,
@@ -90,73 +83,188 @@ namespace AG.DS
                 createPosition = GraphViewer.contentViewContainer.WorldToLocal(p: postWindowCenterDir);
             }
 
-            void PostUpdateCreateDetails()
+            // Create node.
             {
-                // Update the position of where the node is going to be created.
-                Details.SetPositionCreate(value: createPosition);
-            }
+                var node = NodeManager.Instance.Spawn
+                (
+                    GraphViewer,
+                    nodeType: ((NodeCreateEntry)searchTreeEntry).NodeType
+                );
 
-            void CreateNodes()
-            {
-                // Retrieves the underlying node type by conversing the entryId inside the search entry.
-                var selectedNodeType = (N_NodeType)((NodeCreateEntry)searchTreeEntry).EntryId;
-                switch (selectedNodeType)
+                // Register GeometryChangeEvent to the node to make sure its spawn position is correct.
+                switch (node)
                 {
-                    case N_NodeType.Boolean:
-                        var booleanNode = new BooleanNode(GraphViewer);
-                        booleanNode.CreatedAction();
-                        booleanNode.Presenter.SetNodePosition(Details);
-                        GraphViewer.Add(booleanNode);
+                    case BooleanNode booleanNode:
+                        SetNodePosition
+                            (
+                                booleanNode,
+                                leftSideAlignmentReferencePort: booleanNode.Model.TrueOutputDefaultPort,
+                                rightSideAlignmentReferencePort: booleanNode.Model.InputDefaultPort,
+                                middleAlignmentReferencePort: booleanNode.Model.InputDefaultPort
+                            );
                         break;
-                    case N_NodeType.Dialogue:
-                        var dialogueNode = new DialogueNode(GraphViewer);
-                        dialogueNode.CreatedAction();
-                        dialogueNode.Presenter.SetNodePosition(Details);
-                        GraphViewer.Add(dialogueNode);
+                    case DialogueNode dialogueNode:
+                        SetNodePosition
+                            (
+                                dialogueNode,
+                                leftSideAlignmentReferencePort: dialogueNode.Model.OutputDefaultPort,
+                                rightSideAlignmentReferencePort: dialogueNode.Model.InputDefaultPort,
+                                middleAlignmentReferencePort: dialogueNode.Model.InputDefaultPort
+                            );
                         break;
-                    case N_NodeType.End:
-                        var endNode = new EndNode(GraphViewer);
-                        endNode.CreatedAction();
-                        endNode.Presenter.SetNodePosition(Details);
-                        GraphViewer.Add(endNode);
+                    case EndNode endNode:
+                        SetNodePosition
+                            (
+                                endNode,
+                                rightSideAlignmentReferencePort: endNode.Model.InputDefaultPort,
+                                middleAlignmentReferencePort: endNode.Model.InputDefaultPort
+                            );
                         break;
-                    case N_NodeType.Event:
-                        var eventNode = new EventNode(GraphViewer);
-                        eventNode.CreatedAction();
-                        eventNode.Presenter.SetNodePosition(Details);
-                        GraphViewer.Add(eventNode);
+                    case EventNode eventNode:
+                        SetNodePosition
+                            (
+                                eventNode,
+                                leftSideAlignmentReferencePort: eventNode.Model.OutputDefaultPort,
+                                rightSideAlignmentReferencePort: eventNode.Model.InputDefaultPort,
+                                middleAlignmentReferencePort: eventNode.Model.InputDefaultPort
+                            );
                         break;
-                    case N_NodeType.OptionBranch:
-                        var optionBranchNode = new OptionBranchNode(GraphViewer);
-                        optionBranchNode.CreatedAction();
-                        optionBranchNode.Presenter.SetNodePosition(Details);
-                        GraphViewer.Add(optionBranchNode);
+                    case OptionBranchNode optionBranchNode:
+                        SetNodePosition
+                            (
+                                optionBranchNode,
+                                leftSideAlignmentReferencePort: optionBranchNode.Model.OutputDefaultPort,
+                                rightSideAlignmentReferencePort: optionBranchNode.Model.InputOptionPort,
+                                middleAlignmentReferencePort: optionBranchNode.Model.InputOptionPort
+                            );
                         break;
-                    case N_NodeType.OptionRoot:
-                        var optionRootNode = new OptionRootNode(GraphViewer);
-                        optionRootNode.CreatedAction();
-                        optionRootNode.Presenter.SetNodePosition(Details);
-                        GraphViewer.Add(optionRootNode);
+                    case OptionRootNode optionRootNode:
+                        SetNodePosition
+                            (
+                                optionRootNode,
+                                leftSideAlignmentReferencePort: optionRootNode.Model.OutputOptionPort,
+                                rightSideAlignmentReferencePort: optionRootNode.Model.InputDefaultPort,
+                                middleAlignmentReferencePort: optionRootNode.Model.InputDefaultPort
+                            );
                         break;
-                    case N_NodeType.Preview:
-                        var previewNode = new PreviewNode(GraphViewer);
-                        previewNode.CreatedAction();
-                        previewNode.Presenter.SetNodePosition(Details);
-                        GraphViewer.Add(previewNode);
+                    case PreviewNode previewNode:
+                        SetNodePosition
+                            (
+                                previewNode,
+                                leftSideAlignmentReferencePort: previewNode.Model.OutputDefaultPort,
+                                rightSideAlignmentReferencePort: previewNode.Model.InputDefaultPort,
+                                middleAlignmentReferencePort: previewNode.Model.InputDefaultPort
+                            );
                         break;
-                    case N_NodeType.Start:
-                        var startNode = new StartNode(GraphViewer);
-                        startNode.CreatedAction();
-                        startNode.Presenter.SetNodePosition(Details);
-                        GraphViewer.Add(startNode);
+                    case StartNode startNode:
+                        SetNodePosition
+                            (
+                                startNode,
+                                leftSideAlignmentReferencePort: startNode.Model.OutputDefaultPort,
+                                middleAlignmentReferencePort: startNode.Model.OutputDefaultPort
+                            );
                         break;
-                    case N_NodeType.Story:
-                        var storyNode = new StoryNode(GraphViewer);
-                        storyNode.CreatedAction();
-                        storyNode.Presenter.SetNodePosition(Details);
-                        GraphViewer.Add(storyNode);
+                    case StoryNode storyNode:
+                        SetNodePosition
+                            (
+                                storyNode,
+                                leftSideAlignmentReferencePort: storyNode.Model.OutputDefaultPort,
+                                rightSideAlignmentReferencePort: storyNode.Model.InputDefaultPort,
+                                middleAlignmentReferencePort: storyNode.Model.InputDefaultPort
+                            );
                         break;
                 }
+
+                // Add the node to the graph.
+                GraphViewer.Add(node);
+            }
+
+            return true;
+        }
+
+
+        /// <summary>
+        /// Register GeometryChangeEvent to the given node to set its position according to the calculated created position.
+        /// </summary>
+        /// <param name="details">The node create details to set for.</param>
+        /// <param name="leftSideAlignmentReferencePort">The output port of the node to set for, leave this empty if the node doesn't have one.</param>
+        /// <param name="rightSideAlignmentReferencePort">The input port of the node to set for, leave this empty if the node doesn't have one.</param>
+        /// <param name="middleAlignmentReferencePort">Can be set by either input port or output port.</param>
+        void SetNodePosition
+        (
+           NodeBase node,
+           PortBase leftSideAlignmentReferencePort = null,
+           PortBase rightSideAlignmentReferencePort = null,
+           PortBase middleAlignmentReferencePort = null
+        )
+        {
+            node.RegisterCallback<GeometryChangedEvent>(SetPosition);
+
+            void SetPosition(GeometryChangedEvent evt)
+            {
+                // Set position
+                {
+                    Vector2 targetPos = createPosition;
+                    switch (Details.HorizontalAlignmentType)
+                    {
+                        case HorizontalAlignmentType.LEFT:
+
+                            targetPos.y -= (node.titleContainer.worldBound.height
+                                      + leftSideAlignmentReferencePort.localBound.position.y
+                                      + NodeConfig.ManualCreateYOffset)
+                                      / GraphViewer.scale;
+
+                            targetPos.x -= node.localBound.width;
+
+                            break;
+                        case HorizontalAlignmentType.MIDDLE:
+
+                            targetPos.y -= (node.titleContainer.worldBound.height
+                                      + middleAlignmentReferencePort.localBound.position.y
+                                      + NodeConfig.ManualCreateYOffset)
+                                      / GraphViewer.scale;
+
+                            targetPos.x -= node.localBound.width / 2;
+
+                            break;
+                        case HorizontalAlignmentType.RIGHT:
+
+                            targetPos.y -= (node.titleContainer.worldBound.height
+                                      + rightSideAlignmentReferencePort.localBound.position.y
+                                      + NodeConfig.ManualCreateYOffset)
+                                      / GraphViewer.scale;
+
+                            break;
+                    }
+
+                    node.SetPosition(newPos: new Rect(targetPos, Vector2Utility.Zero));
+                }
+
+                // Connect connector port
+                {
+                    // If connector port is null then return.
+                    if (Details.ConnectorPort == null)
+                        return;
+
+                    var port = Details.ConnectorPort;
+                    var isInput = port.IsInput();
+
+                    if (port.connected)
+                    {
+                        port.Disconnect(GraphViewer);
+                    }
+
+                    var edge = EdgeManager.Instance.Connect
+                    (
+                        output: !isInput ? port : leftSideAlignmentReferencePort,
+                        input: isInput ? port : rightSideAlignmentReferencePort
+                    );
+
+                    GraphViewer.Add(edge);
+                }
+
+                // Unregister event after it has done executed once.
+                node.UnregisterCallback<GeometryChangedEvent>(SetPosition);
             }
         }
 

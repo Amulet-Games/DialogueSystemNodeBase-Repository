@@ -6,9 +6,10 @@ namespace AG.DS
     {
         // ----------------------------- Setup -----------------------------
         /// <inheritdoc />
-        public override void Setup(DefaultEdge edge)
+        public override EdgeCallbackFrameBase<DefaultEdge> Setup(DefaultEdge edge)
         {
             Edge = edge;
+            return this;
         }
 
 

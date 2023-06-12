@@ -55,7 +55,7 @@
 
             void AddData()
             {
-                dsData.DialogueNodeData.Add(data);
+                dsData.NodeData.Add(data);
             }
         }
 

@@ -29,7 +29,7 @@ namespace AG.DS
                 connectorPort: null
             );
 
-            window.IsUpdatePositionSelectEntry = true;
+            window.IsUpdateScreenMousePosition = true;
 
             return window;
         }

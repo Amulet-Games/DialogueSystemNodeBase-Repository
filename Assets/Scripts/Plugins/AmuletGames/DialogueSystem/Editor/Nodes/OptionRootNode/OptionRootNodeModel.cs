@@ -3,7 +3,7 @@ using UnityEditor.Experimental.GraphView;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class OptionRootNodeModel : NodeModelFrameBase<OptionRootNode>
+    public class OptionRootNodeModel : NodeModelFrameBase
     {
         /// <summary>
         /// Content button for adding output option port to the node.
@@ -39,36 +39,30 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the option root node model class.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        public OptionRootNodeModel(OptionRootNode node)
+        public OptionRootNodeModel()
         {
-            Node = node;
             RootTitleTextFieldModel = new(placeholderText: StringConfig.OptionRootNode_RootTitleTextField_PlaceholderText);
             OutputOptionPortGroupModel = new(direction: Direction.Output);
         }
 
 
-        // ----------------------------- Remove Ports All -----------------------------
+        // ----------------------------- Remove Ports -----------------------------
         /// <inheritdoc />
-        public override void RemovePortsAll()
+        public override void RemovePorts(GraphViewer graphViewer)
         {
-            Node.GraphViewer.Remove(port: InputDefaultPort);
-            Node.GraphViewer.Remove(port: OutputOptionPort);
+            // Remove from graph viewer cache
+            graphViewer.Remove(port: InputDefaultPort);
+            graphViewer.Remove(port: OutputOptionPort);
 
             for (int i = 0; i < OutputOptionPortGroupModel.Cells.Count; i++)
             {
-                Node.GraphViewer.Remove(port: OutputOptionPortGroupModel.Cells[i].Port);
+                graphViewer.Remove(port: OutputOptionPortGroupModel.Cells[i].Port);
             }
-        }
 
-
-        // ----------------------------- Disconnect Ports All -----------------------------
-        /// <inheritdoc />
-        public override void DisconnectPortsAll()
-        {
-            InputDefaultPort.Disconnect(Node.GraphViewer);
-            OutputOptionPort.Disconnect(Node.GraphViewer);
-            OutputOptionPortGroupModel.Disconnect(Node.GraphViewer);
+            // Disconnect each ports
+            InputDefaultPort.Disconnect(graphViewer);
+            OutputOptionPort.Disconnect(graphViewer);
+            OutputOptionPortGroupModel.Disconnect(graphViewer);
         }
     }
 }

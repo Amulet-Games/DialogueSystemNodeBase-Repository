@@ -52,7 +52,7 @@ namespace AG.DS
 
             void AddData()
             {
-                dsData.PreviewNodeData.Add(data);
+                dsData.NodeData.Add(data);
             }
         }
 

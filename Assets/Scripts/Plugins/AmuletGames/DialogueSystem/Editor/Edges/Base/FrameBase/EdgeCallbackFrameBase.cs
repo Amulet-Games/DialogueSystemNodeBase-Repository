@@ -15,7 +15,8 @@ namespace AG.DS
         /// Setup for the class.
         /// </summary>
         /// <param name="edge">The type edge element to set for.</param>
-        public abstract void Setup(TEdge edge);
+        /// <returns>The type edge callback frame base class.</returns>
+        public abstract EdgeCallbackFrameBase<TEdge> Setup(TEdge edge);
 
 
         // ----------------------------- Register Events -----------------------------

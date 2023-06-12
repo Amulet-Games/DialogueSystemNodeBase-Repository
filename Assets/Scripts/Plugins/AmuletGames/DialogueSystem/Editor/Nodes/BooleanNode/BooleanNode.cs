@@ -16,28 +16,21 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the boolean node class.
         /// </summary>
+        /// <param name="model">The node model to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public BooleanNode(GraphViewer graphViewer)
+        public BooleanNode(BooleanNodeModel model, GraphViewer graphViewer)
         {
-            // Setup frame fields
+            // Setup details
             {
-                Model = new(node: this);
-                Presenter = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
-                Callback = new(node: this, model: Model);
+                Model = model;
                 GraphViewer = graphViewer;
 
-                title = StringConfig.BooleanNode_TitleTextField_LabelText;
+                Callback = new(node: this, model: Model);
+                Serializer = new(node: this, model: Model);
 
+                title = StringConfig.BooleanNode_TitleTextField_LabelText;
                 style.minWidth = NodeConfig.BooleanNodeMinWidth;
                 style.maxWidth = NodeConfig.BooleanNodeMinWidth + NodeConfig.BooleanNodeWidthBuffer;
-            }
-
-            // Create elements
-            {
-                Presenter.CreateTitleElements();
-                Presenter.CreatePortElements();
-                Presenter.CreateContentElements();
             }
 
             // Add style sheet

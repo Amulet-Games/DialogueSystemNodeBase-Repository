@@ -52,7 +52,7 @@ namespace AG.DS
             (
                 entryName: StringConfig.SearchEntry_ChildEntry_BooleanNode_LabelText,
                 entryLevel: entryLevel,
-                entryNodeType: N_NodeType.Boolean
+                entryNodeType: NodeType.Boolean
             );
         }
 
@@ -68,7 +68,7 @@ namespace AG.DS
             (
                 entryName: StringConfig.SearchEntry_ChildEntry_DialogueNode_LabelText,
                 entryLevel: entryLevel,
-                entryNodeType: N_NodeType.Dialogue
+                entryNodeType: NodeType.Dialogue
             );
         }
 
@@ -84,7 +84,7 @@ namespace AG.DS
             (
                 entryName: StringConfig.SearchEntry_ChildEntry_EndNode_LabelText,
                 entryLevel: entryLevel,
-                entryNodeType: N_NodeType.End
+                entryNodeType: NodeType.End
             );
         }
 
@@ -100,7 +100,7 @@ namespace AG.DS
             (
                 entryName: StringConfig.SearchEntry_ChildEntry_EventNode_LabelText,
                 entryLevel: entryLevel,
-                entryNodeType: N_NodeType.Event
+                entryNodeType: NodeType.Event
             );
         }
 
@@ -116,7 +116,7 @@ namespace AG.DS
             (
                 entryName: StringConfig.SearchEntry_ChildEntry_OptionBranchNode_LabelText,
                 entryLevel: entryLevel,
-                entryNodeType: N_NodeType.OptionBranch
+                entryNodeType: NodeType.OptionBranch
             );
         }
 
@@ -132,7 +132,7 @@ namespace AG.DS
             (
                 entryName: StringConfig.SearchEntry_ChildEntry_OptionRootNode_LabelText,
                 entryLevel: entryLevel,
-                entryNodeType: N_NodeType.OptionRoot
+                entryNodeType: NodeType.OptionRoot
             );
         }
 
@@ -148,7 +148,7 @@ namespace AG.DS
             (
                 entryName: StringConfig.SearchEntry_ChildEntry_PreviewNode_LabelText,
                 entryLevel: entryLevel,
-                entryNodeType: N_NodeType.Preview
+                entryNodeType: NodeType.Preview
             );
         }
 
@@ -164,7 +164,7 @@ namespace AG.DS
             (
                 entryName: StringConfig.SearchEntry_ChildEntry_StartNode_LabelText,
                 entryLevel: entryLevel,
-                entryNodeType: N_NodeType.Start
+                entryNodeType: NodeType.Start
             );
         }
 
@@ -180,7 +180,7 @@ namespace AG.DS
             (
                 entryName: StringConfig.SearchEntry_ChildEntry_StoryNode_LabelText,
                 entryLevel: entryLevel,
-                entryNodeType: N_NodeType.Story
+                entryNodeType: NodeType.Story
             );
         }
 
@@ -192,7 +192,7 @@ namespace AG.DS
         /// <param name="entryLevel">The level of the new node child entry to set for.</param>
         /// <param name="entryNodeType">The type of node that the child entry is representing.</param>
         /// <returns>A new node child entry.</returns>
-        NodeCreateEntry CreateNodeEntry(string entryName, int entryLevel, N_NodeType entryNodeType)
+        NodeCreateEntry CreateNodeEntry(string entryName, int entryLevel, NodeType entryNodeType)
         {
             // If entry icon is not yet setup.
             if (entryIcon == null)
@@ -206,7 +206,7 @@ namespace AG.DS
             (
                 content: new GUIContent(text: entryName, image: entryIcon),
                 level: entryLevel,
-                entryId: (int)entryNodeType
+                nodeType: entryNodeType
             );
         }
     }

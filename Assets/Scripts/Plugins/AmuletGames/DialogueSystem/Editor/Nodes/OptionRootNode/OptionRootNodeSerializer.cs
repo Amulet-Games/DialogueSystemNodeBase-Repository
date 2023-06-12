@@ -49,7 +49,7 @@ namespace AG.DS
 
             void AddData()
             {
-                dsData.OptionRootNodeData.Add(data);
+                dsData.NodeData.Add(data);
             }
         }
 

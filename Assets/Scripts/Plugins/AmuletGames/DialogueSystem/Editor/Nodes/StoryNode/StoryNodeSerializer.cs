@@ -57,7 +57,7 @@ namespace AG.DS
 
             void AddData()
             {
-                dsData.StoryNodeData.Add(data);
+                dsData.NodeData.Add(data);
             }
         }
 
