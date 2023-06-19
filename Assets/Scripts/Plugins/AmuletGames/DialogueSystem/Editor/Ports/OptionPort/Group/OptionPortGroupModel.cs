@@ -86,7 +86,7 @@ namespace AG.DS
                 OptionPortGroupCellPresenter.CreateElement
                 (
                     model: cell,
-                    connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                    connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                     direction: direction
                 );
 

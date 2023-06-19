@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor.UIElements;
+
 using UnityEngine;
 
 namespace AG.DS
@@ -22,7 +22,7 @@ namespace AG.DS
         /// <summary>
         /// Visual element.
         /// </summary>
-        [NonSerialized] public IntegerField IntegerField;
+        [NonSerialized] public UnityEngine.UIElements.IntegerField IntegerField;
 
 
         // ----------------------------- Serialization -----------------------------

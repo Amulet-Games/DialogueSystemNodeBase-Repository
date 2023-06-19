@@ -6,7 +6,6 @@ namespace AG.DS
     <
         BooleanNode,
         BooleanNodeModel,
-        BooleanNodePresenter,
         BooleanNodeSerializer,
         BooleanNodeCallback,
         BooleanNodeData

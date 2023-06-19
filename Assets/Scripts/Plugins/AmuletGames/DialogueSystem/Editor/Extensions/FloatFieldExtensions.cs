@@ -1,4 +1,4 @@
-using UnityEditor.UIElements;
+
 using UnityEngine;
 
 namespace AG.DS
@@ -10,7 +10,7 @@ namespace AG.DS
         /// <br>otherwise remove the field from the empty style class.</br>
         /// </summary>
         /// <param name="field">Extension float field.</param>
-        public static void ToggleEmptyStyle(this FloatField field)
+        public static void ToggleEmptyStyle(this UnityEngine.UIElements.FloatField field)
         {
             if (field.value != 0)
             {
@@ -27,7 +27,7 @@ namespace AG.DS
         /// Remove the float field from the empty style class.
         /// </summary>
         /// <param name="field">Extension float field.</param>
-        public static void HideEmptyStyle(this FloatField field)
+        public static void HideEmptyStyle(this UnityEngine.UIElements.FloatField field)
         {
             if (field.ClassListContains(StyleConfig.FloatField_Empty))
             {
@@ -40,7 +40,7 @@ namespace AG.DS
         /// Add the float field to the empty style class.
         /// </summary>
         /// <param name="field">Extension float field.</param>
-        public static void ShowEmptyStyle(this FloatField field)
+        public static void ShowEmptyStyle(this UnityEngine.UIElements.FloatField field)
         {
             if (!field.ClassListContains(StyleConfig.FloatField_Empty))
             {
@@ -56,7 +56,7 @@ namespace AG.DS
         /// <param name="iconSprite">The sprite to set for the icon.</param>
         public static void AddFieldIcon
         (
-            this FloatField field,
+            this UnityEngine.UIElements.FloatField field,
             Sprite iconSprite
         )
         {

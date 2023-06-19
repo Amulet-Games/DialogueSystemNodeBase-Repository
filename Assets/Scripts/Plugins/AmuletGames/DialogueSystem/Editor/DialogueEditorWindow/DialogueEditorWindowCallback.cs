@@ -1,3 +1,6 @@
+using System;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -5,9 +8,9 @@ namespace AG.DS
     public class DialogueEditorWindowCallback
     {
         /// <summary>
-        /// The targeting dialogue editor window.
+        /// Reference of the dialogue system data.
         /// </summary>
-        DialogueEditorWindow dsWindow;
+        DialogueSystemData dsData;
 
 
         /// <summary>
@@ -23,15 +26,27 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the hotkey manager.
+        /// Reference of the serialize handler.
         /// </summary>
-        HotkeyManager hotkeyManager;
+        SerializeHandler serializeHandler;
 
 
         /// <summary>
-        /// Reference of the project manager.
+        /// Reference of the node create request window.
         /// </summary>
-        ProjectManager projectManager;
+        NodeCreateRequestWindow nodeCreateRequestWindow;
+
+
+        /// <summary>
+        /// The targeting dialogue editor window.
+        /// </summary>
+        DialogueEditorWindow dsWindow;
+
+
+        /// <summary>
+        /// Reference of the dialogue editor window root visual element.
+        /// </summary>
+        VisualElement windowRootElement;
 
 
         /// <summary>
@@ -44,24 +59,30 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the dialogue editor window callback class.
         /// </summary>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
+        /// <param name="dsData">The dialogue system data to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
-        /// <param name="projectManager">The project manager to set for.</param>
+        /// <param name="serializeHandler">The serialize handler to set for.</param>
+        /// <param name="dsWindow">The dialogue editor window to set for.</param>
+        /// <param name="nodeCreateRequestWindow">The node create request window to set for.</param>
         public DialogueEditorWindowCallback
         (
-            DialogueEditorWindow dsWindow,
+            DialogueSystemData dsData,
             GraphViewer graphViewer,
             HeadBar headBar,
-            ProjectManager projectManager
+            SerializeHandler serializeHandler,
+            NodeCreateRequestWindow nodeCreateRequestWindow,
+            DialogueEditorWindow dsWindow
         )
         {
-            this.dsWindow = dsWindow;
+            this.dsData = dsData;
             this.graphViewer = graphViewer;
             this.headBar = headBar;
-            this.projectManager = projectManager;
+            this.serializeHandler = serializeHandler;
+            this.nodeCreateRequestWindow = nodeCreateRequestWindow;
+            this.dsWindow = dsWindow;
 
-            hotkeyManager = HotkeyManager.Instance;
+            windowRootElement = dsWindow.rootVisualElement;
         }
 
 
@@ -69,60 +90,166 @@ namespace AG.DS
         /// <summary>
         /// Register events to the dialogue editor window.
         /// </summary>
-        public void RegisterEventsSetup()
+        public void RegisterEvents()
         {
+            // Serialization events
+            RegisterSaveToDSDataEvent();
+            RegisterLoadFromDSDataEvent();
+            RegisterApplyChangesToDiskEvent();
+
+            // Window events
+            RegisterWindowOnEnableEvent();
+            RegisterWindowOnDisableEvent();
+            RegisterWindowOnDestroyEvent();
+
+            // Visual element events
             RegisterKeyDownEvent();
-
             RegisterKeyUpEvent();
-
-            RegisterGeometryChangedEventSetup();
+            RegisterGeometryChangedEvent();
         }
 
 
         /// <summary>
-        /// Register events to the dialogue editor window.
+        /// Register SaveToDSDataEvent to the dialogue editor window.
         /// </summary>
-        public void RegisterEventOnEnable()
-        {
-            RegisterGeometryChangedEventOnEnable();
-        }
+        void RegisterSaveToDSDataEvent() => dsWindow.SaveToDSDataEvent += SaveToDSDataEvent;
 
 
         /// <summary>
-        /// Register KeyDownEvent to the dialogue editor window.
+        /// Register LoadFromDSDataEvent to the dialogue editor window.
         /// </summary>
-        void RegisterKeyDownEvent() =>
-            dsWindow.rootVisualElement.RegisterCallback<KeyDownEvent>(KeyDownEvent);
+        void RegisterLoadFromDSDataEvent() => dsWindow.LoadFromDSDataEvent += LoadFromDSDataEvent;
 
 
         /// <summary>
-        /// Register KeyUpEvent to the dialogue editor window.
+        /// Register ApplyChangesToDiskEvent to the dialogue editor window.
         /// </summary>
-        void RegisterKeyUpEvent() =>
-            dsWindow.rootVisualElement.RegisterCallback<KeyUpEvent>(KeyUpEvent);
+        void RegisterApplyChangesToDiskEvent() => dsWindow.ApplyChangesToDiskEvent += ApplyChangesToDiskEvent;
 
 
         /// <summary>
-        /// Register GeometryChangedEvent to the dialogue editor window when it's first setup.
+        /// Register WindowOnEnableEvent to the dialogue editor window.
         /// </summary>
-        void RegisterGeometryChangedEventSetup() =>
-            dsWindow.rootVisualElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEventSetup);
+        void RegisterWindowOnEnableEvent() => dsWindow.WindowOnEnableEvent += WindowOnEnableEvent;
 
 
         /// <summary>
-        /// Register GeometryChangedEvent to the dialogue editor window when its OnEnable callback is triggered.
+        /// Register WindowOnDisableEvent to the dialogue editor window.
         /// </summary>
-        void RegisterGeometryChangedEventOnEnable() =>
-            dsWindow.rootVisualElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEventOnEnable);
+        void RegisterWindowOnDisableEvent() => dsWindow.WindowOnDisableEvent += WindowOnDisableEvent;
+
+
+        /// <summary>
+        /// Register WindowOnDestroyEvent to the dialogue editor window.
+        /// </summary>
+        void RegisterWindowOnDestroyEvent() => dsWindow.WindowOnDestroyEvent += WindowOnDestroyEvent;
+
+
+        /// <summary>
+        /// Register KeyDownEvent to the dialogue editor window root visual element.
+        /// </summary>
+        void RegisterKeyDownEvent() => windowRootElement.RegisterCallback<KeyDownEvent>(KeyDownEvent);
+
+
+        /// <summary>
+        /// Register KeyUpEvent to the dialogue editor window root visual element.
+        /// </summary>
+        void RegisterKeyUpEvent() => windowRootElement.RegisterCallback<KeyUpEvent>(KeyUpEvent);
+
+
+        /// <summary>
+        /// Register GeometryChangedEvent to the dialogue editor window root visual element.
+        /// </summary>
+        void RegisterGeometryChangedEvent() => windowRootElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
 
 
         // ----------------------------- Event -----------------------------
+        /// <summary>
+        /// The event to invoke when the user clicked the save button in the headBar element.
+        /// </summary>
+        void SaveToDSDataEvent(DialogueSystemData dsData)
+        {
+            serializeHandler.SaveEdgesAndNodes(dsData);
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the dialogue editor window is first opened,
+        /// <br>or when the user clicked the load button in the headBar element.</br>
+        /// </summary>
+        void LoadFromDSDataEvent(DialogueSystemData dsData)
+        {
+            graphViewer.ClearGraph();
+
+            serializeHandler.LoadEdgesAndNodes(dsData);
+
+            headBar.RefreshTitleAndLanguage(dsData);
+        }
+
+
+        /// <summary>
+        /// The event to invoke to write all the unsaved changes to the disk.
+        /// </summary>
+        void ApplyChangesToDiskEvent()
+        {
+            AssetDatabase.SaveAssets();
+
+            dsWindow.SetHasUnsavedChanges(value: false);
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the dialogue editor window's OnEnable is called.
+        /// </summary> 
+        void WindowOnEnableEvent()
+        {
+            // Reframe window
+            {
+                windowRootElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+
+                void GeometryChangedEvent(GeometryChangedEvent evt)
+                {
+                    graphViewer.ReframeGraphAll();
+
+                    windowRootElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the dialogue editor window's OnDisable is called.
+        /// </summary>
+        void WindowOnDisableEvent()
+        {
+            // Dispose windows
+            {
+                UnityEngine.Object.DestroyImmediate(nodeCreateRequestWindow, allowDestroyingAssets: true);
+                UnityEngine.Object.DestroyImmediate(graphViewer.NodeCreateConnectorWindow, allowDestroyingAssets: true);
+            }
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the dialogue editor window's OnDestroy is called.
+        /// </summary>
+        void WindowOnDestroyEvent()
+        {
+            // Reset status
+            {
+                dsData.IsOpened = false;
+            }
+        }
+
+
         /// <summary>
         /// The event to invoke when the user pressed any hotkeys in the empty space inside the window.
         /// </summary>
         /// <param name="evt">The registering event.</param>
         void KeyDownEvent(KeyDownEvent evt)
         {
+            var hotkeyManager = HotkeyManager.Instance;
+
             // If the user hasn't released the previous pressed hotkey.
             if (!isHotkeyReleased)
                 return;
@@ -137,14 +264,14 @@ namespace AG.DS
                 // Saving
                 if (evt.keyCode == hotkeyManager.SaveKey)
                 {
-                    projectManager.Save();
+                    dsWindow.Save();
                     isHotkeyReleased = false;
                 }
 
                 // Loading
                 if (evt.keyCode == hotkeyManager.LoadKey)
                 {
-                    projectManager.Load(false);
+                    dsWindow.Load(false);
                     isHotkeyReleased = false;
                 }
             }
@@ -162,13 +289,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the dialogue editor window's geometry has changed and when it is first setup.
+        /// The event to invoke when the dialogue editor window root visual element's geometry has changed.
         /// </summary>
-        void GeometryChangedEventSetup(GeometryChangedEvent evt)
+        void GeometryChangedEvent(GeometryChangedEvent evt)
         {
             // Register events to the window's dock area
             {
-                var dockArea = dsWindow.rootVisualElement.parent.ElementAt(index: 0);
+                var dockArea = windowRootElement.parent.ElementAt(index: 0);
                 dockArea.RegisterCallback<FocusEvent>(DockAreaFocusEvent);
                 dockArea.RegisterCallback<BlurEvent>(DockAreaBlurEvent);
             }
@@ -177,7 +304,7 @@ namespace AG.DS
             graphViewer.ReframeGraphAll();
 
             // Unregister event after it has done executed once.
-            dsWindow.rootVisualElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEventSetup);
+            windowRootElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
 
 
             /// <summary>
@@ -192,20 +319,6 @@ namespace AG.DS
             /// </summary>
             /// <param name="evt">The registering event.</param>
             void DockAreaBlurEvent(BlurEvent evt) => graphViewer.Blur();
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the dialogue editor window's geometry has changed and when its OnEnable callback is triggered.
-        /// </summary>
-        /// <param name="evt"></param>
-        void GeometryChangedEventOnEnable(GeometryChangedEvent evt)
-        {
-            // Reframe window
-            graphViewer.ReframeGraphAll();
-
-            // Unregister event after it has done executed once.
-            dsWindow.rootVisualElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEventOnEnable);
         }
     }
 }

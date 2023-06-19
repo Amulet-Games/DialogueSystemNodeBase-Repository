@@ -6,7 +6,6 @@ namespace AG.DS
     <
         EventNode,
         EventNodeModel,
-        EventNodePresenter,
         EventNodeSerializer,
         EventNodeCallback,
         EventNodeData

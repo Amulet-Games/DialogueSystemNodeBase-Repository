@@ -6,7 +6,6 @@ namespace AG.DS
     <
         PreviewNode,
         PreviewNodeModel,
-        PreviewNodePresenter,
         PreviewNodeSerializer,
         PreviewNodeCallback,
         PreviewNodeData

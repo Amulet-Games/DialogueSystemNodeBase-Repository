@@ -6,7 +6,6 @@ namespace AG.DS
     <
         StartNode,
         StartNodeModel,
-        StartNodePresenter,
         StartNodeSerializer,
         StartNodeCallback,
         StartNodeData

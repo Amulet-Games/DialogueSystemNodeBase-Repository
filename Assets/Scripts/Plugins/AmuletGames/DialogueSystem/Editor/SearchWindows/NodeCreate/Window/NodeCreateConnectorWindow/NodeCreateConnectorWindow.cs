@@ -16,15 +16,15 @@ namespace AG.DS
         public override List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context) => toShowEntries;
 
 
-        // ----------------------------- Update Context -----------------------------
+        // ----------------------------- Update Node Create Details -----------------------------
         /// <summary>
-        /// Method for updating the window's node create details and entries.
+        /// Method for updating the node create details and entries.
         /// </summary>
         /// <param name="horizontalAlignmentType">The horizontal align type to set for.</param>
         /// <param name="connectorType">The connector type to set for. </param>
         /// <param name="connectorPort">The connector port to set for. </param>
         /// <param name="toShowSearchEntries">The search entries to set for.</param>
-        public void UpdateWindowContext
+        public void UpdateNodeCreateDetails
         (
             HorizontalAlignmentType horizontalAlignmentType,
             ConnectorType connectorType,

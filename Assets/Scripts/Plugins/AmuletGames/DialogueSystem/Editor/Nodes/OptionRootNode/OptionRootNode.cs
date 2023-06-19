@@ -6,7 +6,6 @@ namespace AG.DS
     <
         OptionRootNode,
         OptionRootNodeModel,
-        OptionRootNodePresenter,
         OptionRootNodeSerializer,
         OptionRootNodeCallback,
         OptionRootNodeData

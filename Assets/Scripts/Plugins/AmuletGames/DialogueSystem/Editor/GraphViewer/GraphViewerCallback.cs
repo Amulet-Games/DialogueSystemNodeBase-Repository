@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -15,15 +16,21 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the node create request window.
+        /// </summary>
+        NodeCreateRequestWindow nodeCreateRequestWindow;
+
+
+        /// <summary>
         /// Reference of the dialogue editor window.
         /// </summary>
         DialogueEditorWindow dsWindow;
 
 
         /// <summary>
-        /// Reference of the node create request window.
+        /// The event to invoke when certain changes have occurred in the graph.
         /// </summary>
-        NodeCreateRequestWindow nodeCreateRequestWindow;
+        event Action graphViewChangedEvent;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -31,18 +38,18 @@ namespace AG.DS
         /// Constructor of the graph viewer callback class.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
         /// <param name="nodeCreateRequestWindow">The node create request window to set for.</param>
+        /// <param name="dsWindow">The dialogue editor window to set for.</param>
         public GraphViewerCallback
         (
             GraphViewer graphViewer,
-            DialogueEditorWindow dsWindow,
-            NodeCreateRequestWindow nodeCreateRequestWindow
+            NodeCreateRequestWindow nodeCreateRequestWindow,
+            DialogueEditorWindow dsWindow
         )
         {
             this.graphViewer = graphViewer;
-            this.dsWindow = dsWindow;
             this.nodeCreateRequestWindow = nodeCreateRequestWindow;
+            this.dsWindow = dsWindow;
         }
 
 
@@ -74,8 +81,7 @@ namespace AG.DS
                  || change.movedElements != null
                 )
                 {
-                    // invoke GraphViewChangedEvent.
-                    GraphViewChangedEvent.Invoke();
+                    graphViewChangedEvent.Invoke();
                 }
             }
 
@@ -169,21 +175,27 @@ namespace AG.DS
             RegisterFocusEvent();
 
             RegisterBlurEvent();
+
+            RegisterGraphViewChangedEvent();
         }
 
 
         /// <summary>
         /// Register FocusEvent to the graph viewer.
         /// </summary>
-        void RegisterFocusEvent() =>
-            graphViewer.RegisterCallback<FocusEvent>(FocusEvent);
+        void RegisterFocusEvent() => graphViewer.RegisterCallback<FocusEvent>(FocusEvent);
 
 
         /// <summary>
         /// Register BlurEvent to the graph viewer.
         /// </summary>
-        void RegisterBlurEvent() =>
-            graphViewer.RegisterCallback<BlurEvent>(BlurEvent);
+        void RegisterBlurEvent() => graphViewer.RegisterCallback<BlurEvent>(BlurEvent);
+
+
+        /// <summary>
+        /// Register GraphViewChangedEvent to the project.
+        /// </summary>
+        void RegisterGraphViewChangedEvent() => graphViewChangedEvent += m_GraphViewChangedEvent;
 
 
         // ----------------------------- Event -----------------------------
@@ -210,6 +222,15 @@ namespace AG.DS
         void BlurEvent(BlurEvent evt)
         {
             graphViewer.IsFocus = false;
+        }
+
+
+        /// <summary>
+        /// The event to invoke when certain changes have occurred in the graph.
+        /// </summary>
+        void m_GraphViewChangedEvent()
+        {
+            dsWindow.SetHasUnsavedChanges(value: true);
         }
     }
 }

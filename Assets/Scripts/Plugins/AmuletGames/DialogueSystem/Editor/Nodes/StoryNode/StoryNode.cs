@@ -6,7 +6,6 @@ namespace AG.DS
     <
         StoryNode,
         StoryNodeModel,
-        StoryNodePresenter,
         StoryNodeSerializer,
         StoryNodeCallback,
         StoryNodeData

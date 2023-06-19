@@ -6,7 +6,6 @@ namespace AG.DS
     <
         DialogueNode,
         DialogueNodeModel,
-        DialogueNodePresenter,
         DialogueNodeSerializer,
         DialogueNodeCallback,
         DialogueNodeData

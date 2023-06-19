@@ -8,9 +8,9 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new graph viewer element.
         /// </summary>
-        /// <param name="projectManager">The project manager to set for.</param>
+        /// <param name="dsWindow">The dialogue editor window to set for.</param>
         /// <returns>A new graph viewer element.</returns>
-        public static GraphViewer CreateElement(ProjectManager projectManager)
+        public static GraphViewer CreateElement(DialogueEditorWindow dsWindow)
         {
             GraphViewer graphViewer;
 
@@ -24,15 +24,13 @@ namespace AG.DS
 
             SetupGraphZoom();
 
-            SetupInputHint();
-
             AddStyleSheet();
 
             return graphViewer;
 
             void CreateGraphViewer()
             {
-                graphViewer = new(projectManager);
+                graphViewer = new();
             }
 
             void SetupGridBackground()
@@ -65,13 +63,6 @@ namespace AG.DS
                     minScaleSetup: ContentZoomer.DefaultMinScale,
                     maxScaleSetup: 1.15f
                 );
-            }
-
-            void SetupInputHint()
-            {
-                InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
-                InputHint.Instance.HideElement();
-                graphViewer.contentViewContainer.Add(InputHint.Instance);
             }
 
             void AddStyleSheet()

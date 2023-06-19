@@ -11,21 +11,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the dialogue editor window.
-        /// </summary>
-        DialogueEditorWindow dsWindow;
-
-
-        /// <summary>
         /// The asset instance id of the dialogue system data.
         /// </summary>
         int dsDataInstanceId;
 
 
         /// <summary>
-        /// Reference of the project manager.
+        /// Reference of the dialogue editor window.
         /// </summary>
-        ProjectManager projectManager;
+        DialogueEditorWindow dsWindow;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -33,21 +27,18 @@ namespace AG.DS
         /// Constructor of the headBar callback class.
         /// </summary>
         /// <param name="headBar">The headBar element to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
         /// <param name="dsDataInstanceId">The dialogue system data asset instance id to set for.</param>
-        /// <param name="projectManager">The project manager to set for.</param>
+        /// <param name="dsWindow">The dialogue editor window to set for.</param>
         public HeadBarCallback
         (
             HeadBar headBar,
-            DialogueEditorWindow dsWindow,
             int dsDataInstanceId,
-            ProjectManager projectManager
+            DialogueEditorWindow dsWindow
         )
         {
             this.headBar = headBar;
-            this.dsWindow = dsWindow;
             this.dsDataInstanceId = dsDataInstanceId;
-            this.projectManager = projectManager;
+            this.dsWindow = dsWindow;
         }
 
         // ----------------------------- Register Events -----------------------------
@@ -136,9 +127,13 @@ namespace AG.DS
         /// </summary>
         void RegisterGraphTitleTextFieldEvents()
         {
-            new GraphTitleTextFieldCallback(
+            new GraphTitleTextFieldCallback
+            (
                 model: headBar.GraphTitleTextFieldModel,
-                dsDataInstanceId: dsDataInstanceId).RegisterEvents();
+                dsDataInstanceId,
+                dsWindow
+            )
+            .RegisterEvents();
         }
 
 
@@ -175,7 +170,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void SaveButtonClickEvent(ClickEvent evt)
         {
-            projectManager.Save();
+            dsWindow.Save();
         }
 
 
@@ -185,7 +180,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void LoadButtonClickEvent(ClickEvent evt)
         {
-            projectManager.Load(isForceLoadWindow: false);
+            dsWindow.Load(isForceLoadWindow: false);
         }
     }
 }

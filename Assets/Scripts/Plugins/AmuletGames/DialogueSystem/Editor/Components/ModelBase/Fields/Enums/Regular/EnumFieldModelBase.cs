@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor.UIElements;
+
 using UnityEngine;
 
 namespace AG.DS
@@ -18,7 +18,7 @@ namespace AG.DS
         /// <summary>
         /// Visual element.
         /// </summary>
-        [NonSerialized] public EnumField EnumField;
+        [NonSerialized] public UnityEngine.UIElements.EnumField EnumField;
 
 
         // ----------------------------- Serialization -----------------------------

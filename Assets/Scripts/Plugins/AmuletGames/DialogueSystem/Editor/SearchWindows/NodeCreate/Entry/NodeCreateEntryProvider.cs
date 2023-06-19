@@ -10,6 +10,12 @@ namespace AG.DS
     public class NodeCreateEntryProvider
     {
         /// <summary>
+        /// Is this class has already been setup?
+        /// </summary>
+        static bool isSetup;
+
+
+        /// <summary>
         /// List of entries that have included every nodes that can be created on the graph,
         /// <br>no matter which elements are the nodes are belong to, by channels or default.</br>
         /// </summary>
@@ -46,6 +52,9 @@ namespace AG.DS
         /// </summary>
         public static void SetupNodeCreateWindowEntries()
         {
+            if (isSetup)
+                return;
+
             var presenter = new NodeCreateEntryPresenter();
             var ancestorEntry = presenter.CreateAncestorEntry();
 
@@ -129,6 +138,8 @@ namespace AG.DS
                     optionBranchNodeChildEntry
                 };
             }
+
+            isSetup = true;
         }
     }
 }

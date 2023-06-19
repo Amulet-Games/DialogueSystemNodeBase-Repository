@@ -6,27 +6,13 @@ namespace AG.DS
     [CreateAssetMenu(menuName = "### AG ###/Dialogue System/New Dialogue System Data")]
     public class DialogueSystemData : ScriptableObject
     {
-        [Space(5), Header("Readonly")]
+#if UNITY_EDITOR
         /// <summary>
-        /// The asset instance id of the data.
+        /// Is the dialogue editor window of the data has already been opened in the editor?
         /// </summary>
-        [ReadOnlyInspector] public int InstanceId = 0;
+        [HideInInspector] public bool IsOpened = false;
+#endif
 
-
-        [Space(5), Header("Customization")]
-        /// <summary>
-        /// The minimum size of the dialogue editor window when it's floating or modal.
-        /// </summary>
-        public Vector2 WindowMinSize = new(x: 200, y: 200);
-
-
-        /// <summary>
-        /// The size of the dialogue editor window when it's first opened.
-        /// </summary>
-        public Vector2 WindowStartSizeScreenRatio = new(x: 0.7f, y: 0.7f);
-
-
-        [Space(5), Header("Data")]
         /// <summary>
         /// Edge data list.
         /// </summary>
@@ -39,7 +25,6 @@ namespace AG.DS
         public List<NodeDataBase> NodeData;
 
 
-        // ----------------------------- Clear Data -----------------------------
         /// <summary>
         /// Clear all the saved node data.
         /// </summary>

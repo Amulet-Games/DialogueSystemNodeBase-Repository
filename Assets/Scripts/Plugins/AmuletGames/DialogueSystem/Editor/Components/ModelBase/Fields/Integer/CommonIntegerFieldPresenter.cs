@@ -1,4 +1,4 @@
-using UnityEditor.UIElements;
+
 
 namespace AG.DS
 {
@@ -9,9 +9,9 @@ namespace AG.DS
         /// </summary>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
         /// <returns>A new common integer field element.</returns>
-        public static IntegerField CreateElement(string fieldUSS01)
+        public static UnityEngine.UIElements.IntegerField CreateElement(string fieldUSS01)
         {
-            IntegerField commonIntegerField = new();
+            UnityEngine.UIElements.IntegerField commonIntegerField = new();
 
             commonIntegerField.AddToClassList(fieldUSS01);
 

@@ -29,9 +29,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup for the class.
+        /// Initialize for the class.
         /// </summary>
-        public static void Setup()
+        public static void Initialize()
         {
             Instance ??= new();
             Instance.SupportLanguageTypes = (G_LanguageType[])Enum.GetValues(typeof(G_LanguageType));

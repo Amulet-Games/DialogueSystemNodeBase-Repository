@@ -8,13 +8,7 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new dialogue editor window.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to set for.</param>
-        /// <param name="projectManager">The project manager to set for.</param>
-        public static DialogueEditorWindow CreateWindow
-        (
-            DialogueSystemData dsData,
-            ProjectManager projectManager
-        )
+        public static DialogueEditorWindow CreateWindow()
         {
             DialogueEditorWindow window;
 
@@ -28,16 +22,16 @@ namespace AG.DS
 
             void CreateWindow()
             {
-                DialogueEditorWindow.SkipOnEnable = true;
                 window = EditorWindow.CreateWindow<DialogueEditorWindow>();
             }
 
             void SetupDetail()
             {
-                window.ProjectManager = projectManager;
-                window.minSize = new Vector2(
-                    x: dsData.WindowMinSize.x,
-                    y: dsData.WindowMinSize.y);
+                window.minSize = new Vector2
+                (
+                    x: WindowConfig.WindowMinSize.x,
+                    y: WindowConfig.WindowMinSize.y
+                );
             }
 
             void CenterToMainWindow()
@@ -45,8 +39,8 @@ namespace AG.DS
                 var mainWindowPosition = EditorGUIUtility.GetMainWindowPosition();
                 
                 window.CenterToMainWindow(
-                    customWidth: mainWindowPosition.width * dsData.WindowStartSizeScreenRatio.x,
-                    customHeight: mainWindowPosition.height * dsData.WindowStartSizeScreenRatio.y);
+                    customWidth: mainWindowPosition.width * WindowConfig.WindowStartSizeScreenRatio.x,
+                    customHeight: mainWindowPosition.height * WindowConfig.WindowStartSizeScreenRatio.y);
             }
         }
     }

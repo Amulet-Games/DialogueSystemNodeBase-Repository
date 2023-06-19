@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -11,25 +12,19 @@ namespace AG.DS
         /// <summary>
         /// Reference of the graph viewer element.
         /// </summary>
-        public GraphViewer GraphViewer;
+        GraphViewer graphViewer;
 
 
         /// <summary>
         /// Reference of the dialogue editor window.
         /// </summary>
-        public DialogueEditorWindow DsWindow;
-
-
-        /// <summary>
-        /// Reference of the serialize handler.
-        /// </summary>
-        public SerializeHandler SerializeHandler;
+        DialogueEditorWindow dsWindow;
 
 
         /// <summary>
         /// Reference of the node create details.
         /// </summary>
-        public NodeCreateDetails Details;
+        protected NodeCreateDetails Details;
 
 
         /// <summary>
@@ -45,6 +40,32 @@ namespace AG.DS
         Vector2 createPosition;
 
 
+        /// <summary>
+        /// The event to invoke when the user selected a search entry in the search tree window.
+        /// </summary>
+        public event Action SearchTreeEntrySelectedEvent;
+
+
+        // ----------------------------- Setup -----------------------------
+        /// <summary>
+        /// Setup for the class
+        /// </summary>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <param name="details">The node create details to set for.</param>
+        /// <param name="dsWindow">The dialogue editor window to set for.</param>
+        public void Setup
+        (
+            GraphViewer graphViewer,
+            NodeCreateDetails details,
+            DialogueEditorWindow dsWindow
+        )
+        {
+            this.graphViewer = graphViewer;
+            this.dsWindow = dsWindow;
+            Details = details;
+        }
+
+
         // ----------------------------- Callbacks -----------------------------
         /// <summary>
         /// Executed when user selects an entry in the search tree list.
@@ -54,7 +75,7 @@ namespace AG.DS
         /// <param name="context">Contextual data to pass to the search window when it is first created.</param>
         public bool OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
         {
-            // Invoke search tree entry selected event.
+            // Invoke search tree entry clicked event.
             SearchTreeEntrySelectedEvent.Invoke();
 
             // Get create position.
@@ -64,30 +85,30 @@ namespace AG.DS
                 if (IsUpdateScreenMousePosition)
                 {
                     // Update the mouse position again.
-                    preWindowCenterDir = GraphViewer.GetCurrentEventMousePosition() - DsWindow.position.position;
+                    preWindowCenterDir = GraphViewer.GetCurrentEventMousePosition() - dsWindow.position.position;
                 }
                 else
                 {
                     // Use the mouse position that was cached earlier.
-                    preWindowCenterDir = context.screenMousePosition - DsWindow.position.position;
+                    preWindowCenterDir = context.screenMousePosition - dsWindow.position.position;
                 }
 
                 // Convert the direction from screen space to window space(?)
-                Vector2 postWindowCenterDir = DsWindow.rootVisualElement.ChangeCoordinatesTo
+                Vector2 postWindowCenterDir = dsWindow.rootVisualElement.ChangeCoordinatesTo
                 (
-                    dest: DsWindow.rootVisualElement.parent,
+                    dest: dsWindow.rootVisualElement.parent,
                     point: preWindowCenterDir
                 );
 
                 // And calculate its position in the graph viewer.
-                createPosition = GraphViewer.contentViewContainer.WorldToLocal(p: postWindowCenterDir);
+                createPosition = graphViewer.contentViewContainer.WorldToLocal(p: postWindowCenterDir);
             }
 
             // Create node.
             {
                 var node = NodeManager.Instance.Spawn
                 (
-                    GraphViewer,
+                    graphViewer,
                     nodeType: ((NodeCreateEntry)searchTreeEntry).NodeType
                 );
 
@@ -176,7 +197,7 @@ namespace AG.DS
                 }
 
                 // Add the node to the graph.
-                GraphViewer.Add(node);
+                graphViewer.Add(node);
             }
 
             return true;
@@ -212,7 +233,7 @@ namespace AG.DS
                             targetPos.y -= (node.titleContainer.worldBound.height
                                       + leftSideAlignmentReferencePort.localBound.position.y
                                       + NodeConfig.ManualCreateYOffset)
-                                      / GraphViewer.scale;
+                                      / graphViewer.scale;
 
                             targetPos.x -= node.localBound.width;
 
@@ -222,7 +243,7 @@ namespace AG.DS
                             targetPos.y -= (node.titleContainer.worldBound.height
                                       + middleAlignmentReferencePort.localBound.position.y
                                       + NodeConfig.ManualCreateYOffset)
-                                      / GraphViewer.scale;
+                                      / graphViewer.scale;
 
                             targetPos.x -= node.localBound.width / 2;
 
@@ -232,7 +253,7 @@ namespace AG.DS
                             targetPos.y -= (node.titleContainer.worldBound.height
                                       + rightSideAlignmentReferencePort.localBound.position.y
                                       + NodeConfig.ManualCreateYOffset)
-                                      / GraphViewer.scale;
+                                      / graphViewer.scale;
 
                             break;
                     }
@@ -251,7 +272,7 @@ namespace AG.DS
 
                     if (port.connected)
                     {
-                        port.Disconnect(GraphViewer);
+                        port.Disconnect(graphViewer);
                     }
 
                     var edge = EdgeManager.Instance.Connect
@@ -260,7 +281,7 @@ namespace AG.DS
                         input: isInput ? port : rightSideAlignmentReferencePort
                     );
 
-                    GraphViewer.Add(edge);
+                    graphViewer.Add(edge);
                 }
 
                 // Unregister event after it has done executed once.

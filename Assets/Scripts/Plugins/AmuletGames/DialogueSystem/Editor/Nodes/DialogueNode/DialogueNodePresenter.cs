@@ -31,7 +31,7 @@ namespace AG.DS
         {
             model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Input_LabelText
@@ -39,7 +39,7 @@ namespace AG.DS
 
             model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.ProjectManager.NodeCreateConnectorWindow,
+                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Output_LabelText

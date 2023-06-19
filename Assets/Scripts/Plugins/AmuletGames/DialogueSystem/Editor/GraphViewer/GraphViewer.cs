@@ -7,9 +7,9 @@ namespace AG.DS
     public class GraphViewer : GraphView
     {
         /// <summary>
-        /// Reference of the project manager.
+        /// Reference of the node create connector window.
         /// </summary>
-        public ProjectManager ProjectManager;
+        public NodeCreateConnectorWindow NodeCreateConnectorWindow;
 
 
         /// <summary>
@@ -40,11 +40,8 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the graph viewer element class.
         /// </summary>
-        /// <param name="projectManager">The project manager to set for.</param>
-        public GraphViewer(ProjectManager projectManager)
+        public GraphViewer()
         {
-            ProjectManager = projectManager;
-
             Nodes = new();
             Edges = new();
             PortByPortGUID = new();
@@ -104,6 +101,13 @@ namespace AG.DS
         /// <para>Note that if there's no event getting invoked currently, this method may give you an null reference exception.</para>
         /// </summary>
         public static Vector2 GetCurrentEventMousePosition() => GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
+
+
+        // ----------------------------- Invoke Events -----------------------------
+        /// <summary>
+        /// Invoke the GraphViewChanged
+        /// </summary>
+        public void InvokeGraphViewChangedEvent() => GraphViewChangedEvent.Invoke();
 
 
         // ----------------------------- Remove -----------------------------

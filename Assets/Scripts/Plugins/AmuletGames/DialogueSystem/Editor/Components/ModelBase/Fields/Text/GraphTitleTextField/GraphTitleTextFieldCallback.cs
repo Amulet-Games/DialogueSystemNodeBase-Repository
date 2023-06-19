@@ -17,20 +17,29 @@ namespace AG.DS
         int dsDataInstanceId;
 
 
+        /// <summary>
+        /// Reference of the dialogue editor window.
+        /// </summary>
+        DialogueEditorWindow dsWindow;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the graph title field callback class.
         /// </summary>
         /// <param name="model">The graph title text field model to set for.</param>
         /// <param name="dsDataInstanceId">The dialogue system data's asset instance id to set for.</param>
+        /// <param name="dsWindow">The dialogue editor window to set for.</param>
         public GraphTitleTextFieldCallback
         (
             GraphTitleTextFieldModel model,
-            int dsDataInstanceId
+            int dsDataInstanceId,
+            DialogueEditorWindow dsWindow
         )
         {
             field = model.TextField;
             this.dsDataInstanceId = dsDataInstanceId;
+            this.dsWindow = dsWindow;
         }
 
 
@@ -73,8 +82,7 @@ namespace AG.DS
                 newName: evt.newValue
             );
 
-            // Save the changes.
-            ApplyChangesToDiskEvent.Invoke();
+            dsWindow.ApplyChangesToDisk();
         }
 
 

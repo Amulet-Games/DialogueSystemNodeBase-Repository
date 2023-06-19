@@ -23,6 +23,8 @@ namespace AG.DS
 
             AddStyleSheet();
 
+            HideDisplayByDefault();
+
             return inputHint;
 
             void CreateInputHint()
@@ -64,6 +66,11 @@ namespace AG.DS
             {
                 inputHint.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
                 inputHint.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSInputHintStyle);
+            }
+
+            void HideDisplayByDefault()
+            {
+                inputHint.HideElement();
             }
         }
     }

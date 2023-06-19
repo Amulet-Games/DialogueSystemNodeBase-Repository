@@ -5,8 +5,8 @@ namespace AG.DS
     public class ApplyChangesToDiskEvent
     {
         /// <summary>
-        /// The event to invoke after the saving or loading data serialization event,
-        /// <br>also it'll be invoked when the dialogue editor window graph's title is edited.</br>
+        /// The event to invoke after saving or loading data, and also when the dialogue editor window
+        /// <br>graph's title is edited.</br>
         /// </summary>
         static event Action mEvent;
 

@@ -6,7 +6,6 @@ namespace AG.DS
     <
         EndNode,
         EndNodeModel,
-        EndNodePresenter,
         EndNodeSerializer,
         EndNodeCallback,
         EndNodeData

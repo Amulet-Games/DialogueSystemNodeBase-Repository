@@ -6,7 +6,6 @@ namespace AG.DS
     <
         OptionBranchNode,
         OptionBranchNodeModel,
-        OptionBranchNodePresenter,
         OptionBranchNodeSerializer,
         OptionBranchNodeCallback,
         OptionBranchNodeData

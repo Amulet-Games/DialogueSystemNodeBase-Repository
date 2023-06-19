@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using UnityEditor.UIElements;
+
 
 namespace AG.DS
 {
@@ -49,7 +49,7 @@ namespace AG.DS
         /// <param name="node">Node of which this stitcher is created for.</param>
         public void CreateRootElements(NodeBase node)
         {
-            EnumField unmetOptionDisplayTypeEnumField;
+            UnityEngine.UIElements.EnumField unmetOptionDisplayTypeEnumField;
 
             SetupSegment();
 

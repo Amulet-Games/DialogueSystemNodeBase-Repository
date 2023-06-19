@@ -35,9 +35,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup for the class.
+        /// Initialize for the class.
         /// </summary>
-        public static void Setup()
+        public static void Initialize()
         {
             Instance ??= Resources.Load<ConfigResourcesManager>(PATH);
         }
