@@ -1,7 +1,7 @@
-using System;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.GraphView;
+using Object = UnityEngine.Object;
 
 namespace AG.DS
 {
@@ -98,7 +98,6 @@ namespace AG.DS
             RegisterApplyChangesToDiskEvent();
 
             // Window events
-            RegisterWindowOnEnableEvent();
             RegisterWindowOnDisableEvent();
             RegisterWindowOnDestroyEvent();
 
@@ -106,6 +105,7 @@ namespace AG.DS
             RegisterKeyDownEvent();
             RegisterKeyUpEvent();
             RegisterGeometryChangedEvent();
+
         }
 
 
@@ -125,12 +125,6 @@ namespace AG.DS
         /// Register ApplyChangesToDiskEvent to the dialogue editor window.
         /// </summary>
         void RegisterApplyChangesToDiskEvent() => dsWindow.ApplyChangesToDiskEvent += ApplyChangesToDiskEvent;
-
-
-        /// <summary>
-        /// Register WindowOnEnableEvent to the dialogue editor window.
-        /// </summary>
-        void RegisterWindowOnEnableEvent() => dsWindow.WindowOnEnableEvent += WindowOnEnableEvent;
 
 
         /// <summary>
@@ -160,7 +154,11 @@ namespace AG.DS
         /// <summary>
         /// Register GeometryChangedEvent to the dialogue editor window root visual element.
         /// </summary>
-        void RegisterGeometryChangedEvent() => windowRootElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+        void RegisterGeometryChangedEvent()
+        {
+            windowRootElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+            graphViewer.ReframeGraphOnGeometryChanged(geometryChangedElement: windowRootElement, frameType: FrameType.All);
+        }
 
 
         // ----------------------------- Event -----------------------------
@@ -199,33 +197,14 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the dialogue editor window's OnEnable is called.
-        /// </summary> 
-        void WindowOnEnableEvent()
-        {
-            // Reframe window
-            {
-                windowRootElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-
-                void GeometryChangedEvent(GeometryChangedEvent evt)
-                {
-                    graphViewer.ReframeGraphAll();
-
-                    windowRootElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-                }
-            }
-        }
-
-
-        /// <summary>
         /// The event to invoke when the dialogue editor window's OnDisable is called.
         /// </summary>
         void WindowOnDisableEvent()
         {
-            // Dispose windows
+            // Dispose node create windows
             {
-                UnityEngine.Object.DestroyImmediate(nodeCreateRequestWindow, allowDestroyingAssets: true);
-                UnityEngine.Object.DestroyImmediate(graphViewer.NodeCreateConnectorWindow, allowDestroyingAssets: true);
+                Object.DestroyImmediate(nodeCreateRequestWindow, allowDestroyingAssets: true);
+                Object.DestroyImmediate(graphViewer.NodeCreateConnectorWindow, allowDestroyingAssets: true);
             }
         }
 
@@ -299,9 +278,6 @@ namespace AG.DS
                 dockArea.RegisterCallback<FocusEvent>(DockAreaFocusEvent);
                 dockArea.RegisterCallback<BlurEvent>(DockAreaBlurEvent);
             }
-
-            // Reframe window
-            graphViewer.ReframeGraphAll();
 
             // Unregister event after it has done executed once.
             windowRootElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);

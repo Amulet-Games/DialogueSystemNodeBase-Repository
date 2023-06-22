@@ -53,11 +53,11 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Set Callback Delegates -----------------------------
+        // ----------------------------- Setup Callbacks -----------------------------
         /// <summary>
-        /// Set the graph viewer's callbacks. 
+        /// Setup the graph viewer's callbacks. 
         /// </summary>
-        public void SetCallbacks()
+        public void SetupCallbacks()
         {
             graphViewer.graphViewChanged = GraphViewChanged;
             graphViewer.nodeCreationRequest = NodeCreationRequest;
@@ -98,15 +98,13 @@ namespace AG.DS
             if (Event.current != null)
             {
                 // If the user opened up the node create request window by pressing space bar.
-                nodeCreateRequestWindow.Open(
-                    screenPositionToShow: GraphViewer.GetCurrentEventMousePosition()
-                );
+                nodeCreateRequestWindow.Open();
             }
             else
             {
                 // If the user opened up the node create request window through contextual menu.
                 nodeCreateRequestWindow.Open(
-                    screenPositionToShow: context.screenMousePosition
+                    openScreenPosition: context.screenMousePosition
                 );
             }
         }

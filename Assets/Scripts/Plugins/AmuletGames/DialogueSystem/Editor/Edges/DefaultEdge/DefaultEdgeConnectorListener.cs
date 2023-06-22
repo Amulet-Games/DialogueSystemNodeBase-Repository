@@ -106,8 +106,7 @@ namespace AG.DS
             }
 
             // Open window.
-            NodeCreateConnectorWindow.Open(
-                screenPositionToShow: GraphViewer.GetCurrentEventMousePosition());
+            NodeCreateConnectorWindow.Open();
         }
     }
 }

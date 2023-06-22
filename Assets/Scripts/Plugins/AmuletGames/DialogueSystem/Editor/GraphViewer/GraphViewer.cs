@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -34,6 +35,13 @@ namespace AG.DS
         /// Cache of the ports that are on the graph.
         /// </summary>
         public Dictionary<string, PortBase> PortByPortGUID;
+
+
+        /// <summary>
+        /// The current mouse position on screen whenever an unity's event is invoked.
+        /// <para>Note that NullReferenceException will occur if there's no event invoked</para>
+        /// </summary>
+        public Vector2 MouseScreenPosition => GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
 
 
         // ----------------------------- Constructor -----------------------------
@@ -88,29 +96,37 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Reframe Graph -----------------------------
+        // ----------------------------- Services -----------------------------
         /// <summary>
-        /// Focus view all elements in the graph.
+        /// Reframe the graph viewer when the given visual element's GeometryChangedEvent is invoked.
         /// </summary>
-        public void ReframeGraphAll() => FrameAll();
+        /// <param name="geometryChangedElement">The visual element to register the GeometryChangedEvent on.</param>
+        /// <param name="frameType">The frame type to set for.</param>
+        public void ReframeGraphOnGeometryChanged(VisualElement geometryChangedElement, FrameType frameType)
+        {
+            geometryChangedElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+
+            void GeometryChangedEvent(GeometryChangedEvent evt)
+            {
+                switch (frameType)
+                {
+                    case FrameType.All:
+                        FrameAll();
+                        break;
+                    case FrameType.Selection:
+                        FrameSelection();
+                        break;
+                    case FrameType.Origin:
+                        FrameOrigin();
+                        break;
+                }
+
+                // Unregister event after it has done executed once.
+                geometryChangedElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+            }
+        }
 
 
-        // ----------------------------- Retrieve Current Event Mouse Position -----------------------------
-        /// <summary>
-        /// Returns the vector2 value of the current mouse position on screen whenever an unity's event is invoked.
-        /// <para>Note that if there's no event getting invoked currently, this method may give you an null reference exception.</para>
-        /// </summary>
-        public static Vector2 GetCurrentEventMousePosition() => GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
-
-
-        // ----------------------------- Invoke Events -----------------------------
-        /// <summary>
-        /// Invoke the GraphViewChanged
-        /// </summary>
-        public void InvokeGraphViewChangedEvent() => GraphViewChangedEvent.Invoke();
-
-
-        // ----------------------------- Remove -----------------------------
         /// <summary>
         /// Remove the given node from the graph.
         /// </summary>
@@ -150,7 +166,6 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Add -----------------------------
         /// <summary>
         /// Add the given node to the graph.
         /// </summary>
@@ -190,7 +205,6 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Clear Graph -----------------------------
         /// <summary>
         /// Remove all the graph elements and clear each of their internal cache.
         /// </summary>

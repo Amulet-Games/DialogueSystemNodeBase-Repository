@@ -2,6 +2,7 @@
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 using Object = UnityEngine.Object;
 
 namespace AG.DS
@@ -39,12 +40,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the node create request window.
-        /// </summary>
-        NodeCreateRequestWindow nodeCreateRequestWindow;
-
-
-        /// <summary>
         /// The event to invoke when the user clicked the save button in the headBar element.
         /// </summary>
         public event Action<DialogueSystemData> SaveToDSDataEvent;
@@ -64,12 +59,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the dialogue editor window's OnEnable is called.
-        /// </summary> 
-        public event Action WindowOnEnableEvent;
-
-
-        /// <summary>
         /// The event to invoke when the dialogue editor window's OnDisable is called.
         /// </summary> 
         public event Action WindowOnDisableEvent;
@@ -85,7 +74,17 @@ namespace AG.DS
         /// This is called when the scripts are reloaded and after OnDisable.
         /// <br>Also when the window is first opened in <see cref="EditorWindow.CreateWindow{T}(System.Type[])"/>.</br>
         /// </summary>
-        void OnEnable() => WindowOnEnableEvent?.Invoke();
+        void OnEnable()
+        {
+            if (dsData == null)
+                return;
+
+            Setup();
+
+            Load(isForceLoadWindow: true);
+
+            graphViewer.ReframeGraphOnGeometryChanged(geometryChangedElement: rootVisualElement, frameType: FrameType.All);
+        }
 
 
         /// <summary>
@@ -98,7 +97,7 @@ namespace AG.DS
         /// <summary>
         /// This is called when the window is closed and can be used to cleanup any static references.
         /// </summary>
-        void OnDestroy() => WindowOnDisableEvent.Invoke();
+        void OnDestroy() => WindowOnDestroyEvent.Invoke();
 
 
         /// <summary>
@@ -110,16 +109,6 @@ namespace AG.DS
             // Connecting data
             this.dsData = dsData;
 
-            // Initialize singletons
-            {
-                ConfigResourcesManager.Initialize();
-                LanguageManager.Initialize();
-                HotkeyManager.Initialize();
-                EdgeManager.Initialize();
-                NodeManager.Initialize();
-            }
-
-            // Continue with setup.
             Setup();
         }
 
@@ -129,6 +118,17 @@ namespace AG.DS
         /// </summary>
         public void Setup()
         {
+            NodeCreateRequestWindow nodeCreateRequestWindow;
+
+            // Setup singletons
+            {
+                ConfigResourcesManager.Setup();
+                LanguageManager.Setup();
+                HotkeyManager.Setup();
+                EdgeManager.Setup();
+                NodeManager.Setup();
+            }
+
             // Create modules
             {
                 // Graph Viewer
@@ -143,7 +143,7 @@ namespace AG.DS
                 // Serialize Handler
                 serializeHandler = new(graphViewer);
 
-                // Node Create Window
+                // Node Create's
                 var nodeCreateDetails = new NodeCreateDetails();
 
                 nodeCreateRequestWindow =
@@ -153,11 +153,6 @@ namespace AG.DS
                     NodeCreateConnectorWindowPresenter.CreateWindow(graphViewer, nodeCreateDetails, dsWindow: this);
 
                 NodeCreateEntryProvider.SetupNodeCreateWindowEntries();
-
-                //Debug.Log("graphViewer = " + graphViewer);
-                //Debug.Log("dsWindow = " + dsWindow == null);
-                //Debug.Log("nodeCreateRequestWindow = " + nodeCreateRequestWindow == null);
-                //Debug.Log("graphViewer.NodeCreateConnectorWindow = " + graphViewer.NodeCreateConnectorWindow == null);
             }
 
             // Add modules to graph
@@ -171,7 +166,7 @@ namespace AG.DS
             // Register modules events
             {
                 var graphViewerCallback = new GraphViewerCallback(graphViewer, nodeCreateRequestWindow, dsWindow: this);
-                graphViewerCallback.SetCallbacks();
+                graphViewerCallback.SetupCallbacks();
                 graphViewerCallback.RegisterEvents();
 
                 new HeadBarCallback(headBar, dsData.GetInstanceID(), dsWindow: this).RegisterEvents();
@@ -210,7 +205,6 @@ namespace AG.DS
                 }
 
                 DialogueEditorWindowPresenter.CreateWindow().Initialize(dsData);
-
                 dsData.IsOpened = true;
             }
 

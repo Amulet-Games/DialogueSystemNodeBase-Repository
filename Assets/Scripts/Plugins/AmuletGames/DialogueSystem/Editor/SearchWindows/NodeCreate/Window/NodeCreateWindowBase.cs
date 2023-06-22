@@ -85,7 +85,7 @@ namespace AG.DS
                 if (IsUpdateScreenMousePosition)
                 {
                     // Update the mouse position again.
-                    preWindowCenterDir = GraphViewer.GetCurrentEventMousePosition() - dsWindow.position.position;
+                    preWindowCenterDir = graphViewer.MouseScreenPosition - dsWindow.position.position;
                 }
                 else
                 {
@@ -301,17 +301,21 @@ namespace AG.DS
         public abstract List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context);
 
 
-        // ----------------------------- Open Window -----------------------------
+        // ----------------------------- Services -----------------------------
         /// <summary>
         /// Open the node create request search window.
         /// </summary>
-        /// <param name="screenPositionToShow">The screen position to use to show the search window.</param>
-        public void Open(Vector2 screenPositionToShow)
+        /// <param name="openScreenPosition">The position of opening the search tree window to set for.</param>
+        public void Open(Vector2 openScreenPosition = default)
         {
-            // Show window.
             SearchWindow.Open
             (
-                context: new SearchWindowContext(screenPositionToShow),
+                context: new SearchWindowContext
+                (
+                    openScreenPosition == default
+                        ? graphViewer.MouseScreenPosition
+                        : openScreenPosition
+                ),
                 provider: this
             );
         }
