@@ -26,7 +26,7 @@ namespace AG.DS
         /// <summary>
         /// Remove the given visual element from the display none style class.
         /// </summary>
-        /// <param name="element">The tageting visual element.</param>
+        /// <param name="element">The targeting visual element.</param>
         public static void ShowElement(this VisualElement element)
         {
             element.RemoveFromClassList(StyleConfig.Global_Display_None);
@@ -36,10 +36,31 @@ namespace AG.DS
         /// <summary>
         /// Add the given visual element to the display none style class.
         /// </summary>
-        /// <param name="element">The tageting visual element.</param>
+        /// <param name="element">The targeting visual element.</param>
         public static void HideElement(this VisualElement element)
         {
             element.AddToClassList(StyleConfig.Global_Display_None);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="element"></param>
+        /// <param name="m_Event"></param>
+        public static void ExecuteOnceOnGeometryChanged
+        (
+            this VisualElement element,
+            EventCallback<GeometryChangedEvent> callback
+        )
+        {
+            callback += _ =>
+            {
+                // Unregister the same callback from the GeometryChangedEvent.
+                element.UnregisterCallback(callback);
+            };
+
+            element.RegisterCallback(callback);
         }
     }
 }

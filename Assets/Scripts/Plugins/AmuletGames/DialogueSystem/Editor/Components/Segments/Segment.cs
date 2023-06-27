@@ -88,7 +88,7 @@ namespace AG.DS
                 titleLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: titleText,
-                    labelUSS01: StyleConfig.Segment_Common_Title_Label
+                    labelUSS: StyleConfig.Segment_Common_Title_Label
                 );
             }
 
@@ -97,7 +97,7 @@ namespace AG.DS
                 ExpandButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.SpriteConfig.SegmentExpandButtonIconSprite,
-                    buttonUSS01: StyleConfig.Segment_Common_ExpandSegment_Button
+                    buttonUSS: StyleConfig.Segment_Common_ExpandSegment_Button
                 );
 
                 new CommonButtonCallback(

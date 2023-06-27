@@ -6,55 +6,56 @@ namespace AG.DS
     public abstract class NodePresenterFrameBase
     <
         TNode,
-        TNodeModel
+        TNodeView
     > 
         : NodePresenterBase
         where TNode : NodeBase
-        where TNodeModel : NodeModelBase
+        where TNodeView : NodeViewBase
     {
         /// <summary>
         /// Method for creating the elements for the node.
         /// </summary>
-        /// <param name="model">The node model to set for.</param>
+        /// <param name="view">The node view to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <param name="headBar">The headBar element to set for.</param>
         /// <returns>The type node element.</returns>
-        public abstract TNode CreateElements(TNodeModel model, GraphViewer graphViewer);
+        public abstract TNode CreateElements
+        (
+            TNodeView view,
+            GraphViewer graphViewer,
+            HeadBar headBar = null
+        );
 
 
         /// <summary>
         /// Method for creating the node's title elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
+        /// <param name="view">The node view to set for.</param>
         protected void CreateTitleElements
         (
             TNode node,
-            TNodeModel model
+            TNodeView view
         )
         {
-            // Create container
             VisualElement titleContainer = new();
             titleContainer.AddToClassList(StyleConfig.Node_Title_Container);
 
-            // Title text field
-            model.NodeTitleTextFieldModel.TextField = NodeTitleTextFieldPresenter.CreateElement
+            view.NodeTitleTextFieldView.TextField = NodeTitleTextFieldPresenter.CreateElement
             (
                 titleText: node.title,
-                fieldUSS01: StyleConfig.Node_Title_TextField
+                fieldUSS: StyleConfig.Node_Title_TextField
             );
 
-            // Edit title button
-            model.EditTitleButton = CommonButtonPresenter.CreateElement
+            view.EditTitleButton = CommonButtonPresenter.CreateElement
             (
                 buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
-                buttonUSS01: StyleConfig.Node_EditTitle_Button
+                buttonUSS: StyleConfig.Node_EditTitle_Button
             );
 
-            // Add to container
-            titleContainer.Add(model.NodeTitleTextFieldModel.TextField);
-            titleContainer.Add(model.EditTitleButton);
+            titleContainer.Add(view.NodeTitleTextFieldView.TextField);
+            titleContainer.Add(view.EditTitleButton);
 
-            // Add to node
             node.titleContainer.Add(titleContainer);
         }
     }

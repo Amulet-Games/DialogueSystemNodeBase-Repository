@@ -6,22 +6,22 @@ namespace AG.DS
     public abstract class NodeFrameBase
     <
         TNode,
-        TNodeModel,
+        TNodeView,
         TNodeSerializer,
         TNodeCallback,
         TNodeData
     > 
         : NodeBase
         where TNode : NodeBase
-        where TNodeModel : NodeModelFrameBase
-        where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeModel, TNodeData>
-        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeModel>
+        where TNodeView : NodeViewFrameBase
+        where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeData>
+        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView>
         where TNodeData : NodeDataBase
     {
         /// <summary>
-        /// Reference of the node model.
+        /// Reference of the node view.
         /// </summary>
-        public TNodeModel Model;
+        public TNodeView View;
 
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override void PreManualRemoveAction()
         {
-            Model.RemovePorts(GraphViewer);
+            View.RemovePorts(GraphViewer);
 
             Callback.UnregisterEvents();
         }

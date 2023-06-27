@@ -6,17 +6,22 @@ namespace AG.DS
     public class DialogueNodePresenter : NodePresenterFrameBase
     <
         DialogueNode,
-        DialogueNodeModel
+        DialogueNodeView
     >
     {
         /// <inheritdoc />
-        public override DialogueNode CreateElements(DialogueNodeModel model, GraphViewer graphViewer)
+        public override DialogueNode CreateElements
+        (
+            DialogueNodeView view,
+            GraphViewer graphViewer,
+            HeadBar headBar = null
+        )
         {
-            var node = new DialogueNode(model, graphViewer);
+            var node = new DialogueNode(view, graphViewer, headBar);
 
-            CreateTitleElements(node, model);
-            CreatePortElements(node, model);
-            CreateContentElements(node, model);
+            CreateTitleElements(node, view);
+            CreatePortElements(node, view);
+            CreateContentElements(node, view);
 
             return node;
         }
@@ -26,10 +31,10 @@ namespace AG.DS
         /// Method for creating the node's port elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreatePortElements(DialogueNode node, DialogueNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreatePortElements(DialogueNode node, DialogueNodeView view)
         {
-            model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
@@ -37,7 +42,7 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
@@ -45,8 +50,8 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Output_LabelText
             );
 
-            node.Add(model.InputDefaultPort);
-            node.Add(model.OutputDefaultPort);
+            node.Add(view.InputDefaultPort);
+            node.Add(view.OutputDefaultPort);
             node.RefreshPorts();
         }
 
@@ -55,8 +60,8 @@ namespace AG.DS
         /// Method for creating the node's content elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreateContentElements(DialogueNode node, DialogueNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreateContentElements(DialogueNode node, DialogueNodeView view)
         {
             AddCharacterObjectField();
 
@@ -66,22 +71,22 @@ namespace AG.DS
 
             void AddCharacterObjectField()
             {
-                model.CharacterObjectFieldModel.ObjectField =
+                view.CharacterObjectFieldView.ObjectField =
                     CommonObjectFieldPresenter.CreateElement<DialogueCharacter>
                     (
                         fieldUSS01: StyleConfig.DialogueNode_Character_ObjectField
                     );
 
                 new CommonObjectFieldCallback<DialogueCharacter>(
-                    model: model.CharacterObjectFieldModel).RegisterEvents();
+                    view: view.CharacterObjectFieldView).RegisterEvents();
 
-                node.ContentContainer.Add(model.CharacterObjectFieldModel.ObjectField);
+                node.ContentContainer.Add(view.CharacterObjectFieldView.ObjectField);
             }
 
             void AddCharacterObjectFieldIcon()
             {
-                model.CharacterObjectFieldModel.ObjectField.RemoveFieldIcon();
-                model.CharacterObjectFieldModel.ObjectField.AddFieldIcon
+                view.CharacterObjectFieldView.ObjectField.RemoveFieldIcon();
+                view.CharacterObjectFieldView.ObjectField.AddFieldIcon
                 (
                     iconSprite: ConfigResourcesManager.SpriteConfig.CharacterFieldIconSprite
                 );
@@ -90,7 +95,7 @@ namespace AG.DS
             void AddDialogueNodeStitcher()
             {
                 // Create all the root elements required in the node stitcher.
-                model.DialogueNodeStitcher.CreateElement(node);
+                view.DialogueNodeStitcher.CreateElement(node);
             }
         }
     }

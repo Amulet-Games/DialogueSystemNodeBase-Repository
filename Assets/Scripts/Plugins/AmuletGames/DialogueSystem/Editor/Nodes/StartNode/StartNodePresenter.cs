@@ -6,17 +6,22 @@ namespace AG.DS
     public class StartNodePresenter : NodePresenterFrameBase
     <
         StartNode,
-        StartNodeModel
+        StartNodeView
     >
     {
         /// <inheritdoc />
-        public override StartNode CreateElements(StartNodeModel model, GraphViewer graphViewer)
+        public override StartNode CreateElements
+        (
+            StartNodeView view,
+            GraphViewer graphViewer,
+            HeadBar headBar = null
+        )
         {
-            var node = new StartNode(model, graphViewer);
+            var node = new StartNode(view, graphViewer);
 
-            CreateTitleElements(node, model);
-            CreatePortElements(node, model);
-            CreateContentElements(node, model);
+            CreateTitleElements(node, view);
+            CreatePortElements(node, view);
+            CreateContentElements(node, view);
 
             return node;
         }
@@ -26,10 +31,10 @@ namespace AG.DS
         /// Method for creating the node's port elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreatePortElements(StartNode node, StartNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreatePortElements(StartNode node, StartNodeView view)
         {
-            model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
@@ -37,7 +42,7 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Output_LabelText
             );
 
-            node.Add(model.OutputDefaultPort);
+            node.Add(view.OutputDefaultPort);
             node.RefreshPorts();
         }
 
@@ -46,8 +51,8 @@ namespace AG.DS
         /// Method for creating the node's content elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreateContentElements(StartNode node, StartNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreateContentElements(StartNode node, StartNodeView view)
         {
         }
     }

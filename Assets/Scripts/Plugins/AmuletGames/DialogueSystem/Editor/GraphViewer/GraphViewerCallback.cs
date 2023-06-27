@@ -159,7 +159,6 @@ namespace AG.DS
                 }
             }
 
-            // Invoke changed event
             WindowChangedEvent.Invoke();
         }
 
@@ -191,7 +190,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register GraphViewChangedEvent to the project.
+        /// Register GraphViewChangedEvent to the graph viewer.
         /// </summary>
         void RegisterGraphViewChangedEvent() => graphViewChangedEvent += m_GraphViewChangedEvent;
 
@@ -228,7 +227,7 @@ namespace AG.DS
         /// </summary>
         void m_GraphViewChangedEvent()
         {
-            dsWindow.SetHasUnsavedChanges(value: true);
+            WindowChangedEvent.Invoke();
         }
     }
 }

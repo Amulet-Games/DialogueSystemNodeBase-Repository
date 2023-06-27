@@ -4,7 +4,7 @@
 	padding: 0px 0px 0px 0px;
 }
 
-.node_Border{
+.node_Border {
 
 	background-color: rgba(0, 0, 0, 0);
 	border-color: rgba(59, 219, 218, 0.8);
@@ -133,6 +133,8 @@
 
 /* -------------------------------------------------------- Input / Output Containers --------------------------------------------------------- */
 #top {
+	
+	background-color: rgba(42, 42, 42, 1);
 
 	flex-direction: row;
 }

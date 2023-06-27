@@ -18,7 +18,9 @@
 }
 
 
-/*< ---------------------------------------------------------- Button Container >*/
+/* =========================================================== Button Container =========================================================== */
+
+/*< ---------------------------------------------------------- Container >*/
 .headBar_ButtonContainer {
 	
 	align-items: center;
@@ -88,87 +90,6 @@
 }
 
 
-/*< ---------------------------------------------------------- Language Toolbar Menu >*/
-.global_toolbarMenu  {
-
-	background-color: #252729;
-	border-color: #FFAE1B;
-
-	height: 49px;
-	width: 260px;
-
-	align-items: center;
-
-	flex-direction: row;
-
-	-unity-font-style: bold;
-	
-	/* top - right - bottom - left */
-	margin: 2px 0px 0px 50px;
-	padding: 0px 2px 0px 4px;
-	border-width: 2px;
-	border-radius: 3px;
-}
-
-.global_toolbarMenu:hover {
-
-	background-color: rgba(172, 31, 56, 0.125);
-	border-color: #FD3155;
-	color: #FF1B57;
-}
-
-.global_ToolbarMenu_TextLabel {
-
-	color: #FFBF32;
-
-	height: 60px;
-	width: 262px;
-
-	overflow: hidden;
-	
-	flex-grow: 1;
-
-	-unity-text-align: middle-center;
-
-	position: absolute; 
-
-	white-space: nowrap;
-	
-	font-size: 30px;
-
-	/* top - right - bottom - left */
-	margin: 0px 0px 0px -3px;
-}
-
-.global_toolbarMenu:hover
-.global_ToolbarMenu_TextLabel,
-
-.global_toolbarMenu:active
-.global_ToolbarMenu_TextLabel {
-
-	color: #FF1B57;
-}
-
-.global_ToolbarMenu_ArrowImage {
-	
-	-unity-background-image-tint-color: #FFBF32;
-
-	height: 25px;
-	width: 25px;
-
-	align-self: center;
-
-	/* top - right - bottom - left */
-	margin: 0px 0px 3.5px 200px;
-}
-
-.global_toolbarMenu:hover
-.global_ToolbarMenu_ArrowImage {
-	
-	-unity-background-image-tint-color: #FF1B57;
-}
-
-
 /*< ---------------------------------------------------------- Graph Title Text Field >*/
 .headBar_GraphTitleTextField {
 
@@ -208,4 +129,101 @@
 
 	background-color: #252729;
 	border-bottom-color: #FFD35B;
+}
+
+
+/* =========================================================== Language Toolbar Menu =========================================================== */
+
+/*< ---------------------------------------------------------- Main >*/
+.headBar_LanguageToolbarMenu_Main  {
+
+	background-color: #252729;
+	border-color: #FFAE1B;
+
+	height: 49px;
+	width: auto;
+
+	align-items: center;
+
+	flex-direction: row;
+
+	-unity-font-style: bold;
+	
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 35px;
+	padding: 0px 2px 0px 4px;
+	border-width: 2px;
+	border-radius: 3px;
+}
+
+.headBar_LanguageToolbarMenu_Main:hover {
+
+	background-color: rgba(172, 31, 56, 0.125);
+	border-color: #FD3155;
+	color: #FF1B57;
+}
+
+
+/*< ---------------------------------------------------------- Container >*/
+.headBar_LanguageToolbarMenu_CenterContainer {
+	
+	align-items: center;
+	align-self: center;
+
+	flex-grow: 1;
+
+	flex-direction: row;
+
+	justify-content: space-between;
+}
+
+
+/*< ---------------------------------------------------------- Text Label >*/
+.headBar_LanguageToolbarMenu_TextLabel {
+
+	color: #FFBF32;
+
+	height: auto;
+	width: auto;
+
+	overflow: hidden;
+
+	-unity-text-align: middle-center;
+
+	white-space: nowrap;
+	
+	font-size: 30px;
+
+	/* top - right - bottom - left */
+	margin: 0px 20px 0px 20px;
+}
+
+.headBar_LanguageToolbarMenu_Main:hover
+.headBar_LanguageToolbarMenu_TextLabel,
+
+.headBar_LanguageToolbarMenu_Main:active
+.headBar_LanguageToolbarMenu_TextLabel {
+
+	color: #FF1B57;
+}
+
+
+/*< ---------------------------------------------------------- Arrow image >*/
+.headBar_LanguageToolbarMenu_ArrowImage {
+	
+	-unity-background-image-tint-color: #FFBF32;
+
+	height: 13px;
+	width: 14px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 5px -16px 0px;
+}
+
+.headBar_LanguageToolbarMenu_Main:hover
+.headBar_LanguageToolbarMenu_ArrowImage {
+	
+	-unity-background-image-tint-color: #FF1B57;
 }

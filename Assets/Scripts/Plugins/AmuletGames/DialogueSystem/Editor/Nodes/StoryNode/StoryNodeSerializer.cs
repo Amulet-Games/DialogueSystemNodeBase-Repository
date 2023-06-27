@@ -4,7 +4,7 @@ namespace AG.DS
     public class StoryNodeSerializer : NodeSerializerFrameBase
     <
         StoryNode,
-        StoryNodeModel,
+        StoryNodeView,
         StoryNodeData
     >
     {
@@ -13,11 +13,11 @@ namespace AG.DS
         /// Constructor of the story node serializer class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public StoryNodeSerializer(StoryNode node, StoryNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        public StoryNodeSerializer(StoryNode node, StoryNodeView view)
         {
             Node = node;
-            Model = model;
+            View = view;
         }
 
 
@@ -39,20 +39,20 @@ namespace AG.DS
 
             void SavePorts()
             {
-                Model.InputDefaultPort.Save(data.InputPortData);
-                Model.OutputDefaultPort.Save(data.OutputPortData);
+                View.InputDefaultPort.Save(data.InputPortData);
+                View.OutputDefaultPort.Save(data.OutputPortData);
             }
 
             void SaveSecondContentBoxContainers()
             {
                 // Second line trigger type enum.
-                data.SecondLineTriggerTypeEnumIndex = Model.SecondLineTriggerTypeEnumContainer.Value;
+                data.SecondLineTriggerTypeEnumIndex = View.SecondLineTriggerTypeEnumContainer.Value;
             }
 
             void Save_CSV_GUID()
             {
                 // CSV GUID.
-                data.CsvGUID = Model.CsvGUID;
+                data.CsvGUID = View.CsvGUID;
             }
 
             void AddData()
@@ -76,20 +76,20 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                Model.InputDefaultPort.Load(data.InputPortData);
-                Model.OutputDefaultPort.Load(data.OutputPortData);
+                View.InputDefaultPort.Load(data.InputPortData);
+                View.OutputDefaultPort.Load(data.OutputPortData);
             }
 
             void LoadSecondContentBoxContainers()
             {
                 // Second line trigger type enum.
-                Model.SecondLineTriggerTypeEnumContainer.Load(data.SecondLineTriggerTypeEnumIndex);
+                View.SecondLineTriggerTypeEnumContainer.Load(data.SecondLineTriggerTypeEnumIndex);
             }
 
             void Load_CSV_Guid()
             {
                 // CSV GUID.
-                Model.CsvGUID = data.CsvGUID;
+                View.CsvGUID = data.CsvGUID;
             }
         }
     }

@@ -101,22 +101,19 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Initialize for the class.
+        /// Initialize for the class. Logic here should only be executed once.
         /// </summary>
         /// <param name="dsData">The dialogue system data to set for.</param>
-        public void Initialize(DialogueSystemData dsData)
+        void Initialize(DialogueSystemData dsData)
         {
-            // Connecting data
             this.dsData = dsData;
-
-            Setup();
         }
 
 
         /// <summary>
         /// Setup for the class.
         /// </summary>
-        public void Setup()
+        void Setup()
         {
             NodeCreateRequestWindow nodeCreateRequestWindow;
 
@@ -141,16 +138,16 @@ namespace AG.DS
                 InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
 
                 // Serialize Handler
-                serializeHandler = new(graphViewer);
+                serializeHandler = new(graphViewer, headBar);
 
                 // Node Create's
                 var nodeCreateDetails = new NodeCreateDetails();
 
                 nodeCreateRequestWindow =
-                    NodeCreateRequestWindowPresenter.CreateWindow(graphViewer, nodeCreateDetails, dsWindow: this);
+                    NodeCreateRequestWindowPresenter.CreateWindow(graphViewer, headBar, nodeCreateDetails, dsWindow: this);
 
                 graphViewer.NodeCreateConnectorWindow =
-                    NodeCreateConnectorWindowPresenter.CreateWindow(graphViewer, nodeCreateDetails, dsWindow: this);
+                    NodeCreateConnectorWindowPresenter.CreateWindow(graphViewer, headBar, nodeCreateDetails, dsWindow: this);
 
                 NodeCreateEntryProvider.SetupNodeCreateWindowEntries();
             }
@@ -175,13 +172,22 @@ namespace AG.DS
                     dsData, graphViewer, headBar,
                     serializeHandler, nodeCreateRequestWindow, dsWindow: this).RegisterEvents();
 
-                new NodeCreateRequestWindowCallback(nodeCreateRequestWindow, dsWindow: this);
-                new NodeCreateConnectorWindowCallback(graphViewer.NodeCreateConnectorWindow, dsWindow: this);
+                new NodeCreateRequestWindowCallback(nodeCreateRequestWindow).RegisterEvents();
+                new NodeCreateConnectorWindowCallback(graphViewer.NodeCreateConnectorWindow).RegisterEvents();
             }
         }
 
 
-        // ----------------------------- Get Window -----------------------------
+        // ----------------------------- Override -----------------------------
+        /// <summary>
+        /// Performs a save action on the contents of the window.
+        /// <br>The method is override to include saving all the visual elements in this window.</br>
+        /// <para>Read More https://docs.unity3d.com/ScriptReference/EditorWindow.SaveChanges.html</para>
+        /// </summary>
+        public override void SaveChanges() => Save();
+
+
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Callback attribute for opening an asset in Unity (e.g the callback is fired when double clicking an asset in the Project Browser).
         /// <para>Read More https://docs.unity3d.com/2020.1/Documentation/ScriptReference/Callbacks.OnOpenAssetAttribute.html</para>
@@ -204,21 +210,15 @@ namespace AG.DS
                     return false;
                 }
 
-                DialogueEditorWindowPresenter.CreateWindow().Initialize(dsData);
+                var dsWindow = DialogueEditorWindowPresenter.CreateWindow();
+                dsWindow.Initialize(dsData);
+                dsWindow.Setup();
+
                 dsData.IsOpened = true;
             }
 
             return false;
         }
-
-
-        // ----------------------------- Serialization -----------------------------
-        /// <summary>
-        /// Performs a save action on the contents of the window.
-        /// <br>The method is override to include saving all the visual elements in this window.</br>
-        /// <para>Read More https://docs.unity3d.com/ScriptReference/EditorWindow.SaveChanges.html</para>
-        /// </summary>
-        public override void SaveChanges() => Save();
 
 
         /// <summary>

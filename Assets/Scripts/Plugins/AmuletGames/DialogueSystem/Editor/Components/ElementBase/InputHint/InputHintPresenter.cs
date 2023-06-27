@@ -52,7 +52,7 @@ namespace AG.DS
                 inputHint.HintTextLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: "",
-                    labelUSS01: StyleConfig.InputHint_TextLabel
+                    labelUSS: StyleConfig.InputHint_TextLabel
                 );
             }
 

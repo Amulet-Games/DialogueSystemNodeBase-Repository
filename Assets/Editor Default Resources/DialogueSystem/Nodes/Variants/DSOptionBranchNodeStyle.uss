@@ -44,12 +44,35 @@
 	overflow: visible;
 
 	/* top - right - bottom - left */
-	margin: 2px 0px 0px 0.5px;
+	margin: 1px 0px 0px 0.5px;
 	padding: 0px 0px 0px 0px;
 }
 
 .node_Title_TextField
 .unity-text-field__input {
+	
+	background-color: rgba(0, 0, 0, 0);
+
+	-unity-text-align: middle-left;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 9px 0px 9px;
+	border-radius: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.node_Title_TextField:focus
+.unity-text-field__input {
+
+	overflow: visible;
+
+	/* top - right - bottom - left */
+	margin: 1px 0px 0px -4px;
+}
+
+.node_Title_TextField
+.unity-text-element {
 
 	background-color: rgba(0, 0, 0, 0);
 	
@@ -59,31 +82,27 @@
 
 	font-size: 17px;
 	
-	flex-grow: 1;
-	flex-shrink: 0;
-	flex-basis: auto;
-
-	-unity-font: url('project:/Assets/Data/Fonts/Inter/static/Inter-Medium.ttf');
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
 	-unity-text-align: middle-left;
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 0px;
-	padding: 0px 9px 0px 9px;
+	padding: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
 	border-width: 0px 0px 0px 0px;
 }
 
 .node_Title_TextField:focus
-.unity-text-field__input {
+.unity-text-element {
 
 	background-color: rgba(32, 32, 32, 1);
+	border-color: rgba(58, 121, 187, 1);
 	
 	height: 30px;
 
 	/* top - right - bottom - left */
-	margin: 0.5px 4px 0px 2px;
-	padding: 0px 9px 0px 6px;
-	border-radius: 4px 4px 4px 4px;
+	margin: 0px 0px 0px -1.5px;
+	padding: 0px 0px 1.5px 4px;
 	border-width: 1px 1px 1px 1px;
 }
 
@@ -93,8 +112,8 @@
 
 	background-color: rgba(0, 0, 0, 0);
 
-	height: 29px;
-	width: 28px;
+	height: 27px;
+	width: 27px;
 
 	align-self: center;
 
@@ -102,7 +121,7 @@
 	flex-shrink: 0; 
 
 	/* top - right - bottom - left */
-	margin: -0.5px 5px 0px 0px;
+	margin: 0px 6.5px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
@@ -127,6 +146,7 @@
 	flex-direction: row;
 	flex-grow: 1;
 	flex-shrink: 0;
+
 	justify-content: space-between;
 
 	/* top - right - bottom - left */
@@ -141,20 +161,20 @@
 }
 
 
-/*< ---------------------------------------------------------- Label >*/
+/*< ---------------------------------------------------------- Title Label >*/
 .contentButton_Title_Label {
 	
 	color: rgba(255, 255, 255, 1);
 	
 	height: 30px;
 	
-	font-size: 17px;
-
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium.asset');
+	font-size: 17.5px;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
 	-unity-text-align: middle-left;
 
-	letter-spacing: -1px;
-	word-spacing: 35px;
+	letter-spacing: -2px;
+	word-spacing: 11px;
 
 	/* top - right - bottom - left */
 	margin: 2.5px 0px 0px 12px;
@@ -164,7 +184,7 @@
 }
 
 
-/*< ---------------------------------------------------------- Image >*/
+/*< ---------------------------------------------------------- Icon Image >*/
 .contentButton_Icon_Image {
 
 	height: 27.5px;
@@ -244,7 +264,7 @@
 	flex-shrink: 1;
 
 	/* top - right - bottom - left */
-	margin: 0.5px 0px 0px -4.5px;
+	margin: 0.5px 0px 0px -6px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 16px 16px 16px 16px;
@@ -256,8 +276,8 @@
 
 	background-color: rgba(197, 96, 139, 1);
 
-	height: 8.5px;
-	width: 8.5px;
+	height: 9px;
+	width: 9px;
 
 	/* top - right - bottom - left */
 	border-radius: 16px 16px 16px 16px;
@@ -272,12 +292,12 @@
 	height: auto;
 	width: auto;
 	
-	font-size: 14px;
+	font-size: 13.5px;
 	
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium.asset');
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
 	-unity-text-align: middle-left;
 
-	letter-spacing: -2px;
+	letter-spacing: 0px;
 
 	white-space: nowrap;
 	
@@ -286,7 +306,7 @@
 	flex-basis: auto;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 4.5px;
+	margin: 0px 0px 0px 6px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;
@@ -297,7 +317,7 @@
 
 	color: rgba(204, 115, 134, 1);
 	
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Bold.asset');
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Bold-Static-SDF.asset');
 	-unity-text-align: middle-center;
 	
 	/* top - right - bottom - left */
@@ -368,7 +388,7 @@
 	flex-shrink: 1;
 
 	/* top - right - bottom - left */
-	margin: -1px -4.5px 0px 0px;
+	margin: -1px -5.5px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 16px 16px 16px 16px;
@@ -396,12 +416,12 @@
 	height: auto;
 	width: auto;
 	
-	font-size: 14px;
-
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium.asset');
+	font-size: 13.5px;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
 	-unity-text-align: middle-left;
 	
-	letter-spacing: -3px;
+	letter-spacing: 0px;
 
 	white-space: nowrap;
 
@@ -410,7 +430,7 @@
 	flex-basis: auto;
 
 	/* top - right - bottom - left */
-	margin: 0px 4.5px 0px 0px;
+	margin: 0px 6px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;
@@ -441,7 +461,7 @@
 
 	/* top - right - bottom - left */
 	margin: 6px 6px 6px 6px;
-	padding: 0px 0px 0px 0px;
+	padding: 0.5px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
 }
@@ -459,7 +479,7 @@
 	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 9px 0px 0px 5px;
+	margin: 8.5px 0px 0px 5px;
 	padding: 0px 0px 0px 0px;
 }
 
@@ -481,14 +501,14 @@
 	
 	color: rgba(255, 255, 255, 1);
 	
-	font-size: 17px;
+	font-size: 16.3px;
 	
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium.asset');
-	letter-spacing: -9px;
-	word-spacing: 9px;
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	letter-spacing: -1px;
+	word-spacing: 4px;
 	
 	/* top - right - bottom - left */
-	margin: 2px 0px 0px 12px;
+	margin: 1px 0px 0px 12px;
 	padding: 0px 0px 0px 0px;
 }
 
@@ -505,7 +525,7 @@
 	white-space: normal;
 
 	/* top - right - bottom - left */
-	margin: 1px 0px 0px 12px;
+	margin: 2px 0px 0px 12px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
@@ -516,7 +536,6 @@
 	border-color: rgba(101, 101, 101, 1);
 
 	/* top - right - bottom - left */
-	margin: 1px 0px 0px 11px;
 	border-width: 0.5px 0.5px 0.5px 0.5px;
 }
 
@@ -525,29 +544,56 @@
 	border-color: rgba(58, 121, 187, 1);
 
 	/* top - right - bottom - left */
-	margin: 1px 0px 0px 11px;
 	border-width: 0.5px 0.5px 0.5px 0.5px;
-}
-
-.optionBranchNode_Title_TextField.textField_Empty
-.unity-text-field__input {
-	
-	color: rgba(101, 101, 101, 1);
 }
 
 .optionBranchNode_Title_TextField
 .unity-text-field__input {
+	
+	background-color: rgba(0, 0, 0, 0);
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
 
-	background-color: rgba(32, 32, 32, 1);
-	color: rgba(210, 210, 210, 1);
+.optionBranchNode_Title_TextField
+.unity-text-element {
 
-	font-size: 13px;
+	background-color: rgba(0, 0, 0, 0);
+	color: rgba(255, 255, 255, 1);
+
+	font-size: 13.5px;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Dynamic-SDF.asset');
+
+	letter-spacing: -2px;
+	word-spacing: -1px;
 
 	align-self: center;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 6px;
+	margin: 0px 0px 0px 5px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;
+}
+
+.optionBranchNode_Title_TextField.textField_Empty
+.unity-text-element {
+	
+	color: rgba(81, 81, 81, 1);
+}
+
+.optionBranchNode_Title_TextField:hover
+.unity-text-element,
+
+.optionBranchNode_Title_TextField:focus
+.unity-text-element
+{
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 4.5px;
+	padding: 0px 0px 0px 0px;
 }

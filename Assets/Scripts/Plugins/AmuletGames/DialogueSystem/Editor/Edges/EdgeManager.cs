@@ -65,7 +65,6 @@ namespace AG.DS
             return Connect
             <
                 DefaultEdge,
-                DefaultEdgeModel,
                 DefaultEdgePresenter,
                 DefaultEdgeCallback,
                 DefaultPort
@@ -88,7 +87,6 @@ namespace AG.DS
             return Connect
             <
                 OptionEdge,
-                OptionEdgeModel,
                 OptionEdgePresenter,
                 OptionEdgeCallback,
                 OptionPort
@@ -104,30 +102,24 @@ namespace AG.DS
         /// Method for connecting the two given ports.
         /// </summary>
         /// <typeparam name="TEdge">Type edge</typeparam>
-        /// <typeparam name="TEdgeModel">Type edge model</typeparam>
         /// <typeparam name="TEdgePresenter">Type edge presenter</typeparam>
         /// <typeparam name="TEdgeCallback">Type edge callback</typeparam>
         /// <typeparam name="TPort">Type port</typeparam>
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
         /// <returns>A new type edge element.</returns>
-        TEdge Connect<TEdge, TEdgeModel, TEdgePresenter, TEdgeCallback, TPort>
+        TEdge Connect<TEdge, TEdgePresenter, TEdgeCallback, TPort>
         (
             TPort output,
             TPort input
         )
             where TEdge : EdgeBase
-            where TEdgeModel : EdgeModelFrameBase<TPort>, new()
-            where TEdgePresenter : EdgePresenterFrameBase<TEdge, TEdgeModel, TPort>, new()
+            where TEdgePresenter : EdgePresenterFrameBase<TEdge, TPort>, new()
             where TEdgeCallback : EdgeCallbackFrameBase<TEdge>, new()
             where TPort : PortBase
         {
-            // Create model
-            var edgeModel = new TEdgeModel();
-            edgeModel.Setup(output, input);
-
             // Create edge
-            var edge = new TEdgePresenter().CreateElement(edgeModel);
+            var edge = new TEdgePresenter().CreateElement(output, input);
 
             // Register events
             new TEdgeCallback().Setup(edge).RegisterEvents();

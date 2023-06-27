@@ -4,7 +4,7 @@ namespace AG.DS
     public class StartNodeSerializer : NodeSerializerFrameBase
     <
         StartNode,
-        StartNodeModel,
+        StartNodeView,
         StartNodeData
     >
     {
@@ -13,11 +13,11 @@ namespace AG.DS
         /// Constructor of the start node serializer class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public StartNodeSerializer(StartNode node, StartNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        public StartNodeSerializer(StartNode node, StartNodeView view)
         {
             Node = node;
-            Model = model;
+            View = view;
         }
 
 
@@ -35,7 +35,7 @@ namespace AG.DS
 
             void SavePorts()
             {
-                Model.OutputDefaultPort.Save(data.OutputPortData);
+                View.OutputDefaultPort.Save(data.OutputPortData);
             }
 
             void AddData()
@@ -55,7 +55,7 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                Model.OutputDefaultPort.Load(data.OutputPortData);
+                View.OutputDefaultPort.Load(data.OutputPortData);
             }
         }
     }

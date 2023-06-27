@@ -13,13 +13,13 @@ namespace AG.DS
         /// <summary>
         /// The current language type of the custom graph editor.
         /// </summary>
-        public G_LanguageType SelectedLanguage = G_LanguageType.English;
+        public LanguageType CurrentLanguage { get; private set; } = LanguageType.English;
 
 
         /// <summary>
         /// The array of languages types supported in the dialogue system.
         /// </summary>
-        public G_LanguageType[] SupportLanguageTypes { get; private set; }
+        public LanguageType[] SupportLanguageTypes { get; private set; }
 
 
         /// <summary>
@@ -34,27 +34,34 @@ namespace AG.DS
         public static void Setup()
         {
             Instance ??= new();
-            Instance.SupportLanguageTypes = (G_LanguageType[])Enum.GetValues(typeof(G_LanguageType));
+            Instance.SupportLanguageTypes = (LanguageType[])Enum.GetValues(typeof(LanguageType));
             Instance.SupportLanguageLength = Instance.SupportLanguageTypes.Length;
         }
 
 
-        // ----------------------------- Retrieve Language String -----------------------------
+        /// <summary>
+        /// Set a new value to the current language.
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetCurrentLanguage(LanguageType value) => CurrentLanguage = value;
+
+
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Retrieve the suffix text of the given language type.
         /// </summary>
         /// <param name="type">The targeting language type.</param>
         /// <returns>The suffix text of the given language type.</returns>
-        public string GetSuffix(G_LanguageType type)
+        public string GetSuffix(LanguageType type)
         {
             return type switch
             {
-                G_LanguageType.English => " (Eng)",
-                G_LanguageType.German => " (Ger)",
-                G_LanguageType.Danish => " (Dan)",
-                G_LanguageType.Spanish => " (Span)",
-                G_LanguageType.Japanese => " (Jpn)",
-                G_LanguageType.Latin => " (Lat)",
+                LanguageType.English => " (Eng)",
+                LanguageType.German => " (Ger)",
+                LanguageType.Danish => " (Dan)",
+                LanguageType.Spanish => " (Span)",
+                LanguageType.Japanese => " (Jpn)",
+                LanguageType.Latin => " (Lat)",
                 _ => " (Eng)",
             };
         }
@@ -65,16 +72,16 @@ namespace AG.DS
         /// </summary>
         /// <param name="type">The targeting language type.</param>
         /// <returns>The abbreviated text of the given language type.</returns>
-        public string GetShort(G_LanguageType type)
+        public string GetShort(LanguageType type)
         {
             return type switch
             {
-                G_LanguageType.English => "ENG",
-                G_LanguageType.German => "GER",
-                G_LanguageType.Danish => "DAN",
-                G_LanguageType.Spanish => "SPAN",
-                G_LanguageType.Japanese => "JPN",
-                G_LanguageType.Latin => "LATIN",
+                LanguageType.English => "ENG",
+                LanguageType.German => "GER",
+                LanguageType.Danish => "DAN",
+                LanguageType.Spanish => "SPAN",
+                LanguageType.Japanese => "JPN",
+                LanguageType.Latin => "LATIN",
                 _ => "ENG",
             };
         }
@@ -85,16 +92,16 @@ namespace AG.DS
         /// </summary>
         /// <param name="type">The targeting language type.</param>
         /// <returns>The full text of the given language type.</returns>
-        public string GetFull(G_LanguageType type)
+        public string GetFull(LanguageType type)
         {
             return type switch
             {
-                G_LanguageType.English => "English",
-                G_LanguageType.German => "German",
-                G_LanguageType.Danish => "Danish",
-                G_LanguageType.Spanish => "Spanish",
-                G_LanguageType.Japanese => "Japanese",
-                G_LanguageType.Latin => "Latin",
+                LanguageType.English => "English",
+                LanguageType.German => "German",
+                LanguageType.Danish => "Danish",
+                LanguageType.Spanish => "Spanish",
+                LanguageType.Japanese => "Japanese",
+                LanguageType.Latin => "Latin",
                 _ => "ENG",
             };
         }

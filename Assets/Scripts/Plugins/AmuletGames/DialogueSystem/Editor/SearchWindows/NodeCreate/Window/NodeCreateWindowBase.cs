@@ -22,6 +22,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the headBar element.
+        /// </summary>
+        HeadBar headBar;
+
+
+        /// <summary>
         /// Reference of the node create details.
         /// </summary>
         protected NodeCreateDetails Details;
@@ -51,16 +57,19 @@ namespace AG.DS
         /// Setup for the class
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="details">The node create details to set for.</param>
         /// <param name="dsWindow">The dialogue editor window to set for.</param>
         public void Setup
         (
             GraphViewer graphViewer,
+            HeadBar headBar,
             NodeCreateDetails details,
             DialogueEditorWindow dsWindow
         )
         {
             this.graphViewer = graphViewer;
+            this.headBar = headBar;
             this.dsWindow = dsWindow;
             Details = details;
         }
@@ -105,100 +114,99 @@ namespace AG.DS
             }
 
             // Create node.
+            var node = NodeManager.Instance.Spawn
+            (
+                graphViewer,
+                headBar,
+                nodeType: ((NodeCreateEntry)searchTreeEntry).NodeType
+            );
+
+            // Set spawn position.
+            switch (node)
             {
-                var node = NodeManager.Instance.Spawn
-                (
-                    graphViewer,
-                    nodeType: ((NodeCreateEntry)searchTreeEntry).NodeType
-                );
-
-                // Register GeometryChangeEvent to the node to make sure its spawn position is correct.
-                switch (node)
-                {
-                    case BooleanNode booleanNode:
-                        SetNodePosition
-                            (
-                                booleanNode,
-                                leftSideAlignmentReferencePort: booleanNode.Model.TrueOutputDefaultPort,
-                                rightSideAlignmentReferencePort: booleanNode.Model.InputDefaultPort,
-                                middleAlignmentReferencePort: booleanNode.Model.InputDefaultPort
-                            );
-                        break;
-                    case DialogueNode dialogueNode:
-                        SetNodePosition
-                            (
-                                dialogueNode,
-                                leftSideAlignmentReferencePort: dialogueNode.Model.OutputDefaultPort,
-                                rightSideAlignmentReferencePort: dialogueNode.Model.InputDefaultPort,
-                                middleAlignmentReferencePort: dialogueNode.Model.InputDefaultPort
-                            );
-                        break;
-                    case EndNode endNode:
-                        SetNodePosition
-                            (
-                                endNode,
-                                rightSideAlignmentReferencePort: endNode.Model.InputDefaultPort,
-                                middleAlignmentReferencePort: endNode.Model.InputDefaultPort
-                            );
-                        break;
-                    case EventNode eventNode:
-                        SetNodePosition
-                            (
-                                eventNode,
-                                leftSideAlignmentReferencePort: eventNode.Model.OutputDefaultPort,
-                                rightSideAlignmentReferencePort: eventNode.Model.InputDefaultPort,
-                                middleAlignmentReferencePort: eventNode.Model.InputDefaultPort
-                            );
-                        break;
-                    case OptionBranchNode optionBranchNode:
-                        SetNodePosition
-                            (
-                                optionBranchNode,
-                                leftSideAlignmentReferencePort: optionBranchNode.Model.OutputDefaultPort,
-                                rightSideAlignmentReferencePort: optionBranchNode.Model.InputOptionPort,
-                                middleAlignmentReferencePort: optionBranchNode.Model.InputOptionPort
-                            );
-                        break;
-                    case OptionRootNode optionRootNode:
-                        SetNodePosition
-                            (
-                                optionRootNode,
-                                leftSideAlignmentReferencePort: optionRootNode.Model.OutputOptionPort,
-                                rightSideAlignmentReferencePort: optionRootNode.Model.InputDefaultPort,
-                                middleAlignmentReferencePort: optionRootNode.Model.InputDefaultPort
-                            );
-                        break;
-                    case PreviewNode previewNode:
-                        SetNodePosition
-                            (
-                                previewNode,
-                                leftSideAlignmentReferencePort: previewNode.Model.OutputDefaultPort,
-                                rightSideAlignmentReferencePort: previewNode.Model.InputDefaultPort,
-                                middleAlignmentReferencePort: previewNode.Model.InputDefaultPort
-                            );
-                        break;
-                    case StartNode startNode:
-                        SetNodePosition
-                            (
-                                startNode,
-                                leftSideAlignmentReferencePort: startNode.Model.OutputDefaultPort,
-                                middleAlignmentReferencePort: startNode.Model.OutputDefaultPort
-                            );
-                        break;
-                    case StoryNode storyNode:
-                        SetNodePosition
-                            (
-                                storyNode,
-                                leftSideAlignmentReferencePort: storyNode.Model.OutputDefaultPort,
-                                rightSideAlignmentReferencePort: storyNode.Model.InputDefaultPort,
-                                middleAlignmentReferencePort: storyNode.Model.InputDefaultPort
-                            );
-                        break;
-                }
-
-                // Add the node to the graph.
-                graphViewer.Add(node);
+                case BooleanNode booleanNode:
+                    SetNodePosition
+                        (
+                            booleanNode,
+                            leftSideAlignmentReferencePort: booleanNode.View.TrueOutputDefaultPort,
+                            rightSideAlignmentReferencePort: booleanNode.View.InputDefaultPort,
+                            middleAlignmentReferencePort: booleanNode.View.InputDefaultPort
+                        );
+                    break;
+                case DialogueNode dialogueNode:
+                    SetNodePosition
+                        (
+                            dialogueNode,
+                            leftSideAlignmentReferencePort: dialogueNode.View.OutputDefaultPort,
+                            rightSideAlignmentReferencePort: dialogueNode.View.InputDefaultPort,
+                            middleAlignmentReferencePort: dialogueNode.View.InputDefaultPort
+                        );
+                    break;
+                case EndNode endNode:
+                    SetNodePosition
+                        (
+                            endNode,
+                            rightSideAlignmentReferencePort: endNode.View.InputDefaultPort,
+                            middleAlignmentReferencePort: endNode.View.InputDefaultPort
+                        );
+                    break;
+                case EventNode eventNode:
+                    SetNodePosition
+                        (
+                            eventNode,
+                            leftSideAlignmentReferencePort: eventNode.View.OutputDefaultPort,
+                            rightSideAlignmentReferencePort: eventNode.View.InputDefaultPort,
+                            middleAlignmentReferencePort: eventNode.View.InputDefaultPort
+                        );
+                    break;
+                case OptionBranchNode optionBranchNode:
+                    SetNodePosition
+                        (
+                            optionBranchNode,
+                            leftSideAlignmentReferencePort: optionBranchNode.View.OutputDefaultPort,
+                            rightSideAlignmentReferencePort: optionBranchNode.View.InputOptionPort,
+                            middleAlignmentReferencePort: optionBranchNode.View.InputOptionPort
+                        );
+                    break;
+                case OptionRootNode optionRootNode:
+                    SetNodePosition
+                        (
+                            optionRootNode,
+                            leftSideAlignmentReferencePort: optionRootNode.View.OutputOptionPort,
+                            rightSideAlignmentReferencePort: optionRootNode.View.InputDefaultPort,
+                            middleAlignmentReferencePort: optionRootNode.View.InputDefaultPort
+                        );
+                    break;
+                case PreviewNode previewNode:
+                    SetNodePosition
+                        (
+                            previewNode,
+                            leftSideAlignmentReferencePort: previewNode.View.OutputDefaultPort,
+                            rightSideAlignmentReferencePort: previewNode.View.InputDefaultPort,
+                            middleAlignmentReferencePort: previewNode.View.InputDefaultPort
+                        );
+                    break;
+                case StartNode startNode:
+                    SetNodePosition
+                        (
+                            startNode,
+                            leftSideAlignmentReferencePort: startNode.View.OutputDefaultPort,
+                            middleAlignmentReferencePort: startNode.View.OutputDefaultPort
+                        );
+                    break;
+                case StoryNode storyNode:
+                    StoryNodeSetPosition
+                        (
+                            storyNode,
+                            leftSideAlignmentReferencePort: storyNode.View.OutputDefaultPort,
+                            rightSideAlignmentReferencePort: storyNode.View.InputDefaultPort,
+                            middleAlignmentReferencePort: storyNode.View.InputDefaultPort
+                        );
+                    break;
             }
+
+            // Add to graph viewer.
+            graphViewer.Add(node);
 
             return true;
         }
@@ -219,7 +227,7 @@ namespace AG.DS
            PortBase middleAlignmentReferencePort = null
         )
         {
-            node.RegisterCallback<GeometryChangedEvent>(SetPosition);
+            node.ExecuteOnceOnGeometryChanged(SetPosition);
 
             void SetPosition(GeometryChangedEvent evt)
             {
@@ -283,9 +291,62 @@ namespace AG.DS
 
                     graphViewer.Add(edge);
                 }
+            }
+        }
 
-                // Unregister event after it has done executed once.
-                node.UnregisterCallback<GeometryChangedEvent>(SetPosition);
+
+        // TODO: Delete this after apply design is over.
+        void StoryNodeSetPosition
+        (
+           StoryNode node,
+           PortBase leftSideAlignmentReferencePort = null,
+           PortBase rightSideAlignmentReferencePort = null,
+           PortBase middleAlignmentReferencePort = null
+        )
+        {
+            node.ExecuteOnceOnGeometryChanged(SetPosition);
+
+            void SetPosition(GeometryChangedEvent evt)
+            {
+                // Set position
+                {
+                    Vector2 targetPos = createPosition;
+                    switch (Details.HorizontalAlignmentType)
+                    {
+                        case HorizontalAlignmentType.LEFT:
+
+                            targetPos.y -= (node.titleContainer.worldBound.height
+                                      + leftSideAlignmentReferencePort.localBound.position.y
+                                      + NodeConfig.ManualCreateYOffset)
+                                      / graphViewer.scale;
+
+                            targetPos.x -= node.localBound.width;
+
+                            break;
+                        case HorizontalAlignmentType.MIDDLE:
+
+                            targetPos.y -= (node.titleContainer.worldBound.height
+                                      + middleAlignmentReferencePort.localBound.position.y
+                                      + NodeConfig.ManualCreateYOffset)
+                                      / graphViewer.scale;
+
+                            targetPos.x -= node.localBound.width / 2;
+
+                            break;
+                        case HorizontalAlignmentType.RIGHT:
+
+                            targetPos.y -= (node.titleContainer.worldBound.height
+                                      + rightSideAlignmentReferencePort.localBound.position.y
+                                      + NodeConfig.ManualCreateYOffset)
+                                      / graphViewer.scale;
+
+                            break;
+                    }
+
+                    node.SetPosition(newPos: new Rect(targetPos, Vector2Utility.Zero));
+                }
+
+                node.ExecuteOnceOnGeometryChanged(node.Callback.GeometryChangedEvent);
             }
         }
 

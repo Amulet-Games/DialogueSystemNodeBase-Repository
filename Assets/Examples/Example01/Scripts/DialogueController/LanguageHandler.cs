@@ -9,7 +9,7 @@ namespace AG
     public class LanguageHandler : MonoBehaviour
     {
         [Header("Config")]
-        public G_LanguageType languageType;
+        public LanguageType languageType;
 
         [Header("Static")]
         public static LanguageHandler singleton;

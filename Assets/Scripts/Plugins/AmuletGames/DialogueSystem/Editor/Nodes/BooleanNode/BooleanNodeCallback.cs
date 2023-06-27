@@ -7,7 +7,7 @@ namespace AG.DS
     public class BooleanNodeCallback : NodeCallbackFrameBase
     <
         BooleanNode,
-        BooleanNodeModel
+        BooleanNodeView
     >
     {
         /// <summary>
@@ -21,15 +21,15 @@ namespace AG.DS
         /// Constructor of the boolean node callback class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
+        /// <param name="view">The node view to set for.</param>
         public BooleanNodeCallback
         (
             BooleanNode node,
-            BooleanNodeModel model
+            BooleanNodeView view
         )
         {
             Node = node;
-            Model = model;
+            View = view;
         }
 
 
@@ -68,7 +68,7 @@ namespace AG.DS
         /// </summary>
         void RegisterNodeTitleTextFieldEvents()
             => new NodeTitleTextFieldCallback(
-                model: Model.NodeTitleTextFieldModel,
+                view: View.NodeTitleTextFieldView,
                 widthBuffer: NodeConfig.BooleanNodeWidthBuffer).RegisterEvents();
 
 
@@ -78,7 +78,7 @@ namespace AG.DS
         void RegisterNodeTitleEditButtonClickEvent()
             => new CommonButtonCallback(
                 isAlert: false,
-                button: Model.EditTitleButton,
+                button: View.EditTitleButton,
                 clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
 
 
@@ -114,7 +114,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void NodeTitleEditButtonClickEvent(ClickEvent evt)
         {
-            var fieldInput = Model.NodeTitleTextFieldModel.TextField.GetElementInput();
+            var fieldInput = View.NodeTitleTextFieldView.TextField.GetElementInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }

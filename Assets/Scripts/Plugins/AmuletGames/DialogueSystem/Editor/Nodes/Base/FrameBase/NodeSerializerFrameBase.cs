@@ -6,12 +6,12 @@ namespace AG.DS
     public abstract class NodeSerializerFrameBase
     <
         TNode,
-        TNodeModel,
+        TNodeView,
         TNodeData
     > 
         : NodeSerializerBase
         where TNode : NodeBase
-        where TNodeModel : NodeModelBase
+        where TNodeView : NodeViewBase
         where TNodeData : NodeDataBase
     {
         /// <summary>
@@ -21,9 +21,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the node model.
+        /// Reference of the node view.
         /// </summary>
-        protected TNodeModel Model;
+        protected TNodeView View;
 
 
         // ----------------------------- Serialization -----------------------------
@@ -60,7 +60,7 @@ namespace AG.DS
 
             void SaveNodeTitleField()
             {
-                data.TitleText = Model.NodeTitleTextFieldModel.TextField.value;
+                data.TitleText = View.NodeTitleTextFieldView.TextField.value;
             }
         }
 
@@ -89,7 +89,7 @@ namespace AG.DS
 
             void LoadNodeTitleField()
             {
-                Model.NodeTitleTextFieldModel.Load(data.TitleText);
+                View.NodeTitleTextFieldView.Load(data.TitleText);
             }
         }
     }

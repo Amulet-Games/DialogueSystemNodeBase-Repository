@@ -7,17 +7,22 @@ namespace AG.DS
     public class OptionRootNodePresenter : NodePresenterFrameBase
     <
         OptionRootNode,
-        OptionRootNodeModel
+        OptionRootNodeView
     >
     {
         /// <inheritdoc />
-        public override OptionRootNode CreateElements(OptionRootNodeModel model, GraphViewer graphViewer)
+        public override OptionRootNode CreateElements
+        (
+            OptionRootNodeView view,
+            GraphViewer graphViewer,
+            HeadBar headBar = null
+        )
         {
-            var node = new OptionRootNode(model, graphViewer);
+            var node = new OptionRootNode(view, graphViewer, headBar);
 
-            CreateTitleElements(node, model);
-            CreatePortElements(node, model);
-            CreateContentElements(node, model);
+            CreateTitleElements(node, view);
+            CreatePortElements(node, view);
+            CreateContentElements(node, view);
 
             return node;
         }
@@ -27,10 +32,10 @@ namespace AG.DS
         /// Method for creating the node's port elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreatePortElements(OptionRootNode node, OptionRootNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreatePortElements(OptionRootNode node, OptionRootNodeView view)
         {
-            model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
@@ -38,14 +43,14 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            model.OutputOptionPort = OptionPort.CreateElement<OptionEdge>
+            view.OutputOptionPort = OptionPort.CreateElement<OptionEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output
             );
 
-            node.Add(model.InputDefaultPort);
-            node.Add(model.OutputOptionPort);
+            node.Add(view.InputDefaultPort);
+            node.Add(view.OutputOptionPort);
             node.RefreshPorts();
         }
 
@@ -54,8 +59,8 @@ namespace AG.DS
         /// Method for creating the node's content elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreateContentElements(OptionRootNode node, OptionRootNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreateContentElements(OptionRootNode node, OptionRootNodeView view)
         {
             SetupContentButton();
 
@@ -63,13 +68,13 @@ namespace AG.DS
 
             void SetupContentButton()
             {
-                model.ContentButton = ContentButtonPresenter.CreateElement
+                view.ContentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.ContentButton_AddEntry_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEntryButtonIconSprite
                 );
 
-                node.titleContainer.Add(model.ContentButton);
+                node.titleContainer.Add(view.ContentButton);
             }
 
             void SetupOptionRootGroup()
@@ -119,17 +124,17 @@ namespace AG.DS
                     rootTitleLabel = CommonLabelPresenter.CreateElement
                     (
                         labelText: StringConfig.OptionRootNode_RootTitleLabel_LabelText,
-                        labelUSS01: StyleConfig.OptionRootNode_Title_Label
+                        labelUSS: StyleConfig.OptionRootNode_Title_Label
                     );
                 }
 
                 void SetupOptionRootTitleTextField()
                 {
-                    model.RootTitleTextFieldModel.TextField = LanguageTextFieldPresenter.CreateElement
+                    view.RootTitleTextFieldView.TextField = LanguageTextFieldPresenter.CreateElement
                     (
                         isMultiLine: false,
-                        placeholderText: model.RootTitleTextFieldModel.PlaceholderText,
-                        fieldUSS01: StyleConfig.OptionRootNode_Title_TextField
+                        placeholderText: view.RootTitleTextFieldView.PlaceholderText,
+                        fieldUSS: StyleConfig.OptionRootNode_Title_TextField
                     );
                 }
 
@@ -141,7 +146,7 @@ namespace AG.DS
                     outerContainer.Add(InnerContainer);
 
                     InnerContainer.Add(rootTitleLabel);
-                    InnerContainer.Add(model.RootTitleTextFieldModel.TextField);
+                    InnerContainer.Add(view.RootTitleTextFieldView.TextField);
                 }
 
                 void AddContainersToNode()

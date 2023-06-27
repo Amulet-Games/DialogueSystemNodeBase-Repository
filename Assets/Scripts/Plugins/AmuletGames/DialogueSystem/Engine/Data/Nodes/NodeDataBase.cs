@@ -4,7 +4,7 @@ using UnityEngine;
 namespace AG.DS
 {
     /// <summary>
-    /// Holds all the node model data.
+    /// Holds all the node view data.
     /// </summary>
     [Serializable]
     public class NodeDataBase

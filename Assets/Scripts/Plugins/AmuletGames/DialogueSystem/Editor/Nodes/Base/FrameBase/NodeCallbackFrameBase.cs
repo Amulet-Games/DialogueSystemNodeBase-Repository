@@ -6,11 +6,11 @@ namespace AG.DS
     public abstract class NodeCallbackFrameBase
     <
         TNode,
-        TNodeModel
+        TNodeView
     >
         : NodeCallbackBase
         where TNode : NodeBase
-        where TNodeModel : NodeModelBase
+        where TNodeView : NodeViewBase
     {
         /// <summary>
         /// Reference of the node element.
@@ -19,9 +19,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the node model.
+        /// Reference of the node view.
         /// </summary>
-        protected TNodeModel Model;
+        protected TNodeView View;
 
 
         // ----------------------------- Register Events -----------------------------

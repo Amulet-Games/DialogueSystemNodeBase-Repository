@@ -3,7 +3,7 @@ namespace AG.DS
     public class GlobalEnums { }
 
     // ----------------------------- Global Enums -----------------------------
-    public enum G_LanguageType
+    public enum LanguageType
     {
         English = 0,
         German = 1,
@@ -15,7 +15,7 @@ namespace AG.DS
 
 
     // ----------------------------- Variable Enums -----------------------------
-    public enum G_VariableType
+    public enum VariableType
     {
         Boolean,
         Float,

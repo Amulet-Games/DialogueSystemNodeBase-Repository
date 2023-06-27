@@ -6,17 +6,22 @@ namespace AG.DS
     public class EventNodePresenter : NodePresenterFrameBase
     <
         EventNode,
-        EventNodeModel
+        EventNodeView
     >
     {
         /// <inheritdoc />
-        public override EventNode CreateElements(EventNodeModel model, GraphViewer graphViewer)
+        public override EventNode CreateElements
+        (
+            EventNodeView view,
+            GraphViewer graphViewer,
+            HeadBar headBar = null
+        )
         {
-            var node = new EventNode(model, graphViewer);
+            var node = new EventNode(view, graphViewer);
 
-            CreateTitleElements(node, model);
-            CreatePortElements(node, model);
-            CreateContentElements(node, model);
+            CreateTitleElements(node, view);
+            CreatePortElements(node, view);
+            CreateContentElements(node, view);
 
             return node;
         }
@@ -26,10 +31,10 @@ namespace AG.DS
         /// Method for creating the node's port elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreatePortElements(EventNode node, EventNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreatePortElements(EventNode node, EventNodeView view)
         {
-            model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
@@ -37,7 +42,7 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
@@ -45,8 +50,8 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Output_LabelText
             );
 
-            node.Add(model.InputDefaultPort);
-            node.Add(model.OutputDefaultPort);
+            node.Add(view.InputDefaultPort);
+            node.Add(view.OutputDefaultPort);
             node.RefreshPorts();
         }
 
@@ -55,35 +60,35 @@ namespace AG.DS
         /// Method for creating the node's content elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreateContentElements(EventNode node, EventNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreateContentElements(EventNode node, EventNodeView view)
         {
             SetupContentButton();
 
-            SetupEventModifierModelGroup();
+            SetupEventModifierGroup();
 
             CreateEventModifier();
 
             void SetupContentButton()
             {
-                model.ContentButton = ContentButtonPresenter.CreateElement
+                view.ContentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.ContentButton_AddEvent_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEventModifierButtonIconSprite
                 );
 
-                node.titleContainer.Add(model.ContentButton);
+                node.titleContainer.Add(view.ContentButton);
             }
 
-            void SetupEventModifierModelGroup()
+            void SetupEventModifierGroup()
             {
-                EventModifierModelGroupPresenter.CreateElement(model: model.EventModifierModelGroupModel);
-                node.ContentContainer.Add(model.EventModifierModelGroupModel.MainContainer);
+                EventModifierGroupPresenter.CreateElement(view: view.EventModifierGroupView);
+                node.ContentContainer.Add(view.EventModifierGroupView.MainContainer);
             }
 
             void CreateEventModifier()
             {
-                model.EventModifierModelGroupModel.CreateModifier();
+                view.EventModifierGroupView.CreateModifier();
             }
         }
     }

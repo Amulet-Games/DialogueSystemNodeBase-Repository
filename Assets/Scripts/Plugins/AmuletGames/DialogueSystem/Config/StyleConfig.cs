@@ -8,18 +8,17 @@ namespace AG.DS
         public const string Global_Interactable_Disable = "global_Picking_Ignore";
         #endregion
 
-        #region Global Toolbar Menu USS Classes.
-        public const string Global_ToolbarMenu = "global_toolbarMenu";
-        public const string Global_ToolbarMenu_TextLabel = "global_ToolbarMenu_TextLabel";
-        public const string Global_ToolbarMenu_ArrowImage = "global_ToolbarMenu_ArrowImage";
-        #endregion
-
         #region HeadBar USS Classes.
         public const string HeadBar_Main = "headBar_Main";
         public const string HeadBar_ButtonContainer = "headBar_ButtonContainer";
         public const string HeadBar_SaveButton = "headBar_SaveButton";
         public const string HeadBar_LoadButton = "headBar_LoadButton";
         public const string HeadBar_GraphTitleTextField = "headBar_GraphTitleTextField";
+
+        public const string HeadBar_LanguageToolbarMenu_Main = "headBar_LanguageToolbarMenu_Main";
+        public const string HeadBar_LanguageToolbarMenu_CenterContainer = "headBar_LanguageToolbarMenu_CenterContainer";
+        public const string HeadBar_LanguageToolbarMenu_TextLabel = "headBar_LanguageToolbarMenu_TextLabel";
+        public const string HeadBar_LanguageToolbarMenu_ArrowImage = "headBar_LanguageToolbarMenu_ArrowImage";
         #endregion
 
         #region Input Hint USS Classes.

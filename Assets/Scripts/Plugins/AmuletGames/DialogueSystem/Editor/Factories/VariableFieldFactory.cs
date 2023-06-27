@@ -14,7 +14,7 @@ namespace AG.DS
         /// <returns>A new variable object input field UIElement.</returns>
         public static ObjectField GetNewObjectField
         (
-            VariableFieldModel variableContainer,
+            VariableFieldView variableContainer,
             Sprite fieldIcon,
             string fieldUSS01
         )

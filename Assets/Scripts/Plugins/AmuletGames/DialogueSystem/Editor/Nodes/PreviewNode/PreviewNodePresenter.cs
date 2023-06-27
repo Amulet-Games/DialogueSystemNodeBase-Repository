@@ -8,17 +8,22 @@ namespace AG.DS
     public class PreviewNodePresenter : NodePresenterFrameBase
     <
         PreviewNode,
-        PreviewNodeModel
+        PreviewNodeView
     >
     {
         /// <inheritdoc />
-        public override PreviewNode CreateElements(PreviewNodeModel model, GraphViewer graphViewer)
+        public override PreviewNode CreateElements
+        (
+            PreviewNodeView view,
+            GraphViewer graphViewer,
+            HeadBar headBar = null
+        )
         {
-            var node = new PreviewNode(model, graphViewer);
+            var node = new PreviewNode(view, graphViewer);
 
-            CreateTitleElements(node, model);
-            CreatePortElements(node, model);
-            CreateContentElements(node, model);
+            CreateTitleElements(node, view);
+            CreatePortElements(node, view);
+            CreateContentElements(node, view);
 
             return node;
         }
@@ -28,10 +33,10 @@ namespace AG.DS
         /// Method for creating the node's port elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreatePortElements(PreviewNode node, PreviewNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreatePortElements(PreviewNode node, PreviewNodeView view)
         {
-            model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
@@ -39,7 +44,7 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
@@ -47,8 +52,8 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Output_LabelText
             );
 
-            node.Add(model.InputDefaultPort);
-            node.Add(model.OutputDefaultPort);
+            node.Add(view.InputDefaultPort);
+            node.Add(view.OutputDefaultPort);
             node.RefreshPorts();
         }
 
@@ -57,8 +62,8 @@ namespace AG.DS
         /// Method for creating the node's content elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreateContentElements(PreviewNode node, PreviewNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreateContentElements(PreviewNode node, PreviewNodeView view)
         {
             Box previewImageBox;
             Box previewSpriteBox;
@@ -92,7 +97,7 @@ namespace AG.DS
 
             void SetupLeftPortraitImage()
             {
-                model.LeftPortraitImage = CommonImagePresenter.CreateElement
+                view.LeftPortraitImage = CommonImagePresenter.CreateElement
                 (
                     imageUSS01: StyleConfig.PreviewNode_PreviewImage_Image,
                     imageUSS02: StyleConfig.PreviewNode_PreviewImage_Image_L
@@ -101,7 +106,7 @@ namespace AG.DS
 
             void SetupRightPortraitImage()
             {
-                model.RightPortraitImage = CommonImagePresenter.CreateElement
+                view.RightPortraitImage = CommonImagePresenter.CreateElement
                 (
                     imageUSS01: StyleConfig.PreviewNode_PreviewImage_Image,
                     imageUSS02: StyleConfig.PreviewNode_PreviewImage_Image_R
@@ -110,7 +115,7 @@ namespace AG.DS
 
             void SetupLeftPortraitObjectField()
             {
-                model.LeftPortraitObjectFieldModel.ObjectField =
+                view.LeftPortraitObjectFieldView.ObjectField =
                     CommonObjectFieldPresenter.CreateElement<Sprite>
                     (
                         fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
@@ -120,7 +125,7 @@ namespace AG.DS
 
             void SetupRightPortraitObjectField()
             {
-                model.RightPortraitObjectFieldModel.ObjectField =
+                view.RightPortraitObjectFieldView.ObjectField =
                     CommonObjectFieldPresenter.CreateElement<Sprite>
                     (
                         fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
@@ -130,12 +135,12 @@ namespace AG.DS
 
             void AddElementsToContainer()
             {
-                previewImageBox.Add(model.LeftPortraitImage);
-                previewImageBox.Add(model.RightPortraitImage);
+                previewImageBox.Add(view.LeftPortraitImage);
+                previewImageBox.Add(view.RightPortraitImage);
 
-                previewSpriteBox.Add(model.LeftPortraitObjectFieldModel.ObjectField);
+                previewSpriteBox.Add(view.LeftPortraitObjectFieldView.ObjectField);
                 previewSpriteBox.Add(middleEmptyBox);
-                previewSpriteBox.Add(model.RightPortraitObjectFieldModel.ObjectField);
+                previewSpriteBox.Add(view.RightPortraitObjectFieldView.ObjectField);
             }
 
             void AddContainerToNode()

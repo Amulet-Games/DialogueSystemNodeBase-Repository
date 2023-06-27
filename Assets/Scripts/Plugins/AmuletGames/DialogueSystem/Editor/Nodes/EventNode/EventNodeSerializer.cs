@@ -4,7 +4,7 @@ namespace AG.DS
     public class EventNodeSerializer : NodeSerializerFrameBase
     <
         EventNode,
-        EventNodeModel,
+        EventNodeView,
         EventNodeData
     >
     {
@@ -13,11 +13,11 @@ namespace AG.DS
         /// Constructor of the event node serializer class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public EventNodeSerializer(EventNode node, EventNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        public EventNodeSerializer(EventNode node, EventNodeView view)
         {
             Node = node;
-            Model = model;
+            View = view;
         }
 
 
@@ -31,19 +31,19 @@ namespace AG.DS
 
             SavePorts();
 
-            SaveEventModifierModelGroup();
+            SaveEventModifierGroup();
 
             AddData();
 
             void SavePorts()
             {
-                Model.InputDefaultPort.Save(data.InputPortData);
-                Model.OutputDefaultPort.Save(data.OutputPortData);
+                View.InputDefaultPort.Save(data.InputPortData);
+                View.OutputDefaultPort.Save(data.OutputPortData);
             }
 
-            void SaveEventModifierModelGroup()
+            void SaveEventModifierGroup()
             {
-                Model.EventModifierModelGroupModel.Save(data.EventModifierModelGroupData);
+                View.EventModifierGroupView.Save(data.EventModifierGroupData);
             }
 
             void AddData()
@@ -61,17 +61,17 @@ namespace AG.DS
 
             LoadPorts();
 
-            LoadEventModifierModelGroup();
+            LoadEventModifierGroup();
 
             void LoadPorts()
             {
-                Model.InputDefaultPort.Load(data.InputPortData);
-                Model.OutputDefaultPort.Load(data.OutputPortData);
+                View.InputDefaultPort.Load(data.InputPortData);
+                View.OutputDefaultPort.Load(data.OutputPortData);
             }
 
-            void LoadEventModifierModelGroup()
+            void LoadEventModifierGroup()
             {
-                Model.EventModifierModelGroupModel.Load(data.EventModifierModelGroupData);
+                View.EventModifierGroupView.Load(data.EventModifierGroupData);
             }
         }
     }

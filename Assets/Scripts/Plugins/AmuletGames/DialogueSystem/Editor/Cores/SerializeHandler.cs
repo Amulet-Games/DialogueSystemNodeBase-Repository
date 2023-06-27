@@ -10,14 +10,22 @@ namespace AG.DS
         GraphViewer graphViewer;
 
 
+        /// <summary>
+        /// Reference of the headBar element.
+        /// </summary>
+        HeadBar headBar;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the serialize handler class.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public SerializeHandler(GraphViewer graphViewer)
+        /// <param name="headBar">The headBar element to set for.</param>
+        public SerializeHandler(GraphViewer graphViewer, HeadBar headBar)
         {
             this.graphViewer = graphViewer;
+            this.headBar = headBar;
         }
 
 
@@ -105,7 +113,9 @@ namespace AG.DS
 
             for (int i = 0; i < dataCount; i++)
             {
-                graphViewer.Add(NodeManager.Instance.Spawn(graphViewer, data: dsData.NodeData[i]));
+                graphViewer.Add(
+                    NodeManager.Instance.Spawn(graphViewer, headBar, data: dsData.NodeData[i])
+                );
             }
         }
 
@@ -129,7 +139,9 @@ namespace AG.DS
                     // Try to find the input port that matches the data's input port GUID.
                     if (graphViewer.PortByPortGUID.TryGetValue(data.InputPortGUID, out PortBase input))
                     {
-                        graphViewer.Add(EdgeManager.Instance.Connect(output, input, data.PortType));
+                        graphViewer.Add(
+                            EdgeManager.Instance.Connect(output, input, data.PortType)
+                        );
                     }
                 }
             }

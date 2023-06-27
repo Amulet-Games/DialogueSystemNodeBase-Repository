@@ -4,7 +4,7 @@
     public class DialogueNodeSerializer : NodeSerializerFrameBase
     <
         DialogueNode,
-        DialogueNodeModel,
+        DialogueNodeView,
         DialogueNodeData
     >
     {
@@ -13,11 +13,11 @@
         /// Constructor of the dialogue node serializer class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public DialogueNodeSerializer(DialogueNode node, DialogueNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        public DialogueNodeSerializer(DialogueNode node, DialogueNodeView view)
         {
             Node = node;
-            Model = model;
+            View = view;
         }
 
 
@@ -39,18 +39,18 @@
 
             void SavePorts()
             {
-                Model.InputDefaultPort.Save(data.InputPortData);
-                Model.OutputDefaultPort.Save(data.OutputPortData);
+                View.InputDefaultPort.Save(data.InputPortData);
+                View.OutputDefaultPort.Save(data.OutputPortData);
             }
 
             void SaveCharacterObjectContainer()
             {
-                data.DialogueCharacter = Model.CharacterObjectFieldModel.Value;
+                data.DialogueCharacter = View.CharacterObjectFieldView.Value;
             }
 
             void SaveDialogueNodeStitcher()
             {
-                Model.DialogueNodeStitcher.SaveStitcherValues(data.DialogueNodeStitcherData);
+                View.DialogueNodeStitcher.SaveStitcherValues(data.DialogueNodeStitcherData);
             }
 
             void AddData()
@@ -74,18 +74,18 @@
 
             void LoadPorts()
             {
-                Model.InputDefaultPort.Load(data.InputPortData);
-                Model.OutputDefaultPort.Load(data.OutputPortData);
+                View.InputDefaultPort.Load(data.InputPortData);
+                View.OutputDefaultPort.Load(data.OutputPortData);
             }
         
             void LoadCharacterObjectContainer()
             {
-                Model.CharacterObjectFieldModel.Load(data.DialogueCharacter);
+                View.CharacterObjectFieldView.Load(data.DialogueCharacter);
             }
 
             void LoadDialogueNodeStitcher()
             {
-                Model.DialogueNodeStitcher.LoadStitcherValues(data.DialogueNodeStitcherData);
+                View.DialogueNodeStitcher.LoadStitcherValues(data.DialogueNodeStitcherData);
             }
         }
     }

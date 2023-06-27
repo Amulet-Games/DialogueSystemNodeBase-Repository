@@ -26,12 +26,6 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the common button callback class.
         /// </summary>
-        public CommonButtonCallback() { }
-
-
-        /// <summary>
-        /// Constructor of the common button callback class.
-        /// </summary>
         /// <param name="isAlert">The isAlert value to set for.</param>
         /// <param name="button">The button to set for.</param>
         /// <param name="clickEvent">The clickEvent to set for.</param>
@@ -45,28 +39,6 @@ namespace AG.DS
             this.isAlert = isAlert;
             this.button = button;
             this.clickEvent = clickEvent;
-        }
-
-
-        // ----------------------------- Reset Internal -----------------------------
-        /// <summary>
-        /// Reset all the internal properties within the callback class.
-        /// </summary>
-        /// <param name="isAlert">The isAlert value to set for.</param>
-        /// <param name="button">The targeting button to set for.</param>
-        /// <param name="clickEvent">The clickEvent to set for.</param>
-        /// <returns>The renewed common button callback class.</returns>
-        public CommonButtonCallback ResetInternal
-        (
-            bool isAlert,
-            Button button,
-            EventCallback<ClickEvent> clickEvent
-        )
-        {
-            this.isAlert = isAlert;
-            this.button = button;
-            this.clickEvent = clickEvent;
-            return this;
         }
 
 

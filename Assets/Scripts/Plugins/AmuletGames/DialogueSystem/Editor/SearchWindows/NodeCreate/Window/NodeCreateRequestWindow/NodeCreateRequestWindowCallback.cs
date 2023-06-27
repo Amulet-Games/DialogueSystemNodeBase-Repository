@@ -8,26 +8,14 @@ namespace AG.DS
         NodeCreateRequestWindow nodeCreateRequestWindow;
 
 
-        /// <summary>
-        /// Reference of the dialogue editor window.
-        /// </summary>
-        DialogueEditorWindow dsWindow;
-
-
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the node create request window callback class.
         /// </summary>
         /// <param name="nodeCreateRequestWindow">The node create request window to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
-        public NodeCreateRequestWindowCallback
-        (
-            NodeCreateRequestWindow nodeCreateRequestWindow,
-            DialogueEditorWindow dsWindow
-        )
+        public NodeCreateRequestWindowCallback(NodeCreateRequestWindow nodeCreateRequestWindow)
         {
             this.nodeCreateRequestWindow = nodeCreateRequestWindow;
-            this.dsWindow = dsWindow;
         }
 
 
@@ -56,7 +44,7 @@ namespace AG.DS
         /// </summary>
         void SearchTreeEntrySelectedEvent()
         {
-            dsWindow.SetHasUnsavedChanges(value: true);
+            WindowChangedEvent.Invoke();
 
             nodeCreateRequestWindow.UpdateNodeCreateDetails();
         }

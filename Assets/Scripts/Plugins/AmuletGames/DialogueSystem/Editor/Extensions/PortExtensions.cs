@@ -21,7 +21,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Returns ture if the port's direction is input.
+        /// Returns true if the port's direction is input.
         /// </summary>
         /// <param name="port">Extension port</param>
         /// <returns>True if the port's direction is input.</returns>
@@ -32,7 +32,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Returns ture if the port's capacity is single.
+        /// Returns true if the port's capacity is single.
         /// </summary>
         /// <param name="port">Extension port</param>
         /// <returns>True if the port's capacity is single.</returns>

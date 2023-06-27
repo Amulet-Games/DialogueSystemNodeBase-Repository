@@ -5,15 +5,15 @@ namespace AG.DS
     public class OptionPortGroupCellCallback
     {
         /// <summary>
-        /// The targeting option port group cell model.
+        /// The targeting option port group cell view.
         /// </summary>
-        OptionPortGroupModel.CellModel cell;
+        OptionPortGroupView.CellView cell;
 
 
         /// <summary>
-        /// The targeting option port group model.
+        /// The targeting option port group view.
         /// </summary>
-        OptionPortGroupModel group;
+        OptionPortGroupView group;
 
 
         /// <summary>
@@ -26,13 +26,13 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the option port group cell callback class.
         /// </summary>
-        /// <param name="cell">The option port group cell model to set for.</param>
-        /// <param name="group">he option port group model to set for.</param>
+        /// <param name="cell">The option port group cell view to set for.</param>
+        /// <param name="group">he option port group view to set for.</param>
         /// <param name="graphViewer">he graph viewer element to set for.</param>
         public OptionPortGroupCellCallback
         (
-            OptionPortGroupModel.CellModel cell,
-            OptionPortGroupModel group,
+            OptionPortGroupView.CellView cell,
+            OptionPortGroupView group,
             GraphViewer graphViewer
         )
         {
@@ -44,7 +44,7 @@ namespace AG.DS
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the cell model.
+        /// Register events to the cell view.
         /// </summary>
         public void RegisterEvents()
         {
@@ -53,7 +53,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register ClickEvent to the cell model's remove button.
+        /// Register ClickEvent to the cell view's remove button.
         /// </summary>
         void RegisterRemoveButtonClickEvent()
         {
@@ -66,7 +66,7 @@ namespace AG.DS
 
         // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when the cell model's remove button is pressed.
+        /// The event to invoke when the cell view's remove button is pressed.
         /// </summary>
         /// <param name="evt">The registering event.</param>
         void RemoveButtonClickEvent(ClickEvent evt)
@@ -75,7 +75,7 @@ namespace AG.DS
 
             cell.Port.Disconnect(graphViewer);
 
-            // Update other group cell models' port label.
+            // Update the other cell views's port label, of which are contained in the same group.
             for (int i = 0; i < group.Cells.Count; i++)
             {
                 if (group.Cells[i].Port.connected)

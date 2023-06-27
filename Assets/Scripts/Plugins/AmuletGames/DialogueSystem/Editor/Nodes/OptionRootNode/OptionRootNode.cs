@@ -5,7 +5,7 @@ namespace AG.DS
     public class OptionRootNode : NodeFrameBase
     <
         OptionRootNode,
-        OptionRootNodeModel,
+        OptionRootNodeView,
         OptionRootNodeSerializer,
         OptionRootNodeCallback,
         OptionRootNodeData
@@ -15,17 +15,18 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the option root node class.
         /// </summary>
-        /// <param name="model">The node model to set for.</param>
+        /// <param name="view">The node view to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public OptionRootNode(OptionRootNodeModel model, GraphViewer graphViewer)
+        /// <param name="headBar">The headBar element to set for.</param>
+        public OptionRootNode(OptionRootNodeView view, GraphViewer graphViewer, HeadBar headBar)
         {
             // Setup details
             {
-                Model = model;
+                View = view;
                 GraphViewer = graphViewer;
 
-                Callback = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, view: View, headBar);
+                Serializer = new(node: this, view: View);
 
                 title = StringConfig.OptionRootNode_TitleTextField_LabelText;
 
@@ -43,13 +44,13 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Add Contextual Menu Items -----------------------------
+        // ----------------------------- Override -----------------------------
         /// <inheritdoc />
         protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
-            var defaultInput = Model.InputDefaultPort;
-            var optionOutput = Model.OutputOptionPort;
-            var optionGroupOutput = Model.OutputOptionPortGroupModel;
+            var defaultInput = View.InputDefaultPort;
+            var optionOutput = View.OutputOptionPort;
+            var optionGroupOutput = View.OutputOptionPortGroupView;
 
             // Disconnect Input
             evt.menu.AppendAction

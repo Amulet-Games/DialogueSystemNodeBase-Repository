@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using Object = UnityEngine.Object;
@@ -100,12 +101,12 @@ namespace AG.DS
             // Window events
             RegisterWindowOnDisableEvent();
             RegisterWindowOnDestroyEvent();
+            RegisterWindowChangedEvent();
 
             // Visual element events
             RegisterKeyDownEvent();
             RegisterKeyUpEvent();
             RegisterGeometryChangedEvent();
-
         }
 
 
@@ -154,11 +155,13 @@ namespace AG.DS
         /// <summary>
         /// Register GeometryChangedEvent to the dialogue editor window root visual element.
         /// </summary>
-        void RegisterGeometryChangedEvent()
-        {
-            windowRootElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-            graphViewer.ReframeGraphOnGeometryChanged(geometryChangedElement: windowRootElement, frameType: FrameType.All);
-        }
+        void RegisterGeometryChangedEvent() => windowRootElement.ExecuteOnceOnGeometryChanged(GeometryChangedEvent);
+
+
+        /// <summary>
+        /// Register m_WindowChangedEvent to the static WindowChangedEvent.
+        /// </summary>
+        void RegisterWindowChangedEvent() => WindowChangedEvent.Register(m_WindowChangesEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -214,10 +217,9 @@ namespace AG.DS
         /// </summary>
         void WindowOnDestroyEvent()
         {
-            // Reset status
-            {
-                dsData.IsOpened = false;
-            }
+            WindowChangedEvent.Unregister(m_WindowChangesEvent);
+
+            dsData.IsOpened = false;
         }
 
 
@@ -279,9 +281,6 @@ namespace AG.DS
                 dockArea.RegisterCallback<BlurEvent>(DockAreaBlurEvent);
             }
 
-            // Unregister event after it has done executed once.
-            windowRootElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-
 
             /// <summary>
             /// The event to invoke when the window's dock area has given focus.
@@ -295,6 +294,18 @@ namespace AG.DS
             /// </summary>
             /// <param name="evt">The registering event.</param>
             void DockAreaBlurEvent(BlurEvent evt) => graphViewer.Blur();
+        }
+
+
+        /// <summary>
+        /// The event to invoke when there are new changes happened to the dialogue editor window.
+        /// </summary>
+        void m_WindowChangesEvent()
+        {
+            if (dsWindow.hasFocus)
+            {
+                dsWindow.SetHasUnsavedChanges(value: true);
+            }
         }
     }
 }

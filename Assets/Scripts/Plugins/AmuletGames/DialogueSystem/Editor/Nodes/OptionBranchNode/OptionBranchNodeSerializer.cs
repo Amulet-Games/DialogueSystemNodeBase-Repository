@@ -4,7 +4,7 @@ namespace AG.DS
     public class OptionBranchNodeSerializer : NodeSerializerFrameBase
     <
         OptionBranchNode,
-        OptionBranchNodeModel,
+        OptionBranchNodeView,
         OptionBranchNodeData
     >
     {
@@ -13,11 +13,11 @@ namespace AG.DS
         /// Constructor of the option branch node serializer class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public OptionBranchNodeSerializer(OptionBranchNode node, OptionBranchNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        public OptionBranchNodeSerializer(OptionBranchNode node, OptionBranchNodeView view)
         {
             Node = node;
-            Model = model;
+            View = view;
         }
 
 
@@ -39,18 +39,18 @@ namespace AG.DS
 
             void SavePorts()
             {
-                Model.OutputDefaultPort.Save(data.OutputPortData);
-                Model.InputOptionPort.Save(data.InputOptionPortData);
+                View.OutputDefaultPort.Save(data.OutputPortData);
+                View.InputOptionPort.Save(data.InputOptionPortData);
             }
 
             void SaveHeaderTextContainer()
             {
-                Model.BranchTitleTextFieldModel.Save(data.HeadlineText);
+                View.BranchTitleTextFieldView.Save(data.HeadlineText);
             }
 
             void SaveOptionBranchNodeStitcher()
             {
-                Model.OptionBranchNodeStitcher.SaveStitcherValues(data.OptionBranchNodeStitcherData);
+                View.OptionBranchNodeStitcher.SaveStitcherValues(data.OptionBranchNodeStitcherData);
             }
 
             void AddData()
@@ -74,18 +74,18 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                Model.OutputDefaultPort.Load(data.OutputPortData);
-                Model.InputOptionPort.Load(data.InputOptionPortData);
+                View.OutputDefaultPort.Load(data.OutputPortData);
+                View.InputOptionPort.Load(data.InputOptionPortData);
             }
 
             void LoadHeaderTextContainer()
             {
-                Model.BranchTitleTextFieldModel.Load(data.HeadlineText);
+                View.BranchTitleTextFieldView.Load(data.HeadlineText);
             }
 
             void LoadOptionBranchNodeStitcher()
             {
-                Model.OptionBranchNodeStitcher.LoadStitcherValues(data.OptionBranchNodeStitcherData);
+                View.OptionBranchNodeStitcher.LoadStitcherValues(data.OptionBranchNodeStitcherData);
             }
         }
     }

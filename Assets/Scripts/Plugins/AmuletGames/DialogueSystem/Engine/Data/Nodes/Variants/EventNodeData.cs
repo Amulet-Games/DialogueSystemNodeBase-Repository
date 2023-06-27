@@ -20,9 +20,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The data's event modifier model group data.
+        /// The data's event modifier group data.
         /// </summary>
-        [SerializeField] public EventModifierModelGroupData EventModifierModelGroupData;
+        [SerializeField] public EventModifierGroupData EventModifierGroupData;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -33,7 +33,7 @@ namespace AG.DS
         {
             InputPortData = new();
             OutputPortData = new();
-            EventModifierModelGroupData = new();
+            EventModifierGroupData = new();
         }
     }
 }

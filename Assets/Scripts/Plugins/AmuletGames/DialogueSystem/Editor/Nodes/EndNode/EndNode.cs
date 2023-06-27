@@ -5,7 +5,7 @@ namespace AG.DS
     public class EndNode : NodeFrameBase
     <
         EndNode,
-        EndNodeModel,
+        EndNodeView,
         EndNodeSerializer,
         EndNodeCallback,
         EndNodeData
@@ -15,17 +15,17 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the end node class.
         /// </summary>
-        /// <param name="model">The node model to set for.</param>
+        /// <param name="view">The node view to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public EndNode(EndNodeModel model, GraphViewer graphViewer)
+        public EndNode(EndNodeView view, GraphViewer graphViewer)
         {
             // Setup details
             {
-                Model = model;
+                View = view;
                 GraphViewer = graphViewer;
 
-                Callback = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, View);
+                Serializer = new(node: this, View);
 
                 title = StringConfig.EndNode_TitleTextField_LabelText;
 
@@ -40,11 +40,11 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Add Contextual Menu Items -----------------------------
+        // ----------------------------- Override -----------------------------
         /// <inheritdoc />
         protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
-            var defaultInput = Model.InputDefaultPort;
+            var defaultInput = View.InputDefaultPort;
 
             // Disconnect Input
             evt.menu.AppendAction

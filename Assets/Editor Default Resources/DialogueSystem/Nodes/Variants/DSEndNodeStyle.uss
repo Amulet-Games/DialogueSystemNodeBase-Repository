@@ -32,7 +32,7 @@
 }
 
 
-/*< ---------------------------------------------------------- Node Title TextField >*/
+/*< ---------------------------------------------------------- Title Text Field >*/
 .node_NodeTitle_TextField {
 
 	white-space: nowrap;

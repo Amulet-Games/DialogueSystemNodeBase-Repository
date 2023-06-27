@@ -3,20 +3,17 @@ namespace AG.DS
     public class DefaultEdgePresenter : EdgePresenterFrameBase
     <
         DefaultEdge,
-        DefaultEdgeModel,
         DefaultPort
     >
     {
         /// <inheritdoc />
-        public override DefaultEdge CreateElement(DefaultEdgeModel model)
+        public override DefaultEdge CreateElement(DefaultPort output, DefaultPort input)
         {
             // Create edge
             var edge = new DefaultEdge();
 
             // Setup detail
-            edge.Model = model;
-            edge.output = model.Output;
-            edge.input = model.Input;
+            edge.Setup(output, input);
             edge.focusable = true;
 
             // Add style

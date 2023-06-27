@@ -4,7 +4,7 @@ namespace AG.DS
     public class PreviewNodeSerializer : NodeSerializerFrameBase
     <
         PreviewNode,
-        PreviewNodeModel,
+        PreviewNodeView,
         PreviewNodeData
     >
     {
@@ -13,11 +13,11 @@ namespace AG.DS
         /// Constructor of the preview node serializer class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public PreviewNodeSerializer(PreviewNode node, PreviewNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        public PreviewNodeSerializer(PreviewNode node, PreviewNodeView view)
         {
             Node = node;
-            Model = model;
+            View = view;
         }
 
 
@@ -37,17 +37,17 @@ namespace AG.DS
 
             void SavePorts()
             {
-                Model.InputDefaultPort.Save(data.InputPortData);
-                Model.OutputDefaultPort.Save(data.OutputPortData);
+                View.InputDefaultPort.Save(data.InputPortData);
+                View.OutputDefaultPort.Save(data.OutputPortData);
             }
 
             void SaveSpriteObjectContainers()
             {
                 // Left side sprite.
-                data.LeftPortraitSprite = Model.LeftPortraitObjectFieldModel.Value;
+                data.LeftPortraitSprite = View.LeftPortraitObjectFieldView.Value;
 
                 // Right side sprite. 
-                data.RightPortraitSprite = Model.RightPortraitObjectFieldModel.Value;
+                data.RightPortraitSprite = View.RightPortraitObjectFieldView.Value;
             }
 
             void AddData()
@@ -69,21 +69,21 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                Model.InputDefaultPort.Load(data.InputPortData);
-                Model.OutputDefaultPort.Load(data.OutputPortData);
+                View.InputDefaultPort.Load(data.InputPortData);
+                View.OutputDefaultPort.Load(data.OutputPortData);
             }
 
             void LoadSpriteObjectContainers()
             {
                 // Left side sprite.
-                Model.LeftPortraitObjectFieldModel.Load(data.LeftPortraitSprite);
+                View.LeftPortraitObjectFieldView.Load(data.LeftPortraitSprite);
 
                 // Right side sprite. 
-                Model.RightPortraitObjectFieldModel.Load(data.RightPortraitSprite);
+                View.RightPortraitObjectFieldView.Load(data.RightPortraitSprite);
 
                 // Update preview images.
-                Model.LeftPortraitImage.image = Model.LeftPortraitObjectFieldModel.Value.texture;
-                Model.RightPortraitImage.image = Model.RightPortraitObjectFieldModel.Value.texture;
+                View.LeftPortraitImage.image = View.LeftPortraitObjectFieldView.Value.texture;
+                View.RightPortraitImage.image = View.RightPortraitObjectFieldView.Value.texture;
             }
         }
     }

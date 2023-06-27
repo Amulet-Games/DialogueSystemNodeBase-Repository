@@ -8,17 +8,22 @@ namespace AG.DS
     public class StoryNodePresenter : NodePresenterFrameBase
     <
         StoryNode,
-        StoryNodeModel
+        StoryNodeView
     >
     {
         /// <inheritdoc />
-        public override StoryNode CreateElements(StoryNodeModel model, GraphViewer graphViewer)
+        public override StoryNode CreateElements
+        (
+            StoryNodeView view,
+            GraphViewer graphViewer,
+            HeadBar headBar = null
+        )
         {
-            var node = new StoryNode(model, graphViewer);
+            var node = new StoryNode(view, graphViewer, headBar);
 
-            CreateTitleElements(node, model);
-            CreatePortElements(node, model);
-            ApplyDesign(node, model);
+            CreateTitleElements(node, view);
+            CreatePortElements(node, view);
+            ApplyDesign(node, view);
 
             return node;
         }
@@ -28,10 +33,10 @@ namespace AG.DS
         /// Method for creating the node's port elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreatePortElements(StoryNode node, StoryNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreatePortElements(StoryNode node, StoryNodeView view)
         {
-            model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
@@ -39,7 +44,7 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
@@ -47,8 +52,8 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Output_LabelText
             );
 
-            node.Add(model.InputDefaultPort);
-            node.Add(model.OutputDefaultPort);
+            node.Add(view.InputDefaultPort);
+            node.Add(view.OutputDefaultPort);
             node.RefreshPorts();
         }
 
@@ -57,8 +62,8 @@ namespace AG.DS
         /// Apply design method.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void ApplyDesign(StoryNode node, StoryNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void ApplyDesign(StoryNode node, StoryNodeView view)
         {
             var margin = 10;
 
@@ -67,8 +72,6 @@ namespace AG.DS
             SetupGraphViewerZoom();
 
             DisableReferenceNode();
-
-            CreateSampleNode();
 
             void SetupPreferenceImage()
             {
@@ -104,38 +107,44 @@ namespace AG.DS
                 node.SetEnabled(false);
             }
 
-            void CreateSampleNode()
-            {
-                node.RegisterCallback<GeometryChangedEvent>(GeometryChangedAction);
+            //void CreateSampleNode()
+            //{
+            //    node.ExecuteOnceOnGeometryChanged(GeometryChangedAction);
 
-                void GeometryChangedAction(GeometryChangedEvent evt)
-                {
-                    var details = new NodeCreateDetails(
-                        horizontalAlignType: HorizontalAlignmentType.FREE);
+            //    void GeometryChangedAction(GeometryChangedEvent evt)
+            //    {
+            //        // Create sample node.
+            //        var target = NodeManager.Instance.Spawn
+            //        (
+            //            node.GraphViewer,
+            //            headBar,
+            //            nodeType: NodeType.OptionBranch
+            //        );
 
-                    var createPosition = node.localBound.position;
-                    createPosition.x += margin;
-                    createPosition.y += node.titleContainer.layout.height + node.inputContainer.parent.layout.height + margin;
-                    //details.SetPositionCreate(value: createPosition);
+            //        // Set sample node position
+            //        var createPosition = node.localBound.position;
+            //        createPosition.x += margin;
+            //        createPosition.y += node.titleContainer.layout.height + node.inputContainer.parent.layout.height + margin;
 
-                    //var target = new EventNode(graphViewer: node.GraphViewer);
+            //        target.SetPosition(newPos: new Rect(node.localBound.position, Vector2Utility.Zero));
 
-                    //target.capabilities = Capabilities.Movable;
-                    //target.SetEnabled(false);
-                    //target.style.opacity = 1;
-                    //target.titleContainer.ElementAt(index: 1).style.backgroundColor = new Color(0.357f, 0.537f, 0.75f, 1);
+            //        // Add sample node to graph
+            //        node.GraphViewer.Add(target);
 
-                    //target.NodeBorder.style.borderBottomColor = new Color(r: 0, g: 0, b: 0, a: 0);
-                    //target.NodeBorder.style.borderLeftColor = new Color(r: 0, g: 0, b: 0, a: 0);
-                    //target.NodeBorder.style.borderRightColor = new Color(r: 0, g: 0, b: 0, a: 0);
-                    //target.NodeBorder.style.borderTopColor = new Color(r: 0, g: 0, b: 0, a: 0);
+            //        // Set sample node details
+            //        target.capabilities = Capabilities.Movable;
+            //        target.SetEnabled(false);
+            //        target.style.opacity = 1;
+            //        target.titleContainer.ElementAt(index: 1).style.backgroundColor = new Color(0.357f, 0.537f, 0.75f, 1);
 
-                    node.BringToFront();
+            //        target.NodeBorder.style.borderBottomColor = new Color(r: 0, g: 0, b: 0, a: 0);
+            //        target.NodeBorder.style.borderLeftColor = new Color(r: 0, g: 0, b: 0, a: 0);
+            //        target.NodeBorder.style.borderRightColor = new Color(r: 0, g: 0, b: 0, a: 0);
+            //        target.NodeBorder.style.borderTopColor = new Color(r: 0, g: 0, b: 0, a: 0);
 
-                    // Unregister the action once the setup is done.
-                    node.UnregisterCallback<GeometryChangedEvent>(GeometryChangedAction);
-                }
-            }
+            //        node.BringToFront();
+            //    }
+            //}
         }
     }
 }

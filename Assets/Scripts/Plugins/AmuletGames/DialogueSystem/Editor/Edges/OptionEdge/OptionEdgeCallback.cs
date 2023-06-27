@@ -21,8 +21,8 @@ namespace AG.DS
         public override EdgeCallbackFrameBase<OptionEdge> Setup(OptionEdge edge)
         {
             Edge = edge;
-            output = edge.Model.Output;
-            input = edge.Model.Input;
+            output = edge.Output;
+            input = edge.Input;
             return this;
         }
 
@@ -97,7 +97,7 @@ namespace AG.DS
             /// The edge is forming a new connection to a new output port.
             else if (Edge.output != null && !Edge.output.IsShowingConnectStyle())
             {
-                output = Edge.Model.Output;
+                output = Edge.Output;
 
                 output.HideOpponentConnectStyle();
 
@@ -111,7 +111,7 @@ namespace AG.DS
             /// The edge is forming a new connection to a new input port.
             else if (Edge.input != null && !Edge.input.IsShowingConnectStyle())
             {
-                input = Edge.Model.Input;
+                input = Edge.Input;
 
                 input.HideOpponentConnectStyle();
                 

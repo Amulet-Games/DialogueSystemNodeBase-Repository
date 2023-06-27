@@ -7,13 +7,14 @@ namespace AG.DS
     public static class ObjectFieldExtensions
     {
         /// <summary>
-        /// Returns the object field's display visual element reference.
+        /// Returns the object field's display element reference.
         /// </summary>
         /// <param name="field">Extension object field.</param>
-        /// <returns>The display visual element of the object field.</returns>
+        /// <returns>The display element of the object field.</returns>
         public static VisualElement GetElementDisplay(this ObjectField field)
         {
-            return field.ElementAt(0).ElementAt(0);
+            var inputBase = field.ElementAt(0);
+            return inputBase.ElementAt(0);
         }
 
 

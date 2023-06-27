@@ -4,7 +4,7 @@ namespace AG.DS
     public class EndNodeSerializer : NodeSerializerFrameBase
     <
         EndNode,
-        EndNodeModel,
+        EndNodeView,
         EndNodeData
     >
     {
@@ -13,11 +13,11 @@ namespace AG.DS
         /// Constructor of the end node serializer class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public EndNodeSerializer(EndNode node, EndNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        public EndNodeSerializer(EndNode node, EndNodeView view)
         {
             Node = node;
-            Model = model;
+            View = view;
         }
 
 
@@ -35,7 +35,7 @@ namespace AG.DS
 
             void SavePorts()
             {
-                Model.InputDefaultPort.Save(data.InputPortData);
+                View.InputDefaultPort.Save(data.InputPortData);
             }
 
             void AddData()
@@ -55,7 +55,7 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                Model.InputDefaultPort.Load(data.InputPortData);
+                View.InputDefaultPort.Load(data.InputPortData);
             }
         }
     }

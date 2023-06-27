@@ -8,13 +8,13 @@ namespace AG.DS
         /// <summary>
         /// Internal root modifier reference.
         /// </summary>
-        EventModifierModel rootModifier;
+        EventModifierView rootModifier;
 
 
         /// <summary>
         /// Internal instance modifiers cache.
         /// </summary>
-        List<EventModifierModel> instanceModifiers;
+        List<EventModifierView> instanceModifiers;
 
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace AG.DS
         /// The action to invoke when a modifier is created.
         /// </summary>
         /// <param name="modifier">The new created modifier.</param>
-        void ModifierCreatedAction(EventModifierModel modifier)
+        void ModifierCreatedAction(EventModifierView modifier)
         {
             // Add box to segment's content box
             //segment.ContentBox.Add(modifier.MainBox);
@@ -168,7 +168,7 @@ namespace AG.DS
         /// The action to invoke when the modifier's remove button is clicked.
         /// </summary>
         /// <param name="modifier">The modifier that is going to be removed.</param>
-        void ModifierRemoveButtonClickAction(EventModifierModel modifier)
+        void ModifierRemoveButtonClickAction(EventModifierView modifier)
         {
             // Decrease internal count.
             instancesCount--;

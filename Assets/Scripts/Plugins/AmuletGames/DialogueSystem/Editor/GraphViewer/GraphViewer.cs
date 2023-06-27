@@ -104,7 +104,7 @@ namespace AG.DS
         /// <param name="frameType">The frame type to set for.</param>
         public void ReframeGraphOnGeometryChanged(VisualElement geometryChangedElement, FrameType frameType)
         {
-            geometryChangedElement.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
+            geometryChangedElement.ExecuteOnceOnGeometryChanged(GeometryChangedEvent);
 
             void GeometryChangedEvent(GeometryChangedEvent evt)
             {
@@ -120,9 +120,6 @@ namespace AG.DS
                         FrameOrigin();
                         break;
                 }
-
-                // Unregister event after it has done executed once.
-                geometryChangedElement.UnregisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
             }
         }
 

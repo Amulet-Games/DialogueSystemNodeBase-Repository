@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -105,16 +106,15 @@ namespace AG.DS
         void RegisterLanguageToolbarMenuAction()
         {
             var languageManager = LanguageManager.Instance;
-            var supportLanguageTypes = LanguageManager.Instance.SupportLanguageTypes;
 
-            for (int i = 0; i < languageManager.SupportLanguageLength; i++)
+            foreach (var language in languageManager.SupportLanguageTypes)
             {
                 headBar.LanguageToolbarMenu.menu.AppendAction
                 (
-                    actionName: languageManager.GetFull(supportLanguageTypes[i]),
+                    actionName: languageManager.GetFull(language),
                     action: callback =>
                     {
-                        headBar.ChangeGraphLanguage(supportLanguageTypes[i]);
+                        headBar.SetEditorLanguage(language);
                         WindowChangedEvent.Invoke();
                     }
                 );
@@ -129,7 +129,7 @@ namespace AG.DS
         {
             new GraphTitleTextFieldCallback
             (
-                model: headBar.GraphTitleTextFieldModel,
+                view: headBar.GraphTitleTextFieldView,
                 dsDataInstanceId,
                 dsWindow
             )

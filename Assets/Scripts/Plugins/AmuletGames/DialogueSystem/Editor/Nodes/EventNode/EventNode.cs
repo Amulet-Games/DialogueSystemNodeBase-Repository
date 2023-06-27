@@ -5,7 +5,7 @@ namespace AG.DS
     public class EventNode : NodeFrameBase
     <
         EventNode,
-        EventNodeModel,
+        EventNodeView,
         EventNodeSerializer,
         EventNodeCallback,
         EventNodeData
@@ -15,17 +15,17 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the event node class.
         /// </summary>
-        /// <param name="model">The node model to set for.</param>
+        /// <param name="view">The node view to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public EventNode(EventNodeModel model, GraphViewer graphViewer)
+        public EventNode(EventNodeView view, GraphViewer graphViewer)
         {
             // Setup details
             {
-                Model = model;
+                View = view;
                 GraphViewer = graphViewer;
 
-                Callback = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, View);
+                Serializer = new(node: this, View);
 
                 title = StringConfig.EventNode_TitleTextField_LabelText;
 
@@ -45,12 +45,12 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Add Contextual Menu Items -----------------------------
+        // ----------------------------- Override -----------------------------
         /// <inheritdoc />
         protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
-            var defaultInput = Model.InputDefaultPort;
-            var defaultOutput = Model.OutputDefaultPort;
+            var defaultInput = View.InputDefaultPort;
+            var defaultOutput = View.OutputDefaultPort;
 
             // Disconnect Input
             evt.menu.AppendAction

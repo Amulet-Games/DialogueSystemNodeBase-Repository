@@ -9,7 +9,7 @@ namespace AG.DS
         /// <summary>
         /// A serializable dictionary that takes language index as TKey and type object as TValue.
         /// </summary>
-        [SerializeField] public SerializableDictionary<G_LanguageType, T> ValueByLanguageType;
+        [SerializeField] public SerializableDictionary<LanguageType, T> ValueByLanguageType;
 
 
         // ----------------------------- Constructor -----------------------------

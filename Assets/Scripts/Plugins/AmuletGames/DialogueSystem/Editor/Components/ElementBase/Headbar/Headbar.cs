@@ -1,3 +1,4 @@
+using System;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
@@ -12,9 +13,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Text model for the graph title.
+        /// Text view for the graph title.
         /// </summary>
-        public GraphTitleTextFieldModel GraphTitleTextFieldModel;
+        public GraphTitleTextFieldView GraphTitleTextFieldView;
 
 
         /// <summary>
@@ -35,42 +36,48 @@ namespace AG.DS
         public bool IsFocus;
 
 
+        /// <summary>
+        /// The event to invoke when the user changed dialogue editor window's language.
+        /// </summary>
+        public Action LanguageChangedEvent;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the headBar element class.
         /// </summary>
         public HeadBar()
         {
-            GraphTitleTextFieldModel = new();
+            GraphTitleTextFieldView = new();
         }
 
 
-        // ----------------------------- Update Title and Language -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Update all the language fields within the editor to suit the current selected language,
         /// and update the custom graph editor's title.
         /// </summary>
-        /// <param name="dsData">The dialogue system data which has connected to the custom graph editor.</param>
+        /// <param name="dsData">The dialogue system data that connects with the dialogue editor window to set for.</param>
         public void RefreshTitleAndLanguage(DialogueSystemData dsData)
         {
-            ChangeGraphLanguage(value: LanguageManager.Instance.SelectedLanguage);
+            SetEditorLanguage(value: LanguageManager.Instance.CurrentLanguage);
 
-            GraphTitleTextFieldModel.TextField.SetValueWithoutNotify(newValue: dsData.name);
+            GraphTitleTextFieldView.TextField.SetValueWithoutNotify(newValue: dsData.name);
         }
 
 
         /// <summary>
-        /// Update the custom graph editor's current language to the given ones.
+        /// Set the dialogue editor window language.
         /// </summary>
-        /// <param name="value">The language to change to.</param>
-        public void ChangeGraphLanguage(G_LanguageType value)
+        /// <param name="value">The language type to set for.</param>
+        public void SetEditorLanguage(LanguageType value)
         {
             var languageManager = LanguageManager.Instance;
 
-            languageManager.SelectedLanguage = value;
-            LanguageToolbarMenu.text = languageManager.GetShort(type: languageManager.SelectedLanguage);
+            languageManager.SetCurrentLanguage(value);
+            LanguageToolbarMenu.text = languageManager.GetShort(type: value);
 
-            LanguageChangedEvent.Invoke();
+            LanguageChangedEvent?.Invoke();
         }
     }
 }

@@ -3,20 +3,17 @@ namespace AG.DS
     public class OptionEdgePresenter : EdgePresenterFrameBase
     <
         OptionEdge,
-        OptionEdgeModel,
         OptionPort
     >
     {
         /// <inheritdoc />
-        public override OptionEdge CreateElement(OptionEdgeModel model)
+        public override OptionEdge CreateElement(OptionPort output, OptionPort input)
         {
             // Create edge
             var edge = new OptionEdge();
 
             // Setup detail
-            edge.Model = model;
-            edge.output = model.Output;
-            edge.input = model.Input;
+            edge.Setup(output, input);
             edge.focusable = true;
 
             // Add style

@@ -6,17 +6,22 @@ namespace AG.DS
     public class BooleanNodePresenter : NodePresenterFrameBase
     <
         BooleanNode,
-        BooleanNodeModel
+        BooleanNodeView
     >
     {
         /// <inheritdoc />
-        public override BooleanNode CreateElements(BooleanNodeModel model, GraphViewer graphViewer)
+        public override BooleanNode CreateElements
+        (
+            BooleanNodeView view,
+            GraphViewer graphViewer,
+            HeadBar headBar = null
+        )
         {
-            var node = new BooleanNode(model, graphViewer);
+            var node = new BooleanNode(view, graphViewer);
 
-            CreateTitleElements(node, model);
-            CreatePortElements(node, model);
-            CreateContentElements(node, model);
+            CreateTitleElements(node, view);
+            CreatePortElements(node, view);
+            CreateContentElements(node, view);
 
             return node;
         }
@@ -26,10 +31,10 @@ namespace AG.DS
         /// Method for creating the node's port elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreatePortElements(BooleanNode node, BooleanNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreatePortElements(BooleanNode node, BooleanNodeView view)
         {
-            model.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
@@ -37,7 +42,7 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            model.TrueOutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.TrueOutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
@@ -45,7 +50,7 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_True_LabelText
             );
 
-            model.FalseOutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.FalseOutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
@@ -54,9 +59,9 @@ namespace AG.DS
                 isSiblings: true
             );
 
-            node.Add(model.InputDefaultPort);
-            node.Add(model.TrueOutputDefaultPort);
-            node.Add(model.FalseOutputDefaultPort);
+            node.Add(view.InputDefaultPort);
+            node.Add(view.TrueOutputDefaultPort);
+            node.Add(view.FalseOutputDefaultPort);
             node.RefreshPorts();
         }
 
@@ -65,11 +70,11 @@ namespace AG.DS
         /// Method for creating the node's content elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreateContentElements(BooleanNode node, BooleanNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreateContentElements(BooleanNode node, BooleanNodeView view)
         {
             // Create all the root elements required in the node stitcher.
-            model.booleanNodeStitcher.CreateRootElements(node);
+            view.booleanNodeStitcher.CreateRootElements(node);
         }
     }
 }

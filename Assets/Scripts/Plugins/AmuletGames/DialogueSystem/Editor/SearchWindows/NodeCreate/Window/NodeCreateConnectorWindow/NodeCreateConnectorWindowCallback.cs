@@ -3,21 +3,9 @@ namespace AG.DS
     public class NodeCreateConnectorWindowCallback
     {
         /// <summary>
-        /// Reference of the node create request window.
-        /// </summary>
-        NodeCreateRequestWindow nodeCreateRequestWindow;
-
-
-        /// <summary>
         /// Reference of the node create connector window.
         /// </summary>
         NodeCreateConnectorWindow nodeCreateConnectorWindow;
-
-
-        /// <summary>
-        /// Reference of the dialogue editor window.
-        /// </summary>
-        DialogueEditorWindow dsWindow;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -25,15 +13,9 @@ namespace AG.DS
         /// Constructor of the node create connector window callback class.
         /// </summary>
         /// <param name="nodeCreateConnectorWindow">The node create connector window to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
-        public NodeCreateConnectorWindowCallback
-        (
-            NodeCreateConnectorWindow nodeCreateConnectorWindow,
-            DialogueEditorWindow dsWindow
-        )
+        public NodeCreateConnectorWindowCallback(NodeCreateConnectorWindow nodeCreateConnectorWindow)
         {
             this.nodeCreateConnectorWindow = nodeCreateConnectorWindow;
-            this.dsWindow = dsWindow;
         }
 
 
@@ -62,7 +44,7 @@ namespace AG.DS
         /// </summary>
         void SearchTreeEntrySelectedEvent()
         {
-            dsWindow.SetHasUnsavedChanges(value: true);
+            WindowChangedEvent.Invoke();
         }
     }
 }

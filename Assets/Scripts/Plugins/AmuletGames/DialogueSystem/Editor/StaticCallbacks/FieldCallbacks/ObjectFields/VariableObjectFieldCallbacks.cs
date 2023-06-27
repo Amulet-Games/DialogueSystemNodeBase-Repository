@@ -10,7 +10,7 @@ namespace AG.DS
         /// Register new value changed actions to the given container's field element.
         /// </summary>
         /// <param name="variableContainer">The container that connects with the field that the value changed actions are assigning to.</param>
-        public static void RegisterValueChangedEvent(VariableFieldModel variableContainer)
+        public static void RegisterValueChangedEvent(VariableFieldView variableContainer)
         {
             // Create a local refs for the object field that we're targeting.
             var objectField = variableContainer.ObjectField;
@@ -20,29 +20,21 @@ namespace AG.DS
                 // Unbind the previous bound object from the field.
                 objectField.Unbind();
 
-                // If the field received a new value.
                 if (callback.newValue != null)
                 {
-                    // Set the new value to the container.
-                    variableContainer.SetNewValue(callback);
+                    variableContainer.SetNewValue(callback.newValue);
 
                     // Create a new serialized object from the event's new value,
                     // and bind it to the field.
                     objectField.Bind(obj: new SerializedObject(callback.newValue));
-
-                    // Remove the field from empty style class if needed.
                     objectField.HideEmptyStyle();
                 }
                 else
                 {
-                    // Set the container's value to null.
                     variableContainer.SetNewValue(null);
-
-                    // Add the field to empty style class if needed.
                     objectField.ShowEmptyStyle();
                 }
 
-                // Set unsaved changes to true.
                 WindowChangedEvent.Invoke();
             });
         }

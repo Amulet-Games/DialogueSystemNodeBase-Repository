@@ -8,20 +8,20 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new common button element.
         /// </summary>
-        /// <param name="buttonUSS01">The first USS style to set for the button.</param>
         /// <param name="buttonText">The button label text to set for.</param>
+        /// <param name="buttonUSS">The USS style to set for the button.</param>
         /// <returns>A new common button element.</returns>
         public static Button CreateElement
         (
             string buttonText,
-            string buttonUSS01
+            string buttonUSS
         )
         {
             Button button = new();
 
             button.text = buttonText;
 
-            button.AddToClassList(buttonUSS01);
+            button.AddToClassList(buttonUSS);
 
             return button;
         }
@@ -30,20 +30,20 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new common button element.
         /// </summary>
-        /// <param name="buttonUSS01">The first USS style to set for the button.</param>
         /// <param name="buttonSprite">The button icon sprite to set for.</param>
+        /// <param name="buttonUSS">The USS style to set for the button.</param>
         /// <returns>A new common button element.</returns>
         public static Button CreateElement
         (
             Sprite buttonSprite,
-            string buttonUSS01
+            string buttonUSS
         )
         {
             Button button = new();
 
             button.style.backgroundImage = buttonSprite.texture;
 
-            button.AddToClassList(buttonUSS01);
+            button.AddToClassList(buttonUSS);
 
             return button;
         }

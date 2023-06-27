@@ -12,7 +12,7 @@ namespace AG.DS
         /// <param name="additionalValueChangedAction">The additional action to assign with, it's optional.</param>
         public static void RegisterValueChangedEvent
         (
-            IconicEnumFieldModelBase iconicEnumContainer,
+            IconicEnumFieldViewBase iconicEnumContainer,
             Action additionalValueChangedAction = null
         )
         {
@@ -24,16 +24,10 @@ namespace AG.DS
                 //    dataReversedAction: containerValueChangedAction
                 //);
 
-                // Set the new value to the container.
                 iconicEnumContainer.Value = (int)(object)callback.newValue;
-
-                // Update field's icon image.
                 iconicEnumContainer.UpdateIconImage();
 
-                // Invoke additional value changed action.
                 additionalValueChangedAction?.Invoke();
-
-                // Set unsaved changes to true.
                 WindowChangedEvent.Invoke();
             });
         }

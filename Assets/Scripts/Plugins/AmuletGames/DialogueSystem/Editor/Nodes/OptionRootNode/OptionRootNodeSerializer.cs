@@ -4,7 +4,7 @@ namespace AG.DS
     public class OptionRootNodeSerializer : NodeSerializerFrameBase
     <
         OptionRootNode,
-        OptionRootNodeModel,
+        OptionRootNodeView,
         OptionRootNodeData
     >
     {
@@ -13,11 +13,11 @@ namespace AG.DS
         /// Constructor of the option root node serializer class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public OptionRootNodeSerializer(OptionRootNode node, OptionRootNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        public OptionRootNodeSerializer(OptionRootNode node, OptionRootNodeView view)
         {
             Node = node;
-            Model = model;
+            View = view;
         }
 
 
@@ -37,14 +37,14 @@ namespace AG.DS
 
             void SavePorts()
             {
-                Model.InputDefaultPort.Save(data.InputPortData);
-                Model.OutputOptionPort.Save(data.OutputOptionPortData);
-                Model.OutputOptionPortGroupModel.Save(data: data.OutputOptionPortGroupData);
+                View.InputDefaultPort.Save(data.InputPortData);
+                View.OutputOptionPort.Save(data.OutputOptionPortData);
+                View.OutputOptionPortGroupView.Save(data: data.OutputOptionPortGroupData);
             }
 
             void SaveHeaderTextContainer()
             {
-                Model.RootTitleTextFieldModel.Save(data.HeadlineText);
+                View.RootTitleTextFieldView.Save(data.HeadlineText);
             }
 
             void AddData()
@@ -68,14 +68,14 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                Model.InputDefaultPort.Load(data.InputPortData);
-                Model.OutputOptionPort.Load(data.OutputOptionPortData);
-                Model.OutputOptionPortGroupModel.Load(Node, data.OutputOptionPortGroupData);
+                View.InputDefaultPort.Load(data.InputPortData);
+                View.OutputOptionPort.Load(data.OutputOptionPortData);
+                View.OutputOptionPortGroupView.Load(Node, data.OutputOptionPortGroupData);
             }
 
             void LoadHeaderTextContainer()
             {
-                Model.RootTitleTextFieldModel.Load(data.HeadlineText);
+                View.RootTitleTextFieldView.Load(data.HeadlineText);
             }
 
             void RefreshPortsLayout()

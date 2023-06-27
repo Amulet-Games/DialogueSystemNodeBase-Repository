@@ -7,22 +7,22 @@ namespace AG.DS
     public class PreviewNodeCallback : NodeCallbackFrameBase
     <
         PreviewNode,
-        PreviewNodeModel
+        PreviewNodeView
     >
     {
         /// <summary>
         /// Constructor of the preview node callback class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
+        /// <param name="view">The node view to set for.</param>
         public PreviewNodeCallback
         (
             PreviewNode node,
-            PreviewNodeModel model
+            PreviewNodeView view
         )
         {
             Node = node;
-            Model = model;
+            View = view;
         }
 
 
@@ -47,7 +47,7 @@ namespace AG.DS
         /// </summary>
         void RegisterNodeTitleTextFieldEvents()
             => new NodeTitleTextFieldCallback(
-                model: Model.NodeTitleTextFieldModel,
+                view: View.NodeTitleTextFieldView,
                 widthBuffer: NodeConfig.PreviewNodeWidthBuffer).RegisterEvents();
 
 
@@ -57,7 +57,7 @@ namespace AG.DS
         void RegisterNodeTitleEditButtonClickEvent()
             => new CommonButtonCallback(
                 isAlert: false,
-                button: Model.EditTitleButton,
+                button: View.EditTitleButton,
                 clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
 
 
@@ -66,7 +66,7 @@ namespace AG.DS
         /// </summary>
         void RegisterLeftPortraitObjectFieldChangeEvent()
             => new CommonObjectFieldCallback<Sprite>(
-                model: Model.LeftPortraitObjectFieldModel,
+                view: View.LeftPortraitObjectFieldView,
                 additionalChangeEvent: LeftPortraitObjectFieldChangeEvent).RegisterEvents();
 
 
@@ -75,7 +75,7 @@ namespace AG.DS
         /// </summary>
         void RegisterRightPortraitObjectFieldChangeEvent()
             => new CommonObjectFieldCallback<Sprite>(
-                model: Model.RightPortraitObjectFieldModel,
+                view: View.RightPortraitObjectFieldView,
                 additionalChangeEvent: RightPortraitObjectFieldChangeEvent).RegisterEvents();
 
 
@@ -86,7 +86,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void NodeTitleEditButtonClickEvent(ClickEvent evt)
         {
-            var fieldInput = Model.NodeTitleTextFieldModel.TextField.GetElementInput();
+            var fieldInput = View.NodeTitleTextFieldView.TextField.GetElementInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }
@@ -98,7 +98,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void LeftPortraitObjectFieldChangeEvent(ChangeEvent<Sprite> evt)
         {
-            Model.LeftPortraitImage.image = Model.LeftPortraitObjectFieldModel.Value.texture;
+            View.LeftPortraitImage.image = View.LeftPortraitObjectFieldView.Value.texture;
         }
 
 
@@ -108,7 +108,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void RightPortraitObjectFieldChangeEvent(ChangeEvent<Sprite> evt)
         {
-            Model.RightPortraitImage.image = Model.RightPortraitObjectFieldModel.Value.texture;
+            View.RightPortraitImage.image = View.RightPortraitObjectFieldView.Value.texture;
         }
     }
 }

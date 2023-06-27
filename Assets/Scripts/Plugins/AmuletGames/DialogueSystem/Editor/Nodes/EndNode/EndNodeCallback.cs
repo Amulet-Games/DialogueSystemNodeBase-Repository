@@ -6,7 +6,7 @@ namespace AG.DS
     public class EndNodeCallback : NodeCallbackFrameBase
     <
         EndNode,
-        EndNodeModel
+        EndNodeView
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -14,15 +14,15 @@ namespace AG.DS
         /// Constructor of the end node callback class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
+        /// <param name="view">The node view to set for.</param>
         public EndNodeCallback
         (
             EndNode node,
-            EndNodeModel model
+            EndNodeView view
         )
         {
             Node = node;
-            Model = model;
+            View = view;
         }
 
 
@@ -43,7 +43,7 @@ namespace AG.DS
         /// </summary>
         void RegisterNodeTitleTextFieldEvents()
             => new NodeTitleTextFieldCallback(
-                model: Model.NodeTitleTextFieldModel,
+                view: View.NodeTitleTextFieldView,
                 widthBuffer: NodeConfig.EndNodeWidthBuffer).RegisterEvents();
 
 
@@ -53,7 +53,7 @@ namespace AG.DS
         void RegisterNodeTitleEditButtonClickEvent()
             => new CommonButtonCallback(
                 isAlert: false,
-                button: Model.EditTitleButton,
+                button: View.EditTitleButton,
                 clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
 
 
@@ -64,7 +64,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void NodeTitleEditButtonClickEvent(ClickEvent evt)
         {
-            var fieldInput = Model.NodeTitleTextFieldModel.TextField.GetElementInput();
+            var fieldInput = View.NodeTitleTextFieldView.TextField.GetElementInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }

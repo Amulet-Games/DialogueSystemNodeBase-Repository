@@ -5,14 +5,14 @@ namespace AG.DS
     public class OptionPortGroupCellPresenter
     {
         /// <summary>
-        /// Method for creating the elements for the option port group cell model.
+        /// Method for creating the elements for the option port group cell view.
         /// </summary>
-        /// <param name="model">The targeting option port group cell model to set for.</param>
+        /// <param name="view">The targeting option port group cell view to set for.</param>
         /// <param name="connectorWindow">The node create connector window to set for.</param>
         /// <param name="direction">The direction type to set for.</param>
         public static void CreateElement
         (
-            OptionPortGroupModel.CellModel model,
+            OptionPortGroupView.CellView view,
             NodeCreateConnectorWindow connectorWindow,
             Direction direction
         )
@@ -23,7 +23,7 @@ namespace AG.DS
 
             void CreateOptionPort()
             {
-                model.Port = OptionPort.CreateElement<OptionEdge>
+                view.Port = OptionPort.CreateElement<OptionEdge>
                 (
                     connectorWindow: connectorWindow,
                     direction: direction
@@ -32,13 +32,13 @@ namespace AG.DS
 
             void SetupRemoveButton()
             {
-                model.RemoveButton = CommonButtonPresenter.CreateElement
+                view.RemoveButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
-                    buttonUSS01: StyleConfig.OptionPortGroup_RemoveButton
+                    buttonUSS: StyleConfig.OptionPortGroup_RemoveButton
                 );
 
-                model.Port.contentContainer.Add(model.RemoveButton);
+                view.Port.contentContainer.Add(view.RemoveButton);
             }
         }
     }

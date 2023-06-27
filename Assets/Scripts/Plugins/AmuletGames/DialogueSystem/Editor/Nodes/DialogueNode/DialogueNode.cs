@@ -5,7 +5,7 @@ namespace AG.DS
     public class DialogueNode : NodeFrameBase
     <
         DialogueNode,
-        DialogueNodeModel,
+        DialogueNodeView,
         DialogueNodeSerializer,
         DialogueNodeCallback,
         DialogueNodeData
@@ -15,17 +15,18 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the dialogue node class.
         /// </summary>
-        /// <param name="model">The node model to set for.</param>
+        /// <param name="view">The node view to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public DialogueNode(DialogueNodeModel model, GraphViewer graphViewer)
+        /// <param name="headBar">The headBar element to set for.</param>
+        public DialogueNode(DialogueNodeView view, GraphViewer graphViewer, HeadBar headBar)
         {
             // Setup details
             {
-                Model = model;
+                View = view;
                 GraphViewer = graphViewer;
 
-                Callback = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, View, headBar);
+                Serializer = new(node: this, View);
 
                 title = StringConfig.DialogueNode_TitleTextField_LabelText;
 
@@ -44,12 +45,12 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Add Contextual Menu Items -----------------------------
+        // ----------------------------- Override -----------------------------
         /// <inheritdoc />
         protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
-            var defaultInput = Model.InputDefaultPort;
-            var defaultOutput = Model.OutputDefaultPort;
+            var defaultInput = View.InputDefaultPort;
+            var defaultOutput = View.OutputDefaultPort;
 
             // Disconnect Input
             evt.menu.AppendAction

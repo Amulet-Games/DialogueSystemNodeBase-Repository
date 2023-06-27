@@ -11,22 +11,29 @@ namespace AG.DS
         /// </summary>
         /// <param name="labelText">The toolbar label text to set for.</param>
         /// <param name="arrowIcon">The sprite icon to set for the toolbar arrow image.</param>
-        /// <param name="menuUSS01">The first USS style to set for the toolbar.</param>
+        /// <param name="menuUSS">The USS style to set for the toolbar menu.</param>
+        /// <param name="centerContainerUSS">The USS style to set for the center container in the toolbar menu.</param>
+        /// <param name="textLabelUSS">The USS style to set for the text label element in the toolbar menu.</param>
+        /// <param name="arrowImageUSS">The USS style to set for the arrow image element in the toolbar menu.</param>
         /// <returns>A new toolbar menu element.</returns>
         public static ToolbarMenu CreateElement
         (
-            string labelText = null,
-            Sprite arrowIcon = null,
-            string menuUSS01 = null
+            string labelText,
+            Sprite arrowIcon,
+            string menuUSS,
+            string centerContainerUSS,
+            string textLabelUSS,
+            string arrowImageUSS
         )
         {
             ToolbarMenu toolbarMenu;
-            VisualElement menuTextLabel;
-            VisualElement menuArrowImage;
+            VisualElement centerContainer;
+            VisualElement textLabel;
+            VisualElement arrowImage;
 
             CreateToolbar();
 
-            GetChildElements();
+            SetupChildElements();
 
             SetupDetail();
 
@@ -41,35 +48,37 @@ namespace AG.DS
                 toolbarMenu = new();
             }
 
-            void GetChildElements()
+            void SetupChildElements()
             {
-                menuTextLabel = toolbarMenu.ElementAt(0);
-                menuArrowImage = toolbarMenu.ElementAt(1);
+                textLabel = toolbarMenu.ElementAt(0);
+                arrowImage = toolbarMenu.ElementAt(1);
+
+                centerContainer = new();
+                centerContainer.Add(textLabel);
+                centerContainer.Add(arrowImage);
+
+                toolbarMenu.Add(centerContainer);
             }
 
             void SetupDetail()
             {
                 toolbarMenu.text = labelText;
-                menuArrowImage.style.backgroundImage = arrowIcon.texture;
+                arrowImage.style.backgroundImage = arrowIcon.texture;
             }
 
             void RemoveDefaultStyleClass()
             {
                 toolbarMenu.ClearClassList();
-                menuTextLabel.ClearClassList();
-                menuArrowImage.ClearClassList();
+                textLabel.ClearClassList();
+                arrowImage.ClearClassList();
             }
 
             void AddStyleClass()
             {
-                toolbarMenu.AddToClassList(StyleConfig.Global_ToolbarMenu);
-                menuTextLabel.AddToClassList(StyleConfig.Global_ToolbarMenu_TextLabel);
-                menuArrowImage.AddToClassList(StyleConfig.Global_ToolbarMenu_ArrowImage);
-
-                if (menuUSS01 != null)
-                {
-                    toolbarMenu.AddToClassList(menuUSS01);
-                }
+                toolbarMenu.AddToClassList(menuUSS);
+                centerContainer.AddToClassList(centerContainerUSS);
+                textLabel.AddToClassList(textLabelUSS);
+                arrowImage.AddToClassList(arrowImageUSS);
             }
         }
     }

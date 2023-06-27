@@ -58,7 +58,7 @@ namespace AG.DS
                 headBar.SaveButton = CommonButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.HeadBar_SaveButton_LabelText,
-                    buttonUSS01: StyleConfig.HeadBar_SaveButton
+                    buttonUSS: StyleConfig.HeadBar_SaveButton
                 );
             }
 
@@ -67,7 +67,7 @@ namespace AG.DS
                 headBar.LoadButton = CommonButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.HeadBar_LoadButton_LabelText,
-                    buttonUSS01: StyleConfig.HeadBar_LoadButton
+                    buttonUSS: StyleConfig.HeadBar_LoadButton
                 );
             }
 
@@ -76,17 +76,21 @@ namespace AG.DS
                 var languageManager = LanguageManager.Instance;
                 headBar.LanguageToolbarMenu = ToolbarMenuPresenter.CreateElement
                 (
-                    labelText: languageManager.GetShort(type: languageManager.SelectedLanguage),
-                    arrowIcon: ConfigResourcesManager.SpriteConfig.DropdownArrowIcon1Sprite
+                    labelText: languageManager.GetShort(type: languageManager.CurrentLanguage),
+                    arrowIcon: ConfigResourcesManager.SpriteConfig.DropdownArrowIcon1Sprite,
+                    menuUSS: StyleConfig.HeadBar_LanguageToolbarMenu_Main,
+                    centerContainerUSS: StyleConfig.HeadBar_LanguageToolbarMenu_CenterContainer,
+                    textLabelUSS: StyleConfig.HeadBar_LanguageToolbarMenu_TextLabel,
+                    arrowImageUSS: StyleConfig.HeadBar_LanguageToolbarMenu_ArrowImage
                 );
             }
 
             void SetupGraphTitleField()
             {
-                headBar.GraphTitleTextFieldModel.TextField = GraphTitleTextFieldPresenter.CreateElement
+                headBar.GraphTitleTextFieldView.TextField = GraphTitleTextFieldPresenter.CreateElement
                 (
                     dsData: dsData,
-                    fieldUSS01: StyleConfig.HeadBar_GraphTitleTextField
+                    fieldUSS: StyleConfig.HeadBar_GraphTitleTextField
                 );
             }
 
@@ -100,7 +104,7 @@ namespace AG.DS
             void AddElementsToHeadBar()
             {
                 headBar.Add(buttonsContainer);
-                headBar.Add(headBar.GraphTitleTextFieldModel.TextField);
+                headBar.Add(headBar.GraphTitleTextFieldView.TextField);
             }
 
             void AddStyleSheet()

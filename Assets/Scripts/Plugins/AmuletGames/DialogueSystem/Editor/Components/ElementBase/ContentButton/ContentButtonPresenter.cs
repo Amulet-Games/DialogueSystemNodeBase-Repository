@@ -41,7 +41,7 @@ namespace AG.DS
                 contentButton.Label = CommonLabelPresenter.CreateElement
                 (
                     labelText: buttonText,
-                    labelUSS01: StyleConfig.ContentButton_Title_Label
+                    labelUSS: StyleConfig.ContentButton_Title_Label
                 );
             }
 

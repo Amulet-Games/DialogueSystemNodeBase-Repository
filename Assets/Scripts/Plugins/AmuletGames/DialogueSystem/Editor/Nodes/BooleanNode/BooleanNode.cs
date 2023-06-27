@@ -5,7 +5,7 @@ namespace AG.DS
     public class BooleanNode : NodeFrameBase
     <
         BooleanNode,
-        BooleanNodeModel,
+        BooleanNodeView,
         BooleanNodeSerializer,
         BooleanNodeCallback,
         BooleanNodeData
@@ -15,17 +15,17 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the boolean node class.
         /// </summary>
-        /// <param name="model">The node model to set for.</param>
+        /// <param name="view">The node view to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public BooleanNode(BooleanNodeModel model, GraphViewer graphViewer)
+        public BooleanNode(BooleanNodeView view, GraphViewer graphViewer)
         {
             // Setup details
             {
-                Model = model;
+                View = view;
                 GraphViewer = graphViewer;
 
-                Callback = new(node: this, model: Model);
-                Serializer = new(node: this, model: Model);
+                Callback = new(node: this, View);
+                Serializer = new(node: this, View);
 
                 title = StringConfig.BooleanNode_TitleTextField_LabelText;
                 style.minWidth = NodeConfig.BooleanNodeMinWidth;
@@ -44,13 +44,13 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Add Contextual Menu Items -----------------------------
+        // ----------------------------- Override -----------------------------
         /// <inheritdoc />
         protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
-            var defaultInput = Model.InputDefaultPort;
-            var defaultTrueOutput = Model.TrueOutputDefaultPort;
-            var defaultFalseOutput = Model.FalseOutputDefaultPort;
+            var defaultInput = View.InputDefaultPort;
+            var defaultTrueOutput = View.TrueOutputDefaultPort;
+            var defaultFalseOutput = View.FalseOutputDefaultPort;
 
             // Disconnect Input
             evt.menu.AppendAction

@@ -1,6 +1,6 @@
 namespace AG.DS
 {
-    public class DefaultEdge : EdgeFrameBase<DefaultEdgeModel>
+    public class DefaultEdge : EdgeFrameBase<DefaultPort>
     {
         // ----------------------------- Action -----------------------------
         /// <inheritdoc />
@@ -29,8 +29,8 @@ namespace AG.DS
         /// <inheritdoc />
         public override void Disconnect()
         {
-            Model.Input.Disconnect(this);
-            Model.Output.Disconnect(this);
+            Input.Disconnect(this);
+            Output.Disconnect(this);
 
             input = null;
             output = null;

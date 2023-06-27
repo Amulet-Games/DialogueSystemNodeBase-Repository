@@ -12,7 +12,7 @@ namespace AG.DS
         /// <param name="additionalValueChangedAction">The additional action to assign with, it's optional.</param>
         public static void RegisterValueChangedEvent
         (
-            EnumFieldModelBase enumContainer,
+            EnumFieldViewBase enumContainer,
             Action additionalValueChangedAction = null
         )
         {
@@ -24,13 +24,9 @@ namespace AG.DS
                 //    dataReversedAction: containerValueChangedAction
                 //);
 
-                // Set the new value to the container.
                 enumContainer.Value = (int)(object)callback.newValue;
 
-                // Invoke additional value changed action.
                 additionalValueChangedAction?.Invoke();
-
-                // Set unsaved changes to true.
                 WindowChangedEvent.Invoke();
             });
         }

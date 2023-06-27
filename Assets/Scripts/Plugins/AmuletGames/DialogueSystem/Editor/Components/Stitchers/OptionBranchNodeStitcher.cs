@@ -27,7 +27,7 @@ namespace AG.DS
         /// Enum container for the users to choose how they want to display the option if its condition
         /// <br>has not been unmet yet.</br>
         /// </summary>
-        UnmetOptionDisplayTypeEnumFieldModel unmetOptionDisplayTypeEnumContainer;
+        UnmetOptionDisplayTypeEnumFieldView unmetOptionDisplayTypeEnumContainer;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -76,7 +76,7 @@ namespace AG.DS
                 unmetOptionDisplayTypeEnumField = EnumFieldFactory.GetNewEnumField
                 (
                     enumContainer: unmetOptionDisplayTypeEnumContainer,
-                    fieldUSS01: StyleConfig.Segment_Condition_UnmetOptionDisplayType_EnumField
+                    fieldUSS: StyleConfig.Segment_Condition_UnmetOptionDisplayType_EnumField
                 );
             }
 

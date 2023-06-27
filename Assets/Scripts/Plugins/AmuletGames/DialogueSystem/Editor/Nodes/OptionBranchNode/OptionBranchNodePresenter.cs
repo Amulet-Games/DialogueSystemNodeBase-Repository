@@ -7,17 +7,22 @@ namespace AG.DS
     public class OptionBranchNodePresenter : NodePresenterFrameBase
     <
         OptionBranchNode,
-        OptionBranchNodeModel
+        OptionBranchNodeView
     >
     {
         /// <inheritdoc />
-        public override OptionBranchNode CreateElements(OptionBranchNodeModel model, GraphViewer graphViewer)
+        public override OptionBranchNode CreateElements
+        (
+            OptionBranchNodeView view,
+            GraphViewer graphViewer,
+            HeadBar headBar = null
+        )
         {
-            var node = new OptionBranchNode(model, graphViewer);
+            var node = new OptionBranchNode(view, graphViewer, headBar);
 
-            CreateTitleElements(node, model);
-            CreatePortElements(node, model);
-            CreateContentElements(node, model);
+            CreateTitleElements(node, view);
+            CreatePortElements(node, view);
+            CreateContentElements(node, view);
 
             return node;
         }
@@ -27,16 +32,16 @@ namespace AG.DS
         /// Method for creating the node's port elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreatePortElements(OptionBranchNode node, OptionBranchNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreatePortElements(OptionBranchNode node, OptionBranchNodeView view)
         {
-            model.InputOptionPort = OptionPort.CreateElement<OptionEdge>
+            view.InputOptionPort = OptionPort.CreateElement<OptionEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input
             );
 
-            model.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            view.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
                 connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
@@ -44,8 +49,8 @@ namespace AG.DS
                 label: StringConfig.DefaultPort_Output_LabelText
             );
 
-            node.Add(model.InputOptionPort);
-            node.Add(model.OutputDefaultPort);
+            node.Add(view.InputOptionPort);
+            node.Add(view.OutputDefaultPort);
             node.RefreshPorts();
         }
 
@@ -54,8 +59,8 @@ namespace AG.DS
         /// Method for creating the node's content elements.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        void CreateContentElements(OptionBranchNode node, OptionBranchNodeModel model)
+        /// <param name="view">The node view to set for.</param>
+        void CreateContentElements(OptionBranchNode node, OptionBranchNodeView view)
         {
             SetupContentButton();
 
@@ -63,13 +68,13 @@ namespace AG.DS
 
             void SetupContentButton()
             {
-                model.ContentButton = ContentButtonPresenter.CreateElement
+                view.ContentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.ContentButton_AddCondition_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddConditionModifierButtonIconSprite
                 );
 
-                node.titleContainer.Add(model.ContentButton);
+                node.titleContainer.Add(view.ContentButton);
             }
 
             void SetupOptionBranchGroup()
@@ -119,17 +124,17 @@ namespace AG.DS
                     branchTitleLabel = CommonLabelPresenter.CreateElement
                     (
                         labelText: StringConfig.OptionBranchNode_BranchTitleLabel_LabelText,
-                        labelUSS01: StyleConfig.OptionBranchNode_Title_Label
+                        labelUSS: StyleConfig.OptionBranchNode_Title_Label
                     );
                 }
 
                 void SetupBranchTitleTextField()
                 {
-                    model.BranchTitleTextFieldModel.TextField = LanguageTextFieldPresenter.CreateElement
+                    view.BranchTitleTextFieldView.TextField = LanguageTextFieldPresenter.CreateElement
                     (
                         isMultiLine: false,
-                        placeholderText: model.BranchTitleTextFieldModel.PlaceholderText,
-                        fieldUSS01: StyleConfig.OptionBranchNode_Title_TextField
+                        placeholderText: view.BranchTitleTextFieldView.PlaceholderText,
+                        fieldUSS: StyleConfig.OptionBranchNode_Title_TextField
                     );
                 }
 
@@ -141,7 +146,7 @@ namespace AG.DS
                     outerContainer.Add(InnerContainer);
 
                     InnerContainer.Add(branchTitleLabel);
-                    InnerContainer.Add(model.BranchTitleTextFieldModel.TextField);
+                    InnerContainer.Add(view.BranchTitleTextFieldView.TextField);
                 }
 
                 void AddContainersToNode()

@@ -7,7 +7,7 @@ namespace AG.DS
     public class OptionRootNodeCallback : NodeCallbackFrameBase
     <
         OptionRootNode,
-        OptionRootNodeModel
+        OptionRootNodeView
     >
     {
         /// <summary>
@@ -16,20 +16,29 @@ namespace AG.DS
         Vector2 pointerMovePosition;
 
 
+        /// <summary>
+        /// Reference of the headBar element.
+        /// </summary>
+        HeadBar headBar;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option root node callback class.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
+        /// <param name="view">The node view to set for.</param>
+        /// <param name="headBar">The headBar element to set for.</param>
         public OptionRootNodeCallback
         (
             OptionRootNode node,
-            OptionRootNodeModel model
+            OptionRootNodeView view,
+            HeadBar headBar
         )
         {
             Node = node;
-            Model = model;
+            View = view;
+            this.headBar = headBar;
         }
 
 
@@ -73,7 +82,7 @@ namespace AG.DS
         /// Register LanguageChangedEvent to the node.
         /// </summary>
         void RegisterLanguageChangedEvent()
-            => LanguageChangedEvent.Register(m_LanguageChangedEvent);
+            => headBar.LanguageChangedEvent += m_LanguageChangedEvent;
 
 
         /// <summary>
@@ -81,7 +90,7 @@ namespace AG.DS
         /// </summary>
         void RegisterNodeTitleTextFieldEvents()
             => new NodeTitleTextFieldCallback(
-                model: Model.NodeTitleTextFieldModel,
+                view: View.NodeTitleTextFieldView,
                 widthBuffer: NodeConfig.OptionRootNodeWidthBuffer).RegisterEvents();
 
 
@@ -91,7 +100,7 @@ namespace AG.DS
         void RegisterNodeTitleEditButtonClickEvent()
             => new CommonButtonCallback(
                 isAlert: false,
-                button: Model.EditTitleButton,
+                button: View.EditTitleButton,
                 clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
 
 
@@ -101,7 +110,7 @@ namespace AG.DS
         void RegisterContentButtonClickEvent()
             => new ContentButtonCallback(
                 isAlert: true,
-                contentButton: Model.ContentButton,
+                contentButton: View.ContentButton,
                 clickEvent: ContentButtonClickEvent).RegisterEvents();
 
 
@@ -110,7 +119,7 @@ namespace AG.DS
         /// </summary>
         void RegisterRootTitleTextFieldEvents()
             => new LanguageTextFieldCallback(
-                model: Model.RootTitleTextFieldModel).RegisterEvents();
+                view: View.RootTitleTextFieldView).RegisterEvents();
 
 
         // ----------------------------- UnRegister Events -----------------------------
@@ -125,7 +134,7 @@ namespace AG.DS
         /// Unregister LanguageChangedEvent from the node.
         /// </summary>
         void UnregisterLanguageChangedEvent()
-            => LanguageChangedEvent.UnRegister(m_LanguageChangedEvent);
+            => headBar.LanguageChangedEvent -= m_LanguageChangedEvent;
 
 
         // ----------------------------- Event -----------------------------
@@ -159,7 +168,7 @@ namespace AG.DS
         /// </summary>
         void m_LanguageChangedEvent()
         {
-            Model.RootTitleTextFieldModel.UpdateLanguageField();
+            View.RootTitleTextFieldView.UpdateLanguageField();
         }
 
 
@@ -169,7 +178,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void NodeTitleEditButtonClickEvent(ClickEvent evt)
         {
-            var fieldInput = Model.NodeTitleTextFieldModel.TextField.GetElementInput();
+            var fieldInput = View.NodeTitleTextFieldView.TextField.GetElementInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }
@@ -185,7 +194,7 @@ namespace AG.DS
             Node.NodeBorder.Blur();
 
             // Create a new output option port cell.
-            Model.OutputOptionPortGroupModel.AddCell(Node);
+            View.OutputOptionPortGroupView.AddCell(Node);
 
             // Update ports layout.
             Node.RefreshPorts();

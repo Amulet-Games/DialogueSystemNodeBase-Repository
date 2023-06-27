@@ -1,6 +1,6 @@
 namespace AG.DS
 {
-    public class OptionEdge : EdgeFrameBase<OptionEdgeModel>
+    public class OptionEdge : EdgeFrameBase<OptionPort>
     {
         // ----------------------------- Action -----------------------------
         /// <inheritdoc />
@@ -29,11 +29,11 @@ namespace AG.DS
         /// <inheritdoc />
         public override void Disconnect()
         {
-            Model.Input.Disconnect(this);
-            Model.Input.HideConnectStyle();
+            Input.Disconnect(this);
+            Input.HideConnectStyle();
 
-            Model.Output.Disconnect(this);
-            Model.Output.HideConnectStyle();
+            Output.Disconnect(this);
+            Output.HideConnectStyle();
 
             input = null;
             output = null;
