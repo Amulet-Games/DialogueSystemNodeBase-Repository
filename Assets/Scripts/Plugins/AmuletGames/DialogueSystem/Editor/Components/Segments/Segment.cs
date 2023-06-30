@@ -139,24 +139,24 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the segment values to the given data.
+        /// Save the segment values to the segment model.
         /// </summary>
-        /// <param name="data">The given data to save to.</param>
-        public void SaveSegmentValues(SegmentData data)
+        /// <param name="model">The segment model to set for.</param>
+        public void SaveSegmentValues(SegmentModel model)
         {
             // Save IsExpanded
-            data.IsExpanded = IsExpanded;
+            model.IsExpanded = IsExpanded;
         }
 
 
         /// <summary>
-        /// Load the segment values from the given data.
+        /// Load the segment values from the segment model.
         /// </summary>
-        /// <param name="data">The given data to load from.</param>
-        public void LoadSegmentValues(SegmentData data)
+        /// <param name="model">The segment model to set for.</param>
+        public void LoadSegmentValues(SegmentModel model)
         {
             // Load IsExpanded
-            IsExpanded = data.IsExpanded;
+            IsExpanded = model.IsExpanded;
             SetActiveSegmentContent();
         }
 

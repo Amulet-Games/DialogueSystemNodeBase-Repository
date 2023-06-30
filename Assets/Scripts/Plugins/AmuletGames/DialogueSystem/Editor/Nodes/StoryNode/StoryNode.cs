@@ -8,7 +8,7 @@ namespace AG.DS
         StoryNodeView,
         StoryNodeSerializer,
         StoryNodeCallback,
-        StoryNodeData
+        StoryNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------

@@ -40,7 +40,8 @@ namespace AG.DS
 
                 nodeTitleTextField.multiline = false;
 
-                nodeTitleTextField.GetElementInput().pickingMode = PickingMode.Ignore;
+                nodeTitleTextField.GetFieldInput().pickingMode = PickingMode.Ignore;
+                nodeTitleTextField.GetTextElement().pickingMode = PickingMode.Ignore;
             }
 
             void AddFieldToStyleClass()

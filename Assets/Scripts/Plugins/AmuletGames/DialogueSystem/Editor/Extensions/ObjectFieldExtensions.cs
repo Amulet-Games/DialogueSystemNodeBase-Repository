@@ -7,11 +7,11 @@ namespace AG.DS
     public static class ObjectFieldExtensions
     {
         /// <summary>
-        /// Returns the object field's display element reference.
+        /// Returns the object field's display element.
         /// </summary>
         /// <param name="field">Extension object field.</param>
         /// <returns>The display element of the object field.</returns>
-        public static VisualElement GetElementDisplay(this ObjectField field)
+        public static VisualElement GetDisplayElement(this ObjectField field)
         {
             var inputBase = field.ElementAt(0);
             return inputBase.ElementAt(0);
@@ -69,7 +69,7 @@ namespace AG.DS
         /// <param name="field">Extension object field.</param>
         public static void RemoveFieldIcon(this ObjectField field)
         {
-            var displayElement = field.GetElementDisplay();
+            var displayElement = field.GetDisplayElement();
             displayElement.Remove(displayElement.ElementAt(0));
         }
 
@@ -91,7 +91,7 @@ namespace AG.DS
                 imageUSS01: StyleConfig.ObjectField_Icon
             );
 
-            field.GetElementDisplay().Add(iconImage);
+            field.GetDisplayElement().Add(iconImage);
 
             // Place it as the first element within the field's hierarchy list
             // so that it's align on the left side.

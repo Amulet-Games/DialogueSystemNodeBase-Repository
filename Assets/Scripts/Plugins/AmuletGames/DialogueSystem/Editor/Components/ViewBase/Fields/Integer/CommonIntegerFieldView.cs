@@ -27,12 +27,12 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Load the view values from the given data.
+        /// Load the view values from the given value.
         /// </summary>
-        /// <param name="data">The data to load from.</param>
-        public void Load(int data)
+        /// <param name="value">The value to set for.</param>
+        public void Load(int value)
         {
-            Value = data;
+            Value = value;
 
             IntegerField.SetValueWithoutNotify(Value);
         }
@@ -61,7 +61,7 @@ namespace AG.DS
 
                 if (obj is CommonIntegerFieldView reverseSource)
                 {
-                    Load(data: reverseSource.Value);
+                    Load(value: reverseSource.Value);
                 }
                 else
                 {

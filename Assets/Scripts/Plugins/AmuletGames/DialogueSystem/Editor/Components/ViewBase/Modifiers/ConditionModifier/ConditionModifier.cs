@@ -300,38 +300,38 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the modifier values to the given data.
+        /// Save the modifier values to the condition modifier model.
         /// </summary>
-        /// <param name="data">The given data to save to.</param>
-        public void SaveModifierValue(ConditionModifierData data)
+        /// <param name="model">The condition modifier model to set for.</param>
+        public void SaveModifierValue(ConditionModifierModel model)
         {
             // Save containers.
-            FirstTermVariableContainer.Save(data.FirstTermVariableGroupData);
-            data.ConditionComparisonTypeEnumIndex = ConditionComparisonTypeEnumContainer.Value;
-            data.SecondTermText = SecondTermTextFieldView.TextField.value;
-            data.SecondTermFloat = SecondTermFloatFieldView.Value;
-            SecondTermVariableContainer.Save(data.SecondTermVariableGroupData);
+            FirstTermVariableContainer.Save(model.FirstTermVariableGroupModel);
+            model.ConditionComparisonTypeEnumIndex = ConditionComparisonTypeEnumContainer.Value;
+            model.SecondTermText = SecondTermTextFieldView.TextField.value;
+            model.SecondTermFloat = SecondTermFloatFieldView.Value;
+            SecondTermVariableContainer.Save(model.SecondTermVariableGroupModel);
 
             // Save isShowKeyboardInputField
-            data.IsShowKeyboardInputField = isShowKeyboardInputField;
+            model.IsShowKeyboardInputField = isShowKeyboardInputField;
         }
 
 
         /// <summary>
-        /// Load the modifier values from the given data.
+        /// Load the modifier values from the condition modifier model.
         /// </summary>
-        /// <param name="data">The given data to load from.</param>
-        public void LoadModifierValue(ConditionModifierData data)
+        /// <param name="model">The condition modifier model to set for.</param>
+        public void LoadModifierValue(ConditionModifierModel model)
         {
             // Load containers.
-            FirstTermVariableContainer.Load(data.FirstTermVariableGroupData);
-            ConditionComparisonTypeEnumContainer.Load(data.ConditionComparisonTypeEnumIndex);
-            SecondTermTextFieldView.Load(data.SecondTermText);
-            SecondTermFloatFieldView.Load(data.SecondTermFloat);
-            SecondTermVariableContainer.Load(data.SecondTermVariableGroupData);
+            FirstTermVariableContainer.Load(model.FirstTermVariableGroupModel);
+            ConditionComparisonTypeEnumContainer.Load(model.ConditionComparisonTypeEnumIndex);
+            SecondTermTextFieldView.Load(model.SecondTermText);
+            SecondTermFloatFieldView.Load(model.SecondTermFloat);
+            SecondTermVariableContainer.Load(model.SecondTermVariableGroupModel);
 
             // Load isShowKeyboardInputField.
-            isShowKeyboardInputField = data.IsShowKeyboardInputField;
+            isShowKeyboardInputField = model.IsShowKeyboardInputField;
 
             // Manually invoke the enumContainerValueChanged action.
             EnumContainerValueChangedAction();

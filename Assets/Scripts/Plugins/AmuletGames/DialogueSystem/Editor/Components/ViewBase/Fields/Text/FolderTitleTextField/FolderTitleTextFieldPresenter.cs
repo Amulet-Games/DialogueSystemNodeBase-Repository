@@ -40,8 +40,8 @@ namespace AG.DS
 
                 folderTitleTextField.multiline = false;
 
-                // Field's input visual element doesn't react to the user's mouse interaction by default.
-                folderTitleTextField.GetElementInput().pickingMode = PickingMode.Ignore;
+                folderTitleTextField.GetFieldInput().pickingMode = PickingMode.Ignore;
+                folderTitleTextField.GetTextElement().pickingMode = PickingMode.Ignore;
             }
 
             void AddFieldToStyleClass()

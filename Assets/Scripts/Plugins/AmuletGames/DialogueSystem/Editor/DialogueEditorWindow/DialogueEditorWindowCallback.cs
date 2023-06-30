@@ -1,7 +1,5 @@
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using Object = UnityEngine.Object;
 
 namespace AG.DS
@@ -9,9 +7,9 @@ namespace AG.DS
     public class DialogueEditorWindowCallback
     {
         /// <summary>
-        /// Reference of the dialogue system data.
+        /// Reference of the dialogue system model.
         /// </summary>
-        DialogueSystemData dsData;
+        DialogueSystemModel dsModel;
 
 
         /// <summary>
@@ -60,15 +58,15 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the dialogue editor window callback class.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to set for.</param>
+        /// <param name="dsModel">The dialogue system model to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="serializeHandler">The serialize handler to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
         /// <param name="nodeCreateRequestWindow">The node create request window to set for.</param>
+        /// <param name="dsWindow">The dialogue editor window to set for.</param>
         public DialogueEditorWindowCallback
         (
-            DialogueSystemData dsData,
+            DialogueSystemModel dsModel,
             GraphViewer graphViewer,
             HeadBar headBar,
             SerializeHandler serializeHandler,
@@ -76,7 +74,7 @@ namespace AG.DS
             DialogueEditorWindow dsWindow
         )
         {
-            this.dsData = dsData;
+            this.dsModel = dsModel;
             this.graphViewer = graphViewer;
             this.headBar = headBar;
             this.serializeHandler = serializeHandler;
@@ -94,8 +92,8 @@ namespace AG.DS
         public void RegisterEvents()
         {
             // Serialization events
-            RegisterSaveToDSDataEvent();
-            RegisterLoadFromDSDataEvent();
+            RegisterSaveToDSModelEvent();
+            RegisterLoadFromDSModelEvent();
             RegisterApplyChangesToDiskEvent();
 
             // Window events
@@ -111,15 +109,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register SaveToDSDataEvent to the dialogue editor window.
+        /// Register SaveToDSModelEvent to the dialogue editor window.
         /// </summary>
-        void RegisterSaveToDSDataEvent() => dsWindow.SaveToDSDataEvent += SaveToDSDataEvent;
+        void RegisterSaveToDSModelEvent() => dsWindow.SaveToDSModelEvent += SaveToDSModelEvent;
 
 
         /// <summary>
-        /// Register LoadFromDSDataEvent to the dialogue editor window.
+        /// Register LoadFromDSModelEvent to the dialogue editor window.
         /// </summary>
-        void RegisterLoadFromDSDataEvent() => dsWindow.LoadFromDSDataEvent += LoadFromDSDataEvent;
+        void RegisterLoadFromDSModelEvent() => dsWindow.LoadFromDSModelEvent += LoadFromDSModelEvent;
 
 
         /// <summary>
@@ -168,9 +166,10 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the user clicked the save button in the headBar element.
         /// </summary>
-        void SaveToDSDataEvent(DialogueSystemData dsData)
+        /// <param name="dsModel">The dialogue system model to set for.</param>
+        void SaveToDSModelEvent(DialogueSystemModel dsModel)
         {
-            serializeHandler.SaveEdgesAndNodes(dsData);
+            serializeHandler.SaveEdgesAndNodes(dsModel);
         }
 
 
@@ -178,13 +177,14 @@ namespace AG.DS
         /// The event to invoke when the dialogue editor window is first opened,
         /// <br>or when the user clicked the load button in the headBar element.</br>
         /// </summary>
-        void LoadFromDSDataEvent(DialogueSystemData dsData)
+        /// <param name="dsModel">The dialogue system model to set for.</param>
+        void LoadFromDSModelEvent(DialogueSystemModel dsModel)
         {
             graphViewer.ClearGraph();
 
-            serializeHandler.LoadEdgesAndNodes(dsData);
+            serializeHandler.LoadEdgesAndNodes(dsModel);
 
-            headBar.RefreshTitleAndLanguage(dsData);
+            headBar.RefreshTitleAndLanguage(dsModel);
         }
 
 
@@ -219,7 +219,7 @@ namespace AG.DS
         {
             WindowChangedEvent.Unregister(m_WindowChangesEvent);
 
-            dsData.IsOpened = false;
+            dsModel.IsOpened = false;
         }
 
 
@@ -272,6 +272,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the dialogue editor window root visual element's geometry has changed.
         /// </summary>
+        /// <param name="evt">The registering event.</param>
         void GeometryChangedEvent(GeometryChangedEvent evt)
         {
             // Register events to the window's dock area

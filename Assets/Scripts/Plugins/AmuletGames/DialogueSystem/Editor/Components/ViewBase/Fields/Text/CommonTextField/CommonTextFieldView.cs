@@ -33,12 +33,12 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Load the container values from the given data.
+        /// Load the view values from the given value.
         /// </summary>
-        /// <param name="data">The data to load from.</param>
-        public void Load(string data)
+        /// <param name="value">The value to set for.</param>
+        public void Load(string value)
         {
-            TextField.SetValueWithoutNotify(data);
+            TextField.SetValueWithoutNotify(value);
             TextField.ToggleEmptyStyle(placeholderText: PlaceholderText);
         }
 
@@ -66,7 +66,7 @@ namespace AG.DS
 
                 if (obj is string reverseValue)
                 {
-                    Load(data: reverseValue);
+                    Load(value: reverseValue);
                 }
                 else
                 {

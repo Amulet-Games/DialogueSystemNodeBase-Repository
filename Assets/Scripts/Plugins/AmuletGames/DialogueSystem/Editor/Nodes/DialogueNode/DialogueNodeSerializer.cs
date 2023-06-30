@@ -5,7 +5,7 @@
     <
         DialogueNode,
         DialogueNodeView,
-        DialogueNodeData
+        DialogueNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -23,11 +23,11 @@
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemData dsData)
+        public override void Save(DialogueSystemModel dsModel)
         {
-            DialogueNodeData data = new();
+            DialogueNodeModel model = new();
 
-            SaveBaseValues(data: data);
+            SaveBaseValues(model);
 
             SavePorts();
 
@@ -35,36 +35,36 @@
 
             SaveDialogueNodeStitcher();
 
-            AddData();
+            AddToDsModel();
 
             void SavePorts()
             {
-                View.InputDefaultPort.Save(data.InputPortData);
-                View.OutputDefaultPort.Save(data.OutputPortData);
+                View.InputDefaultPort.Save(model.InputPortModel);
+                View.OutputDefaultPort.Save(model.OutputPortModel);
             }
 
             void SaveCharacterObjectContainer()
             {
-                data.DialogueCharacter = View.CharacterObjectFieldView.Value;
+                model.DialogueCharacter = View.CharacterObjectFieldView.Value;
             }
 
             void SaveDialogueNodeStitcher()
             {
-                View.DialogueNodeStitcher.SaveStitcherValues(data.DialogueNodeStitcherData);
+                View.DialogueNodeStitcher.SaveStitcherValues(model.DialogueNodeStitcherModel);
             }
 
-            void AddData()
+            void AddToDsModel()
             {
-                dsData.NodeData.Add(data);
+                dsModel.NodeModels.Add(model);
             }
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(DialogueNodeData data)
+        public override void Load(DialogueNodeModel model)
         {
-            LoadBaseValues(data);
+            LoadBaseValues(model);
 
             LoadPorts();
 
@@ -74,18 +74,18 @@
 
             void LoadPorts()
             {
-                View.InputDefaultPort.Load(data.InputPortData);
-                View.OutputDefaultPort.Load(data.OutputPortData);
+                View.InputDefaultPort.Load(model.InputPortModel);
+                View.OutputDefaultPort.Load(model.OutputPortModel);
             }
         
             void LoadCharacterObjectContainer()
             {
-                View.CharacterObjectFieldView.Load(data.DialogueCharacter);
+                View.CharacterObjectFieldView.Load(model.DialogueCharacter);
             }
 
             void LoadDialogueNodeStitcher()
             {
-                View.DialogueNodeStitcher.LoadStitcherValues(data.DialogueNodeStitcherData);
+                View.DialogueNodeStitcher.LoadStitcherValues(model.DialogueNodeStitcherModel);
             }
         }
     }

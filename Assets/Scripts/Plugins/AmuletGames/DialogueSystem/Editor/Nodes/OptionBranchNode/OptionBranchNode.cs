@@ -8,7 +8,7 @@ namespace AG.DS
         OptionBranchNodeView,
         OptionBranchNodeSerializer,
         OptionBranchNodeCallback,
-        OptionBranchNodeData
+        OptionBranchNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------

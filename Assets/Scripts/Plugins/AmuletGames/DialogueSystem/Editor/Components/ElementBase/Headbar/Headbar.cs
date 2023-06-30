@@ -57,12 +57,12 @@ namespace AG.DS
         /// Update all the language fields within the editor to suit the current selected language,
         /// and update the custom graph editor's title.
         /// </summary>
-        /// <param name="dsData">The dialogue system data that connects with the dialogue editor window to set for.</param>
-        public void RefreshTitleAndLanguage(DialogueSystemData dsData)
+        /// <param name="dsModel">The dialogue system model to set for.</param>
+        public void RefreshTitleAndLanguage(DialogueSystemModel dsModel)
         {
             SetEditorLanguage(value: LanguageManager.Instance.CurrentLanguage);
 
-            GraphTitleTextFieldView.TextField.SetValueWithoutNotify(newValue: dsData.name);
+            GraphTitleTextFieldView.TextField.SetValueWithoutNotify(newValue: dsModel.name);
         }
 
 

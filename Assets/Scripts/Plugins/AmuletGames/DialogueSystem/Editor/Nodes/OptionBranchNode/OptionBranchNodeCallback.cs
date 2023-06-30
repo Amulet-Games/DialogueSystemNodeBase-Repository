@@ -178,7 +178,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void NodeTitleEditButtonClickEvent(ClickEvent evt)
         {
-            var fieldInput = View.NodeTitleTextFieldView.TextField.GetElementInput();
+            var fieldInput = View.NodeTitleTextFieldView.TextField.GetFieldInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }
@@ -187,14 +187,13 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the content button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void ContentButtonClickEvent(ClickEvent evt)
+        void ContentButtonClickEvent()
         {
             // Release the focus of the node's border.
             Node.NodeBorder.Blur();
 
             // Add a new instance modifier to the node.
-            View.OptionBranchNodeStitcher.AddInstanceModifier(data: null);
+            View.OptionBranchNodeStitcher.AddInstanceModifier(model: null);
         }
     }
 }

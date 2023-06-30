@@ -29,6 +29,9 @@ namespace AG.DS
 
             this.output = output;
             this.input = input;
+
+            Output.Connect(this);
+            Input.Connect(this);
         }
     }
 }

@@ -14,7 +14,7 @@ namespace AG.DS
         /// <summary>
         /// Modifiers cache counter.
         /// </summary>
-        int cacheCount = 0;
+        int modelCount = 0;
 
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace AG.DS
             void SetEnabledMoveDownButton()
             {
                 // If the swap-to modifier is in the last position of the cache.
-                if (swapToModifier == modifiersCache[cacheCount - 1])
+                if (swapToModifier == modifiersCache[modelCount - 1])
                 {
                     tempLastModifier?.SetEnabledMoveDownButton(value: true);
 
@@ -158,7 +158,7 @@ namespace AG.DS
             void SetEnabledMoveDownButton()
             {
                 // If the swap-from modifier is in the last position of the cache.
-                if (modifier == modifiersCache[cacheCount - 1])
+                if (modifier == modifiersCache[modelCount - 1])
                 {
                     tempLastModifier?.SetEnabledMoveDownButton(value: true);
 
@@ -192,7 +192,7 @@ namespace AG.DS
 
             void RemoveModifierFromCache()
             {
-                cacheCount--;
+                modelCount--;
 
                 modifiersCache.Remove(modifier);
 
@@ -201,10 +201,10 @@ namespace AG.DS
 
             void SetEnabledButtons()
             {
-                if (cacheCount > 0)
+                if (modelCount > 0)
                 {
                     // If there's only one modifier left and it hasn't set to be the sole modifier yet.
-                    if (cacheCount == 1)
+                    if (modelCount == 1)
                     {
                         modifiersCache[0].SetEnabledRemoveButton(value: false);
 
@@ -220,7 +220,7 @@ namespace AG.DS
                     }
 
                     // If the last position's modifier has changed.
-                    var bottomModifier = modifiersCache[cacheCount - 1];
+                    var bottomModifier = modifiersCache[modelCount - 1];
                     if (tempLastModifier != bottomModifier)
                     {
                         bottomModifier.SetEnabledMoveDownButton(value: false);
@@ -241,44 +241,44 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the group values to the given data.
+        /// Save the group values to the event modifier group model.
         /// </summary>
-        /// <param name="data">The data to save to.</param>
-        public void Save(EventModifierGroupData data)
+        /// <param name="model">The event modifier group model to set for.</param>
+        public void Save(EventModifierGroupModel model)
         {
             // Save modifiers.
-            data.ModifiersData = new EventModifierData[cacheCount];
-            for (int i = 0; i < cacheCount; i++)
+            model.ModifierModels = new EventModifierModel[modelCount];
+            for (int i = 0; i < modelCount; i++)
             {
-                data.ModifiersData[i] = new();
-                modifiersCache[i].SaveModifierValue(data: data.ModifiersData[i]);
+                model.ModifierModels[i] = new();
+                modifiersCache[i].SaveModifierValue(model: model.ModifierModels[i]);
             }
         }
 
 
         /// <summary>
-        /// Load the group values from the given data.
+        /// Load the group values from the event modifier group model.
         /// </summary>
-        /// <param name="data">The data to load from.</param>
-        public void Load(EventModifierGroupData data)
+        /// <param name="model">The event modifier group model to set for.</param>
+        public void Load(EventModifierGroupModel model)
         {
-            LoadModifiersData();
+            LoadModifierModels();
 
             SetEnabledButtons();
 
-            void LoadModifiersData()
+            void LoadModifierModels()
             {
                 EventModifierCallback callback = new();
                 EventModifierView view;
 
-                cacheCount = data.ModifiersData.Length;
-                for (int cacheIndex = 1; cacheIndex <= cacheCount; cacheIndex++)
+                modelCount = model.ModifierModels.Length;
+                for (int modifierIndex = 1; modifierIndex <= modelCount; modifierIndex++)
                 {
                     view = new();
                     EventModifierPresenter.CreateElement
                     (
                         view: view,
-                        index: cacheIndex
+                        index: modifierIndex
                     );
 
                     callback.ResetInternal(
@@ -288,31 +288,31 @@ namespace AG.DS
                         renameButtonClickEvent: evt => RenameButtonClickAction(view),
                         removeButtonClickEvent: evt => RemoveButtonClickAction(view)).RegisterEvents();
 
-                    view.LoadModifierValue(data: data.ModifiersData[cacheIndex - 1]);
+                    view.LoadModifierValue(model: model.ModifierModels[modifierIndex - 1]);
 
                     MainContainer.Add(view.FolderView.MainContainer);
                     modifiersCache.Add(view);
                 }
 
-                nextIndex = cacheCount + 1;
+                nextIndex = modelCount + 1;
             }
 
             void SetEnabledButtons()
             {
                 // If there's only one modifier in the group.
-                if (cacheCount == 1)
+                if (modelCount == 1)
                 {
                     tempSoleModifier = modifiersCache[0];
                     tempSoleModifier.SetEnabledRemoveButton(value: false);
                 }
 
                 // If there's a modifier in the group.
-                if (cacheCount > 0)
+                if (modelCount > 0)
                 {
                     tempFirstModifier = modifiersCache[0];
                     tempFirstModifier.SetEnabledMoveUpButton(value: false);
 
-                    tempLastModifier = modifiersCache[cacheCount - 1];
+                    tempLastModifier = modifiersCache[modelCount - 1];
                     tempLastModifier.SetEnabledMoveDownButton(value: false);
                 }
             }
@@ -361,14 +361,14 @@ namespace AG.DS
             void AddModifierToCache()
             {
                 modifiersCache.Add(view);
-                cacheCount++;
+                modelCount++;
                 nextIndex++;
             }
 
             void SetEnabledRemoveButton()
             {
                 // If the new modifier is the first modifier added to the group.
-                if (cacheCount == 1)
+                if (modelCount == 1)
                 {
                     view.SetEnabledRemoveButton(value: false);
 

@@ -1,4 +1,4 @@
-using UnityEngine.UIElements;
+using System;
 
 namespace AG.DS
 {
@@ -19,7 +19,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the content button is clicked.
         /// </summary>
-        EventCallback<ClickEvent> clickEvent;
+        Action clickEvent;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -33,7 +33,7 @@ namespace AG.DS
         (
             bool isAlert,
             ContentButton contentButton,
-            EventCallback<ClickEvent> clickEvent
+            Action clickEvent
         )
         {
             this.isAlert = isAlert;
@@ -60,21 +60,20 @@ namespace AG.DS
         /// <summary>
         /// Register ClickEvent to the content button.
         /// </summary>
-        void RegisterClickEvent() => contentButton.RegisterCallback(clickEvent);
+        void RegisterClickEvent() => contentButton.ClickEvent += clickEvent;
 
 
         /// <summary>
         /// Register alert ClickEvent to the content button.
         /// </summary>
-        void RegisterAlertClickEvent() => contentButton.RegisterCallback<ClickEvent>(AlertClickEvent);
+        void RegisterAlertClickEvent() => contentButton.ClickEvent += AlertClickEvent;
 
 
         // ----------------------------- Event -----------------------------
         /// <summary>
         /// The event to invoke when the content button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void AlertClickEvent(ClickEvent evt)
+        void AlertClickEvent()
         {
             WindowChangedEvent.Invoke();
         }

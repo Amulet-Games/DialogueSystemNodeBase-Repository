@@ -9,12 +9,12 @@ namespace AG.DS
         /// <summary>
         /// Create all the UIElements that are needed in the instance modifier.
         /// </summary>
-        /// <param name="data">The modifier data to load from.</param>
+        /// <param name="model">The modifier model to load from.</param>
         /// <param name="modifierCreatedAction">The action to invoke when the modifier is created.</param>
         /// <param name="removeButtonClickAction">The action to invoke when the modifier remove button is clicked.</param>
         public void CreateInstanceElements
         (
-            ConditionModifierData data,
+            ConditionModifierModel model,
             Action<ConditionModifier> modifierCreatedAction,
             Action<ConditionModifier> removeButtonClickAction
         )
@@ -157,8 +157,8 @@ namespace AG.DS
 
             void CheckSourceValues()
             {
-                if (data != null)
-                    LoadModifierValue(data);
+                if (model != null)
+                    LoadModifierValue(model);
             }
 
             void AddFieldsToBox()

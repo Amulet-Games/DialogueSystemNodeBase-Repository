@@ -97,7 +97,7 @@ namespace AG.DS
             void StitcherCreatedAction()
             {
                 // Add the first instance modifier.
-                AddInstanceModifier(data: null);
+                AddInstanceModifier(model: null);
             }
         }
 
@@ -105,13 +105,13 @@ namespace AG.DS
         /// <summary>
         /// Create a new instance modifier for the stitcher.
         /// </summary>
-        /// <param name="data">The given modifier data to load from.</param>
-        void AddInstanceModifier(MessageModifierData data)
+        /// <param name="model">The message modifier model to set for.</param>
+        void AddInstanceModifier(MessageModifierModel model)
         {
             new MessageModifier().CreateInstanceElements
             (
                 index: nextIndex,
-                data: data,
+                model: model,
                 modifierCreatedAction: ModifierCreatedAction,
                 moveUpButtonClickAction: MoveUpButtonClickAction,
                 moveDownButtonClickAction: MoveDownButtonClickAction,
@@ -129,7 +129,7 @@ namespace AG.DS
         void ContentButtonClickAction()
         {
             // Add a new instance modifier to the node.
-            AddInstanceModifier(data: null);
+            AddInstanceModifier(model: null);
         }
 
 
@@ -420,12 +420,12 @@ namespace AG.DS
 
 
         // ----------------------------- Serialization -----------------------------
-        public void SaveStitcherValues(DialogueNodeStitcherData data)
+        public void SaveStitcherValues(DialogueNodeStitcherModel model)
         {
         }
 
 
-        public void LoadStitcherValues(DialogueNodeStitcherData data)
+        public void LoadStitcherValues(DialogueNodeStitcherModel model)
         {
 
         }

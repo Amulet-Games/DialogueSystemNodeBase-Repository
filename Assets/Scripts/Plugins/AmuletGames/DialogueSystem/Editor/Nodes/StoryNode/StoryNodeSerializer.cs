@@ -5,7 +5,7 @@ namespace AG.DS
     <
         StoryNode,
         StoryNodeView,
-        StoryNodeData
+        StoryNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -23,11 +23,11 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemData dsData)
+        public override void Save(DialogueSystemModel dsModel)
         {
-            StoryNodeData data = new();
+            StoryNodeModel model = new();
 
-            SaveBaseValues(data: data);
+            SaveBaseValues(model);
 
             SavePorts();
 
@@ -35,38 +35,38 @@ namespace AG.DS
 
             Save_CSV_GUID();
 
-            AddData();
+            AddToDsModel();
 
             void SavePorts()
             {
-                View.InputDefaultPort.Save(data.InputPortData);
-                View.OutputDefaultPort.Save(data.OutputPortData);
+                View.InputDefaultPort.Save(model.InputPortModel);
+                View.OutputDefaultPort.Save(model.OutputPortModel);
             }
 
             void SaveSecondContentBoxContainers()
             {
                 // Second line trigger type enum.
-                data.SecondLineTriggerTypeEnumIndex = View.SecondLineTriggerTypeEnumContainer.Value;
+                model.SecondLineTriggerTypeEnumIndex = View.SecondLineTriggerTypeEnumContainer.Value;
             }
 
             void Save_CSV_GUID()
             {
                 // CSV GUID.
-                data.CsvGUID = View.CsvGUID;
+                model.CsvGUID = View.CsvGUID;
             }
 
-            void AddData()
+            void AddToDsModel()
             {
-                dsData.NodeData.Add(data);
+                dsModel.NodeModels.Add(model);
             }
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(StoryNodeData data)
+        public override void Load(StoryNodeModel model)
         {
-            LoadBaseValues(data);
+            LoadBaseValues(model);
 
             LoadPorts();
 
@@ -76,20 +76,20 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                View.InputDefaultPort.Load(data.InputPortData);
-                View.OutputDefaultPort.Load(data.OutputPortData);
+                View.InputDefaultPort.Load(model.InputPortModel);
+                View.OutputDefaultPort.Load(model.OutputPortModel);
             }
 
             void LoadSecondContentBoxContainers()
             {
                 // Second line trigger type enum.
-                View.SecondLineTriggerTypeEnumContainer.Load(data.SecondLineTriggerTypeEnumIndex);
+                View.SecondLineTriggerTypeEnumContainer.Load(model.SecondLineTriggerTypeEnumIndex);
             }
 
             void Load_CSV_Guid()
             {
                 // CSV GUID.
-                View.CsvGUID = data.CsvGUID;
+                View.CsvGUID = model.CsvGUID;
             }
         }
     }

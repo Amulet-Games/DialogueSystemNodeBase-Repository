@@ -8,7 +8,7 @@ namespace AG.DS
         DialogueNodeView,
         DialogueNodeSerializer,
         DialogueNodeCallback,
-        DialogueNodeData
+        DialogueNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------

@@ -106,45 +106,6 @@ namespace AG.DS
             {
                 node.SetEnabled(false);
             }
-
-            //void CreateSampleNode()
-            //{
-            //    node.ExecuteOnceOnGeometryChanged(GeometryChangedAction);
-
-            //    void GeometryChangedAction(GeometryChangedEvent evt)
-            //    {
-            //        // Create sample node.
-            //        var target = NodeManager.Instance.Spawn
-            //        (
-            //            node.GraphViewer,
-            //            headBar,
-            //            nodeType: NodeType.OptionBranch
-            //        );
-
-            //        // Set sample node position
-            //        var createPosition = node.localBound.position;
-            //        createPosition.x += margin;
-            //        createPosition.y += node.titleContainer.layout.height + node.inputContainer.parent.layout.height + margin;
-
-            //        target.SetPosition(newPos: new Rect(node.localBound.position, Vector2Utility.Zero));
-
-            //        // Add sample node to graph
-            //        node.GraphViewer.Add(target);
-
-            //        // Set sample node details
-            //        target.capabilities = Capabilities.Movable;
-            //        target.SetEnabled(false);
-            //        target.style.opacity = 1;
-            //        target.titleContainer.ElementAt(index: 1).style.backgroundColor = new Color(0.357f, 0.537f, 0.75f, 1);
-
-            //        target.NodeBorder.style.borderBottomColor = new Color(r: 0, g: 0, b: 0, a: 0);
-            //        target.NodeBorder.style.borderLeftColor = new Color(r: 0, g: 0, b: 0, a: 0);
-            //        target.NodeBorder.style.borderRightColor = new Color(r: 0, g: 0, b: 0, a: 0);
-            //        target.NodeBorder.style.borderTopColor = new Color(r: 0, g: 0, b: 0, a: 0);
-
-            //        node.BringToFront();
-            //    }
-            //}
         }
     }
 }

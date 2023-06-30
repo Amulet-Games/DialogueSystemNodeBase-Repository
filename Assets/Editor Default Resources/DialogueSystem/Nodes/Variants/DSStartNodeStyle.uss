@@ -1,7 +1,7 @@
 /* =========================================================== Node Title =========================================================== */
 
 /*< ---------------------------------------------------------- #title >*/
-.node_Border #title {
+#title {
 	
 	background-color: rgba(0, 0, 0, 0);
 
@@ -10,7 +10,7 @@
 
 
 /*< ---------------------------------------------------------- Container >*/
-.node_NodeTitle_Container {
+.node_Title_Container {
 
 	background-color: rgba(184, 113, 74, 1);
 
@@ -33,8 +33,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Node Title TextField >*/
-.node_NodeTitle_TextField {
+/*< ---------------------------------------------------------- Title Text Field >*/
+.node_Title_TextField {
 
 	white-space: nowrap;
 
@@ -45,12 +45,35 @@
 	overflow: visible;
 
 	/* top - right - bottom - left */
-	margin: 2px 0px 0px 0.5px;
+	margin: 1px 0px 0px 0.5px;
 	padding: 0px 0px 0px 0px;
 }
 
-.node_NodeTitle_TextField
+.node_Title_TextField
 .unity-text-field__input {
+	
+	background-color: rgba(0, 0, 0, 0);
+
+	-unity-text-align: middle-left;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 9px 0px 9px;
+	border-radius: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+}
+
+.node_Title_TextField:focus
+.unity-text-field__input {
+
+	overflow: visible;
+
+	/* top - right - bottom - left */
+	margin: 1px 0px 0px -4px;
+}
+
+.node_Title_TextField
+.unity-text-element {
 
 	background-color: rgba(0, 0, 0, 0);
 	
@@ -60,31 +83,27 @@
 
 	font-size: 17px;
 	
-	flex-grow: 1;
-	flex-shrink: 0;
-	flex-basis: auto;
-
-	-unity-font: url('project:/Assets/Data/Fonts/Inter/static/Inter-Medium.ttf');
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
 	-unity-text-align: middle-left;
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 0px;
-	padding: 0px 9px 0px 9px;
+	padding: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
 	border-width: 0px 0px 0px 0px;
 }
 
-.node_NodeTitle_TextField:focus
-.unity-text-field__input {
+.node_Title_TextField:focus
+.unity-text-element {
 
 	background-color: rgba(32, 32, 32, 1);
+	border-color: rgba(58, 121, 187, 1);
 	
 	height: 30px;
 
 	/* top - right - bottom - left */
-	margin: 0.5px 4px 0px 2px;
-	padding: 0px 9px 0px 6px;
-	border-radius: 4px 4px 4px 4px;
+	margin: 0px 0px 0px -1.5px;
+	padding: 0px 0px 1.5px 4px;
 	border-width: 1px 1px 1px 1px;
 }
 
@@ -94,16 +113,16 @@
 
 	background-color: rgba(0, 0, 0, 0);
 
-	height: 29px;
-	width: 28px;
+	height: 27px;
+	width: 27px;
 
 	align-self: center;
 
 	flex-grow: 0;
-	flex-shrink: 0; 
+	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: -0.5px 5px 0px 0px;
+	margin: 0px 6.5px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
@@ -115,12 +134,43 @@
 }
 
 
+/* =========================================================== Node Top =========================================================== */
+
+/*< ---------------------------------------------------------- Top >*/
+/* start node special */
+#top {
+
+	background-color: rgba(42, 42, 42, 1);
+
+	flex-direction: row;
+	
+	border-radius: 0px 0px 6px 6px;
+}
+
+
 /* =========================================================== Output Container =========================================================== */
 
 /*< ---------------------------------------------------------- Container >*/
 .node_Output_Container {
-	
-	border-radius: 0px 0px 4px 4px;
+
+	background-color: rgba(42, 42, 42, 1);
+
+	height: auto;
+	width: auto;
+
+	align-content: flex-start;
+	align-items: stretch;
+	align-self: auto;
+
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 10px 0px 10px 0px;
+
+	/* start node special */
+	border-radius: 0px 0px 6px 6px;
 }
 
 
@@ -164,7 +214,7 @@
 	flex-shrink: 1;
 
 	/* top - right - bottom - left */
-	margin: -1px -4.5px 0px 0px;
+	margin: -1px -5.5px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 16px 16px 16px 16px;
@@ -192,12 +242,10 @@
 	height: auto;
 	width: auto;
 	
-	font-size: 14px;
-
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium.asset');
-	-unity-text-align: middle-left;
+	font-size: 13.5px;
 	
-	letter-spacing: -3px;
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	-unity-text-align: middle-left;
 
 	white-space: nowrap;
 
@@ -206,7 +254,7 @@
 	flex-basis: auto;
 
 	/* top - right - bottom - left */
-	margin: 0px 4.5px 0px 0px;
+	margin: 0px 6px 0px 0px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;

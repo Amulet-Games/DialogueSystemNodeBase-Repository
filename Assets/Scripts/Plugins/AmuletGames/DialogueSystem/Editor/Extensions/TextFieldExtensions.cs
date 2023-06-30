@@ -6,31 +6,31 @@ namespace AG.DS
     public static class TextFieldExtensions
     {
         /// <summary>
-        /// Returns the text field's input base element reference.
+        /// Returns the text field's input base element.
         /// </summary>
         /// <param name="field">Extension text field.</param>
-        /// <returns>The input base element reference of the text field.</returns>
-        public static VisualElement GetElementInput(this TextField field)
+        /// <returns>The input base element of the text field.</returns>
+        public static VisualElement GetFieldInput(this TextField field)
         {
             return field.ElementAt(0);
         }
 
 
         /// <summary>
-        /// Return the text field's text element reference.
+        /// Return the text field's text element.
         /// </summary>
         /// <param name="field">Extension text field.</param>
-        /// <returns></returns>
-        public static VisualElement GetElementText(this TextField field)
+        /// <returns>The text element of the text field.</returns>
+        public static VisualElement GetTextElement(this TextField field)
         {
             if (field.multiline)
             {
-                var multilineContainer = field.GetElementInput().ElementAt(0);
+                var multilineContainer = field.GetFieldInput().ElementAt(0);
                 return multilineContainer.ElementAt(0);
             }
             else
             {
-                return field.GetElementInput().ElementAt(0);
+                return field.GetFieldInput().ElementAt(0);
             }
         }
 

@@ -8,7 +8,7 @@ namespace AG.DS
         OptionRootNodeView,
         OptionRootNodeSerializer,
         OptionRootNodeCallback,
-        OptionRootNodeData
+        OptionRootNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------

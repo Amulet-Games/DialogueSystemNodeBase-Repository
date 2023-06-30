@@ -8,7 +8,7 @@ namespace AG.DS
         BooleanNodeView,
         BooleanNodeSerializer,
         BooleanNodeCallback,
-        BooleanNodeData
+        BooleanNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------

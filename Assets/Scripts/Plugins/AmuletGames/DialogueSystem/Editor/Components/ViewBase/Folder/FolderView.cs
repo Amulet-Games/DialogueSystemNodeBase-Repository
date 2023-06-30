@@ -51,24 +51,24 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the folder values to the given data.
+        /// Save the folder values to the folder model.
         /// </summary>
-        /// <param name="data">The given data to save to.</param>
-        public void Save(FolderData data)
+        /// <param name="model">The folder model to set for.</param>
+        public void Save(FolderModel model)
         {
-            data.TitleText = TitleTextFieldView.TextField.value;
-            data.IsExpand = IsExpand;
+            model.TitleText = TitleTextFieldView.TextField.value;
+            model.IsExpand = IsExpand;
         }
 
 
         /// <summary>
-        /// Load the folder values from the given data.
+        /// Load the folder values from the folder model.
         /// </summary>
-        /// <param name="data">The given data to load from.</param>
-        public void Load(FolderData data)
+        /// <param name="model">The folder model to set for.</param>
+        public void Load(FolderModel model)
         {
-            TitleTextFieldView.Load(data.TitleText);
-            SetIsExpand(value: data.IsExpand);
+            TitleTextFieldView.Load(model.TitleText);
+            SetIsExpand(value: model.IsExpand);
         }
 
 
@@ -120,7 +120,7 @@ namespace AG.DS
         /// </summary>
         public void EditFolderTitle()
         {
-            var fieldInput = TitleTextFieldView.TextField.GetElementInput();
+            var fieldInput = TitleTextFieldView.TextField.GetFieldInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }

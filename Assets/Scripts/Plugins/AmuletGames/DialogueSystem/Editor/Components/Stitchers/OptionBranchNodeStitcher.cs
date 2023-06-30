@@ -96,12 +96,12 @@ namespace AG.DS
         /// <summary>
         /// Create a new instance modifier for the stitcher.
         /// </summary>
-        /// <param name="data">The given modifier data to load from.</param>
-        public void AddInstanceModifier(ConditionModifierData data)
+        /// <param name="model">The condition modifier model to set for.</param>
+        public void AddInstanceModifier(ConditionModifierModel model)
         {
             new ConditionModifier().CreateInstanceElements
             (
-                data: data,
+                model: model,
                 modifierCreatedAction: ModifierCreatedAction,
                 removeButtonClickAction: ModifierRemoveButtonClickAction
             );
@@ -154,10 +154,10 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the stitcher values to the given data.
+        /// Save the stitcher values to the option branch node stitcher model.
         /// </summary>
-        /// <param name="data">The given data to save to.</param>
-        public void SaveStitcherValues(OptionBranchNodeStitcherData data)
+        /// <param name="model">The option branch node stitcher model to set for.</param>
+        public void SaveStitcherValues(OptionBranchNodeStitcherModel model)
         {
             SaveInstanceModifiers();
 
@@ -169,35 +169,35 @@ namespace AG.DS
             {
                 for (int i = 0; i < instancesCount; i++)
                 {
-                    // New modifier data.
-                    ConditionModifierData newModifierData = new();
+                    // New modifier model.
+                    ConditionModifierModel newModifierModel = new();
 
                     // Save values.
-                    instanceModifiers[i].SaveModifierValue(newModifierData);
+                    instanceModifiers[i].SaveModifierValue(newModifierModel);
 
-                    // Add to the data list.
-                    data.InstanceModifiersData.Add(newModifierData);
+                    // Add to the model list.
+                    model.InstanceModifierModels.Add(newModifierModel);
                 }
             }
 
             void SaveSegment()
             {
-                Segment.SaveSegmentValues(data.SegmentData);
+                Segment.SaveSegmentValues(model.SegmentModel);
             }
 
             void SaveUnmetOptionDisplayTypeEnumField()
             {
                 // Unmet option display type enum.
-                data.UnmetOptionDisplayTypeEnumIndex = unmetOptionDisplayTypeEnumContainer.Value;
+                model.UnmetOptionDisplayTypeEnumIndex = unmetOptionDisplayTypeEnumContainer.Value;
             }
         }
 
 
         /// <summary>
-        /// Load the stitcher values from the given data.
+        /// Load the stitcher values from the option branch node stitcher model.
         /// </summary>
-        /// <param name="data">The given data to load from.</param>
-        public void LoadStitcherValues(OptionBranchNodeStitcherData data)
+        /// <param name="model">The option branch node stitcher model to set for.</param>
+        public void LoadStitcherValues(OptionBranchNodeStitcherModel model)
         {
             LoadInstanceModifiers();
 
@@ -209,21 +209,21 @@ namespace AG.DS
 
             void LoadInstanceModifiers()
             {
-                var instanceModifiersDataCount = data.InstanceModifiersData.Count;
-                for (int i = 0; i < instanceModifiersDataCount; i++)
+                var instanceModifierModelsCount = model.InstanceModifierModels.Count;
+                for (int i = 0; i < instanceModifierModelsCount; i++)
                 {
-                    AddInstanceModifier(data.InstanceModifiersData[i]);
+                    AddInstanceModifier(model.InstanceModifierModels[i]);
                 }
             }
 
             void LoadSegment()
             {
-                Segment.LoadSegmentValues(data.SegmentData);
+                Segment.LoadSegmentValues(model.SegmentModel);
             }
 
             void LoadUnmetOptionDisplayTypeEnumField()
             {
-                unmetOptionDisplayTypeEnumContainer.Load(data.UnmetOptionDisplayTypeEnumIndex);
+                unmetOptionDisplayTypeEnumContainer.Load(model.UnmetOptionDisplayTypeEnumIndex);
             }
 
             void StitcherLoadedAction()

@@ -44,10 +44,11 @@ namespace AG.DS
 
 
         /// <summary>
-        /// 
+        /// Register GeometryChangedEvent to the given element, once the event has been called, it will be unregistered from the given element. 
+        /// <br>So the given callback will only be called once.</br>
         /// </summary>
-        /// <param name="element"></param>
-        /// <param name="m_Event"></param>
+        /// <param name="element">The targeting visual element.</param>
+        /// <param name="callback">The GeometryChangedEvent's callback to set for.</param>
         public static void ExecuteOnceOnGeometryChanged
         (
             this VisualElement element,

@@ -4,7 +4,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Object = UnityEngine.Object;
 
 namespace AG.DS
@@ -45,28 +44,28 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the view values to the given data.
+        /// Save the view values to the variable group model.
         /// </summary>
-        /// <param name="data">The given data to save to.</param>
-        public void Save(VariableGroupData data)
+        /// <param name="model">The variable group model to set for.</param>
+        public void Save(VariableGroupModel model)
         {
             // Save value.
-            BoolVariable = data.BoolVariable;
-            FloatVariable = data.FloatVariable;
-            StringVariable = data.StringVariable;
+            BoolVariable = model.BoolVariable;
+            FloatVariable = model.FloatVariable;
+            StringVariable = model.StringVariable;
         }
 
 
         /// <summary>
-        /// Load the view values from the given data.
+        /// Load the view values from the variable group model.
         /// </summary>
-        /// <param name="data">The given data to load from.</param>
-        public void Load(VariableGroupData data)
+        /// <param name="model">The variable group model to set for.</param>
+        public void Load(VariableGroupModel model)
         {
             // Load value.
-            BoolVariable = data.BoolVariable;
-            FloatVariable = data.FloatVariable;
-            StringVariable = data.StringVariable;
+            BoolVariable = model.BoolVariable;
+            FloatVariable = model.FloatVariable;
+            StringVariable = model.StringVariable;
 
             // Update field object type.
             UpdateFieldObjectType();

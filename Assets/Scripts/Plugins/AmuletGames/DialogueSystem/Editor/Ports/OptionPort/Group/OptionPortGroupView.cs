@@ -6,25 +6,10 @@ namespace AG.DS
 {
     public class OptionPortGroupView
     {
-        public class CellView
-        {
-            /// <summary>
-            /// The option port.
-            /// </summary>
-            public OptionPort Port;
-
-
-            /// <summary>
-            /// Button to remove the cell view from the group. 
-            /// </summary>
-            public Button RemoveButton;
-        }
-
-
         /// <summary>
-        /// The cell views of the group.
+        /// Cache of the option port cells that are from the group.
         /// </summary>
-        public List<CellView> Cells;
+        public List<OptionPortGroupCell> Cells;
 
 
         /// <summary>
@@ -34,7 +19,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Returns true if any of the cell view's port is connecting.
+        /// Returns true if any of the option port cell's port is connecting.
         /// </summary>
         public bool connected
         {
@@ -66,46 +51,55 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Add a new cell view to the group.
+        /// Add a new option port cell to the group.
         /// </summary>
         /// <param name="node">The node base element to set for.</param>
-        /// <param name="data">The option port group cell data to load from if provided.</param>
+        /// <param name="model">The option port group cell model to load from if provided.</param>
         public void AddCell
         (
             NodeBase node,
-            OptionPortGroupData.CellData data = null
+            OptionPortGroupCellModel model = null
         )
         {
-            CellView cell;
+            OptionPortGroupCell cell;
 
-            // Create new cell view.
+            CreateCell();
+
+            RegisterCellCallback();
+
+            AddCellToNode();
+
+            LoadCellModel();
+
+            void CreateCell()
             {
-                cell = new();
-                Cells.Add(cell);
-
-                OptionPortGroupCellPresenter.CreateElement
+                cell = OptionPortGroupCellPresenter.CreateElement
                 (
-                    view: cell,
                     connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
                     direction: direction
                 );
 
-                new OptionPortGroupCellCallback
-                (
-                    cell: cell,
-                    group: this,
-                    graphViewer: node.GraphViewer
-                )
-                .RegisterEvents();
-
-                node.Add(port: cell.Port, isRefresh: true);
+                Cells.Add(cell);
             }
 
-            // Load port data.
+            void RegisterCellCallback()
             {
-                if (data != null)
+                new OptionPortGroupCellCallback(
+                    cell,
+                    node,
+                    group: this).RegisterEvents();
+            }
+
+            void AddCellToNode()
+            {
+                node.Add(cell: cell);
+            }
+
+            void LoadCellModel()
+            {
+                if (model != null)
                 {
-                    cell.Port.Load(data.OptionPortData);
+                    cell.Port.Load(model.OptionPortModel);
                 }
             }
         }
@@ -113,39 +107,43 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the group values to the given data.
+        /// Save the group values to the option port group model.
         /// </summary>
-        /// <param name="data">The data to save to.</param>
-        public void Save(OptionPortGroupData data)
+        /// <param name="model">The option port group model to set for.</param>
+        public void Save(OptionPortGroupModel model)
         {
             for (int i = 0; i < Cells.Count; i++)
             {
-                var cellData = new OptionPortGroupData.CellData();
+                var cellModel = new OptionPortGroupCellModel();
 
-                Cells[i].Port.Save(cellData.OptionPortData);
+                Cells[i].Port.Save(cellModel.OptionPortModel);
 
-                data.m_CellData.Add(cellData);
+                model.cellModels.Add(cellModel);
             }
         }
 
 
         /// <summary>
-        /// Load the group values from the given data.
+        /// Load the group values from the option port group model.
         /// </summary>
         /// <param name="node">The node base element to set for.</param>
-        /// <param name="data">The data to load from.</param>
-        public void Load(NodeBase node, OptionPortGroupData data)
+        /// <param name="model">The option port group model to set for.</param>
+        public void Load
+        (
+            NodeBase node,
+            OptionPortGroupModel model
+        )
         {
-            for (int i = 0; i < data.m_CellData.Count; i++)
+            for (int i = 0; i < model.cellModels.Count; i++)
             {
-                AddCell(node, data.m_CellData[i]);
+                AddCell(node, model.cellModels[i]);
             }
         }
 
 
         // ----------------------------- Disconnect -----------------------------
         /// <summary>
-        /// Disconnect every cell view's port.
+        /// Disconnect every option port group cell's port.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public void Disconnect(GraphViewer graphViewer)

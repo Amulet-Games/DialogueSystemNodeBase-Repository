@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine.UIElements;
 
@@ -13,9 +12,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The asset instance id of the dialogue system data.
+        /// The asset instance id of the dialogue system model.
         /// </summary>
-        int dsDataInstanceId;
+        int dsModelInstanceId;
 
 
         /// <summary>
@@ -29,17 +28,17 @@ namespace AG.DS
         /// Constructor of the graph title field callback class.
         /// </summary>
         /// <param name="view">The graph title text field view to set for.</param>
-        /// <param name="dsDataInstanceId">The dialogue system data's asset instance id to set for.</param>
+        /// <param name="dsModelInstanceId">The dialogue system model asset instance id to set for.</param>
         /// <param name="dsWindow">The dialogue editor window to set for.</param>
         public GraphTitleTextFieldCallback
         (
             GraphTitleTextFieldView view,
-            int dsDataInstanceId,
+            int dsModelInstanceId,
             DialogueEditorWindow dsWindow
         )
         {
             field = view.TextField;
-            this.dsDataInstanceId = dsDataInstanceId;
+            this.dsModelInstanceId = dsModelInstanceId;
             this.dsWindow = dsWindow;
         }
 
@@ -79,7 +78,7 @@ namespace AG.DS
         {
             AssetDatabase.RenameAsset
             (
-                pathName: AssetDatabase.GetAssetPath(instanceID: dsDataInstanceId),
+                pathName: AssetDatabase.GetAssetPath(instanceID: dsModelInstanceId),
                 newName: evt.newValue
             );
 

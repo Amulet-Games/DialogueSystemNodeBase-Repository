@@ -47,33 +47,33 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the view values to the given data.
+        /// Save the view values to the given value.
         /// </summary>
-        /// <param name="data">The data to save to.</param>
-        public void Save(LanguageGeneric<string> data)
+        /// <param name="value">The value to set for.</param>
+        public void Save(LanguageGeneric<string> value)
         {
             var languageManager = LanguageManager.Instance;
 
             for (int i = 0; i < languageManager.SupportLanguageLength; i++)
             {
-                data.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
+                value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
                     LanguageGeneric.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
             }
         }
 
 
         /// <summary>
-        /// Load the view values from the given data.
+        /// Load the view values from the given value.
         /// </summary>
-        /// <param name="data">The data to load from.</param>
-        public void Load(LanguageGeneric<string> data)
+        /// <param name="value">The value to set for.</param>
+        public void Load(LanguageGeneric<string> value)
         {
             var languageManager = LanguageManager.Instance;
 
             for (int i = 0; i < languageManager.SupportLanguageLength; i++)
             {
                 LanguageGeneric.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
-                           data.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
+                           value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
             }
 
             TextField.SetValueWithoutNotify

@@ -55,7 +55,7 @@ namespace AG.DS
             (
                 Node.GraphViewer,
                 headBar,
-                nodeType: NodeType.OptionBranch
+                nodeType: NodeType.Event
             );
 
             // Set sample node position

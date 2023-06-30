@@ -8,7 +8,7 @@ namespace AG.DS
         EndNodeView,
         EndNodeSerializer,
         EndNodeCallback,
-        EndNodeData
+        EndNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------

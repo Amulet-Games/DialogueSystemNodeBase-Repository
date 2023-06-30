@@ -4,7 +4,7 @@ using UnityEditor.Experimental.GraphView;
 
 namespace AG.DS
 {
-    public partial class DefaultPort : PortFrameBase<PortDataBase>
+    public partial class DefaultPort : PortFrameBase<PortModelBase>
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
@@ -28,16 +28,16 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <inheritdoc />
-        public override void Save(PortDataBase data)
+        public override void Save(PortModelBase model)
         {
-            data.GUID = name;
+            model.GUID = name;
         }
 
 
         /// <inheritdoc />
-        public override void Load(PortDataBase data)
+        public override void Load(PortModelBase model)
         {
-            name = data.GUID;
+            name = model.GUID;
         }
 
 

@@ -5,7 +5,7 @@ namespace AG.DS
     <
         EndNode,
         EndNodeView,
-        EndNodeData
+        EndNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -23,39 +23,39 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemData dsData)
+        public override void Save(DialogueSystemModel dsModel)
         {
-            EndNodeData data = new();
+            EndNodeModel model = new();
 
-            SaveBaseValues(data: data);
+            SaveBaseValues(model);
 
             SavePorts();
 
-            AddData();
+            AddToDsModel();
 
             void SavePorts()
             {
-                View.InputDefaultPort.Save(data.InputPortData);
+                View.InputDefaultPort.Save(model.InputPortModel);
             }
 
-            void AddData()
+            void AddToDsModel()
             {
-                dsData.NodeData.Add(data);
+                dsModel.NodeModels.Add(model);
             }
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(EndNodeData data)
+        public override void Load(EndNodeModel model)
         {
-            LoadBaseValues(data);
+            LoadBaseValues(model);
 
             LoadPorts();
 
             void LoadPorts()
             {
-                View.InputDefaultPort.Load(data.InputPortData);
+                View.InputDefaultPort.Load(model.InputPortModel);
             }
         }
     }

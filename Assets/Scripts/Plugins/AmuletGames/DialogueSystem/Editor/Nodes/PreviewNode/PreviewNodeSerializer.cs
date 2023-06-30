@@ -5,7 +5,7 @@ namespace AG.DS
     <
         PreviewNode,
         PreviewNodeView,
-        PreviewNodeData
+        PreviewNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -23,45 +23,45 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemData dsData)
+        public override void Save(DialogueSystemModel dsModel)
         {
-            PreviewNodeData data = new();
+            PreviewNodeModel model = new();
 
-            SaveBaseValues(data: data);
+            SaveBaseValues(model);
 
             SavePorts();
 
             SaveSpriteObjectContainers();
 
-            AddData();
+            AddToDsModel();
 
             void SavePorts()
             {
-                View.InputDefaultPort.Save(data.InputPortData);
-                View.OutputDefaultPort.Save(data.OutputPortData);
+                View.InputDefaultPort.Save(model.InputPortModel);
+                View.OutputDefaultPort.Save(model.OutputPortModel);
             }
 
             void SaveSpriteObjectContainers()
             {
                 // Left side sprite.
-                data.LeftPortraitSprite = View.LeftPortraitObjectFieldView.Value;
+                model.LeftPortraitSprite = View.LeftPortraitObjectFieldView.Value;
 
                 // Right side sprite. 
-                data.RightPortraitSprite = View.RightPortraitObjectFieldView.Value;
+                model.RightPortraitSprite = View.RightPortraitObjectFieldView.Value;
             }
 
-            void AddData()
+            void AddToDsModel()
             {
-                dsData.NodeData.Add(data);
+                dsModel.NodeModels.Add(model);
             }
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(PreviewNodeData data)
+        public override void Load(PreviewNodeModel model)
         {
-            LoadBaseValues(data);
+            LoadBaseValues(model);
 
             LoadPorts();
 
@@ -69,17 +69,17 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                View.InputDefaultPort.Load(data.InputPortData);
-                View.OutputDefaultPort.Load(data.OutputPortData);
+                View.InputDefaultPort.Load(model.InputPortModel);
+                View.OutputDefaultPort.Load(model.OutputPortModel);
             }
 
             void LoadSpriteObjectContainers()
             {
                 // Left side sprite.
-                View.LeftPortraitObjectFieldView.Load(data.LeftPortraitSprite);
+                View.LeftPortraitObjectFieldView.Load(model.LeftPortraitSprite);
 
                 // Right side sprite. 
-                View.RightPortraitObjectFieldView.Load(data.RightPortraitSprite);
+                View.RightPortraitObjectFieldView.Load(model.RightPortraitSprite);
 
                 // Update preview images.
                 View.LeftPortraitImage.image = View.LeftPortraitObjectFieldView.Value.texture;

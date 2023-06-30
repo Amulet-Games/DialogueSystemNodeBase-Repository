@@ -27,14 +27,14 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Load the view values from the given data.
+        /// Load the view values from the given value.
         /// </summary>
-        /// <param name="data">The data to load from.</param>
-        public void Load(float data)
+        /// <param name="value">The value to set for.</param>
+        public void Load(float value)
         {
-            Value = data;
+            Value = value;
 
-            FloatField.SetValueWithoutNotify(data);
+            FloatField.SetValueWithoutNotify(value);
         }
 
 

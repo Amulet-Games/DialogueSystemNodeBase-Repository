@@ -8,7 +8,7 @@ namespace AG.DS
         StartNodeView,
         StartNodeSerializer,
         StartNodeCallback,
-        StartNodeData
+        StartNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------

@@ -5,7 +5,7 @@ namespace AG.DS
     <
         OptionBranchNode,
         OptionBranchNodeView,
-        OptionBranchNodeData
+        OptionBranchNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -23,11 +23,11 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemData dsData)
+        public override void Save(DialogueSystemModel dsModel)
         {
-            OptionBranchNodeData data = new();
+            OptionBranchNodeModel model = new();
 
-            SaveBaseValues(data: data);
+            SaveBaseValues(model);
 
             SavePorts();
 
@@ -35,36 +35,36 @@ namespace AG.DS
 
             SaveOptionBranchNodeStitcher();
 
-            AddData();
+            AddToDsModel();
 
             void SavePorts()
             {
-                View.OutputDefaultPort.Save(data.OutputPortData);
-                View.InputOptionPort.Save(data.InputOptionPortData);
+                View.OutputDefaultPort.Save(model.OutputPortModel);
+                View.InputOptionPort.Save(model.InputOptionPortModel);
             }
 
             void SaveHeaderTextContainer()
             {
-                View.BranchTitleTextFieldView.Save(data.HeadlineText);
+                View.BranchTitleTextFieldView.Save(model.HeadlineText);
             }
 
             void SaveOptionBranchNodeStitcher()
             {
-                View.OptionBranchNodeStitcher.SaveStitcherValues(data.OptionBranchNodeStitcherData);
+                View.OptionBranchNodeStitcher.SaveStitcherValues(model.OptionBranchNodeStitcherModel);
             }
 
-            void AddData()
+            void AddToDsModel()
             {
-                dsData.NodeData.Add(data);
+                dsModel.NodeModels.Add(model);
             }
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(OptionBranchNodeData data)
+        public override void Load(OptionBranchNodeModel model)
         {
-            LoadBaseValues(data);
+            LoadBaseValues(model);
 
             LoadPorts();
 
@@ -74,18 +74,18 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                View.OutputDefaultPort.Load(data.OutputPortData);
-                View.InputOptionPort.Load(data.InputOptionPortData);
+                View.OutputDefaultPort.Load(model.OutputPortModel);
+                View.InputOptionPort.Load(model.InputOptionPortModel);
             }
 
             void LoadHeaderTextContainer()
             {
-                View.BranchTitleTextFieldView.Load(data.HeadlineText);
+                View.BranchTitleTextFieldView.Load(model.HeadlineText);
             }
 
             void LoadOptionBranchNodeStitcher()
             {
-                View.OptionBranchNodeStitcher.LoadStitcherValues(data.OptionBranchNodeStitcherData);
+                View.OptionBranchNodeStitcher.LoadStitcherValues(model.OptionBranchNodeStitcherModel);
             }
         }
     }

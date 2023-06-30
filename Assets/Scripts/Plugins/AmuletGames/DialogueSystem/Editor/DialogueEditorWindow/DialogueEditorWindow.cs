@@ -10,9 +10,9 @@ namespace AG.DS
     public class DialogueEditorWindow : EditorWindow
     {
         /// <summary>
-        /// Reference of the dialogue system data.
+        /// Reference of the dialogue system model.
         /// </summary>
-        DialogueSystemData dsData;
+        DialogueSystemModel dsModel;
 
 
         /// <summary>
@@ -42,14 +42,14 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the user clicked the save button in the headBar element.
         /// </summary>
-        public event Action<DialogueSystemData> SaveToDSDataEvent;
+        public event Action<DialogueSystemModel> SaveToDSModelEvent;
 
 
         /// <summary>
         /// The event to invoke when the dialogue editor window is first opened,
         /// <br>or when the user clicked the load button in the headBar element.</br>
         /// </summary>
-        public event Action<DialogueSystemData> LoadFromDSDataEvent;
+        public event Action<DialogueSystemModel> LoadFromDSModelEvent;
 
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace AG.DS
         /// </summary>
         void OnEnable()
         {
-            if (dsData == null)
+            if (dsModel == null)
                 return;
 
             Setup();
@@ -103,10 +103,10 @@ namespace AG.DS
         /// <summary>
         /// Initialize for the class. Logic here should only be executed once.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to set for.</param>
-        void Initialize(DialogueSystemData dsData)
+        /// <param name="dsModel">The dialogue system model to set for.</param>
+        void Initialize(DialogueSystemModel dsModel)
         {
-            this.dsData = dsData;
+            this.dsModel = dsModel;
         }
 
 
@@ -132,7 +132,7 @@ namespace AG.DS
                 graphViewer = GraphViewerPresenter.CreateElement(dsWindow: this);
 
                 // HeadBar
-                headBar = HeadBarPresenter.CreateElement(dsData);
+                headBar = HeadBarPresenter.CreateElement(dsModel);
 
                 // Input Hint
                 InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
@@ -166,10 +166,10 @@ namespace AG.DS
                 graphViewerCallback.SetupCallbacks();
                 graphViewerCallback.RegisterEvents();
 
-                new HeadBarCallback(headBar, dsData.GetInstanceID(), dsWindow: this).RegisterEvents();
+                new HeadBarCallback(headBar, dsModel.GetInstanceID(), dsWindow: this).RegisterEvents();
 
                 new DialogueEditorWindowCallback(
-                    dsData, graphViewer, headBar,
+                    dsModel, graphViewer, headBar,
                     serializeHandler, nodeCreateRequestWindow, dsWindow: this).RegisterEvents();
 
                 new NodeCreateRequestWindowCallback(nodeCreateRequestWindow).RegisterEvents();
@@ -195,15 +195,15 @@ namespace AG.DS
         /// <param name="instanceId">The instance id of the opened asset. Required parameter for the callback attribute.</param>
         /// <param name="line">Can be ignored. Required parameter for the callback attribute.</param>
         [OnOpenAsset(0)]
-        public static bool OnOpenDialogueSystemDataAsset(int instanceId, int line)
+        public static bool OnOpenAssetDialogueSystemModel(int instanceId, int line)
         {
             // Get the instance id from the opened asset and translate it to an object reference.
             Object openedAssetObject = EditorUtility.InstanceIDToObject(instanceId);
 
-            if (openedAssetObject is DialogueSystemData)
+            if (openedAssetObject is DialogueSystemModel)
             {
-                var dsData = (DialogueSystemData)openedAssetObject;
-                if (dsData.IsOpened)
+                var dsModel = (DialogueSystemModel)openedAssetObject;
+                if (dsModel.IsOpened)
                 {
                     // Return if the window has already been opened in the editor.
                     Debug.LogError(StringConfig.Editor_WindowAlreadyOpened_WarningText);
@@ -211,10 +211,10 @@ namespace AG.DS
                 }
 
                 var dsWindow = DialogueEditorWindowPresenter.CreateWindow();
-                dsWindow.Initialize(dsData);
+                dsWindow.Initialize(dsModel);
                 dsWindow.Setup();
 
-                dsData.IsOpened = true;
+                dsModel.IsOpened = true;
             }
 
             return false;
@@ -243,7 +243,7 @@ namespace AG.DS
         {
             if (hasUnsavedChanges)
             {
-                SaveToDSDataEvent.Invoke(dsData);
+                SaveToDSModelEvent.Invoke(dsModel);
                 ApplyChangesToDiskEvent.Invoke();
             }
             else
@@ -260,7 +260,7 @@ namespace AG.DS
         {
             if (isForceLoadWindow || hasUnsavedChanges)
             {
-                LoadFromDSDataEvent.Invoke(dsData);
+                LoadFromDSModelEvent.Invoke(dsModel);
                 ApplyChangesToDiskEvent.Invoke();
             }
             else

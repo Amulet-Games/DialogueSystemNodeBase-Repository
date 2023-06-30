@@ -4,7 +4,7 @@ using UnityEditor.Experimental.GraphView;
 
 namespace AG.DS
 {
-    public partial class OptionPort : PortFrameBase<OptionPortData>
+    public partial class OptionPort : PortFrameBase<OptionPortModel>
     {
         /// <summary>
         /// The current connecting opponent option port.
@@ -35,18 +35,18 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <inheritdoc />
-        public override void Save(OptionPortData data)
+        public override void Save(OptionPortModel model)
         {
-            data.GUID = name;
-            data.LabelText = portName;
+            model.GUID = name;
+            model.LabelText = portName;
         }
 
 
         /// <inheritdoc />
-        public override void Load(OptionPortData data)
+        public override void Load(OptionPortModel model)
         {
-            name = data.GUID;
-            portName = data.LabelText;
+            name = model.GUID;
+            portName = model.LabelText;
         }
 
 

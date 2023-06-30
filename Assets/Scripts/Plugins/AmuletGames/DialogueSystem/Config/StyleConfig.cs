@@ -213,11 +213,12 @@ namespace AG.DS
         public const string StoryNode_PreferenceImage_Image = "storyNode_PreferenceImage_Image";
         #endregion
 
-        #region Port Default USS Classes.
-        /*< -------------------- Common -------------------- >*/
+        #region Port Common USS Classes.
         public const string Port_Sibling = "port_Sibling";
         public const string Port_Connect = "port_Connect";
+        #endregion
 
+        #region Port Default USS Classes.
         /*< -------------------- Port -------------------- >*/
         public const string Default_Input_Port = "default_Input_Port";
         public const string Default_Output_Port = "default_Output_Port";
@@ -254,6 +255,7 @@ namespace AG.DS
         #endregion
 
         #region Option Port Group USS Classes.
+        public const string OptionPortGroup_Cell = "optionPortGroup_Cell";
         public const string OptionPortGroup_RemoveButton = "optionPortGroup_RemoveButton";
         #endregion
 

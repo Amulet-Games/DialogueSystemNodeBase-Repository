@@ -64,7 +64,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void NodeTitleEditButtonClickEvent(ClickEvent evt)
         {
-            var fieldInput = View.NodeTitleTextFieldView.TextField.GetElementInput();
+            var fieldInput = View.NodeTitleTextFieldView.TextField.GetFieldInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }

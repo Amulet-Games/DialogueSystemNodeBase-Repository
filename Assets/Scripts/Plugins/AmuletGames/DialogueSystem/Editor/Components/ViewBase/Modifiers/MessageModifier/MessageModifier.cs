@@ -94,7 +94,7 @@ namespace AG.DS
         public void CreateInstanceElements
         (
             int index,
-            MessageModifierData data,
+            MessageModifierModel model,
             Action<MessageModifier> modifierCreatedAction,
             Action<MessageModifier> moveUpButtonClickAction,
             Action<MessageModifier> moveDownButtonClickAction,
@@ -272,8 +272,8 @@ namespace AG.DS
 
             void CheckSourceValues()
             {
-                if (data != null)
-                    Load(data);
+                if (model != null)
+                    Load(model);
             }
 
             void AddFieldsToBox()
@@ -308,10 +308,10 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the modifier values to the given data.
+        /// Save the modifier values to the message modifier model.
         /// </summary>
-        /// <param name="data">The given data to save to.</param>
-        public void Save(MessageModifierData data)
+        /// <param name="model">The message modifier model to set for.</param>
+        public void Save(MessageModifierModel model)
         {
             SaveFolder();
 
@@ -323,32 +323,32 @@ namespace AG.DS
 
             void SaveFolder()
             {
-                Folder.Save(data.FolderData);
+                Folder.Save(model.FolderModel);
             }
 
             void SaveMessageText()
             {
-                messageTextView.Save(data.MessageText);
+                messageTextView.Save(model.MessageText);
             }
 
             void SaveMessageAudio()
             {
-                messageAudioObjectView.Save(data.MessageAudio);
+                messageAudioObjectView.Save(model.MessageAudio);
             }
 
             void Save_CSV_GUID()
             {
                 // CSV GUID.
-                data.CsvGUID = csvGUID;
+                model.CsvGUID = csvGUID;
             }
         }
 
 
         /// <summary>
-        /// Load the modifier values from the given data.
+        /// Load the modifier values from the message modifier model.
         /// </summary>
-        /// <param name="data">The given data to load from.</param>
-        public void Load(MessageModifierData data)
+        /// <param name="model">The message modifier model to set for.</param>
+        public void Load(MessageModifierModel model)
         {
             LoadFolder();
 
@@ -360,23 +360,23 @@ namespace AG.DS
 
             void LoadFolder()
             {
-                Folder.Load(data.FolderData);
+                Folder.Load(model.FolderModel);
             }
 
             void LoadMessageText()
             {
-                messageTextView.Load(data.MessageText);
+                messageTextView.Load(model.MessageText);
             }
 
             void LoadMessageAudio()
             {
-                messageAudioObjectView.Load(data.MessageAudio);
+                messageAudioObjectView.Load(model.MessageAudio);
             }
 
             void Load_CSV_Guid()
             {
                 // CSV GUID.
-                csvGUID = data.CsvGUID;
+                csvGUID = model.CsvGUID;
             }
         }
 

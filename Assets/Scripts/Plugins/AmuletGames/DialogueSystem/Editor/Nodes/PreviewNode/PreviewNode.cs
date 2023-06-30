@@ -8,7 +8,7 @@ namespace AG.DS
         PreviewNodeView,
         PreviewNodeSerializer,
         PreviewNodeCallback,
-        PreviewNodeData
+        PreviewNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------

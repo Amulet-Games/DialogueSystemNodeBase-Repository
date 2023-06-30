@@ -7,9 +7,9 @@ namespace AG.DS
         /// <summary>
         /// Method for creating the headBar element.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to set for.</param>
+        /// <param name="dsModel">The dialogue system model to set for.</param>
         /// <returns>A new headBar element.</returns>
-        public static HeadBar CreateElement(DialogueSystemData dsData)
+        public static HeadBar CreateElement(DialogueSystemModel dsModel)
         {
             HeadBar headBar;
             VisualElement buttonsContainer;
@@ -89,7 +89,7 @@ namespace AG.DS
             {
                 headBar.GraphTitleTextFieldView.TextField = GraphTitleTextFieldPresenter.CreateElement
                 (
-                    dsData: dsData,
+                    dsModel: dsModel,
                     fieldUSS: StyleConfig.HeadBar_GraphTitleTextField
                 );
             }

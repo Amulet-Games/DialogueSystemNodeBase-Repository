@@ -9,14 +9,14 @@ namespace AG.DS
         TNodeView,
         TNodeSerializer,
         TNodeCallback,
-        TNodeData
+        TNodeModel
     > 
         : NodeBase
         where TNode : NodeBase
         where TNodeView : NodeViewFrameBase
-        where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeData>
+        where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeModel>
         where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView>
-        where TNodeData : NodeDataBase
+        where TNodeModel : NodeModelBase
     {
         /// <summary>
         /// Reference of the node view.
@@ -131,7 +131,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemData dsData) => Serializer.Save(dsData);
+        public override void Save(DialogueSystemModel dsModel) => Serializer.Save(dsModel);
 
 
         // ----------------------------- Overrides -----------------------------

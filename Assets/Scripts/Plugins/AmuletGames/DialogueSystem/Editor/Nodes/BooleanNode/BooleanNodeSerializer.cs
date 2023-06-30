@@ -7,7 +7,7 @@ namespace AG.DS
     <
         BooleanNode,
         BooleanNodeView,
-        BooleanNodeData
+        BooleanNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -25,11 +25,11 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemData dsData)
+        public override void Save(DialogueSystemModel dsModel)
         {
-            BooleanNodeData data = new();
+            BooleanNodeModel model = new();
 
-            SaveBaseValues(data: data);
+            SaveBaseValues(model);
 
             SavePorts();
 
@@ -37,19 +37,19 @@ namespace AG.DS
 
             SaveBooleanNodeStitcher();
 
-            AddData();
+            AddToDsModel();
 
             void SavePorts()
             {
-                View.InputDefaultPort.Save(data.InputPortData);
-                View.TrueOutputDefaultPort.Save(data.TrueOutputPortData);
-                View.FalseOutputDefaultPort.Save(data.FalseOutputPortData);
+                View.InputDefaultPort.Save(model.InputPortModel);
+                View.TrueOutputDefaultPort.Save(model.TrueOutputPortModel);
+                View.FalseOutputDefaultPort.Save(model.FalseOutputPortModel);
             }
 
             void SaveBranchingOpponentNodesGUID()
             {
                 // True output opponent node
-                data.TrueOutputOpponentNodeGUID = View.TrueOutputDefaultPort.connected
+                model.TrueOutputOpponentNodeGUID = View.TrueOutputDefaultPort.connected
 
                     // Opponent node's GUID.
                     ? ((NodeBase)View.TrueOutputDefaultPort.connections.First().input.node).NodeGUID
@@ -58,7 +58,7 @@ namespace AG.DS
                     : "";
 
 
-                data.FalseOutputOpponentNodeGUID = View.FalseOutputDefaultPort.connected
+                model.FalseOutputOpponentNodeGUID = View.FalseOutputDefaultPort.connected
 
                     // Opponent node's GUID.
                     ? ((NodeBase)View.FalseOutputDefaultPort.connections.First().input.node).NodeGUID
@@ -69,21 +69,21 @@ namespace AG.DS
 
             void SaveBooleanNodeStitcher()
             {
-                View.booleanNodeStitcher.SaveStitcherValues(data.BooleanNodeStitcherData);
+                View.booleanNodeStitcher.SaveStitcherValues(model.BooleanNodeStitcherModel);
             }
 
-            void AddData()
+            void AddToDsModel()
             {
-                dsData.NodeData.Add(data);
+                dsModel.NodeModels.Add(model);
             }
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(BooleanNodeData data)
+        public override void Load(BooleanNodeModel model)
         {
-            LoadBaseValues(data);
+            LoadBaseValues(model);
 
             LoadPorts();
 
@@ -91,14 +91,14 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                View.InputDefaultPort.Load(data.InputPortData);
-                View.TrueOutputDefaultPort.Load(data.TrueOutputPortData);
-                View.FalseOutputDefaultPort.Load(data.FalseOutputPortData);
+                View.InputDefaultPort.Load(model.InputPortModel);
+                View.TrueOutputDefaultPort.Load(model.TrueOutputPortModel);
+                View.FalseOutputDefaultPort.Load(model.FalseOutputPortModel);
             }
 
             void LoadBooleanNodeStitcher()
             {
-                View.booleanNodeStitcher.LoadStitcherValues(data.BooleanNodeStitcherData);
+                View.booleanNodeStitcher.LoadStitcherValues(model.BooleanNodeStitcherModel);
             }
         }
     }

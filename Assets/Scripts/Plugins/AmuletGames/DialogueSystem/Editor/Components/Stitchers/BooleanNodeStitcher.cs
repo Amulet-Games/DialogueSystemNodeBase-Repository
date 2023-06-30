@@ -29,9 +29,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Temporary use of root modifier data.
+        /// Temporary use of root modifier model.
         /// </summary>
-        ConditionModifierData tempRootModifierData;
+        ConditionModifierModel tempRootModifierModel;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -43,7 +43,7 @@ namespace AG.DS
             rootModifier = new();
             instanceModifiers = new();
             segment = new();
-            tempRootModifierData = new();
+            tempRootModifierModel = new();
         }
 
 
@@ -96,7 +96,7 @@ namespace AG.DS
                 ShowRootModifier();
 
                 // Add the first instance modifier.
-                AddInstanceModifier(data: null);
+                AddInstanceModifier(model: null);
             }
         }
 
@@ -104,12 +104,12 @@ namespace AG.DS
         /// <summary>
         /// Create a new instance modifier for the stitcher.
         /// </summary>
-        /// <param name="data">The given modifier data to load from.</param>
-        void AddInstanceModifier(ConditionModifierData data)
+        /// <param name="model">The condition modifier model to set for.</param>
+        void AddInstanceModifier(ConditionModifierModel model)
         {
             new ConditionModifier().CreateInstanceElements
             (
-                data: data,
+                model: model,
                 modifierCreatedAction: ModifierCreatedAction,
                 removeButtonClickAction: ModifierRemoveButtonClickAction
             );
@@ -126,16 +126,16 @@ namespace AG.DS
             // If this is the first time user adding a new instance modifier through content button.
             if (instancesCount == 1)
             {
-                // Load the root modifier's data to the initial instance modifier.
-                rootModifier.SaveModifierValue(tempRootModifierData);
-                instanceModifiers[0].LoadModifierValue(tempRootModifierData);
+                // Load the root modifier's model to the initial instance modifier.
+                rootModifier.SaveModifierValue(tempRootModifierModel);
+                instanceModifiers[0].LoadModifierValue(tempRootModifierModel);
 
                 // and show instance modifiers only.
                 ShowInstanceModifiers();
             }
 
             // Add a new instance modifier to the node.
-            AddInstanceModifier(data: null);
+            AddInstanceModifier(model: null);
         }
 
 
@@ -181,19 +181,19 @@ namespace AG.DS
                 // Hide the segment's main box.
                 ShowRootModifier();
 
-                // Load data from the last modifier in segment list, to rooted modifier
-                instanceModifiers[0].SaveModifierValue(tempRootModifierData);
-                rootModifier.LoadModifierValue(tempRootModifierData);
+                // Load model from the last modifier in segment list, to rooted modifier
+                instanceModifiers[0].SaveModifierValue(tempRootModifierModel);
+                rootModifier.LoadModifierValue(tempRootModifierModel);
             }
         }
 
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the stitcher values to the given data.
+        /// Save the stitcher values to the boolean node stitcher model.
         /// </summary>
-        /// <param name="data">The given data to save to.</param>
-        public void SaveStitcherValues(BooleanNodeStitcherData data)
+        /// <param name="model">The boolean node stitcher model to set for.</param>
+        public void SaveStitcherValues(BooleanNodeStitcherModel model)
         {
             SaveRootModifier();
 
@@ -201,31 +201,31 @@ namespace AG.DS
 
             void SaveRootModifier()
             {
-                rootModifier.SaveModifierValue(data.RootModifierData);
+                rootModifier.SaveModifierValue(model.RootModifierModel);
             }
 
             void SaveInstanceModifiers()
             {
                 for (int i = 0; i < instancesCount; i++)
                 {
-                    // New modifier data.
-                    ConditionModifierData newModifierData = new();
+                    // New modifier model.
+                    ConditionModifierModel newModifierModel = new();
 
                     // Save values.
-                    instanceModifiers[i].SaveModifierValue(newModifierData);
+                    instanceModifiers[i].SaveModifierValue(newModifierModel);
 
-                    // Add to the data list.
-                    data.InstanceModifiersData.Add(newModifierData);
+                    // Add to the model list.
+                    model.InstanceModifiersModels.Add(newModifierModel);
                 }
             }
         }
 
 
         /// <summary>
-        /// Load the stitcher values from the given data.
+        /// Load the stitcher values from the boolean node stitcher model.
         /// </summary>
-        /// <param name="data">The given data to load from.</param>
-        public void LoadStitcherValues(BooleanNodeStitcherData data)
+        /// <param name="model">The boolean node stitcher model to set for.</param>
+        public void LoadStitcherValues(BooleanNodeStitcherModel model)
         {
             LoadRootModifier();
 
@@ -235,26 +235,26 @@ namespace AG.DS
 
             void LoadRootModifier()
             {
-                rootModifier.LoadModifierValue(data.RootModifierData);
+                rootModifier.LoadModifierValue(model.RootModifierModel);
             }
 
             void LoadInstanceModifiers()
             {
-                // Instnace modifiers data count.
-                var instanceModifiersDataCount = data.InstanceModifiersData.Count;
+                // Instance modifiers model count.
+                var instanceModifiersModelCount = model.InstanceModifiersModels.Count;
 
-                // Initial instanace modifier is created together with the molder,
+                // Initial instance modifier is created together with the molder,
                 // so here it only need to load its values from the source.
-                if (instanceModifiersDataCount > 0)
+                if (instanceModifiersModelCount > 0)
                 {
-                    instanceModifiers[0].LoadModifierValue(data.InstanceModifiersData[0]);
+                    instanceModifiers[0].LoadModifierValue(model.InstanceModifiersModels[0]);
                 }
 
                 // For the rest of saved instance modifiers, create a new instance modifier and
                 // load its saved values from the source.
-                for (int i = 1; i < instanceModifiersDataCount; i++)
+                for (int i = 1; i < instanceModifiersModelCount; i++)
                 {
-                    AddInstanceModifier(data.InstanceModifiersData[i]);
+                    AddInstanceModifier(model.InstanceModifiersModels[i]);
                 }
             }
 
@@ -267,7 +267,7 @@ namespace AG.DS
 
         // ----------------------------- Update Modifier Display -----------------------------
         /// /// <summary>
-        /// Show root modifier and hide the instance modfiiers.
+        /// Show root modifier and hide the instance modifiers.
         /// </summary>
         void ShowRootModifier()
         {
@@ -277,7 +277,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Show instance modfiiers and hide the root modifier.
+        /// Show instance modifiers and hide the root modifier.
         /// </summary>
         void ShowInstanceModifiers()
         {

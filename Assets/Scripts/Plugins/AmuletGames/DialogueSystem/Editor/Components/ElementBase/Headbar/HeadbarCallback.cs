@@ -12,9 +12,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The asset instance id of the dialogue system data.
+        /// The asset instance id of the dialogue system model.
         /// </summary>
-        int dsDataInstanceId;
+        int dsModelInstanceId;
 
 
         /// <summary>
@@ -28,17 +28,17 @@ namespace AG.DS
         /// Constructor of the headBar callback class.
         /// </summary>
         /// <param name="headBar">The headBar element to set for.</param>
-        /// <param name="dsDataInstanceId">The dialogue system data asset instance id to set for.</param>
+        /// <param name="dsModelInstanceId">The dialogue system model asset instance id to set for.</param>
         /// <param name="dsWindow">The dialogue editor window to set for.</param>
         public HeadBarCallback
         (
             HeadBar headBar,
-            int dsDataInstanceId,
+            int dsModelInstanceId,
             DialogueEditorWindow dsWindow
         )
         {
             this.headBar = headBar;
-            this.dsDataInstanceId = dsDataInstanceId;
+            this.dsModelInstanceId = dsModelInstanceId;
             this.dsWindow = dsWindow;
         }
 
@@ -130,7 +130,7 @@ namespace AG.DS
             new GraphTitleTextFieldCallback
             (
                 view: headBar.GraphTitleTextFieldView,
-                dsDataInstanceId,
+                dsModelInstanceId,
                 dsWindow
             )
             .RegisterEvents();

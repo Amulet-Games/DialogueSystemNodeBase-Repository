@@ -73,14 +73,14 @@ namespace AG.DS
         /// Register FocusInEvent to the field input element.
         /// </summary>
         void RegisterFieldInputFocusInEvent() =>
-            field.GetElementInput().RegisterCallback<FocusInEvent>(FieldInputFocusInEvent);
+            field.GetFieldInput().RegisterCallback<FocusInEvent>(FieldInputFocusInEvent);
 
 
         /// <summary>
         /// Register FocusOutEvent to the field input element.
         /// </summary>
         void RegisterFieldInputFocusOutEvent() =>
-            field.GetElementInput().RegisterCallback<FocusOutEvent>(FieldInputFocusOutEvent);
+            field.GetFieldInput().RegisterCallback<FocusOutEvent>(FieldInputFocusOutEvent);
 
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace AG.DS
             previousValue = field.value;
 
             // Allow user to interact with the field input element.
-            field.GetElementInput().pickingMode = PickingMode.Position;
+            field.GetFieldInput().pickingMode = PickingMode.Position;
         }
 
 
@@ -138,7 +138,7 @@ namespace AG.DS
             }
 
             // Forbidden user to interact with the field's input element.
-            var fieldInputElement = field.GetElementInput();
+            var fieldInputElement = field.GetFieldInput();
             fieldInputElement.focusable = false;
             fieldInputElement.pickingMode = PickingMode.Ignore;
         }

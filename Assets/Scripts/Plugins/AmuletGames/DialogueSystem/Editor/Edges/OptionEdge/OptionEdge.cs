@@ -12,16 +12,16 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemData dsData)
+        public override void Save(DialogueSystemModel dsModel)
         {
-            var data = new EdgeDataBase()
+            var model = new EdgeModelBase()
             {
                 InputPortGUID = input.name,
                 OutputPortGUID = output.name,
                 PortType = PortType.OPTION
             };
 
-            dsData.EdgeData.Add(data);
+            dsModel.EdgeModels.Add(model);
         }
 
 

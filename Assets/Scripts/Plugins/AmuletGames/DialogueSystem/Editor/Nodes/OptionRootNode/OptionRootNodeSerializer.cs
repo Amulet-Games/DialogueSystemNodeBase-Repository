@@ -5,7 +5,7 @@ namespace AG.DS
     <
         OptionRootNode,
         OptionRootNodeView,
-        OptionRootNodeData
+        OptionRootNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -23,42 +23,42 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemData dsData)
+        public override void Save(DialogueSystemModel dsModel)
         {
-            OptionRootNodeData data = new();
+            OptionRootNodeModel model = new();
 
-            SaveBaseValues(data: data);
+            SaveBaseValues(model);
 
             SavePorts();
 
             SaveHeaderTextContainer();
 
-            AddData();
+            AddToDsModel();
 
             void SavePorts()
             {
-                View.InputDefaultPort.Save(data.InputPortData);
-                View.OutputOptionPort.Save(data.OutputOptionPortData);
-                View.OutputOptionPortGroupView.Save(data: data.OutputOptionPortGroupData);
+                View.InputDefaultPort.Save(model.InputPortModel);
+                View.OutputOptionPort.Save(model.OutputOptionPortModel);
+                View.OutputOptionPortGroupView.Save(model: model.OutputOptionPortGroupModel);
             }
 
             void SaveHeaderTextContainer()
             {
-                View.RootTitleTextFieldView.Save(data.HeadlineText);
+                View.RootTitleTextFieldView.Save(model.HeadlineText);
             }
 
-            void AddData()
+            void AddToDsModel()
             {
-                dsData.NodeData.Add(data);
+                dsModel.NodeModels.Add(model);
             }
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(OptionRootNodeData data)
+        public override void Load(OptionRootNodeModel model)
         {
-            LoadBaseValues(data);
+            LoadBaseValues(model);
 
             LoadPorts();
 
@@ -68,14 +68,14 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                View.InputDefaultPort.Load(data.InputPortData);
-                View.OutputOptionPort.Load(data.OutputOptionPortData);
-                View.OutputOptionPortGroupView.Load(Node, data.OutputOptionPortGroupData);
+                View.InputDefaultPort.Load(model.InputPortModel);
+                View.OutputOptionPort.Load(model.OutputOptionPortModel);
+                View.OutputOptionPortGroupView.Load(Node, model.OutputOptionPortGroupModel);
             }
 
             void LoadHeaderTextContainer()
             {
-                View.RootTitleTextFieldView.Load(data.HeadlineText);
+                View.RootTitleTextFieldView.Load(model.HeadlineText);
             }
 
             void RefreshPortsLayout()

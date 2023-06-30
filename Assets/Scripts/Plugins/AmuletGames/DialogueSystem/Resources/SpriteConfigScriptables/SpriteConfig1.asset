@@ -50,7 +50,7 @@ MonoBehaviour:
   SmallerOperatorButtonIconSprite: {fileID: 21300000, guid: 83a04416aa1769a499f12d66ed0a1683, type: 3}
   TrueOperatorButtonIconSprite: {fileID: 21300000, guid: 59d58d2f98fd7a24aa003681ccd403aa, type: 3}
   SegmentExpandButtonIconSprite: {fileID: 21300000, guid: 98443ba30dba8b142967eebed916d246, type: 3}
-  ApplyDesignSampleImage: {fileID: 21300000, guid: 5ec2c9edfc608314dadeab2e56bd0463, type: 3}
+  ApplyDesignSampleImage: {fileID: 21300000, guid: d61468e08b9d8ab499fdbc13333a2519, type: 3}
   CharacterFieldIconSprite: {fileID: 21300000, guid: 2041db62825328246b33aa9370368077, type: 3}
   ChangeFieldTypeButtonIconSprite: {fileID: 21300000, guid: b855dcd523cea804faffae8f8bde0619, type: 3}
   ChangeFieldTypeButtonBlockedIconSprite: {fileID: 21300000, guid: cddfb1db3bf6041a1b35307e93beac98, type: 3}

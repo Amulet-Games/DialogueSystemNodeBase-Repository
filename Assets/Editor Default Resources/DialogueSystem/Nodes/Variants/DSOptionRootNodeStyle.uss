@@ -1,7 +1,7 @@
 /* =========================================================== Node Title =========================================================== */
 
 /*< ---------------------------------------------------------- #title >*/
-.node_Border #title {
+#title {
 	
 	background-color: rgba(0, 0, 0, 0);
 
@@ -45,7 +45,7 @@
 	overflow: visible;
 
 	/* top - right - bottom - left */
-	margin: 2px 0px 0px 0.5px;
+	margin: 1px 0px 0px 0.5px;
 	padding: 0px 0px 0px 0px;
 }
 
@@ -188,7 +188,7 @@
 /*< ---------------------------------------------------------- Icon Image >*/
 .contentButton_Icon_Image {
 
-	height: 27.5px;
+	height: 28px;
 	width: 27.5px;
 
 	align-self: auto;
@@ -197,7 +197,7 @@
 	flex-direction: row;
 
 	/* top - right - bottom - left */
-	margin: 4px 8px 0px 0px;
+	margin: 4px 8.5px 0px 0px;
 	padding: 0px 0px 0px 0px;
 }
 
@@ -265,7 +265,7 @@
 	flex-shrink: 1;
 
 	/* top - right - bottom - left */
-	margin: -1px 0px 0px -4.5px;
+	margin: -1px 0px 0px -5.5px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 16px 16px 16px 16px;
@@ -293,12 +293,10 @@
 	height: auto;
 	width: auto;
 	
-	font-size: 14px;
-
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium.asset');
-	-unity-text-align: middle-left;
+	font-size: 13.5px;
 	
-	letter-spacing: -1px;
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	-unity-text-align: middle-left;
 
 	white-space: nowrap;
 
@@ -307,7 +305,7 @@
 	flex-basis: auto;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 4.5px;
+	margin: 0px 0px 0px 6px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;
@@ -358,8 +356,88 @@
 	border-radius: 0px 0px 0px 0px;
 }
 
-.port_Sibling
-.option_Output_Port {
+
+/*< ---------------------------------------------------------- Connector >*/
+.option_Output_Connector {
+
+	background-color: rgba(255, 255, 255, 1);
+
+	height: 12.5px;
+	width: 13px;
+
+	align-content: flex-start;
+	align-items: center;
+	align-self: auto;
+	
+	justify-content: center;
+
+	flex-grow: 0;
+	flex-shrink: 1;
+
+	/* top - right - bottom - left */
+	margin: 0px -6px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 16px 16px 16px 16px;
+}
+
+
+/*< ---------------------------------------------------------- Cap >*/
+.option_Output_Cap {
+
+	background-color: rgba(197, 96, 139, 1);
+
+	height: 9px;
+	width: 9px;
+
+	/* top - right - bottom - left */
+	border-radius: 16px 16px 16px 16px;
+}
+
+
+/*< ---------------------------------------------------------- Label >*/
+.option_Output_Label {
+	
+	color: rgba(255, 255, 255, 1);
+	
+	height: auto;
+	width: auto;
+	
+	font-size: 13.5px;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	-unity-text-align: middle-left;
+
+	white-space: nowrap;
+	
+	flex-grow: 0;
+	flex-shrink: 0;
+	flex-basis: auto;
+
+	/* top - right - bottom - left */
+	margin: 0px 6px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
+
+.port_Connect
+.option_Output_Label {
+
+	color: rgba(204, 115, 134, 1);
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Bold-Static-SDF.asset');
+	-unity-text-align: middle-center;
+
+	/* top - right - bottom - left */
+	margin: 0px 4.5px 0px 0px;
+}
+
+
+/* =========================================================== Option Port Group =========================================================== */
+
+/*< ---------------------------------------------------------- Cell >*/
+.optionPortGroup_Cell {
 
 	height: auto;
 	width: auto;
@@ -379,88 +457,8 @@
 	border-radius: 0px 0px 0px 0px;
 }
 
-
-/*< ---------------------------------------------------------- Connector >*/
-.option_Output_Connector {
-
-	background-color: rgba(255, 255, 255, 1);
-
-	height: 12.5px;
-	width: 12.5px;
-
-	align-content: flex-start;
-	align-items: center;
-	align-self: auto;
-	
-	justify-content: center;
-
-	flex-grow: 0;
-	flex-shrink: 1;
-
-	/* top - right - bottom - left */
-	margin: 0.5px -7px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 16px 16px 16px 16px;
-}
-
-
-/*< ---------------------------------------------------------- Cap >*/
-.option_Output_Cap {
-
-	background-color: rgba(197, 96, 139, 1);
-
-	height: 8.5px;
-	width: 8.5px;
-
-	/* top - right - bottom - left */
-	border-radius: 16px 16px 16px 16px;
-}
-
-
-/*< ---------------------------------------------------------- Label >*/
-.option_Output_Label {
-	
-	color: rgba(255, 255, 255, 1);
-	
-	height: auto;
-	width: auto;
-	
-	font-size: 14px;
-	
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium.asset');
-	-unity-text-align: middle-left;
-
-	letter-spacing: -2px;
-
-	white-space: nowrap;
-	
-	flex-grow: 0;
-	flex-shrink: 0;
-	flex-basis: auto;
-
-	/* top - right - bottom - left */
-	margin: 0px 4.5px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 0px 0px 0px 0px;
-}
-
-.port_Connect
-.option_Output_Label {
-
-	color: rgba(204, 115, 134, 1);
-
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Bold.asset');
-	-unity-text-align: middle-center;
-
-	/* top - right - bottom - left */
-	margin: 0px 4.5px 0px 0px;
-}
-
-
 /*< ---------------------------------------------------------- Button >*/
-.channel_Option_Output_RemoveChannel_Button {
+.optionPortGroup_RemoveButton {
 
 	height: 15px;
 	width: 15px;
@@ -515,7 +513,7 @@
 	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 9px 0px 0px 5px;
+	margin: 8.5px 0px 0px 5px;
 	padding: 0px 0px 0px 0px;
 }
 
@@ -537,15 +535,15 @@
 	
 	color: rgba(255, 255, 255, 1);
 	
-	font-size: 17px;
+	font-size: 16.3px;
 	
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium.asset');
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
 	
-	letter-spacing: -10px;
-	word-spacing: 11px;
+	letter-spacing: -1px;
+	word-spacing: 4px;
 	
 	/* top - right - bottom - left */
-	margin: 2px 0px 0px 12px;
+	margin: 1px 0px 0px 12px;
 	padding: 0px 0px 0px 0px;
 }
 
@@ -562,7 +560,7 @@
 	white-space: normal;
 
 	/* top - right - bottom - left */
-	margin: 1px 0px 0px 12px;
+	margin: 2px 0px 0px 12px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
@@ -573,7 +571,6 @@
 	border-color: rgba(101, 101, 101, 1);
 
 	/* top - right - bottom - left */
-	margin: 1px 0px 0px 11px;
 	border-width: 0.5px 0.5px 0.5px 0.5px;
 }
 
@@ -582,29 +579,56 @@
 	border-color: rgba(58, 121, 187, 1);
 
 	/* top - right - bottom - left */
-	margin: 1px 0px 0px 11px;
 	border-width: 0.5px 0.5px 0.5px 0.5px;
-}
-
-.optionRootNode_Title_TextField.textField_Empty
-.unity-text-field__input {
-	
-	color: rgba(101, 101, 101, 1);
 }
 
 .optionRootNode_Title_TextField
 .unity-text-field__input {
+	
+	background-color: rgba(0, 0, 0, 0);
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 0px 0px 0px;
+}
 
-	background-color: rgba(32, 32, 32, 1);
-	color: rgba(210, 210, 210, 1);
+.optionRootNode_Title_TextField
+.unity-text-element {
 
-	font-size: 13px;
+	background-color: rgba(0, 0, 0, 0);
+	color: rgba(255, 255, 255, 1);
+
+	font-size: 13.5px;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Dynamic-SDF.asset');
+
+	letter-spacing: -2px;
+	word-spacing: -1px;
 
 	align-self: center;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 6px;
+	margin: 0px 0px 0px 5px;
 	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 	border-radius: 0px 0px 0px 0px;
+}
+
+.optionRootNode_Title_TextField.textField_Empty
+.unity-text-element {
+	
+	color: rgba(81, 81, 81, 1);
+}
+
+.optionRootNode_Title_TextField:hover
+.unity-text-element,
+
+.optionRootNode_Title_TextField:focus
+.unity-text-element
+{
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 4.5px;
+	padding: 0px 0px 0px 0px;
 }

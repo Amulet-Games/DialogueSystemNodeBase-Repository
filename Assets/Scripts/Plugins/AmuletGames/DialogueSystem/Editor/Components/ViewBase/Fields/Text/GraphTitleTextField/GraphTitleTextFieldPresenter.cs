@@ -9,12 +9,12 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new graph title text field element.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to bind with after the field is created.</param>
+        /// <param name="dsModel">The dialogue system model to set for.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>
         /// <returns>A new graph title text field element.</returns>
         public static TextField CreateElement
         (
-            DialogueSystemData dsData,
+            DialogueSystemModel dsModel,
             string fieldUSS
         )
         {
@@ -37,7 +37,7 @@ namespace AG.DS
 
             void SetFieldDetails()
             {
-                graphTitleTextField.SetValueWithoutNotify(dsData.name);
+                graphTitleTextField.SetValueWithoutNotify(dsModel.name);
 
                 // The new value can only be set by the user pressing Enter or Return key.
                 graphTitleTextField.isDelayed = true;
@@ -45,8 +45,8 @@ namespace AG.DS
 
             void BindFieldToSerializedObject()
             {
-                // Create the serialized object from the dialogue system data.
-                SerializedObject so = new(obj: dsData);
+                // Create the serialized object from the dialogue system model.
+                SerializedObject so = new(obj: dsModel);
 
                 // Bind the new value.
                 graphTitleTextField.Bind(so);

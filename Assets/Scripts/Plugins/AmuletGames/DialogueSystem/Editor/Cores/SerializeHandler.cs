@@ -33,34 +33,34 @@ namespace AG.DS
         /// <summary>
         /// Save all the edges and nodes that are on the graph.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to save the data to.</param>
-        public void SaveEdgesAndNodes(DialogueSystemData dsData)
+        /// <param name="dsModel">The dialogue system model to set for.</param>
+        public void SaveEdgesAndNodes(DialogueSystemModel dsModel)
         {
-            SaveEdges(dsData);
-            SaveNodes(dsData);
+            SaveEdges(dsModel);
+            SaveNodes(dsModel);
 
             // Set dirty when the saving is finished.
-            EditorUtility.SetDirty(dsData);
+            EditorUtility.SetDirty(dsModel);
         }
 
 
         /// <summary>
         /// Save all the edges that are on the graph.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to save the data to.</param>
-        void SaveEdges(DialogueSystemData dsData)
+        /// <param name="dsModel">The dialogue system model to set for.</param>
+        void SaveEdges(DialogueSystemModel dsModel)
         {
-            // Clear data
+            // Clear existing edge models
             {
-                dsData.ClearDataEdge();
+                dsModel.ClearEdgeModels();
             }
 
-            // Create data
+            // Create new edge models
             {
                 var edgeCount = graphViewer.Edges.Count;
                 for (int i = 0; i < edgeCount; i++)
                 {
-                    graphViewer.Edges[i].Save(dsData);
+                    graphViewer.Edges[i].Save(dsModel);
                 }
             }
         }
@@ -69,20 +69,20 @@ namespace AG.DS
         /// <summary>
         /// Save all the nodes that are on the graph.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to save the data to.</param>
-        void SaveNodes(DialogueSystemData dsData)
+        /// <param name="dsModel">The dialogue system model to set for.</param>
+        void SaveNodes(DialogueSystemModel dsModel)
         {
-            // Clear data
+            // Clear existing node models
             {
-                dsData.ClearDataNode();
+                dsModel.ClearNodeModels();
             }
 
-            // Create data
+            // Create new node models
             {
                 var nodeCount = graphViewer.Nodes.Count;
                 for (int i = 0; i < nodeCount; i++)
                 {
-                    graphViewer.Nodes[i].Save(dsData);
+                    graphViewer.Nodes[i].Save(dsModel);
                 }
             }
         }
@@ -90,57 +90,57 @@ namespace AG.DS
 
         // ----------------------------- Load -----------------------------
         /// <summary>
-        /// Load all the edges and nodes data that were stored on the scriptable object asset.
+        /// Load all the edge and node models that are stored on the scriptable object asset.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to load the data from.</param>
-        public void LoadEdgesAndNodes(DialogueSystemData dsData)
+        /// <param name="dsModel">The dialogue system model to set for.</param>
+        public void LoadEdgesAndNodes(DialogueSystemModel dsModel)
         {
-            LoadNodes(dsData);
-            LoadEdges(dsData);
+            LoadNodes(dsModel);
+            LoadEdges(dsModel);
 
             // Set dirty when the loading is finished.
-            EditorUtility.SetDirty(dsData);
+            EditorUtility.SetDirty(dsModel);
         }
 
 
         /// <summary>
-        /// Load all the nodes' data and create them back on the graph.
+        /// Load the node models and spawn the nodes to the graph.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to load the data from.</param>
-        void LoadNodes(DialogueSystemData dsData)
+        /// <param name="dsModel">The dialogue system model to set for.</param>
+        void LoadNodes(DialogueSystemModel dsModel)
         {
-            var dataCount = dsData.NodeData.Count;
+            var modelCount = dsModel.NodeModels.Count;
 
-            for (int i = 0; i < dataCount; i++)
+            for (int i = 0; i < modelCount; i++)
             {
                 graphViewer.Add(
-                    NodeManager.Instance.Spawn(graphViewer, headBar, data: dsData.NodeData[i])
+                    NodeManager.Instance.Spawn(graphViewer, headBar, model: dsModel.NodeModels[i])
                 );
             }
         }
 
 
         /// <summary>
-        /// Load all the edges' data and create them back on the graph.
+        /// Load the edge model and connects the ports on the graph.
         /// and attempt to connect the previously linked nodes again.
         /// </summary>
-        /// <param name="dsData">The dialogue system data to load the data from.</param>
-        void LoadEdges(DialogueSystemData dsData)
+        /// <param name="dsModel">The dialogue system model to set for.</param>
+        void LoadEdges(DialogueSystemModel dsModel)
         {
-            var dataCount = dsData.EdgeData.Count;
+            var modelCount = dsModel.EdgeModels.Count;
 
-            for (int i = 0; i < dataCount; i++)
+            for (int i = 0; i < modelCount; i++)
             {
-                var data = dsData.EdgeData[i];
+                var model = dsModel.EdgeModels[i];
 
-                // Try to find the output port that matches the data's output port GUID.
-                if (graphViewer.PortByPortGUID.TryGetValue(data.OutputPortGUID, out PortBase output))
+                // Try to find the output port that matches the model's output port GUID.
+                if (graphViewer.PortByPortGUID.TryGetValue(model.OutputPortGUID, out PortBase output))
                 {
-                    // Try to find the input port that matches the data's input port GUID.
-                    if (graphViewer.PortByPortGUID.TryGetValue(data.InputPortGUID, out PortBase input))
+                    // Try to find the input port that matches the model's input port GUID.
+                    if (graphViewer.PortByPortGUID.TryGetValue(model.InputPortGUID, out PortBase input))
                     {
                         graphViewer.Add(
-                            EdgeManager.Instance.Connect(output, input, data.PortType)
+                            EdgeManager.Instance.Connect(output, input, model.PortType)
                         );
                     }
                 }

@@ -60,10 +60,10 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the modifier values to the given data.
+        /// Save the modifier values to the event modifier model.
         /// </summary>
-        /// <param name="data">The data to save to.</param>
-        public void SaveModifierValue(EventModifierData data)
+        /// <param name="model">The event modifier model to set for.</param>
+        public void SaveModifierValue(EventModifierModel model)
         {
             SaveFolder();
 
@@ -73,26 +73,26 @@ namespace AG.DS
 
             void SaveFolder()
             {
-                FolderView.Save(data.FolderData);
+                FolderView.Save(model.FolderModel);
             }
 
             void SaveDialogueEvent()
             {
-                data.DialogueEventData = DialogueEventObjectFieldView.Value;
+                model.DialogueEvent = DialogueEventObjectFieldView.Value;
             }
 
             void SaveDelaySecondsInteger()
             {
-                data.DelaySecondsIntegerData = DelaySecondsIntegerFieldView.IntegerField.value;
+                model.DelaySecondsInteger = DelaySecondsIntegerFieldView.IntegerField.value;
             }
         }
 
 
         /// <summary>
-        /// Load the modifier values from the given data.
+        /// Load the modifier values from the event modifier model.
         /// </summary>
-        /// <param name="data">The data to load from.</param>
-        public void LoadModifierValue(EventModifierData data)
+        /// <param name="model">The event modifier model to set for.</param>
+        public void LoadModifierValue(EventModifierModel model)
         {
             LoadFolder();
 
@@ -102,17 +102,17 @@ namespace AG.DS
 
             void LoadFolder()
             {
-                FolderView.Load(data: data.FolderData);
+                FolderView.Load(model: model.FolderModel);
             }
 
             void LoadDialogueEvent()
             {
-                DialogueEventObjectFieldView.Load(data: data.DialogueEventData);
+                DialogueEventObjectFieldView.Load(value: model.DialogueEvent);
             }
 
             void LoadDelaySecondsInteger()
             {
-                DelaySecondsIntegerFieldView.Load(data: data.DelaySecondsIntegerData);
+                DelaySecondsIntegerFieldView.Load(value: model.DelaySecondsInteger);
             }
         }
 

@@ -8,7 +8,7 @@ namespace AG.DS
         EventNodeView,
         EventNodeSerializer,
         EventNodeCallback,
-        EventNodeData
+        EventNodeModel
     >
     {
         // ----------------------------- Constructor -----------------------------
