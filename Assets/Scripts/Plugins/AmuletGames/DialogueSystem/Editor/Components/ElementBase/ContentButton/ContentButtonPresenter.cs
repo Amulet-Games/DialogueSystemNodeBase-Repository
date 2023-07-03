@@ -29,6 +29,8 @@ namespace AG.DS
 
             AddElementsToContentButton();
 
+            SetupStyleSheet();
+
             return contentButton;
 
             void SetupContainer()
@@ -59,6 +61,11 @@ namespace AG.DS
             {
                 contentButton.Add(contentButton.Label);
                 contentButton.Add(contentButton.IconImage);
+            }
+
+            void SetupStyleSheet()
+            {
+                contentButton.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSContentButtonStyle);
             }
         }
     }

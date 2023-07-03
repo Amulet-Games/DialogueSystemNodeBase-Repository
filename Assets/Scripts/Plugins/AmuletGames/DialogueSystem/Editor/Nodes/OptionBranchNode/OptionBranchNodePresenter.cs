@@ -64,7 +64,7 @@ namespace AG.DS
         {
             SetupContentButton();
 
-            SetupOptionBranchGroup();
+            SetupOptionBranch();
 
             void SetupContentButton()
             {
@@ -77,7 +77,7 @@ namespace AG.DS
                 node.titleContainer.Add(view.ContentButton);
             }
 
-            void SetupOptionBranchGroup()
+            void SetupOptionBranch()
             {
                 VisualElement mainContainer;
                 VisualElement outerContainer;
@@ -101,13 +101,13 @@ namespace AG.DS
                 void SetupContainers()
                 {
                     mainContainer = new();
-                    mainContainer.AddToClassList(StyleConfig.OptionBranchNode_MainContainer);
+                    mainContainer.AddToClassList(StyleConfig.OptionBranch_MainContainer);
 
                     outerContainer = new();
-                    outerContainer.AddToClassList(StyleConfig.OptionBranchNode_OuterContainer);
+                    outerContainer.AddToClassList(StyleConfig.OptionBranch_OuterContainer);
 
                     InnerContainer = new();
-                    InnerContainer.AddToClassList(StyleConfig.OptionBranchNode_InnerContainer);
+                    InnerContainer.AddToClassList(StyleConfig.OptionBranch_InnerContainer);
                 }
 
                 void SetupBranchIconImage()
@@ -115,7 +115,7 @@ namespace AG.DS
                     branchIconImage = CommonImagePresenter.CreateElement
                     (
                         imageSprite: ConfigResourcesManager.SpriteConfig.OptionBranchIconSprite,
-                        imageUSS01: StyleConfig.OptionBranchNode_Icon_Image
+                        imageUSS01: StyleConfig.OptionBranch_Icon_Image
                     );
                 }
 
@@ -124,7 +124,7 @@ namespace AG.DS
                     branchTitleLabel = CommonLabelPresenter.CreateElement
                     (
                         labelText: StringConfig.OptionBranchNode_BranchTitleLabel_LabelText,
-                        labelUSS: StyleConfig.OptionBranchNode_Title_Label
+                        labelUSS: StyleConfig.OptionBranch_Title_Label
                     );
                 }
 
@@ -134,7 +134,7 @@ namespace AG.DS
                     (
                         isMultiLine: false,
                         placeholderText: view.BranchTitleTextFieldView.PlaceholderText,
-                        fieldUSS: StyleConfig.OptionBranchNode_Title_TextField
+                        fieldUSS: StyleConfig.OptionBranch_Title_TextField
                     );
                 }
 

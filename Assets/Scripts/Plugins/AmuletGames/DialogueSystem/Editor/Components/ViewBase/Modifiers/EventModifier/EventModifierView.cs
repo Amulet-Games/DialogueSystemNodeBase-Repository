@@ -5,9 +5,9 @@ namespace AG.DS
     public class EventModifierView
     {
         /// <summary>
-        /// The modifier's folder.
+        /// Folder that contains all the modifier's elements.
         /// </summary>
-        public FolderView FolderView;
+        public Folder Folder;
 
 
         /// <summary>
@@ -52,7 +52,6 @@ namespace AG.DS
         /// </summary>
         public EventModifierView()
         {
-            FolderView = new();
             DialogueEventObjectFieldView = new();
             DelaySecondsIntegerFieldView = new();
         }
@@ -73,7 +72,7 @@ namespace AG.DS
 
             void SaveFolder()
             {
-                FolderView.Save(model.FolderModel);
+                Folder.Save(model.FolderModel);
             }
 
             void SaveDialogueEvent()
@@ -102,7 +101,7 @@ namespace AG.DS
 
             void LoadFolder()
             {
-                FolderView.Load(model: model.FolderModel);
+                Folder.Load(model: model.FolderModel);
             }
 
             void LoadDialogueEvent()

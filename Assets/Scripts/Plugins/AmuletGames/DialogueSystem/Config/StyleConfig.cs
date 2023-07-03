@@ -8,6 +8,22 @@ namespace AG.DS
         public const string Global_Interactable_Disable = "global_Picking_Ignore";
         #endregion
 
+        #region Elements Common USS Classes.
+        /*< -------------------- Text Field -------------------- >*/
+        public const string TextField_Empty = "textField_Empty";
+        public const string TextField_Input = "text-field-input";
+        public const string TextField_Element = "text-field-element";
+
+        /*< -------------------- Object Field -------------------- >*/
+        public const string ObjectField_Empty = "objectField_Empty";
+
+        /*< -------------------- Float Field -------------------- >*/
+        public const string FloatField_Empty = "floatField_Empty";
+
+        /*< -------------------- Button -------------------- >*/
+        public const string Button_Background_Highlighter = "button-background-highlighter";
+        #endregion
+
         #region HeadBar USS Classes.
         public const string HeadBar_Main = "headBar_Main";
         public const string HeadBar_ButtonContainer = "headBar_ButtonContainer";
@@ -129,24 +145,18 @@ namespace AG.DS
         #endregion
 
         #region Folder Common USS Classes.
-        public const string Folder_MainContainer = "folder_MainContainer";
+        public const string Folder_Main = "folder_Main";
         public const string Folder_Title_Container = "folder_Title_Container";
         public const string Folder_ExpandFolder_Button = "folder_ExpandFolder_Button";
         public const string Folder_Title_TextField = "folder_Title_TextField";
         public const string Folder_ContentContainer = "folder_ContentContainer";
-        public const string Folder_Expanded = "folder_Expanded";
+        public const string Folder_Closed = "folder_Closed";
         #endregion
 
         #region Content Button USS Classes.
         public const string ContentButton_Main = "contentButton_Main";
         public const string ContentButton_Title_Label = "contentButton_Title_Label";
         public const string ContentButton_Icon_Image = "contentButton_Icon_Image";
-        #endregion
-
-        #region Field Common USS Classes.
-        public const string TextField_Empty = "textField_Empty";
-        public const string ObjectField_Empty = "objectField_Empty";
-        public const string FloatField_Empty = "floatField_Empty";
         #endregion
 
         #region Field Icon USS Classes.
@@ -157,13 +167,18 @@ namespace AG.DS
 
         #region Node Common USS Classes.
         /*< -------------------- Border -------------------- >*/
+        public const string Node = "Node";
         public const string Node_Border = "node_Border";
         public const string Node_Border_Hover = "node_Border_Hover";
 
         /*< -------------------- Node Title -------------------- >*/
         public const string Node_Title_Container = "node_Title_Container";
+        public const string node_Title_Main = "node_Title_Main";
         public const string Node_Title_TextField = "node_Title_TextField";
         public const string Node_EditTitle_Button = "node_EditTitle_Button";
+
+        /*< -------------------- Node Top -------------------- >*/
+        public const string Node_Top_Container = "node_Top_Container";
 
         /*< -------------------- Input / Output Container -------------------- >*/
         public const string Node_Input_Container = "node_Input_Container";
@@ -179,21 +194,21 @@ namespace AG.DS
         #endregion
 
         #region Node Option Branch USS Classes.
-        public const string OptionBranchNode_MainContainer = "optionBranchNode_MainContainer";
-        public const string OptionBranchNode_OuterContainer = "optionBranchNode_OuterContainer";
-        public const string OptionBranchNode_Icon_Image = "optionBranchNode_Icon_Image";
-        public const string OptionBranchNode_InnerContainer = "optionBranchNode_InnerContainer";
-        public const string OptionBranchNode_Title_Label = "optionBranchNode_Title_Label";
-        public const string OptionBranchNode_Title_TextField = "optionBranchNode_Title_TextField";
+        public const string OptionBranch_MainContainer = "optionBranch_MainContainer";
+        public const string OptionBranch_OuterContainer = "optionBranch_OuterContainer";
+        public const string OptionBranch_Icon_Image = "optionBranch_Icon_Image";
+        public const string OptionBranch_InnerContainer = "optionBranch_InnerContainer";
+        public const string OptionBranch_Title_Label = "optionBranch_Title_Label";
+        public const string OptionBranch_Title_TextField = "optionBranch_Title_TextField";
         #endregion
 
         #region Node Option Root USS Classes.
-        public const string OptionRootNode_MainContainer = "optionRootNode_MainContainer";
-        public const string OptionRootNode_OuterContainer = "optionRootNode_OuterContainer";
-        public const string OptionRootNode_Icon_Image = "optionRootNode_Icon_Image";
-        public const string OptionRootNodeInnerContainer = "optionRootNode_InnerContainer";
-        public const string OptionRootNode_Title_Label = "optionRootNode_Title_Label";
-        public const string OptionRootNode_Title_TextField = "optionRootNode_Title_TextField";
+        public const string OptionRoot_MainContainer = "optionRoot_MainContainer";
+        public const string OptionRoot_OuterContainer = "optionRoot_OuterContainer";
+        public const string OptionRoot_Icon_Image = "optionRoot_Icon_Image";
+        public const string OptionRoot_InnerContainer = "optionRoot_InnerContainer";
+        public const string OptionRoot_Title_Label = "optionRoot_Title_Label";
+        public const string OptionRoot_Title_TextField = "optionRoot_Title_TextField";
         #endregion
 
         #region Node Preview USS Classes.

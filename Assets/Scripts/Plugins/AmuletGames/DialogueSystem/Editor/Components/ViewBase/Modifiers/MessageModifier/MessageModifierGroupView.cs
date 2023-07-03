@@ -154,7 +154,7 @@ namespace AG.DS
             void AddModifierToCache()
             {
                 // Add modifier folder's main box to the stitcher. 
-                modifierContainer.Add(modifier.Folder.MainContainer);
+                modifierContainer.Add(modifier.Folder);
 
                 // Add modifier to the internal cache.
                 modifiers.Add(modifier);
@@ -229,7 +229,7 @@ namespace AG.DS
         void MoveUpButtonClickAction(MessageModifier modifier)
         {
             // Swap-from element.
-            var swapFromElement = modifier.Folder.MainContainer;
+            var swapFromElement = modifier.Folder;
 
             // Swap-from element's sibling index.
             var swapFromIndex = modifierContainer.IndexOf(swapFromElement);
@@ -238,7 +238,7 @@ namespace AG.DS
             var swapToModifier = modifiers[swapFromIndex - 1];
 
             // Swap-to element.
-            var swapToElement = swapToModifier.Folder.MainContainer;
+            var swapToElement = swapToModifier.Folder;
 
             // Swap hierarchy position.
             modifiers[swapFromIndex - 1] = modifier;
@@ -291,7 +291,7 @@ namespace AG.DS
         void MoveDownButtonClickAction(MessageModifier modifier)
         {
             // Swap-from element.
-            var swapFromElement = modifier.Folder.MainContainer;
+            var swapFromElement = modifier.Folder;
 
             // Swap-from element's sibling index.
             var swapFromIndex = modifierContainer.IndexOf(swapFromElement);
@@ -300,7 +300,7 @@ namespace AG.DS
             var swapToModifier = modifiers[swapFromIndex + 1];
 
             // Swap-to element.
-            var swapToElement = swapToModifier.Folder.MainContainer;
+            var swapToElement = swapToModifier.Folder;
 
             // Swap hierarchy position.
             modifiers[swapFromIndex + 1] = modifier;
@@ -376,7 +376,7 @@ namespace AG.DS
                 modifiers.Remove(modifier);
 
                 // Remove the element from the group container.
-                modifierContainer.Remove(modifier.Folder.MainContainer);
+                modifierContainer.Remove(modifier.Folder);
             }
 
             void SetEnabledButtons()

@@ -83,7 +83,7 @@ namespace AG.DS
             void SetupEventModifierGroup()
             {
                 EventModifierGroupPresenter.CreateElement(view: view.EventModifierGroupView);
-                node.ContentContainer.Add(view.EventModifierGroupView.MainContainer);
+                node.ContentContainer.Add(view.EventModifierGroupView.GroupContainer);
             }
 
             void CreateEventModifier()

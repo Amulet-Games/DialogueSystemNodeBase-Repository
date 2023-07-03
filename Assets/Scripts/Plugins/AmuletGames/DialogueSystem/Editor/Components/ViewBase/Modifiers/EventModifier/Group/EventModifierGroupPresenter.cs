@@ -8,8 +8,8 @@ namespace AG.DS
         /// <param name="view">The event modifier group view to set for.</param>
         public static void CreateElement(EventModifierGroupView view)
         {
-            view.MainContainer = new();
-            view.MainContainer.AddToClassList(StyleConfig.EventModifierGroup_MainContainer);
+            view.GroupContainer = new();
+            view.GroupContainer.AddToClassList(StyleConfig.EventModifierGroup_MainContainer);
         }
     }
 }

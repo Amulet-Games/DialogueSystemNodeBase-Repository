@@ -2,13 +2,8 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class FolderView
+    public class Folder : VisualElement
     {
-        /// <summary>
-        /// The element that contains the title and content container.
-        /// </summary>
-        public VisualElement MainContainer;
-
         /// <summary>
         /// The element that contains other visual elements within the folder's title section.
         /// </summary>
@@ -41,9 +36,9 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the folder view class.
+        /// Constructor of the folder element class.
         /// </summary>
-        public FolderView()
+        public Folder()
         {
             TitleTextFieldView = new();
         }
@@ -81,19 +76,14 @@ namespace AG.DS
         {
             IsExpand = value;
 
-            // change content container display.
             ContentContainer.SetDisplay(value: IsExpand);
 
-            // Change expanded style class.
-            if (IsExpand)
-            {
-                MainContainer.AddToClassList(StyleConfig.Folder_Expanded);
+            if (IsExpand) {
+                RemoveFromClassList(StyleConfig.Folder_Closed);
+            } else {
+                AddToClassList(StyleConfig.Folder_Closed);
             }
-            else
-            {
-                MainContainer.RemoveFromClassList(StyleConfig.Folder_Expanded);
-            }
-
+            
             // Change expand folder button's sprite
             ExpandButton.style.backgroundImage = IsExpand
                 ? ConfigResourcesManager.SpriteConfig.FolderExpandButtonOpenIconSprite.texture
@@ -104,14 +94,14 @@ namespace AG.DS
         /// <summary>
         /// Add the given element to the folder title container.
         /// </summary>
-        /// <param name="element">The element to add.</param>
+        /// <param name="element">The element to set for.</param>
         public void AddElementToTitle(VisualElement element) => TitleContainer.Add(child: element);
 
 
         /// <summary>
         /// Add the given element to the folder content container.
         /// </summary>
-        /// <param name="element">The element to add.</param>
+        /// <param name="element">The element to set for.</param>
         public void AddElementToContent(VisualElement element) => ContentContainer.Add(child: element);
 
 

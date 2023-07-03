@@ -37,8 +37,6 @@ namespace AG.DS
             {
                 var styleSheetConfig = ConfigResourcesManager.StyleSheetConfig;
                 styleSheets.Add(styleSheetConfig.DSEventNodeStyle);
-                styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
-                styleSheets.Add(styleSheetConfig.DSFolderStyle);
                 styleSheets.Add(styleSheetConfig.DSEventModifierStyle);
                 styleSheets.Add(styleSheetConfig.DSEventModifierGroupStyle);
             }

@@ -1,4 +1,4 @@
-/* =========================================================== Event Modfiier =========================================================== */
+/* =========================================================== Event Modifier =========================================================== */
 
 /*< ---------------------------------------------------------- Helper Button Container >*/
 .eventModifier_HelperButton_Container {
@@ -18,19 +18,15 @@
 /*< ---------------------------------------------------------- Move Up Button >*/
 .eventModifier_MoveUp_Button {
 
-	background-color: rgba(0, 0, 0, 0);
-	border-color: rgba(0, 0, 0, 0);
+	align-self: center;
 
 	height: 21px;
 	width: 21px;
 
-	align-self: center;
+	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 2.5px 2px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 4px 4px 4px 4px;
+	margin: 3px 2px 0px 0px;
 }
 
 .eventModifier_MoveUp_Button:disabled {
@@ -38,28 +34,34 @@
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier_MoveUp_Button:enabled:hover {
-
+.eventModifier_MoveUp_Button:enabled:hover
+.button-background-highlighter {
+	
+	align-self: center;
+	
 	background-color: rgba(255, 255, 255, 0.133);
+
+	height: 21px;
+	width: 21px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
 }
 
 
 /*< ---------------------------------------------------------- Move Down Button >*/
 .eventModifier_MoveDown_Button {
 
-	background-color: rgba(0, 0, 0, 0);
-	border-color: rgba(0, 0, 0, 0);
+	align-self: center;
 
 	height: 21px;
 	width: 21px;
 
-	align-self: center;
+	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 2.5px 0px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 4px 4px 4px 4px;
+	margin: 3px 0px 0px 0px;
 }
 
 .eventModifier_MoveDown_Button:disabled {
@@ -67,28 +69,34 @@
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier_MoveDown_Button:enabled:hover {
-
+.eventModifier_MoveDown_Button:enabled:hover
+.button-background-highlighter {
+	
+	align-self: center;
+	
 	background-color: rgba(255, 255, 255, 0.133);
+
+	height: 21px;
+	width: 21px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
 }
 
 
 /*< ---------------------------------------------------------- Rename Button >*/
 .eventModifier_Rename_Button {
 
-	background-color: rgba(0, 0, 0, 0);
-	border-color: rgba(0, 0, 0, 0);
+	align-self: center;
 
 	height: 24px;
 	width: 24px;
 
-	align-self: center;
+	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 2px -2px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 4px 4px 4px 4px;
+	margin: 2.5px -2px 0px 0px;
 }
 
 .eventModifier_Rename_Button:disabled {
@@ -96,28 +104,34 @@
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier_Rename_Button:enabled:hover {
+.eventModifier_Rename_Button:enabled:hover
+.button-background-highlighter {
+	
+	align-self: center;
 	
 	background-color: rgba(255, 255, 255, 0.133);
+
+	height: 21px;
+	width: 21px;
+
+	/* top - right - bottom - left */
+	margin: 1px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
 }
 
 
 /*< ---------------------------------------------------------- Remove Button >*/
 .eventModifier_Remove_Button {
 
-	background-color: rgba(0, 0, 0, 0);
-	border-color: rgba(0, 0, 0, 0);
+	align-self: center;
 
 	height: 27px;
 	width: 26.5px;
 
-	align-self: center;
+	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 3px 2.5px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 4px 4px 4px 4px;
+	margin: 4px 2.5px 0px 0px;
 }
 
 .eventModifier_Remove_Button:disabled {
@@ -125,9 +139,19 @@
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier_Remove_Button:enabled:hover {
-
+.eventModifier_Remove_Button:enabled:hover
+.button-background-highlighter {
+	
+	align-self: center;
+	
 	background-color: rgba(255, 255, 255, 0.133);
+	
+	height: 21px;
+	width: 21px;
+
+	/* top - right - bottom - left */
+	margin: 2.5px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
 }
 
 
@@ -267,7 +291,7 @@
 .unity-object-field-display 
 .unity-object-field-display__label {
 	
-	color: rgba(255, 255, 255, 1);
+	color: white;
 
 	font-size: 13px;
 

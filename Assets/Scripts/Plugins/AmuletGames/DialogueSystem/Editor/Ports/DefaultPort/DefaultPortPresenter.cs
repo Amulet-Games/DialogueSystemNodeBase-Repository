@@ -14,7 +14,7 @@ namespace AG.DS
         /// <param name="direction">The direction type to set for.</param>
         /// <param name="capacity">The capacity type to set for.</param>
         /// <param name="label">The port's label to set for.</param>
-        /// <param name="isSiblings">Is the container that the port is created in contains other ports?</param>
+        /// <param name="isSiblings">Is this port a sibling to another already existed port?</param>
         /// <returns>A new default port element.</returns>
         public static DefaultPort CreateElement<TEdge>
         (
@@ -32,13 +32,13 @@ namespace AG.DS
 
             CreatePort();
 
-            SetupDetail();
+            SetupDetails();
 
             SetupEdgeConnector();
 
-            ClearPresetStyleSheets();
+            SetupStyleSheet();
 
-            OverridePortDefaultStyle();
+            SetupStyleClass();
 
             return port;
 
@@ -55,7 +55,7 @@ namespace AG.DS
                 isInput = direction == Direction.Input;
             }
 
-            void SetupDetail()
+            void SetupDetails()
             {
                 port.name = Guid.NewGuid().ToString();
                 port.portName = label;
@@ -72,12 +72,13 @@ namespace AG.DS
                 port.AddManipulator(manipulator: port.m_EdgeConnector);
             }
 
-            void ClearPresetStyleSheets()
+            void SetupStyleSheet()
             {
                 port.styleSheets.Clear();
+                port.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSDefaultPortStyle);
             }
 
-            void OverridePortDefaultStyle()
+            void SetupStyleClass()
             {
                 port.m_ConnectorBoxCap.pickingMode = PickingMode.Position;
 
@@ -85,6 +86,8 @@ namespace AG.DS
                 port.m_ConnectorBox.name = "";
                 port.m_ConnectorText.name = "";
                 port.m_ConnectorBoxCap.name = "";
+
+                port.ClearClassList();
 
                 // Add custom USS class.
                 if (isInput)

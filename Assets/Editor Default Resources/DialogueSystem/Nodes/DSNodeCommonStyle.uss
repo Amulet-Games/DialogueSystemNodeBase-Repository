@@ -1,27 +1,17 @@
-﻿.node {
-
-	/* top - right - bottom - left */
-	padding: 0px 0px 0px 0px;
-}
+﻿/* =========================================================== Border =========================================================== */
 
 .node_Border {
 
-	background-color: rgba(0, 0, 0, 0);
 	border-color: rgba(59, 219, 218, 0.8);
-
-	overflow: visible;
 
 	flex-grow: 1;
 	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
 	border-radius: 6px 6px 6px 6px;
 }
 
-.node:checked
+.Node:checked
 .node_Border,
 .node_Border_Hover,
 .node_Border:focus {
@@ -32,153 +22,169 @@
 }
 
 
-/* ----------------------------------------------------------- Node Title ----------------------------------------------------------- */
-#title {
+/* =========================================================== Title =========================================================== */
+
+/*< ---------------------------------------------------------- Container >*/
+.node_Title_Container {
 	
 	background-color: rgba(0, 0, 0, 0);
 
 	height: 35px;
+
+	flex-direction: row;
+
+	justify-content: space-between;
 }
 
-.node_Title_Container {
+
+/*< ---------------------------------------------------------- Main >*/
+.node_Title_Main {
 
 	overflow: hidden;
 
-	align-content: flex-start;
-	align-items: stretch;
-	align-self: auto;
-
-	flex-grow: 1;
 	flex-direction: row;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
+	border-radius: 4px 0px 0px 0px;
 }
 
+
+/*< ---------------------------------------------------------- Text Field >*/
 .node_Title_TextField {
 
+	flex-grow: 1;
+	flex-shrink: 0;
+	
 	white-space: nowrap;
 
-	flex-grow: 1;
-	flex-shrink: 0;
-	flex-basis: auto;
-
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 0px;
+	margin: 1px 0px 0px 0.5px;
+
+	--unity-selection-color: rgba(61, 128, 223, 0.650);
+	--unity-cursor-color: rgba(180, 180, 180, 1);
 }
 
 .node_Title_TextField
-.unity-text-field__input {
-
-	background-color: rgba(0, 0, 0, 0);
-
-	color: white;
-
-	font-size: 18px;
+.text-field-input {
 	
-	flex-grow: 1;
-	flex-shrink: 0;
-	flex-basis: auto;
+	cursor: text;
 
+	flex-grow: 1;
+
+	/* top - right - bottom - left */
+	padding: 0px 9px 0px 9px;
+	
+	-unity-overflow-clip-box: content-box;
 	-unity-text-align: middle-left;
 
+	--unity-sync-text-editor: true;
+}
+
+.node_Title_TextField:focus
+.text-field-input {
+
+	overflow: visible;
+
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 0px;
-	padding: 0px 9px 0px 9px;
-	border-radius: 2px 2px 2px 2px;
-	border-width: 0px 0px 0px 0px;
+	margin: 1.5px 0px 0px -4px;
 }
 
 .node_Title_TextField
-.unity-text-field__input:focus {
+.text-field-element {
+	
+	color: white;
 
-	background-color: rgba(46, 46, 46, 1);
+	height: 31px;
+
+	font-size: 17px;
+
+	flex-grow: 1;
+	flex-shrink: 0;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
 
 	/* top - right - bottom - left */
-	margin: 0px 2px 0px 0px;
-	padding: 0px 9px 0px 7px;
-
-	border-radius: 2px 2px 2px 2px;
-	border-width: 2px 2px 2px 2px;
+	border-radius: 4px 4px 4px 4px;
 }
 
-.node_EditTitle_Button {
+.node_Title_TextField:focus
+.text-field-element {
 
-	background-color: rgba(0, 0, 0, 0);
-
-	height: 25px;
-	width: 23px;
-
-	flex-grow: 0;
-	flex-shrink: 0; 
+	background-color: rgba(32, 32, 32, 1);
+	border-color: rgba(58, 121, 187, 1);
+	
+	height: 30px;
 
 	/* top - right - bottom - left */
-	margin: 0px 9px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 3px 3px 3px 3px;
+	margin: 0px 0px 0px -1.5px;
+	padding: 0px 0px 1.5px 4px;
+	border-width: 1px 1px 1px 1px;
+}
+
+
+/*< ---------------------------------------------------------- Edit Title Button >*/
+.node_EditTitle_Button {
+
+	height: 27px;
+	width: 27px;
+
+	align-self: center;
+
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 6.5px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
 }
 
 .node_EditTitle_Button:hover {
 
-	background-color: rgba(0, 0, 0, 0.25);
-
-	/* top - right - bottom - left */
-	border-width: 0px 0px 0px 0px;
+	background-color: rgba(0, 0, 0, 0.3);
 }
 
 
-/* -------------------------------------------------------- Input / Output Containers --------------------------------------------------------- */
-#top {
-	
+/* =========================================================== Top =========================================================== */
+
+/*< ---------------------------------------------------------- Container >*/
+.node_Top_Container {
+
 	background-color: rgba(42, 42, 42, 1);
 
 	flex-direction: row;
 }
 
+
+/* =========================================================== Input / Output =========================================================== */
+
+/*< ---------------------------------------------------------- Input Container >*/
 .node_Input_Container {
 
 	background-color: rgba(42, 42, 42, 1);
 
-	height: auto;
-	width: auto;
-
-	align-content: flex-start;
-	align-items: stretch;
-	align-self: auto;
-
 	flex-grow: 1;
 	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 0px;
 	padding: 10px 0px 10px 0px;
 }
 
+
+/*< ---------------------------------------------------------- Output Container >*/
 .node_Output_Container {
 
 	background-color: rgba(42, 42, 42, 1);
 
-	height: auto;
-	width: auto;
-
-	align-content: flex-start;
-	align-items: stretch;
-	align-self: auto;
-
 	flex-grow: 1;
 	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 0px;
 	padding: 10px 0px 10px 0px;
 }
 
 
-/* -------------------------------------------------------- Content Containers --------------------------------------------------------- */
+/* =========================================================== Content =========================================================== */
+
+/*< ---------------------------------------------------------- Container >*/
 .node_Content_Container {
 
 	background-color: rgba(35, 35, 35, 1);

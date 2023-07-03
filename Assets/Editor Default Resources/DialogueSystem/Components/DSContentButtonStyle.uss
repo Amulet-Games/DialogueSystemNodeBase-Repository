@@ -1,68 +1,62 @@
-/*< -------------------- Common -------------------- >*/
+/* =========================================================== Content Button =========================================================== */
+
+/*< ---------------------------------------------------------- Main >*/
 .contentButton_Main {
 
-	/*background-color: rgba(70, 70, 70, 1);
+	align-items: flex-start;
+	align-self: auto;
+
+	background-color: rgba(70, 70, 70, 1);
 
 	flex-direction: row;
-	flex-grow: 0;
+	flex-grow: 1;
 	flex-shrink: 0;
-	justify-content: flex-end;
+
+	justify-content: space-between;
 
 	/* top - right - bottom - left */
-	/*padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;*/
+	padding: 0px 0px 0px 0px;
+	border-width: 0px 0px 0px 0px;
+	border-radius: 0px 4px 0px 0px;
 }
 
 .contentButton_Main:hover {
 
-	/*background-color: rgba(88, 88, 88, 1);*/
+	background-color: rgba(88, 88, 88, 1);
 }
 
 
-/*< -------------------- Content Button -------------------- >*/
-.contentButton_AddCondition_Label {
+/*< ---------------------------------------------------------- Title Label >*/
+.contentButton_Title_Label {
 	
-	/*height: 30px;
-
+	color: white;
+	
+	height: 30px;
+	
+	font-size: 17.5px;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
 	-unity-text-align: middle-left;
 
-	font-size: 17px;*/
+	letter-spacing: -2px;
+	word-spacing: 11px;
 
 	/* top - right - bottom - left */
-	/*margin: 0px 0px 0px 23px;
-	padding: 0px 0px 1px 0px;
+	margin: 2.5px 0px 0px 12px;
+	padding: 0px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
-	border-radius: 0px 0px 0px 0px;*/
+	border-radius: 0px 0px 0px 0px;
 }
 
-.contentButton_AddEntry_Image,
-.contentButton_AddCondition_Image,
-.contentButton_AddMessage_Image {
 
-	/*height: 30px;
-	width: 30px;
+/*< ---------------------------------------------------------- Icon Image >*/
+.contentButton_Icon_Image {
 
-	align-self: flex-end;
+	align-self: auto;
 
-	flex-shrink: 0;
-	flex-direction: row;*/
-
-	/* top - right - bottom - left */
-	/*margin: 0px 13.5px 1px 10.5px;
-	padding: 2.5px 0px 0px 0px;*/
-}
-
-.contentButton_AddEvent_Image {
-
-	/*height: 30px;
-	width: 32px;
-
-	align-self: flex-end;
-	
 	flex-shrink: 0;
 	flex-direction: row;
 
 	/* top - right - bottom - left */
-	/*margin: 0px 13.5px 0px 10.5px;
-	padding: 1.5px 0px 0px 0px;*/
+	padding: 0px 0px 0px 0px;
 }

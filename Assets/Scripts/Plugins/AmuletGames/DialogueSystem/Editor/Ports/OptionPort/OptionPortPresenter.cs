@@ -26,13 +26,13 @@ namespace AG.DS
 
             CreatePort();
 
-            SetupDetail();
+            SetupDetails();
 
             SetupEdgeConnector();
 
-            ClearPresetStyleSheets();
+            SetupStyleSheet();
 
-            OverridePortDefaultStyle();
+            SetupStyleClass();
 
             return port;
 
@@ -49,7 +49,7 @@ namespace AG.DS
                 isInput = direction == Direction.Input;
             }
 
-            void SetupDetail()
+            void SetupDetails()
             {
                 port.name = Guid.NewGuid().ToString();
 
@@ -74,12 +74,13 @@ namespace AG.DS
                 port.AddManipulator(manipulator: port.m_EdgeConnector);
             }
 
-            void ClearPresetStyleSheets()
+            void SetupStyleSheet()
             {
                 port.styleSheets.Clear();
+                port.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSOptionPortStyle);
             }
 
-            void OverridePortDefaultStyle()
+            void SetupStyleClass()
             {
                 port.m_ConnectorBoxCap.pickingMode = PickingMode.Position;
 
@@ -87,6 +88,8 @@ namespace AG.DS
                 port.m_ConnectorBox.name = "";
                 port.m_ConnectorText.name = "";
                 port.m_ConnectorBoxCap.name = "";
+
+                port.ClearClassList();
 
                 // Add to custom USS class.
                 if (isInput)

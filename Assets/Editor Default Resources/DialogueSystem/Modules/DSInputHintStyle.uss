@@ -40,7 +40,7 @@
 /*< ---------------------------------------------------------- Text Label >*/
 .inputHint_TextLabel {
 
-	color: rgba(255, 255, 255, 1);
+	color: white;
 
 	align-self: center;
 	bottom: -1px;

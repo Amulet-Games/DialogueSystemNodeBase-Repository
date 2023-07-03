@@ -1,5 +1,3 @@
-using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -9,58 +7,48 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new graph title text field element.
         /// </summary>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
+        /// <param name="titleText">The title text to set for.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>
         /// <returns>A new graph title text field element.</returns>
         public static TextField CreateElement
         (
-            DialogueSystemModel dsModel,
+            string titleText,
             string fieldUSS
         )
         {
-            TextField graphTitleTextField;
+            TextField textField;
 
             CreateField();
 
             SetFieldDetails();
 
-            BindFieldToSerializedObject();
+            SetupStyleClass();
 
-            AddFieldToStyleClass();
-
-            return graphTitleTextField;
+            return textField;
 
             void CreateField()
             {
-                graphTitleTextField = new();
+                textField = new();
             }
 
             void SetFieldDetails()
             {
-                graphTitleTextField.SetValueWithoutNotify(dsModel.name);
-
-                // The new value can only be set by the user pressing Enter or Return key.
-                graphTitleTextField.isDelayed = true;
+                textField.SetValueWithoutNotify(titleText);
+                textField.isDelayed = true;
             }
 
-            void BindFieldToSerializedObject()
+            void SetupStyleClass()
             {
-                // Create the serialized object from the dialogue system model.
-                SerializedObject so = new(obj: dsModel);
+                var field_input = textField.GetFieldInput();
+                var text_element = textField.GetTextElement();
 
-                // Bind the new value.
-                graphTitleTextField.Bind(so);
+                textField.ClearClassList();
+                field_input.ClearClassList();
+                text_element.ClearClassList();
 
-                // Setup callback action when the bound serialized object's value has changed.
-                graphTitleTextField.TrackSerializedObjectValue(obj: so, so =>
-                {
-                    graphTitleTextField.SetValueWithoutNotify(so.targetObject.name);
-                });
-            }
-
-            void AddFieldToStyleClass()
-            {
-                graphTitleTextField.AddToClassList(fieldUSS);
+                textField.AddToClassList(fieldUSS);
+                field_input.AddToClassList(StyleConfig.TextField_Input);
+                text_element.AddToClassList(StyleConfig.TextField_Element);
             }
         }
     }

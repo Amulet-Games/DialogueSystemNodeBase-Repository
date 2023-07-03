@@ -24,9 +24,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The element that contains the modifiers in the group.
+        /// The element that contains all the modifiers within the group.
         /// </summary>
-        public Box MainContainer;
+        public Box GroupContainer;
 
 
         /// <summary>
@@ -65,16 +65,16 @@ namespace AG.DS
         void MoveUpButtonClickAction(EventModifierView modifier)
         {
             // Swap-from element.
-            var swapFromElement = modifier.FolderView.MainContainer;
+            var swapFromElement = modifier.Folder;
 
             // Swap-from element's sibling index.
-            var swapFromIndex = MainContainer.IndexOf(swapFromElement);
+            var swapFromIndex = GroupContainer.IndexOf(swapFromElement);
 
             // Swap-to modifier.
             var swapToModifier = modifiersCache[swapFromIndex - 1];
 
             // Swap-to element.
-            var swapToElement = swapToModifier.FolderView.MainContainer;
+            var swapToElement = swapToModifier.Folder;
 
             // Swap hierarchy position.
             modifiersCache[swapFromIndex - 1] = modifier;
@@ -121,16 +121,16 @@ namespace AG.DS
         void MoveDownButtonClickAction(EventModifierView modifier)
         {
             // Swap-from element.
-            var swapFromElement = modifier.FolderView.MainContainer;
+            var swapFromElement = modifier.Folder;
 
             // Swap-from element's sibling index.
-            var swapFromIndex = MainContainer.IndexOf(swapFromElement);
+            var swapFromIndex = GroupContainer.IndexOf(swapFromElement);
 
             // Swap-to modifier.
             var swapToModifier = modifiersCache[swapFromIndex + 1];
 
             // Swap-to element.
-            var swapToElement = swapToModifier.FolderView.MainContainer;
+            var swapToElement = swapToModifier.Folder;
 
             // Swap hierarchy position.
             modifiersCache[swapFromIndex + 1] = modifier;
@@ -176,7 +176,7 @@ namespace AG.DS
         /// <param name="modifier">The modifier of which the button belongs to.</param>
         void RenameButtonClickAction(EventModifierView modifier)
         {
-            modifier.FolderView.EditFolderTitle();
+            modifier.Folder.EditFolderTitle();
         }
 
 
@@ -196,7 +196,7 @@ namespace AG.DS
 
                 modifiersCache.Remove(modifier);
 
-                MainContainer.Remove(modifier.FolderView.MainContainer);
+                GroupContainer.Remove(modifier.Folder);
             }
 
             void SetEnabledButtons()
@@ -268,29 +268,29 @@ namespace AG.DS
 
             void LoadModifierModels()
             {
-                EventModifierCallback callback = new();
-                EventModifierView view;
-
                 modelCount = model.ModifierModels.Length;
                 for (int modifierIndex = 1; modifierIndex <= modelCount; modifierIndex++)
                 {
-                    view = new();
+                    EventModifierView view = new();
                     EventModifierPresenter.CreateElement
                     (
                         view: view,
                         index: modifierIndex
                     );
 
-                    callback.ResetInternal(
+                    new EventModifierCallback
+                    (
                         view: view,
                         moveUpButtonClickEvent: evt => MoveUpButtonClickAction(view),
                         moveDownButtonClickEvent: evt => MoveDownButtonClickAction(view),
                         renameButtonClickEvent: evt => RenameButtonClickAction(view),
-                        removeButtonClickEvent: evt => RemoveButtonClickAction(view)).RegisterEvents();
+                        removeButtonClickEvent: evt => RemoveButtonClickAction(view)
+                    )
+                    .RegisterEvents();
 
                     view.LoadModifierValue(model: model.ModifierModels[modifierIndex - 1]);
 
-                    MainContainer.Add(view.FolderView.MainContainer);
+                    GroupContainer.Add(view.Folder);
                     modifiersCache.Add(view);
                 }
 
@@ -348,14 +348,17 @@ namespace AG.DS
                     index: nextIndex
                 );
 
-                new EventModifierCallback(
+                new EventModifierCallback
+                (
                     view: view,
                     moveUpButtonClickEvent: evt => MoveUpButtonClickAction(view),
                     moveDownButtonClickEvent: evt => MoveDownButtonClickAction(view),
                     renameButtonClickEvent: evt => RenameButtonClickAction(view),
-                    removeButtonClickEvent: evt => RemoveButtonClickAction(view)).RegisterEvents();
+                    removeButtonClickEvent: evt => RemoveButtonClickAction(view)
+                )
+                .RegisterEvents();
 
-                MainContainer.Add(view.FolderView.MainContainer);
+                GroupContainer.Add(view.Folder);
             }
 
             void AddModifierToCache()
@@ -406,8 +409,8 @@ namespace AG.DS
 
             void OnModifierCreated()
             {
-                view.FolderView.SetIsExpand(value: true);
-                view.FolderView.EditFolderTitle();
+                view.Folder.SetIsExpand(value: false);
+                view.Folder.EditFolderTitle();
             }
         }
     }

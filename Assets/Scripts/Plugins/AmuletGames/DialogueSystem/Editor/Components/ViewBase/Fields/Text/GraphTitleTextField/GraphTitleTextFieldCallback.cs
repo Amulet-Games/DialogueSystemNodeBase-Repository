@@ -1,4 +1,5 @@
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -12,9 +13,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The asset instance id of the dialogue system model.
+        /// Reference the dialogue system model.
         /// </summary>
-        int dsModelInstanceId;
+        DialogueSystemModel dsModel;
 
 
         /// <summary>
@@ -23,23 +24,31 @@ namespace AG.DS
         DialogueEditorWindow dsWindow;
 
 
+        /// <summary>
+        /// The asset instance id of the dialogue system model.
+        /// </summary>
+        int dsModelInstanceId;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the graph title field callback class.
         /// </summary>
         /// <param name="view">The graph title text field view to set for.</param>
-        /// <param name="dsModelInstanceId">The dialogue system model asset instance id to set for.</param>
+        /// <param name="dsModel">The dialogue system model to set for.</param>
         /// <param name="dsWindow">The dialogue editor window to set for.</param>
         public GraphTitleTextFieldCallback
         (
             GraphTitleTextFieldView view,
-            int dsModelInstanceId,
+            DialogueSystemModel dsModel,
             DialogueEditorWindow dsWindow
         )
         {
             field = view.TextField;
-            this.dsModelInstanceId = dsModelInstanceId;
+            this.dsModel = dsModel;
             this.dsWindow = dsWindow;
+
+            dsModelInstanceId = dsModel.GetInstanceID();
         }
 
 
@@ -52,6 +61,8 @@ namespace AG.DS
             RegisterChangeEvent();
 
             RegisterFocusOutEvent();
+
+            RegisterSerializedObjectValueChangeEvent();
         }
 
 
@@ -67,6 +78,22 @@ namespace AG.DS
         /// </summary>
         void RegisterFocusOutEvent() =>
             field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+
+
+        /// <summary>
+        /// Register SerializedObjectValueChangeEvent to the field.
+        /// </summary>
+        void RegisterSerializedObjectValueChangeEvent()
+        {
+            // Create new serialized object.
+            SerializedObject so = new(obj: dsModel);
+
+            // Bind serialized object.
+            field.Bind(so);
+
+            // Setup bind event.
+            field.TrackSerializedObjectValue(obj: so, SerializedObjectValueChangeEvent);
+        }
 
 
         // ----------------------------- Event -----------------------------
@@ -93,6 +120,16 @@ namespace AG.DS
         void FocusOutEvent(FocusOutEvent evt)
         {
             field.RefreshValueNonAlert();
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the bound serialized object's value has changed.
+        /// </summary>
+        /// <param name="so">The bound serialized object to set for.</param>
+        void SerializedObjectValueChangeEvent(SerializedObject so)
+        {
+            field.SetValueWithoutNotify(so.targetObject.name);
         }
     }
 }

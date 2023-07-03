@@ -7,7 +7,7 @@ namespace AG.DS
         /// <summary>
         /// The targeting folder view.
         /// </summary>
-        FolderView folder;
+        Folder folder;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -15,7 +15,7 @@ namespace AG.DS
         /// Constructor of the folder callback class.
         /// </summary>
         /// <param name="folder">The folder view to set for.</param>
-        public FolderCallback(FolderView folder)
+        public FolderCallback(Folder folder)
         {
             this.folder = folder;
         }
@@ -59,7 +59,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the folder's expand button is clicked.
         /// </summary>
-        /// <param name="evt"></param>
+        /// <param name="evt">The registering event.</param>
         void ExpandButtonClickEvent(ClickEvent evt)
         {
             folder.SetIsExpand(value: !folder.IsExpand);

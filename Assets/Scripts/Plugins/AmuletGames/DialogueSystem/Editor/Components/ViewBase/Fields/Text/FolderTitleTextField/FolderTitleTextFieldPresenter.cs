@@ -7,16 +7,18 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new folder title text field element.
         /// </summary>
-        /// <param name="titleText">The title text to set for the field.</param>
+        /// <param name="folderTitle">The folder title to set for.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>
         /// <returns>A new folder title text field element.</returns>
         public static TextField CreateElement
         (
-            string titleText,
+            string folderTitle,
             string fieldUSS
         )
         {
-            TextField folderTitleTextField;
+            TextField textField;
+            VisualElement field_input;
+            VisualElement text_element;
 
             CreateField();
 
@@ -24,29 +26,34 @@ namespace AG.DS
 
             AddFieldToStyleClass();
 
-            return folderTitleTextField;
+            return textField;
 
             void CreateField()
             {
-                folderTitleTextField = new();
+                textField = new();
+                field_input = textField.GetFieldInput();
+                text_element = textField.GetTextElement();
             }
 
             void SetFieldDetails()
             {
-                folderTitleTextField.SetValueWithoutNotify(newValue: titleText);
+                textField.SetValueWithoutNotify(newValue: folderTitle);
+                textField.isDelayed = true;
+                textField.multiline = false;
 
-                // The new value can only be set by the user pressing Enter or Return key.
-                folderTitleTextField.isDelayed = true;
-
-                folderTitleTextField.multiline = false;
-
-                folderTitleTextField.GetFieldInput().pickingMode = PickingMode.Ignore;
-                folderTitleTextField.GetTextElement().pickingMode = PickingMode.Ignore;
+                field_input.pickingMode = PickingMode.Ignore;
+                text_element.pickingMode = PickingMode.Ignore;
             }
 
             void AddFieldToStyleClass()
             {
-                folderTitleTextField.AddToClassList(fieldUSS);
+                textField.ClearClassList();
+                field_input.ClearClassList();
+                text_element.ClearClassList();
+
+                textField.AddToClassList(fieldUSS);
+                field_input.AddToClassList(StyleConfig.TextField_Input);
+                text_element.AddToClassList(StyleConfig.TextField_Element);
             }
         }
     }

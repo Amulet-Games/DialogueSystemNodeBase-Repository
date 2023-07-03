@@ -9,7 +9,7 @@ namespace AG.DS
         /// <summary>
         /// The modifier's folder.
         /// </summary>
-        public FolderView Folder;
+        public Folder Folder;
 
 
         /// <summary>
@@ -134,10 +134,9 @@ namespace AG.DS
 
             void SetupFolder()
             {
-                FolderPresenter.CreateElement
+                Folder = FolderPresenter.CreateElement
                 (
-                    view: Folder,
-                    titleText: StringUtility.New(
+                    folderTitle: StringUtility.New(
                                    text01: StringConfig.MessageModifier_Folder_TitleText,
                                    text02: index.ToString()).ToString()
                 );

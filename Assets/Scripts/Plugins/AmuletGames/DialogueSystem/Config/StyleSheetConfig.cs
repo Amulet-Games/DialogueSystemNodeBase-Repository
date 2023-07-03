@@ -6,6 +6,13 @@ namespace AG.DS
     [CreateAssetMenu(menuName = "### AG ###/Dialogue System/Config/New Style Sheets Config")]
     public class StyleSheetConfig : ScriptableObject
     {
+        #region Modules.
+        [Header("Modules")]
+        public StyleSheet DSGraphViewerStyle;
+        public StyleSheet DSHeadBarStyle;
+        public StyleSheet DSInputHintStyle;
+        #endregion
+
         #region Modifiers.
         [Header("Modifiers")]
         public StyleSheet DSEventModifierStyle;
@@ -22,13 +29,6 @@ namespace AG.DS
         public StyleSheet DSFolderStyle;
         #endregion
 
-        #region Modules.
-        [Header("Modules")]
-        public StyleSheet DSGraphViewerStyle;
-        public StyleSheet DSHeadBarStyle;
-        public StyleSheet DSInputHintStyle;
-        #endregion
-
         #region Nodes.
         [Header("Nodes")]
         public StyleSheet DSBooleanNodeStyle;
@@ -40,11 +40,13 @@ namespace AG.DS
         public StyleSheet DSPreviewNodeStyle;
         public StyleSheet DSStartNodeStyle;
         public StyleSheet DSStoryNodeStyle;
-        public StyleSheet DSNodesShareStyle;
+        public StyleSheet DSNodeCommonStyle;
         #endregion
 
         #region Ports.
         [Header("Ports")]
+        public StyleSheet DSDefaultPortStyle;
+        public StyleSheet DSOptionPortStyle;
         public StyleSheet DSPortStyle;
         #endregion
 

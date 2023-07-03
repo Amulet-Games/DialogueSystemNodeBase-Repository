@@ -5,11 +5,11 @@ namespace AG.DS
     public class HeadBarPresenter
     {
         /// <summary>
-        /// Method for creating the headBar element.
+        /// Method for creating a new headBar element.
         /// </summary>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
+        /// <param name="graphTitle">The graph title to set for.</param>
         /// <returns>A new headBar element.</returns>
-        public static HeadBar CreateElement(DialogueSystemModel dsModel)
+        public static HeadBar CreateElement(string graphTitle)
         {
             HeadBar headBar;
             VisualElement buttonsContainer;
@@ -89,7 +89,7 @@ namespace AG.DS
             {
                 headBar.GraphTitleTextFieldView.TextField = GraphTitleTextFieldPresenter.CreateElement
                 (
-                    dsModel: dsModel,
+                    graphTitle,
                     fieldUSS: StyleConfig.HeadBar_GraphTitleTextField
                 );
             }

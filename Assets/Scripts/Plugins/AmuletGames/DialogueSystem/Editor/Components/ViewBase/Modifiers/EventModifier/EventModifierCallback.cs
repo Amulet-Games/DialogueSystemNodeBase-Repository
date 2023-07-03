@@ -38,12 +38,6 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the event modifier callback class.
         /// </summary>
-        public EventModifierCallback() { }
-
-
-        /// <summary>
-        /// Constructor of the event modifier callback class.
-        /// </summary>
         /// <param name="view">The event modifier view to set for.</param>
         /// <param name="moveUpButtonClickEvent">The MoveUpButtonClickEvent to set for,</param>
         /// <param name="moveDownButtonClickEvent">The MoveDownButtonClickEvent to set for.</param>
@@ -63,34 +57,6 @@ namespace AG.DS
             this.moveDownButtonClickEvent = moveDownButtonClickEvent;
             this.renameButtonClickEvent = renameButtonClickEvent;
             this.removeButtonClickEvent = removeButtonClickEvent;
-        }
-
-
-        // ----------------------------- Reset Internal -----------------------------
-        /// <summary>
-        /// Reset all the internal properties within the callback class.
-        /// </summary>
-        /// <param name="view">The targeting event modifier view to set for.</param>
-        /// <param name="moveUpButtonClickEvent">The MoveUpButtonClickEvent to set for,</param>
-        /// <param name="moveDownButtonClickEvent">The MoveDownButtonClickEvent to set for.</param>
-        /// <param name="renameButtonClickEvent">The RenameButtonClickEvent to set for.</param>
-        /// <param name="removeButtonClickEvent">The RemoveButtonClickEvent to set for.</param>
-        /// <returns>The renewed event modifier callback class.</returns>
-        public EventModifierCallback ResetInternal
-        (
-            EventModifierView view,
-            EventCallback<ClickEvent> moveUpButtonClickEvent,
-            EventCallback<ClickEvent> moveDownButtonClickEvent,
-            EventCallback<ClickEvent> renameButtonClickEvent,
-            EventCallback<ClickEvent> removeButtonClickEvent
-        )
-        {
-            this.view = view;
-            this.moveUpButtonClickEvent = moveUpButtonClickEvent;
-            this.moveDownButtonClickEvent = moveDownButtonClickEvent;
-            this.renameButtonClickEvent = renameButtonClickEvent;
-            this.removeButtonClickEvent = removeButtonClickEvent;
-            return this;
         }
 
 
@@ -121,7 +87,7 @@ namespace AG.DS
         /// </summary>
         void RegisterFolderEvents()
         {
-            new FolderCallback(folder: view.FolderView).RegisterEvents();
+            new FolderCallback(folder: view.Folder).RegisterEvents();
         }
 
 

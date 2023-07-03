@@ -7,7 +7,7 @@ namespace AG.DS
         /// <summary>
         /// Create all the elements for the event modifier.
         /// </summary>
-        /// <param name="view">The targeting event modifier view to set for.</param>
+        /// <param name="view">The event modifier view to set for.</param>
         /// <param name="index">The index of the modifier to set for.</param>
         public static void CreateElement
         (
@@ -57,12 +57,14 @@ namespace AG.DS
 
             void SetupFolder()
             {
-                FolderPresenter.CreateElement
+                view.Folder = FolderPresenter.CreateElement
                 (
-                    view: view.FolderView,
-                    titleText: StringUtility.New(
-                               text01: StringConfig.EventModifier_Folder_TitleText,
-                               text02: index.ToString()).ToString()
+                    folderTitle: StringUtility.New
+                    (
+                        text01: StringConfig.EventModifier_Folder_TitleText,
+                        text02: index.ToString()
+                    )
+                    .ToString()
                 );
             }
 
@@ -79,6 +81,8 @@ namespace AG.DS
                     buttonSprite: ConfigResourcesManager.SpriteConfig.MoveUpButtonIconSprite,
                     buttonUSS: StyleConfig.EventModifier_MoveUp_Button
                 );
+
+                view.MoveUpButton.AddBackgroundHighlighter();
             }
 
             void SetupMoveDownButton()
@@ -88,6 +92,8 @@ namespace AG.DS
                     buttonSprite: ConfigResourcesManager.SpriteConfig.MoveDownButtonIconSprite,
                     buttonUSS: StyleConfig.EventModifier_MoveDown_Button
                 );
+
+                view.MoveDownButton.AddBackgroundHighlighter();
             }
 
             void SetupRenameButton()
@@ -97,6 +103,8 @@ namespace AG.DS
                     buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
                     buttonUSS: StyleConfig.EventModifier_Rename_Button
                 );
+
+                view.RenameButton.AddBackgroundHighlighter();
             }
 
             void SetupRemoveButton()
@@ -106,6 +114,8 @@ namespace AG.DS
                     buttonSprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
                     buttonUSS: StyleConfig.EventModifier_Remove_Button
                 );
+
+                view.RemoveButton.AddBackgroundHighlighter();
             }
 
             void SetupDialogueEventContainer()
@@ -183,19 +193,19 @@ namespace AG.DS
             void AddElementsToContainer()
             {
                 // Helper buttons
-                view.FolderView.AddElementToTitle(helperButtonsContainer);
+                view.Folder.AddElementToTitle(helperButtonsContainer);
                 helperButtonsContainer.Add(view.MoveUpButton);
                 helperButtonsContainer.Add(view.MoveDownButton);
                 helperButtonsContainer.Add(view.RenameButton);
                 helperButtonsContainer.Add(view.RemoveButton);
 
                 // Dialogue Event Container
-                view.FolderView.AddElementToContent(dialogueEventContainer);
+                view.Folder.AddElementToContent(dialogueEventContainer);
                 dialogueEventContainer.Add(dialogueEventLabel);
                 dialogueEventContainer.Add(view.DialogueEventObjectFieldView.ObjectField);
 
                 // Start Delay Container.
-                view.FolderView.AddElementToContent(startDelayContainer);
+                view.Folder.AddElementToContent(startDelayContainer);
                 startDelayContainer.Add(startDelayLabel);
                 startDelayContainer.Add(delaySecondsContainer);
 

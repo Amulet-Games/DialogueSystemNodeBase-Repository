@@ -132,7 +132,7 @@ namespace AG.DS
                 graphViewer = GraphViewerPresenter.CreateElement(dsWindow: this);
 
                 // HeadBar
-                headBar = HeadBarPresenter.CreateElement(dsModel);
+                headBar = HeadBarPresenter.CreateElement(dsModel.name);
 
                 // Input Hint
                 InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
@@ -166,7 +166,7 @@ namespace AG.DS
                 graphViewerCallback.SetupCallbacks();
                 graphViewerCallback.RegisterEvents();
 
-                new HeadBarCallback(headBar, dsModel.GetInstanceID(), dsWindow: this).RegisterEvents();
+                new HeadBarCallback(headBar, dsModel, dsWindow: this).RegisterEvents();
 
                 new DialogueEditorWindowCallback(
                     dsModel, graphViewer, headBar,

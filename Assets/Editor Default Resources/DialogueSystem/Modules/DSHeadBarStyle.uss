@@ -2,19 +2,14 @@
 
 /*< ---------------------------------------------------------- Main >*/
 .headBar_Main {
-	background-color: #1D1D1E;
+	background-color: rgba(29, 29, 30, 1);
 
 	height: 60px;
-
-	align-items: stretch;
-
-	white-space: nowrap;
 	
 	flex-direction: row;
 	flex-shrink: 0;
-	
-	/* top - right - bottom - left */
-	border-width: 0px 0px 0px 0px;
+
+	white-space: nowrap;
 }
 
 
@@ -39,96 +34,131 @@
 /*< ---------------------------------------------------------- Save Button >*/
 .headBar_SaveButton {
 
-	background-color: #252729;
-	border-color: #212325;
-	border-bottom-color: #485460;
-	color: #FFFFFF;
+	background-color: rgba(37, 39, 41, 1);
+	border-color: rgba(33, 35, 37, 1);
+	border-bottom-color: rgba(72, 84, 96, 1);
+	color: white;
 	
 	height: 49px;
 	width: 100px;
 
-	-unity-font-style: bold;
+	flex-shrink: 0;
+
 	font-size: 16px;
+
+	overflow: hidden;
+
+	-unity-font-style: bold;
+	-unity-text-align: middle-center;
 	
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 18px;
+	padding: 0px 0px 1px 0px;
 	border-width: 1px 1px 3px 1px;
 	border-radius: 3px 3px 3px 3px;
 }
 
 .headBar_SaveButton:hover {
-
-	border-bottom-color: #FFD35B;
-	color: #FFC937;
+	
+	border-bottom-color: rgba(255, 211, 91, 1);
+	color: rgba(255, 201, 55, 1);
 }
 
 
 /*< ---------------------------------------------------------- Load Button >*/
 .headBar_LoadButton {
-
-	background-color: #252729;
-	border-color: #212325;
-	border-bottom-color: #485460;
-	color: #FFFFFF;
+	
+	background-color: rgba(37, 39, 41, 1);
+	border-color: rgba(33, 35, 37, 1);
+	border-bottom-color: rgba(72, 84, 96, 1);
+	color: white;
 	
 	height: 49px;
 	width: 100px;
 
-	-unity-font-style: bold;
+	flex-shrink: 0;
+
 	font-size: 16px;
+
+	overflow: hidden;
+
+	-unity-font-style: bold;
+	-unity-text-align: middle-center;
 	
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 25px;
+	padding: 0px 0px 1px 0px;
 	border-width: 1px 1px 3px 1px;
 	border-radius: 3px 3px 3px 3px;
 }
 
 .headBar_LoadButton:hover {
-
-	border-bottom-color: #FFD35B;
-	color: #FFC937;
+	
+	border-bottom-color: rgba(255, 211, 91, 1);
+	color: rgba(255, 201, 55, 1);
 }
 
 
-/*< ---------------------------------------------------------- Graph Title Text Field >*/
+/* =========================================================== Graph Title =========================================================== */
+
+/*< ---------------------------------------------------------- Text Field >*/
 .headBar_GraphTitleTextField {
 
-	background-color: rgba(0, 0, 0, 0);
-
-	-unity-text-align: middle-center;
 	flex-grow: 1;
-	white-space: normal; 
+	flex-shrink: 0;
+
+	overflow: hidden;
+
+	white-space: normal;
 	
 	/* top - right - bottom - left */
 	margin: 5px 0px 0px 0px;
 	padding: 0px 35% 0px 35%;
+	
+	-unity-text-align: middle-center;
+	
+	--unity-selection-color: rgba(61, 128, 223, 0.650);
+	--unity-cursor-color: rgba(180, 180, 180, 1);
 }
 
 .headBar_GraphTitleTextField 
-.unity-base-text-field__input {
+.text-field-input {
 
-	background-color: rgba(0, 0, 0, 0);
-	color: #FFFFFF;
+	border-color: rgba(33, 33, 33, 1);
 
-	-unity-text-align: middle-center;
-	-unity-text-overflow-position: middle;
-	flex-grow: 1;
-	overflow: visible;
+	color: white;
+	cursor: text;
 
-	-unity-font-style: bold;
 	font-size: 37.5px;
+
+	flex-grow: 1;
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 5px 0px;
-	padding: 0px 0px 0px 0px;
+	border-radius: 3px 3px 3px 3px;
 	border-width: 0px 0px 2px 0px;
+
+	-unity-font-style: bold;
+	-unity-text-align: middle-center;
+	-unity-text-overflow-position: middle;
+
+	-unity-overflow-clip-box: content-box;
+
+	--unity-sync-text-editor: true;
 }
 
 .headBar_GraphTitleTextField 
-.unity-base-text-field__input:hover {
+.text-field-input:hover {
 
-	background-color: #252729;
-	border-bottom-color: #FFD35B;
+	background-color: rgba(37, 39, 41, 1);
+	border-bottom-color: rgba(255, 211, 91, 1);
+}
+
+.headBar_GraphTitleTextField
+.text-field-element {
+
+	flex-grow: 1;
+	flex-shrink: 0;
 }
 
 
@@ -137,8 +167,8 @@
 /*< ---------------------------------------------------------- Main >*/
 .headBar_LanguageToolbarMenu_Main  {
 
-	background-color: #252729;
-	border-color: #FFAE1B;
+	background-color: rgba(37, 39, 41, 1);
+	border-color: rgba(255, 174, 27, 1);
 
 	height: 49px;
 	width: auto;
@@ -208,7 +238,7 @@
 }
 
 
-/*< ---------------------------------------------------------- Arrow image >*/
+/*< ---------------------------------------------------------- Arrow Image >*/
 .headBar_LanguageToolbarMenu_ArrowImage {
 	
 	-unity-background-image-tint-color: #FFBF32;

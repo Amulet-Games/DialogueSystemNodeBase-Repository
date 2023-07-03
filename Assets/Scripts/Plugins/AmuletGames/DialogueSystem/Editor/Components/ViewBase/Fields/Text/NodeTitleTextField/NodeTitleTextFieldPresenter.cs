@@ -7,46 +7,53 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new node title text field element.
         /// </summary>
-        /// <param name="titleText">The title text to set for the field.</param>
+        /// <param name="nodeTitle">The node title to set for.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>
         /// <returns>A new node title text field element.</returns>
         public static TextField CreateElement
         (
-            string titleText,
+            string nodeTitle,
             string fieldUSS
         )
         {
-            TextField nodeTitleTextField;
+            TextField textField;
+            VisualElement field_input;
+            VisualElement text_element;
 
             CreateField();
 
             SetFieldDetails();
 
-            AddFieldToStyleClass();
+            SetupStyleClass();
 
-            return nodeTitleTextField;
+            return textField;
 
             void CreateField()
             {
-                nodeTitleTextField = new();
+                textField = new();
+                field_input = textField.GetFieldInput();
+                text_element = textField.GetTextElement();
             }
 
             void SetFieldDetails()
             {
-                nodeTitleTextField.SetValueWithoutNotify(newValue: titleText);
+                textField.SetValueWithoutNotify(newValue: nodeTitle);
+                textField.isDelayed = true;
+                textField.multiline = false;
 
-                // The new value can only be set by the user pressing Enter or Return key.
-                nodeTitleTextField.isDelayed = true;
-
-                nodeTitleTextField.multiline = false;
-
-                nodeTitleTextField.GetFieldInput().pickingMode = PickingMode.Ignore;
-                nodeTitleTextField.GetTextElement().pickingMode = PickingMode.Ignore;
+                field_input.pickingMode = PickingMode.Ignore;
+                text_element.pickingMode = PickingMode.Ignore;
             }
 
-            void AddFieldToStyleClass()
+            void SetupStyleClass()
             {
-                nodeTitleTextField.AddToClassList(fieldUSS);
+                textField.ClearClassList();
+                field_input.ClearClassList();
+                text_element.ClearClassList();
+
+                textField.AddToClassList(fieldUSS);
+                field_input.AddToClassList(StyleConfig.TextField_Input);
+                text_element.AddToClassList(StyleConfig.TextField_Element);
             }
         }
     }

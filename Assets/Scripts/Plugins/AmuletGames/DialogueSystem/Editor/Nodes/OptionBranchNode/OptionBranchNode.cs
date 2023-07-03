@@ -40,7 +40,6 @@ namespace AG.DS
                 styleSheets.Add(styleSheetConfig.DSOptionBranchNodeStyle);
                 styleSheets.Add(styleSheetConfig.DSModifierStyle);
                 styleSheets.Add(styleSheetConfig.DSSegmentStyle);
-                styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
             }
         }
 

@@ -64,7 +64,7 @@ namespace AG.DS
         {
             SetupContentButton();
 
-            SetupOptionRootGroup();
+            SetupOptionRoot();
 
             void SetupContentButton()
             {
@@ -77,7 +77,7 @@ namespace AG.DS
                 node.titleContainer.Add(view.ContentButton);
             }
 
-            void SetupOptionRootGroup()
+            void SetupOptionRoot()
             {
                 VisualElement mainContainer;
                 VisualElement outerContainer;
@@ -101,13 +101,13 @@ namespace AG.DS
                 void SetupContainers()
                 {
                     mainContainer = new();
-                    mainContainer.AddToClassList(StyleConfig.OptionRootNode_MainContainer);
+                    mainContainer.AddToClassList(StyleConfig.OptionRoot_MainContainer);
 
                     outerContainer = new();
-                    outerContainer.AddToClassList(StyleConfig.OptionRootNode_OuterContainer);
+                    outerContainer.AddToClassList(StyleConfig.OptionRoot_OuterContainer);
 
                     InnerContainer = new();
-                    InnerContainer.AddToClassList(StyleConfig.OptionRootNodeInnerContainer);
+                    InnerContainer.AddToClassList(StyleConfig.OptionRoot_InnerContainer);
                 }
 
                 void SetupOptionRootIconImage()
@@ -115,7 +115,7 @@ namespace AG.DS
                     rootIconImage = CommonImagePresenter.CreateElement
                     (
                         imageSprite: ConfigResourcesManager.SpriteConfig.OptionRootIconSprite,
-                        imageUSS01: StyleConfig.OptionRootNode_Icon_Image
+                        imageUSS01: StyleConfig.OptionRoot_Icon_Image
                     );
                 }
 
@@ -124,7 +124,7 @@ namespace AG.DS
                     rootTitleLabel = CommonLabelPresenter.CreateElement
                     (
                         labelText: StringConfig.OptionRootNode_RootTitleLabel_LabelText,
-                        labelUSS: StyleConfig.OptionRootNode_Title_Label
+                        labelUSS: StyleConfig.OptionRoot_Title_Label
                     );
                 }
 
@@ -134,7 +134,7 @@ namespace AG.DS
                     (
                         isMultiLine: false,
                         placeholderText: view.RootTitleTextFieldView.PlaceholderText,
-                        fieldUSS: StyleConfig.OptionRootNode_Title_TextField
+                        fieldUSS: StyleConfig.OptionRoot_Title_TextField
                     );
                 }
 

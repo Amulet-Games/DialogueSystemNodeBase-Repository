@@ -40,7 +40,6 @@ namespace AG.DS
                 styleSheets.Add(styleSheetConfig.DSDialogueNodeStyle);
                 styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
                 styleSheets.Add(styleSheetConfig.DSModifierStyle);
-                styleSheets.Add(styleSheetConfig.DSFolderStyle);
             }
         }
 

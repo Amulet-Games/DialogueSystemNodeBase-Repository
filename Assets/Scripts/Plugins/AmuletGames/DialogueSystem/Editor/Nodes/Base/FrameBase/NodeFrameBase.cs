@@ -47,13 +47,7 @@ namespace AG.DS
                 NodeGUID = Guid.NewGuid().ToString();
             }
 
-            // Add style sheet
-            {
-                styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
-                styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodesShareStyle);
-            }
-
-            // Override border default style
+            // Setup node border
             {
                 // Get the node border from node's children.
                 NodeBorder = ElementAt(0);
@@ -68,26 +62,9 @@ namespace AG.DS
                 // Remove the default USS names and add to custom class.
                 NodeBorder.name = "";
                 NodeBorder.AddToClassList(StyleConfig.Node_Border);
-            }
 
-            // Override containers default style
-            {
-                // Title
-                titleContainer.pickingMode = PickingMode.Position;
-
-                // Top
+                // Place the top container inside the node border.
                 NodeBorder.Insert(index: 1, element: topContainer);
-
-                // Input
-                inputContainer.name = "";
-                inputContainer.AddToClassList(StyleConfig.Node_Input_Container);
-
-                // Output
-                outputContainer.name = "";
-                outputContainer.AddToClassList(StyleConfig.Node_Output_Container);
-
-                // Main
-                mainContainer.pickingMode = PickingMode.Position;
             }
 
             // Remove unused elements
@@ -115,6 +92,40 @@ namespace AG.DS
                 ContentContainer.AddToClassList(StyleConfig.Node_Content_Container);
 
                 mainContainer.Add(ContentContainer);
+            }
+
+            // Override containers default style
+            {
+                // Title
+                titleContainer.pickingMode = PickingMode.Position;
+                titleContainer.name = "";
+                titleContainer.AddToClassList(StyleConfig.Node_Title_Container);
+
+                topContainer.name = "";
+                topContainer.AddToClassList(StyleConfig.Node_Top_Container);
+
+                // Input
+                inputContainer.name = "";
+                inputContainer.AddToClassList(StyleConfig.Node_Input_Container);
+
+                // Output
+                outputContainer.name = "";
+                outputContainer.AddToClassList(StyleConfig.Node_Output_Container);
+
+                // Main
+                mainContainer.pickingMode = PickingMode.Position;
+            }
+
+            // Setup class list
+            {
+                ClearClassList();
+                AddToClassList(StyleConfig.Node);
+            }
+
+            // Add style sheet
+            {
+                styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
+                styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
             }
         }
 

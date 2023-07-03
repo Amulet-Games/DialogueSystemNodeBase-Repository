@@ -17,12 +17,30 @@ namespace AG.DS
             string buttonUSS
         )
         {
-            Button button = new();
+            Button button;
 
-            button.text = buttonText;
+            CreateButton();
 
-            button.AddToClassList(buttonUSS);
+            SetButtonDetails();
 
+            SetupStyleClass();
+
+            void CreateButton()
+            {
+                button = new();
+            }
+
+            void SetButtonDetails()
+            {
+                button.text = buttonText;
+            }
+
+            void SetupStyleClass()
+            {
+                button.ClearClassList();
+                button.AddToClassList(buttonUSS);
+            }
+            
             return button;
         }
 
@@ -39,11 +57,29 @@ namespace AG.DS
             string buttonUSS
         )
         {
-            Button button = new();
+            Button button;
 
-            button.style.backgroundImage = buttonSprite.texture;
+            CreateButton();
 
-            button.AddToClassList(buttonUSS);
+            SetButtonDetails();
+
+            SetupStyleClass();
+
+            void CreateButton()
+            {
+                button = new();
+            }
+
+            void SetButtonDetails()
+            {
+                button.style.backgroundImage = buttonSprite.texture;
+            }
+
+            void SetupStyleClass()
+            {
+                button.ClearClassList();
+                button.AddToClassList(buttonUSS);
+            }
 
             return button;
         }
