@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701948597a2eb684a8e5f3183a5c91ba, type: 3}
   m_Name: DialogueSystemModel
   m_EditorClassIdentifier: 
-  IsOpened: 1
   EdgeModels: []
   NodeModels: []

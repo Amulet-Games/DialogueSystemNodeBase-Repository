@@ -219,7 +219,7 @@ namespace AG.DS
         {
             WindowChangedEvent.Unregister(m_WindowChangesEvent);
 
-            dsModel.IsOpened = false;
+            dsModel.SetIsOpened(value: false);
         }
 
 

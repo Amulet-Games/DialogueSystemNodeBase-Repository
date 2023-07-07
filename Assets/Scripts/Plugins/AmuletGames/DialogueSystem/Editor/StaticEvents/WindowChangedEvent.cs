@@ -7,26 +7,26 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when there are new changes happened to the dialogue editor window.
         /// </summary>
-        static event Action mEvent;
+        static event Action m_Event;
 
 
         /// <summary>
         /// Register the given action to the event.
         /// </summary>
-        /// <param name="action">The action to register with.</param>
+        /// <param name="action">The action to register for.</param>
         public static void Register(Action action)
         {
-            mEvent += action;
+            m_Event += action;
         }
 
 
         /// <summary>
         /// Unregister the given action from the event.
         /// </summary>
-        /// <param name="action">The action to unregister with.</param>
+        /// <param name="action">The action to unregister for.</param>
         public static void Unregister(Action action)
         {
-            mEvent -= action;
+            m_Event -= action;
         }
 
 
@@ -35,7 +35,7 @@ namespace AG.DS
         /// </summary>
         public static void Invoke()
         {
-            mEvent.Invoke();
+            m_Event.Invoke();
         }
     }
 }

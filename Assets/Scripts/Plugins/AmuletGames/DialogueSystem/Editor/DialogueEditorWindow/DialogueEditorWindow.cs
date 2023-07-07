@@ -107,6 +107,7 @@ namespace AG.DS
         void Initialize(DialogueSystemModel dsModel)
         {
             this.dsModel = dsModel;
+            dsModel.SetIsOpened(value: true);
         }
 
 
@@ -205,16 +206,19 @@ namespace AG.DS
                 var dsModel = (DialogueSystemModel)openedAssetObject;
                 if (dsModel.IsOpened)
                 {
-                    // Return if the window has already been opened in the editor.
-                    Debug.LogError(StringConfig.Editor_WindowAlreadyOpened_WarningText);
-                    return false;
+                    if (EditorPrefs.HasKey(EditorApplicationCallback.EDITOR_APPLICATION_QUITTING_CONFIRM_KEY))
+                    {
+                        // If the editor application quitted peacefully previously
+                        Debug.LogError(StringConfig.Editor_WindowAlreadyOpened_WarningText);
+                        return false;
+                    }
                 }
 
                 var dsWindow = DialogueEditorWindowPresenter.CreateWindow();
                 dsWindow.Initialize(dsModel);
                 dsWindow.Setup();
-
-                dsModel.IsOpened = true;
+                
+                new EditorApplicationCallback(dsModel);
             }
 
             return false;
