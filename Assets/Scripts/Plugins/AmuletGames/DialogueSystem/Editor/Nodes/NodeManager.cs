@@ -23,11 +23,16 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new node base element.
         /// </summary>
+        /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="nodeType">The node type to set for.</param>
+        /// 
         /// <returns>A new node base element.</returns>
-        /// <exception cref="ArgumentException">Thrown when the given node type is invalid to any of the current exist node's type.</exception>
+        /// 
+        /// <exception cref="ArgumentException">
+        /// Thrown when the given node type is invalid to any of the current exist node's type.
+        /// </exception>
         public NodeBase Spawn
         (
             GraphViewer graphViewer,
@@ -72,12 +77,18 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new node base element.
         /// </summary>
+        /// 
         /// <typeparam name="TNodeModel">Type node model</typeparam>
+        /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="model">The type node model to set for.</param>
+        /// 
         /// <returns>A new node base element.</returns>
-        /// <exception cref="ArgumentException">Thrown when the given type node model is invalid to any of the current exist node's type.</exception>
+        /// 
+        /// <exception cref="ArgumentException">
+        /// Thrown when the given type node model is invalid to any of the current exist node's type.
+        /// </exception>
         public NodeBase Spawn<TNodeModel>
         (
             GraphViewer graphViewer,
@@ -123,15 +134,18 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new type node element.
         /// </summary>
+        /// 
         /// <typeparam name="TNode">Type node</typeparam>
         /// <typeparam name="TNodeView">Type node view</typeparam>
         /// <typeparam name="TNodePresenter">Type node presenter</typeparam>
         /// <typeparam name="TNodeCallback">Type node callback</typeparam>
         /// <typeparam name="TNodeSerializer">Type node serializer</typeparam>
         /// <typeparam name="TNodeModel">Type node model</typeparam>
+        /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="model">The type node model to set for.</param>
+        /// 
         /// <returns>A new type node element.</returns>
         TNode Spawn<TNode, TNodeView, TNodePresenter, TNodeCallback, TNodeSerializer, TNodeModel>
         (

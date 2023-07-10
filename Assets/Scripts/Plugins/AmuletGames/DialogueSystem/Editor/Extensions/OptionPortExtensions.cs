@@ -18,13 +18,12 @@ namespace AG.DS
 
             port.portName = StringUtility.New
                             (
-                                text01: port.IsInput()
+                                str01: port.IsInput()
                                         ? StringConfig.OptionPort_Input_LabelText_Connect
                                         : StringConfig.OptionPort_Output_LabelText_Connect,
 
-                                text02: siblingIndex.ToString()
-                            )
-                            .ToString();
+                                str02: siblingIndex.ToString()
+                            );
         }
 
 
@@ -63,10 +62,9 @@ namespace AG.DS
                 port.portName = port.connected
                     ? StringUtility.New
                       (
-                          text01: StringConfig.OptionPort_Input_LabelText_Connect,
-                          text02: siblingIndex.ToString()
+                          str01: StringConfig.OptionPort_Input_LabelText_Connect,
+                          str02: siblingIndex.ToString()
                       )
-                      .ToString()
 
                     : StringConfig.OptionPort_Input_LabelText_Disconnect;
 
@@ -76,10 +74,9 @@ namespace AG.DS
                 port.portName = port.connected
                     ? StringUtility.New
                       (
-                          text01: StringConfig.OptionPort_Output_LabelText_Connect,
-                          text02: siblingIndex.ToString()
+                          str01: StringConfig.OptionPort_Output_LabelText_Connect,
+                          str02: siblingIndex.ToString()
                       )
-                      .ToString()
 
                     : StringConfig.OptionPort_Output_LabelText_Disconnect;
             }
@@ -98,10 +95,9 @@ namespace AG.DS
                 return port.connected
                     ? StringUtility.New
                       (
-                          text01: StringConfig.ContextualMenuItem_DisconnectOptionInputPort_LabelText,
-                          text02: port.portName
+                          str01: StringConfig.ContextualMenuItem_DisconnectOptionInputPort_LabelText,
+                          str02: port.portName
                       )
-                      .ToString()
 
                     : StringConfig.ContextualMenuItem_DisconnectInputPort_LabelText;
             }
@@ -110,10 +106,9 @@ namespace AG.DS
                 return port.connected
                     ? StringUtility.New
                       (
-                          text01: StringConfig.ContextualMenuItem_DisconnectOptionOutputPort_LabelText,
-                          text02: port.portName
+                          str01: StringConfig.ContextualMenuItem_DisconnectOptionOutputPort_LabelText,
+                          str02: port.portName
                       )
-                      .ToString()
 
                     : StringConfig.ContextualMenuItem_DisconnectOutputPort_LabelText;
             }

@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 
 namespace AG.DS
@@ -5,16 +6,48 @@ namespace AG.DS
     public static class StringUtility
     {
         /// <summary>
-        /// Clear the internal string builder's cache and initialize it with the new given texts.
+        /// Create a new string by combining the two given string values.
         /// </summary>
-        /// <param name="text01">First text to insert to the cleared string builder.</param>
-        /// <param name="text02">Second text to insert to the cleared string builder.</param>
-        /// <returns>A string builder that contains the specificed texts.</returns>
-        public static StringBuilder New(string text01, string text02)
+        /// 
+        /// <param name="str01">The first string value to set for.</param>
+        /// <param name="str02">The second string value to set for.</param>
+        /// 
+        /// <returns>A new string value of the two given string values combined.</returns>
+        public static string New(string str01, string str02)
         {
-            StringBuilder sb = new(text01);
-            sb.Append(text02);
-            return sb;
+            StringBuilder sb = new(str01);
+            sb.Append(str02);
+            return sb.ToString();
+        }
+
+
+        /// <summary>
+        /// Create a new string by retrieve the characters from the end of the given string value by the given length.
+        /// </summary>
+        /// 
+        /// <param name="str">The string value to set for.</param>
+        /// <param name="length">The length to set for.</param>
+        /// 
+        /// <returns>A new string value of the characters that are retrieved from the end of the given string value by the given length.</returns>
+        /// 
+        /// <exception cref="ArgumentException">
+        /// Thrown when the given string value is null or the given length value is less than 0.
+        /// </exception>
+        public static string Right(this string str, int length)
+        {
+            if (length < 0)
+            {
+                throw new ArgumentException("'length' has to be bigger than zero.");
+            }
+            if (str == null)
+            {
+                throw new ArgumentException("'text' can not be null.");
+            }
+            if (str.Length <= length)
+            {
+                return str;
+            }
+            return str.Substring(str.Length - length, length);
         }
     }
 }

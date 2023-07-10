@@ -137,8 +137,8 @@ namespace AG.DS
                 Folder = FolderPresenter.CreateElement
                 (
                     folderTitle: StringUtility.New(
-                                   text01: StringConfig.MessageModifier_Folder_TitleText,
-                                   text02: index.ToString()).ToString()
+                                   str01: StringConfig.MessageModifier_Folder_TitleText,
+                                   str02: index.ToString())
                 );
 
                 new FolderCallback(folder: Folder).RegisterEvents();
