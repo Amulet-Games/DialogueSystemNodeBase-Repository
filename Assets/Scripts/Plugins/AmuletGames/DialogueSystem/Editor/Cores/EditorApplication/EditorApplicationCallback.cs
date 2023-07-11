@@ -1,35 +1,24 @@
+using System.IO;
 using UnityEditor;
+using Unity.EditorCoroutines.Editor;
+using System.Collections;
+using UnityEngine;
 
 namespace AG.DS
 {
     public class EditorApplicationCallback
     {
-        /// <summary>
-        /// The application's open id that were saved in the editor prefs.
-        /// </summary>
-        int applicationOpenId;
-
-
-        /// <summary>
-        /// The key to use when saving the editor application's close id into editor prefs.
-        /// </summary>
-        string applicationCloseIdKey;
+        string quitConfirmTextFilePath;
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue editor window callback class.
         /// </summary>
-        /// <param name="applicationOpenId">The application open id to set for.</param>
-        /// <param name="applicationCloseIdKey">The application close id key to set for.</param>
-        public EditorApplicationCallback
-        (
-            int applicationOpenId,
-            string applicationCloseIdKey
-        )
+        /// <param name="quitConfirmTextFilePath"></param>
+        public EditorApplicationCallback(string quitConfirmTextFilePath)
         {
-            this.applicationOpenId = applicationOpenId;
-            this.applicationCloseIdKey = applicationCloseIdKey;
+            this.quitConfirmTextFilePath = quitConfirmTextFilePath;
         }
 
 
@@ -47,7 +36,7 @@ namespace AG.DS
         /// Register EditorApplicationQuittingEvent to the editor application.
         /// </summary>
         void RegisterEditorApplicationQuittingEvent() =>
-            EditorApplication.quitting += EditorApplicationQuittingEvent;
+            EditorApplication.wantsToQuit += EditorApplicationWantsToQuitEvent;
 
         
         // ----------------------------- Event -----------------------------
@@ -57,12 +46,30 @@ namespace AG.DS
         /// <br>Note that this will not fire if the Editor is forced to quit or if there is a crash.</br>
         /// <br>This event is raised when the quitting process cannot be canceled.</br>
         /// </summary>
-        void EditorApplicationQuittingEvent()
+        bool EditorApplicationWantsToQuitEvent()
         {
-            EditorPrefs.SetInt(
-                key: applicationCloseIdKey,
-                value: applicationOpenId
-            );
+            if (!File.Exists(quitConfirmTextFilePath))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(quitConfirmTextFilePath))
+                {
+                    sw.WriteLine("UNITY_QUIT_CONFIRMED");
+                }
+            }
+            else
+            {
+                using (StreamWriter sw = File.AppendText(quitConfirmTextFilePath))
+                {
+                    sw.WriteLine("UNITY_QUIT_CONFIRMED");
+                }
+            }
+
+            return File.Exists(quitConfirmTextFilePath) && !quitConfirmTextFilePath.IsFileEmpty();
+        }
+
+        IEnumerator Test()
+        {
+            yield return new WaitUntil(() => File.Exists(quitConfirmTextFilePath) && !quitConfirmTextFilePath.IsFileEmpty());
         }
     }
 }

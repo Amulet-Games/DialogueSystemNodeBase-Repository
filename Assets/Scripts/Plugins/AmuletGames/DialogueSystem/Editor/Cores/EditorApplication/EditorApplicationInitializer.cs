@@ -1,21 +1,17 @@
 using UnityEditor;
-using Random = System.Random;
+using UnityEngine;
+using System.IO;
+using System;
 
 namespace AG.DS
 {
     [InitializeOnLoad]
-    public class EditorApplicationModel
+    public class EditorApplicationInitializer
     {
-        /// <summary>
-        /// The key to use when saving the application's open id into editor prefs.
-        /// </summary>
-        const string APPLICATION_OPEN_ID_KEY = "APPLICATION_OPEN_ID_KEY";
+        const string QUIT_CONFIRM_TEXT_FILE_NAME = "QuitConfirmText.txt";
 
 
-        /// <summary>
-        /// The key to use when saving the editor application's close id into editor prefs.
-        /// </summary>
-        const string APPLICATION_CLOSE_ID_KEY = "APPLICATION_CLOSE_ID_KEY";
+        static string QUIT_CONFIRM_TEXT_FILE_PATH => Path.Combine(Application.persistentDataPath, QUIT_CONFIRM_TEXT_FILE_NAME);
 
 
         /// <summary>
@@ -48,27 +44,26 @@ namespace AG.DS
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the editor application model class.
+        /// Constructor of the editor application initializer class.
         /// </summary>
-        static EditorApplicationModel()
+        static EditorApplicationInitializer()
         {
             if (!isInitialized && EditorApplication.isPlayingOrWillChangePlaymode == false)
             {   
                 isInitialized = true;
 
                 // Check if the application close id has been saved previously.
-                isQuitPeacefully = EditorPrefs.GetInt(key: APPLICATION_OPEN_ID_KEY)
-                                == EditorPrefs.GetInt(key: APPLICATION_CLOSE_ID_KEY);
+                isQuitPeacefully = !QUIT_CONFIRM_TEXT_FILE_PATH.IsFileExist()
+                                || !QUIT_CONFIRM_TEXT_FILE_PATH.IsFileEmpty();
 
-                // Save a new application open id to the editor prefs.
-                EditorPrefs.SetInt(key: APPLICATION_OPEN_ID_KEY, value: new Random().Next());
+                // Remove all the text in the quit confirm text file.
+                if (QUIT_CONFIRM_TEXT_FILE_PATH.IsFileExist())
+                {
+                    File.WriteAllText(QUIT_CONFIRM_TEXT_FILE_PATH, String.Empty);
+                }
 
                 // Register events.
-                new EditorApplicationCallback(
-                    applicationOpenId: EditorPrefs.GetInt(key: APPLICATION_OPEN_ID_KEY),
-                    applicationCloseIdKey: APPLICATION_CLOSE_ID_KEY
-                )
-                .RegisterEvents();
+                new EditorApplicationCallback(QUIT_CONFIRM_TEXT_FILE_PATH).RegisterEvents();
             }
         }
     }

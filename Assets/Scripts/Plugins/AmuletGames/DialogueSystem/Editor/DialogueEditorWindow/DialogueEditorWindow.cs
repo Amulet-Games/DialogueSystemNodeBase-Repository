@@ -203,12 +203,11 @@ namespace AG.DS
 
             if (openedAssetObject is DialogueSystemModel)
             {
+                Debug.Log(EditorPrefs.HasKey(key: "APPLICATION_CLOSE_CONFIRM_KEY"));
                 var dsModel = (DialogueSystemModel)openedAssetObject;
                 if (dsModel.IsDsWindowAlreadyOpened)
                 {
-                    Debug.Log("IsDsWindowAlreadyOpened = " + dsModel.IsDsWindowAlreadyOpened);
-                    Debug.Log("isQuitPeacefully = " + EditorApplicationModel.isQuitPeacefully);
-                    if (EditorApplicationModel.isQuitPeacefully)
+                    if (EditorApplicationInitializer.isQuitPeacefully)
                     {
                         // If the editor application is quited by user manually previously.
                         Debug.LogError(StringConfig.Editor_WindowAlreadyOpened_WarningText);
