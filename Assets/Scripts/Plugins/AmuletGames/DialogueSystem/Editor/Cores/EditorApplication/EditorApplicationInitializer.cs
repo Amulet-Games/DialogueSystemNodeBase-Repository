@@ -1,17 +1,22 @@
+using System.IO;
 using UnityEditor;
 using UnityEngine;
-using System.IO;
-using System;
 
 namespace AG.DS
 {
     [InitializeOnLoad]
     public class EditorApplicationInitializer
     {
-        const string QUIT_CONFIRM_TEXT_FILE_NAME = "QuitConfirmText.txt";
+        /// <summary>
+        /// The file name of the quit confirm file.
+        /// </summary>
+        const string QUIT_CONFIRM_FILE_NAME = "QuitConfirmFile.txt";
 
 
-        static string QUIT_CONFIRM_TEXT_FILE_PATH => Path.Combine(Application.persistentDataPath, QUIT_CONFIRM_TEXT_FILE_NAME);
+        /// <summary>
+        /// The file path of the quit confirm file.
+        /// </summary>
+        static string QUIT_CONFIRM_FILE_PATH;
 
 
         /// <summary>
@@ -37,7 +42,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Is the editor application closed previously without crashing?
+        /// Did the editor application previously closed successfully without crashing?
         /// </summary>
         public static bool isQuitPeacefully { get; private set; }
 
@@ -52,18 +57,34 @@ namespace AG.DS
             {   
                 isInitialized = true;
 
-                // Check if the application close id has been saved previously.
-                isQuitPeacefully = !QUIT_CONFIRM_TEXT_FILE_PATH.IsFileExist()
-                                || !QUIT_CONFIRM_TEXT_FILE_PATH.IsFileEmpty();
-
-                // Remove all the text in the quit confirm text file.
-                if (QUIT_CONFIRM_TEXT_FILE_PATH.IsFileExist())
+                // Set quit file path.
                 {
-                    File.WriteAllText(QUIT_CONFIRM_TEXT_FILE_PATH, String.Empty);
+                    QUIT_CONFIRM_FILE_PATH = Path.Combine(Application.persistentDataPath, QUIT_CONFIRM_FILE_NAME);
+                }
+
+                // Check the application previous quit status and reset quit file.
+                {
+                    var isQuitFileExist = File.Exists(QUIT_CONFIRM_FILE_PATH);
+
+                    isQuitPeacefully = !isQuitFileExist
+                                    || !QUIT_CONFIRM_FILE_PATH.IsFileEmpty();
+
+                    if (isQuitFileExist)
+                    {
+                        // Empty quit file.
+                        File.WriteAllText(QUIT_CONFIRM_FILE_PATH, string.Empty);
+                    }
+                    else
+                    {
+                        // Create quit file
+                        using (File.Create(QUIT_CONFIRM_FILE_PATH)) { }
+                    }
                 }
 
                 // Register events.
-                new EditorApplicationCallback(QUIT_CONFIRM_TEXT_FILE_PATH).RegisterEvents();
+                {
+                    new EditorApplicationCallback(QUIT_CONFIRM_FILE_PATH).RegisterEvents();
+                }
             }
         }
     }

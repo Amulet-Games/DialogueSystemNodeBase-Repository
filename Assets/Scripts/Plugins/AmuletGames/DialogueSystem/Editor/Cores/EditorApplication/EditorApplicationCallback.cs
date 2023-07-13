@@ -1,24 +1,30 @@
 using System.IO;
 using UnityEditor;
-using Unity.EditorCoroutines.Editor;
-using System.Collections;
-using UnityEngine;
 
 namespace AG.DS
 {
     public class EditorApplicationCallback
     {
-        string quitConfirmTextFilePath;
+        /// <summary>
+        /// The file path of the quit confirm file.
+        /// </summary>
+        string quitConfirmFilePath;
+
+
+        /// <summary>
+        /// The text to write into the quit confirm file.
+        /// </summary>
+        const string QUIT_CONFIRM_TEXT = "UNITY QUIT SUCCESSFULY";
 
 
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the dialogue editor window callback class.
+        /// Constructor of the editor application callback class.
         /// </summary>
-        /// <param name="quitConfirmTextFilePath"></param>
-        public EditorApplicationCallback(string quitConfirmTextFilePath)
+        /// <param name="quitConfirmFilePath">The quit confirm file's file path to set for.</param>
+        public EditorApplicationCallback(string quitConfirmFilePath)
         {
-            this.quitConfirmTextFilePath = quitConfirmTextFilePath;
+            this.quitConfirmFilePath = quitConfirmFilePath;
         }
 
 
@@ -28,48 +34,32 @@ namespace AG.DS
         /// </summary>
         public void RegisterEvents()
         {
-            RegisterEditorApplicationQuittingEvent();
+            RegisterEditorApplicationWantsToQuitEvent();
         }
 
 
         /// <summary>
-        /// Register EditorApplicationQuittingEvent to the editor application.
+        /// Register EditorApplicationWantsToQuitEvent to the editor application.
         /// </summary>
-        void RegisterEditorApplicationQuittingEvent() =>
+        void RegisterEditorApplicationWantsToQuitEvent() =>
             EditorApplication.wantsToQuit += EditorApplicationWantsToQuitEvent;
 
-        
+
         // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when the editor application is quitting.
+        /// The event to invoke when the editor application wants to quit.
         /// <para></para>
-        /// <br>Note that this will not fire if the Editor is forced to quit or if there is a crash.</br>
-        /// <br>This event is raised when the quitting process cannot be canceled.</br>
+        /// <br>When this event is raised the quit process has started but can be canceled.</br>
+        /// <br>This means the editor is not guaranteed to quit.</br>
+        /// <br>For a guaranteed quit event take a look at EditorApplication.quitting</br>
         /// </summary>
+        /// <returns>Returns true and the quit process will continue. Return false and quit process will cancel.</returns>
         bool EditorApplicationWantsToQuitEvent()
         {
-            if (!File.Exists(quitConfirmTextFilePath))
-            {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(quitConfirmTextFilePath))
-                {
-                    sw.WriteLine("UNITY_QUIT_CONFIRMED");
-                }
-            }
-            else
-            {
-                using (StreamWriter sw = File.AppendText(quitConfirmTextFilePath))
-                {
-                    sw.WriteLine("UNITY_QUIT_CONFIRMED");
-                }
-            }
+            // Write to the existing quit file.
+            File.WriteAllText(quitConfirmFilePath, QUIT_CONFIRM_TEXT);
 
-            return File.Exists(quitConfirmTextFilePath) && !quitConfirmTextFilePath.IsFileEmpty();
-        }
-
-        IEnumerator Test()
-        {
-            yield return new WaitUntil(() => File.Exists(quitConfirmTextFilePath) && !quitConfirmTextFilePath.IsFileEmpty());
+            return !quitConfirmFilePath.IsFileEmpty();
         }
     }
 }
