@@ -409,7 +409,7 @@ namespace AG.DS
 
             void OnModifierCreated()
             {
-                view.Folder.SetIsExpand(value: false);
+                view.Folder.SetIsExpand(value: true);
                 view.Folder.EditFolderTitle();
             }
         }

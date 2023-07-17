@@ -16,13 +16,13 @@ namespace AG.DS
         /// <summary>
         /// The file path of the quit confirm file.
         /// </summary>
-        static string QUIT_CONFIRM_FILE_PATH;
+        static string QUIT_CONFIRM_FILE_PATH => Path.Combine(Application.persistentDataPath, QUIT_CONFIRM_FILE_NAME);
 
 
         /// <summary>
-        /// The key to use when saving the editor's open session state into session state.
+        /// The key to use when saving the isInitialized value into the session state.
         /// </summary>
-        const string EDITOR_OPEN_SESSION_STATE_KEY = "EDITOR_OPEN_SESSION_KEY";
+        const string IS_INITIALIZED_SESSION_STATE_KEY = "IS_INITIALIZED_SESSION_STATE_KEY";
 
 
         /// <summary>
@@ -32,19 +32,35 @@ namespace AG.DS
         {
             get
             {
-                return SessionState.GetBool(key: EDITOR_OPEN_SESSION_STATE_KEY, defaultValue: false);
+                return SessionState.GetBool(key: IS_INITIALIZED_SESSION_STATE_KEY, defaultValue: false);
             }
             set
             {
-                SessionState.SetBool(key: EDITOR_OPEN_SESSION_STATE_KEY, value);
+                SessionState.SetBool(key: IS_INITIALIZED_SESSION_STATE_KEY, value);
             }
         }
 
 
         /// <summary>
-        /// Did the editor application previously closed successfully without crashing?
+        /// The key to use when saving the isClosePeacefully value into the session state.
         /// </summary>
-        public static bool isQuitPeacefully { get; private set; }
+        const string IS_CLOSE_PEACEFULLY_SESSION_STATE_KEY = "IS_CLOSE_PEACEFULLY_SESSION_STATE_KEY";
+
+
+        /// <summary>
+        /// Return true if the editor application previously is closed by user input and not by crashed.
+        /// </summary>
+        public static bool IsClosePeacefully
+        {
+            get
+            {
+                return SessionState.GetBool(key: IS_CLOSE_PEACEFULLY_SESSION_STATE_KEY, defaultValue: false);
+            }
+            set
+            {
+                SessionState.SetBool(key: IS_CLOSE_PEACEFULLY_SESSION_STATE_KEY, value);
+            }
+        }
 
 
         // ----------------------------- Constructor -----------------------------
@@ -53,21 +69,16 @@ namespace AG.DS
         /// </summary>
         static EditorApplicationInitializer()
         {
-            if (!isInitialized && EditorApplication.isPlayingOrWillChangePlaymode == false)
-            {   
+            if (!isInitialized)
+            {
                 isInitialized = true;
-
-                // Set quit file path.
-                {
-                    QUIT_CONFIRM_FILE_PATH = Path.Combine(Application.persistentDataPath, QUIT_CONFIRM_FILE_NAME);
-                }
 
                 // Check the application previous quit status and reset quit file.
                 {
                     var isQuitFileExist = File.Exists(QUIT_CONFIRM_FILE_PATH);
 
-                    isQuitPeacefully = !isQuitFileExist
-                                    || !QUIT_CONFIRM_FILE_PATH.IsFileEmpty();
+                    IsClosePeacefully = !isQuitFileExist
+                                     || !QUIT_CONFIRM_FILE_PATH.IsFileEmpty();
 
                     if (isQuitFileExist)
                     {
@@ -80,11 +91,12 @@ namespace AG.DS
                         using (File.Create(QUIT_CONFIRM_FILE_PATH)) { }
                     }
                 }
+            }
 
+            if (EditorApplication.isPlayingOrWillChangePlaymode == false)
+            {
                 // Register events.
-                {
-                    new EditorApplicationCallback(QUIT_CONFIRM_FILE_PATH).RegisterEvents();
-                }
+                new EditorApplicationCallback(QUIT_CONFIRM_FILE_PATH).RegisterEvents();
             }
         }
     }
