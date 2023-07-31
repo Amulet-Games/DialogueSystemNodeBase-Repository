@@ -115,7 +115,7 @@ namespace AG.DS
                     rootIconImage = CommonImagePresenter.CreateElement
                     (
                         imageSprite: ConfigResourcesManager.SpriteConfig.OptionRootIconSprite,
-                        imageUSS01: StyleConfig.OptionRoot_Icon_Image
+                        imageUSS01: StyleConfig.OptionRoot_Icon
                     );
                 }
 

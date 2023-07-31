@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -35,8 +36,6 @@ namespace AG.DS
             RegisterFocusInEvent();
 
             RegisterFocusOutEvent();
-
-            
         }
 
 
@@ -44,19 +43,21 @@ namespace AG.DS
         /// Register ChangeEvent to the field.
         /// </summary>
         void RegisterChangeEvent() =>
-            view.ObjectField.RegisterCallback<ChangeEvent<TObject>>(ChangeEvent);
+            view.ObjectField.RegisterValueChangedCallback(ChangeEvent);
 
 
         /// <summary>
         /// Register FocusInEvent to the field.
         /// </summary>
-        void RegisterFocusInEvent() => view.ObjectField.RegisterCallback<FocusInEvent>(FocusInEvent);
+        void RegisterFocusInEvent() =>
+            view.ObjectField.RegisterCallback<FocusInEvent>(FocusInEvent);
 
 
         /// <summary>
         /// Register FocusOutEvent to the field.
         /// </summary>
-        void RegisterFocusOutEvent() => view.ObjectField.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+        void RegisterFocusOutEvent() =>
+            view.ObjectField.RegisterCallback<FocusOutEvent>(FocusOutEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -64,7 +65,7 @@ namespace AG.DS
         /// The event to invoke when the field value has changed.
         /// </summary>
         /// <param name="evt">The registering event.</param>
-        void ChangeEvent(ChangeEvent<TObject> evt)
+        void ChangeEvent(ChangeEvent<Object> evt)
         {
             var field = view.ObjectField;
 
@@ -77,7 +78,7 @@ namespace AG.DS
             if (evt.newValue)
             {
                 view.LanguageGeneric
-                    .ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = evt.newValue;
+                    .ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = evt.newValue as TObject;
 
                 // Bind the new value.
                 field.Bind(obj: new SerializedObject(evt.newValue));
@@ -88,7 +89,7 @@ namespace AG.DS
                     .ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = null;
             }
 
-            field.ToggleEmptyStyle();
+            field.ToggleEmptyStyle(view.PlaceholderText);
 
             WindowChangedEvent.Invoke();
         }

@@ -19,9 +19,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The modifier's delay seconds integer value.
+        /// The modifier's delay seconds value.
         /// </summary>
-        [SerializeField] public int DelaySecondsInteger;
+        [SerializeField] public double DelaySeconds;
 
 
         // ----------------------------- Constructor -----------------------------

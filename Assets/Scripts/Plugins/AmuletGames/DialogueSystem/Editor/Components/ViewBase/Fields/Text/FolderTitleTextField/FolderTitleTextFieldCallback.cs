@@ -1,3 +1,5 @@
+
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -91,11 +93,11 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FieldInputFocusInEvent(FocusInEvent evt)
         {
-            // Cache the previous value.
             previousValue = field.value;
 
-            // Allow user to interact with the field input element.
+            // Allow user interaction.
             field.GetFieldInput().pickingMode = PickingMode.Position;
+            field.GetTextElement().pickingMode = PickingMode.Position;
         }
 
 
@@ -115,10 +117,14 @@ namespace AG.DS
                 WindowChangedEvent.Invoke();
             }
 
-            // Forbidden user to interact with the field input element.
-            var fieldInputElement = field.GetFieldInput();
-            fieldInputElement.focusable = false;
-            fieldInputElement.pickingMode = PickingMode.Ignore;
+            var fieldInput = field.GetFieldInput();
+
+            // Hide input field.
+            fieldInput.focusable = false;
+
+            // Forbidden user interaction.
+            fieldInput.pickingMode = PickingMode.Ignore;
+            field.GetTextElement().pickingMode = PickingMode.Ignore;
         }
     }
 }

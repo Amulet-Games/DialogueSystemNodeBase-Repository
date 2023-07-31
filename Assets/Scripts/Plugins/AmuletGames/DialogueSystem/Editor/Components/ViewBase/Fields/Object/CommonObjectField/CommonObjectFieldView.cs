@@ -12,15 +12,32 @@ namespace AG.DS
         where TObject : UnityEngine.Object
     {
         /// <summary>
-        /// The serializable value from the view.
+        /// Visual element.
+        /// </summary>
+        [NonSerialized] public ObjectField ObjectField;
+
+
+        /// <summary>
+        /// The text to display when the field is empty.
+        /// </summary>
+        [NonSerialized] public string PlaceholderText;
+
+
+        /// <summary>
+        /// The serializable value of the field.
         /// </summary>
         [SerializeField] public TObject Value;
 
 
+        // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Visual element.
+        /// Constructor of the common object field view class.
         /// </summary>
-        [NonSerialized] public ObjectField ObjectField;
+        /// <param name="placeholderText">The placeholder text to set for.</param>
+        public CommonObjectFieldView(string placeholderText)
+        {
+            PlaceholderText = placeholderText;
+        }
 
 
         // ----------------------------- Serialization -----------------------------
@@ -34,7 +51,7 @@ namespace AG.DS
 
             ObjectField.SetValueWithoutNotify(Value);
 
-            ObjectField.ToggleEmptyStyle();
+            ObjectField.ToggleEmptyStyle(PlaceholderText);
         }
 
 

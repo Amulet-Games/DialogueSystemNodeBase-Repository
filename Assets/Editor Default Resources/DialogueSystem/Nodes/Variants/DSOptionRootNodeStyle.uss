@@ -11,8 +11,8 @@
 
 /* =========================================================== Content Button =========================================================== */
 
-/*< ---------------------------------------------------------- Icon Image >*/
-.contentButton_Icon_Image {
+/*< ---------------------------------------------------------- Icon >*/
+.contentButton-icon {
 
 	height: 28px;
 	width: 27.5px;
@@ -101,32 +101,25 @@
 }
 
 
-/*< ---------------------------------------------------------- Icon Image >*/
-.optionRoot_Icon_Image {
+/*< ---------------------------------------------------------- Icon >*/
+.optionRoot-icon {
 	
 	height: 39px;
 	width: 39px;
 
 	align-self: auto;
 	
-	flex-grow: 0;
 	flex-shrink: 0;
 
 	/* top - right - bottom - left */
 	margin: 8.5px 0px 0px 5px;
-	padding: 0px 0px 0px 0px;
 }
 
 
 /*< ---------------------------------------------------------- Inner Container >*/
 .optionRoot_InnerContainer {
 	
-	background-color: rgba(0, 0, 0, 0);
-	
 	height: 56.5px;
-
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
 }
 
 
@@ -136,15 +129,18 @@
 	color: white;
 	
 	font-size: 16.3px;
+
+	flex-shrink: 0;
 	
 	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
 	
 	letter-spacing: -1px;
 	word-spacing: 4px;
 	
+	white-space: nowrap;
+
 	/* top - right - bottom - left */
 	margin: 1px 0px 0px 12px;
-	padding: 0px 0px 0px 0px;
 }
 
 
@@ -154,16 +150,21 @@
 	background-color: rgba(32, 32, 32, 1);
 
 	height: 27px;
-	width: auto;
 	min-width: 406px;
+	
+	flex-shrink: 0;
+	flex-direction: row;
+
+	overflow: hidden;
 
 	white-space: normal;
 
 	/* top - right - bottom - left */
 	margin: 2px 0px 0px 12px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
+	
+	--unity-selection-color: rgba(61, 128, 223, 0.65);
+	--unity-cursor-color: rgba(180, 180, 180, 1);
 }
 
 .optionRoot_Title_TextField:hover {
@@ -183,52 +184,55 @@
 }
 
 .optionRoot_Title_TextField
-.unity-text-field__input {
+.text-field-input {
 	
-	background-color: rgba(0, 0, 0, 0);
+	cursor: text;
 	
-	/* top - right - bottom - left */
-	margin: 0px 0px 0px 0px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 0px 0px 0px 0px;
+	flex-grow: 1;
+	flex-direction: row;
+
+	overflow: scroll;
+
+	-unity-overflow-clip-box: content-box;
+	-unity-text-align: middle-left;
+
+	--unity-sync-text-editor: true;
 }
 
 .optionRoot_Title_TextField
-.unity-text-element {
+.text-field-element {
 
-	background-color: rgba(0, 0, 0, 0);
 	color: white;
+	cursor: text;
 
-	font-size: 13.5px;
+	font-size: 13px;
 	
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Dynamic-SDF.asset');
+	flex-grow: 1;
+	flex-shrink: 0;
 
-	letter-spacing: -2px;
-	word-spacing: -1px;
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
+	
+	letter-spacing: -0.25px;
+	word-spacing: -2px;
 
 	align-self: center;
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 5px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 0px 0px 0px 0px;
 }
 
-.optionRoot_Title_TextField.textField_Empty
-.unity-text-element {
+.optionRoot_Title_TextField.text-field-empty
+.text-field-element {
 	
 	color: rgba(81, 81, 81, 1);
 }
 
 .optionRoot_Title_TextField:hover
-.unity-text-element,
+.text-field-element,
 
 .optionRoot_Title_TextField:focus
-.unity-text-element
+.text-field-element
 {
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 4.5px;
-	padding: 0px 0px 0px 0px;
 }

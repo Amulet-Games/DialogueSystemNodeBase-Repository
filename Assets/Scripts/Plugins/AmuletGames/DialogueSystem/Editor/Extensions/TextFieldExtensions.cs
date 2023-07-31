@@ -6,10 +6,10 @@ namespace AG.DS
     public static class TextFieldExtensions
     {
         /// <summary>
-        /// Returns the text field's input base element.
+        /// Returns the text field's input element.
         /// </summary>
         /// <param name="field">Extension text field.</param>
-        /// <returns>The input base element of the text field.</returns>
+        /// <returns>The input element of the text field.</returns>
         public static VisualElement GetFieldInput(this TextField field)
         {
             return field.ElementAt(0);
@@ -59,12 +59,12 @@ namespace AG.DS
         {
             if (!string.IsNullOrEmpty(field.text))
             {
-                field.RemoveFromClassList(StyleConfig.TextField_Empty);
+                field.RemoveFromClassList(StyleConfig.Text_Field_Empty);
             }
             else
             {
                 field.SetValueWithoutNotify(placeholderText);
-                field.AddToClassList(StyleConfig.TextField_Empty);
+                field.AddToClassList(StyleConfig.Text_Field_Empty);
             }
         }
 
@@ -75,11 +75,8 @@ namespace AG.DS
         /// <param name="field">Extension text field.</param>
         public static void HideEmptyStyle(this TextField field)
         {
-            if (field.ClassListContains(StyleConfig.TextField_Empty))
-            {
-                field.SetValueWithoutNotify(string.Empty);
-                field.RemoveFromClassList(StyleConfig.TextField_Empty);
-            }
+            field.SetValueWithoutNotify(string.Empty);
+            field.RemoveFromClassList(StyleConfig.Text_Field_Empty);
         }
 
 
@@ -94,11 +91,8 @@ namespace AG.DS
             string placeholderText
         )
         {
-            if (!field.ClassListContains(StyleConfig.TextField_Empty))
-            {
-                field.SetValueWithoutNotify(placeholderText);
-                field.AddToClassList(StyleConfig.TextField_Empty);
-            }
+            field.SetValueWithoutNotify(placeholderText);
+            field.AddToClassList(StyleConfig.Text_Field_Empty);
         }
 
 

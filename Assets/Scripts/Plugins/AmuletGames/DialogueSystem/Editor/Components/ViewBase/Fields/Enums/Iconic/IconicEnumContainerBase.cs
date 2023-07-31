@@ -19,7 +19,7 @@ namespace AG.DS
         /// <summary>
         /// The image element to use for the enum field's icon.
         /// </summary>
-        [NonSerialized] public Image IconImage;
+        [NonSerialized] public Image Icon;
 
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace AG.DS
             UpdateFieldValueNonAlert();
 
             // Update icon.
-            UpdateIconImage();
+            UpdateIcon();
         }
 
 
@@ -61,11 +61,11 @@ namespace AG.DS
         public abstract void UpdateFieldValueNonAlert();
 
 
-        // ----------------------------- Update Icon Image -----------------------------
+        // ----------------------------- Update Icon -----------------------------
         /// <summary>
-        /// Reset the icon image to match the current field's value.
+        /// Reset the icon to match the current field's value.
         /// </summary>
-        public abstract void UpdateIconImage();
+        public abstract void UpdateIcon();
 
 
         // ----------------------------- IReversible -----------------------------
@@ -98,7 +98,7 @@ namespace AG.DS
                     UpdateFieldValueNonAlert();
 
                     // Update icon.
-                    UpdateIconImage();
+                    UpdateIcon();
                 }
                 else
                 {

@@ -10,19 +10,60 @@ namespace AG.DS
     public class CommonIntegerFieldView : IReversible
     {
         /// <summary>
+        /// Visual element.
+        /// </summary>
+        [NonSerialized] public IntegerField IntegerField;
+
+
+        /// <summary>
+        /// The maximum value that can be set to the field.
+        /// </summary>
+        [NonSerialized] int? maxValue;
+
+
+        /// <summary>
+        /// The minimum value that can be set to the field.
+        /// </summary>
+        [NonSerialized] int? minValue;
+
+
+        /// <summary>
+        /// The property of the serializable value of the view.
+        /// </summary>
+        public int Value
+        {
+            get
+            {
+                return value;
+            }
+            set
+            {
+                if (maxValue != null && value > maxValue)
+                {
+                    value = (int)maxValue;
+                }
+                else if (minValue != null && value < minValue)
+                {
+                    value = (int)minValue;
+                }
+
+                this.value = value;
+
+                IntegerField.SetValueWithoutNotify(this.value);
+
+                IntegerField.ToggleEmptyStyle();
+            }
+        }
+
+
+        /// <summary>
         /// The serializable value of the view.
         /// <para></para>
         /// The value here is to prevent boxing/unboxing when we push it to the reversible stack.<see cref="StashData"/>,
         /// <br>instead of serializing the value from the field, which will cause boxing,</br>
         /// <br>we'll serialize the view itself which the included the value.</br>
         /// </summary>
-        [SerializeField] public int Value;
-
-
-        /// <summary>
-        /// Visual element.
-        /// </summary>
-        [NonSerialized] public IntegerField IntegerField;
+        [SerializeField] int value;
 
 
         // ----------------------------- Serialization -----------------------------
@@ -33,8 +74,6 @@ namespace AG.DS
         public void Load(int value)
         {
             Value = value;
-
-            IntegerField.SetValueWithoutNotify(Value);
         }
 
 

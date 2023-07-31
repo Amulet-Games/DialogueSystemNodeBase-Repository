@@ -44,7 +44,7 @@ namespace AG.DS
                 contentButton.Label = CommonLabelPresenter.CreateElement
                 (
                     labelText: buttonText,
-                    labelUSS: StyleConfig.ContentButton_Title_Label
+                    labelUSS: StyleConfig.ContentButton_Label
                 );
             }
 
@@ -53,7 +53,7 @@ namespace AG.DS
                 contentButton.IconImage = CommonImagePresenter.CreateElement
                 (
                     imageSprite: buttonIconSprite,
-                    imageUSS01: StyleConfig.ContentButton_Icon_Image
+                    imageUSS01: StyleConfig.ContentButton_Icon
                 );
             }
 

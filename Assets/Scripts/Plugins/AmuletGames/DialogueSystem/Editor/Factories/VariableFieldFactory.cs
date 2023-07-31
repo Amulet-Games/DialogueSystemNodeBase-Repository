@@ -57,7 +57,7 @@ namespace AG.DS
                 if (fieldIcon != null)
                 {
                     //TODO: This should be Remove and Add.
-                    objectField.RemoveFieldIcon();
+                    //objectField.RemoveFieldIcon();
                 }
             }
 

@@ -112,7 +112,7 @@ namespace AG.DS
             {
                 // Connect the field with the container.
                 iconicEnumContainer.EnumField = enumField;
-                iconicEnumContainer.IconImage = iconImage;
+                iconicEnumContainer.Icon = iconImage;
             }
 
             void SetFieldDetails()

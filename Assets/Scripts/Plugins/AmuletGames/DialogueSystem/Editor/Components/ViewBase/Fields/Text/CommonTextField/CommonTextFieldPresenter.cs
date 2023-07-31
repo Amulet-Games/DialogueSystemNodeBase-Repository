@@ -18,7 +18,7 @@ namespace AG.DS
             string fieldUSS
         )
         {
-            TextField commonTextField;
+            TextField textField;
 
             CreateField();
 
@@ -28,33 +28,35 @@ namespace AG.DS
 
             AddFieldToStyleClass();
 
-            return commonTextField;
+            return textField;
 
             void CreateField()
             {
-                commonTextField = new();
+                textField = new();
             }
 
             void SetFieldDetails()
             {
-                commonTextField.multiline = isMultiLine;
+                textField.multiline = isMultiLine;
 
                 // Set white space style,
-                // Normal means the texts will auto line break when it reaches the end of the field input base,
-                // NoWarp means the texts are shown in one line even when it's expanded outside of the field input base.
-                commonTextField.style.whiteSpace = isMultiLine
+                // Normal means the texts will auto line break when it reaches the end of the field input element,
+                // No wrap means the texts are shown in one line even when it's expanded outside of the field input element.
+                textField.style.whiteSpace = isMultiLine
                     ? WhiteSpace.Normal
                     : WhiteSpace.NoWrap;
+
+                textField.pickingMode = PickingMode.Position;
             }
 
             void ShowEmptyStyle()
             {
-                commonTextField.ShowEmptyStyle(placeholderText: placeholderText);
+                textField.ShowEmptyStyle(placeholderText);
             }
 
             void AddFieldToStyleClass()
             {
-                commonTextField.AddToClassList(fieldUSS);
+                textField.AddToClassList(fieldUSS);
             }
         }
     }

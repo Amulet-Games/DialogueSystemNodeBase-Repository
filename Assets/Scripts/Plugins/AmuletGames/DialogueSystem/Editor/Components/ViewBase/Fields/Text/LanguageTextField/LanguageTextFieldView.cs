@@ -10,19 +10,19 @@ namespace AG.DS
     public class LanguageTextFieldView : IReversible
     {
         /// <summary>
-        /// The text to show when the text field has no actual value in it.
-        /// </summary>
-        [NonSerialized] public string PlaceholderText;
-
-
-        /// <summary>
         /// Visual element.
         /// </summary>
         [NonSerialized] public TextField TextField;
 
 
         /// <summary>
-        /// The serializable value from the container.
+        /// The text to display when the field is empty.
+        /// </summary>
+        [NonSerialized] public string PlaceholderText;
+
+
+        /// <summary>
+        /// The serializable value of the field.
         /// </summary>
         [SerializeField] public LanguageGeneric<string> LanguageGeneric;
 
@@ -81,7 +81,7 @@ namespace AG.DS
                 LanguageGeneric.ValueByLanguageType[languageManager.CurrentLanguage]
             );
 
-            TextField.ToggleEmptyStyle(placeholderText: PlaceholderText);
+            TextField.ToggleEmptyStyle(PlaceholderText);
         }
 
 
@@ -117,7 +117,7 @@ namespace AG.DS
 
                     TextField.SetValueWithoutNotify(reverseValue);
 
-                    TextField.ToggleEmptyStyle(placeholderText: PlaceholderText);
+                    TextField.ToggleEmptyStyle(PlaceholderText);
                 }
                 else
                 {
@@ -138,7 +138,7 @@ namespace AG.DS
                 newValue: LanguageGeneric.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage]
             );
 
-            TextField.ToggleEmptyStyle(placeholderText: PlaceholderText);
+            TextField.ToggleEmptyStyle(PlaceholderText);
         }
     }
 }

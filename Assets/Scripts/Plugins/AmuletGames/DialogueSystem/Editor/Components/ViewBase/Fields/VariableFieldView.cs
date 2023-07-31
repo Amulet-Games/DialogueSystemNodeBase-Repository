@@ -12,27 +12,15 @@ namespace AG.DS
     public class VariableFieldView : IReversible
     {
         /// <summary>
-        /// One of the serializable value from the view.
-        /// </summary>
-        [SerializeField] public BoolVariable BoolVariable;
-
-
-        /// <summary>
-        /// One of the serializable value from the view.
-        /// </summary>
-        [SerializeField] public FloatVariable FloatVariable;
-
-
-        /// <summary>
-        /// One of the serializable value from the view.
-        /// </summary>
-        [SerializeField] public StringVariable StringVariable;
-
-
-        /// <summary>
         /// Visual element.
         /// </summary>
         [NonSerialized] public ObjectField ObjectField;
+
+
+        /// <summary>
+        /// The text to display when the field is empty.
+        /// </summary>
+        [NonSerialized] public string PlaceholderText;
 
 
         /// <summary>
@@ -40,6 +28,24 @@ namespace AG.DS
         /// <br>or loaded from when it comes to serializing the view.</br>
         /// </summary>
         [NonSerialized] VariableType assigningType;
+
+
+        /// <summary>
+        /// One of the serializable value of the field.
+        /// </summary>
+        [SerializeField] public BoolVariable BoolVariable;
+
+
+        /// <summary>
+        /// One of the serializable value of the field.
+        /// </summary>
+        [SerializeField] public FloatVariable FloatVariable;
+
+
+        /// <summary>
+        /// One of the serializable value of the field.
+        /// </summary>
+        [SerializeField] public StringVariable StringVariable;
 
 
         // ----------------------------- Serialization -----------------------------
@@ -139,14 +145,11 @@ namespace AG.DS
             )
                 where TVariable : VariableFrameBase<T>
             {
-                // Change field assigning type.
                 ObjectField.objectType = typeof(TVariable);
 
-                // Load field.
                 ObjectField.SetValueWithoutNotify(variable);
 
-                // Toggle empty style.
-                ObjectField.ToggleEmptyStyle();
+                ObjectField.ToggleEmptyStyle(PlaceholderText);
             }
         }
 
@@ -219,17 +222,13 @@ namespace AG.DS
 
                 if (reverseValue != null)
                 {
-                    // Load value.
                     value = reverseValue;
 
-                    // Change field assigning type.
                     ObjectField.objectType = type;
 
-                    // Load field.
                     ObjectField.SetValueWithoutNotify(value);
 
-                    // Toggle empty style.
-                    ObjectField.ToggleEmptyStyle();
+                    ObjectField.ToggleEmptyStyle(PlaceholderText);
                 }
                 else
                 {

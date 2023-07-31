@@ -74,6 +74,7 @@ namespace AG.DS
                 view.CharacterObjectFieldView.ObjectField =
                     CommonObjectFieldPresenter.CreateElement<DialogueCharacter>
                     (
+                        placeholderText: "",
                         fieldUSS01: StyleConfig.DialogueNode_Character_ObjectField
                     );
 
@@ -85,11 +86,11 @@ namespace AG.DS
 
             void AddCharacterObjectFieldIcon()
             {
-                view.CharacterObjectFieldView.ObjectField.RemoveFieldIcon();
-                view.CharacterObjectFieldView.ObjectField.AddFieldIcon
-                (
-                    iconSprite: ConfigResourcesManager.SpriteConfig.CharacterFieldIconSprite
-                );
+                //view.CharacterObjectFieldView.ObjectField.RemoveFieldIcon();
+                //view.CharacterObjectFieldView.ObjectField.SetDisplayImage
+                //(
+                //    iconSprite: ConfigResourcesManager.SpriteConfig.CharacterFieldIconSprite
+                //);
             }
             
             void AddDialogueNodeStitcher()

@@ -9,15 +9,15 @@ namespace AG.DS
     public class CommonTextFieldView : IReversible
     {
         /// <summary>
-        /// The text to show when the text field has no actual value in it.
-        /// </summary>
-        [NonSerialized] public string PlaceholderText;
-
-
-        /// <summary>
         /// Visual element.
         /// </summary>
         [NonSerialized] public TextField TextField;
+
+
+        /// <summary>
+        /// The text to display when the field is empty.
+        /// </summary>
+        [NonSerialized] public string PlaceholderText;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -39,7 +39,7 @@ namespace AG.DS
         public void Load(string value)
         {
             TextField.SetValueWithoutNotify(value);
-            TextField.ToggleEmptyStyle(placeholderText: PlaceholderText);
+            TextField.ToggleEmptyStyle(PlaceholderText);
         }
 
 

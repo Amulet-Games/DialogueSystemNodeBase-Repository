@@ -5,8 +5,7 @@ namespace AG.DS
     /// <summary>
     /// Class that stores the config data relating to node creation.
     /// </summary>
-    [Serializable]
-    public class NodeConfig
+    public static class NodeConfig
     {
         // ----------------------------- Node Width -----------------------------
         /// <summary>

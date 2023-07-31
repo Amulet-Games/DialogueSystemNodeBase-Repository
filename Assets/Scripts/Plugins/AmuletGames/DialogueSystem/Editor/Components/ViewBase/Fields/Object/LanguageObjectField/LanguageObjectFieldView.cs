@@ -18,7 +18,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The serializable value from the view.
+        /// The text to display when the field is empty.
+        /// </summary>
+        [NonSerialized] public string PlaceholderText;
+
+
+        /// <summary>
+        /// The serializable value of the field.
         /// </summary>
         [SerializeField] public LanguageGeneric<TObject> LanguageGeneric;
 
@@ -27,11 +33,12 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the language object field view class.
         /// </summary>
-        public LanguageObjectFieldView()
+        /// <param name="placeholderText">The placeholder text to set for.</param>
+        public LanguageObjectFieldView(string placeholderText)
         {
-            // Setup language generic.
-            LanguageGeneric = new();
+            PlaceholderText = placeholderText;
 
+            LanguageGeneric = new();
             for (int i = 0; i < LanguageManager.Instance.SupportLanguageLength; i++)
             {
                 LanguageGeneric.
@@ -76,7 +83,7 @@ namespace AG.DS
                 LanguageGeneric.ValueByLanguageType[languageManager.CurrentLanguage]
             );
 
-            ObjectField.ToggleEmptyStyle();
+            ObjectField.ToggleEmptyStyle(PlaceholderText);
         }
 
 
@@ -119,7 +126,7 @@ namespace AG.DS
 
                     ObjectField.SetValueWithoutNotify(reverseValue);
 
-                    ObjectField.ToggleEmptyStyle();
+                    ObjectField.ToggleEmptyStyle(PlaceholderText);
                 }
                 else
                 {
@@ -140,7 +147,7 @@ namespace AG.DS
                 newValue: LanguageGeneric.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage]
             );
 
-            ObjectField.ToggleEmptyStyle();
+            ObjectField.ToggleEmptyStyle(PlaceholderText);
         }
     }
 }

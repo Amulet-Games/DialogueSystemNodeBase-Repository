@@ -11,6 +11,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// The old value that was set when the use has given focus on the field.
+        /// </summary>
+        int previousValue;
+
+
+        /// <summary>
         /// Constructor of the common integer field callback class.
         /// </summary>
         /// <param name="view">The common integer field view to set for.</param>
@@ -26,8 +32,16 @@ namespace AG.DS
         /// </summary>
         public void RegisterEvents()
         {
+            RegisterFocusInEvent();
+
             RegisterFocusOutEvent();
         }
+
+        /// <summary>
+        /// Register FocusInEvent to the field.
+        /// </summary>
+        void RegisterFocusInEvent() =>
+            view.IntegerField.RegisterCallback<FocusInEvent>(FocusInEvent);
 
 
         /// <summary>
@@ -39,17 +53,34 @@ namespace AG.DS
 
         // ----------------------------- Event -----------------------------
         /// <summary>
+        /// The event to invoke when the field has given focus.
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void FocusInEvent(FocusInEvent evt)
+        {
+            previousValue = view.Value;
+
+            view.IntegerField.HideEmptyStyle();
+        }
+
+
+        /// <summary>
         /// The event to invoke when the field has lost focus.
         /// </summary>
         /// <param name="evt">The registering event.</param>
         void FocusOutEvent(FocusOutEvent evt)
         {
-            // Push the current container's value to the undo stack.
-            //TestingWindow.Instance.PushUndo(floatContainer);
+            var field = view.IntegerField;
 
-            view.Value = view.IntegerField.value;
+            if (field.value != previousValue)
+            {
+                // Push the current container's value to the undo stack.
+                //TestingWindow.Instance.PushUndo(integerView);
 
-            WindowChangedEvent.Invoke();
+                view.Value = view.IntegerField.value;
+
+                WindowChangedEvent.Invoke();
+            }
         }
     }
 }

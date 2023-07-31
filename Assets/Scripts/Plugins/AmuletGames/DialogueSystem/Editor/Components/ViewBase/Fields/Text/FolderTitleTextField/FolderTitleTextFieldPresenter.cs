@@ -17,8 +17,8 @@ namespace AG.DS
         )
         {
             TextField textField;
-            VisualElement field_input;
-            VisualElement text_element;
+            VisualElement fieldInput;
+            VisualElement textElement;
 
             CreateField();
 
@@ -31,8 +31,8 @@ namespace AG.DS
             void CreateField()
             {
                 textField = new();
-                field_input = textField.GetFieldInput();
-                text_element = textField.GetTextElement();
+                fieldInput = textField.GetFieldInput();
+                textElement = textField.GetTextElement();
             }
 
             void SetFieldDetails()
@@ -41,19 +41,19 @@ namespace AG.DS
                 textField.isDelayed = true;
                 textField.multiline = false;
 
-                field_input.pickingMode = PickingMode.Ignore;
-                text_element.pickingMode = PickingMode.Ignore;
+                fieldInput.pickingMode = PickingMode.Ignore;
+                textElement.pickingMode = PickingMode.Ignore;
             }
 
             void AddFieldToStyleClass()
             {
                 textField.ClearClassList();
-                field_input.ClearClassList();
-                text_element.ClearClassList();
+                fieldInput.ClearClassList();
+                textElement.ClearClassList();
 
                 textField.AddToClassList(fieldUSS);
-                field_input.AddToClassList(StyleConfig.TextField_Input);
-                text_element.AddToClassList(StyleConfig.TextField_Element);
+                fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
+                textElement.AddToClassList(StyleConfig.Text_Field_Element);
             }
         }
     }

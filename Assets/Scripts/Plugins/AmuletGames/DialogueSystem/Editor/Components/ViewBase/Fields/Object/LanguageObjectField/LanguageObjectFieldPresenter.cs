@@ -50,7 +50,7 @@ namespace AG.DS
 
             void ShowEmptyStyle()
             {
-                languageObjectField.ShowEmptyStyle();
+                languageObjectField.ShowEmptyStyle("");
             }
 
             void AddFieldToStyleClass()

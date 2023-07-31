@@ -32,7 +32,7 @@ namespace AG.DS
                 else
                 {
                     variableContainer.SetNewValue(null);
-                    objectField.ShowEmptyStyle();
+                    objectField.ShowEmptyStyle("");
                 }
 
                 WindowChangedEvent.Invoke();

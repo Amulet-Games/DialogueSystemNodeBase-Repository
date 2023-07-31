@@ -115,7 +115,7 @@ namespace AG.DS
                     branchIconImage = CommonImagePresenter.CreateElement
                     (
                         imageSprite: ConfigResourcesManager.SpriteConfig.OptionBranchIconSprite,
-                        imageUSS01: StyleConfig.OptionBranch_Icon_Image
+                        imageUSS01: StyleConfig.OptionBranch_Icon
                     );
                 }
 

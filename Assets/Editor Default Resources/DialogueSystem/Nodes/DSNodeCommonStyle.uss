@@ -52,6 +52,8 @@
 /*< ---------------------------------------------------------- Text Field >*/
 .node_Title_TextField {
 
+	height: 31px;
+
 	flex-grow: 1;
 	flex-shrink: 0;
 	
@@ -93,8 +95,7 @@
 .text-field-element {
 	
 	color: white;
-
-	height: 31px;
+	cursor: text;
 
 	font-size: 17px;
 
@@ -112,8 +113,6 @@
 
 	background-color: rgba(32, 32, 32, 1);
 	border-color: rgba(58, 121, 187, 1);
-	
-	height: 30px;
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px -1.5px;
@@ -198,21 +197,21 @@
 /* ----------------------------------------------------------- Field Empty Styles ----------------------------------------------------------- */
 
 /*< -------------------- Text Field -------------------- >*/
-.textField_Empty
+.text-field-empty
 .unity-text-field__input {
 
 	color: rgba(101, 101, 101, 1);
 }
 
 /*< -------------------- Object Field -------------------- >*/
-.objectField_Empty 
+.object-field-empty 
 .unity-object-field-display__label {
 
 	color: rgba(150, 150, 150, 1);
 }
 
 /*< -------------------- Float Field -------------------- >*/
-.floatField_Empty
+.float-field-empty
 .unity-float-field__input {
 
 	color: rgba(150, 150, 150, 1);

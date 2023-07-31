@@ -37,11 +37,11 @@
 
 .folder_ExpandFolder_Button:hover {
 
-	-unity-background-image-tint-color: rgba(255, 255, 255, 1);
+	-unity-background-image-tint-color: white;
 }
 
 .folder_ExpandFolder_Button:hover
-.button-background-highlighter {
+.background-highlighter {
 	
 	align-self: center;
 	
@@ -57,7 +57,7 @@
 
 .folder_Closed
 .folder_ExpandFolder_Button:hover
-.button-background-highlighter {
+.background-highlighter {
 	
 	/* top - right - bottom - left */
 	margin: 1px 0px 0px 0px;
@@ -69,14 +69,11 @@
 /*< ---------------------------------------------------------- Container >*/
 .folder_Title_Container {
 	
-	background-color: rgba(0, 0, 0, 0);
-
 	height: 28px;
 
 	flex-direction: row;
 
 	/* top - right - bottom - left */
-	border-width: 0px 0px 0px 0px;
 	border-radius: 4px 4px 0px 0px;
 }
 
@@ -91,7 +88,7 @@
 .folder_Title_TextField {
 
 	height: 28px;
-	width: 230px;
+	/*width: 230px;*/
 	
 	flex-grow: 1;
 	flex-shrink: 0;
@@ -129,6 +126,7 @@
 .text-field-element {
 
 	color: white;
+	cursor: text;
 
 	font-size: 16px;
 
@@ -160,9 +158,6 @@
 /*< ---------------------------------------------------------- Container >*/
 .folder_ContentContainer {
 
-	background-color: rgba(0, 0, 0, 0);
-
 	/* top - right - bottom - left */
 	margin: 2px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
 }

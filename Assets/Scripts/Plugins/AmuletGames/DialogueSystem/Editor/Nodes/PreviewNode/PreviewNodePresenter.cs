@@ -118,6 +118,7 @@ namespace AG.DS
                 view.LeftPortraitObjectFieldView.ObjectField =
                     CommonObjectFieldPresenter.CreateElement<Sprite>
                     (
+                        placeholderText: view.LeftPortraitObjectFieldView.PlaceholderText,
                         fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
                         fieldUSS02: StyleConfig.PreviewNode_PreviewSprite_ObjectField_L
                     );
@@ -128,6 +129,7 @@ namespace AG.DS
                 view.RightPortraitObjectFieldView.ObjectField =
                     CommonObjectFieldPresenter.CreateElement<Sprite>
                     (
+                        placeholderText: view.RightPortraitObjectFieldView.PlaceholderText,
                         fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
                         fieldUSS02: StyleConfig.PreviewNode_PreviewSprite_ObjectField_R
                     );

@@ -101,20 +101,21 @@ namespace AG.DS
 
             void SetupSecondTermFloatField()
             {
-                SecondTermFloatFieldView.FloatField = CommonFloatFieldPresenter.CreateElement
+                CommonDoubleFieldPresenter.CreateElement
                 (
-                    fieldUSS01: StyleConfig.Modifier_Condition_SecondTerm_FloatField
+                    view: SecondTermFloatFieldView,
+                    fieldUSS: StyleConfig.Modifier_Condition_SecondTerm_FloatField
                 );
 
-                new CommonFloatFieldCallback(view: SecondTermFloatFieldView).RegisterEvents();
+                new CommonDoubleFieldCallback(view: SecondTermFloatFieldView).RegisterEvents();
             }
 
             void SetupSecondTermFloatFieldIcon()
             {
-                SecondTermFloatFieldView.FloatField.AddFieldIcon
-                (
-                    iconSprite: ConfigResourcesManager.SpriteConfig.KeyboardInputFieldIconSprite
-                );
+                //SecondTermFloatFieldView.FloatField.AddFieldIcon
+                //(
+                //    iconSprite: ConfigResourcesManager.SpriteConfig.KeyboardInputFieldIconSprite
+                //);
             }
 
             void SetupSecondTermObjectField()
@@ -170,7 +171,7 @@ namespace AG.DS
                 // Main box
                 MainBox.Add(firstTermObjectField);
                 MainBox.Add(conditionComparisonTypeEnumField);
-                MainBox.Add(SecondTermFloatFieldView.FloatField);
+                MainBox.Add(SecondTermFloatFieldView.DoubleField);
                 MainBox.Add(SecondTermTextFieldView.TextField);
                 MainBox.Add(secondTermObjectField);
                 MainBox.Add(buttonSideBox);

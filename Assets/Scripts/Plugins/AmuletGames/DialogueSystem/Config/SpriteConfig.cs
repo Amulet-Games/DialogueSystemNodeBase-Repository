@@ -11,7 +11,6 @@ namespace AG.DS
         public Sprite MoveDownButtonIconSprite;
         public Sprite MoveUpButtonIconSprite;
         public Sprite RemoveButtonIconSprite;
-        public Sprite ObjectFieldSelectorIconSprite;
         #endregion
 
         #region Conditions.

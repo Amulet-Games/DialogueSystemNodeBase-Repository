@@ -43,7 +43,7 @@ namespace AG.DS
                 inputHint.HintIconImage = CommonImagePresenter.CreateElement
                 (
                     imageSprite: ConfigResourcesManager.SpriteConfig.LanguageFieldHintIconSprite,
-                    imageUSS01: StyleConfig.InputHint_IconImage
+                    imageUSS01: StyleConfig.InputHint_Icon
                 );
             }
 
@@ -52,7 +52,7 @@ namespace AG.DS
                 inputHint.HintTextLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: "",
-                    labelUSS: StyleConfig.InputHint_TextLabel
+                    labelUSS: StyleConfig.InputHint_Label
                 );
             }
 

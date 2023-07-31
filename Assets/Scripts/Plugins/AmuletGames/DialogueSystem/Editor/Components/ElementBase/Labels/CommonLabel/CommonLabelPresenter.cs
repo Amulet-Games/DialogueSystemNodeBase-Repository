@@ -18,6 +18,7 @@ namespace AG.DS
         {
             Label label = new(labelText);
 
+            label.ClearClassList();
             label.AddToClassList(labelUSS);
 
             return label;

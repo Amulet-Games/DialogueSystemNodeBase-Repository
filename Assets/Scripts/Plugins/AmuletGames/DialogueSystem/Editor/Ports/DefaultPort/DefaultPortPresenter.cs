@@ -82,14 +82,13 @@ namespace AG.DS
             {
                 port.m_ConnectorBoxCap.pickingMode = PickingMode.Position;
 
-                // Remove default USS names
                 port.m_ConnectorBox.name = "";
                 port.m_ConnectorText.name = "";
                 port.m_ConnectorBoxCap.name = "";
 
                 port.ClearClassList();
+                port.m_ConnectorText.ClearClassList();
 
-                // Add custom USS class.
                 if (isInput)
                 {
                     port.AddToClassList(StyleConfig.Default_Input_Port);

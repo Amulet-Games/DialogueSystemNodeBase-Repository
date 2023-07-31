@@ -1,10 +1,12 @@
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class CommonObjectFieldCallback<TObject> where TObject : UnityEngine.Object
+    public class CommonObjectFieldCallback<TObject>
+        where TObject : Object
     {
         /// <summary>
         /// The targeting common object field view.
@@ -12,26 +14,17 @@ namespace AG.DS
         CommonObjectFieldView<TObject> view;
 
 
-        /// <summary>
-        /// The additional ChangeEvent that can be set to invoke after the default ones.
-        /// </summary>
-        EventCallback<ChangeEvent<TObject>> additionalChangeEvent;
-
-
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the common object field callback class.
         /// </summary>
         /// <param name="view">The common object field view to set for.</param>
-        /// <param name="additionalChangeEvent">The additional ChangeEvent to set for.</param>
         public CommonObjectFieldCallback
         (
-            CommonObjectFieldView<TObject> view,
-            EventCallback<ChangeEvent<TObject>> additionalChangeEvent = null
+            CommonObjectFieldView<TObject> view
         )
         {
             this.view = view;
-            this.additionalChangeEvent = additionalChangeEvent;
         }
 
 
@@ -42,28 +35,13 @@ namespace AG.DS
         public void RegisterEvents()
         {
             RegisterChangeEvent();
-
-            RegisterAdditionalChangeEvent();
         }
 
 
         /// <summary>
         /// Register ChangeEvent to the field.
         /// </summary>
-        void RegisterChangeEvent() =>
-            view.ObjectField.RegisterCallback<ChangeEvent<TObject>>(ChangeEvent);
-
-
-        /// <summary>
-        /// Register additional ChangeEvent to the field.
-        /// </summary>
-        void RegisterAdditionalChangeEvent()
-        {
-            if (additionalChangeEvent != null)
-            {
-                view.ObjectField.RegisterCallback(additionalChangeEvent);
-            }
-        }
+        void RegisterChangeEvent() => view.ObjectField.RegisterValueChangedCallback(ChangeEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -71,7 +49,7 @@ namespace AG.DS
         /// The event to invoke when the field value has changed.
         /// </summary>
         /// <param name="evt">The registering event.</param>
-        void ChangeEvent(ChangeEvent<TObject> evt)
+        void ChangeEvent(ChangeEvent<Object> evt)
         {
             var field = view.ObjectField;
 
@@ -86,7 +64,7 @@ namespace AG.DS
 
             if (evt.newValue)
             {
-                view.Value = evt.newValue;
+                view.Value = evt.newValue as TObject;
 
                 // Bind the new value.
                 field.Bind(obj: new SerializedObject(view.Value));
@@ -96,7 +74,7 @@ namespace AG.DS
                 view.Value = null;
             }
 
-            field.ToggleEmptyStyle();
+            field.ToggleEmptyStyle(view.PlaceholderText);
 
             WindowChangedEvent.Invoke();
         }

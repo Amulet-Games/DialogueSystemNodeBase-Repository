@@ -5,9 +5,15 @@ namespace AG.DS
     public class CommonTextFieldCallback
     {
         /// <summary>
-        /// The targeting common text field view.
+        /// The targeting language text field.
         /// </summary>
-        CommonTextFieldView view;
+        TextField field;
+
+
+        /// <summary>
+        /// The text to display when the field is empty.
+        /// </summary>
+        string placeholderText;
 
 
         /// <summary>
@@ -21,9 +27,13 @@ namespace AG.DS
         /// Constructor of the common text field callback class.
         /// </summary>
         /// <param name="view">The common text field view to set for.</param>
-        public CommonTextFieldCallback(CommonTextFieldView view)
+        public CommonTextFieldCallback
+        (
+            CommonTextFieldView view
+        )
         {
-            this.view = view;
+            field = view.TextField;
+            placeholderText = view.PlaceholderText;
         }
 
 
@@ -42,15 +52,13 @@ namespace AG.DS
         /// <summary>
         /// Register FocusInEvent to the field.
         /// </summary>
-        void RegisterFocusInEvent() =>
-            view.TextField.RegisterCallback<FocusInEvent>(FocusInEvent);
+        void RegisterFocusInEvent() => field.RegisterCallback<FocusInEvent>(FocusInEvent);
 
 
         /// <summary>
         /// Register FocusOutEvent to the field.
         /// </summary>
-        void RegisterFocusOutEvent() =>
-            view.TextField.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+        void RegisterFocusOutEvent() => field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -60,10 +68,9 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusInEvent(FocusInEvent evt)
         {
-            // Cache the previous value.
-            previousValue = view.TextField.value;
+            previousValue = field.value;
 
-            view.TextField.HideEmptyStyle();
+            field.HideEmptyStyle();
         }
 
 
@@ -73,9 +80,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusOutEvent(FocusOutEvent evt)
         {
-            var field = view.TextField;
-
-            if (field.value != view.PlaceholderText
+            if (field.value != placeholderText
              && field.value != previousValue)
             {
                 // Push the current view's value to the undo stack.
@@ -84,7 +89,7 @@ namespace AG.DS
                 WindowChangedEvent.Invoke();
             }
 
-            field.ToggleEmptyStyle(view.PlaceholderText);
+            field.ToggleEmptyStyle(placeholderText);
         }
     }
 }

@@ -1,6 +1,6 @@
 namespace AG.DS
 {
-    public class StyleConfig
+    public static class StyleConfig
     {
         #region Global USS Classes.
         public const string Global_Display_None = "global_Display_None";
@@ -9,19 +9,30 @@ namespace AG.DS
         #endregion
 
         #region Elements Common USS Classes.
+        /*< -------------------- Common -------------------- >*/
+        public const string Background_Highlighter = "background-highlighter";
+
         /*< -------------------- Text Field -------------------- >*/
-        public const string TextField_Empty = "textField_Empty";
-        public const string TextField_Input = "text-field-input";
-        public const string TextField_Element = "text-field-element";
+        public const string Text_Field_Empty = "text-field-empty";
+        public const string Text_Field_Input = "text-field-input";
+        public const string Text_Field_Element = "text-field-element";
 
         /*< -------------------- Object Field -------------------- >*/
-        public const string ObjectField_Empty = "objectField_Empty";
+        public const string Object_Field_Empty = "object-field-empty";
+        public const string Object_Field_Input = "object-field-input";
+        public const string Object_Field_Display = "object-field-display";
+        public const string Object_Field_Display_Image = "object-field-display-image";
+        public const string Object_Field_Display_Label = "object-field-display-label";
 
-        /*< -------------------- Float Field -------------------- >*/
-        public const string FloatField_Empty = "floatField_Empty";
+        /*< -------------------- Integer Field -------------------- >*/
+        public const string Integer_Field_Empty = "integer-field-empty";
+        public const string Integer_Field_Input = "integer-field-input";
+        public const string Integer_Field_Element = "integer-field-element";
 
-        /*< -------------------- Button -------------------- >*/
-        public const string Button_Background_Highlighter = "button-background-highlighter";
+        /*< -------------------- Double Field -------------------- >*/
+        public const string Double_Field_Empty = "double-field-empty";
+        public const string Double_Field_Input = "double-field-input";
+        public const string Double_Field_Element = "double-field-element";
         #endregion
 
         #region HeadBar USS Classes.
@@ -38,9 +49,9 @@ namespace AG.DS
         #endregion
 
         #region Input Hint USS Classes.
-        public const string InputHint_Main = "inputHint_Main";
-        public const string InputHint_IconImage = "inputHint_IconImage";
-        public const string InputHint_TextLabel = "inputHint_TextLabel";
+        public const string InputHint_Main = "inputHint-main";
+        public const string InputHint_Icon = "inputHint-icon";
+        public const string InputHint_Label = "inputHint-label";
         #endregion
 
         #region Modifier Event USS Classes.
@@ -51,11 +62,11 @@ namespace AG.DS
         public const string EventModifier_Remove_Button = "eventModifier_Remove_Button";
         public const string EventModifier_DialogueEvent_Container = "eventModifier_DialogueEvent_Container";
         public const string EventModifier_DialogueEvent_Label = "eventModifier_DialogueEvent_Label";
-        public const string EventModifier_DialogueEvent_ObjectField = "eventModifier_DialogueEvent_ObjectField";
+        public const string EventModifier_DialogueEvent_Field = "eventModifier_DialogueEvent_Field";
         public const string EventModifier_StartDelay_Container = "eventModifier_StartDelay_Container";
         public const string EventModifier_StartDelay_Label = "eventModifier_StartDelay_Label";
         public const string EventModifier_DelaySeconds_Container = "eventModifier_DelaySeconds_Container";
-        public const string EventModifier_DelaySeconds_IntegerField = "eventModifier_DelaySeconds_IntegerField";
+        public const string EventModifier_DelaySeconds_Field = "eventModifier_DelaySeconds_Field";
         public const string EventModifier_DelaySeconds_Label = "eventModifier_DelaySeconds_Label";
 
         /*< -------------------- Group -------------------- >*/
@@ -154,9 +165,9 @@ namespace AG.DS
         #endregion
 
         #region Content Button USS Classes.
-        public const string ContentButton_Main = "contentButton_Main";
-        public const string ContentButton_Title_Label = "contentButton_Title_Label";
-        public const string ContentButton_Icon_Image = "contentButton_Icon_Image";
+        public const string ContentButton_Main = "contentButton-main";
+        public const string ContentButton_Label = "contentButton-label";
+        public const string ContentButton_Icon = "contentButton-icon";
         #endregion
 
         #region Field Icon USS Classes.
@@ -196,7 +207,7 @@ namespace AG.DS
         #region Node Option Branch USS Classes.
         public const string OptionBranch_MainContainer = "optionBranch_MainContainer";
         public const string OptionBranch_OuterContainer = "optionBranch_OuterContainer";
-        public const string OptionBranch_Icon_Image = "optionBranch_Icon_Image";
+        public const string OptionBranch_Icon = "optionBranch-icon";
         public const string OptionBranch_InnerContainer = "optionBranch_InnerContainer";
         public const string OptionBranch_Title_Label = "optionBranch_Title_Label";
         public const string OptionBranch_Title_TextField = "optionBranch_Title_TextField";
@@ -205,7 +216,7 @@ namespace AG.DS
         #region Node Option Root USS Classes.
         public const string OptionRoot_MainContainer = "optionRoot_MainContainer";
         public const string OptionRoot_OuterContainer = "optionRoot_OuterContainer";
-        public const string OptionRoot_Icon_Image = "optionRoot_Icon_Image";
+        public const string OptionRoot_Icon = "optionRoot-icon";
         public const string OptionRoot_InnerContainer = "optionRoot_InnerContainer";
         public const string OptionRoot_Title_Label = "optionRoot_Title_Label";
         public const string OptionRoot_Title_TextField = "optionRoot_Title_TextField";

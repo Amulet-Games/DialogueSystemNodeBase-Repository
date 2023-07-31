@@ -26,7 +26,7 @@ namespace AG.DS
         /// <summary>
         /// Float field container for storing the second term value that'll be used to compare to.
         /// </summary>
-        public CommonFloatFieldView SecondTermFloatFieldView;
+        public CommonDoubleFieldView SecondTermFloatFieldView;
 
 
         /// <summary>
@@ -172,20 +172,21 @@ namespace AG.DS
 
             void SetupSecondTermFloatField()
             {
-                SecondTermFloatFieldView.FloatField = CommonFloatFieldPresenter.CreateElement
+                CommonDoubleFieldPresenter.CreateElement
                 (
-                    fieldUSS01: StyleConfig.Modifier_Condition_Rooted_SecondTerm_FloatField
+                    view: SecondTermFloatFieldView,
+                    fieldUSS: StyleConfig.Modifier_Condition_Rooted_SecondTerm_FloatField
                 );
 
-                new CommonFloatFieldCallback(view: SecondTermFloatFieldView).RegisterEvents();
+                new CommonDoubleFieldCallback(view: SecondTermFloatFieldView).RegisterEvents();
             }
 
             void SetupSecondTermFloatFieldIcon()
             {
-                SecondTermFloatFieldView.FloatField.AddFieldIcon
-                (
-                    iconSprite: ConfigResourcesManager.SpriteConfig.KeyboardInputFieldIconSprite
-                );
+                //SecondTermFloatFieldView.FloatField.AddFieldIcon
+                //(
+                //    iconSprite: ConfigResourcesManager.SpriteConfig.KeyboardInputFieldIconSprite
+                //);
             }
 
             void SetupSecondTermObjectField()
@@ -220,7 +221,7 @@ namespace AG.DS
                 // Main box
                 MainBox.Add(firstTermObjectField);
                 MainBox.Add(conditionComparisonTypeEnumField);
-                MainBox.Add(SecondTermFloatFieldView.FloatField);
+                MainBox.Add(SecondTermFloatFieldView.DoubleField);
                 MainBox.Add(SecondTermTextFieldView.TextField);
                 MainBox.Add(secondTermObjectField);
                 MainBox.Add(buttonBox);
@@ -244,7 +245,7 @@ namespace AG.DS
 
             // Hide all the second term elements.
             SecondTermTextFieldView.TextField.HideElement();
-            SecondTermFloatFieldView.FloatField.HideElement();
+            SecondTermFloatFieldView.DoubleField.HideElement();
             SecondTermVariableContainer.ObjectField.HideElement();
 
             // Show the new in display second term element.
@@ -309,7 +310,7 @@ namespace AG.DS
             FirstTermVariableContainer.Save(model.FirstTermVariableGroupModel);
             model.ConditionComparisonTypeEnumIndex = ConditionComparisonTypeEnumContainer.Value;
             model.SecondTermText = SecondTermTextFieldView.TextField.value;
-            model.SecondTermFloat = SecondTermFloatFieldView.Value;
+            //model.SecondTermFloat = SecondTermFloatFieldView.Value;
             SecondTermVariableContainer.Save(model.SecondTermVariableGroupModel);
 
             // Save isShowKeyboardInputField
@@ -395,7 +396,7 @@ namespace AG.DS
                 case M_Condition_ComparisonType.Smaller:
 
                     secondTermElement = isShowKeyboardInputField
-                        ? SecondTermFloatFieldView.FloatField
+                        ? SecondTermFloatFieldView.DoubleField
                         : SecondTermVariableContainer.ObjectField;
 
                     secondTermElement.ShowElement();

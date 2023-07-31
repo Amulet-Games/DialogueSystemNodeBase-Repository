@@ -18,43 +18,54 @@ namespace AG.DS
             string fieldUSS
         )
         {
-            TextField languageTextField;
+            TextField textField;
 
             CreateField();
 
             SetFieldDetails();
 
-            ShowEmptyStyle();
-
             AddFieldToStyleClass();
 
-            return languageTextField;
+            ShowEmptyStyle();
+
+            return textField;
 
             void CreateField()
             {
-                languageTextField = new();
+                textField = new();
             }
 
             void SetFieldDetails()
             {
-                languageTextField.multiline = isMultiLine;
+                textField.multiline = isMultiLine;
 
                 // Set white space style,
-                // Normal means the texts will auto line break when it reaches the end of the field input base,
-                // NoWarp means the texts are shown in one line even when it's expanded outside of the field input base.
-                languageTextField.style.whiteSpace = isMultiLine
+                // Normal means the texts will auto line break when it reaches the end of the field input element,
+                // No wrap means the texts are shown in one line even when it's expanded outside of the field input element.
+                textField.style.whiteSpace = isMultiLine
                     ? WhiteSpace.Normal
                     : WhiteSpace.NoWrap;
-            }
 
-            void ShowEmptyStyle()
-            {
-                languageTextField.ShowEmptyStyle(placeholderText: placeholderText);
+                textField.pickingMode = PickingMode.Position;
             }
 
             void AddFieldToStyleClass()
             {
-                languageTextField.AddToClassList(fieldUSS);
+                var fieldInput = textField.GetFieldInput();
+                var textElement = textField.GetTextElement();
+
+                textField.ClearClassList();
+                fieldInput.ClearClassList();
+                textElement.ClearClassList();
+
+                textField.AddToClassList(fieldUSS);
+                fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
+                textElement.AddToClassList(StyleConfig.Text_Field_Element);
+            }
+
+            void ShowEmptyStyle()
+            {
+                textField.ShowEmptyStyle(placeholderText: placeholderText);
             }
         }
     }

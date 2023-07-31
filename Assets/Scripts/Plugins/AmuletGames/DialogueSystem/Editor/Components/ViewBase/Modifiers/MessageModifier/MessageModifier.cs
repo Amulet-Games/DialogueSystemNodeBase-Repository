@@ -83,7 +83,7 @@ namespace AG.DS
             messageTextView = new(
                 placeholderText: StringConfig.DialogueSegmentTextlinePlaceholderText);
             
-            messageAudioObjectView = new();
+            messageAudioObjectView = new("");
 
             csvGUID = Guid.NewGuid().ToString();
         }
@@ -243,11 +243,11 @@ namespace AG.DS
 
             void SetupMessageAudioObjectFieldIcon()
             {
-                messageAudioObjectView.ObjectField.RemoveFieldIcon();
-                messageAudioObjectView.ObjectField.AddFieldIcon
-                (
-                    iconSprite: ConfigResourcesManager.SpriteConfig.AudioClipFieldIconSprite
-                );
+                //messageAudioObjectView.ObjectField.RemoveFieldIcon();
+                //messageAudioObjectView.ObjectField.AddFieldIcon
+                //(
+                //    iconSprite: ConfigResourcesManager.SpriteConfig.AudioClipFieldIconSprite
+                //);
             }
 
             void SetupProgressTypeLabel()

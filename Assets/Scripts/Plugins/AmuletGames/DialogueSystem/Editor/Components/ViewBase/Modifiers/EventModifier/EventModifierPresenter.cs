@@ -39,9 +39,9 @@ namespace AG.DS
 
             SetupDialogueEventLabel();
 
-            SetupDialogueEventObjectField();
+            SetupDialogueEventField();
 
-            SetupDialogueEventObjectFieldIcon();
+            SetupDialogueEventFieldIcon();
 
             SetupStartDelayContainer();
 
@@ -49,7 +49,7 @@ namespace AG.DS
 
             SetupDelaySecondsContainer();
 
-            SetupDelaySecondsIntegerField();
+            SetupDelaySecondsField();
 
             SetupDelaySecondsLabel();
 
@@ -127,33 +127,37 @@ namespace AG.DS
             {
                 dialogueEventLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.EventModifier_DialogueEvent_LabelText,
+                    labelText: StringConfig.EventModifier_DialogueEventLabel_LabelText,
                     labelUSS: StyleConfig.EventModifier_DialogueEvent_Label
                 );
             }
 
-            void SetupDialogueEventObjectField()
+            void SetupDialogueEventField()
             {
-                view.DialogueEventObjectFieldView.ObjectField =
+                view.DialogueEventFieldView.ObjectField =
                     CommonObjectFieldPresenter.CreateElement<DialogueEvent>
                     (
-                        fieldUSS01: StyleConfig.EventModifier_DialogueEvent_ObjectField
+                        placeholderText: view.DialogueEventFieldView.PlaceholderText,
+                        fieldUSS01: StyleConfig.EventModifier_DialogueEvent_Field
                     );
             }
 
-            void SetupDialogueEventObjectFieldIcon()
+            void SetupDialogueEventFieldIcon()
             {
-                view.DialogueEventObjectFieldView.ObjectField.RemoveFieldIcon();
-                view.DialogueEventObjectFieldView.ObjectField.AddFieldIcon
-                (
-                    iconSprite: ConfigResourcesManager.SpriteConfig.EventFieldIconSprite
-                );
+                view.DialogueEventFieldIcon =
+                    CommonImagePresenter.CreateElement
+                    (
+                        imageSprite: ConfigResourcesManager.SpriteConfig.EventFieldIconSprite,
+                        imageUSS01: StyleConfig.Object_Field_Display_Image
+                    );
+
+                view.DialogueEventFieldView.ObjectField.SetDisplayImage(view.DialogueEventFieldIcon);
             }
 
             void SetupStartDelayContainer()
             {
                 startDelayContainer = new();
-                startDelayContainer.AddToClassList(StyleConfig.EventModifier_DelaySeconds_Container);
+                startDelayContainer.AddToClassList(StyleConfig.EventModifier_StartDelay_Container);
             }
 
             void SetupStartDelayLabel()
@@ -171,13 +175,13 @@ namespace AG.DS
                 delaySecondsContainer.AddToClassList(StyleConfig.EventModifier_DelaySeconds_Container);
             }
 
-            void SetupDelaySecondsIntegerField()
+            void SetupDelaySecondsField()
             {
-                view.DelaySecondsIntegerFieldView.IntegerField =
-                    CommonIntegerFieldPresenter.CreateElement
-                    (
-                        fieldUSS: StyleConfig.EventModifier_DelaySeconds_IntegerField
-                    );
+                CommonDoubleFieldPresenter.CreateElement
+                (
+                    view: view.DelaySecondsFieldView,
+                    fieldUSS: StyleConfig.EventModifier_DelaySeconds_Field
+                );
             }
 
             void SetupDelaySecondsLabel()
@@ -201,7 +205,7 @@ namespace AG.DS
                 // Dialogue Event Container
                 view.Folder.AddElementToContent(dialogueEventContainer);
                 dialogueEventContainer.Add(dialogueEventLabel);
-                dialogueEventContainer.Add(view.DialogueEventObjectFieldView.ObjectField);
+                dialogueEventContainer.Add(view.DialogueEventFieldView.ObjectField);
 
                 // Start Delay Container.
                 view.Folder.AddElementToContent(startDelayContainer);
@@ -209,7 +213,7 @@ namespace AG.DS
                 startDelayContainer.Add(delaySecondsContainer);
 
                 // Delay Seconds Container.
-                delaySecondsContainer.Add(view.DelaySecondsIntegerFieldView.IntegerField);
+                delaySecondsContainer.Add(view.DelaySecondsFieldView.DoubleField);
                 delaySecondsContainer.Add(delaySecondsLabel);
             }
         }

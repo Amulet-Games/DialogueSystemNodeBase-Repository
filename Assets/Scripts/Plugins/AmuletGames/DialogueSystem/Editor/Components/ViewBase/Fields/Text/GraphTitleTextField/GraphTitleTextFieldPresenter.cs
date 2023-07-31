@@ -39,16 +39,16 @@ namespace AG.DS
 
             void SetupStyleClass()
             {
-                var field_input = textField.GetFieldInput();
-                var text_element = textField.GetTextElement();
+                var fieldInput = textField.GetFieldInput();
+                var textElement = textField.GetTextElement();
 
                 textField.ClearClassList();
-                field_input.ClearClassList();
-                text_element.ClearClassList();
+                fieldInput.ClearClassList();
+                textElement.ClearClassList();
 
                 textField.AddToClassList(fieldUSS);
-                field_input.AddToClassList(StyleConfig.TextField_Input);
-                text_element.AddToClassList(StyleConfig.TextField_Element);
+                fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
+                textElement.AddToClassList(StyleConfig.Text_Field_Element);
             }
         }
     }

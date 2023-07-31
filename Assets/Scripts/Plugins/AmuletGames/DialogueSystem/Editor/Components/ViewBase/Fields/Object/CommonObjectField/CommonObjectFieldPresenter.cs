@@ -1,5 +1,6 @@
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -9,60 +10,74 @@ namespace AG.DS
         /// Method for creating a new common object field element.
         /// </summary>
         /// <typeparam name="TObject">Type object</typeparam>
+        /// <param name="placeholderText">The placeholder text to set for the field.</param>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
         /// <param name="fieldUSS02">The second USS style to set for the field.</param>
         /// <returns>A new common object field element.</returns>
         public static ObjectField CreateElement<TObject>
         (
+            string placeholderText,
             string fieldUSS01,
             string fieldUSS02 = null
         )
             where TObject : Object
         {
-            ObjectField commonObjectField;
+            ObjectField objectField;
+            VisualElement fieldInput;
+            VisualElement fieldDisplay;
+            Label fieldDisplayLabel;
+            VisualElement fieldSelector;
 
             CreateField();
 
             SetFieldDetails();
 
-            ChangeSelectorIcon();
+            AddFieldToStyleClass();
 
             ShowEmptyStyle();
 
-            AddFieldToStyleClass();
-
-            return commonObjectField;
+            return objectField;
 
             void CreateField()
             {
-                commonObjectField = new();
+                objectField = new();
+                fieldInput = objectField.GetFieldInput();
+                fieldDisplay = objectField.GetFieldDisplay();
+                fieldDisplayLabel = objectField.GetDisplayLabel();
+                fieldSelector = objectField.GetFieldSelector();
             }
 
             void SetFieldDetails()
             {
-                commonObjectField.objectType = typeof(TObject);
-                commonObjectField.allowSceneObjects = false;
-            }
+                objectField.objectType = typeof(TObject);
+                objectField.allowSceneObjects = false;
 
-            void ChangeSelectorIcon()
-            {
-                var selectorElement = commonObjectField.ElementAt(0).ElementAt(1);
+                // Remove display image.
+                fieldDisplay.Remove(objectField.GetDisplayImage());
 
-                selectorElement.style.backgroundImage =
-                    ConfigResourcesManager.SpriteConfig.ObjectFieldSelectorIconSprite.texture;
-            }
-
-            void ShowEmptyStyle()
-            {
-                commonObjectField.ShowEmptyStyle();
+                // Add background highlighter to the selector
+                fieldSelector.AddBackgroundHighlighter();
             }
 
             void AddFieldToStyleClass()
             {
-                commonObjectField.AddToClassList(fieldUSS01);
+                objectField.ClearClassList();
+                fieldInput.ClearClassList();
+                fieldDisplay.ClearClassList();
+                fieldDisplayLabel.ClearClassList();
+
+                objectField.AddToClassList(fieldUSS01);
+                fieldInput.AddToClassList(StyleConfig.Object_Field_Input);
+                fieldDisplay.AddToClassList(StyleConfig.Object_Field_Display);
+                fieldDisplayLabel.AddToClassList(StyleConfig.Object_Field_Display_Label);
 
                 if (fieldUSS02 != null)
-                    commonObjectField.AddToClassList(fieldUSS02);
+                    objectField.AddToClassList(fieldUSS02);
+            }
+
+            void ShowEmptyStyle()
+            {
+                objectField.ShowEmptyStyle(placeholderText);
             }
         }
     }

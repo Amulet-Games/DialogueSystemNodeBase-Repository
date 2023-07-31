@@ -7,15 +7,46 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new common integer field element.
         /// </summary>
+        /// <param name="view">The common integer field view to set for the field.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>
-        /// <returns>A new common integer field element.</returns>
-        public static IntegerField CreateElement(string fieldUSS)
+        public static void CreateElement
+        (
+            CommonIntegerFieldView view,
+            string fieldUSS
+        )
         {
-            IntegerField commonIntegerField = new();
+            IntegerField integerField;
 
-            commonIntegerField.AddToClassList(fieldUSS);
+            CreateField();
 
-            return commonIntegerField;
+            AddFieldToStyleClass();
+
+            ShowEmptyStyle();
+
+            void CreateField()
+            {
+                view.IntegerField = new();
+                integerField = view.IntegerField;
+            }
+
+            void AddFieldToStyleClass()
+            {
+                var fieldInput = integerField.GetFieldInput();
+                var textElement = integerField.GetTextElement();
+
+                integerField.ClearClassList();
+                fieldInput.ClearClassList();
+                textElement.ClearClassList();
+
+                integerField.AddToClassList(fieldUSS);
+                fieldInput.AddToClassList(StyleConfig.Integer_Field_Input);
+                textElement.AddToClassList(StyleConfig.Integer_Field_Element);
+            }
+
+            void ShowEmptyStyle()
+            {
+                integerField.ShowEmptyStyle();
+            }
         }
     }
 }

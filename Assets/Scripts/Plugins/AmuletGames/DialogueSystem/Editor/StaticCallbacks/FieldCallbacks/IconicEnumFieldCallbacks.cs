@@ -25,7 +25,7 @@ namespace AG.DS
                 //);
 
                 iconicEnumContainer.Value = (int)(object)callback.newValue;
-                iconicEnumContainer.UpdateIconImage();
+                iconicEnumContainer.UpdateIcon();
 
                 additionalValueChangedAction?.Invoke();
                 WindowChangedEvent.Invoke();

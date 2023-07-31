@@ -1,6 +1,6 @@
 namespace AG.DS
 {
-    public class StringConfig
+    public static class StringConfig
     {
         #region Window Labels.
         public const string Editor_WindowDefaultTitleText = "New Dialogue Editor Graph";
@@ -86,7 +86,8 @@ namespace AG.DS
 
         #region Event Modifier Texts.
         public const string EventModifier_Folder_TitleText = "Event ";
-        public const string EventModifier_DialogueEvent_LabelText = "Dialogue Event";
+        public const string EventModifier_DialogueEventLabel_LabelText = "Dialogue Event";
+        public const string EventModifier_DialogueEventObjectField_PlaceholderText = "None (Dialogue Event)";
         public const string EventModifier_StartDelay_LabelText = "Start Delay";
         public const string EventModifier_DelaySeconds_LabelText = "seconds";
         #endregion

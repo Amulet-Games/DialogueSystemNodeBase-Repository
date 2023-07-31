@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AG.DS
 {
-    public class WindowConfig
+    public static class WindowConfig
     {
         /// <summary>
         /// The minimum size of the dialogue editor window when it's floating or modal.

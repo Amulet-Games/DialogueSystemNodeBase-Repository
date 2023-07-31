@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -76,7 +77,7 @@ namespace AG.DS
 
             RegisterRemoveButtonClickEvent();
 
-            RegisterDialogueEventObjectFieldEvents();
+            RegisterDialogueEventFieldEvents();
 
             RegisterDelaySecondsIntegerFieldEvents();
         }
@@ -86,9 +87,7 @@ namespace AG.DS
         /// Register events to the folder.
         /// </summary>
         void RegisterFolderEvents()
-        {
-            new FolderCallback(folder: view.Folder).RegisterEvents();
-        }
+            => new FolderCallback(folder: view.Folder).RegisterEvents();
 
 
         /// <summary>
@@ -132,22 +131,20 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register events to the dialogue event object field.
+        /// Register events to the dialogue event field.
         /// </summary>
-        void RegisterDialogueEventObjectFieldEvents()
-        {
-            new CommonObjectFieldCallback<DialogueEvent>(
-                    view: view.DialogueEventObjectFieldView).RegisterEvents();
-        }
+        void RegisterDialogueEventFieldEvents()
+            => new CommonObjectFieldCallback<DialogueEvent>(
+                view: view.DialogueEventFieldView).RegisterEvents();
 
 
         /// <summary>
-        /// Register events to the delay seconds integer field.
+        /// Register events to the delay seconds field.
         /// </summary>
         void RegisterDelaySecondsIntegerFieldEvents()
         {
-            new CommonIntegerFieldCallback(
-                view.DelaySecondsIntegerFieldView).RegisterEvents();
+            new CommonDoubleFieldCallback(
+                view.DelaySecondsFieldView).RegisterEvents();
         }
     }
 }

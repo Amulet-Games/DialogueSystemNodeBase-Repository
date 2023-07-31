@@ -21,7 +21,10 @@ namespace AG.DS
         /// Constructor of the language text field callback class.
         /// </summary>
         /// <param name="view">The language text field view to set for.</param>
-        public LanguageTextFieldCallback(LanguageTextFieldView view)
+        public LanguageTextFieldCallback
+        (
+            LanguageTextFieldView view
+        )
         {
             this.view = view;
         }
@@ -42,15 +45,13 @@ namespace AG.DS
         /// <summary>
         /// Register FocusInEvent to the field.
         /// </summary>
-        void RegisterFocusInEvent() =>
-            view.TextField.RegisterCallback<FocusInEvent>(FocusInEvent);
+        void RegisterFocusInEvent() => view.TextField.RegisterCallback<FocusInEvent>(FocusInEvent);
 
 
         /// <summary>
         /// Register FocusOutEvent to the field.
         /// </summary>
-        void RegisterFocusOutEvent() =>
-            view.TextField.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+        void RegisterFocusOutEvent() => view.TextField.RegisterCallback<FocusOutEvent>(FocusOutEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -88,13 +89,12 @@ namespace AG.DS
                 // Push the current container's value to the undo stack.
                 ///TestingWindow.Instance.PushUndo(languageTextContainer);
 
-                view.LanguageGeneric
-                    .ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = field.value;
+                view.LanguageGeneric.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = field.value;
 
                 WindowChangedEvent.Invoke();
             }
 
-            field.ToggleEmptyStyle(placeholderText: view.PlaceholderText);
+            field.ToggleEmptyStyle(view.PlaceholderText);
 
             InputHint.HideHint();
         }

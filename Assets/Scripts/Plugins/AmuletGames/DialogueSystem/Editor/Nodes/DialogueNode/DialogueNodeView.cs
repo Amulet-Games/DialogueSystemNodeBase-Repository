@@ -33,7 +33,7 @@
         /// </summary>
         public DialogueNodeView()
         {
-            CharacterObjectFieldView = new();
+            CharacterObjectFieldView = new("");
             DialogueNodeStitcher = new();
         }
 

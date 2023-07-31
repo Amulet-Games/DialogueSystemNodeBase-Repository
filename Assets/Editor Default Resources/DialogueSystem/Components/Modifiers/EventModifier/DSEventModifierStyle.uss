@@ -35,7 +35,7 @@
 }
 
 .eventModifier_MoveUp_Button:enabled:hover
-.button-background-highlighter {
+.background-highlighter {
 	
 	align-self: center;
 	
@@ -45,7 +45,6 @@
 	width: 21px;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
 }
 
@@ -70,7 +69,7 @@
 }
 
 .eventModifier_MoveDown_Button:enabled:hover
-.button-background-highlighter {
+.background-highlighter {
 	
 	align-self: center;
 	
@@ -80,7 +79,6 @@
 	width: 21px;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
 }
 
@@ -105,7 +103,7 @@
 }
 
 .eventModifier_Rename_Button:enabled:hover
-.button-background-highlighter {
+.background-highlighter {
 	
 	align-self: center;
 	
@@ -140,7 +138,7 @@
 }
 
 .eventModifier_Remove_Button:enabled:hover
-.button-background-highlighter {
+.background-highlighter {
 	
 	align-self: center;
 	
@@ -162,8 +160,6 @@
 
 	/* top - right - bottom - left */
 	margin: 0px 6px 0px 6px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
 }
 
@@ -172,20 +168,22 @@
 .eventModifier_DialogueEvent_Label {
 	
 	color: rgba(210, 210, 210, 1);
-
-	-unity-font: url('project:/Assets/Data/Fonts/Inter/static/Inter-regular.ttf');
 	
-	letter-spacing: 6px;
-	word-spacing: 10px;
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Static-SDF.asset');
+	
+	white-space: nowrap;
+	
+	word-spacing: 9px;
 
 	/* top - right - bottom - left */
 	margin: 3px 0px 0px 6px;
-	padding: 0px 0px 0px 0px;
 }
 
 
-/*< ---------------------------------------------------------- Dialogue Event Object Field >*/
-.eventModifier_DialogueEvent_ObjectField {
+/*< ---------------------------------------------------------- Dialogue Event Field >*/
+.eventModifier_DialogueEvent_Field {
 
 	height: 27px;
 	width: Auto;
@@ -193,61 +191,76 @@
 	align-self: center;
 
 	flex-grow: 1;
-	flex-shrink: 1;
+	flex-direction: row;
+
+	overflow: hidden;
 
 	-unity-overflow-clip-box: content-box;
 
 	/* top - right - bottom - left */
-	margin: 4.5px 6px 6px 5px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
+	margin: 3px 6px 6px 6px;
 	border-radius: 4px 4px 4px 4px;
 }
 
+.eventModifier_DialogueEvent_Field:hover {
 
-.eventModifier_DialogueEvent_ObjectField:hover {
-
-	border-color: rgba(101, 101, 101, 1);
+	border-color: rgba(71, 71, 71, 1);
 
 	/* top - right - bottom - left */
-	border-width: 0.5px 0.5px 0.5px 0.5px;
+	border-width: 1px 1px 1px 1px;
 }
 
-
-.eventModifier_DialogueEvent_ObjectField:focus {
+.eventModifier_DialogueEvent_Field:focus {
 
 	border-color: rgba(58, 121, 187, 1);
 
 	/* top - right - bottom - left */
-	border-width: 0.5px 0.5px 0.5px 0.5px;
+	border-width: 1px 1px 1px 1px;
 }
 
-
-.eventModifier_DialogueEvent_ObjectField
-.unity-object-field__input {
+.eventModifier_DialogueEvent_Field
+.object-field-input {
 
 	background-color: rgba(32, 32, 32, 1);
+	border-color: rgba(32, 32, 32, 1);
+
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-direction: row;
+
+	overflow: hidden;
 
 	/* top - right - bottom - left */
-	border-width: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
 }
 
+.eventModifier_DialogueEvent_Field:hover
+.object-field-input,
 
-.eventModifier_DialogueEvent_ObjectField:hover
-.unity-object-field__input,
-
-.eventModifier_DialogueEvent_ObjectField:focus
-.unity-object-field__input{
+.eventModifier_DialogueEvent_Field:focus
+.object-field-input {
 
 	/* top - right - bottom - left */
-	margin: -1px -1px -1px -1px;
+	margin: -1px -1.5px -1px -1.5px;
 }
 
+.eventModifier_DialogueEvent_Field
+.object-field-display {
+	
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-direction: row;
 
-/*< ---------------------------------------------------------- Dialogue Event Object Field Icon >*/
-.eventModifier_DialogueEvent_ObjectField
-.objectField_Icon {
+	-unity-slice-top: 4;
+	-unity-slice-right: 4;
+	-unity-slice-bottom: 4;
+	-unity-slice-left: 4;
+}
+
+.eventModifier_DialogueEvent_Field
+.object-field-display-image {
 
 	height: 18.5px;
 	width: 17px;
@@ -255,59 +268,232 @@
 	align-self: center;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0.5px 4.5px;
-	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0.5px 4px;
+
+	--unity-image-tint-color: white;
 }
 
+.eventModifier_DialogueEvent_Field.object-field-empty
+.object-field-display-image {
 
-/*< ---------------------------------------------------------- Dialogue Event Object Field Selector >*/
-.eventModifier_DialogueEvent_ObjectField
-.unity-object-field__input
-.unity-object-field__selector {
+	--unity-image-tint-color: rgba(81, 81, 81, 1);
+}
+
+.eventModifier_DialogueEvent_Field
+.object-field-display-label {
+
+	color: white;
+
+	align-self: Center;
+
+	font-size: 13px;
+
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	overflow: hidden;
+
+	white-space: nowrap;
 	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	
+	/* top - right - bottom - left */
+	margin: 0px 3px 0px 3px;
+}
+
+.eventModifier_DialogueEvent_Field.object-field-empty
+.object-field-display-label {
+	
+	color: rgba(81, 81, 81, 1);
+}
+
+.eventModifier_DialogueEvent_Field
+.unity-object-field__selector {
+
 	background-color: rgba(0, 0, 0, 0);
 
 	height: 18px;
 	width: 20px;
 
+	align-self: Center;
+
+	flex-shrink: 0;
+	
+	-unity-slice-top: 0;
+	-unity-slice-right: 0;
+	-unity-slice-bottom: 0;
+	-unity-slice-left: 0;
+	-unity-slice-scale: 0;
+
 	/* top - right - bottom - left */
-	margin: 0px 2px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 0px 0px 0px 0px;
+	margin: 0px 1px 0px 0px;
+}
+
+.eventModifier_DialogueEvent_Field
+.unity-object-field__selector:hover
+.background-highlighter {
+	
+	align-self: center;
+	
+	background-color: rgba(255, 255, 255, 0.133);
+
+	height: 16.5px;
+	width: 16.5px;
+	
+	/* top - right - bottom - left */
+	margin: 0.5px 0px 0px 0px;
+	border-radius: 4px 4px 4px 4px;
 }
 
 
-.eventModifier_DialogueEvent_ObjectField
-.unity-object-field__input
-.unity-object-field__selector:hover {
+/*< ---------------------------------------------------------- Start Delay Container >*/
+.eventModifier_StartDelay_Container {
 	
-	background-color: rgba(76, 76, 76, 1);
+	background-color: rgba(42, 42, 42, 1);
+
+	width: 135px;
+
+	/* top - right - bottom - left */
+	margin: 6px 6px 6px 6px;
+	border-radius: 4px 4px 4px 4px;
 }
 
 
-/*< ---------------------------------------------------------- Dialogue Event Object Field Label >*/
-.eventModifier_DialogueEvent_ObjectField
-.unity-object-field__input 
-.unity-object-field-display 
-.unity-object-field-display__label {
+/*< ---------------------------------------------------------- Start Delay Label >*/
+.eventModifier_StartDelay_Label {
 	
+	color: rgba(210, 210, 210, 1);
+	
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Static-SDF.asset');
+	
+	white-space: nowrap;
+	
+	word-spacing: 3px;
+
+	/* top - right - bottom - left */
+	margin: 2.5px 0px 0px 6px;
+}
+
+
+/*< ---------------------------------------------------------- Delay Seconds Container >*/
+.eventModifier_DelaySeconds_Container {
+	
+	flex-direction: row;
+
+	justify-content: space-between;
+}
+
+
+/*< ---------------------------------------------------------- Delay Seconds Field >*/
+.eventModifier_DelaySeconds_Field {
+	
+	background-color: rgba(32, 32, 32, 1);
+
+	height: 27px;
+	width: 63px;
+
+	align-self: center;
+
+	flex-shrink: 0;
+	flex-direction: row;
+
+	overflow: hidden;
+
+	white-space: nowrap;
+
+	-unity-overflow-clip-box: content-box;
+
+	/* top - right - bottom - left */
+	margin: 4px 6px 6px 6px;
+	border-radius: 4px 4px 4px 4px;
+
+	--unity-selection-color: rgba(61, 128, 223, 0.65);
+	--unity-cursor-color: rgba(180, 180, 180, 1);
+}
+
+.eventModifier_DelaySeconds_Field:hover {
+	
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px 0.5px 0.5px 0.5px;
+}
+
+.eventModifier_DelaySeconds_Field:focus {
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px 0.5px 0.5px 0.5px;
+}
+
+.eventModifier_DelaySeconds_Field
+.double-field-input {
+
+	cursor: text;
+	
+	flex-basis: auto;
+	flex-grow: 1;
+	flex-direction: row;
+
+	overflow: scroll;
+	
+	-unity-overflow-clip-box: content-box;
+	-unity-text-align: middle-left;
+
+	--unity-sync-text-editor: true;
+}
+
+.eventModifier_DelaySeconds_Field
+.double-field-element {
+
 	color: white;
+	cursor: text;
 
 	font-size: 13px;
+	
+	flex-grow: 1;
+	flex-shrink: 0;
 
-	align-self: Center;
-	
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium.asset');
-	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
+
+	align-self: center;
+
+	overflow: hidden;
+
 	/* top - right - bottom - left */
-	margin: 0px 3px 0px 5px;
-	padding: 0px 0px 0px 0px;
+	margin: 0px 4.5px 0px 4.5px;
 }
 
-.eventModifier_DialogueEvent_ObjectField.objectField_Empty
-.unity-object-field__input 
-.unity-object-field-display 
-.unity-object-field-display__label {
+.eventModifier_DelaySeconds_Field:hover
+.double-field-element,
+
+.eventModifier_DelaySeconds_Field:focus
+.double-field-element
+{
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 4px;
+}
+
+
+/*< ---------------------------------------------------------- Delay Seconds Label >*/
+.eventModifier_DelaySeconds_Label {
+	
+	align-self: center;
 	
 	color: rgba(101, 101, 101, 1);
+
+	font-size: 13px;
+	
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-medium-Static-SDF.asset');
+	
+	white-space: nowrap;
+
+	/* top - right - bottom - left */
+	margin: 0px 6px 1px 0px;
 }

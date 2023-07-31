@@ -48,8 +48,8 @@ namespace AG.DS
         /// </summary>
         public PreviewNodeView()
         {
-            LeftPortraitObjectFieldView = new();
-            RightPortraitObjectFieldView = new();
+            LeftPortraitObjectFieldView = new("");
+            RightPortraitObjectFieldView = new("");
         }
 
 

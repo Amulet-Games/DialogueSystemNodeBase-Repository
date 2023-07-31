@@ -66,12 +66,13 @@
 
 	flex-grow: 1;
 	flex-shrink: 1;
+	flex-direction: row;
+
+	overflow: hidden;
 
 	-unity-overflow-clip-box: content-box;
 
 	/* top - right - bottom - left */
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
 	border-radius: 4px 4px 4px 4px;
 }
 
@@ -104,9 +105,16 @@
 }
 
 .previewNode_PreviewSprite_ObjectField
-.unity-object-field__input {
+.object-field-input {
 	
 	background-color: rgba(51, 51, 51, 1);
+
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-direction: row;
+
+	overflow: hidden;
 
 	/* top - right - bottom - left */
 	border-width: 0px 0px 0px 0px;
@@ -114,17 +122,31 @@
 }
 
 .previewNode_PreviewSprite_ObjectField:hover
-.unity-object-field__input,
+.object-field-input,
 
 .previewNode_PreviewSprite_ObjectField:focus
-.unity-object-field__input{
+.object-field-input{
 	
 	/* top - right - bottom - left */
 	margin: -1.5px -1.5px -1.5px -1.5px;
 }
 
 .previewNode_PreviewSprite_ObjectField
-.objectField_Icon {
+.object-field-display {
+	
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-direction: row;
+
+	-unity-slice-top: 4;
+	-unity-slice-right: 4;
+	-unity-slice-bottom: 4;
+	-unity-slice-left: 4;
+}
+
+.previewNode_PreviewSprite_ObjectField
+.object-field-display-image {
 
 	height: 20px;
 	width: 20px;
@@ -134,17 +156,15 @@
 	/* top - right - bottom - left */
 	margin: 0px 0px 1px 3px;
 	padding: 0px 0px 0px 0px;
+
+	--unity-image-tint-color: white;
 }
 
 .previewNode_PreviewSprite_ObjectField_L
-.unity-object-field__input 
-.unity-object-field-display 
-.unity-object-field-display__icon,
+.object-field-display-image,
 
 .previewNode_PreviewSprite_ObjectField_R
-.unity-object-field__input 
-.unity-object-field-display 
-.unity-object-field-display__icon {
+.object-field-display-image {
 
 	max-height: 17px;
 	max-width: 20px;
@@ -155,8 +175,16 @@
 }
 
 .previewNode_PreviewSprite_ObjectField
-.unity-object-field__input
 .unity-object-field__selector {
+	
+	height: 11px;
+	width: 11px;
+
+	align-self: Center;
+
+	flex-shrink: 0;
+
+	-unity-slice-scale: 0;
 
 	/* top - right - bottom - left */
 	margin: 0px 2px 0px 0px;
@@ -164,21 +192,16 @@
 }
 
 .previewNode_PreviewSprite_ObjectField
-.unity-object-field__input
 .unity-object-field__selector:hover {
 	
 	background-color: rgba(76, 76, 76, 1);
 }
 
 .previewNode_PreviewSprite_ObjectField_L
-.unity-object-field__input
-.unity-object-field-display
-.unity-object-field-display__label,
+.object-field-display-label,
 
 .previewNode_PreviewSprite_ObjectField_R
-.unity-object-field__input
-.unity-object-field-display
-.unity-object-field-display__label {
+.object-field-display-label {
 
 	font-size: 16px;
 

@@ -39,6 +39,10 @@ namespace AG.DS
             RegisterLeftPortraitObjectFieldChangeEvent();
 
             RegisterRightPortraitObjectFieldChangeEvent();
+
+            RegisterAdditionLeftPortraitFieldChangeEvent();
+
+            RegisterAdditionRightPortraitFieldChangeEvent();
         }
 
 
@@ -62,21 +66,35 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register ChangeEvent to the left portrait object field.
+        /// Register ChangeEvent to the left portrait field.
         /// </summary>
         void RegisterLeftPortraitObjectFieldChangeEvent()
             => new CommonObjectFieldCallback<Sprite>(
-                view: View.LeftPortraitObjectFieldView,
-                additionalChangeEvent: LeftPortraitObjectFieldChangeEvent).RegisterEvents();
+                view: View.LeftPortraitObjectFieldView).RegisterEvents();
 
 
         /// <summary>
-        /// Register ChangeEvent to the right portrait object field.
+        /// Register ChangeEvent to the right portrait field.
         /// </summary>
         void RegisterRightPortraitObjectFieldChangeEvent()
             => new CommonObjectFieldCallback<Sprite>(
-                view: View.RightPortraitObjectFieldView,
-                additionalChangeEvent: RightPortraitObjectFieldChangeEvent).RegisterEvents();
+                view: View.RightPortraitObjectFieldView).RegisterEvents();
+
+
+        /// <summary>
+        /// Register additional ChangeEvent to the left portrait field.
+        /// </summary>
+        void RegisterAdditionLeftPortraitFieldChangeEvent()
+            => View.LeftPortraitObjectFieldView.ObjectField
+                .RegisterValueChangedCallback(AdditionalLeftPortraitFieldChangeEvent);
+
+
+        /// <summary>
+        /// Register additional ChangeEvent to the right portrait field.
+        /// </summary>
+        void RegisterAdditionRightPortraitFieldChangeEvent()
+            => View.RightPortraitObjectFieldView.ObjectField
+                .RegisterValueChangedCallback(AdditionalRightPortraitFieldChangeEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -93,20 +111,20 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the left portrait object field value has changed.
+        /// The event to invoke when the left portrait field value has changed.
         /// </summary>
         /// <param name="evt">The registering event.</param>
-        void LeftPortraitObjectFieldChangeEvent(ChangeEvent<Sprite> evt)
+        void AdditionalLeftPortraitFieldChangeEvent(ChangeEvent<Object> evt)
         {
             View.LeftPortraitImage.image = View.LeftPortraitObjectFieldView.Value.texture;
         }
 
 
         /// <summary>
-        /// The event to invoke when the right portrait object field value has changed.
+        /// The event to invoke when the right portrait field value has changed.
         /// </summary>
         /// <param name="evt">The registering event.</param>
-        void RightPortraitObjectFieldChangeEvent(ChangeEvent<Sprite> evt)
+        void AdditionalRightPortraitFieldChangeEvent(ChangeEvent<Object> evt)
         {
             View.RightPortraitImage.image = View.RightPortraitObjectFieldView.Value.texture;
         }

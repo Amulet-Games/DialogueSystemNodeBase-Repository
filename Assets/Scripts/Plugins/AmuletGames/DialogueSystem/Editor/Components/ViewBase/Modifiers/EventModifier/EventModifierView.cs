@@ -35,15 +35,21 @@ namespace AG.DS
 
 
         /// <summary>
-        /// View for the dialogue event object field.
+        /// View for the dialogue event field.
         /// </summary>
-        public CommonObjectFieldView<DialogueEvent> DialogueEventObjectFieldView;
+        public CommonObjectFieldView<DialogueEvent> DialogueEventFieldView;
 
 
         /// <summary>
-        /// View for the delay seconds integer field.
+        /// Image for the dialogue event field.
         /// </summary>
-        public CommonIntegerFieldView DelaySecondsIntegerFieldView;
+        public Image DialogueEventFieldIcon;
+
+
+        /// <summary>
+        /// View for the delay seconds field.
+        /// </summary>
+        public CommonDoubleFieldView DelaySecondsFieldView;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -52,8 +58,13 @@ namespace AG.DS
         /// </summary>
         public EventModifierView()
         {
-            DialogueEventObjectFieldView = new();
-            DelaySecondsIntegerFieldView = new();
+            DialogueEventFieldView = new(
+                placeholderText: StringConfig.EventModifier_DialogueEventObjectField_PlaceholderText);
+
+            DelaySecondsFieldView = new(
+                maxValue: NumberConfig.MAX_DELAY_SECOND,
+                minValue: NumberConfig.MIN_DELAY_SECOND
+            );
         }
 
 
@@ -77,12 +88,12 @@ namespace AG.DS
 
             void SaveDialogueEvent()
             {
-                model.DialogueEvent = DialogueEventObjectFieldView.Value;
+                model.DialogueEvent = DialogueEventFieldView.Value;
             }
 
             void SaveDelaySecondsInteger()
             {
-                model.DelaySecondsInteger = DelaySecondsIntegerFieldView.IntegerField.value;
+                model.DelaySeconds = DelaySecondsFieldView.Value;
             }
         }
 
@@ -106,12 +117,12 @@ namespace AG.DS
 
             void LoadDialogueEvent()
             {
-                DialogueEventObjectFieldView.Load(value: model.DialogueEvent);
+                DialogueEventFieldView.Load(value: model.DialogueEvent);
             }
 
             void LoadDelaySecondsInteger()
             {
-                DelaySecondsIntegerFieldView.Load(value: model.DelaySecondsInteger);
+                DelaySecondsFieldView.Load(value: model.DelaySeconds);
             }
         }
 

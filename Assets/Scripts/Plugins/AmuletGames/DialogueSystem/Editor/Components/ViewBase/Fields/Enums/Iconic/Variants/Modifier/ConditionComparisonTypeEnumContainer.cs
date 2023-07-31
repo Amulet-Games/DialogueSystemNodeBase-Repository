@@ -21,8 +21,8 @@ namespace AG.DS
         {
             EnumField.Init((M_Condition_ComparisonType)Value);
 
-            // Reset the symbol image to match the current value.
-            UpdateIconImage();
+            // Update the symbol icon to match the current value.
+            UpdateIcon();
         }
 
 
@@ -32,36 +32,36 @@ namespace AG.DS
             EnumField.SetValueWithoutNotify((M_Condition_ComparisonType)Value);
 
 
-        // ----------------------------- Reset Icon Image -----------------------------
+        // ----------------------------- Reset Icon -----------------------------
         /// <inheritdoc />
-        public override void UpdateIconImage()
+        public override void UpdateIcon()
         {
             var spriteConfig = ConfigResourcesManager.SpriteConfig;
             switch ((M_Condition_ComparisonType)Value)
             {
                 case M_Condition_ComparisonType.True:
-                    IconImage.sprite = spriteConfig.TrueOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.TrueOperatorButtonIconSprite;
                     break;
                 case M_Condition_ComparisonType.False:
-                    IconImage.sprite = spriteConfig.FalseOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.FalseOperatorButtonIconSprite;
                     break;
                 case M_Condition_ComparisonType.Matches:
-                    IconImage.sprite = spriteConfig.MatchOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.MatchOperatorButtonIconSprite;
                     break;
                 case M_Condition_ComparisonType.Equals:
-                    IconImage.sprite = spriteConfig.EqualOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.EqualOperatorButtonIconSprite;
                     break;
                 case M_Condition_ComparisonType.EqualsOrBigger:
-                    IconImage.sprite = spriteConfig.EqualOrBiggerOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.EqualOrBiggerOperatorButtonIconSprite;
                     break;
                 case M_Condition_ComparisonType.EqualsOrSmaller:
-                    IconImage.sprite = spriteConfig.EqualOrSmallerOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.EqualOrSmallerOperatorButtonIconSprite;
                     break;
                 case M_Condition_ComparisonType.Bigger:
-                    IconImage.sprite = spriteConfig.BiggerOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.BiggerOperatorButtonIconSprite;
                     break;
                 case M_Condition_ComparisonType.Smaller:
-                    IconImage.sprite = spriteConfig.SmallerOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.SmallerOperatorButtonIconSprite;
                     break;
             }
         }

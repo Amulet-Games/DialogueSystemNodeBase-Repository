@@ -44,6 +44,8 @@ namespace AG.DS
 
             void AddImageToStyleClass()
             {
+                image.ClearClassList();
+
                 if (imageUSS01 != null)
                     image.AddToClassList(imageUSS01);
 
