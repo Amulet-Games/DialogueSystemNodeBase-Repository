@@ -89,7 +89,7 @@ namespace AG.DS
                 // Push the current container's value to the undo stack.
                 ///TestingWindow.Instance.PushUndo(languageTextContainer);
 
-                view.LanguageGeneric.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = field.value;
+                view.value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = field.value;
 
                 WindowChangedEvent.Invoke();
             }

@@ -42,14 +42,14 @@ namespace AG.DS
         /// Register FocusInEvent to the field.
         /// </summary>
         void RegisterFocusInEvent() =>
-            view.DoubleField.RegisterCallback<FocusInEvent>(FocusInEvent);
+            view.Field.RegisterCallback<FocusInEvent>(FocusInEvent);
 
 
         /// <summary>
         /// Register FocusOutEvent to the field.
         /// </summary>
         void RegisterFocusOutEvent() =>
-            view.DoubleField.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+            view.Field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -61,7 +61,7 @@ namespace AG.DS
         {
             previousValue = view.Value;
 
-            view.DoubleField.HideEmptyStyle();
+            view.Field.HideEmptyStyle();
         }
 
 
@@ -71,14 +71,14 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusOutEvent(FocusOutEvent evt)
         {
-            var field = view.DoubleField;
+            var field = view.Field;
 
             if (field.value != previousValue)
             {
                 // Push the current container's value to the undo stack.
                 //TestingWindow.Instance.PushUndo(doubleContainer);
 
-                view.Value = view.DoubleField.value;
+                view.Value = view.Field.value;
 
                 WindowChangedEvent.Invoke();
             }

@@ -26,8 +26,8 @@ namespace AG.DS
 
             void CreateField()
             {
-                view.DoubleField = new();
-                doubleField = view.DoubleField;
+                view.Field = new();
+                doubleField = view.Field;
             }
 
             void AddFieldToStyleClass()

@@ -134,12 +134,11 @@ namespace AG.DS
 
             void SetupDialogueEventField()
             {
-                view.DialogueEventFieldView.ObjectField =
-                    CommonObjectFieldPresenter.CreateElement<DialogueEvent>
-                    (
-                        placeholderText: view.DialogueEventFieldView.PlaceholderText,
-                        fieldUSS01: StyleConfig.EventModifier_DialogueEvent_Field
-                    );
+                CommonObjectFieldPresenter.CreateElement<DialogueEvent>
+                (
+                    view: view.DialogueEventFieldView,
+                    fieldUSS01: StyleConfig.EventModifier_DialogueEvent_Field
+                );
             }
 
             void SetupDialogueEventFieldIcon()
@@ -151,7 +150,7 @@ namespace AG.DS
                         imageUSS01: StyleConfig.Object_Field_Display_Image
                     );
 
-                view.DialogueEventFieldView.ObjectField.SetDisplayImage(view.DialogueEventFieldIcon);
+                view.DialogueEventFieldView.Field.SetDisplayImage(view.DialogueEventFieldIcon);
             }
 
             void SetupStartDelayContainer()
@@ -205,7 +204,7 @@ namespace AG.DS
                 // Dialogue Event Container
                 view.Folder.AddElementToContent(dialogueEventContainer);
                 dialogueEventContainer.Add(dialogueEventLabel);
-                dialogueEventContainer.Add(view.DialogueEventFieldView.ObjectField);
+                dialogueEventContainer.Add(view.DialogueEventFieldView.Field);
 
                 // Start Delay Container.
                 view.Folder.AddElementToContent(startDelayContainer);
@@ -213,7 +212,7 @@ namespace AG.DS
                 startDelayContainer.Add(delaySecondsContainer);
 
                 // Delay Seconds Container.
-                delaySecondsContainer.Add(view.DelaySecondsFieldView.DoubleField);
+                delaySecondsContainer.Add(view.DelaySecondsFieldView.Field);
                 delaySecondsContainer.Add(delaySecondsLabel);
             }
         }

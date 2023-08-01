@@ -71,17 +71,16 @@ namespace AG.DS
 
             void AddCharacterObjectField()
             {
-                view.CharacterObjectFieldView.ObjectField =
-                    CommonObjectFieldPresenter.CreateElement<DialogueCharacter>
-                    (
-                        placeholderText: "",
-                        fieldUSS01: StyleConfig.DialogueNode_Character_ObjectField
-                    );
+                CommonObjectFieldPresenter.CreateElement<DialogueCharacter>
+                (
+                    view: view.CharacterObjectFieldView,
+                    fieldUSS01: StyleConfig.DialogueNode_Character_ObjectField
+                );
 
                 new CommonObjectFieldCallback<DialogueCharacter>(
                     view: view.CharacterObjectFieldView).RegisterEvents();
 
-                node.ContentContainer.Add(view.CharacterObjectFieldView.ObjectField);
+                node.ContentContainer.Add(view.CharacterObjectFieldView.Field);
             }
 
             void AddCharacterObjectFieldIcon()

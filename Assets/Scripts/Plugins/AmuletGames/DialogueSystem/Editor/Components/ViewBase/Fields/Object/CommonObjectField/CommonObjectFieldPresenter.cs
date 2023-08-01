@@ -16,7 +16,7 @@ namespace AG.DS
         /// <returns>A new common object field element.</returns>
         public static ObjectField CreateElement<TObject>
         (
-            string placeholderText,
+            CommonObjectFieldView<TObject> view,
             string fieldUSS01,
             string fieldUSS02 = null
         )
@@ -40,7 +40,9 @@ namespace AG.DS
 
             void CreateField()
             {
-                objectField = new();
+                view.Field = new();
+
+                objectField = view.Field;
                 fieldInput = objectField.GetFieldInput();
                 fieldDisplay = objectField.GetFieldDisplay();
                 fieldDisplayLabel = objectField.GetDisplayLabel();
@@ -77,7 +79,7 @@ namespace AG.DS
 
             void ShowEmptyStyle()
             {
-                objectField.ShowEmptyStyle(placeholderText);
+                view.Value = null;
             }
         }
     }

@@ -25,8 +25,8 @@ namespace AG.DS
 
             void CreateField()
             {
-                view.IntegerField = new();
-                integerField = view.IntegerField;
+                view.Field = new();
+                integerField = view.Field;
             }
 
             void AddFieldToStyleClass()

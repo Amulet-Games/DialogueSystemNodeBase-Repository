@@ -43,21 +43,21 @@ namespace AG.DS
         /// Register ChangeEvent to the field.
         /// </summary>
         void RegisterChangeEvent() =>
-            view.ObjectField.RegisterValueChangedCallback(ChangeEvent);
+            view.Field.RegisterValueChangedCallback(ChangeEvent);
 
 
         /// <summary>
         /// Register FocusInEvent to the field.
         /// </summary>
         void RegisterFocusInEvent() =>
-            view.ObjectField.RegisterCallback<FocusInEvent>(FocusInEvent);
+            view.Field.RegisterCallback<FocusInEvent>(FocusInEvent);
 
 
         /// <summary>
         /// Register FocusOutEvent to the field.
         /// </summary>
         void RegisterFocusOutEvent() =>
-            view.ObjectField.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+            view.Field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -67,29 +67,17 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void ChangeEvent(ChangeEvent<Object> evt)
         {
-            var field = view.ObjectField;
+            var field = view.Field;
 
             // Unbind the previous value.
             field.Unbind();
 
             // Push the current container's value to the undo stack.
             ///TestingWindow.Instance.PushUndo(languageAudioClipContainer);
-
-            if (evt.newValue)
-            {
-                view.LanguageGeneric
-                    .ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = evt.newValue as TObject;
-
-                // Bind the new value.
-                field.Bind(obj: new SerializedObject(evt.newValue));
-            }
-            else
-            {
-                view.LanguageGeneric
-                    .ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = null;
-            }
-
-            field.ToggleEmptyStyle(view.PlaceholderText);
+            
+            view.Value = evt.newValue
+                ? evt.newValue as TObject
+                : null;
 
             WindowChangedEvent.Invoke();
         }
@@ -104,7 +92,7 @@ namespace AG.DS
             InputHint.ShowHint
             (
                 hintText: StringConfig.InputHint_HintTextLabel_LabelText,
-                targetWorldBoundRect: view.ObjectField.worldBound
+                targetWorldBoundRect: view.Field.worldBound
             );
         }
 

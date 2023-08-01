@@ -12,7 +12,7 @@ namespace AG.DS
         /// <summary>
         /// Visual element.
         /// </summary>
-        [NonSerialized] public IntegerField IntegerField;
+        [NonSerialized] public IntegerField Field;
 
 
         /// <summary>
@@ -49,9 +49,8 @@ namespace AG.DS
 
                 this.value = value;
 
-                IntegerField.SetValueWithoutNotify(this.value);
-
-                IntegerField.ToggleEmptyStyle();
+                Field.SetValueWithoutNotify(this.value);
+                Field.ToggleEmptyStyle();
             }
         }
 

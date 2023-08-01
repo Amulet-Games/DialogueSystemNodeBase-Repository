@@ -221,7 +221,7 @@ namespace AG.DS
                 // Main box
                 MainBox.Add(firstTermObjectField);
                 MainBox.Add(conditionComparisonTypeEnumField);
-                MainBox.Add(SecondTermFloatFieldView.DoubleField);
+                MainBox.Add(SecondTermFloatFieldView.Field);
                 MainBox.Add(SecondTermTextFieldView.TextField);
                 MainBox.Add(secondTermObjectField);
                 MainBox.Add(buttonBox);
@@ -245,7 +245,7 @@ namespace AG.DS
 
             // Hide all the second term elements.
             SecondTermTextFieldView.TextField.HideElement();
-            SecondTermFloatFieldView.DoubleField.HideElement();
+            SecondTermFloatFieldView.Field.HideElement();
             SecondTermVariableContainer.ObjectField.HideElement();
 
             // Show the new in display second term element.
@@ -396,7 +396,7 @@ namespace AG.DS
                 case M_Condition_ComparisonType.Smaller:
 
                     secondTermElement = isShowKeyboardInputField
-                        ? SecondTermFloatFieldView.DoubleField
+                        ? SecondTermFloatFieldView.Field
                         : SecondTermVariableContainer.ObjectField;
 
                     secondTermElement.ShowElement();

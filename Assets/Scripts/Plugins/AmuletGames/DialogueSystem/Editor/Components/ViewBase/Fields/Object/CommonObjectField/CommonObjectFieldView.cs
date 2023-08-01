@@ -14,7 +14,7 @@ namespace AG.DS
         /// <summary>
         /// Visual element.
         /// </summary>
-        [NonSerialized] public ObjectField ObjectField;
+        [NonSerialized] public ObjectField Field;
 
 
         /// <summary>
@@ -24,9 +24,30 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The serializable value of the field.
+        /// The property of the serializable value of the view.
         /// </summary>
-        [SerializeField] public TObject Value;
+        public TObject Value
+        {
+            get
+            {
+                return value;
+            }
+            set
+            {
+                this.value = value;
+
+                Field.SetValueWithoutNotify(this.value);
+                Field.ToggleEmptyStyle(PlaceholderText);
+                
+                Field.Bind(obj: new SerializedObject(this.Value));
+            }
+        }
+
+
+        /// <summary>
+        /// The serializable value of the view.
+        /// </summary>
+        [SerializeField] public TObject value;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -49,9 +70,9 @@ namespace AG.DS
         {
             Value = value;
 
-            ObjectField.SetValueWithoutNotify(Value);
+            Field.SetValueWithoutNotify(Value);
 
-            ObjectField.ToggleEmptyStyle(PlaceholderText);
+            Field.ToggleEmptyStyle(PlaceholderText);
         }
 
 

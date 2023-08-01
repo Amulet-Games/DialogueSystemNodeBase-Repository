@@ -12,7 +12,7 @@ namespace AG.DS
         /// <summary>
         /// Visual element.
         /// </summary>
-        [NonSerialized] public DoubleField DoubleField;
+        [NonSerialized] public DoubleField Field;
 
 
         /// <summary>
@@ -49,9 +49,8 @@ namespace AG.DS
 
                 this.value = Math.Round(value, 2);
 
-                DoubleField.SetValueWithoutNotify(this.value);
-
-                DoubleField.ToggleEmptyStyle();
+                Field.SetValueWithoutNotify(this.value);
+                Field.ToggleEmptyStyle();
             }
         }
 

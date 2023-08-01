@@ -31,19 +31,19 @@ namespace AG.DS
 
 
         /// <summary>
-        /// One of the serializable value of the field.
+        /// One of the serializable value of the view.
         /// </summary>
         [SerializeField] public BoolVariable BoolVariable;
 
 
         /// <summary>
-        /// One of the serializable value of the field.
+        /// One of the serializable value of the view.
         /// </summary>
         [SerializeField] public FloatVariable FloatVariable;
 
 
         /// <summary>
-        /// One of the serializable value of the field.
+        /// One of the serializable value of the view.
         /// </summary>
         [SerializeField] public StringVariable StringVariable;
 

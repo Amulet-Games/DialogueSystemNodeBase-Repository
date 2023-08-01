@@ -231,7 +231,7 @@ namespace AG.DS
 
             void SetupMessageAudioObjectField()
             {
-                messageAudioObjectView.ObjectField =
+                messageAudioObjectView.Field =
                     LanguageObjectFieldPresenter.CreateElement<AudioClip>
                     (
                         fieldUSS01: StyleConfig.Modifier_Message_Audio_ObjectField
@@ -286,7 +286,7 @@ namespace AG.DS
 
                 // Contents.
                 Folder.AddElementToContent(messageTextView.TextField);
-                Folder.AddElementToContent(messageAudioObjectView.ObjectField);
+                Folder.AddElementToContent(messageAudioObjectView.Field);
             }
 
             void InvokeModifierCreatedAction()

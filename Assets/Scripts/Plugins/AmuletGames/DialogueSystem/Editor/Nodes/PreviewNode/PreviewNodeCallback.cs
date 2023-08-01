@@ -85,7 +85,7 @@ namespace AG.DS
         /// Register additional ChangeEvent to the left portrait field.
         /// </summary>
         void RegisterAdditionLeftPortraitFieldChangeEvent()
-            => View.LeftPortraitObjectFieldView.ObjectField
+            => View.LeftPortraitObjectFieldView.Field
                 .RegisterValueChangedCallback(AdditionalLeftPortraitFieldChangeEvent);
 
 
@@ -93,7 +93,7 @@ namespace AG.DS
         /// Register additional ChangeEvent to the right portrait field.
         /// </summary>
         void RegisterAdditionRightPortraitFieldChangeEvent()
-            => View.RightPortraitObjectFieldView.ObjectField
+            => View.RightPortraitObjectFieldView.Field
                 .RegisterValueChangedCallback(AdditionalRightPortraitFieldChangeEvent);
 
 

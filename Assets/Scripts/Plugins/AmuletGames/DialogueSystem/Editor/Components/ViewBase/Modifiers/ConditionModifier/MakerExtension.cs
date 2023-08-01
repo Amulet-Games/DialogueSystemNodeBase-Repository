@@ -171,7 +171,7 @@ namespace AG.DS
                 // Main box
                 MainBox.Add(firstTermObjectField);
                 MainBox.Add(conditionComparisonTypeEnumField);
-                MainBox.Add(SecondTermFloatFieldView.DoubleField);
+                MainBox.Add(SecondTermFloatFieldView.Field);
                 MainBox.Add(SecondTermTextFieldView.TextField);
                 MainBox.Add(secondTermObjectField);
                 MainBox.Add(buttonSideBox);

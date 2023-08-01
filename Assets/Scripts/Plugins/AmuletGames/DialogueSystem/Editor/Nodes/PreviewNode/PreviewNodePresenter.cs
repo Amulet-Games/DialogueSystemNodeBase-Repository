@@ -114,25 +114,23 @@ namespace AG.DS
             }
 
             void SetupLeftPortraitObjectField()
-            {
-                view.LeftPortraitObjectFieldView.ObjectField =
-                    CommonObjectFieldPresenter.CreateElement<Sprite>
-                    (
-                        placeholderText: view.LeftPortraitObjectFieldView.PlaceholderText,
-                        fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
-                        fieldUSS02: StyleConfig.PreviewNode_PreviewSprite_ObjectField_L
-                    );
+            {   
+                CommonObjectFieldPresenter.CreateElement<Sprite>
+                (
+                    view: view.LeftPortraitObjectFieldView,
+                    fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
+                    fieldUSS02: StyleConfig.PreviewNode_PreviewSprite_ObjectField_L
+                );
             }
 
             void SetupRightPortraitObjectField()
             {
-                view.RightPortraitObjectFieldView.ObjectField =
-                    CommonObjectFieldPresenter.CreateElement<Sprite>
-                    (
-                        placeholderText: view.RightPortraitObjectFieldView.PlaceholderText,
-                        fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
-                        fieldUSS02: StyleConfig.PreviewNode_PreviewSprite_ObjectField_R
-                    );
+                CommonObjectFieldPresenter.CreateElement<Sprite>
+                (
+                    view: view.RightPortraitObjectFieldView,
+                    fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
+                    fieldUSS02: StyleConfig.PreviewNode_PreviewSprite_ObjectField_R
+                );
             }
 
             void AddElementsToContainer()
@@ -140,9 +138,9 @@ namespace AG.DS
                 previewImageBox.Add(view.LeftPortraitImage);
                 previewImageBox.Add(view.RightPortraitImage);
 
-                previewSpriteBox.Add(view.LeftPortraitObjectFieldView.ObjectField);
+                previewSpriteBox.Add(view.LeftPortraitObjectFieldView.Field);
                 previewSpriteBox.Add(middleEmptyBox);
-                previewSpriteBox.Add(view.RightPortraitObjectFieldView.ObjectField);
+                previewSpriteBox.Add(view.RightPortraitObjectFieldView.Field);
             }
 
             void AddContainerToNode()

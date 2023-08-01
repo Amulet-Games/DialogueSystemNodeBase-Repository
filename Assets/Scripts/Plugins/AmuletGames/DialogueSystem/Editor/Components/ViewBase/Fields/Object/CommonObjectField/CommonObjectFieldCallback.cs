@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -41,7 +40,7 @@ namespace AG.DS
         /// <summary>
         /// Register ChangeEvent to the field.
         /// </summary>
-        void RegisterChangeEvent() => view.ObjectField.RegisterValueChangedCallback(ChangeEvent);
+        void RegisterChangeEvent() => view.Field.RegisterValueChangedCallback(ChangeEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -51,7 +50,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void ChangeEvent(ChangeEvent<Object> evt)
         {
-            var field = view.ObjectField;
+            var field = view.Field;
 
             // Unbind the previous value.
             field.Unbind();
@@ -62,19 +61,9 @@ namespace AG.DS
             //    dataReversedAction: containerValueChangedAction
             //);
 
-            if (evt.newValue)
-            {
-                view.Value = evt.newValue as TObject;
-
-                // Bind the new value.
-                field.Bind(obj: new SerializedObject(view.Value));
-            }
-            else
-            {
-                view.Value = null;
-            }
-
-            field.ToggleEmptyStyle(view.PlaceholderText);
+            view.Value = evt.newValue
+                ? evt.newValue as TObject
+                : null;
 
             WindowChangedEvent.Invoke();
         }

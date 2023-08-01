@@ -22,9 +22,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The serializable value of the field.
+        /// The serializable value of the view.
         /// </summary>
-        [SerializeField] public LanguageGeneric<string> LanguageGeneric;
+        [SerializeField] public LanguageGeneric<string> value;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -36,11 +36,10 @@ namespace AG.DS
         {
             PlaceholderText = placeholderText;
 
-            LanguageGeneric = new();
+            value = new();
             for (int i = 0; i < LanguageManager.Instance.SupportLanguageLength; i++)
             {
-                LanguageGeneric.
-                    ValueByLanguageType[LanguageManager.Instance.SupportLanguageTypes[i]] = "";
+                value.ValueByLanguageType[LanguageManager.Instance.SupportLanguageTypes[i]] = "";
             }
         }
 
@@ -57,7 +56,7 @@ namespace AG.DS
             for (int i = 0; i < languageManager.SupportLanguageLength; i++)
             {
                 value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
-                    LanguageGeneric.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
+                    this.value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
             }
         }
 
@@ -72,13 +71,13 @@ namespace AG.DS
 
             for (int i = 0; i < languageManager.SupportLanguageLength; i++)
             {
-                LanguageGeneric.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
+                this.value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
                            value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
             }
 
             TextField.SetValueWithoutNotify
             (
-                LanguageGeneric.ValueByLanguageType[languageManager.CurrentLanguage]
+                this.value.ValueByLanguageType[languageManager.CurrentLanguage]
             );
 
             TextField.ToggleEmptyStyle(PlaceholderText);
@@ -112,7 +111,7 @@ namespace AG.DS
 
                 if (obj is string reverseValue)
                 {
-                    LanguageGeneric.
+                    value.
                         ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = reverseValue;
 
                     TextField.SetValueWithoutNotify(reverseValue);
@@ -135,7 +134,7 @@ namespace AG.DS
         {
             TextField.SetValueWithoutNotify
             (
-                newValue: LanguageGeneric.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage]
+                newValue: value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage]
             );
 
             TextField.ToggleEmptyStyle(PlaceholderText);

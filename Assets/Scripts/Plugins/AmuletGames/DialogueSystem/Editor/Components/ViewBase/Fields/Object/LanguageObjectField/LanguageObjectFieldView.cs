@@ -14,7 +14,7 @@ namespace AG.DS
         /// <summary>
         /// Visual element.
         /// </summary>
-        [NonSerialized] public ObjectField ObjectField;
+        [NonSerialized] public ObjectField Field;
 
 
         /// <summary>
@@ -24,9 +24,30 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The serializable value of the field.
+        /// The property of the serializable value of the view.
         /// </summary>
-        [SerializeField] public LanguageGeneric<TObject> LanguageGeneric;
+        public TObject Value
+        {
+            get
+            {
+                return value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage];
+            }
+            set
+            {
+                this.value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = value;
+
+                Field.SetValueWithoutNotify(value);
+                Field.ToggleEmptyStyle(PlaceholderText);
+
+                Field.Bind(obj: new SerializedObject(value));
+            }
+        }
+
+
+        /// <summary>
+        /// The serializable value of the view.
+        /// </summary>
+        [SerializeField] public LanguageGeneric<TObject> value;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -38,11 +59,10 @@ namespace AG.DS
         {
             PlaceholderText = placeholderText;
 
-            LanguageGeneric = new();
+            value = new();
             for (int i = 0; i < LanguageManager.Instance.SupportLanguageLength; i++)
             {
-                LanguageGeneric.
-                    ValueByLanguageType[LanguageManager.Instance.SupportLanguageTypes[i]] = null;
+                value.ValueByLanguageType[LanguageManager.Instance.SupportLanguageTypes[i]] = null;
             }
         }
 
@@ -55,11 +75,10 @@ namespace AG.DS
         public void Save(LanguageGeneric<TObject> value)
         {
             var languageManager = LanguageManager.Instance;
-
             for (int i = 0; i < languageManager.SupportLanguageLength; i++)
             {
                 value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
-                    LanguageGeneric.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
+                    this.value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
             }
         }
 
@@ -71,19 +90,13 @@ namespace AG.DS
         public void Load(LanguageGeneric<TObject> value)
         {
             var languageManager = LanguageManager.Instance;
-
             for (int i = 0; i < languageManager.SupportLanguageLength; i++)
             {
-                LanguageGeneric.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
+                this.value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
                            value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
             }
 
-            ObjectField.SetValueWithoutNotify
-            (
-                LanguageGeneric.ValueByLanguageType[languageManager.CurrentLanguage]
-            );
-
-            ObjectField.ToggleEmptyStyle(PlaceholderText);
+            Value = value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage];
         }
 
 
@@ -97,8 +110,8 @@ namespace AG.DS
             binaryFormatter.Serialize
             (
                 serializationStream: memoryStream,
-                graph: ObjectField.value != null
-                        ? AssetDatabase.GetAssetPath(ObjectField.value)
+                graph: Field.value != null
+                        ? AssetDatabase.GetAssetPath(Field.value)
                         : ""
             );
 
@@ -121,33 +134,13 @@ namespace AG.DS
 
                 if (reverseValue != null)
                 {
-                    LanguageGeneric.
-                        ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = reverseValue;
-
-                    ObjectField.SetValueWithoutNotify(reverseValue);
-
-                    ObjectField.ToggleEmptyStyle(PlaceholderText);
+                    Value = reverseValue;
                 }
                 else
                 {
                     throw new ApplicationException($"Unable to deserialize reversible byte[] data, \"{GetType()}\"");
                 }
             }
-        }
-
-
-        // ----------------------------- Update Language Field -----------------------------
-        /// <summary>
-        /// Update the field's value base on the current editor's language.
-        /// </summary>
-        public void UpdateLanguageField()
-        {
-            ObjectField.SetValueWithoutNotify
-            (
-                newValue: LanguageGeneric.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage]
-            );
-
-            ObjectField.ToggleEmptyStyle(PlaceholderText);
         }
     }
 }

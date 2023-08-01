@@ -41,14 +41,14 @@ namespace AG.DS
         /// Register FocusInEvent to the field.
         /// </summary>
         void RegisterFocusInEvent() =>
-            view.IntegerField.RegisterCallback<FocusInEvent>(FocusInEvent);
+            view.Field.RegisterCallback<FocusInEvent>(FocusInEvent);
 
 
         /// <summary>
         /// Register FocusOutEvent to the field.
         /// </summary>
         void RegisterFocusOutEvent() =>
-            view.IntegerField.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+            view.Field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -60,7 +60,7 @@ namespace AG.DS
         {
             previousValue = view.Value;
 
-            view.IntegerField.HideEmptyStyle();
+            view.Field.HideEmptyStyle();
         }
 
 
@@ -70,14 +70,14 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusOutEvent(FocusOutEvent evt)
         {
-            var field = view.IntegerField;
+            var field = view.Field;
 
             if (field.value != previousValue)
             {
                 // Push the current container's value to the undo stack.
                 //TestingWindow.Instance.PushUndo(integerView);
 
-                view.Value = view.IntegerField.value;
+                view.Value = view.Field.value;
 
                 WindowChangedEvent.Invoke();
             }
