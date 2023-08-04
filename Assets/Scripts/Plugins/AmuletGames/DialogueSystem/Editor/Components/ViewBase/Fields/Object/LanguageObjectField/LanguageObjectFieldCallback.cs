@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -6,7 +5,7 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     public class LanguageObjectFieldCallback<TObject>
-        where TObject : UnityEngine.Object
+        where TObject : Object
     {
         /// <summary>
         /// The targeting language object field view.

@@ -7,16 +7,18 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new graph title text field element.
         /// </summary>
-        /// <param name="titleText">The title text to set for.</param>
+        /// <param name="view">The graph title text field view to set for.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>
         /// <returns>A new graph title text field element.</returns>
         public static TextField CreateElement
         (
-            string titleText,
+            GraphTitleTextFieldView view,
             string fieldUSS
         )
         {
-            TextField textField;
+            TextField field;
+            VisualElement fieldInput;
+            VisualElement textElement;
 
             CreateField();
 
@@ -24,31 +26,39 @@ namespace AG.DS
 
             SetupStyleClass();
 
-            return textField;
+            ShowDefaultTitle();
+
+            return field;
 
             void CreateField()
             {
-                textField = new();
+                view.Field = new();
+
+                field = view.Field;
+                fieldInput = field.GetFieldInput();
+                textElement = field.GetTextElement();
             }
 
             void SetFieldDetails()
             {
-                textField.SetValueWithoutNotify(titleText);
-                textField.isDelayed = true;
+                field.isDelayed = true;
             }
 
             void SetupStyleClass()
             {
-                var fieldInput = textField.GetFieldInput();
-                var textElement = textField.GetTextElement();
-
-                textField.ClearClassList();
+                field.ClearClassList();
                 fieldInput.ClearClassList();
                 textElement.ClearClassList();
 
-                textField.AddToClassList(fieldUSS);
+                field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
                 textElement.AddToClassList(StyleConfig.Text_Field_Element);
+            }
+
+            void ShowDefaultTitle()
+            {
+                view.Value = "";
+                view.BindingSO = null;
             }
         }
     }

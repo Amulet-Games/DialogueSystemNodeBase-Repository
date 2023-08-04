@@ -20,7 +20,7 @@ namespace AG.DS
         /// <summary>
         /// The text to display when the field is empty.
         /// </summary>
-        [NonSerialized] public string PlaceholderText;
+        [NonSerialized] string placeholderText;
 
 
         /// <summary>
@@ -37,9 +37,16 @@ namespace AG.DS
                 this.value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = value;
 
                 Field.SetValueWithoutNotify(value);
-                Field.ToggleEmptyStyle(PlaceholderText);
+                Field.ToggleEmptyStyle(placeholderText);
 
-                Field.Bind(obj: new SerializedObject(value));
+                if (this.value != null)
+                {
+                    Field.Bind(obj: new SerializedObject(value));
+                }
+                else
+                {
+                    Field.Unbind();
+                }
             }
         }
 
@@ -47,7 +54,7 @@ namespace AG.DS
         /// <summary>
         /// The serializable value of the view.
         /// </summary>
-        [SerializeField] public LanguageGeneric<TObject> value;
+        [SerializeField] LanguageGeneric<TObject> value;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -57,7 +64,7 @@ namespace AG.DS
         /// <param name="placeholderText">The placeholder text to set for.</param>
         public LanguageObjectFieldView(string placeholderText)
         {
-            PlaceholderText = placeholderText;
+            this.placeholderText = placeholderText;
 
             value = new();
             for (int i = 0; i < LanguageManager.Instance.SupportLanguageLength; i++)

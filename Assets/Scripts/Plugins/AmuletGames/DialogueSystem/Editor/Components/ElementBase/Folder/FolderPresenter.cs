@@ -29,7 +29,7 @@ namespace AG.DS
 
             void CreateFolder()
             {
-                folder = new();
+                folder = new(folderTitle);
                 folder.AddToClassList(StyleConfig.Folder_Main);
             }
 
@@ -44,9 +44,9 @@ namespace AG.DS
 
             void SetupTitleTextField()
             {
-                folder.TitleTextFieldView.TextField = FolderTitleTextFieldPresenter.CreateElement
+                FolderTitleTextFieldPresenter.CreateElement
                 (
-                    folderTitle: folderTitle,
+                    view: folder.TitleTextFieldView,
                     fieldUSS: StyleConfig.Folder_Title_TextField
                 );
             }
@@ -65,7 +65,7 @@ namespace AG.DS
             void AddElementsToContainer()
             {
                 folder.TitleContainer.Add(folder.ExpandButton);
-                folder.TitleContainer.Add(folder.TitleTextFieldView.TextField);
+                folder.TitleContainer.Add(folder.TitleTextFieldView.Field);
             }
 
             void AddContainersToFolder()

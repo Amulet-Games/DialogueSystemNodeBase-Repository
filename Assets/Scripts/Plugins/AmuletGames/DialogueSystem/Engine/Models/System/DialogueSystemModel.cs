@@ -30,25 +30,26 @@ namespace AG.DS
             {
                 return EditorPrefs.GetBool(key: DIALOGUE_EDITOR_WINDOW_OPEN_CONFIRM_KEY);
             }
-            private set
+            set
             {
                 EditorPrefs.SetBool(key: DIALOGUE_EDITOR_WINDOW_OPEN_CONFIRM_KEY, value);
             }
         }
 
-        /// <summary>
-        /// Set a new value to the IsDsWindowAlreadyOpened property.
-        /// </summary>
-        /// <param name="value">The new value to set for.</param>
-        public void SetIsDsWindowAlreadyOpened(bool value) => IsDsWindowAlreadyOpened = value;
-
 
         /// <summary>
         /// Delete the editor prefs's dialogue editor window open confirm key.
         /// </summary>
-        public void DeleteOpenConfirmKey()
+        public void DeleteOpenConfirmKey() => EditorPrefs.DeleteKey(DIALOGUE_EDITOR_WINDOW_OPEN_CONFIRM_KEY);
+
+
+        /// <summary>
+        /// Rename the dialogue system model asset.
+        /// </summary>
+        /// <param name="newName">The new dsModel asset name to set for.</param>
+        public void RenameAsset(string newName)
         {
-            EditorPrefs.DeleteKey(DIALOGUE_EDITOR_WINDOW_OPEN_CONFIRM_KEY);
+            AssetDatabase.RenameAsset(pathName: AssetDatabase.GetAssetPath(GetInstanceID()), newName);
         }
 #endif
 

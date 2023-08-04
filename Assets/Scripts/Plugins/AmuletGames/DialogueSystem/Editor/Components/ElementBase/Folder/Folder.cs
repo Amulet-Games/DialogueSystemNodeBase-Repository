@@ -17,13 +17,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Button that expand or shrink the folder's content when clicked.
+        /// Button that can hide or show the folder's content section when clicked.
         /// </summary>
         public Button ExpandButton;
 
 
         /// <summary>
-        /// Text view for the folder title.
+        /// View for the title text field.
         /// </summary>
         public FolderTitleTextFieldView TitleTextFieldView;
 
@@ -38,9 +38,10 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the folder element class.
         /// </summary>
-        public Folder()
+        /// <param name="folderTitle">The folder title to set for.</param>
+        public Folder(string folderTitle)
         {
-            TitleTextFieldView = new();
+            TitleTextFieldView = new(value: folderTitle);
         }
 
 
@@ -51,7 +52,7 @@ namespace AG.DS
         /// <param name="model">The folder model to set for.</param>
         public void Save(FolderModel model)
         {
-            model.TitleText = TitleTextFieldView.TextField.value;
+            model.TitleText = TitleTextFieldView.Value;
             model.IsExpand = IsExpand;
         }
 
@@ -69,7 +70,7 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <summary>
-        /// Set the folder's IsExpand value and update its display.
+        /// Set a new value to the IsExpand field.
         /// </summary>
         /// <param name="value">The value to set for.</param>
         public void SetIsExpand(bool value)
@@ -84,7 +85,6 @@ namespace AG.DS
                 AddToClassList(StyleConfig.Folder_Closed);
             }
             
-            // Change expand folder button's sprite
             ExpandButton.style.backgroundImage = IsExpand
                 ? ConfigResourcesManager.SpriteConfig.FolderExpandButtonOpenIconSprite.texture
                 : ConfigResourcesManager.SpriteConfig.FolderExpandButtonCloseIconSprite.texture;
@@ -106,11 +106,11 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Edit the folder's title by given focus to the folder title text field.
+        /// Start editing the folder title.
         /// </summary>
-        public void EditFolderTitle()
+        public void StartEditingFolderTitle()
         {
-            var fieldInput = TitleTextFieldView.TextField.GetFieldInput();
+            var fieldInput = TitleTextFieldView.Field.GetFieldInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }

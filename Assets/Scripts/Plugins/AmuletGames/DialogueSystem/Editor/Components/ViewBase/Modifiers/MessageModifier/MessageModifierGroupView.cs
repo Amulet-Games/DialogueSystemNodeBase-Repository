@@ -217,7 +217,7 @@ namespace AG.DS
             void RenameFolderInitially()
             {
                 // Call to rename folder when it's first created.
-                modifier.Folder.EditFolderTitle();
+                modifier.Folder.StartEditingFolderTitle();
             }
         }
 
@@ -353,7 +353,7 @@ namespace AG.DS
         void RenameButtonClickAction(MessageModifier modifier)
         {
             // Call to rename folder.
-            modifier.Folder.EditFolderTitle();
+            modifier.Folder.StartEditingFolderTitle();
         }
 
 

@@ -28,10 +28,7 @@ namespace AG.DS
                 Callback = new(node: this, View, headBar);
                 Serializer = new(node: this, View);
 
-                title = StringConfig.OptionBranchNode_TitleTextField_LabelText;
-
-                style.minWidth = NodeConfig.OptionBranchNodeMinWidth;
-                style.maxWidth = NodeConfig.OptionBranchNodeMinWidth + NodeConfig.OptionBranchNodeWidthBuffer;
+                style.minWidth = NumberConfig.OPTION_BRANCH_NODE_MIN_WIDTH;
             }
 
             // Add style sheet

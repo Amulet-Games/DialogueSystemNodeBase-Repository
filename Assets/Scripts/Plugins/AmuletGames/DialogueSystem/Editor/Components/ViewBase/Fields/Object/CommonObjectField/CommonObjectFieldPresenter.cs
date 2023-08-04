@@ -10,11 +10,10 @@ namespace AG.DS
         /// Method for creating a new common object field element.
         /// </summary>
         /// <typeparam name="TObject">Type object</typeparam>
-        /// <param name="placeholderText">The placeholder text to set for the field.</param>
+        /// <param name="view">The common object field view to set for.</param>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
         /// <param name="fieldUSS02">The second USS style to set for the field.</param>
-        /// <returns>A new common object field element.</returns>
-        public static ObjectField CreateElement<TObject>
+        public static void CreateElement<TObject>
         (
             CommonObjectFieldView<TObject> view,
             string fieldUSS01,
@@ -22,11 +21,10 @@ namespace AG.DS
         )
             where TObject : Object
         {
-            ObjectField objectField;
+            ObjectField field;
             VisualElement fieldInput;
             VisualElement fieldDisplay;
             Label fieldDisplayLabel;
-            VisualElement fieldSelector;
 
             CreateField();
 
@@ -36,45 +34,42 @@ namespace AG.DS
 
             ShowEmptyStyle();
 
-            return objectField;
-
             void CreateField()
             {
                 view.Field = new();
 
-                objectField = view.Field;
-                fieldInput = objectField.GetFieldInput();
-                fieldDisplay = objectField.GetFieldDisplay();
-                fieldDisplayLabel = objectField.GetDisplayLabel();
-                fieldSelector = objectField.GetFieldSelector();
+                field = view.Field;
+                fieldInput = field.GetFieldInput();
+                fieldDisplay = field.GetFieldDisplay();
+                fieldDisplayLabel = field.GetDisplayLabel();
             }
 
             void SetFieldDetails()
             {
-                objectField.objectType = typeof(TObject);
-                objectField.allowSceneObjects = false;
+                field.objectType = typeof(TObject);
+                field.allowSceneObjects = false;
 
                 // Remove display image.
-                fieldDisplay.Remove(objectField.GetDisplayImage());
+                fieldDisplay.Remove(field.GetDisplayImage());
 
                 // Add background highlighter to the selector
-                fieldSelector.AddBackgroundHighlighter();
+                field.GetFieldSelector().AddBackgroundHighlighter();
             }
 
             void AddFieldToStyleClass()
             {
-                objectField.ClearClassList();
+                field.ClearClassList();
                 fieldInput.ClearClassList();
                 fieldDisplay.ClearClassList();
                 fieldDisplayLabel.ClearClassList();
 
-                objectField.AddToClassList(fieldUSS01);
+                field.AddToClassList(fieldUSS01);
                 fieldInput.AddToClassList(StyleConfig.Object_Field_Input);
                 fieldDisplay.AddToClassList(StyleConfig.Object_Field_Display);
                 fieldDisplayLabel.AddToClassList(StyleConfig.Object_Field_Display_Label);
 
                 if (fieldUSS02 != null)
-                    objectField.AddToClassList(fieldUSS02);
+                    field.AddToClassList(fieldUSS02);
             }
 
             void ShowEmptyStyle()

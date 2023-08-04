@@ -60,7 +60,7 @@ namespace AG.DS
 
             void SaveNodeTitleField()
             {
-                model.TitleText = View.NodeTitleTextFieldView.TextField.value;
+                model.TitleText = View.NodeTitleTextFieldView.Field.value;
             }
         }
 

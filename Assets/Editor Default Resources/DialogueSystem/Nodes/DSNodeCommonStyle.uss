@@ -27,8 +27,6 @@
 /*< ---------------------------------------------------------- Container >*/
 .node_Title_Container {
 	
-	background-color: rgba(0, 0, 0, 0);
-
 	height: 35px;
 
 	flex-direction: row;
@@ -82,8 +80,8 @@
 	--unity-sync-text-editor: true;
 }
 
-.node_Title_TextField:focus
-.text-field-input {
+.node_Title_TextField
+.text-field-input.pseudo-focus {
 
 	overflow: visible;
 
@@ -108,7 +106,8 @@
 	border-radius: 4px 4px 4px 4px;
 }
 
-.node_Title_TextField:focus
+.node_Title_TextField
+.text-field-input.pseudo-focus
 .text-field-element {
 
 	background-color: rgba(32, 32, 32, 1);
@@ -116,7 +115,7 @@
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px -1.5px;
-	padding: 0px 0px 1.5px 4px;
+	padding: 0px 4px 1.5px 4px;
 	border-width: 1px 1px 1px 1px;
 }
 

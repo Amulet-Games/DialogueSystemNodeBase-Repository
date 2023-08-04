@@ -1,5 +1,3 @@
-
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -7,22 +5,9 @@ namespace AG.DS
     public class FolderTitleTextFieldCallback
     {
         /// <summary>
-        /// The targeting folder title text field.
+        /// The targeting folder title text field view.
         /// </summary>
-        TextField field;
-
-
-        /// <summary>
-        /// The old value that was set when the user has given focus on the field.
-        /// </summary>
-        string previousValue;
-
-
-        /// <summary>
-        /// The new value that was set during the ChangeEvent,
-        /// <br>this new values is guarantee to be different from the field's previous value.</br>
-        /// </summary>
-        string newValue;
+        FolderTitleTextFieldView view;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -32,7 +17,7 @@ namespace AG.DS
         /// <param name="view">The folder title text field view to set for.</param>
         public FolderTitleTextFieldCallback(FolderTitleTextFieldView view)
         {
-            field = view.TextField;
+            this.view = view;
         }
 
 
@@ -53,21 +38,21 @@ namespace AG.DS
         /// <summary>
         /// Register ChangeEvent to the field.
         /// </summary>
-        void RegisterChangeEvent() => field.RegisterValueChangedCallback(ChangeEvent);
+        void RegisterChangeEvent() => view.Field.RegisterValueChangedCallback(ChangeEvent);
 
 
         /// <summary>
         /// Register FocusInEvent to the field input element.
         /// </summary>
         void RegisterFieldInputFocusInEvent() =>
-            field.GetFieldInput().RegisterCallback<FocusInEvent>(FieldInputFocusInEvent);
+            view.Field.GetFieldInput().RegisterCallback<FocusInEvent>(FieldInputFocusInEvent);
 
 
         /// <summary>
         /// Register FocusOutEvent to the field input element.
         /// </summary>
         void RegisterFieldInputFocusOutEvent() =>
-            field.GetFieldInput().RegisterCallback<FocusOutEvent>(FieldInputFocusOutEvent);
+            view.Field.GetFieldInput().RegisterCallback<FocusOutEvent>(FieldInputFocusOutEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -83,7 +68,12 @@ namespace AG.DS
             // If the field has a new value, the value needs to be different than the previous one,
             // empty string will also be count as new value.
 
-            newValue = evt.newValue;
+            if (evt.newValue != "")
+            {
+                WindowChangedEvent.Invoke();
+            }
+
+            view.Value = evt.newValue;
         }
 
 
@@ -93,11 +83,16 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FieldInputFocusInEvent(FocusInEvent evt)
         {
-            previousValue = field.value;
+            // Allow inputs
+            {
+                var fieldInput = view.Field.GetFieldInput();
+                var textElement = view.Field.GetTextElement();
 
-            // Allow user interaction.
-            field.GetFieldInput().pickingMode = PickingMode.Position;
-            field.GetTextElement().pickingMode = PickingMode.Position;
+                fieldInput.AddToClassList(StyleConfig.Pseudo_Focus);
+
+                fieldInput.pickingMode = PickingMode.Position;
+                textElement.pickingMode = PickingMode.Position;
+            }
         }
 
 
@@ -107,24 +102,17 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FieldInputFocusOutEvent(FocusOutEvent evt)
         {
-            if (newValue == "")
+            // Forbidden inputs
             {
-                // If the new value is empty, reset it to the previous value.
-                field.SetValueWithoutNotify(previousValue);
+                var fieldInput = view.Field.GetFieldInput();
+                var textElement = view.Field.GetTextElement();
+
+                fieldInput.RemoveFromClassList(StyleConfig.Pseudo_Focus);
+
+                fieldInput.focusable = false;
+                fieldInput.pickingMode = PickingMode.Ignore;
+                textElement.pickingMode = PickingMode.Ignore;
             }
-            else
-            {
-                WindowChangedEvent.Invoke();
-            }
-
-            var fieldInput = field.GetFieldInput();
-
-            // Hide input field.
-            fieldInput.focusable = false;
-
-            // Forbidden user interaction.
-            fieldInput.pickingMode = PickingMode.Ignore;
-            field.GetTextElement().pickingMode = PickingMode.Ignore;
         }
     }
 }

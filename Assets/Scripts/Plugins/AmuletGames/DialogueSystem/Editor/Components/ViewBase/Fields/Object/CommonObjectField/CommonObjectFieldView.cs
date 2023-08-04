@@ -20,7 +20,7 @@ namespace AG.DS
         /// <summary>
         /// The text to display when the field is empty.
         /// </summary>
-        [NonSerialized] public string PlaceholderText;
+        [NonSerialized] string placeholderText;
 
 
         /// <summary>
@@ -37,9 +37,16 @@ namespace AG.DS
                 this.value = value;
 
                 Field.SetValueWithoutNotify(this.value);
-                Field.ToggleEmptyStyle(PlaceholderText);
+                Field.ToggleEmptyStyle(placeholderText);
                 
-                Field.Bind(obj: new SerializedObject(this.Value));
+                if (this.value != null)
+                {
+                    Field.Bind(obj: new SerializedObject(this.value));
+                }
+                else
+                {
+                    Field.Unbind();
+                }
             }
         }
 
@@ -47,7 +54,7 @@ namespace AG.DS
         /// <summary>
         /// The serializable value of the view.
         /// </summary>
-        [SerializeField] public TObject value;
+        [SerializeField] TObject value;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -57,7 +64,7 @@ namespace AG.DS
         /// <param name="placeholderText">The placeholder text to set for.</param>
         public CommonObjectFieldView(string placeholderText)
         {
-            PlaceholderText = placeholderText;
+            this.placeholderText = placeholderText;
         }
 
 
@@ -72,7 +79,7 @@ namespace AG.DS
 
             Field.SetValueWithoutNotify(Value);
 
-            Field.ToggleEmptyStyle(PlaceholderText);
+            Field.ToggleEmptyStyle(placeholderText);
         }
 
 

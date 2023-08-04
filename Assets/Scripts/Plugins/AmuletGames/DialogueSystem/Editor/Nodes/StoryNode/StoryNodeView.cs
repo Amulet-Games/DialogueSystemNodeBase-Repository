@@ -42,10 +42,10 @@ namespace AG.DS
         /// </summary>
         public StoryNodeView()
         {
-            // Second content
+            NodeTitleTextFieldView = new(value: StringConfig.StoryNode_TitleTextField_LabelText);
+
             SecondLineTriggerTypeEnumContainer = new();
 
-            // CSV
             CsvGUID = Guid.NewGuid().ToString();
         }
 

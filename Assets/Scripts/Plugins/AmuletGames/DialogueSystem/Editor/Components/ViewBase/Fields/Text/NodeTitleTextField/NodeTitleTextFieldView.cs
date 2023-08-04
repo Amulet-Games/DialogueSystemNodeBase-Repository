@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -11,7 +12,45 @@ namespace AG.DS
         /// <summary>
         /// Visual element.
         /// </summary>
-        [NonSerialized] public TextField TextField;
+        [NonSerialized] public TextField Field;
+
+
+        /// <summary>
+        /// The property of the serializable value of the view.
+        /// </summary>
+        public string Value
+        {
+            get
+            {
+                return value;
+            }
+            set
+            {
+                if (value != "")
+                {
+                    this.value = value;
+                }
+
+                Field.SetValueWithoutNotify(this.value);
+            }
+        }
+
+
+        /// <summary>
+        /// The serializable value of the view.
+        /// </summary>
+        [SerializeField] string value;
+
+
+        // ----------------------------- Constructor -----------------------------
+        /// <summary>
+        /// Constructor of the node title text field view class.
+        /// </summary>
+        /// <param name="value">The value to set for.</param>
+        public NodeTitleTextFieldView(string value)
+        {
+            this.value = value;
+        }
 
 
         // ----------------------------- Serialization -----------------------------
@@ -21,7 +60,7 @@ namespace AG.DS
         /// <param name="value">The value to set for.</param>
         public void Load(string value)
         {
-            TextField.SetValueWithoutNotify(value);
+            Value = value;
         }
 
 
@@ -32,7 +71,7 @@ namespace AG.DS
             MemoryStream memoryStream = new();
             BinaryFormatter binaryFormatter = new();
 
-            binaryFormatter.Serialize(memoryStream, TextField.value);
+            binaryFormatter.Serialize(memoryStream, value);
             memoryStream.Close();
 
             return memoryStream.ToArray();

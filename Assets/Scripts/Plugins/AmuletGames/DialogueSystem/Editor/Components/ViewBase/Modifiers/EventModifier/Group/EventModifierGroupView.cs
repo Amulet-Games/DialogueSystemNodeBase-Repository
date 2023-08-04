@@ -176,7 +176,7 @@ namespace AG.DS
         /// <param name="modifier">The modifier of which the button belongs to.</param>
         void RenameButtonClickAction(EventModifierView modifier)
         {
-            modifier.Folder.EditFolderTitle();
+            modifier.Folder.StartEditingFolderTitle();
         }
 
 
@@ -410,7 +410,7 @@ namespace AG.DS
             void OnModifierCreated()
             {
                 view.Folder.SetIsExpand(value: true);
-                view.Folder.EditFolderTitle();
+                view.Folder.StartEditingFolderTitle();
             }
         }
     }

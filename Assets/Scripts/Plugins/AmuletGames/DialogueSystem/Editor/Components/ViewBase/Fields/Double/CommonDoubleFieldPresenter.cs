@@ -16,7 +16,7 @@ namespace AG.DS
             string fieldUSS
         )
         {
-            DoubleField doubleField;
+            DoubleField field;
 
             CreateField();
 
@@ -27,26 +27,26 @@ namespace AG.DS
             void CreateField()
             {
                 view.Field = new();
-                doubleField = view.Field;
+                field = view.Field;
             }
 
             void AddFieldToStyleClass()
             {
-                var fieldInput = doubleField.GetFieldInput();
-                var textElement = doubleField.GetTextElement();
+                var fieldInput = field.GetFieldInput();
+                var textElement = field.GetTextElement();
 
-                doubleField.ClearClassList();
+                field.ClearClassList();
                 fieldInput.ClearClassList();
                 textElement.ClearClassList();
 
-                doubleField.AddToClassList(fieldUSS);
+                field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Double_Field_Input);
                 textElement.AddToClassList(StyleConfig.Double_Field_Element);
             }
 
             void ShowEmptyStyle()
             {
-                doubleField.ShowEmptyStyle();
+                field.ShowEmptyStyle();
             }
         }
     }

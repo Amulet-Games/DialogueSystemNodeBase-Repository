@@ -15,6 +15,7 @@ namespace AG.DS
         /// </summary>
         public EndNodeView()
         {
+            NodeTitleTextFieldView = new(value: StringConfig.EndNode_TitleTextField_LabelText);
         }
 
 

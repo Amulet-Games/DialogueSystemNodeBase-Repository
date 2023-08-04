@@ -27,8 +27,6 @@ namespace AG.DS
 
                 Callback = new(node: this, View, headBar);
                 Serializer = new(node: this, View);
-
-                title = StringConfig.StoryNode_TitleTextField_LabelText;
             }
 
             // Add style sheet

@@ -15,7 +15,7 @@ namespace AG.DS
             string fieldUSS
         )
         {
-            IntegerField integerField;
+            IntegerField field;
 
             CreateField();
 
@@ -26,26 +26,26 @@ namespace AG.DS
             void CreateField()
             {
                 view.Field = new();
-                integerField = view.Field;
+                field = view.Field;
             }
 
             void AddFieldToStyleClass()
             {
-                var fieldInput = integerField.GetFieldInput();
-                var textElement = integerField.GetTextElement();
+                var fieldInput = field.GetFieldInput();
+                var textElement = field.GetTextElement();
 
-                integerField.ClearClassList();
+                field.ClearClassList();
                 fieldInput.ClearClassList();
                 textElement.ClearClassList();
 
-                integerField.AddToClassList(fieldUSS);
+                field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Integer_Field_Input);
                 textElement.AddToClassList(StyleConfig.Integer_Field_Element);
             }
 
             void ShowEmptyStyle()
             {
-                integerField.ShowEmptyStyle();
+                field.ShowEmptyStyle();
             }
         }
     }

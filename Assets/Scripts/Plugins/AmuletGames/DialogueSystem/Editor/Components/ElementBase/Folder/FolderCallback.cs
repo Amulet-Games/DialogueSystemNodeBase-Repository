@@ -5,7 +5,7 @@ namespace AG.DS
     public class FolderCallback
     {
         /// <summary>
-        /// The targeting folder view.
+        /// The targeting folder element.
         /// </summary>
         Folder folder;
 
@@ -14,7 +14,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the folder callback class.
         /// </summary>
-        /// <param name="folder">The folder view to set for.</param>
+        /// <param name="folder">The folder element to set for.</param>
         public FolderCallback(Folder folder)
         {
             this.folder = folder;

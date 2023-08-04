@@ -107,7 +107,7 @@ namespace AG.DS
         void Initialize(DialogueSystemModel dsModel)
         {
             this.dsModel = dsModel;
-            dsModel.SetIsDsWindowAlreadyOpened(true);
+            dsModel.IsDsWindowAlreadyOpened = true;
         }
 
 
@@ -133,7 +133,7 @@ namespace AG.DS
                 graphViewer = GraphViewerPresenter.CreateElement(dsWindow: this);
 
                 // HeadBar
-                headBar = HeadBarPresenter.CreateElement(dsModel.name);
+                headBar = HeadBarPresenter.CreateElement(dsModel);
 
                 // Input Hint
                 InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);

@@ -51,6 +51,7 @@ namespace AG.DS
         }
 
 
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Set a new value to the horizontal alignment type.
         /// </summary>

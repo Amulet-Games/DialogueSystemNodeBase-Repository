@@ -18,5 +18,5 @@
 	width: 31px;
 
 	/* top - right - bottom - left */
-	margin: 2.5px 5px 0px 0px;
+	margin: 2.5px 0px 0px 66.5px;
 }

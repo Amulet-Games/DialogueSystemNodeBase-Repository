@@ -33,6 +33,7 @@ namespace AG.DS
         /// </summary>
         public EventNodeView()
         {
+            NodeTitleTextFieldView = new(value: StringConfig.EventNode_TitleTextField_LabelText);
             EventModifierGroupView = new();
         }
 

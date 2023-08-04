@@ -3,6 +3,8 @@
 /*< ---------------------------------------------------------- Main >*/
 .contentButton-main {
 
+	min-width: 201px;
+
 	align-items: flex-start;
 	align-self: auto;
 
@@ -11,8 +13,6 @@
 	flex-direction: row;
 	flex-grow: 1;
 	flex-shrink: 0;
-
-	justify-content: space-between;
 
 	/* top - right - bottom - left */
 	border-radius: 0px 4px 0px 0px;

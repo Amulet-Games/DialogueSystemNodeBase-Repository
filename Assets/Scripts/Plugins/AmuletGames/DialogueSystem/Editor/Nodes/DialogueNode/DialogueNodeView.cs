@@ -33,6 +33,7 @@
         /// </summary>
         public DialogueNodeView()
         {
+            NodeTitleTextFieldView = new(value: StringConfig.DialogueNode_TitleTextField_LabelText);
             CharacterObjectFieldView = new("");
             DialogueNodeStitcher = new();
         }

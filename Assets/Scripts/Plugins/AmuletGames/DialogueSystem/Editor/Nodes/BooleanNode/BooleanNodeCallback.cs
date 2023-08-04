@@ -68,8 +68,7 @@ namespace AG.DS
         /// </summary>
         void RegisterNodeTitleTextFieldEvents()
             => new NodeTitleTextFieldCallback(
-                view: View.NodeTitleTextFieldView,
-                widthBuffer: NodeConfig.BooleanNodeWidthBuffer).RegisterEvents();
+                view: View.NodeTitleTextFieldView).RegisterEvents();
 
 
         /// <summary>
@@ -114,7 +113,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void NodeTitleEditButtonClickEvent(ClickEvent evt)
         {
-            var fieldInput = View.NodeTitleTextFieldView.TextField.GetFieldInput();
+            var fieldInput = View.NodeTitleTextFieldView.Field.GetFieldInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }

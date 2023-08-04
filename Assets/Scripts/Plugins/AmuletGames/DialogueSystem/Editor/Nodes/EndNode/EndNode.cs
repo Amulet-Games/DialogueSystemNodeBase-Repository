@@ -27,10 +27,7 @@ namespace AG.DS
                 Callback = new(node: this, View);
                 Serializer = new(node: this, View);
 
-                title = StringConfig.EndNode_TitleTextField_LabelText;
-
-                style.minWidth = NodeConfig.EndNodeMinWidth;
-                style.maxWidth = NodeConfig.EndNodeMinWidth + NodeConfig.EndNodeWidthBuffer;
+                style.minWidth = NumberConfig.END_NODE_MIN_WIDTH;
             }
 
             // Add style sheet

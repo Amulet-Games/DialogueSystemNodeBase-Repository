@@ -240,7 +240,7 @@ namespace AG.DS
 
                             targetPos.y -= (node.titleContainer.worldBound.height
                                       + leftSideAlignmentReferencePort.localBound.position.y
-                                      + NodeConfig.ManualCreateYOffset)
+                                      + NumberConfig.MANUAL_CREATE_Y_OFFSET)
                                       / graphViewer.scale;
 
                             targetPos.x -= node.localBound.width;
@@ -250,7 +250,7 @@ namespace AG.DS
 
                             targetPos.y -= (node.titleContainer.worldBound.height
                                       + middleAlignmentReferencePort.localBound.position.y
-                                      + NodeConfig.ManualCreateYOffset)
+                                      + NumberConfig.MANUAL_CREATE_Y_OFFSET)
                                       / graphViewer.scale;
 
                             targetPos.x -= node.localBound.width / 2;
@@ -260,7 +260,7 @@ namespace AG.DS
 
                             targetPos.y -= (node.titleContainer.worldBound.height
                                       + rightSideAlignmentReferencePort.localBound.position.y
-                                      + NodeConfig.ManualCreateYOffset)
+                                      + NumberConfig.MANUAL_CREATE_Y_OFFSET)
                                       / graphViewer.scale;
 
                             break;
@@ -317,7 +317,7 @@ namespace AG.DS
 
                             targetPos.y -= (node.titleContainer.worldBound.height
                                       + leftSideAlignmentReferencePort.localBound.position.y
-                                      + NodeConfig.ManualCreateYOffset)
+                                      + NumberConfig.MANUAL_CREATE_Y_OFFSET)
                                       / graphViewer.scale;
 
                             targetPos.x -= node.localBound.width;
@@ -327,7 +327,7 @@ namespace AG.DS
 
                             targetPos.y -= (node.titleContainer.worldBound.height
                                       + middleAlignmentReferencePort.localBound.position.y
-                                      + NodeConfig.ManualCreateYOffset)
+                                      + NumberConfig.MANUAL_CREATE_Y_OFFSET)
                                       / graphViewer.scale;
 
                             targetPos.x -= node.localBound.width / 2;
@@ -337,7 +337,7 @@ namespace AG.DS
 
                             targetPos.y -= (node.titleContainer.worldBound.height
                                       + rightSideAlignmentReferencePort.localBound.position.y
-                                      + NodeConfig.ManualCreateYOffset)
+                                      + NumberConfig.MANUAL_CREATE_Y_OFFSET)
                                       / graphViewer.scale;
 
                             break;

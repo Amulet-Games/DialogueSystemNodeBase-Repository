@@ -48,6 +48,7 @@ namespace AG.DS
         /// </summary>
         public PreviewNodeView()
         {
+            NodeTitleTextFieldView = new(value: StringConfig.PreviewNode_TitleTextField_LabelText);
             LeftPortraitObjectFieldView = new("");
             RightPortraitObjectFieldView = new("");
         }

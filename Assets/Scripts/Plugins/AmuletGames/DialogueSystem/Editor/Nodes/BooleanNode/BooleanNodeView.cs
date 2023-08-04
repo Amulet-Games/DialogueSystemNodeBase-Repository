@@ -33,6 +33,7 @@ namespace AG.DS
         /// </summary>
         public BooleanNodeView()
         {
+            NodeTitleTextFieldView = new(value: StringConfig.BooleanNode_TitleTextField_LabelText);
             booleanNodeStitcher = new();
         }
 

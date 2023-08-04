@@ -39,6 +39,7 @@ namespace AG.DS
         /// </summary>
         public OptionBranchNodeView()
         {
+            NodeTitleTextFieldView = new(value: StringConfig.OptionBranchNode_TitleTextField_LabelText);
             BranchTitleTextFieldView = new(placeholderText: StringConfig.OptionBranchNode_BranchTitleTextField_PlaceholderText);
             OptionBranchNodeStitcher = new();
         }

@@ -3,9 +3,11 @@ namespace AG.DS
     public static class StyleConfig
     {
         #region Global USS Classes.
-        public const string Global_Display_None = "global_Display_None";
-        public const string Global_Visible_Hidden = "global_Visible_Hidden";
-        public const string Global_Interactable_Disable = "global_Picking_Ignore";
+        public const string Global_Display_None = "global-display-None";
+        #endregion
+
+        #region Pseudo States.
+        public const string Pseudo_Focus = "pseudo-focus";
         #endregion
 
         #region Elements Common USS Classes.

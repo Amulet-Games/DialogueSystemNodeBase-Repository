@@ -1,5 +1,6 @@
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -8,57 +9,74 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new language object field element.
         /// </summary>
+        /// <typeparam name="TObject">Type object</typeparam>
+        /// <param name="view">The language object field view to set for.</param>
         /// <param name="fieldUSS01">The first USS style to set for the field.</param>
         /// <param name="fieldUSS02">The second USS style to set for the field.</param>
-        /// <returns>A new language object field element.</returns>
-        public static ObjectField CreateElement<TObject> 
+        public static void CreateElement<TObject> 
         (
+            LanguageObjectFieldView<TObject> view,
             string fieldUSS01,
             string fieldUSS02 = null
         )
             where TObject : Object
         {
-            ObjectField languageObjectField;
+            ObjectField field;
+            VisualElement fieldInput;
+            VisualElement fieldDisplay;
+            Label fieldDisplayLabel;
+            VisualElement fieldSelector;
 
             CreateField();
 
             SetFieldDetails();
 
-            ChangeSelectorIcon();
+            AddFieldToStyleClass();
 
             ShowEmptyStyle();
 
-            AddFieldToStyleClass();
-
-            return languageObjectField;
-
             void CreateField()
             {
-                languageObjectField = new();
+                view.Field = new();
+
+                field = view.Field;
+                fieldInput = field.GetFieldInput();
+                fieldDisplay = field.GetFieldDisplay();
+                fieldDisplayLabel = field.GetDisplayLabel();
+                fieldSelector = field.GetFieldSelector();
             }
 
             void SetFieldDetails()
             {
-                languageObjectField.objectType = typeof(TObject);
-                languageObjectField.allowSceneObjects = false;
-            }
+                field.objectType = typeof(TObject);
+                field.allowSceneObjects = false;
 
-            void ChangeSelectorIcon()
-            {
+                // Remove display image.
+                fieldDisplay.Remove(field.GetDisplayImage());
 
-            }
-
-            void ShowEmptyStyle()
-            {
-                languageObjectField.ShowEmptyStyle("");
+                // Add background highlighter to the selector
+                field.GetFieldSelector().AddBackgroundHighlighter();
             }
 
             void AddFieldToStyleClass()
             {
-                languageObjectField.AddToClassList(fieldUSS01);
+                field.ClearClassList();
+                fieldInput.ClearClassList();
+                fieldDisplay.ClearClassList();
+                fieldDisplayLabel.ClearClassList();
+
+                field.AddToClassList(fieldUSS01);
+                fieldInput.AddToClassList(StyleConfig.Object_Field_Input);
+                fieldDisplay.AddToClassList(StyleConfig.Object_Field_Display);
+                fieldDisplayLabel.AddToClassList(StyleConfig.Object_Field_Display_Label);
 
                 if (fieldUSS02 != null)
-                    languageObjectField.AddToClassList(fieldUSS02);
+                    field.AddToClassList(fieldUSS02);
+            }
+
+            void ShowEmptyStyle()
+            {
+                view.Value = null;
             }
         }
     }

@@ -41,6 +41,7 @@ namespace AG.DS
         /// </summary>
         public OptionRootNodeView()
         {
+            NodeTitleTextFieldView = new(value: StringConfig.OptionRootNode_TitleTextField_LabelText);
             RootTitleTextFieldView = new(placeholderText: StringConfig.OptionRootNode_RootTitleTextField_PlaceholderText);
             OutputOptionPortGroupView = new(direction: Direction.Output);
         }

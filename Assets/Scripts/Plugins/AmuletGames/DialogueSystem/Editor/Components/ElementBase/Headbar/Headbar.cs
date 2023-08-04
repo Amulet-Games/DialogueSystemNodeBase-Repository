@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
@@ -46,9 +47,13 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the headBar element class.
         /// </summary>
-        public HeadBar()
+        /// <param name="dsModel">The dialogue system model to set for.</param>
+        public HeadBar(DialogueSystemModel dsModel)
         {
-            GraphTitleTextFieldView = new();
+            GraphTitleTextFieldView = new(
+                value: dsModel.name,
+                bindingSO: new SerializedObject(obj: dsModel)
+            );
         }
 
 
@@ -62,7 +67,7 @@ namespace AG.DS
         {
             SetEditorLanguage(value: LanguageManager.Instance.CurrentLanguage);
 
-            GraphTitleTextFieldView.TextField.SetValueWithoutNotify(newValue: dsModel.name);
+            GraphTitleTextFieldView.Field.SetValueWithoutNotify(newValue: dsModel.name);
         }
 
 

@@ -23,7 +23,7 @@
 	flex-shrink: 0;
 
 	/* top - right - bottom - left */
-	margin: 2px 0px 0px 2px;
+	margin: 0px 0px 0px 2px;
 
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
@@ -69,7 +69,7 @@
 /*< ---------------------------------------------------------- Container >*/
 .folder_Title_Container {
 	
-	height: 28px;
+	height: 30px;
 
 	flex-direction: row;
 
@@ -86,19 +86,18 @@
 
 /*< ---------------------------------------------------------- Text Field >*/
 .folder_Title_TextField {
-
-	height: 28px;
-	/*width: 230px;*/
 	
+	height: 25px;
+
 	flex-grow: 1;
 	flex-shrink: 0;
 
 	white-space: nowrap;
 
 	/* top - right - bottom - left */
-	margin: 4.5px 0px 0px 3px;
+	margin: 2.5px 0px 0px 3px;
 
-	--unity-selection-color: rgba(49, 132, 206, 0.65);
+	--unity-selection-color: rgba(49, 132, 206, 0.65); /*0.65*/
 	--unity-cursor-color: rgba(180, 180, 180, 1);
 }
 
@@ -106,6 +105,8 @@
 .text-field-input {
 	
 	cursor: text;
+	
+	flex-grow: 1;
 
 	-unity-overflow-clip-box: content-box;
 	-unity-text-align: middle-left;
@@ -113,18 +114,18 @@
 	--unity-sync-text-editor: true;
 }
 
-.folder_Title_TextField:focus
-.text-field-input {
+.folder_Title_TextField
+.text-field-input.pseudo-focus  {
 
 	overflow: visible;
 
 	/* top - right - bottom - left */
-	margin: -1.5px 0px 0px -4px;
+	margin: 0px 0px 0px -4.5px;
 }
 
 .folder_Title_TextField
 .text-field-element {
-
+	
 	color: white;
 	cursor: text;
 
@@ -141,14 +142,15 @@
 	border-radius: 4px 4px 4px 4px;
 }
 
-.folder_Title_TextField:focus
+.folder_Title_TextField
+.text-field-input.pseudo-focus
 .text-field-element {
 	
 	background-color: rgba(32, 32, 32, 1);
 	border-color: rgba(58, 121, 187, 1);
 	
 	/* top - right - bottom - left */
-	padding: 0.5px 0px 0px 3.5px;
+	padding: 0px 4px 0px 4px;
 	border-width: 0.5px 0.5px 0.5px 0.5px;
 }
 
@@ -158,6 +160,4 @@
 /*< ---------------------------------------------------------- Container >*/
 .folder_ContentContainer {
 
-	/* top - right - bottom - left */
-	margin: 2px 0px 0px 0px;
 }

@@ -78,10 +78,9 @@ namespace AG.DS
         /// </summary>
         public MessageModifier()
         {
-            Folder = new();
+            //Folder = new();
             
-            messageTextView = new(
-                placeholderText: StringConfig.DialogueSegmentTextlinePlaceholderText);
+            messageTextView = new(placeholderText: StringConfig.DialogueSegmentTextlinePlaceholderText);
             
             messageAudioObjectView = new("");
 
@@ -231,11 +230,11 @@ namespace AG.DS
 
             void SetupMessageAudioObjectField()
             {
-                messageAudioObjectView.Field =
-                    LanguageObjectFieldPresenter.CreateElement<AudioClip>
-                    (
-                        fieldUSS01: StyleConfig.Modifier_Message_Audio_ObjectField
-                    );
+                LanguageObjectFieldPresenter.CreateElement<AudioClip>
+                (
+                    view: messageAudioObjectView,
+                    fieldUSS01: StyleConfig.Modifier_Message_Audio_ObjectField
+                );
 
                 new LanguageObjectFieldCallback<AudioClip>(
                     view: messageAudioObjectView).RegisterEvents();

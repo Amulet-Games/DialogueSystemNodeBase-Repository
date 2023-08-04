@@ -5,13 +5,13 @@ namespace AG.DS
     public class CommonButtonCallback
     {
         /// <summary>
-        /// Is pressing the button invokes WindowChangedEvent?
+        /// Is pressing the button will invoke the WindowChangedEvent?
         /// </summary>
         bool isAlert;
 
 
         /// <summary>
-        /// The targeting button.
+        /// The targeting button element.
         /// </summary>
         Button button;
 

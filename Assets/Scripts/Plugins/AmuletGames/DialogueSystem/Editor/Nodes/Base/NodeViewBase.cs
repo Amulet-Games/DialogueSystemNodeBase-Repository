@@ -19,15 +19,5 @@ namespace AG.DS
         /// Button for editing the node title.
         /// </summary>
         public Button EditTitleButton;
-
-
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the node view base class.
-        /// </summary>
-        public NodeViewBase()
-        {
-            NodeTitleTextFieldView = new();
-        }
     }
 }

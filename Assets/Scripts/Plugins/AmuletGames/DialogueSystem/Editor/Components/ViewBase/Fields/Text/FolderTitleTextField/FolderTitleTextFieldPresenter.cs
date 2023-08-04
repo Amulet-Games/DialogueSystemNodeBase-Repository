@@ -7,16 +7,15 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new folder title text field element.
         /// </summary>
-        /// <param name="folderTitle">The folder title to set for.</param>
+        /// <param name="view">The folder title text field view to set for.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>
-        /// <returns>A new folder title text field element.</returns>
-        public static TextField CreateElement
+        public static void CreateElement
         (
-            string folderTitle,
+            FolderTitleTextFieldView view,
             string fieldUSS
         )
         {
-            TextField textField;
+            TextField field;
             VisualElement fieldInput;
             VisualElement textElement;
 
@@ -26,20 +25,22 @@ namespace AG.DS
 
             AddFieldToStyleClass();
 
-            return textField;
+            ShowDefaultTitle();
 
             void CreateField()
             {
-                textField = new();
-                fieldInput = textField.GetFieldInput();
-                textElement = textField.GetTextElement();
+                view.Field = new();
+
+                field = view.Field;
+                fieldInput = field.GetFieldInput();
+                textElement = field.GetTextElement();
             }
 
             void SetFieldDetails()
             {
-                textField.SetValueWithoutNotify(newValue: folderTitle);
-                textField.isDelayed = true;
-                textField.multiline = false;
+                field.isDelayed = true;
+                field.multiline = false;
+                field.maxLength = NumberConfig.MAX_CHAR_LENGTH_FOLDER_TITLE_TEXT;
 
                 fieldInput.pickingMode = PickingMode.Ignore;
                 textElement.pickingMode = PickingMode.Ignore;
@@ -47,13 +48,18 @@ namespace AG.DS
 
             void AddFieldToStyleClass()
             {
-                textField.ClearClassList();
+                field.ClearClassList();
                 fieldInput.ClearClassList();
                 textElement.ClearClassList();
 
-                textField.AddToClassList(fieldUSS);
+                field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
                 textElement.AddToClassList(StyleConfig.Text_Field_Element);
+            }
+
+            void ShowDefaultTitle()
+            {
+                view.Value = "";
             }
         }
     }

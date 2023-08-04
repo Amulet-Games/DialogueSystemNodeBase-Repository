@@ -40,9 +40,9 @@ namespace AG.DS
         {
             VisualElement titleContainer = new();
 
-            view.NodeTitleTextFieldView.TextField = NodeTitleTextFieldPresenter.CreateElement
+            NodeTitleTextFieldPresenter.CreateElement
             (
-                nodeTitle: node.title,
+                view: view.NodeTitleTextFieldView,
                 fieldUSS: StyleConfig.Node_Title_TextField
             );
 
@@ -52,7 +52,7 @@ namespace AG.DS
                 buttonUSS: StyleConfig.Node_EditTitle_Button
             );
 
-            titleContainer.Add(view.NodeTitleTextFieldView.TextField);
+            titleContainer.Add(view.NodeTitleTextFieldView.Field);
             titleContainer.Add(view.EditTitleButton);
 
             titleContainer.AddToClassList(StyleConfig.node_Title_Main);

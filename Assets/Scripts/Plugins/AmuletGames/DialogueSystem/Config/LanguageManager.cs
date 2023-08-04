@@ -39,14 +39,14 @@ namespace AG.DS
         }
 
 
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Set a new value to the current language.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value">The new value to set for.</param>
         public void SetCurrentLanguage(LanguageType value) => CurrentLanguage = value;
 
 
-        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Retrieve the suffix text of the given language type.
         /// </summary>

@@ -7,13 +7,13 @@ namespace AG.DS
     public class GraphTitleTextFieldCallback
     {
         /// <summary>
-        /// The targeting graph title text field.
+        /// The targeting graph title text field view.
         /// </summary>
-        TextField field;
+        GraphTitleTextFieldView view;
 
 
         /// <summary>
-        /// Reference the dialogue system model.
+        /// Reference of the dialogue system model.
         /// </summary>
         DialogueSystemModel dsModel;
 
@@ -22,12 +22,6 @@ namespace AG.DS
         /// Reference of the dialogue editor window.
         /// </summary>
         DialogueEditorWindow dsWindow;
-
-
-        /// <summary>
-        /// The asset instance id of the dialogue system model.
-        /// </summary>
-        int dsModelInstanceId;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -44,11 +38,9 @@ namespace AG.DS
             DialogueEditorWindow dsWindow
         )
         {
-            field = view.TextField;
+            this.view = view;
             this.dsModel = dsModel;
             this.dsWindow = dsWindow;
-
-            dsModelInstanceId = dsModel.GetInstanceID();
         }
 
 
@@ -69,31 +61,20 @@ namespace AG.DS
         /// <summary>
         /// Register ChangeEvent to the field.
         /// </summary>
-        void RegisterChangeEvent() =>
-            field.RegisterCallback<ChangeEvent<string>>(ChangeEvent);
+        void RegisterChangeEvent() => view.Field.RegisterValueChangedCallback(ChangeEvent);
 
 
         /// <summary>
         /// Register FocusOutEvent to the field.
         /// </summary>
-        void RegisterFocusOutEvent() =>
-            field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+        void RegisterFocusOutEvent() => view.Field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
 
 
         /// <summary>
         /// Register SerializedObjectValueChangeEvent to the field.
         /// </summary>
-        void RegisterSerializedObjectValueChangeEvent()
-        {
-            // Create new serialized object.
-            SerializedObject so = new(obj: dsModel);
-
-            // Bind serialized object.
-            field.Bind(so);
-
-            // Setup bind event.
-            field.TrackSerializedObjectValue(obj: so, SerializedObjectValueChangeEvent);
-        }
+        void RegisterSerializedObjectValueChangeEvent() =>
+            view.Field.TrackSerializedObjectValue(obj: view.BindingSO, SerializedObjectValueChangeEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -103,13 +84,16 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void ChangeEvent(ChangeEvent<string> evt)
         {
-            AssetDatabase.RenameAsset
-            (
-                pathName: AssetDatabase.GetAssetPath(instanceID: dsModelInstanceId),
-                newName: evt.newValue
-            );
+            if (evt.newValue != "")
+            {
+                // Change dsModel asset name
+                {
+                    dsModel.RenameAsset(newName: evt.newValue);
+                    dsWindow.ApplyChangesToDisk();
+                }
+            }
 
-            dsWindow.ApplyChangesToDisk();
+            view.Value = evt.newValue;
         }
 
 
@@ -119,17 +103,17 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusOutEvent(FocusOutEvent evt)
         {
-            field.RefreshValueNonAlert();
+            view.Field.RefreshValueNonAlert();
         }
 
 
         /// <summary>
-        /// The event to invoke when the bound serialized object's value has changed.
+        /// The event to invoke when the binding serialized object's value has changed.
         /// </summary>
-        /// <param name="so">The bound serialized object to set for.</param>
+        /// <param name="so">The binding serialized object.</param>
         void SerializedObjectValueChangeEvent(SerializedObject so)
         {
-            field.SetValueWithoutNotify(so.targetObject.name);
+            view.Value = so.targetObject.name;
         }
     }
 }

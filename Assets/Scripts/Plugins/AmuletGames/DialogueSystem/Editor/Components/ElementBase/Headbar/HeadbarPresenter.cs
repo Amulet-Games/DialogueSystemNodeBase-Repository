@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -7,9 +8,9 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new headBar element.
         /// </summary>
-        /// <param name="graphTitle">The graph title to set for.</param>
+        /// <param name="dsModel">The dialogue system model to set for.</param>
         /// <returns>A new headBar element.</returns>
-        public static HeadBar CreateElement(string graphTitle)
+        public static HeadBar CreateElement(DialogueSystemModel dsModel)
         {
             HeadBar headBar;
             VisualElement buttonsContainer;
@@ -38,7 +39,7 @@ namespace AG.DS
 
             void CreateHeadBar()
             {
-                headBar = new();
+                headBar = new(dsModel);
                 headBar.AddToClassList(StyleConfig.HeadBar_Main);
             }
 
@@ -87,9 +88,9 @@ namespace AG.DS
 
             void SetupGraphTitleField()
             {
-                headBar.GraphTitleTextFieldView.TextField = GraphTitleTextFieldPresenter.CreateElement
+                GraphTitleTextFieldPresenter.CreateElement
                 (
-                    graphTitle,
+                    view: headBar.GraphTitleTextFieldView,
                     fieldUSS: StyleConfig.HeadBar_GraphTitleTextField
                 );
             }
@@ -104,7 +105,7 @@ namespace AG.DS
             void AddElementsToHeadBar()
             {
                 headBar.Add(buttonsContainer);
-                headBar.Add(headBar.GraphTitleTextFieldView.TextField);
+                headBar.Add(headBar.GraphTitleTextFieldView.Field);
             }
 
             void AddStyleSheet()
