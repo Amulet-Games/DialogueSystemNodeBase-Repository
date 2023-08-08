@@ -1,71 +1,50 @@
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
-    /// <inheritdoc />
     public class EndNodeCallback : NodeCallbackFrameBase
     <
         EndNode,
-        EndNodeView
+        EndNodeView,
+        EndNodeObserver
     >
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the end node callback class.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
         /// <param name="view">The node view to set for.</param>
+        /// <param name="observer">The node observer to set for.</param>
         public EndNodeCallback
         (
-            EndNode node,
-            EndNodeView view
+            EndNodeView view,
+            EndNodeObserver observer
         )
         {
-            Node = node;
             View = view;
+            Observer = observer;
         }
 
 
-        // ----------------------------- Register Events -----------------------------
+        // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents()
+        public override void OnPreManualRemove()
         {
-            base.RegisterEvents();
-
-            RegisterNodeTitleTextFieldEvents();
-
-            RegisterNodeTitleEditButtonClickEvent();
+            // Remove, disconnect ports
+            {
+                GraphViewer.Remove(port: View.InputDefaultPort);
+                View.InputDefaultPort.Disconnect(GraphViewer);
+            }
         }
 
 
-        /// <summary>
-        /// Register events to the node title text field.
-        /// </summary>
-        void RegisterNodeTitleTextFieldEvents()
-            => new NodeTitleTextFieldCallback(
-                view: View.NodeTitleTextFieldView).RegisterEvents();
-
-
-        /// <summary>
-        /// Register ClickEvent to the node title edit button.
-        /// </summary>
-        void RegisterNodeTitleEditButtonClickEvent()
-            => new CommonButtonCallback(
-                isAlert: false,
-                button: View.EditTitleButton,
-                clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
-
-
-        // ----------------------------- Event -----------------------------
-        /// <summary>
-        /// The event to invoke when the node title edit button is clicked.
-        /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void NodeTitleEditButtonClickEvent(ClickEvent evt)
+        /// <inheritdoc />
+        public override void OnPostManualRemove()
         {
-            var fieldInput = View.NodeTitleTextFieldView.Field.GetFieldInput();
-            fieldInput.focusable = true;
-            fieldInput.Focus();
+        }
+
+
+        /// <inheritdoc />
+        public override void OnPostCreate()
+        {
         }
     }
 }

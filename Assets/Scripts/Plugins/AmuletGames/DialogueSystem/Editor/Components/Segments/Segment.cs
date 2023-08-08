@@ -100,7 +100,7 @@ namespace AG.DS
                     buttonUSS: StyleConfig.Segment_Common_ExpandSegment_Button
                 );
 
-                new CommonButtonCallback(
+                new CommonButtonObserver(
                     isAlert: false,
                     button: ExpandButton,
                     clickEvent: ExpandButtonClickEvent).RegisterEvents();

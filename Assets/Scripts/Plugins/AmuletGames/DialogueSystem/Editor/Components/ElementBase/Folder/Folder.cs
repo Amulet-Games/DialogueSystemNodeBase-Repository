@@ -5,19 +5,19 @@ namespace AG.DS
     public class Folder : VisualElement
     {
         /// <summary>
-        /// The element that contains other visual elements within the folder's title section.
+        /// Element that contains the folder title's elements.
         /// </summary>
         public VisualElement TitleContainer;
 
 
         /// <summary>
-        /// The element that contains other visual elements within the folder's content section.
+        /// Element that contains the folder content's elements.
         /// </summary>
         public VisualElement ContentContainer;
 
 
         /// <summary>
-        /// Button that can hide or show the folder's content section when clicked.
+        /// Button that expands the folder when clicked.
         /// </summary>
         public Button ExpandButton;
 
@@ -29,9 +29,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Is the folder expanded?
+        /// The folder expanded state.
         /// </summary>
-        public bool IsExpand { get; private set; }
+        public bool Expanded { get; private set; }
 
 
         // ----------------------------- Constructor -----------------------------
@@ -53,7 +53,7 @@ namespace AG.DS
         public void Save(FolderModel model)
         {
             model.TitleText = TitleTextFieldView.Value;
-            model.IsExpand = IsExpand;
+            model.Expanded = Expanded;
         }
 
 
@@ -64,28 +64,28 @@ namespace AG.DS
         public void Load(FolderModel model)
         {
             TitleTextFieldView.Load(model.TitleText);
-            SetIsExpand(value: model.IsExpand);
+            SetExpanded(value: model.Expanded);
         }
 
 
         // ----------------------------- Service -----------------------------
         /// <summary>
-        /// Set a new value to the IsExpand field.
+        /// Changes the folder expanded state
         /// </summary>
         /// <param name="value">The value to set for.</param>
-        public void SetIsExpand(bool value)
+        public void SetExpanded(bool value)
         {
-            IsExpand = value;
+            Expanded = value;
 
-            ContentContainer.SetDisplay(value: IsExpand);
+            ContentContainer.SetDisplay(value: Expanded);
 
-            if (IsExpand) {
+            if (Expanded) {
                 RemoveFromClassList(StyleConfig.Folder_Closed);
             } else {
                 AddToClassList(StyleConfig.Folder_Closed);
             }
             
-            ExpandButton.style.backgroundImage = IsExpand
+            ExpandButton.style.backgroundImage = Expanded
                 ? ConfigResourcesManager.SpriteConfig.FolderExpandButtonOpenIconSprite.texture
                 : ConfigResourcesManager.SpriteConfig.FolderExpandButtonCloseIconSprite.texture;
         }

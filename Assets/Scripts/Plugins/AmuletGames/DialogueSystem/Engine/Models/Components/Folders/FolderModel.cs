@@ -7,14 +7,14 @@ namespace AG.DS
     public class FolderModel
     {
         /// <summary>
-        /// The folder's isExpand value.
-        /// </summary>
-        [SerializeField] public bool IsExpand;
-
-
-        /// <summary>
         /// The folder's title text value.
         /// </summary>
         [SerializeField] public string TitleText;
+
+
+        /// <summary>
+        /// The folder's isExpand value.
+        /// </summary>
+        [SerializeField] public bool Expanded;
     }
 }

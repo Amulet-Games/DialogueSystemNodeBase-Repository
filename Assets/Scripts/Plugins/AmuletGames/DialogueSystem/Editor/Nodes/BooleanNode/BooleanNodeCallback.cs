@@ -1,121 +1,55 @@
-using UnityEngine;
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
-    /// <inheritdoc />
     public class BooleanNodeCallback : NodeCallbackFrameBase
     <
         BooleanNode,
-        BooleanNodeView
+        BooleanNodeView,
+        BooleanNodeObserver
     >
     {
-        /// <summary>
-        /// The last pointer position found within the node. 
-        /// </summary>
-        Vector2 pointerMovePosition;
-
-
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the boolean node callback class.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
         /// <param name="view">The node view to set for.</param>
+        /// <param name="observer">The node observer to set for.</param>
         public BooleanNodeCallback
         (
-            BooleanNode node,
-            BooleanNodeView view
+            BooleanNodeView view,
+            BooleanNodeObserver observer
         )
         {
-            Node = node;
             View = view;
+            Observer = observer;
         }
 
 
-        // ----------------------------- Register Events -----------------------------
+        // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents()
+        public override void OnPreManualRemove()
         {
-            base.RegisterEvents();
-
-            RegisterPointerMoveEvent();
-
-            RegisterGeometryChangedEvent();
-
-            RegisterNodeTitleTextFieldEvents();
-
-            RegisterNodeTitleEditButtonClickEvent();
-        }
-
-
-        /// <summary>
-        /// Register PointerMoveEvent to the node.
-        /// </summary>
-        void RegisterPointerMoveEvent()
-            => Node.RegisterCallback<PointerMoveEvent>(PointerMoveEvent);
-
-
-        /// <summary>
-        /// Register GeometryChangedEvent to the node.
-        /// </summary>
-        void RegisterGeometryChangedEvent()
-            => Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-
-
-        /// <summary>
-        /// Register events to the node title text field.
-        /// </summary>
-        void RegisterNodeTitleTextFieldEvents()
-            => new NodeTitleTextFieldCallback(
-                view: View.NodeTitleTextFieldView).RegisterEvents();
-
-
-        /// <summary>
-        /// Register ClickEvent to the node title edit button.
-        /// </summary>
-        void RegisterNodeTitleEditButtonClickEvent()
-            => new CommonButtonCallback(
-                isAlert: false,
-                button: View.EditTitleButton,
-                clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
-
-
-        // ----------------------------- Event -----------------------------
-        /// <summary>
-        /// The event to invoke when the pointer's state has changed.
-        /// <br>Like position or pressure change, or a different button is pressed.</br>
-        /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void PointerMoveEvent(PointerMoveEvent evt)
-        {
-            pointerMovePosition = evt.position;
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the node's geometry has changed.
-        /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void GeometryChangedEvent(GeometryChangedEvent evt)
-        {
-            if (!Node.worldBound.Contains(pointerMovePosition))
+            // Remove, disconnect ports
             {
-                // Remove from hover class.
-                Node.NodeBorder.RemoveFromClassList(StyleConfig.Node_Border_Hover);
+                GraphViewer.Remove(port: View.InputDefaultPort);
+                GraphViewer.Remove(port: View.TrueOutputDefaultPort);
+                GraphViewer.Remove(port: View.FalseOutputDefaultPort);
+
+                View.InputDefaultPort.Disconnect(GraphViewer);
+                View.TrueOutputDefaultPort.Disconnect(GraphViewer);
+                View.FalseOutputDefaultPort.Disconnect(GraphViewer);
             }
         }
 
 
-        /// <summary>
-        /// The event to invoke when the node title edit button is clicked.
-        /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void NodeTitleEditButtonClickEvent(ClickEvent evt)
+        /// <inheritdoc />
+        public override void OnPostManualRemove()
         {
-            var fieldInput = View.NodeTitleTextFieldView.Field.GetFieldInput();
-            fieldInput.focusable = true;
-            fieldInput.Focus();
+        }
+
+
+        /// <inheritdoc />
+        public override void OnPostCreate()
+        {
         }
     }
 }

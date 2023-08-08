@@ -77,7 +77,7 @@ namespace AG.DS
                     fieldUSS01: StyleConfig.DialogueNode_Character_ObjectField
                 );
 
-                new CommonObjectFieldCallback<DialogueCharacter>(
+                new CommonObjectFieldObserver<DialogueCharacter>(
                     view: view.CharacterObjectFieldView).RegisterEvents();
 
                 node.ContentContainer.Add(view.CharacterObjectFieldView.Field);

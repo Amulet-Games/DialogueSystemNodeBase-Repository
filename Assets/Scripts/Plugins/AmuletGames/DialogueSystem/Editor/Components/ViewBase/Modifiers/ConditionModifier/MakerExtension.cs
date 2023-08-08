@@ -96,7 +96,7 @@ namespace AG.DS
                     fieldUSS: StyleConfig.Modifier_Condition_Rooted_SecondTerm_TextField
                 );
 
-                new CommonTextFieldCallback(view: SecondTermTextFieldView).RegisterEvents();
+                new CommonTextFieldObserver(view: SecondTermTextFieldView).RegisterEvents();
             }
 
             void SetupSecondTermFloatField()
@@ -107,7 +107,7 @@ namespace AG.DS
                     fieldUSS: StyleConfig.Modifier_Condition_SecondTerm_FloatField
                 );
 
-                new CommonDoubleFieldCallback(view: SecondTermFloatFieldView).RegisterEvents();
+                new CommonDoubleFieldObserver(view: SecondTermFloatFieldView).RegisterEvents();
             }
 
             void SetupSecondTermFloatFieldIcon()
@@ -136,7 +136,7 @@ namespace AG.DS
                     buttonUSS: StyleConfig.Modifier_Condition_ChangeFieldType_Button
                 );
 
-                new CommonButtonCallback(
+                new CommonButtonObserver(
                     isAlert: true,
                     button: changeFieldTypeButton,
                     clickEvent: ChangeFieldTypeButtonClickEvent).RegisterEvents();
@@ -150,7 +150,7 @@ namespace AG.DS
                     buttonUSS: StyleConfig.Modifier_Condition_Remove_Button
                 );
 
-                new CommonButtonCallback(
+                new CommonButtonObserver(
                     isAlert: true,
                     button: modifierRemoveButton,
                     clickEvent: evt => removeButtonClickAction.Invoke(this)).RegisterEvents();

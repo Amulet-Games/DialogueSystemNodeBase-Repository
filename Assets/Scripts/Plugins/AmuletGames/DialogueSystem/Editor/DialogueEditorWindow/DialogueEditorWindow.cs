@@ -163,18 +163,18 @@ namespace AG.DS
 
             // Register modules events
             {
-                var graphViewerCallback = new GraphViewerCallback(graphViewer, nodeCreateRequestWindow, dsWindow: this);
-                graphViewerCallback.SetupCallbacks();
-                graphViewerCallback.RegisterEvents();
+                var graphViewerObserver = new GraphViewerObserver(graphViewer, nodeCreateRequestWindow, dsWindow: this);
+                graphViewerObserver.AssignDelegates();
+                graphViewerObserver.RegisterEvents();
 
-                new HeadBarCallback(headBar, dsModel, dsWindow: this).RegisterEvents();
+                new HeadBarObserver(headBar, dsModel, dsWindow: this).RegisterEvents();
 
-                new DialogueEditorWindowCallback(
+                new DialogueEditorWindowObserver(
                     dsModel, graphViewer, headBar,
                     serializeHandler, nodeCreateRequestWindow, dsWindow: this).RegisterEvents();
 
-                new NodeCreateRequestWindowCallback(nodeCreateRequestWindow).RegisterEvents();
-                new NodeCreateConnectorWindowCallback(graphViewer.NodeCreateConnectorWindow).RegisterEvents();
+                new NodeCreateRequestWindowObserver(nodeCreateRequestWindow).RegisterEvents();
+                new NodeCreateConnectorWindowObserver(graphViewer.NodeCreateConnectorWindow).RegisterEvents();
             }
         }
 

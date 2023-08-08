@@ -96,7 +96,7 @@ namespace AG.DS
             if (EditorApplication.isPlayingOrWillChangePlaymode == false)
             {
                 // Register events.
-                new EditorApplicationCallback(QUIT_CONFIRM_FILE_PATH).RegisterEvents();
+                new EditorApplicationObserver(QUIT_CONFIRM_FILE_PATH).RegisterEvents();
             }
         }
     }

@@ -57,7 +57,7 @@ namespace AG.DS
         #endregion
 
         #region Modifier Event USS Classes.
-        public const string EventModifier_HelperButton_Container = "eventModifier_HelperButton_Container";
+        public const string Helper_Button_Container = "helper-button-container";
         public const string EventModifier_MoveUp_Button = "eventModifier_MoveUp_Button";
         public const string EventModifier_MoveDown_Button = "eventModifier_MoveDown_Button";
         public const string EventModifier_Rename_Button = "eventModifier_Rename_Button";
@@ -72,7 +72,7 @@ namespace AG.DS
         public const string EventModifier_DelaySeconds_Label = "eventModifier_DelaySeconds_Label";
 
         /*< -------------------- Group -------------------- >*/
-        public const string EventModifierGroup_MainContainer = "eventModifierGroup_MainContainer";
+        public const string Event_Modifier_Group = "event-modifier-group";
         #endregion
 
         #region Modifier Condition USS Classes.

@@ -71,7 +71,7 @@ namespace AG.DS
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEventModifierButtonIconSprite
                 );
 
-                new ContentButtonCallback(
+                new ContentButtonObserver(
                     isAlert: true,
                     contentButton: contentButton,
                     clickEvent: ContentButtonClickEvent).RegisterEvents();

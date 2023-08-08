@@ -5,31 +5,31 @@ namespace AG.DS
     public class EventModifierView
     {
         /// <summary>
-        /// Folder that contains all the modifier's elements.
+        /// Folder that contains the modifier's elements.
         /// </summary>
         public Folder Folder;
 
 
         /// <summary>
-        /// Button that move the modifier up one position when clicked.
+        /// Button that moves the modifier up one position when clicked.
         /// </summary>
         public Button MoveUpButton;
 
 
         /// <summary>
-        /// Button that move the modifier down one position when clicked.
+        /// Button that moves the modifier down one position when clicked.
         /// </summary>
         public Button MoveDownButton;
 
 
         /// <summary>
-        /// Button that rename the modifier when clicked.
+        /// Button that renames the modifier when clicked.
         /// </summary>
         public Button RenameButton;
 
 
         /// <summary>
-        /// Button that remove the modifier when clicked.
+        /// Button that removes the modifier when clicked.
         /// </summary>
         public Button RemoveButton;
 
@@ -129,23 +129,23 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <summary>
-        /// Setting the enable status of the move up button.
+        /// Changes the move up button enabled state.
         /// </summary>
-        /// <param name="value">The enable status to set to.</param>
+        /// <param name="value">The value to set to.</param>
         public void SetEnabledMoveUpButton(bool value) => MoveUpButton.SetEnabled(value: value);
 
 
         /// <summary>
-        /// Setting the enable status of the move down button.
+        /// Changes the move down button enabled state.
         /// </summary>
-        /// <param name="value">The enable status to set to.</param>
+        /// <param name="value">The value to set to.</param>
         public void SetEnabledMoveDownButton(bool value) => MoveDownButton.SetEnabled(value: value);
 
 
         /// <summary>
-        /// Setting the enable status of the remove button.
+        /// Changes the remove button enabled state.
         /// </summary>
-        /// <param name="value">The enable status to set to.</param>
+        /// <param name="value">The value to set to.</param>
         public void SetEnabledRemoveButton(bool value) => RemoveButton.SetEnabled(value: value);
     }
 }

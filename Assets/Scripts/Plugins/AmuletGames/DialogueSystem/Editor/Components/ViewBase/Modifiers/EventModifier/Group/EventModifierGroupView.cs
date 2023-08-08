@@ -6,45 +6,115 @@ namespace AG.DS
     public class EventModifierGroupView
     {
         /// <summary>
-        /// Modifiers cache.
+        /// Cache of the event modifiers that are within the group.
         /// </summary>
-        List<EventModifierView> modifiersCache;
+        List<EventModifierView> modifiers;
 
 
         /// <summary>
-        /// Modifiers cache counter.
+        /// The event modifiers cache counter.
         /// </summary>
-        int modelCount = 0;
+        int modifiersCount = 0;
 
 
         /// <summary>
-        /// The index of the next modifier.
+        /// Index of the next modifier.
         /// </summary>
-        int nextIndex = 1;
+        public int NextIndex { get; private set; } = 1;
 
 
         /// <summary>
-        /// The element that contains all the modifiers within the group.
+        /// Element that contains the group modifiers.
         /// </summary>
         public Box GroupContainer;
 
 
         /// <summary>
-        /// Temporary reference of the modifier that is in the first position of the group hierarchy.
+        /// The property of the modifier that is in the first position of the group.
         /// </summary>
-        EventModifierView tempFirstModifier;
+        public EventModifierView FirstModifier
+        {
+            get
+            {
+                return firstModifier;
+            }
+            private set
+            {
+                if (value == firstModifier)
+                {
+                    return;
+                }
+
+                value?.SetEnabledMoveUpButton(value: false);
+                firstModifier?.SetEnabledMoveUpButton(value: true);
+                firstModifier = value;
+            }
+        }
 
 
         /// <summary>
-        /// Temporary reference of the modifier that is in the last position of the group hierarchy.
+        /// Reference of the modifier that is in the first position of the group.
         /// </summary>
-        EventModifierView tempLastModifier;
+        EventModifierView firstModifier;
 
 
         /// <summary>
-        /// Temporary reference of the modifier that is the only one exists in the group hierarchy.
+        /// The property of the modifier that is in the last position of the group.
         /// </summary>
-        EventModifierView tempSoleModifier;
+        public EventModifierView LastModifier
+        {
+            get
+            {
+                return lastModifier;
+            }
+            private set
+            {
+                if (value == lastModifier)
+                {
+                    return;
+                }
+
+                value?.SetEnabledMoveDownButton(value: false);
+                lastModifier?.SetEnabledMoveDownButton(value: true);
+                lastModifier = value;
+            }
+        }
+
+        /// <summary>
+        /// Reference of the modifier that is in the last position of the group.
+        /// </summary>
+        EventModifierView lastModifier;
+
+
+        /// <summary>
+        /// The property of the modifier that is the only one exists in the group.
+        /// </summary>
+        public EventModifierView SoleModifier
+        {
+            get
+            {
+                return soleModifier;
+            }
+            private set
+            {
+                if (value == null)
+                {
+                    soleModifier?.SetEnabledRemoveButton(value: true);
+                }
+                else
+                {
+                    value.SetEnabledRemoveButton(value: false);
+                }
+
+                soleModifier = value;
+            }
+        }
+
+
+        /// <summary>
+        /// Reference of the modifier that is the only one exists in the group.
+        /// </summary>
+        EventModifierView soleModifier;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -53,189 +123,7 @@ namespace AG.DS
         /// </summary>
         public EventModifierGroupView()
         {
-            modifiersCache = new();
-        }
-
-
-        // ----------------------------- Callback -----------------------------
-        /// <summary>
-        /// The action to invoke when the move up button is clicked.
-        /// </summary>
-        /// <param name="modifier">The modifier of which the button belongs to.</param>
-        void MoveUpButtonClickAction(EventModifierView modifier)
-        {
-            // Swap-from element.
-            var swapFromElement = modifier.Folder;
-
-            // Swap-from element's sibling index.
-            var swapFromIndex = GroupContainer.IndexOf(swapFromElement);
-
-            // Swap-to modifier.
-            var swapToModifier = modifiersCache[swapFromIndex - 1];
-
-            // Swap-to element.
-            var swapToElement = swapToModifier.Folder;
-
-            // Swap hierarchy position.
-            modifiersCache[swapFromIndex - 1] = modifier;
-            modifiersCache[swapFromIndex] = swapToModifier;
-
-            // Move swap-from element upward.
-            swapFromElement.PlaceBehind(swapToElement);
-
-            SetEnabledMoveUpButton();
-            SetEnabledMoveDownButton();
-
-            void SetEnabledMoveUpButton()
-            {
-                // If the swap-from modifier is int the first position of the cache.
-                if (modifier == modifiersCache[0])
-                {
-                    tempFirstModifier?.SetEnabledMoveUpButton(value: true);
-
-                    modifier.SetEnabledMoveUpButton(value: false);
-
-                    tempFirstModifier = modifier;
-                }
-            }
-
-            void SetEnabledMoveDownButton()
-            {
-                // If the swap-to modifier is in the last position of the cache.
-                if (swapToModifier == modifiersCache[modelCount - 1])
-                {
-                    tempLastModifier?.SetEnabledMoveDownButton(value: true);
-
-                    swapToModifier.SetEnabledMoveDownButton(value: false);
-
-                    tempLastModifier = swapToModifier;
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// The action to invoke when the move down button is clicked.
-        /// </summary>
-        /// <param name="modifier">The modifier of which the button belongs to.</param>
-        void MoveDownButtonClickAction(EventModifierView modifier)
-        {
-            // Swap-from element.
-            var swapFromElement = modifier.Folder;
-
-            // Swap-from element's sibling index.
-            var swapFromIndex = GroupContainer.IndexOf(swapFromElement);
-
-            // Swap-to modifier.
-            var swapToModifier = modifiersCache[swapFromIndex + 1];
-
-            // Swap-to element.
-            var swapToElement = swapToModifier.Folder;
-
-            // Swap hierarchy position.
-            modifiersCache[swapFromIndex + 1] = modifier;
-            modifiersCache[swapFromIndex] = swapToModifier;
-
-            // Move swap-from element downward.
-            swapFromElement.PlaceInFront(swapToElement);
-
-            SetEnabledMoveUpButton();
-            SetEnabledMoveDownButton();
-
-            void SetEnabledMoveUpButton()
-            {
-                // If the swap-to modifier is in the first position of the cache.
-                if (swapToModifier == modifiersCache[0])
-                {
-                    tempFirstModifier?.SetEnabledMoveUpButton(value: true);
-
-                    swapToModifier.SetEnabledMoveUpButton(value: false);
-
-                    tempFirstModifier = swapToModifier;
-                }
-            }
-
-            void SetEnabledMoveDownButton()
-            {
-                // If the swap-from modifier is in the last position of the cache.
-                if (modifier == modifiersCache[modelCount - 1])
-                {
-                    tempLastModifier?.SetEnabledMoveDownButton(value: true);
-
-                    modifier.SetEnabledMoveDownButton(value: false);
-
-                    tempLastModifier = modifier;
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// The action to invoke when the rename button is clicked.
-        /// </summary>
-        /// <param name="modifier">The modifier of which the button belongs to.</param>
-        void RenameButtonClickAction(EventModifierView modifier)
-        {
-            modifier.Folder.StartEditingFolderTitle();
-        }
-
-
-        /// <summary>
-        /// The action to invoke when the remove button is clicked.
-        /// </summary>
-        /// <param name="modifier">The modifier of which the button belongs to.</param>
-        void RemoveButtonClickAction(EventModifierView modifier)
-        {
-            RemoveModifierFromCache();
-
-            SetEnabledButtons();
-
-            void RemoveModifierFromCache()
-            {
-                modelCount--;
-
-                modifiersCache.Remove(modifier);
-
-                GroupContainer.Remove(modifier.Folder);
-            }
-
-            void SetEnabledButtons()
-            {
-                if (modelCount > 0)
-                {
-                    // If there's only one modifier left and it hasn't set to be the sole modifier yet.
-                    if (modelCount == 1)
-                    {
-                        modifiersCache[0].SetEnabledRemoveButton(value: false);
-
-                        tempSoleModifier = modifiersCache[0];
-                    }
-
-                    // If the first position modifier has changed.
-                    if (tempFirstModifier != modifiersCache[0])
-                    {
-                        modifiersCache[0].SetEnabledMoveUpButton(value: false);
-
-                        tempFirstModifier = modifiersCache[0];
-                    }
-
-                    // If the last position's modifier has changed.
-                    var bottomModifier = modifiersCache[modelCount - 1];
-                    if (tempLastModifier != bottomModifier)
-                    {
-                        bottomModifier.SetEnabledMoveDownButton(value: false);
-
-                        tempLastModifier = bottomModifier;
-                    }
-                }
-                else
-                {
-                    // If there's no modifier left.
-                    tempSoleModifier = null;
-                    tempFirstModifier = null;
-                    tempLastModifier = null;
-                }
-            }
+            modifiers = new();
         }
 
 
@@ -246,12 +134,13 @@ namespace AG.DS
         /// <param name="model">The event modifier group model to set for.</param>
         public void Save(EventModifierGroupModel model)
         {
-            // Save modifiers.
-            model.ModifierModels = new EventModifierModel[modelCount];
-            for (int i = 0; i < modelCount; i++)
+            model.ModifierModels = new EventModifierModel[modifiersCount];
+
+            for (int i = 0; i < modifiersCount; i++)
             {
                 model.ModifierModels[i] = new();
-                modifiersCache[i].SaveModifierValue(model: model.ModifierModels[i]);
+
+                modifiers[i].SaveModifierValue(model: model.ModifierModels[i]);
             }
         }
 
@@ -262,155 +151,110 @@ namespace AG.DS
         /// <param name="model">The event modifier group model to set for.</param>
         public void Load(EventModifierGroupModel model)
         {
-            LoadModifierModels();
+            modifiersCount = model.ModifierModels.Length;
 
-            SetEnabledButtons();
-
-            void LoadModifierModels()
+            // Load modifiers
             {
-                modelCount = model.ModifierModels.Length;
-                for (int modifierIndex = 1; modifierIndex <= modelCount; modifierIndex++)
+                for (int i = 0; i <= modifiersCount; i++)
                 {
-                    EventModifierView view = new();
-                    EventModifierPresenter.CreateElement
-                    (
-                        view: view,
-                        index: modifierIndex
+                    var modifier = new EventModifierSeeder().Generate(
+                        groupView: this,
+                        model: model.ModifierModels[i]
                     );
 
-                    new EventModifierCallback
-                    (
-                        view: view,
-                        moveUpButtonClickEvent: evt => MoveUpButtonClickAction(view),
-                        moveDownButtonClickEvent: evt => MoveDownButtonClickAction(view),
-                        renameButtonClickEvent: evt => RenameButtonClickAction(view),
-                        removeButtonClickEvent: evt => RemoveButtonClickAction(view)
-                    )
-                    .RegisterEvents();
-
-                    view.LoadModifierValue(model: model.ModifierModels[modifierIndex - 1]);
-
-                    GroupContainer.Add(view.Folder);
-                    modifiersCache.Add(view);
-                }
-
-                nextIndex = modelCount + 1;
-            }
-
-            void SetEnabledButtons()
-            {
-                // If there's only one modifier in the group.
-                if (modelCount == 1)
-                {
-                    tempSoleModifier = modifiersCache[0];
-                    tempSoleModifier.SetEnabledRemoveButton(value: false);
-                }
-
-                // If there's a modifier in the group.
-                if (modelCount > 0)
-                {
-                    tempFirstModifier = modifiersCache[0];
-                    tempFirstModifier.SetEnabledMoveUpButton(value: false);
-
-                    tempLastModifier = modifiersCache[modelCount - 1];
-                    tempLastModifier.SetEnabledMoveDownButton(value: false);
+                    Add(modifier);
                 }
             }
+            
+            UpdateReferences();
         }
 
 
         // ----------------------------- Service -----------------------------
         /// <summary>
-        /// Method that is mainly used with content button, to create a new event modifier view to the group.
+        /// Swap the position of the given modifier's and the up or down's modifier within the group.
         /// </summary>
-        public void CreateModifier()
+        /// <param name="modifier">The swap from modifier to set for.</param>
+        /// <param name="swapUp">The swap up value to set for.</param>
+        public void Swap(EventModifierView modifier, bool swapUp)
         {
-            EventModifierView view;
+            var swapFromIndex = modifiers.IndexOf(modifier);
 
-            SetupModifier();
+            var swapToIndex = swapFromIndex + (swapUp ? -1 : 1);
 
-            AddModifierToCache();
+            var swapToModifier = modifiers[swapToIndex];
 
-            SetEnabledRemoveButton();
-
-            SetEnabledMoveUpButton();
-
-            SetEnabledMoveDownButton();
-
-            OnModifierCreated();
-
-            void SetupModifier()
+            // Swap array
             {
-                view = new();
-                EventModifierPresenter.CreateElement
-                (
-                    view: view,
-                    index: nextIndex
-                );
-
-                new EventModifierCallback
-                (
-                    view: view,
-                    moveUpButtonClickEvent: evt => MoveUpButtonClickAction(view),
-                    moveDownButtonClickEvent: evt => MoveDownButtonClickAction(view),
-                    renameButtonClickEvent: evt => RenameButtonClickAction(view),
-                    removeButtonClickEvent: evt => RemoveButtonClickAction(view)
-                )
-                .RegisterEvents();
-
-                GroupContainer.Add(view.Folder);
+                modifiers[swapToIndex] = modifier;
+                modifiers[swapFromIndex] = swapToModifier;
             }
 
-            void AddModifierToCache()
+            // Swap element
             {
-                modifiersCache.Add(view);
-                modelCount++;
-                nextIndex++;
-            }
+                var swapFromElement = modifier.Folder;
+                var swapToElement = swapToModifier.Folder;
 
-            void SetEnabledRemoveButton()
-            {
-                // If the new modifier is the first modifier added to the group.
-                if (modelCount == 1)
+                if (swapUp)
                 {
-                    view.SetEnabledRemoveButton(value: false);
-
-                    tempSoleModifier = view;
+                    swapFromElement.PlaceBehind(swapToElement);
                 }
-                // If there's already a modifier exists in the group.
-                else if (tempSoleModifier != null)
+                else
                 {
-                    tempSoleModifier.SetEnabledRemoveButton(value: true);
-
-                    tempSoleModifier = null;
+                    swapFromElement.PlaceInFront(swapToElement);
                 }
             }
 
-            void SetEnabledMoveUpButton()
-            {
-                // If the new modifier is in the first position of the group hierarchy.
-                if (tempFirstModifier == null)
-                {
-                    view.SetEnabledMoveUpButton(value: false);
+            UpdateReferences();
+        }
 
-                    tempFirstModifier = view;
-                }
+
+        /// <summary>
+        /// Remove the given event modifier view from the group.
+        /// </summary>
+        /// <param name="modifier">The event modifier view to set for.</param>
+        public void Remove(EventModifierView modifier)
+        {
+            modifiersCount--;
+
+            modifiers.Remove(modifier);
+
+            GroupContainer.Remove(modifier.Folder);
+        }
+
+
+        /// <summary>
+        /// Add the given event modifier view to the group.
+        /// </summary>
+        /// <param name="modifier">The event modifier view to set for.</param>
+        public void Add(EventModifierView modifier)
+        {
+            modifiersCount++;
+
+            modifiers.Add(modifier);
+
+            GroupContainer.Add(modifier.Folder);
+
+            NextIndex++;
+        }
+
+
+        /// <summary>
+        /// Update the group's first, last and sole modifier references.
+        /// </summary>
+        public void UpdateReferences()
+        {
+            if (modifiersCount > 0)
+            {
+                FirstModifier = modifiers[0];
+                LastModifier = modifiers[modifiersCount - 1];
+                SoleModifier = modifiersCount == 1 ? modifiers[0] : null;
             }
-
-            void SetEnabledMoveDownButton()
+            else
             {
-                // Enable the previous bottom position modifier's button.
-                tempLastModifier?.SetEnabledMoveDownButton(value: true);
-
-                view.SetEnabledMoveDownButton(value: false);
-
-                tempLastModifier = view;
-            }
-
-            void OnModifierCreated()
-            {
-                view.Folder.SetIsExpand(value: true);
-                view.Folder.StartEditingFolderTitle();
+                FirstModifier = null;
+                LastModifier = null;
+                SoleModifier = null;
             }
         }
     }

@@ -1,7 +1,7 @@
 /* =========================================================== Event Modifier =========================================================== */
 
 /*< ---------------------------------------------------------- Helper Button Container >*/
-.eventModifier_HelperButton_Container {
+.helper-button-container {
 
 	background-color: rgba(0, 0, 0, 0);
 

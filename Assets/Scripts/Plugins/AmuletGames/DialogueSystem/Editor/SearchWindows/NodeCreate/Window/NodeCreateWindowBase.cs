@@ -346,7 +346,7 @@ namespace AG.DS
                     node.SetPosition(newPos: new Rect(targetPos, Vector2Utility.Zero));
                 }
 
-                node.ExecuteOnceOnGeometryChanged(node.Callback.GeometryChangedEvent);
+                node.ExecuteOnceOnGeometryChanged(node.Observer.GeometryChangedEvent);
             }
         }
 

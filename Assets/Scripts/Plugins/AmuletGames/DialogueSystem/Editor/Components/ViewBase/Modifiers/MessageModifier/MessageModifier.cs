@@ -140,7 +140,7 @@ namespace AG.DS
                                    str02: index.ToString())
                 );
 
-                new FolderCallback(folder: Folder).RegisterEvents();
+                new FolderObserver(folder: Folder).RegisterEvents();
             }
 
             void SetupContainers()
@@ -160,7 +160,7 @@ namespace AG.DS
                     buttonUSS: StyleConfig.Modifier_Message_MoveUp_Button
                 );
 
-                new CommonButtonCallback(
+                new CommonButtonObserver(
                     isAlert: true,
                     button: moveUpButton,
                     clickEvent: evt => moveUpButtonClickAction(this)).RegisterEvents();
@@ -174,7 +174,7 @@ namespace AG.DS
                     buttonUSS: StyleConfig.Modifier_Message_MoveDown_Button
                 );
 
-                new CommonButtonCallback(
+                new CommonButtonObserver(
                     isAlert: true,
                     button: moveDownButton,
                     clickEvent: evt => moveDownButtonClickAction(this)).RegisterEvents();
@@ -188,7 +188,7 @@ namespace AG.DS
                     buttonUSS: StyleConfig.Modifier_Message_Rename_Button
                 );
 
-                new CommonButtonCallback(
+                new CommonButtonObserver(
                     isAlert: true,
                     button: renameButton,
                     clickEvent: evt => renameButtonClickAction(this)).RegisterEvents();
@@ -202,7 +202,7 @@ namespace AG.DS
                     buttonUSS: StyleConfig.Modifier_Message_Remove_Button
                 );
 
-                new CommonButtonCallback(
+                new CommonButtonObserver(
                     isAlert: true,
                     button: removeButton,
                     clickEvent: evt => removeButtonClickAction(this)).RegisterEvents();
@@ -217,7 +217,7 @@ namespace AG.DS
                     fieldUSS: StyleConfig.Modifier_Message_Text_TextField
                 );
 
-                new LanguageTextFieldCallback(view: messageTextView).RegisterEvents();
+                new LanguageTextFieldObserver(view: messageTextView).RegisterEvents();
             }
 
             void SetupMessageTextFieldIcon()
@@ -236,7 +236,7 @@ namespace AG.DS
                     fieldUSS01: StyleConfig.Modifier_Message_Audio_ObjectField
                 );
 
-                new LanguageObjectFieldCallback<AudioClip>(
+                new LanguageObjectFieldObserver<AudioClip>(
                     view: messageAudioObjectView).RegisterEvents();
             }
 

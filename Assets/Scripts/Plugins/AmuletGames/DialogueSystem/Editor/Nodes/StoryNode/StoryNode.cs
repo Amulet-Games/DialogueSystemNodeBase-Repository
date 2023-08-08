@@ -6,8 +6,8 @@ namespace AG.DS
     <
         StoryNode,
         StoryNodeView,
+        StoryNodeObserver,
         StoryNodeSerializer,
-        StoryNodeCallback,
         StoryNodeModel
     >
     {
@@ -25,7 +25,7 @@ namespace AG.DS
                 View = view;
                 GraphViewer = graphViewer;
 
-                Callback = new(node: this, View, headBar);
+                Observer = new(node: this, View, headBar);
                 Serializer = new(node: this, View);
             }
 

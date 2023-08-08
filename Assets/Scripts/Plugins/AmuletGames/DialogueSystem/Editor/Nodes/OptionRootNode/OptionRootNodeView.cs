@@ -63,7 +63,7 @@ namespace AG.DS
             // Disconnect each ports
             InputDefaultPort.Disconnect(graphViewer);
             OutputOptionPort.Disconnect(graphViewer);
-            OutputOptionPortGroupView.Disconnect(graphViewer);
+            OutputOptionPortGroupView.DisconnectAll(graphViewer);
         }
     }
 }

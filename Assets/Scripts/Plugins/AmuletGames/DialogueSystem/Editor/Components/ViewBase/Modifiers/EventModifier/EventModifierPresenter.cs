@@ -17,15 +17,16 @@ namespace AG.DS
         {
             VisualElement helperButtonsContainer;
             VisualElement dialogueEventContainer;
-            VisualElement dialogueEventLabel;
             VisualElement startDelayContainer;
-            VisualElement startDelayLabel;
             VisualElement delaySecondsContainer;
+
+            VisualElement dialogueEventLabel;
+            VisualElement startDelayLabel;
             VisualElement delaySecondsLabel;
 
             SetupFolder();
 
-            SetupHelperButtonContainer();
+            SetupContainers();
 
             SetupMoveUpButton();
 
@@ -35,19 +36,13 @@ namespace AG.DS
 
             SetupRemoveButton();
 
-            SetupDialogueEventContainer();
-
             SetupDialogueEventLabel();
 
             SetupDialogueEventField();
 
             SetupDialogueEventFieldIcon();
 
-            SetupStartDelayContainer();
-
             SetupStartDelayLabel();
-
-            SetupDelaySecondsContainer();
 
             SetupDelaySecondsField();
 
@@ -67,10 +62,19 @@ namespace AG.DS
                 );
             }
 
-            void SetupHelperButtonContainer()
+            void SetupContainers()
             {
                 helperButtonsContainer = new();
-                helperButtonsContainer.AddToClassList(StyleConfig.EventModifier_HelperButton_Container);
+                helperButtonsContainer.AddToClassList(StyleConfig.Helper_Button_Container);
+
+                dialogueEventContainer = new();
+                dialogueEventContainer.AddToClassList(StyleConfig.EventModifier_DialogueEvent_Container);
+
+                startDelayContainer = new();
+                startDelayContainer.AddToClassList(StyleConfig.EventModifier_StartDelay_Container);
+
+                delaySecondsContainer = new();
+                delaySecondsContainer.AddToClassList(StyleConfig.EventModifier_DelaySeconds_Container);
             }
 
             void SetupMoveUpButton()
@@ -117,12 +121,6 @@ namespace AG.DS
                 view.RemoveButton.AddBackgroundHighlighter();
             }
 
-            void SetupDialogueEventContainer()
-            {
-                dialogueEventContainer = new();
-                dialogueEventContainer.AddToClassList(StyleConfig.EventModifier_DialogueEvent_Container);
-            }
-
             void SetupDialogueEventLabel()
             {
                 dialogueEventLabel = CommonLabelPresenter.CreateElement
@@ -134,7 +132,7 @@ namespace AG.DS
 
             void SetupDialogueEventField()
             {
-                CommonObjectFieldPresenter.CreateElement<DialogueEvent>
+                CommonObjectFieldPresenter.CreateElement
                 (
                     view: view.DialogueEventFieldView,
                     fieldUSS01: StyleConfig.EventModifier_DialogueEvent_Field
@@ -143,20 +141,13 @@ namespace AG.DS
 
             void SetupDialogueEventFieldIcon()
             {
-                view.DialogueEventFieldIcon =
-                    CommonImagePresenter.CreateElement
-                    (
-                        imageSprite: ConfigResourcesManager.SpriteConfig.EventFieldIconSprite,
-                        imageUSS01: StyleConfig.Object_Field_Display_Image
-                    );
+                view.DialogueEventFieldIcon = CommonImagePresenter.CreateElement
+                (
+                    imageSprite: ConfigResourcesManager.SpriteConfig.EventFieldIconSprite,
+                    imageUSS01: StyleConfig.Object_Field_Display_Image
+                );
 
                 view.DialogueEventFieldView.Field.SetDisplayImage(view.DialogueEventFieldIcon);
-            }
-
-            void SetupStartDelayContainer()
-            {
-                startDelayContainer = new();
-                startDelayContainer.AddToClassList(StyleConfig.EventModifier_StartDelay_Container);
             }
 
             void SetupStartDelayLabel()
@@ -166,12 +157,6 @@ namespace AG.DS
                     labelText: StringConfig.EventModifier_StartDelay_LabelText,
                     labelUSS: StyleConfig.EventModifier_StartDelay_Label
                 );
-            }
-
-            void SetupDelaySecondsContainer()
-            {
-                delaySecondsContainer = new();
-                delaySecondsContainer.AddToClassList(StyleConfig.EventModifier_DelaySeconds_Container);
             }
 
             void SetupDelaySecondsField()

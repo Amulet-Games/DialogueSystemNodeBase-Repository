@@ -67,8 +67,6 @@ namespace AG.DS
 
             SetupEventModifierGroup();
 
-            CreateEventModifier();
-
             void SetupContentButton()
             {
                 view.ContentButton = ContentButtonPresenter.CreateElement
@@ -83,12 +81,8 @@ namespace AG.DS
             void SetupEventModifierGroup()
             {
                 EventModifierGroupPresenter.CreateElement(view: view.EventModifierGroupView);
-                node.ContentContainer.Add(view.EventModifierGroupView.GroupContainer);
-            }
 
-            void CreateEventModifier()
-            {
-                view.EventModifierGroupView.CreateModifier();
+                node.ContentContainer.Add(view.EventModifierGroupView.GroupContainer);
             }
         }
     }

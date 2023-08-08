@@ -6,8 +6,8 @@ namespace AG.DS
     <
         OptionRootNode,
         OptionRootNodeView,
+        OptionRootNodeObserver,
         OptionRootNodeSerializer,
-        OptionRootNodeCallback,
         OptionRootNodeModel
     >
     {
@@ -25,7 +25,7 @@ namespace AG.DS
                 View = view;
                 GraphViewer = graphViewer;
 
-                Callback = new(node: this, view: View, headBar);
+                Observer = new(node: this, view: View, headBar);
                 Serializer = new(node: this, view: View);
 
                 style.minWidth = NumberConfig.OPTION_ROOT_NODE_MIN_WIDTH;
@@ -85,7 +85,7 @@ namespace AG.DS
 
                     optionOutput.Disconnect(GraphViewer);
 
-                    optionGroupOutput.Disconnect(GraphViewer);
+                    optionGroupOutput.DisconnectAll(GraphViewer);
                 },
                 status: isAnyConnected
                         ? DropdownMenuAction.Status.Normal

@@ -1,7 +1,9 @@
 /* =========================================================== Event Modifier Group =========================================================== */
 
-/*< ---------------------------------------------------------- Main Container >*/
-.eventModifierGroup_MainContainer {
+/*< ---------------------------------------------------------- Main >*/
+.event-modifier-group {
 	
+	/* top - right - bottom - left */
+	padding: 5px 0px 0px 0px;
 	border-width: 0px 0px 0px 0px;
 }

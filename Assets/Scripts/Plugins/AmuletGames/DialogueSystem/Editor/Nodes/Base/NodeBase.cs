@@ -29,17 +29,10 @@ namespace AG.DS
         public VisualElement ContentContainer;
 
 
-        // ----------------------------- Action -----------------------------
         /// <summary>
-        /// Action to invoke just before the node is going to be removed from the graph manually.
+        /// Reference of the node callback.
         /// </summary>
-        public abstract void PreManualRemoveAction();
-
-
-        /// <summary>
-        /// Action to invoke right after the node has been removed from the graph manually.
-        /// </summary>
-        public virtual void PostManualRemoveAction() { }
+        public virtual INodeCallback Callback { get; set; }
 
 
         // ----------------------------- Serialization -----------------------------

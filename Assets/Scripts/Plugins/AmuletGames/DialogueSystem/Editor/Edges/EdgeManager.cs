@@ -66,7 +66,7 @@ namespace AG.DS
             <
                 DefaultEdge,
                 DefaultEdgePresenter,
-                DefaultEdgeCallback,
+                DefaultEdgeObserver,
                 DefaultPort
             >
             (
@@ -88,7 +88,7 @@ namespace AG.DS
             <
                 OptionEdge,
                 OptionEdgePresenter,
-                OptionEdgeCallback,
+                OptionEdgeObserver,
                 OptionPort
             >
             (
@@ -103,26 +103,24 @@ namespace AG.DS
         /// </summary>
         /// <typeparam name="TEdge">Type edge</typeparam>
         /// <typeparam name="TEdgePresenter">Type edge presenter</typeparam>
-        /// <typeparam name="TEdgeCallback">Type edge callback</typeparam>
+        /// <typeparam name="TEdgeObserver">Type edge observer</typeparam>
         /// <typeparam name="TPort">Type port</typeparam>
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
         /// <returns>A new type edge element.</returns>
-        TEdge Connect<TEdge, TEdgePresenter, TEdgeCallback, TPort>
+        TEdge Connect<TEdge, TEdgePresenter, TEdgeObserver, TPort>
         (
             TPort output,
             TPort input
         )
             where TEdge : EdgeBase
             where TEdgePresenter : EdgePresenterFrameBase<TEdge, TPort>, new()
-            where TEdgeCallback : EdgeCallbackFrameBase<TEdge>, new()
+            where TEdgeObserver : EdgeObserverFrameBase<TEdge>, new()
             where TPort : PortBase
         {
-            // Create edge
             var edge = new TEdgePresenter().CreateElement(output, input);
 
-            // Register events
-            new TEdgeCallback().Setup(edge).RegisterEvents();
+            new TEdgeObserver().Setup(edge).RegisterEvents();
 
             return edge;
         }

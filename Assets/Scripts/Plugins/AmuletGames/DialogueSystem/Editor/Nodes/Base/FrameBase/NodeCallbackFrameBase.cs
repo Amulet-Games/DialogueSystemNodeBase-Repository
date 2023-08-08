@@ -1,80 +1,51 @@
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
-    /// <inheritdoc />
     public abstract class NodeCallbackFrameBase
     <
         TNode,
-        TNodeView
+        TNodeView,
+        TNodeObserver
     >
-        : NodeCallbackBase
-        where TNode : NodeBase
-        where TNodeView : NodeViewBase
+        : NodeCallbackBase, INodeCallback
+        where TNode: NodeBase
+        where TNodeView : NodeViewFrameBase
+        where TNodeObserver : NodeObserverFrameBase<TNode, TNodeView>
     {
-        /// <summary>
-        /// Reference of the node element.
-        /// </summary>
-        protected TNode Node;
-
-
         /// <summary>
         /// Reference of the node view.
         /// </summary>
-        protected TNodeView View;
-
-
-        // ----------------------------- Register Events -----------------------------
-        /// <summary>
-        /// Register events to the node.
-        /// </summary>
-        public virtual void RegisterEvents()
-        {
-            RegisterPointerEnterEvent();
-
-            RegisterPointerLeaveEvent();
-        }
+        public TNodeView View;
 
 
         /// <summary>
-        /// Register PointerEnterEvent to the node.
+        /// Reference of the node observer.
         /// </summary>
-        void RegisterPointerEnterEvent()
-            => Node.RegisterCallback<PointerEnterEvent>(PointerEnterEvent);
+        public TNodeObserver Observer;
 
 
         /// <summary>
-        /// Register PointerLeaveEvent to the node.
+        /// Reference of the graph viewer element.
         /// </summary>
-        void RegisterPointerLeaveEvent()
-            => Node.RegisterCallback<PointerLeaveEvent>(PointerLeaveEvent);
+        public GraphViewer GraphViewer;
 
 
-        // ----------------------------- UnRegister Events -----------------------------
+        // ----------------------------- Callback -----------------------------
         /// <summary>
-        /// Unregister events from the node.
+        /// The callback to invoke when the node is about to be removed from the graph.
         /// </summary>
-        public virtual void UnregisterEvents() { }
-
-
-        // ----------------------------- Event -----------------------------
-        /// <summary>
-        /// The event to invoke when the pointer has entered the node.
-        /// </summary>
-        /// <param name="evt">The registering event</param>
-        void PointerEnterEvent(PointerEnterEvent evt)
-        {
-            Node.NodeBorder.AddToClassList(StyleConfig.Node_Border_Hover);
-        }
+        public abstract void OnPreManualRemove();
 
 
         /// <summary>
-        /// The event to invoke when the pointer has left the node.
+        /// The callback to invoke when the node is removed from the graph.
         /// </summary>
-        /// <param name="evt">The registering event</param>
-        void PointerLeaveEvent(PointerLeaveEvent evt)
-        {
-            Node.NodeBorder.RemoveFromClassList(StyleConfig.Node_Border_Hover);
-        }
+        public abstract void OnPostManualRemove();
+
+
+        /// <summary>
+        /// The callback to invoke when the node is created from the graph.
+        /// <br>Note that this is called after the node's loading is done, if loading is needed.</br>
+        /// </summary>
+        public abstract void OnPostCreate();
     }
 }

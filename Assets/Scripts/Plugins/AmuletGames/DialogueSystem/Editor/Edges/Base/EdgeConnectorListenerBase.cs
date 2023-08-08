@@ -16,7 +16,7 @@ namespace AG.DS
         where TEdge : EdgeBase
     {
         /// <summary>
-        /// Reference of the graph view's GraphViewChange callback.
+        /// Reference of the graph view's GraphViewChange struct.
         /// </summary>
         protected GraphViewChange m_GraphViewChange;
 
