@@ -2,23 +2,23 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class EventNodeCallback : NodeCallbackFrameBase
+    public class StartNodeCallback : NodeCallbackFrameBase
     <
-        EventNode,
-        EventNodeView,
-        EventNodeObserver
+        StartNode,
+        StartNodeView,
+        StartNodeObserver
     >
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the event node callback class.
+        /// Constructor of the start node callback class.
         /// </summary>
         /// <param name="view">The node view to set for.</param>
         /// <param name="observer">The node observer to set for.</param>
-        public EventNodeCallback
+        public StartNodeCallback
         (
-            EventNodeView view,
-            EventNodeObserver observer
+            StartNodeView view,
+            StartNodeObserver observer
         )
         {
             View = view;
@@ -32,10 +32,7 @@ namespace AG.DS
         {
             // Remove, disconnect ports
             {
-                graphViewer.Remove(port: View.InputDefaultPort);
                 graphViewer.Remove(port: View.OutputDefaultPort);
-
-                View.InputDefaultPort.Disconnect(graphViewer);
                 View.OutputDefaultPort.Disconnect(graphViewer);
             }
         }
@@ -50,11 +47,6 @@ namespace AG.DS
         /// <inheritdoc />
         public override void OnPostCreate(GeometryChangedEvent evt)
         {
-            // If there's no modifier being created after loading, create a new one by default.
-            if (View.EventModifierGroupView.FirstModifier == null)
-            {
-                View.ContentButton.Click();
-            }
         }
     }
 }

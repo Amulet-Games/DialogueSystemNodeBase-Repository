@@ -1,3 +1,5 @@
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     public class BooleanNodeCallback : NodeCallbackFrameBase
@@ -26,29 +28,29 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        public override void OnPreManualRemove()
+        public override void OnPreManualRemove(GraphViewer graphViewer)
         {
             // Remove, disconnect ports
             {
-                GraphViewer.Remove(port: View.InputDefaultPort);
-                GraphViewer.Remove(port: View.TrueOutputDefaultPort);
-                GraphViewer.Remove(port: View.FalseOutputDefaultPort);
+                graphViewer.Remove(port: View.InputDefaultPort);
+                graphViewer.Remove(port: View.TrueOutputDefaultPort);
+                graphViewer.Remove(port: View.FalseOutputDefaultPort);
 
-                View.InputDefaultPort.Disconnect(GraphViewer);
-                View.TrueOutputDefaultPort.Disconnect(GraphViewer);
-                View.FalseOutputDefaultPort.Disconnect(GraphViewer);
+                View.InputDefaultPort.Disconnect(graphViewer);
+                View.TrueOutputDefaultPort.Disconnect(graphViewer);
+                View.FalseOutputDefaultPort.Disconnect(graphViewer);
             }
         }
 
 
         /// <inheritdoc />
-        public override void OnPostManualRemove()
+        public override void OnPostManualRemove(GraphViewer graphViewer)
         {
         }
 
 
         /// <inheritdoc />
-        public override void OnPostCreate()
+        public override void OnPostCreate(GeometryChangedEvent evt)
         {
         }
     }

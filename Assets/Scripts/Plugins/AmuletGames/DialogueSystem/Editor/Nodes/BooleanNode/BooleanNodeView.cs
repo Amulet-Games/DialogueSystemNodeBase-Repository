@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class BooleanNodeView : NodeViewFrameBase
+    public class BooleanNodeView : NodeViewBase
     {
         /// <summary>
         /// A special node's UI style that combined the use of segment, modifier and content button together.
@@ -35,22 +35,6 @@ namespace AG.DS
         {
             NodeTitleTextFieldView = new(value: StringConfig.BooleanNode_TitleTextField_LabelText);
             booleanNodeStitcher = new();
-        }
-
-        
-        // ----------------------------- Service -----------------------------
-        /// <inheritdoc />
-        public override void RemovePorts(GraphViewer graphViewer)
-        {
-            // Remove from graph viewer cache
-            graphViewer.Remove(port: InputDefaultPort);
-            graphViewer.Remove(port: TrueOutputDefaultPort);
-            graphViewer.Remove(port: FalseOutputDefaultPort);
-
-            // Disconnect each ports
-            InputDefaultPort.Disconnect(graphViewer);
-            TrueOutputDefaultPort.Disconnect(graphViewer);
-            FalseOutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class OptionBranchNodeView : NodeViewFrameBase
+    public class OptionBranchNodeView : NodeViewBase
     {
         /// <summary>
         /// Content button for adding conditions to the node.
@@ -42,20 +42,6 @@ namespace AG.DS
             NodeTitleTextFieldView = new(value: StringConfig.OptionBranchNode_TitleTextField_LabelText);
             BranchTitleTextFieldView = new(placeholderText: StringConfig.OptionBranchNode_BranchTitleTextField_PlaceholderText);
             OptionBranchNodeStitcher = new();
-        }
-
-
-        // ----------------------------- Service -----------------------------
-        /// <inheritdoc />
-        public override void RemovePorts(GraphViewer graphViewer)
-        {
-            // Remove from graph viewer cache
-            graphViewer.Remove(port: InputOptionPort);
-            graphViewer.Remove(port: OutputDefaultPort);
-
-            // Disconnect each ports
-            InputOptionPort.Disconnect(graphViewer);
-            OutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

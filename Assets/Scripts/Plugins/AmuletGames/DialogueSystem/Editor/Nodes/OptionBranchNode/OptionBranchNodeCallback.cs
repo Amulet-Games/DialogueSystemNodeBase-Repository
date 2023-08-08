@@ -1,3 +1,5 @@
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     public class OptionBranchNodeCallback : NodeCallbackFrameBase
@@ -26,15 +28,15 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        public override void OnPreManualRemove()
+        public override void OnPreManualRemove(GraphViewer graphViewer)
         {
             // Remove, disconnect ports
             {
-                GraphViewer.Remove(port: View.InputOptionPort);
-                GraphViewer.Remove(port: View.OutputDefaultPort);
+                graphViewer.Remove(port: View.InputOptionPort);
+                graphViewer.Remove(port: View.OutputDefaultPort);
 
-                View.InputOptionPort.Disconnect(GraphViewer);
-                View.OutputDefaultPort.Disconnect(GraphViewer);
+                View.InputOptionPort.Disconnect(graphViewer);
+                View.OutputDefaultPort.Disconnect(graphViewer);
             }
 
             // Unregister events
@@ -45,13 +47,13 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override void OnPostManualRemove()
+        public override void OnPostManualRemove(GraphViewer graphViewer)
         {
         }
 
 
         /// <inheritdoc />
-        public override void OnPostCreate()
+        public override void OnPostCreate(GeometryChangedEvent evt)
         {
         }
     }

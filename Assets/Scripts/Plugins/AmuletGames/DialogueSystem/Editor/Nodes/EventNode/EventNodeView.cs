@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class EventNodeView : NodeViewFrameBase
+    public class EventNodeView : NodeViewBase
     {
         /// <summary>
         /// Content button for adding events to the node.
@@ -35,20 +35,6 @@ namespace AG.DS
         {
             NodeTitleTextFieldView = new(value: StringConfig.EventNode_TitleTextField_LabelText);
             EventModifierGroupView = new();
-        }
-
-
-        // ----------------------------- Service -----------------------------
-        /// <inheritdoc />
-        public override void RemovePorts(GraphViewer graphViewer)
-        {
-            // Remove from graph viewer cache
-            graphViewer.Remove(port: InputDefaultPort);
-            graphViewer.Remove(port: OutputDefaultPort);
-
-            // Disconnect each ports
-            InputDefaultPort.Disconnect(graphViewer);
-            OutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿namespace AG.DS
 {
     /// <inheritdoc />
-    public class DialogueNodeView : NodeViewFrameBase
+    public class DialogueNodeView : NodeViewBase
     {
         /// <summary>
         /// View for the character scriptable object object field.
@@ -36,20 +36,6 @@
             NodeTitleTextFieldView = new(value: StringConfig.DialogueNode_TitleTextField_LabelText);
             CharacterObjectFieldView = new("");
             DialogueNodeStitcher = new();
-        }
-
-
-        // ----------------------------- Service -----------------------------
-        /// <inheritdoc />
-        public override void RemovePorts(GraphViewer graphViewer)
-        {
-            // Remove from graph viewer cache
-            graphViewer.Remove(port: InputDefaultPort);
-            graphViewer.Remove(port: OutputDefaultPort);
-
-            // Disconnect each ports
-            InputDefaultPort.Disconnect(graphViewer);
-            OutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

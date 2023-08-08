@@ -8,6 +8,7 @@ namespace AG.DS
         OptionRootNodeView,
         OptionRootNodeObserver,
         OptionRootNodeSerializer,
+        OptionRootNodeCallback,
         OptionRootNodeModel
     >
     {
@@ -27,6 +28,7 @@ namespace AG.DS
 
                 Observer = new(node: this, view: View, headBar);
                 Serializer = new(node: this, view: View);
+                m_Callback = new(View, Observer);
 
                 style.minWidth = NumberConfig.OPTION_ROOT_NODE_MIN_WIDTH;
             }

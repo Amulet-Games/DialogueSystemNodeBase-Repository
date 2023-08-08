@@ -24,19 +24,19 @@ namespace AG.DS
         {
             get
             {
-                return clickable;
+                return m_clickable;
             }
             set
             {
-                if (clickable != null && clickable.target == this)
+                if (m_clickable != null && m_clickable.target == this)
                 {
-                    this.RemoveManipulator(clickable);
+                    this.RemoveManipulator(m_clickable);
                 }
 
-                clickable = value;
-                if (clickable != null)
+                m_clickable = value;
+                if (m_clickable != null)
                 {
-                    this.AddManipulator(clickable);
+                    this.AddManipulator(m_clickable);
                 }
             }
         }
@@ -45,7 +45,7 @@ namespace AG.DS
         /// <summary>
         /// Manipulator that tracks Mouse events on the button and callbacks when its clicked.
         /// </summary>
-        ContentButtonClickable clickable;
+        ContentButtonClickable m_clickable;
 
 
         /// <summary>
@@ -55,20 +55,20 @@ namespace AG.DS
         {
             add
             {
-                if (clickable == null)
+                if (m_clickable == null)
                 {
                     Clickable = new ContentButtonClickable(handler: value, delay: 0, interval: 0);
                 }
                 else
                 {
-                    clickable.clicked += value;
+                    m_clickable.clicked += value;
                 }
             }
             remove
             {
-                if (clickable != null)
+                if (m_clickable != null)
                 {
-                    clickable.clicked -= value;
+                    m_clickable.clicked -= value;
                 }
             }
         }
@@ -77,6 +77,6 @@ namespace AG.DS
         /// <summary>
         /// Invoke the content button's clicked action.
         /// </summary>
-        public void Click() => clickable.Invoke();
+        public void Click() => m_clickable.Invoke();
     }
 }

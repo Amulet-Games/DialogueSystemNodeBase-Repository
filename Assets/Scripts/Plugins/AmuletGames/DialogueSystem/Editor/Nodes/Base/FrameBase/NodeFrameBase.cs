@@ -9,13 +9,15 @@ namespace AG.DS
         TNodeView,
         TNodeObserver,
         TNodeSerializer,
+        TNodeCallback,
         TNodeModel
     > 
         : NodeBase
         where TNode : NodeBase
-        where TNodeView : NodeViewFrameBase
+        where TNodeView : NodeViewBase
         where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeModel>
         where TNodeObserver : NodeObserverFrameBase<TNode, TNodeView>
+        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeObserver>
         where TNodeModel : NodeModelBase
     {
         /// <summary>
@@ -34,6 +36,22 @@ namespace AG.DS
         /// Reference of the node serializer.
         /// </summary>
         public TNodeSerializer Serializer;
+
+
+        /// <inheritdoc />
+        public override INodeCallback Callback
+        {
+            get
+            {
+                return m_Callback;
+            }
+        }
+
+
+        /// <summary>
+        /// Reference of the node callback.
+        /// </summary>
+        public TNodeCallback m_Callback;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -128,16 +146,6 @@ namespace AG.DS
                 styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
             }
         }
-
-
-        // ----------------------------- Action -----------------------------
-        /// <inheritdoc />
-        //public override void PreManualRemoveAction()
-        //{
-        //    View.RemovePorts(GraphViewer);
-
-        //    Observer.UnregisterEvents();
-        //}
 
 
         // ----------------------------- Serialization -----------------------------

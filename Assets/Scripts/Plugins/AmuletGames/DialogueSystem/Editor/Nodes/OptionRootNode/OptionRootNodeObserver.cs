@@ -121,7 +121,7 @@ namespace AG.DS
                 view: View.RootTitleTextFieldView).RegisterEvents();
 
 
-        // ----------------------------- UnRegister Events -----------------------------
+        // ----------------------------- Unregister Events -----------------------------
         /// <inheritdoc />
         public override void UnregisterEvents()
         {

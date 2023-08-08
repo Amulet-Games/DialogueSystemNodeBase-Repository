@@ -8,6 +8,7 @@ namespace AG.DS
         StartNodeView,
         StartNodeObserver,
         StartNodeSerializer,
+        StartNodeCallback,
         StartNodeModel
     >
     {
@@ -26,6 +27,7 @@ namespace AG.DS
 
                 Observer = new(node: this, View);
                 Serializer = new(node: this, View);
+                m_Callback = new(View, Observer);
 
                 style.minWidth = NumberConfig.START_NODE_MIN_WIDTH;
             }

@@ -30,9 +30,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the node callback.
+        /// The property of the node callback reference.
         /// </summary>
-        public virtual INodeCallback Callback { get; set; }
+        public virtual INodeCallback Callback { get; }
 
 
         // ----------------------------- Serialization -----------------------------

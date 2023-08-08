@@ -3,7 +3,7 @@ using System;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class StoryNodeView : NodeViewFrameBase
+    public class StoryNodeView : NodeViewBase
     {
         /// <summary>
         /// Enum container for the users to choose how they want to trigger the second line of dialogue
@@ -47,20 +47,6 @@ namespace AG.DS
             SecondLineTriggerTypeEnumContainer = new();
 
             CsvGUID = Guid.NewGuid().ToString();
-        }
-
-
-        // ----------------------------- Service -----------------------------
-        /// <inheritdoc />
-        public override void RemovePorts(GraphViewer graphViewer)
-        {
-            // Remove from graph viewer cache
-            graphViewer.Remove(port: InputDefaultPort);
-            graphViewer.Remove(port: OutputDefaultPort);
-
-            // Disconnect each ports
-            InputDefaultPort.Disconnect(graphViewer);
-            OutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

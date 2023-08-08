@@ -138,11 +138,11 @@ namespace AG.DS
                 // Delete nodes
                 for (int i = 0; i < nodesToDelete.Count; i++)
                 {
-                    nodesToDelete[i].Callback.OnPreManualRemove();
+                    nodesToDelete[i].Callback.OnPreManualRemove(graphViewer);
 
                     graphViewer.Remove(nodesToDelete[i]);
 
-                    nodesToDelete[i].Callback.OnPostManualRemove();
+                    nodesToDelete[i].Callback.OnPostManualRemove(graphViewer);
                 }
 
                 // Delete edges

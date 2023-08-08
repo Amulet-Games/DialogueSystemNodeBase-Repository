@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class EndNodeView : NodeViewFrameBase
+    public class EndNodeView : NodeViewBase
     {
         /// <summary>
         /// The input default port of the node.
@@ -16,18 +16,6 @@ namespace AG.DS
         public EndNodeView()
         {
             NodeTitleTextFieldView = new(value: StringConfig.EndNode_TitleTextField_LabelText);
-        }
-
-
-        // ----------------------------- Service -----------------------------
-        /// <inheritdoc />
-        public override void RemovePorts(GraphViewer graphViewer)
-        {
-            // Remove from graph viewer cache
-            graphViewer.Remove(port: InputDefaultPort);
-
-            // Disconnect each ports
-            InputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

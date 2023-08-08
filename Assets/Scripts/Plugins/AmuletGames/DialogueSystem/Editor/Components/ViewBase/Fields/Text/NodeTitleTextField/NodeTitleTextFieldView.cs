@@ -22,16 +22,16 @@ namespace AG.DS
         {
             get
             {
-                return value;
+                return m_value;
             }
             set
             {
                 if (value != "")
                 {
-                    this.value = value;
+                    m_value = value;
                 }
 
-                Field.SetValueWithoutNotify(this.value);
+                Field.SetValueWithoutNotify(m_value);
             }
         }
 
@@ -39,7 +39,7 @@ namespace AG.DS
         /// <summary>
         /// The serializable value of the view.
         /// </summary>
-        [SerializeField] string value;
+        [SerializeField] string m_value;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -49,7 +49,7 @@ namespace AG.DS
         /// <param name="value">The value to set for.</param>
         public NodeTitleTextFieldView(string value)
         {
-            this.value = value;
+            m_value = value;
         }
 
 
@@ -71,7 +71,7 @@ namespace AG.DS
             MemoryStream memoryStream = new();
             BinaryFormatter binaryFormatter = new();
 
-            binaryFormatter.Serialize(memoryStream, value);
+            binaryFormatter.Serialize(memoryStream, m_value);
             memoryStream.Close();
 
             return memoryStream.ToArray();

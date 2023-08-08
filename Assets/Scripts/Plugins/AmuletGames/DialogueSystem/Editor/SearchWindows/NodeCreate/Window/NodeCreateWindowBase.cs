@@ -272,25 +272,28 @@ namespace AG.DS
                 // Connect connector port
                 {
                     // If connector port is null then return.
-                    if (Details.ConnectorPort == null)
-                        return;
-
-                    var port = Details.ConnectorPort;
-                    var isInput = port.IsInput();
-
-                    if (port.connected)
+                    if (Details.ConnectorPort != null)
                     {
-                        port.Disconnect(graphViewer);
+                        var port = Details.ConnectorPort;
+                        var isInput = port.IsInput();
+
+                        if (port.connected)
+                        {
+                            port.Disconnect(graphViewer);
+                        }
+
+                        var edge = EdgeManager.Instance.Connect
+                        (
+                            output: !isInput ? port : leftSideAlignmentReferencePort,
+                            input: isInput ? port : rightSideAlignmentReferencePort
+                        );
+
+                        graphViewer.Add(edge);
                     }
-
-                    var edge = EdgeManager.Instance.Connect
-                    (
-                        output: !isInput ? port : leftSideAlignmentReferencePort,
-                        input: isInput ? port : rightSideAlignmentReferencePort
-                    );
-
-                    graphViewer.Add(edge);
                 }
+
+                // On Post Create
+                node.ExecuteOnceOnGeometryChanged(node.Callback.OnPostCreate);
             }
         }
 

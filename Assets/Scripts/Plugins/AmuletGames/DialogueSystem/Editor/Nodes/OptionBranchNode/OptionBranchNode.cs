@@ -8,6 +8,7 @@ namespace AG.DS
         OptionBranchNodeView,
         OptionBranchNodeObserver,
         OptionBranchNodeSerializer,
+        OptionBranchNodeCallback,
         OptionBranchNodeModel
     >
     {
@@ -27,6 +28,7 @@ namespace AG.DS
 
                 Observer = new(node: this, View, headBar);
                 Serializer = new(node: this, View);
+                m_Callback = new(View, Observer);
 
                 style.minWidth = NumberConfig.OPTION_BRANCH_NODE_MIN_WIDTH;
             }

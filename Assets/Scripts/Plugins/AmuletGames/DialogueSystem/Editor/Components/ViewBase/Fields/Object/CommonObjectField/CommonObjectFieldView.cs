@@ -30,18 +30,18 @@ namespace AG.DS
         {
             get
             {
-                return value;
+                return m_value;
             }
             set
             {
-                this.value = value;
+                m_value = value;
 
-                Field.SetValueWithoutNotify(this.value);
+                Field.SetValueWithoutNotify(m_value);
                 Field.ToggleEmptyStyle(placeholderText);
                 
-                if (this.value != null)
+                if (m_value != null)
                 {
-                    Field.Bind(obj: new SerializedObject(this.value));
+                    Field.Bind(obj: new SerializedObject(m_value));
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace AG.DS
         /// <summary>
         /// The serializable value of the view.
         /// </summary>
-        [SerializeField] TObject value;
+        [SerializeField] TObject m_value;
 
 
         // ----------------------------- Constructor -----------------------------

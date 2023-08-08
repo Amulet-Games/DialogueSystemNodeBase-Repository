@@ -8,6 +8,7 @@ namespace AG.DS
         DialogueNodeView,
         DialogueNodeObserver,
         DialogueNodeSerializer,
+        DialogueNodeCallback,
         DialogueNodeModel
     >
     {
@@ -27,6 +28,7 @@ namespace AG.DS
 
                 Observer = new(node: this, View, headBar);
                 Serializer = new(node: this, View);
+                m_Callback = new(View, Observer);
 
                 style.minWidth = NumberConfig.DIALOGUE_NODE_MIN_WIDTH;
             }

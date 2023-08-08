@@ -2,23 +2,23 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class EventNodeCallback : NodeCallbackFrameBase
+    public class OptionRootNodeCallback : NodeCallbackFrameBase
     <
-        EventNode,
-        EventNodeView,
-        EventNodeObserver
+        OptionRootNode,
+        OptionRootNodeView,
+        OptionRootNodeObserver
     >
     {
         // ----------------------------- Constructor -----------------------------
         /// <summary>
-        /// Constructor of the event node callback class.
+        /// Constructor of the option root node callback class.
         /// </summary>
         /// <param name="view">The node view to set for.</param>
         /// <param name="observer">The node observer to set for.</param>
-        public EventNodeCallback
+        public OptionRootNodeCallback
         (
-            EventNodeView view,
-            EventNodeObserver observer
+            OptionRootNodeView view,
+            OptionRootNodeObserver observer
         )
         {
             View = view;
@@ -33,10 +33,21 @@ namespace AG.DS
             // Remove, disconnect ports
             {
                 graphViewer.Remove(port: View.InputDefaultPort);
-                graphViewer.Remove(port: View.OutputDefaultPort);
+                graphViewer.Remove(port: View.OutputOptionPort);
+
+                for (int i = 0; i < View.OutputOptionPortGroupView.Cells.Count; i++)
+                {
+                    graphViewer.Remove(port: View.OutputOptionPortGroupView.Cells[i].Port);
+                }
 
                 View.InputDefaultPort.Disconnect(graphViewer);
-                View.OutputDefaultPort.Disconnect(graphViewer);
+                View.OutputOptionPort.Disconnect(graphViewer);
+                View.OutputOptionPortGroupView.DisconnectAll(graphViewer);
+            }
+
+            // Unregister events
+            {
+                Observer.UnregisterEvents();
             }
         }
 
@@ -50,11 +61,6 @@ namespace AG.DS
         /// <inheritdoc />
         public override void OnPostCreate(GeometryChangedEvent evt)
         {
-            // If there's no modifier being created after loading, create a new one by default.
-            if (View.EventModifierGroupView.FirstModifier == null)
-            {
-                View.ContentButton.Click();
-            }
         }
     }
 }

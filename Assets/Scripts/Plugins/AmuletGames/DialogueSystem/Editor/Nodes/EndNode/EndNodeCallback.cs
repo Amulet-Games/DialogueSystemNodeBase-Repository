@@ -1,3 +1,5 @@
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     public class EndNodeCallback : NodeCallbackFrameBase
@@ -26,24 +28,24 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        public override void OnPreManualRemove()
+        public override void OnPreManualRemove(GraphViewer graphViewer)
         {
             // Remove, disconnect ports
             {
-                GraphViewer.Remove(port: View.InputDefaultPort);
-                View.InputDefaultPort.Disconnect(GraphViewer);
+                graphViewer.Remove(port: View.InputDefaultPort);
+                View.InputDefaultPort.Disconnect(graphViewer);
             }
         }
 
 
         /// <inheritdoc />
-        public override void OnPostManualRemove()
+        public override void OnPostManualRemove(GraphViewer graphViewer)
         {
         }
 
 
         /// <inheritdoc />
-        public override void OnPostCreate()
+        public override void OnPostCreate(GeometryChangedEvent evt)
         {
         }
     }

@@ -34,7 +34,7 @@ namespace AG.DS
         {
             get
             {
-                return value;
+                return m_value;
             }
             set
             {
@@ -47,9 +47,9 @@ namespace AG.DS
                     value = (double)minValue;
                 }
 
-                this.value = Math.Round(value, 2);
+                m_value = Math.Round(value, 2);
 
-                Field.SetValueWithoutNotify(this.value);
+                Field.SetValueWithoutNotify(m_value);
                 Field.ToggleEmptyStyle();
             }
         }
@@ -62,7 +62,7 @@ namespace AG.DS
         /// <br>instead of serializing the value from the field, which will cause boxing,</br>
         /// <br>we'll serialize the view itself which the included the value.</br>
         /// </summary>
-        [SerializeField] double value;
+        [SerializeField] double m_value;
 
 
         /// <summary>

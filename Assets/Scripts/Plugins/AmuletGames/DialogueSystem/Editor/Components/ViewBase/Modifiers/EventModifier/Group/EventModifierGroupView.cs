@@ -36,18 +36,18 @@ namespace AG.DS
         {
             get
             {
-                return firstModifier;
+                return m_firstModifier;
             }
             private set
             {
-                if (value == firstModifier)
+                if (value == m_firstModifier)
                 {
                     return;
                 }
 
                 value?.SetEnabledMoveUpButton(value: false);
-                firstModifier?.SetEnabledMoveUpButton(value: true);
-                firstModifier = value;
+                m_firstModifier?.SetEnabledMoveUpButton(value: true);
+                m_firstModifier = value;
             }
         }
 
@@ -55,7 +55,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the modifier that is in the first position of the group.
         /// </summary>
-        EventModifierView firstModifier;
+        EventModifierView m_firstModifier;
 
 
         /// <summary>
@@ -65,25 +65,25 @@ namespace AG.DS
         {
             get
             {
-                return lastModifier;
+                return m_lastModifier;
             }
             private set
             {
-                if (value == lastModifier)
+                if (value == m_lastModifier)
                 {
                     return;
                 }
 
                 value?.SetEnabledMoveDownButton(value: false);
-                lastModifier?.SetEnabledMoveDownButton(value: true);
-                lastModifier = value;
+                m_lastModifier?.SetEnabledMoveDownButton(value: true);
+                m_lastModifier = value;
             }
         }
 
         /// <summary>
         /// Reference of the modifier that is in the last position of the group.
         /// </summary>
-        EventModifierView lastModifier;
+        EventModifierView m_lastModifier;
 
 
         /// <summary>
@@ -93,20 +93,20 @@ namespace AG.DS
         {
             get
             {
-                return soleModifier;
+                return m_soleModifier;
             }
             private set
             {
                 if (value == null)
                 {
-                    soleModifier?.SetEnabledRemoveButton(value: true);
+                    m_soleModifier?.SetEnabledRemoveButton(value: true);
                 }
                 else
                 {
                     value.SetEnabledRemoveButton(value: false);
                 }
 
-                soleModifier = value;
+                m_soleModifier = value;
             }
         }
 
@@ -114,7 +114,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the modifier that is the only one exists in the group.
         /// </summary>
-        EventModifierView soleModifier;
+        EventModifierView m_soleModifier;
 
 
         // ----------------------------- Constructor -----------------------------

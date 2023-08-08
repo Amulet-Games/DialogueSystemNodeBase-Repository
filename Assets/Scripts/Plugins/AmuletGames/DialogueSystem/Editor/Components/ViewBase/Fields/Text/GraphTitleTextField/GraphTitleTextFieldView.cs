@@ -21,16 +21,16 @@ namespace AG.DS
         {
             get
             {
-                return bindingSO;
+                return m_bindingSO;
             }
             set
             {
                 if (value != null)
                 {
-                    bindingSO = value;
+                    m_bindingSO = value;
                 }
 
-                Field.Bind(bindingSO);
+                Field.Bind(m_bindingSO);
             }
         }
 
@@ -38,7 +38,7 @@ namespace AG.DS
         /// <summary>
         /// The serialized object that is binding with the field.
         /// </summary>
-        [NonSerialized] SerializedObject bindingSO;
+        [NonSerialized] SerializedObject m_bindingSO;
 
 
         /// <summary>
@@ -48,16 +48,16 @@ namespace AG.DS
         {
             get
             {
-                return value;
+                return m_value;
             }
             set
             {
                 if (value != "")
                 {
-                    this.value = value;
+                    m_value = value;
                 }
 
-                Field.SetValueWithoutNotify(this.value);
+                Field.SetValueWithoutNotify(m_value);
             }
         }
 
@@ -65,7 +65,7 @@ namespace AG.DS
         /// <summary>
         /// The serializable value of the view.
         /// </summary>
-        [SerializeField] string value;
+        [SerializeField] string m_value;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -76,8 +76,8 @@ namespace AG.DS
         /// <param name="bindingSO">The binding serialized object to set for.</param>
         public GraphTitleTextFieldView(string value, SerializedObject bindingSO)
         {
-            this.value = value;
-            this.bindingSO = bindingSO;
+            m_value = value;
+            m_bindingSO = bindingSO;
         }
 
 

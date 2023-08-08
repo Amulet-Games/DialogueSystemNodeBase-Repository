@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class PreviewNodeView : NodeViewFrameBase
+    public class PreviewNodeView : NodeViewBase
     {
         /// <summary>
         /// Object field view for the left side portrait image.
@@ -51,20 +51,6 @@ namespace AG.DS
             NodeTitleTextFieldView = new(value: StringConfig.PreviewNode_TitleTextField_LabelText);
             LeftPortraitObjectFieldView = new("");
             RightPortraitObjectFieldView = new("");
-        }
-
-
-        // ----------------------------- Service -----------------------------
-        /// <inheritdoc />
-        public override void RemovePorts(GraphViewer graphViewer)
-        {
-            // Remove from graph viewer cache
-            graphViewer.Remove(port: InputDefaultPort);
-            graphViewer.Remove(port: OutputDefaultPort);
-
-            // Disconnect each ports
-            InputDefaultPort.Disconnect(graphViewer);
-            OutputDefaultPort.Disconnect(graphViewer);
         }
     }
 }

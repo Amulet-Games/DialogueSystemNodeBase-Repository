@@ -8,6 +8,7 @@ namespace AG.DS
         EndNodeView,
         EndNodeObserver,
         EndNodeSerializer,
+        EndNodeCallback,
         EndNodeModel
     >
     {
@@ -26,6 +27,7 @@ namespace AG.DS
 
                 Observer = new(node: this, View);
                 Serializer = new(node: this, View);
+                m_Callback = new(View, Observer);
 
                 style.minWidth = NumberConfig.END_NODE_MIN_WIDTH;
             }

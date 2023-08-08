@@ -8,6 +8,7 @@ namespace AG.DS
         EventNodeView,
         EventNodeObserver,
         EventNodeSerializer,
+        EventNodeCallback,
         EventNodeModel
     >
     {
@@ -26,6 +27,7 @@ namespace AG.DS
 
                 Observer = new(node: this, View);
                 Serializer = new(node: this, View);
+                m_Callback = new(View, Observer);
 
                 style.minWidth = NumberConfig.EVENT_NODE_MIN_WIDTH;
             }

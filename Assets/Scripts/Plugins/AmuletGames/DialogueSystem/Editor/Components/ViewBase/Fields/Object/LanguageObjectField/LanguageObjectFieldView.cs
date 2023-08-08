@@ -30,16 +30,16 @@ namespace AG.DS
         {
             get
             {
-                return value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage];
+                return m_value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage];
             }
             set
             {
-                this.value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = value;
+                m_value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = value;
 
                 Field.SetValueWithoutNotify(value);
                 Field.ToggleEmptyStyle(placeholderText);
 
-                if (this.value != null)
+                if (m_value != null)
                 {
                     Field.Bind(obj: new SerializedObject(value));
                 }
@@ -54,7 +54,7 @@ namespace AG.DS
         /// <summary>
         /// The serializable value of the view.
         /// </summary>
-        [SerializeField] LanguageGeneric<TObject> value;
+        [SerializeField] LanguageGeneric<TObject> m_value;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -66,10 +66,10 @@ namespace AG.DS
         {
             this.placeholderText = placeholderText;
 
-            value = new();
+            m_value = new();
             for (int i = 0; i < LanguageManager.Instance.SupportLanguageLength; i++)
             {
-                value.ValueByLanguageType[LanguageManager.Instance.SupportLanguageTypes[i]] = null;
+                m_value.ValueByLanguageType[LanguageManager.Instance.SupportLanguageTypes[i]] = null;
             }
         }
 
@@ -85,7 +85,7 @@ namespace AG.DS
             for (int i = 0; i < languageManager.SupportLanguageLength; i++)
             {
                 value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
-                    this.value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
+                    this.m_value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
             }
         }
 
@@ -99,7 +99,7 @@ namespace AG.DS
             var languageManager = LanguageManager.Instance;
             for (int i = 0; i < languageManager.SupportLanguageLength; i++)
             {
-                this.value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
+                this.m_value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
                            value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
             }
 

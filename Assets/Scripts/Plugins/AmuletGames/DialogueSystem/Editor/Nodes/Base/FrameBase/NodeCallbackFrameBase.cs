@@ -1,3 +1,5 @@
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     public abstract class NodeCallbackFrameBase
@@ -8,7 +10,7 @@ namespace AG.DS
     >
         : NodeCallbackBase, INodeCallback
         where TNode: NodeBase
-        where TNodeView : NodeViewFrameBase
+        where TNodeView : NodeViewBase
         where TNodeObserver : NodeObserverFrameBase<TNode, TNodeView>
     {
         /// <summary>
@@ -23,29 +25,26 @@ namespace AG.DS
         public TNodeObserver Observer;
 
 
-        /// <summary>
-        /// Reference of the graph viewer element.
-        /// </summary>
-        public GraphViewer GraphViewer;
-
-
         // ----------------------------- Callback -----------------------------
         /// <summary>
         /// The callback to invoke when the node is about to be removed from the graph.
         /// </summary>
-        public abstract void OnPreManualRemove();
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        public abstract void OnPreManualRemove(GraphViewer graphViewer);
 
 
         /// <summary>
         /// The callback to invoke when the node is removed from the graph.
         /// </summary>
-        public abstract void OnPostManualRemove();
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        public abstract void OnPostManualRemove(GraphViewer graphViewer);
 
 
         /// <summary>
         /// The callback to invoke when the node is created from the graph.
         /// <br>Note that this is called after the node's loading is done, if loading is needed.</br>
         /// </summary>
-        public abstract void OnPostCreate();
+        /// <param name="evt">The registering event.</param>
+        public abstract void OnPostCreate(GeometryChangedEvent evt);
     }
 }

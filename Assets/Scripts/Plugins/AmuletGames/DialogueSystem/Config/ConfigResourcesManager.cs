@@ -39,7 +39,7 @@ namespace AG.DS
         /// </summary>
         public static void Setup()
         {
-            Instance ??= Resources.Load<ConfigResourcesManager>(PATH);
+            Instance = Instance != null ? Instance : Resources.Load<ConfigResourcesManager>(PATH);
         }
     }
 }

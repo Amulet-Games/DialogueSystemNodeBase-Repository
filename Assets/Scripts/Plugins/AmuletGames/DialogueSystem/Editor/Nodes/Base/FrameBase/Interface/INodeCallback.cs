@@ -1,3 +1,5 @@
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     public interface INodeCallback
@@ -6,20 +8,20 @@ namespace AG.DS
         /// Read more:
         /// <see cref="NodeCallbackFrameBase{TNode, TNodeView, TNodeObserver}.OnPreManualRemove"/>
         /// </summary>
-        void OnPreManualRemove();
+        void OnPreManualRemove(GraphViewer graphViewer);
 
 
         /// <summary>
         /// Read more:
         /// <see cref="NodeCallbackFrameBase{TNode, TNodeView, TNodeObserver}.OnPostManualRemove"/>
         /// </summary>
-        void OnPostManualRemove();
+        void OnPostManualRemove(GraphViewer graphViewer);
 
 
         /// <summary>
         /// Read more:
         /// <see cref="NodeCallbackFrameBase{TNode, TNodeView, TNodeObserver}.OnPostCreate"/>
         /// </summary>
-        void OnPostCreate();
+        void OnPostCreate(GeometryChangedEvent evt);
     }
 }
