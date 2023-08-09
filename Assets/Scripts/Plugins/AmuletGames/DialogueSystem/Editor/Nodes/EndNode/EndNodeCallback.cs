@@ -5,8 +5,7 @@ namespace AG.DS
     public class EndNodeCallback : NodeCallbackFrameBase
     <
         EndNode,
-        EndNodeView,
-        EndNodeObserver
+        EndNodeView
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -14,15 +13,9 @@ namespace AG.DS
         /// Constructor of the end node callback class.
         /// </summary>
         /// <param name="view">The node view to set for.</param>
-        /// <param name="observer">The node observer to set for.</param>
-        public EndNodeCallback
-        (
-            EndNodeView view,
-            EndNodeObserver observer
-        )
+        public EndNodeCallback(EndNodeView view)
         {
             View = view;
-            Observer = observer;
         }
 
 

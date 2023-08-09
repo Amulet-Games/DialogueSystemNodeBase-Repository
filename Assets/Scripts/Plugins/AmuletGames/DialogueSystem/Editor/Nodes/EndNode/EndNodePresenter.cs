@@ -6,15 +6,17 @@ namespace AG.DS
     public class EndNodePresenter : NodePresenterFrameBase
     <
         EndNode,
-        EndNodeView
+        EndNodeView,
+        EndNodeObserver
     >
     {
         /// <inheritdoc />
         public override EndNode CreateElements
         (
             EndNodeView view,
+            EndNodeObserver observer,
             GraphViewer graphViewer,
-            HeadBar headBar = null
+            HeadBar headBar
         )
         {
             var node = new EndNode(view, graphViewer);

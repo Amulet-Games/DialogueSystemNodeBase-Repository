@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class INodeSerializer : MonoBehaviour
+namespace AG.DS
 {
-    // Start is called before the first frame update
-    void Start()
+    public interface INodeSerializer
     {
-        
-    }
+        /// <summary>
+        /// Read more:
+        /// <see cref="NodeSerializerFrameBase{TNode, TNodeView, TNodeModel}.Save(DialogueSystemModel)"/>
+        /// </summary>
+        void Save(DialogueSystemModel dsModel);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        /// <summary>
+        /// Read more:
+        /// <see cref="NodeSerializerFrameBase{TNode, TNodeView, TNodeModel}.Load(TNodeModel)"/>
+        /// </summary>
+        void Load();
     }
 }

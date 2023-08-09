@@ -64,7 +64,7 @@
         /// <inheritdoc />
         public override void Load(DialogueNodeModel model)
         {
-            LoadBaseValues(model);
+            base.Load(model);
 
             LoadPorts();
 

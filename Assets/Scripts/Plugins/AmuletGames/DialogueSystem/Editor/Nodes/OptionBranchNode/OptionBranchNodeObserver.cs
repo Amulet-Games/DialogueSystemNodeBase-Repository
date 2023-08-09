@@ -16,37 +16,11 @@ namespace AG.DS
         Vector2 pointerMovePosition;
 
 
-        /// <summary>
-        /// Reference of the headBar element.
-        /// </summary>
-        HeadBar headBar;
-
-
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the option branch node observer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
-        public OptionBranchNodeObserver
-        (
-            OptionBranchNode node,
-            OptionBranchNodeView view,
-            HeadBar headBar
-        )
-        {
-            View = view;
-            Node = node;
-            this.headBar = headBar;
-        }
-
-
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents()
+        public override void RegisterEvents(OptionBranchNode node, OptionBranchNodeView view)
         {
-            base.RegisterEvents();
+            base.RegisterEvents(node, view);
 
             RegisterPointerMoveEvent();
 
@@ -82,7 +56,7 @@ namespace AG.DS
         /// Register LanguageChangedEvent to the node.
         /// </summary>
         void RegisterLanguageChangedEvent()
-            => headBar.LanguageChangedEvent += m_LanguageChangedEvent;
+            => Node.HeadBar.LanguageChangedEvent += m_LanguageChangedEvent;
 
 
         /// <summary>
@@ -122,8 +96,10 @@ namespace AG.DS
 
 
         // ----------------------------- Unregister Events -----------------------------
-        /// <inheritdoc />
-        public override void UnregisterEvents()
+        /// <summary>
+        /// Unregister events from the node.
+        /// </summary>
+        public void UnregisterEvents()
         {
             UnregisterLanguageChangedEvent();
         }
@@ -133,7 +109,7 @@ namespace AG.DS
         /// Unregister LanguageChangedEvent from the node.
         /// </summary>
         void UnregisterLanguageChangedEvent()
-            => headBar.LanguageChangedEvent -= m_LanguageChangedEvent;
+            => Node.HeadBar.LanguageChangedEvent -= m_LanguageChangedEvent;
 
 
         // ----------------------------- Event -----------------------------

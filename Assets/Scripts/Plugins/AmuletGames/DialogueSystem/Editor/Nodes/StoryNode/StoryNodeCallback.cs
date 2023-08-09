@@ -5,8 +5,7 @@ namespace AG.DS
     public class StoryNodeCallback : NodeCallbackFrameBase
     <
         StoryNode,
-        StoryNodeView,
-        StoryNodeObserver
+        StoryNodeView
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -14,15 +13,9 @@ namespace AG.DS
         /// Constructor of the story node callback class.
         /// </summary>
         /// <param name="view">The node view to set for.</param>
-        /// <param name="observer">The node observer to set for.</param>
-        public StoryNodeCallback
-        (
-            StoryNodeView view,
-            StoryNodeObserver observer
-        )
+        public StoryNodeCallback(StoryNodeView view)
         {
             View = view;
-            Observer = observer;
         }
 
 

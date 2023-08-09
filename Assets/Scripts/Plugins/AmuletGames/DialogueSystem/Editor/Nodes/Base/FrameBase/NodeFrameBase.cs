@@ -17,19 +17,13 @@ namespace AG.DS
         where TNodeView : NodeViewBase
         where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeModel>
         where TNodeObserver : NodeObserverFrameBase<TNode, TNodeView>
-        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeObserver>
+        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView>
         where TNodeModel : NodeModelBase
     {
         /// <summary>
         /// Reference of the node view.
         /// </summary>
         public TNodeView View;
-
-
-        /// <summary>
-        /// Reference of the node observer.
-        /// </summary>
-        public TNodeObserver Observer;
 
 
         /// <summary>

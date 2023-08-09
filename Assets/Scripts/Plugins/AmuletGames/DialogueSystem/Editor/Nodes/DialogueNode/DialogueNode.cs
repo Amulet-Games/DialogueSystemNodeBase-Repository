@@ -12,23 +12,36 @@ namespace AG.DS
         DialogueNodeModel
     >
     {
+        /// <summary>
+        /// Reference of the headBar element.
+        /// </summary>
+        public HeadBar HeadBar;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue node class.
         /// </summary>
         /// <param name="view">The node view to set for.</param>
+        /// <param name="observer">The node observer to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
-        public DialogueNode(DialogueNodeView view, GraphViewer graphViewer, HeadBar headBar)
+        public DialogueNode
+        (
+            DialogueNodeView view,
+            DialogueNodeObserver observer,
+            GraphViewer graphViewer,
+            HeadBar headBar
+        )
         {
             // Setup details
             {
                 View = view;
                 GraphViewer = graphViewer;
+                HeadBar = headBar;
 
-                Observer = new(node: this, View, headBar);
                 Serializer = new(node: this, View);
-                m_Callback = new(View, Observer);
+                m_Callback = new(View, observer);
 
                 style.minWidth = NumberConfig.DIALOGUE_NODE_MIN_WIDTH;
             }

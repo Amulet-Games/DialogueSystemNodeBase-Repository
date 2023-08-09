@@ -7,18 +7,20 @@ namespace AG.DS
     public class OptionBranchNodePresenter : NodePresenterFrameBase
     <
         OptionBranchNode,
-        OptionBranchNodeView
+        OptionBranchNodeView,
+        OptionBranchNodeObserver
     >
     {
         /// <inheritdoc />
         public override OptionBranchNode CreateElements
         (
             OptionBranchNodeView view,
+            OptionBranchNodeObserver observer,
             GraphViewer graphViewer,
-            HeadBar headBar = null
+            HeadBar headBar
         )
         {
-            var node = new OptionBranchNode(view, graphViewer, headBar);
+            var node = new OptionBranchNode(view, observer, graphViewer, headBar);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

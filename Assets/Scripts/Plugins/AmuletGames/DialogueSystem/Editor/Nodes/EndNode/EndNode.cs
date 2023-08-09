@@ -18,16 +18,19 @@ namespace AG.DS
         /// </summary>
         /// <param name="view">The node view to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public EndNode(EndNodeView view, GraphViewer graphViewer)
+        public EndNode
+        (
+            EndNodeView view,
+            GraphViewer graphViewer
+        )
         {
             // Setup details
             {
                 View = view;
                 GraphViewer = graphViewer;
 
-                Observer = new(node: this, View);
                 Serializer = new(node: this, View);
-                m_Callback = new(View, Observer);
+                m_Callback = new(View);
 
                 style.minWidth = NumberConfig.END_NODE_MIN_WIDTH;
             }

@@ -9,28 +9,11 @@ namespace AG.DS
         StartNodeView
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the start node observer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public StartNodeObserver
-        (
-            StartNode node,
-            StartNodeView view
-        )
-        {
-            Node = node;
-            View = view;
-        }
-
-
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents()
+        public override void RegisterEvents(StartNode node, StartNodeView view)
         {
-            base.RegisterEvents();
+            base.RegisterEvents(node, view);
 
             RegisterNodeTitleTextFieldEvents();
 

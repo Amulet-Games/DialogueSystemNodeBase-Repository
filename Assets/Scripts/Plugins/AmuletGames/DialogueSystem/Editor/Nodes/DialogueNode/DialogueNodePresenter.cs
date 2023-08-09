@@ -6,18 +6,20 @@ namespace AG.DS
     public class DialogueNodePresenter : NodePresenterFrameBase
     <
         DialogueNode,
-        DialogueNodeView
+        DialogueNodeView,
+        DialogueNodeObserver
     >
     {
         /// <inheritdoc />
         public override DialogueNode CreateElements
         (
             DialogueNodeView view,
+            DialogueNodeObserver observer,
             GraphViewer graphViewer,
-            HeadBar headBar = null
+            HeadBar headBar
         )
         {
-            var node = new DialogueNode(view, graphViewer, headBar);
+            var node = new DialogueNode(view, observer, graphViewer, headBar);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

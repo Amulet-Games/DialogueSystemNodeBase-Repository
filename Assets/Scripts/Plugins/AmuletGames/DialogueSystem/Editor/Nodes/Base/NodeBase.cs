@@ -30,6 +30,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// The property of the node serializer reference.
+        /// </summary>
+        public virtual INodeSerializer Serializer { get; }
+
+
+        /// <summary>
         /// The property of the node callback reference.
         /// </summary>
         public virtual INodeCallback Callback { get; }

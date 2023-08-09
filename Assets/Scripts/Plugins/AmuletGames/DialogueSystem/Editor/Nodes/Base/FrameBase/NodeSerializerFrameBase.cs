@@ -9,7 +9,7 @@ namespace AG.DS
         TNodeView,
         TNodeModel
     > 
-        : NodeSerializerBase
+        : NodeSerializerBase, INodeSerializer
         where TNode : NodeBase
         where TNodeView : NodeViewBase
         where TNodeModel : NodeModelBase
@@ -26,70 +26,49 @@ namespace AG.DS
         protected TNodeView View;
 
 
+        /// <summary>
+        /// Reference of the node model.
+        /// </summary>
+        protected TNodeModel Model;
+
+
         // ----------------------------- Serialization -----------------------------
         /// <summary>
         /// Save the node values to the dialogue system model.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
-        public abstract void Save(DialogueSystemModel dsModel);
+        public virtual void Save(DialogueSystemModel dsModel)
+        {
+            // node basic info
+            {
+                Model.GUID = Node.NodeGUID;
+                Model.Position = (SerializableVector2)Node.GetPosition().position;
+            }
+
+            // node title
+            {
+                Model.TitleText = View.NodeTitleTextFieldView.Field.value;
+            }
+        }
 
 
         /// <summary>
         /// Load the node values from the node model.
         /// </summary>
         /// <param name="model">The type node model to set for.</param>
-        public abstract void Load(TNodeModel model);
-
-
-        // ----------------------------- Save / Load Base Values -----------------------------
-        /// <summary>
-        /// Save the node base values.
-        /// </summary>
-        /// <param name="model">The type node model to set for.</param>
-        protected void SaveBaseValues(TNodeModel model)
+        public virtual void Load()
         {
-            SaveNodeDetails();
-
-            SaveNodeTitleField();
-
-            void SaveNodeDetails()
+            // node basic info
             {
-                model.GUID = Node.NodeGUID;
-                model.Position = (SerializableVector2)Node.GetPosition().position;
-            }
-
-            void SaveNodeTitleField()
-            {
-                model.TitleText = View.NodeTitleTextFieldView.Field.value;
-            }
-        }
-
-
-        /// <summary>
-        /// Load the node base values.
-        /// </summary>
-        /// <param name="model">The type node model to set for.</param>
-        protected void LoadBaseValues(TNodeModel model)
-        {
-            LoadNodeDetails();
-
-            LoadNodeTitleField();
-
-            void LoadNodeDetails()
-            {
-                Node.NodeGUID = model.GUID;
-                Node.SetPosition
-                (
-                    newPos: new Rect(
-                        position: (Vector2)model.Position,
-                        size: Vector2Utility.Zero
-                    )
+                Node.NodeGUID = Model.GUID;
+                Node.SetPosition(
+                    newPos: new Rect(position: (Vector2)Model.Position, size: Vector2Utility.Zero)
                 );
             }
 
-            void LoadNodeTitleField()
+            // node title
             {
-                View.NodeTitleTextFieldView.Load(model.TitleText);
+                View.NodeTitleTextFieldView.Load(Model.TitleText);
             }
         }
     }

@@ -10,27 +10,11 @@ namespace AG.DS
         PreviewNodeView
     >
     {
-        /// <summary>
-        /// Constructor of the preview node observer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public PreviewNodeObserver
-        (
-            PreviewNode node,
-            PreviewNodeView view
-        )
-        {
-            Node = node;
-            View = view;
-        }
-
-
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents()
+        public override void RegisterEvents(PreviewNode node, PreviewNodeView view)
         {
-            base.RegisterEvents();
+            base.RegisterEvents(node, view);
 
             RegisterNodeTitleTextFieldEvents();
 

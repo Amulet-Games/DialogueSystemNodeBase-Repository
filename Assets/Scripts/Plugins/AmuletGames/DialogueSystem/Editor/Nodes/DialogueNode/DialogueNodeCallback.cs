@@ -5,16 +5,21 @@ namespace AG.DS
     public class DialogueNodeCallback : NodeCallbackFrameBase
     <
         DialogueNode,
-        DialogueNodeView,
-        DialogueNodeObserver
+        DialogueNodeView
     >
     {
+        /// <summary>
+        /// Reference of the dialogue node observer.
+        /// </summary>
+        DialogueNodeObserver observer;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue node callback class.
         /// </summary>
         /// <param name="view">The node view to set for.</param>
-        /// <param name="observer">The node observer to set for.</param>
+        /// <param name="observer">The dialogue node observer to set for.</param>
         public DialogueNodeCallback
         (
             DialogueNodeView view,
@@ -22,7 +27,7 @@ namespace AG.DS
         )
         {
             View = view;
-            Observer = observer;
+            this.observer = observer;
         }
 
 

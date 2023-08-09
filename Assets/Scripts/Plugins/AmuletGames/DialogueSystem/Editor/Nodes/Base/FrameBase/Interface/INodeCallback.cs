@@ -6,21 +6,21 @@ namespace AG.DS
     {
         /// <summary>
         /// Read more:
-        /// <see cref="NodeCallbackFrameBase{TNode, TNodeView, TNodeObserver}.OnPreManualRemove"/>
+        /// <see cref="NodeCallbackFrameBase{TNode, TNodeView}.OnPreManualRemove"/>
         /// </summary>
         void OnPreManualRemove(GraphViewer graphViewer);
 
 
         /// <summary>
         /// Read more:
-        /// <see cref="NodeCallbackFrameBase{TNode, TNodeView, TNodeObserver}.OnPostManualRemove"/>
+        /// <see cref="NodeCallbackFrameBase{TNode, TNodeView}.OnPostManualRemove"/>
         /// </summary>
         void OnPostManualRemove(GraphViewer graphViewer);
 
 
         /// <summary>
         /// Read more:
-        /// <see cref="NodeCallbackFrameBase{TNode, TNodeView, TNodeObserver}.OnPostCreate"/>
+        /// <see cref="NodeCallbackFrameBase{TNode, TNodeView}.OnPostCreate"/>
         /// </summary>
         void OnPostCreate(GeometryChangedEvent evt);
     }

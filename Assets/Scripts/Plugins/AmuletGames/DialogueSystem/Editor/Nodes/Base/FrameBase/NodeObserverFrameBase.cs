@@ -28,8 +28,13 @@ namespace AG.DS
         /// <summary>
         /// Register events to the node.
         /// </summary>
-        public virtual void RegisterEvents()
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="view">The node view to set for.</param>
+        public virtual void RegisterEvents(TNode node, TNodeView view)
         {
+            Node = node;
+            View = view;
+
             RegisterPointerEnterEvent();
 
             RegisterPointerLeaveEvent();
@@ -48,13 +53,6 @@ namespace AG.DS
         /// </summary>
         void RegisterPointerLeaveEvent()
             => Node.RegisterCallback<PointerLeaveEvent>(PointerLeaveEvent);
-
-
-        // ----------------------------- UnRegister Events -----------------------------
-        /// <summary>
-        /// Unregister events from the node.
-        /// </summary>
-        public virtual void UnregisterEvents() { }
 
 
         // ----------------------------- Event -----------------------------

@@ -16,28 +16,11 @@ namespace AG.DS
         Vector2 pointerMovePosition;
 
 
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the boolean node observer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public BooleanNodeObserver
-        (
-            BooleanNode node,
-            BooleanNodeView view
-        )
-        {
-            Node = node;
-            View = view;
-        }
-
-
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents()
+        public override void RegisterEvents(BooleanNode node, BooleanNodeView view)
         {
-            base.RegisterEvents();
+            base.RegisterEvents(node, view);
 
             RegisterPointerMoveEvent();
 

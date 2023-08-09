@@ -6,15 +6,17 @@ namespace AG.DS
     public class BooleanNodePresenter : NodePresenterFrameBase
     <
         BooleanNode,
-        BooleanNodeView
+        BooleanNodeView,
+        BooleanNodeObserver
     >
     {
         /// <inheritdoc />
         public override BooleanNode CreateElements
         (
             BooleanNodeView view,
+            BooleanNodeObserver observer,
             GraphViewer graphViewer,
-            HeadBar headBar = null
+            HeadBar headBar
         )
         {
             var node = new BooleanNode(view, graphViewer);

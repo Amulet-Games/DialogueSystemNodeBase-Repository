@@ -8,15 +8,17 @@ namespace AG.DS
     public class StoryNodePresenter : NodePresenterFrameBase
     <
         StoryNode,
-        StoryNodeView
+        StoryNodeView,
+        StoryNodeObserver
     >
     {
         /// <inheritdoc />
         public override StoryNode CreateElements
         (
             StoryNodeView view,
+            StoryNodeObserver observer,
             GraphViewer graphViewer,
-            HeadBar headBar = null
+            HeadBar headBar
         )
         {
             var node = new StoryNode(view, graphViewer, headBar);

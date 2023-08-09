@@ -6,15 +6,17 @@ namespace AG.DS
     public class StartNodePresenter : NodePresenterFrameBase
     <
         StartNode,
-        StartNodeView
+        StartNodeView,
+        StartNodeObserver
     >
     {
         /// <inheritdoc />
         public override StartNode CreateElements
         (
             StartNodeView view,
+            StartNodeObserver observer,
             GraphViewer graphViewer,
-            HeadBar headBar = null
+            HeadBar headBar
         )
         {
             var node = new StartNode(view, graphViewer);

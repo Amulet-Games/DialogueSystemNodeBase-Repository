@@ -8,15 +8,17 @@ namespace AG.DS
     public class PreviewNodePresenter : NodePresenterFrameBase
     <
         PreviewNode,
-        PreviewNodeView
+        PreviewNodeView,
+        PreviewNodeObserver
     >
     {
         /// <inheritdoc />
         public override PreviewNode CreateElements
         (
             PreviewNodeView view,
+            PreviewNodeObserver observer,
             GraphViewer graphViewer,
-            HeadBar headBar = null
+            HeadBar headBar
         )
         {
             var node = new PreviewNode(view, graphViewer);

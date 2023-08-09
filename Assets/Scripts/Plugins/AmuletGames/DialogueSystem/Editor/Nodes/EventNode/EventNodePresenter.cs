@@ -6,15 +6,17 @@ namespace AG.DS
     public class EventNodePresenter : NodePresenterFrameBase
     <
         EventNode,
-        EventNodeView
+        EventNodeView,
+        EventNodeObserver
     >
     {
         /// <inheritdoc />
         public override EventNode CreateElements
         (
             EventNodeView view,
+            EventNodeObserver observer,
             GraphViewer graphViewer,
-            HeadBar headBar = null
+            HeadBar headBar
         )
         {
             var node = new EventNode(view, graphViewer);

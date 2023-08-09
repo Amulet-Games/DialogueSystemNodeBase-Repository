@@ -9,28 +9,11 @@ namespace AG.DS
         EndNodeView
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the end node observer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public EndNodeObserver
-        (
-            EndNode node,
-            EndNodeView view
-        )
-        {
-            Node = node;
-            View = view;
-        }
-
-
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents()
+        public override void RegisterEvents(EndNode node, EndNodeView view)
         {
-            base.RegisterEvents();
+            base.RegisterEvents(node, view);
 
             RegisterNodeTitleTextFieldEvents();
 

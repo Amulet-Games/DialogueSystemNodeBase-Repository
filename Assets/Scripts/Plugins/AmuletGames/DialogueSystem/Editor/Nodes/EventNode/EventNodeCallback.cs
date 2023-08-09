@@ -5,8 +5,7 @@ namespace AG.DS
     public class EventNodeCallback : NodeCallbackFrameBase
     <
         EventNode,
-        EventNodeView,
-        EventNodeObserver
+        EventNodeView
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -14,15 +13,9 @@ namespace AG.DS
         /// Constructor of the event node callback class.
         /// </summary>
         /// <param name="view">The node view to set for.</param>
-        /// <param name="observer">The node observer to set for.</param>
-        public EventNodeCallback
-        (
-            EventNodeView view,
-            EventNodeObserver observer
-        )
+        public EventNodeCallback(EventNodeView view)
         {
             View = view;
-            Observer = observer;
         }
 
 

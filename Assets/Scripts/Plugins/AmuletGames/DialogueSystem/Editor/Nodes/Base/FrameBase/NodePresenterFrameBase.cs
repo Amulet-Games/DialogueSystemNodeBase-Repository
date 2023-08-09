@@ -6,24 +6,28 @@ namespace AG.DS
     public abstract class NodePresenterFrameBase
     <
         TNode,
-        TNodeView
+        TNodeView,
+        TNodeObserver
     > 
         : NodePresenterBase
         where TNode : NodeBase
         where TNodeView : NodeViewBase
+        where TNodeObserver : NodeObserverFrameBase<TNode, TNodeView>
     {
         /// <summary>
         /// Method for creating the elements for the node.
         /// </summary>
         /// <param name="view">The node view to set for.</param>
+        /// <param name="observer">The node observer to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
         /// <returns>The type node element.</returns>
         public abstract TNode CreateElements
         (
             TNodeView view,
+            TNodeObserver observer,
             GraphViewer graphViewer,
-            HeadBar headBar = null
+            HeadBar headBar
         );
 
 

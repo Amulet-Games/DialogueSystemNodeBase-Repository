@@ -66,7 +66,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override void Load(StoryNodeModel model)
         {
-            LoadBaseValues(model);
+            base.Load();
 
             LoadPorts();
 

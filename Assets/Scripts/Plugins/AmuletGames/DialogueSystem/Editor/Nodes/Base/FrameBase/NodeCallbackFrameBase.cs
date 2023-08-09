@@ -5,24 +5,16 @@ namespace AG.DS
     public abstract class NodeCallbackFrameBase
     <
         TNode,
-        TNodeView,
-        TNodeObserver
+        TNodeView
     >
         : NodeCallbackBase, INodeCallback
         where TNode: NodeBase
         where TNodeView : NodeViewBase
-        where TNodeObserver : NodeObserverFrameBase<TNode, TNodeView>
     {
         /// <summary>
         /// Reference of the node view.
         /// </summary>
         public TNodeView View;
-
-
-        /// <summary>
-        /// Reference of the node observer.
-        /// </summary>
-        public TNodeObserver Observer;
 
 
         // ----------------------------- Callback -----------------------------

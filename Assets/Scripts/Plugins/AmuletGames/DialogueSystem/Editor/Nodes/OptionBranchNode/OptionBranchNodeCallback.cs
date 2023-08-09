@@ -5,16 +5,21 @@ namespace AG.DS
     public class OptionBranchNodeCallback : NodeCallbackFrameBase
     <
         OptionBranchNode,
-        OptionBranchNodeView,
-        OptionBranchNodeObserver
+        OptionBranchNodeView
     >
     {
+        /// <summary>
+        /// Reference of the option branch node observer.
+        /// </summary>
+        OptionBranchNodeObserver observer;
+
+
         // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option branch node callback class.
         /// </summary>
         /// <param name="view">The node view to set for.</param>
-        /// <param name="observer">The node observer to set for.</param>
+        /// <param name="observer">The option branch node observer to set for.</param>
         public OptionBranchNodeCallback
         (
             OptionBranchNodeView view,
@@ -22,7 +27,7 @@ namespace AG.DS
         )
         {
             View = view;
-            Observer = observer;
+            this.observer = observer;
         }
 
 
@@ -41,7 +46,7 @@ namespace AG.DS
 
             // Unregister events
             {
-                Observer.UnregisterEvents();
+                observer.UnregisterEvents();
             }
         }
 
