@@ -6,10 +6,7 @@ namespace AG.DS
     <
         OptionBranchNode,
         OptionBranchNodeView,
-        OptionBranchNodeObserver,
-        OptionBranchNodeSerializer,
-        OptionBranchNodeCallback,
-        OptionBranchNodeModel
+        OptionBranchNodeCallback
     >
     {
         /// <summary>
@@ -40,7 +37,6 @@ namespace AG.DS
                 GraphViewer = graphViewer;
                 HeadBar = headBar;
 
-                Serializer = new(node: this, View);
                 m_Callback = new(View, observer);
 
                 style.minWidth = NumberConfig.OPTION_BRANCH_NODE_MIN_WIDTH;

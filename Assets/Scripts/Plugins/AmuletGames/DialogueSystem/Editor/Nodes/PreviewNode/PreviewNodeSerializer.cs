@@ -5,85 +5,55 @@ namespace AG.DS
     <
         PreviewNode,
         PreviewNodeView,
+        PreviewNodeCallback,
         PreviewNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the preview node serializer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public PreviewNodeSerializer(PreviewNode node, PreviewNodeView view)
-        {
-            Node = node;
-            View = view;
-        }
-
-
-        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemModel dsModel)
+        public override void Save(PreviewNode node, PreviewNodeModel model)
         {
-            PreviewNodeModel model = new();
-
-            SaveBaseValues(model);
+            base.Save(node, model);
 
             SavePorts();
 
-            SaveSpriteObjectContainers();
-
-            AddToDsModel();
+            SavePortraitObjectFields();
 
             void SavePorts()
             {
-                View.InputDefaultPort.Save(model.InputPortModel);
-                View.OutputDefaultPort.Save(model.OutputPortModel);
+                node.View.InputDefaultPort.Save(model.InputPortModel);
+                node.View.OutputDefaultPort.Save(model.OutputPortModel);
             }
 
-            void SaveSpriteObjectContainers()
+            void SavePortraitObjectFields()
             {
-                // Left side sprite.
-                model.LeftPortraitSprite = View.LeftPortraitObjectFieldView.Value;
-
-                // Right side sprite. 
-                model.RightPortraitSprite = View.RightPortraitObjectFieldView.Value;
-            }
-
-            void AddToDsModel()
-            {
-                dsModel.NodeModels.Add(model);
+                model.LeftPortraitSprite = node.View.LeftPortraitObjectFieldView.Value;
+                model.RightPortraitSprite = node.View.RightPortraitObjectFieldView.Value;
             }
         }
 
 
-        // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(PreviewNodeModel model)
+        public override void Load(PreviewNode node, PreviewNodeModel model)
         {
-            LoadBaseValues(model);
+            base.Load(node, model);
 
             LoadPorts();
 
-            LoadSpriteObjectContainers();
+            LoadPortraitObjectFields();
 
             void LoadPorts()
             {
-                View.InputDefaultPort.Load(model.InputPortModel);
-                View.OutputDefaultPort.Load(model.OutputPortModel);
+                node.View.InputDefaultPort.Load(model.InputPortModel);
+                node.View.OutputDefaultPort.Load(model.OutputPortModel);
             }
 
-            void LoadSpriteObjectContainers()
+            void LoadPortraitObjectFields()
             {
-                // Left side sprite.
-                View.LeftPortraitObjectFieldView.Load(model.LeftPortraitSprite);
+                node.View.LeftPortraitObjectFieldView.Load(model.LeftPortraitSprite);
+                node.View.RightPortraitObjectFieldView.Load(model.RightPortraitSprite);
 
-                // Right side sprite. 
-                View.RightPortraitObjectFieldView.Load(model.RightPortraitSprite);
-
-                // Update preview images.
-                View.LeftPortraitImage.image = View.LeftPortraitObjectFieldView.Value.texture;
-                View.RightPortraitImage.image = View.RightPortraitObjectFieldView.Value.texture;
+                node.View.LeftPortraitImage.image = node.View.LeftPortraitObjectFieldView.Value.texture;
+                node.View.RightPortraitImage.image = node.View.RightPortraitObjectFieldView.Value.texture;
             }
         }
     }

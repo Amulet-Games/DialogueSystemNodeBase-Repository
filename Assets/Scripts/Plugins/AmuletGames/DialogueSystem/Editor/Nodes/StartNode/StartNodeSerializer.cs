@@ -5,58 +5,27 @@ namespace AG.DS
     <
         StartNode,
         StartNodeView,
+        StartNodeCallback,
         StartNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the start node serializer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public StartNodeSerializer(StartNode node, StartNodeView view)
+        /// <inheritdoc />
+        public override void Save(StartNode node, StartNodeModel model)
         {
-            Node = node;
-            View = view;
+            base.Load(node, model);
+
+            // Save ports
+            node.View.OutputDefaultPort.Save(model.OutputPortModel);
         }
 
 
-        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemModel dsModel)
+        public override void Load(StartNode node, StartNodeModel model)
         {
-            StartNodeModel model = new();
+            base.Load(node, model);
 
-            SaveBaseValues(model: model);
-
-            SavePorts();
-
-            AddToDsModel();
-
-            void SavePorts()
-            {
-                View.OutputDefaultPort.Save(model.OutputPortModel);
-            }
-
-            void AddToDsModel()
-            {
-                dsModel.NodeModels.Add(model);
-            }
-        }
-
-
-        // ----------------------------- Load -----------------------------
-        /// <inheritdoc />
-        public override void Load(StartNodeModel model)
-        {
-            LoadBaseValues(model);
-
-            LoadPorts();
-
-            void LoadPorts()
-            {
-                View.OutputDefaultPort.Load(model.OutputPortModel);
-            }
+            // Load ports
+            node.View.OutputDefaultPort.Load(model.OutputPortModel);
         }
     }
 }

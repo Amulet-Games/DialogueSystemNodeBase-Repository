@@ -5,29 +5,14 @@ namespace AG.DS
     <
         StoryNode,
         StoryNodeView,
+        StoryNodeCallback,
         StoryNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the story node serializer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public StoryNodeSerializer(StoryNode node, StoryNodeView view)
-        {
-            Node = node;
-            View = view;
-        }
-
-
-        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemModel dsModel)
+        public override void Save(StoryNode node, StoryNodeModel model)
         {
-            StoryNodeModel model = new();
-
-            SaveBaseValues(model);
+            base.Save(node, model);
 
             SavePorts();
 
@@ -35,38 +20,30 @@ namespace AG.DS
 
             Save_CSV_GUID();
 
-            AddToDsModel();
-
             void SavePorts()
             {
-                View.InputDefaultPort.Save(model.InputPortModel);
-                View.OutputDefaultPort.Save(model.OutputPortModel);
+                node.View.InputDefaultPort.Save(model.InputPortModel);
+                node.View.OutputDefaultPort.Save(model.OutputPortModel);
             }
 
             void SaveSecondContentBoxContainers()
             {
                 // Second line trigger type enum.
-                model.SecondLineTriggerTypeEnumIndex = View.SecondLineTriggerTypeEnumContainer.Value;
+                model.SecondLineTriggerTypeEnumIndex = node.View.SecondLineTriggerTypeEnumContainer.Value;
             }
 
             void Save_CSV_GUID()
             {
                 // CSV GUID.
-                model.CsvGUID = View.CsvGUID;
-            }
-
-            void AddToDsModel()
-            {
-                dsModel.NodeModels.Add(model);
+                model.CsvGUID = node.View.CsvGUID;
             }
         }
 
 
-        // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(StoryNodeModel model)
+        public override void Load(StoryNode node, StoryNodeModel model)
         {
-            base.Load();
+            base.Load(node, model);
 
             LoadPorts();
 
@@ -76,20 +53,20 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                View.InputDefaultPort.Load(model.InputPortModel);
-                View.OutputDefaultPort.Load(model.OutputPortModel);
+                node.View.InputDefaultPort.Load(model.InputPortModel);
+                node.View.OutputDefaultPort.Load(model.OutputPortModel);
             }
 
             void LoadSecondContentBoxContainers()
             {
                 // Second line trigger type enum.
-                View.SecondLineTriggerTypeEnumContainer.Load(model.SecondLineTriggerTypeEnumIndex);
+                node.View.SecondLineTriggerTypeEnumContainer.Load(model.SecondLineTriggerTypeEnumIndex);
             }
 
             void Load_CSV_Guid()
             {
                 // CSV GUID.
-                View.CsvGUID = model.CsvGUID;
+                node.View.CsvGUID = model.CsvGUID;
             }
         }
     }

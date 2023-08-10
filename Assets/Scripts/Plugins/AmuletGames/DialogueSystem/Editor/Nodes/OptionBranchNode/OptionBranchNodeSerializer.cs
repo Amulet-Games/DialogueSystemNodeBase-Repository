@@ -5,87 +5,64 @@ namespace AG.DS
     <
         OptionBranchNode,
         OptionBranchNodeView,
+        OptionBranchNodeCallback,
         OptionBranchNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the option branch node serializer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public OptionBranchNodeSerializer(OptionBranchNode node, OptionBranchNodeView view)
-        {
-            Node = node;
-            View = view;
-        }
-
-
-        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemModel dsModel)
+        public override void Save(OptionBranchNode node, OptionBranchNodeModel model)
         {
-            OptionBranchNodeModel model = new();
-
-            SaveBaseValues(model);
+            base.Save(node, model);
 
             SavePorts();
 
-            SaveHeaderTextContainer();
+            SaveBranchTitleTextField();
 
             SaveOptionBranchNodeStitcher();
 
-            AddToDsModel();
-
             void SavePorts()
             {
-                View.OutputDefaultPort.Save(model.OutputPortModel);
-                View.InputOptionPort.Save(model.InputOptionPortModel);
+                node.View.OutputDefaultPort.Save(model.OutputPortModel);
+                node.View.InputOptionPort.Save(model.InputOptionPortModel);
             }
 
-            void SaveHeaderTextContainer()
+            void SaveBranchTitleTextField()
             {
-                View.BranchTitleTextFieldView.Save(model.HeadlineText);
+                node.View.BranchTitleTextFieldView.Save(model.HeadlineText);
             }
 
             void SaveOptionBranchNodeStitcher()
             {
-                View.OptionBranchNodeStitcher.SaveStitcherValues(model.OptionBranchNodeStitcherModel);
-            }
-
-            void AddToDsModel()
-            {
-                dsModel.NodeModels.Add(model);
+                node.View.OptionBranchNodeStitcher.SaveStitcherValues(model.OptionBranchNodeStitcherModel);
             }
         }
 
 
-        // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(OptionBranchNodeModel model)
+        public override void Load(OptionBranchNode node, OptionBranchNodeModel model)
         {
-            LoadBaseValues(model);
+            base.Load(node, model);
 
             LoadPorts();
 
-            LoadHeaderTextContainer();
+            LoadBranchTitleTextField();
 
             LoadOptionBranchNodeStitcher();
 
             void LoadPorts()
             {
-                View.OutputDefaultPort.Load(model.OutputPortModel);
-                View.InputOptionPort.Load(model.InputOptionPortModel);
+                node.View.OutputDefaultPort.Load(model.OutputPortModel);
+                node.View.InputOptionPort.Load(model.InputOptionPortModel);
             }
 
-            void LoadHeaderTextContainer()
+            void LoadBranchTitleTextField()
             {
-                View.BranchTitleTextFieldView.Load(model.HeadlineText);
+                node.View.BranchTitleTextFieldView.Load(model.HeadlineText);
             }
 
             void LoadOptionBranchNodeStitcher()
             {
-                View.OptionBranchNodeStitcher.LoadStitcherValues(model.OptionBranchNodeStitcherModel);
+                node.View.OptionBranchNodeStitcher.LoadStitcherValues(model.OptionBranchNodeStitcherModel);
             }
         }
     }

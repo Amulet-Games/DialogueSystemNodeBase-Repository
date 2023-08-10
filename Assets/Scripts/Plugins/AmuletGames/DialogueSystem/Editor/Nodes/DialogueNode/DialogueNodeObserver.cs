@@ -73,9 +73,11 @@ namespace AG.DS
                 clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
 
 
-        // ----------------------------- UnRegister Events -----------------------------
-        /// <inheritdoc />
-        public override void UnregisterEvents()
+        // ----------------------------- Unregister Events -----------------------------
+        /// <summary>
+        /// Unregister events from the node.
+        /// </summary>
+        public void UnregisterEvents()
         {
             UnregisterLanguageChangedEvent();
         }

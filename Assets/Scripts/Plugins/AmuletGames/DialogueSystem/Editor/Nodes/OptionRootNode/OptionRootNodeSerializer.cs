@@ -5,82 +5,59 @@ namespace AG.DS
     <
         OptionRootNode,
         OptionRootNodeView,
+        OptionRootNodeCallback,
         OptionRootNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the option root node serializer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public OptionRootNodeSerializer(OptionRootNode node, OptionRootNodeView view)
-        {
-            Node = node;
-            View = view;
-        }
-
-
-        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemModel dsModel)
+        public override void Save(OptionRootNode node, OptionRootNodeModel model)
         {
-            OptionRootNodeModel model = new();
-
-            SaveBaseValues(model);
+            base.Save(node, model);
 
             SavePorts();
 
-            SaveHeaderTextContainer();
-
-            AddToDsModel();
+            SaveRootTitleTextField();
 
             void SavePorts()
             {
-                View.InputDefaultPort.Save(model.InputPortModel);
-                View.OutputOptionPort.Save(model.OutputOptionPortModel);
-                View.OutputOptionPortGroupView.Save(model: model.OutputOptionPortGroupModel);
+                node.View.InputDefaultPort.Save(model.InputPortModel);
+                node.View.OutputOptionPort.Save(model.OutputOptionPortModel);
+                node.View.OutputOptionPortGroupView.Save(model.OutputOptionPortGroupModel);
             }
 
-            void SaveHeaderTextContainer()
+            void SaveRootTitleTextField()
             {
-                View.RootTitleTextFieldView.Save(model.HeadlineText);
-            }
-
-            void AddToDsModel()
-            {
-                dsModel.NodeModels.Add(model);
+                node.View.RootTitleTextFieldView.Save(model.HeadlineText);
             }
         }
 
 
-        // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(OptionRootNodeModel model)
+        public override void Load(OptionRootNode node, OptionRootNodeModel model)
         {
-            LoadBaseValues(model);
+            base.Load(node, model);
 
             LoadPorts();
 
-            LoadHeaderTextContainer();
+            LoadRootTitleTextField();
 
             RefreshPortsLayout();
 
             void LoadPorts()
             {
-                View.InputDefaultPort.Load(model.InputPortModel);
-                View.OutputOptionPort.Load(model.OutputOptionPortModel);
-                View.OutputOptionPortGroupView.Load(Node, model.OutputOptionPortGroupModel);
+                node.View.InputDefaultPort.Load(model.InputPortModel);
+                node.View.OutputOptionPort.Load(model.OutputOptionPortModel);
+                node.View.OutputOptionPortGroupView.Load(node, model.OutputOptionPortGroupModel);
             }
 
-            void LoadHeaderTextContainer()
+            void LoadRootTitleTextField()
             {
-                View.RootTitleTextFieldView.Load(model.HeadlineText);
+                node.View.RootTitleTextFieldView.Load(model.HeadlineText);
             }
 
             void RefreshPortsLayout()
             {
-                Node.RefreshPorts();
+                node.RefreshPorts();
             }
         }
     }

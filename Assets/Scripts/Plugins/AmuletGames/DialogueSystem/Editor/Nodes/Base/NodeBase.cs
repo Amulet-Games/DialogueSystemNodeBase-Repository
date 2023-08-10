@@ -30,23 +30,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The property of the node serializer reference.
-        /// </summary>
-        public virtual INodeSerializer Serializer { get; }
-
-
-        /// <summary>
         /// The property of the node callback reference.
         /// </summary>
         public virtual INodeCallback Callback { get; }
-
-
-        // ----------------------------- Serialization -----------------------------
-        /// <summary>
-        /// Save the node values to the dialogue system model.
-        /// </summary>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
-        public abstract void Save(DialogueSystemModel dsModel);
 
 
         // ----------------------------- Add -----------------------------

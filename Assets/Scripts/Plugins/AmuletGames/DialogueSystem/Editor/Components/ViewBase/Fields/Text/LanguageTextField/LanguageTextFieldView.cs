@@ -111,8 +111,7 @@ namespace AG.DS
 
                 if (obj is string reverseValue)
                 {
-                    value.
-                        ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = reverseValue;
+                    value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = reverseValue;
 
                     TextField.SetValueWithoutNotify(reverseValue);
 

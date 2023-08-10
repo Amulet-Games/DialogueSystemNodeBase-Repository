@@ -7,29 +7,17 @@ namespace AG.DS
     <
         TNode,
         TNodeView,
-        TNodeObserver,
-        TNodeSerializer,
-        TNodeCallback,
-        TNodeModel
+        TNodeCallback
     > 
         : NodeBase
         where TNode : NodeBase
         where TNodeView : NodeViewBase
-        where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeModel>
-        where TNodeObserver : NodeObserverFrameBase<TNode, TNodeView>
         where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView>
-        where TNodeModel : NodeModelBase
     {
         /// <summary>
         /// Reference of the node view.
         /// </summary>
         public TNodeView View;
-
-
-        /// <summary>
-        /// Reference of the node serializer.
-        /// </summary>
-        public TNodeSerializer Serializer;
 
 
         /// <inheritdoc />
@@ -45,7 +33,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the node callback.
         /// </summary>
-        public TNodeCallback m_Callback;
+        protected TNodeCallback m_Callback;
 
 
         // ----------------------------- Constructor -----------------------------
@@ -140,11 +128,6 @@ namespace AG.DS
                 styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
             }
         }
-
-
-        // ----------------------------- Serialization -----------------------------
-        /// <inheritdoc />
-        public override void Save(DialogueSystemModel dsModel) => Serializer.Save(dsModel);
 
 
         // ----------------------------- Overrides -----------------------------

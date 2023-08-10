@@ -6,10 +6,7 @@ namespace AG.DS
     <
         OptionRootNode,
         OptionRootNodeView,
-        OptionRootNodeObserver,
-        OptionRootNodeSerializer,
-        OptionRootNodeCallback,
-        OptionRootNodeModel
+        OptionRootNodeCallback
     >
     {
         /// <summary>
@@ -40,7 +37,6 @@ namespace AG.DS
                 GraphViewer = graphViewer;
                 HeadBar = headBar;
 
-                Serializer = new(node: this, View);
                 m_Callback = new(View, observer);
 
                 style.minWidth = NumberConfig.OPTION_ROOT_NODE_MIN_WIDTH;

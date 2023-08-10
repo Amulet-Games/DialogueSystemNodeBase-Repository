@@ -76,10 +76,6 @@ namespace AG.DS
         public void Load(TObject value)
         {
             Value = value;
-
-            Field.SetValueWithoutNotify(Value);
-
-            Field.ToggleEmptyStyle(placeholderText);
         }
 
 

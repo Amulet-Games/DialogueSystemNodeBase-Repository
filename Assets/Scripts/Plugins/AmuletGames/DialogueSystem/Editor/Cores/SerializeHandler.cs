@@ -82,7 +82,7 @@ namespace AG.DS
                 var nodeCount = graphViewer.Nodes.Count;
                 for (int i = 0; i < nodeCount; i++)
                 {
-                    graphViewer.Nodes[i].Save(dsModel);
+                    //graphViewer.Nodes[i].Save(dsModel);
                 }
             }
         }

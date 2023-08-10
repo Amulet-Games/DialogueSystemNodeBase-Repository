@@ -5,59 +5,36 @@ namespace AG.DS
     <
         EventNode,
         EventNodeView,
+        EventNodeCallback,
         EventNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the event node serializer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public EventNodeSerializer(EventNode node, EventNodeView view)
-        {
-            Node = node;
-            View = view;
-        }
-
-
-        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemModel dsModel)
+        public override void Save(EventNode node, EventNodeModel model)
         {
-            EventNodeModel model = new();
-
-            SaveBaseValues(model);
+            base.Save(node, model);
 
             SavePorts();
 
             SaveEventModifierGroup();
 
-            AddToDsModel();
-
             void SavePorts()
             {
-                View.InputDefaultPort.Save(model.InputPortModel);
-                View.OutputDefaultPort.Save(model.OutputPortModel);
+                node.View.InputDefaultPort.Save(model.InputPortModel);
+                node.View.OutputDefaultPort.Save(model.OutputPortModel);
             }
 
             void SaveEventModifierGroup()
             {
-                View.EventModifierGroupView.Save(model.EventModifierGroupModel);
-            }
-
-            void AddToDsModel()
-            {
-                dsModel.NodeModels.Add(model);
+                node.View.EventModifierGroupView.Save(model.EventModifierGroupModel);
             }
         }
 
 
-        // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(EventNodeModel model)
+        public override void Load(EventNode node, EventNodeModel model)
         {
-            LoadBaseValues(model);
+            base.Load(node, model);
 
             LoadPorts();
 
@@ -65,13 +42,13 @@ namespace AG.DS
 
             void LoadPorts()
             {
-                View.InputDefaultPort.Load(model.InputPortModel);
-                View.OutputDefaultPort.Load(model.OutputPortModel);
+                node.View.InputDefaultPort.Load(model.InputPortModel);
+                node.View.OutputDefaultPort.Load(model.OutputPortModel);
             }
 
             void LoadEventModifierGroup()
             {
-                View.EventModifierGroupView.Load(model.EventModifierGroupModel);
+                node.View.EventModifierGroupView.Load(model.EventModifierGroupModel);
             }
         }
     }

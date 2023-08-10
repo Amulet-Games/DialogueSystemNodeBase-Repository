@@ -6,10 +6,7 @@ namespace AG.DS
     <
         EndNode,
         EndNodeView,
-        EndNodeObserver,
-        EndNodeSerializer,
-        EndNodeCallback,
-        EndNodeModel
+        EndNodeCallback
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -29,7 +26,6 @@ namespace AG.DS
                 View = view;
                 GraphViewer = graphViewer;
 
-                Serializer = new(node: this, View);
                 m_Callback = new(View);
 
                 style.minWidth = NumberConfig.END_NODE_MIN_WIDTH;

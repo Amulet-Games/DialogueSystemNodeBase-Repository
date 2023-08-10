@@ -5,29 +5,14 @@
     <
         DialogueNode,
         DialogueNodeView,
+        DialogueNodeCallback,
         DialogueNodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the dialogue node serializer class.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public DialogueNodeSerializer(DialogueNode node, DialogueNodeView view)
-        {
-            Node = node;
-            View = view;
-        }
-
-
-        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueSystemModel dsModel)
+        public override void Save(DialogueNode node, DialogueNodeModel model)
         {
-            DialogueNodeModel model = new();
-
-            SaveBaseValues(model);
+            base.Save(node, model);
 
             SavePorts();
 
@@ -35,36 +20,28 @@
 
             SaveDialogueNodeStitcher();
 
-            AddToDsModel();
-
             void SavePorts()
             {
-                View.InputDefaultPort.Save(model.InputPortModel);
-                View.OutputDefaultPort.Save(model.OutputPortModel);
+                node.View.InputDefaultPort.Save(model.InputPortModel);
+                node.View.OutputDefaultPort.Save(model.OutputPortModel);
             }
 
             void SaveCharacterObjectContainer()
             {
-                model.DialogueCharacter = View.CharacterObjectFieldView.Value;
+                model.DialogueCharacter = node.View.CharacterObjectFieldView.Value;
             }
 
             void SaveDialogueNodeStitcher()
             {
-                View.DialogueNodeStitcher.SaveStitcherValues(model.DialogueNodeStitcherModel);
-            }
-
-            void AddToDsModel()
-            {
-                dsModel.NodeModels.Add(model);
+                node.View.DialogueNodeStitcher.SaveStitcherValues(model.DialogueNodeStitcherModel);
             }
         }
 
 
-        // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(DialogueNodeModel model)
+        public override void Load(DialogueNode node, DialogueNodeModel model)
         {
-            base.Load(model);
+            base.Load(node, model);
 
             LoadPorts();
 
@@ -74,18 +51,18 @@
 
             void LoadPorts()
             {
-                View.InputDefaultPort.Load(model.InputPortModel);
-                View.OutputDefaultPort.Load(model.OutputPortModel);
+                node.View.InputDefaultPort.Load(model.InputPortModel);
+                node.View.OutputDefaultPort.Load(model.OutputPortModel);
             }
         
             void LoadCharacterObjectContainer()
             {
-                View.CharacterObjectFieldView.Load(model.DialogueCharacter);
+                node.View.CharacterObjectFieldView.Load(model.DialogueCharacter);
             }
 
             void LoadDialogueNodeStitcher()
             {
-                View.DialogueNodeStitcher.LoadStitcherValues(model.DialogueNodeStitcherModel);
+                node.View.DialogueNodeStitcher.LoadStitcherValues(model.DialogueNodeStitcherModel);
             }
         }
     }

@@ -85,7 +85,7 @@ namespace AG.DS
             for (int i = 0; i < languageManager.SupportLanguageLength; i++)
             {
                 value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
-                    this.m_value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
+                    m_value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
             }
         }
 
@@ -99,7 +99,7 @@ namespace AG.DS
             var languageManager = LanguageManager.Instance;
             for (int i = 0; i < languageManager.SupportLanguageLength; i++)
             {
-                this.m_value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
+                m_value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
                            value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
             }
 

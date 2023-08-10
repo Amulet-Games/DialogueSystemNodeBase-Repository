@@ -6,10 +6,7 @@ namespace AG.DS
     <
         PreviewNode,
         PreviewNodeView,
-        PreviewNodeObserver,
-        PreviewNodeSerializer,
-        PreviewNodeCallback,
-        PreviewNodeModel
+        PreviewNodeCallback
     >
     {
         // ----------------------------- Constructor -----------------------------
@@ -29,7 +26,6 @@ namespace AG.DS
                 View = view;
                 GraphViewer = graphViewer;
 
-                Serializer = new(node: this, View);
                 m_Callback = new(View);
 
                 style.minWidth = NumberConfig.PREVIEW_NODE_MIN_WIDTH;
