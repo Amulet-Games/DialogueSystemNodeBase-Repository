@@ -31,7 +31,6 @@ namespace AG.DS
         [SerializeField] public Sprite RightPortraitSprite;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the preview node model class.
         /// </summary>

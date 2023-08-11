@@ -5,29 +5,15 @@ namespace AG.DS
     public class OptionBranchNodeCallback : NodeCallbackFrameBase
     <
         OptionBranchNode,
-        OptionBranchNodeView
+        OptionBranchNodeView,
+        OptionBranchNodeCallback
     >
     {
-        /// <summary>
-        /// Reference of the option branch node observer.
-        /// </summary>
-        OptionBranchNodeObserver observer;
-
-
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the option branch node callback class.
-        /// </summary>
-        /// <param name="view">The node view to set for.</param>
-        /// <param name="observer">The option branch node observer to set for.</param>
-        public OptionBranchNodeCallback
-        (
-            OptionBranchNodeView view,
-            OptionBranchNodeObserver observer
-        )
+        /// <inheritdoc />
+        public override OptionBranchNodeCallback Setup(OptionBranchNodeView view)
         {
             View = view;
-            this.observer = observer;
+            return this;
         }
 
 
@@ -42,11 +28,6 @@ namespace AG.DS
 
                 View.InputOptionPort.Disconnect(graphViewer);
                 View.OutputDefaultPort.Disconnect(graphViewer);
-            }
-
-            // Unregister events
-            {
-                observer.UnregisterEvents();
             }
         }
 

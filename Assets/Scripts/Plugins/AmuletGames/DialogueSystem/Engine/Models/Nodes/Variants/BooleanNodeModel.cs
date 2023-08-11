@@ -43,7 +43,6 @@ namespace AG.DS
         [SerializeField] public BooleanNodeStitcherModel BooleanNodeStitcherModel;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the boolean node model class.
         /// </summary>

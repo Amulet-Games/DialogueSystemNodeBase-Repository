@@ -7,19 +7,19 @@ namespace AG.DS
     <
         BooleanNode,
         BooleanNodeView,
-        BooleanNodeObserver
+        BooleanNodeCallback
     >
     {
         /// <inheritdoc />
         public override BooleanNode CreateElements
         (
             BooleanNodeView view,
-            BooleanNodeObserver observer,
+            BooleanNodeCallback callback,
             GraphViewer graphViewer,
             HeadBar headBar
         )
         {
-            var node = new BooleanNode(view, graphViewer);
+            var node = new BooleanNode(view, callback, graphViewer);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

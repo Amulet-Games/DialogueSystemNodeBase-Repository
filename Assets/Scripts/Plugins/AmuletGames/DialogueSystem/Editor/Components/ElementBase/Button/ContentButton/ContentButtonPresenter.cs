@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -7,11 +6,9 @@ namespace AG.DS
     {
         /// <summary>
         /// Method for creating a new content button element.
-        /// <para></para>
-        /// It locates on the top right corner of the given node, can be used to add a new segment or modifier component to the given node when clicked.
         /// </summary>
         /// <param name="buttonText">The name for this content button.</param>
-        /// <param name="buttonIconSprite">The icon that'll display along side with the name's text.</param>
+        /// <param name="buttonIconSprite">The icon that displays beside the button text.</param>
         /// <returns>A new content button element.</returns>
         public static ContentButton CreateElement
         (

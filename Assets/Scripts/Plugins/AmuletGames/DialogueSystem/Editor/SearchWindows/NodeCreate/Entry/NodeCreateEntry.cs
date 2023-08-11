@@ -11,7 +11,6 @@ namespace AG.DS
         public NodeType NodeType { get; }
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the node create entry class.
         /// </summary>

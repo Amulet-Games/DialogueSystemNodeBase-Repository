@@ -18,7 +18,6 @@ namespace AG
         public float y;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the serializable vector2 struct.
         /// </summary>
@@ -35,7 +34,7 @@ namespace AG
 
         // ----------------------------- Operators -----------------------------
         /// <summary>
-        /// Allows explict convertion from variable type serializable vector2 value to vector2.
+        /// Allows explicit conversion from variable type serializable vector2 value to vector2.
         /// </summary>
         /// <param name="v">The serializable vector2 variable to convert from.</param>
         public static explicit operator Vector2(SerializableVector2 v)
@@ -45,7 +44,7 @@ namespace AG
 
 
         /// <summary>
-        /// Allows explict convertion from variable type vector2 to serializable vector2.
+        /// Allows explicit conversion from variable type vector2 to serializable vector2.
         /// </summary>
         /// <param name="v">The vector2 variable to convert from.</param>
         public static explicit operator SerializableVector2(Vector2 v)

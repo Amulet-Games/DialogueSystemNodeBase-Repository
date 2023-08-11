@@ -61,7 +61,6 @@ namespace AG.DS
         [SerializeField] public string CsvGUID;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the story node model class.
         /// </summary>

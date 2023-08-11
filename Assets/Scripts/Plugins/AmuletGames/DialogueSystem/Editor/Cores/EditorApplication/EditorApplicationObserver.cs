@@ -17,7 +17,6 @@ namespace AG.DS
         const string QUIT_CONFIRM_TEXT = "UNITY QUIT SUCCESSFULY";
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the editor application observer class.
         /// </summary>

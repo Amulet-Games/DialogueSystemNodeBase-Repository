@@ -45,7 +45,6 @@ namespace AG.DS
         protected NodeCreateConnectorWindow NodeCreateConnectorWindow;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the edge connector listener base class.
         /// </summary>
@@ -63,7 +62,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- IEdgeConnectorListener -----------------------------
+        // ----------------------------- Callback -----------------------------
         /// <summary>
         /// Called when a new edge is dropped on a port.
         /// </summary>

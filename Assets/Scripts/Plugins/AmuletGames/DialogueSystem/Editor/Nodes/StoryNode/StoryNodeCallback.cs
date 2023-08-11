@@ -5,17 +5,15 @@ namespace AG.DS
     public class StoryNodeCallback : NodeCallbackFrameBase
     <
         StoryNode,
-        StoryNodeView
+        StoryNodeView,
+        StoryNodeCallback
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the story node callback class.
-        /// </summary>
-        /// <param name="view">The node view to set for.</param>
-        public StoryNodeCallback(StoryNodeView view)
+        /// <inheritdoc />
+        public override StoryNodeCallback Setup(StoryNodeView view)
         {
             View = view;
+            return this;
         }
 
 

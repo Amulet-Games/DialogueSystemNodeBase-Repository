@@ -40,7 +40,6 @@ namespace AG
         private Lazy<Dictionary<TKey, uint>> _keyPositions;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the serializable dictionary class.
         /// </summary>
@@ -53,7 +52,7 @@ namespace AG
         /// <summary>
         /// Constructor of the serializable dictionary class.
         /// </summary>
-        /// <param name="dictionary">The dictionary to initalize the class with.</param>
+        /// <param name="dictionary">The dictionary to initialize the class with.</param>
         /// <exception cref="ArgumentException">The given dictionary is null.</exception>
         public SerializableDictionary(IDictionary<TKey, TValue> dictionary)
         {
@@ -79,7 +78,7 @@ namespace AG
 
 
         /// <summary>
-        /// Callback that's executed after Unity deserializes the object.
+        /// Callback that's executed after Unity deserialize the object.
         /// </summary>
         public void OnAfterDeserialize()
         {

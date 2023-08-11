@@ -12,7 +12,6 @@ namespace AG.DS
         [SerializeField] public OptionPortModel OptionPortModel;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option port group cell model class.
         /// </summary>

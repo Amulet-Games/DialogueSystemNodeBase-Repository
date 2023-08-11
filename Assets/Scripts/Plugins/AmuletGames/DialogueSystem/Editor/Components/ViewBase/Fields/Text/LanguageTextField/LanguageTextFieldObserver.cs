@@ -16,15 +16,11 @@ namespace AG.DS
         string previousValue;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the language text field observer class.
         /// </summary>
         /// <param name="view">The language text field view to set for.</param>
-        public LanguageTextFieldObserver
-        (
-            LanguageTextFieldView view
-        )
+        public LanguageTextFieldObserver(LanguageTextFieldView view)
         {
             this.view = view;
         }

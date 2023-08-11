@@ -38,7 +38,6 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option port group view.
         /// </summary>

@@ -12,7 +12,7 @@ namespace AG.DS
         /// <param name="str01">The first string value to set for.</param>
         /// <param name="str02">The second string value to set for.</param>
         /// 
-        /// <returns>A new string value of the two given string values combined.</returns>
+        /// <returns>A new string that made of the two given string values combined.</returns>
         public static string New(string str01, string str02)
         {
             StringBuilder sb = new(str01);
@@ -22,16 +22,16 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Create a new string by retrieve the characters from the end of the given string value by the given length.
+        /// Create a new string by retrieving the characters from the end of the given string value and the given length.
         /// </summary>
         /// 
         /// <param name="str">The string value to set for.</param>
         /// <param name="length">The length to set for.</param>
         /// 
-        /// <returns>A new string value of the characters that are retrieved from the end of the given string value by the given length.</returns>
+        /// <returns>A new string that made of the end of the given string value in a given length.</returns>
         /// 
         /// <exception cref="ArgumentException">
-        /// Thrown when the given string value is null or the given length value is less than 0.
+        /// Thrown when the given string value is null or the given length is less than 0.
         /// </exception>
         public static string Right(this string str, int length)
         {

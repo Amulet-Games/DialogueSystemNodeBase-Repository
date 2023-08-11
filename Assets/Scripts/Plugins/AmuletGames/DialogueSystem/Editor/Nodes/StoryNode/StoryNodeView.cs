@@ -36,7 +36,6 @@ namespace AG.DS
         public DefaultPort OutputDefaultPort;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the story node view class.
         /// </summary>

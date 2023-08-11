@@ -57,7 +57,6 @@ namespace AG.DS
         [SerializeField] TObject m_value;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the common object field view class.
         /// </summary>

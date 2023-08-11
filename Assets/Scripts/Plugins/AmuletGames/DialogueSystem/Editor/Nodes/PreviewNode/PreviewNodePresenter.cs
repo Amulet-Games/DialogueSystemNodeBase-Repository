@@ -9,19 +9,19 @@ namespace AG.DS
     <
         PreviewNode,
         PreviewNodeView,
-        PreviewNodeObserver
+        PreviewNodeCallback
     >
     {
         /// <inheritdoc />
         public override PreviewNode CreateElements
         (
             PreviewNodeView view,
-            PreviewNodeObserver observer,
+            PreviewNodeCallback callback,
             GraphViewer graphViewer,
             HeadBar headBar
         )
         {
-            var node = new PreviewNode(view, graphViewer);
+            var node = new PreviewNode(view, callback, graphViewer);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

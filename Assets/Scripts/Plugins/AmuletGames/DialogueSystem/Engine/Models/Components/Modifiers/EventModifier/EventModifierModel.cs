@@ -24,7 +24,6 @@ namespace AG.DS
         [SerializeField] public double DelaySeconds;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the event modifier model class.
         /// </summary>

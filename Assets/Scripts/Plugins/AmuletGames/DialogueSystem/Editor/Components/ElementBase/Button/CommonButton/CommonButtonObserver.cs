@@ -22,7 +22,6 @@ namespace AG.DS
         EventCallback<ClickEvent> clickEvent;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the common button observer class.
         /// </summary>

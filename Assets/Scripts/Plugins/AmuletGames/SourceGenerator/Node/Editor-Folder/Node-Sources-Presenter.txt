@@ -10,7 +10,6 @@ namespace AG.#Namespace#
         #Name#NodeModel
     >
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the #name# node presenter module class.
         /// </summary>

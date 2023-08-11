@@ -24,7 +24,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Remove the given visual element from the display none style class.
+        /// Remove the visual element from the display none style class.
         /// </summary>
         /// <param name="element">Extension visual element.</param>
         public static void ShowElement(this VisualElement element)
@@ -34,7 +34,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Add the given visual element to the display none style class.
+        /// Add the visual element to the display none style class.
         /// </summary>
         /// <param name="element">Extension visual element.</param>
         public static void HideElement(this VisualElement element)
@@ -44,8 +44,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register GeometryChangedEvent to the given element, once the event has been called, it will be unregistered from the given element. 
-        /// <br>So the given callback will only be called once.</br>
+        /// Register GeometryChangedEvent to the visual element, and unregistered it once it's invoked.
         /// </summary>
         /// <param name="element">Extension visual element.</param>
         /// <param name="callback">The GeometryChangedEvent's callback to set for.</param>
@@ -66,7 +65,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Add a background highlighter element to the given visual element.
+        /// Add a background highlighter element to the visual element.
         /// </summary>
         /// <param name="button">Extension visual element.</param>
         public static void AddBackgroundHighlighter(this VisualElement element)

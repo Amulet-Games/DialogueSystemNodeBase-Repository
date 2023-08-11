@@ -5,7 +5,6 @@ namespace AG.DS
     [Serializable]
     public class ConditionComparisonTypeIconicEnumFieldView : IconicEnumFieldViewBase
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the condition comparison type iconic enum field view class.
         /// </summary>

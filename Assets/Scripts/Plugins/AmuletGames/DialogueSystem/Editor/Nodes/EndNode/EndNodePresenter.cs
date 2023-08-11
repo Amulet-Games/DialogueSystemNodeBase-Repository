@@ -7,19 +7,19 @@ namespace AG.DS
     <
         EndNode,
         EndNodeView,
-        EndNodeObserver
+        EndNodeCallback
     >
     {
         /// <inheritdoc />
         public override EndNode CreateElements
         (
             EndNodeView view,
-            EndNodeObserver observer,
+            EndNodeCallback callback,
             GraphViewer graphViewer,
             HeadBar headBar
         )
         {
-            var node = new EndNode(view, graphViewer);
+            var node = new EndNode(view, callback, graphViewer);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

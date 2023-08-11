@@ -47,7 +47,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Update the option port label with the given sibling index.
+        /// Update the option port label with the sibling index.
         /// </summary>
         /// <param name="port">Extension option port.</param>
         /// <param name="siblingIndex">The index to set for the port label.</param>

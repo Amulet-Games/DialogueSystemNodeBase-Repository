@@ -41,7 +41,6 @@ namespace AG.DS
         [SerializeField] string m_value;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the node title text field view class.
         /// </summary>

@@ -1,6 +1,4 @@
-using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 
 namespace AG.DS
 {
@@ -13,7 +11,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup for the class.
+        /// Setup for the node manager class.
         /// </summary>
         public static void Setup()
         {
@@ -23,17 +21,17 @@ namespace AG.DS
 
         // ----------------------------- Spawn -----------------------------
         /// <summary>
-        /// Method for creating a new node base element.
+        /// Method for creating a new node element.
         /// </summary>
         /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="nodeType">The node type to set for.</param>
         /// 
-        /// <returns>A new node base element.</returns>
+        /// <returns>A new node element.</returns>
         /// 
         /// <exception cref="ArgumentException">
-        /// Thrown when the given node type is invalid to any of the current exist node's type.
+        /// Thrown when the given node type is invalid to any of the current existing node's type.
         /// </exception>
         public NodeBase Spawn
         (
@@ -77,19 +75,19 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for creating a new node base element.
+        /// Method for creating a new node element.
         /// </summary>
         /// 
         /// <typeparam name="TNodeModel">Type node model</typeparam>
         /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
-        /// <param name="model">The type node model to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         /// 
-        /// <returns>A new node base element.</returns>
+        /// <returns>A new node element.</returns>
         /// 
         /// <exception cref="ArgumentException">
-        /// Thrown when the given type node model is invalid to any of the current exist node's type.
+        /// Thrown when the given type node model is invalid to any of the current existing node's type.
         /// </exception>
         public NodeBase Spawn<TNodeModel>
         (
@@ -134,7 +132,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for creating a new type node element.
+        /// Method for creating a new node element.
         /// </summary>
         /// 
         /// <typeparam name="TNode">Type node</typeparam>
@@ -147,9 +145,9 @@ namespace AG.DS
         /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
-        /// <param name="model">The type node model to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         /// 
-        /// <returns>A new type node element.</returns>
+        /// <returns>A new node element.</returns>
         TNode Spawn<TNode, TNodeView, TNodePresenter, TNodeObserver, TNodeSerializer, TNodeCallback, TNodeModel>
         (
             GraphViewer graphViewer,
@@ -158,17 +156,18 @@ namespace AG.DS
         )
             where TNode : NodeFrameBase<TNode, TNodeView, TNodeCallback>
             where TNodeView : NodeViewBase, new()
-            where TNodePresenter : NodePresenterFrameBase<TNode, TNodeView, TNodeObserver>, new()
+            where TNodePresenter : NodePresenterFrameBase<TNode, TNodeView, TNodeCallback>, new()
             where TNodeObserver : NodeObserverFrameBase<TNode, TNodeView>, new()
             where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeCallback, TNodeModel>, new()
-            where TNodeCallback: NodeCallbackFrameBase<TNode, TNodeView> 
+            where TNodeCallback: NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>, new()
             where TNodeModel : NodeModelBase
         {
             var view = new TNodeView();
             var observer = new TNodeObserver();
             var presenter = new TNodePresenter();
+            var callback = new TNodeCallback().Setup(view);
 
-            var node = presenter.CreateElements(view, observer, graphViewer, headBar);
+            var node = presenter.CreateElements(view, callback, graphViewer, headBar);
 
             observer.RegisterEvents(node, view);
             
@@ -181,6 +180,18 @@ namespace AG.DS
         }
 
 
+        // ----------------------------- Save -----------------------------
+        /// <summary>
+        /// Method for saving the node element's values.
+        /// </summary>
+        /// 
+        /// <param name="node">The node element to set for.</param>
+        /// 
+        /// <returns>A new node model.</returns>
+        /// 
+        /// <exception cref="ArgumentException">
+        /// Thrown when the given node element is invalid to any of the current existing node's type.
+        /// </exception>
         public NodeModelBase Save(NodeBase node)
         {
             return node switch
@@ -191,22 +202,26 @@ namespace AG.DS
                 DialogueNode m_node => Save<DialogueNode, DialogueNodeView, DialogueNodeSerializer,
                               DialogueNodeCallback, DialogueNodeModel>(m_node),
 
-                EndNode m_node => Save<EndNode, EndNodeView, EndNodeSerializer, EndNodeCallback, EndNodeModel>(m_node),
+                EndNode m_node => Save<EndNode, EndNodeView, EndNodeSerializer,
+                         EndNodeCallback, EndNodeModel>(m_node),
 
-                EventNode m_node => Save<EventNode, EventNodeView, EventNodeSerializer, EventNodeCallback, EventNodeModel>(m_node),
+                EventNode m_node => Save<EventNode, EventNodeView, EventNodeSerializer,
+                           EventNodeCallback, EventNodeModel>(m_node),
 
                 OptionBranchNode m_node => Save<OptionBranchNode, OptionBranchNodeView, OptionBranchNodeSerializer,
                                   OptionBranchNodeCallback, OptionBranchNodeModel>(m_node),
 
                 OptionRootNode m_node => Save<OptionRootNode, OptionRootNodeView, OptionRootNodeSerializer,
-                                  OptionRootNodeCallback, OptionRootNodeModel>(m_node),
+                                OptionRootNodeCallback, OptionRootNodeModel>(m_node),
 
                 PreviewNode m_node => Save<PreviewNode, PreviewNodeView, PreviewNodeSerializer,
                              PreviewNodeCallback, PreviewNodeModel>(m_node),
 
-                StartNode m_node => Save<StartNode, StartNodeView, StartNodeSerializer, StartNodeCallback, StartNodeModel>(m_node),
+                StartNode m_node => Save<StartNode, StartNodeView, StartNodeSerializer,
+                           StartNodeCallback, StartNodeModel>(m_node),
 
-                StoryNode m_node => Save<StoryNode, StoryNodeView, StoryNodeSerializer, StoryNodeCallback, StoryNodeModel>(m_node),
+                StoryNode m_node => Save<StoryNode, StoryNodeView, StoryNodeSerializer,
+                           StoryNodeCallback, StoryNodeModel>(m_node),
 
                 _ => throw new ArgumentException("Invalid node element type: " + node.GetType().Name)
             };
@@ -214,7 +229,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for saving the given type node element's values and stores them into a new type node model.
+        /// Method for saving the node element's values.
         /// </summary>
         /// 
         /// <typeparam name="TNode">Type node</typeparam>
@@ -223,9 +238,9 @@ namespace AG.DS
         /// <typeparam name="TNodeCallback">Type node callback</typeparam>
         /// <typeparam name="TNodeModel">Type node model</typeparam>
         /// 
-        /// <param name="node">The type node element to set for.</param>
+        /// <param name="node">The node element to set for.</param>
         /// 
-        /// <returns>A new type node model.</returns>
+        /// <returns>A new node model.</returns>
         TNodeModel Save<TNode, TNodeView, TNodeSerializer, TNodeCallback, TNodeModel>
         (
             TNode node
@@ -233,7 +248,7 @@ namespace AG.DS
             where TNode : NodeFrameBase<TNode, TNodeView, TNodeCallback>
             where TNodeView : NodeViewBase
             where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeCallback, TNodeModel>, new()
-            where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView>
+            where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
             where TNodeModel : NodeModelBase, new()
         {
             var model = new TNodeModel();

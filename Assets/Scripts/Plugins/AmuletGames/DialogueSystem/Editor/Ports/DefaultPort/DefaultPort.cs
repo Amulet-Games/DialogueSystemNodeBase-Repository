@@ -6,7 +6,6 @@ namespace AG.DS
 {
     public partial class DefaultPort : PortFrameBase<PortModelBase>
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the default port element class.
         /// </summary>
@@ -41,7 +40,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Disconnect -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <inheritdoc />
         public override void Disconnect(GraphViewer graphViewer)
         {

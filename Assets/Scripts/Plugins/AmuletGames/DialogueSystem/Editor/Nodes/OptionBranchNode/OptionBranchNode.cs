@@ -15,30 +15,31 @@ namespace AG.DS
         public HeadBar HeadBar;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option branch node class.
         /// </summary>
-        /// <param name="view">The node view to set for.</param>
-        /// <param name="observer">The node observer to set for.</param>
+        /// <param name="view">The option branch node view to set for.</param>
+        /// <param name="callback">The option branch node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
         public OptionBranchNode
         (
             OptionBranchNodeView view,
-            OptionBranchNodeObserver observer,
+            OptionBranchNodeCallback callback,
             GraphViewer graphViewer,
             HeadBar headBar
         )
         {
-            // Setup details
+            // Setup references
             {
                 View = view;
+                m_Callback = callback;
                 GraphViewer = graphViewer;
                 HeadBar = headBar;
+            }
 
-                m_Callback = new(View, observer);
-
+            // Setup details
+            {
                 style.minWidth = NumberConfig.OPTION_BRANCH_NODE_MIN_WIDTH;
             }
 

@@ -10,7 +10,6 @@ namespace AG.DS
         Folder folder;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the folder observer class.
         /// </summary>

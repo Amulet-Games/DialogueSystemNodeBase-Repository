@@ -16,7 +16,6 @@ namespace AG.DS
         OptionPort input;
 
 
-        // ----------------------------- Setup -----------------------------
         /// <inheritdoc />
         public override EdgeObserverFrameBase<OptionEdge> Setup(OptionEdge edge)
         {

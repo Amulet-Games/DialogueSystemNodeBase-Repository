@@ -43,7 +43,6 @@ namespace AG.DS
         public Action LanguageChangedEvent;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the headBar element class.
         /// </summary>

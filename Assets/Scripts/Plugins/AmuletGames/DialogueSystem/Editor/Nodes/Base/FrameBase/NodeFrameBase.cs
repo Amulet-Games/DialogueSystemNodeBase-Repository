@@ -12,7 +12,7 @@ namespace AG.DS
         : NodeBase
         where TNode : NodeBase
         where TNodeView : NodeViewBase
-        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView>
+        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
     {
         /// <summary>
         /// Reference of the node view.
@@ -36,7 +36,6 @@ namespace AG.DS
         protected TNodeCallback m_Callback;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the node frame base class.
         /// </summary>

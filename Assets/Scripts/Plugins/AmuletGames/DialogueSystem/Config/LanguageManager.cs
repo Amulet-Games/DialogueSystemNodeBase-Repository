@@ -29,7 +29,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup for the class.
+        /// Setup for the language manager class.
         /// </summary>
         public static void Setup()
         {
@@ -48,10 +48,10 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Retrieve the suffix text of the given language type.
+        /// Retrieve the suffix text of the language type.
         /// </summary>
         /// <param name="type">The targeting language type.</param>
-        /// <returns>The suffix text of the given language type.</returns>
+        /// <returns>The suffix text of the language type.</returns>
         public string GetSuffix(LanguageType type)
         {
             return type switch
@@ -68,10 +68,10 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Retrieve the abbreviated text of the given language type.
+        /// Retrieve the abbreviated text of the language type.
         /// </summary>
         /// <param name="type">The targeting language type.</param>
-        /// <returns>The abbreviated text of the given language type.</returns>
+        /// <returns>The abbreviated text of the language type.</returns>
         public string GetShort(LanguageType type)
         {
             return type switch
@@ -88,10 +88,10 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Retrieve the full text of the given language type.
+        /// Retrieve the full text of the language type.
         /// </summary>
         /// <param name="type">The targeting language type.</param>
-        /// <returns>The full text of the given language type.</returns>
+        /// <returns>The full text of the language type.</returns>
         public string GetFull(LanguageType type)
         {
             return type switch

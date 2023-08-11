@@ -5,16 +5,26 @@ namespace AG.DS
     public abstract class NodeCallbackFrameBase
     <
         TNode,
-        TNodeView
+        TNodeView,
+        TNodeCallback
     >
         : NodeCallbackBase, INodeCallback
         where TNode: NodeBase
         where TNodeView : NodeViewBase
+        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
     {
         /// <summary>
         /// Reference of the node view.
         /// </summary>
         public TNodeView View;
+
+
+        /// <summary>
+        /// Setup for the node callback frame base class.
+        /// </summary>
+        /// <param name="view">The node view to set for.</param>
+        /// <returns>The after setup node callback frame base class.</returns>
+        public abstract TNodeCallback Setup(TNodeView view);
 
 
         // ----------------------------- Callback -----------------------------

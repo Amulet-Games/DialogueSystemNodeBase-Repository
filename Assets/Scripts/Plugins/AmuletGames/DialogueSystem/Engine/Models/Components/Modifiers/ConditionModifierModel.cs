@@ -42,7 +42,6 @@ namespace AG.DS
         [SerializeField] public bool IsShowKeyboardInputField;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the condition modifier model class.
         /// </summary>

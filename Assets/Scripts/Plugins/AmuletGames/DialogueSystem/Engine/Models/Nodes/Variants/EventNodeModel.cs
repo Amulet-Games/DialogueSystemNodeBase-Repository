@@ -25,7 +25,6 @@ namespace AG.DS
         [SerializeField] public EventModifierGroupModel EventModifierGroupModel;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the event node model class.
         /// </summary>

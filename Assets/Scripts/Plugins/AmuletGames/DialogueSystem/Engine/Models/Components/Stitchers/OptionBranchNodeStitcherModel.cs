@@ -25,7 +25,6 @@ namespace AG.DS
         [SerializeField] public int UnmetOptionDisplayTypeEnumIndex;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option branch node stitcher model class.
         /// </summary>

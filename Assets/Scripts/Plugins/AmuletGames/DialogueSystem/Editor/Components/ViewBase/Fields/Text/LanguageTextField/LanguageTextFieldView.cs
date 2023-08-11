@@ -27,7 +27,6 @@ namespace AG.DS
         [SerializeField] public LanguageGeneric<string> value;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the language text field view class.
         /// </summary>

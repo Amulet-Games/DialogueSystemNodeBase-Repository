@@ -13,7 +13,6 @@ namespace AG.DS
         LanguageObjectFieldView<TObject> view;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the language object field observer class.
         /// </summary>
@@ -24,7 +23,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Constructor -----------------------------
+        // ----------------------------- Register Events -----------------------------
         /// <summary>
         /// Register events to the language object field.
         /// </summary>

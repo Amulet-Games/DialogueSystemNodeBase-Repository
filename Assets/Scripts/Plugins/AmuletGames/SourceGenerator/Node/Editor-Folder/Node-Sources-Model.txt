@@ -3,7 +3,6 @@ namespace AG.#Namespace#
     /// <inheritdoc />
     public class #Name#NodeModel : NodeModelBase
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the #name# node model module class.
         /// </summary>

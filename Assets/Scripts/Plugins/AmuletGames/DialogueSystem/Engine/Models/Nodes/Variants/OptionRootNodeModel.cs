@@ -31,7 +31,6 @@ namespace AG.DS
         [SerializeField] public LanguageGeneric<string> HeadlineText;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option root node model class.
         /// </summary>

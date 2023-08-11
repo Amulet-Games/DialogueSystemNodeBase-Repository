@@ -9,7 +9,7 @@ namespace AG
         /// </summary>
         /// <param name="a">The float number to use to compare.</param>
         /// <param name="b">The float number to compare with.</param>
-        /// <param name="epsilon">The thershold that defines how much tolerances can be given between the differences of two numbers.</param>
+        /// <param name="epsilon">The threshold that defines how much tolerances can be given between the differences of two numbers.</param>
         /// <returns>True if the two float numbers equals or approximately close to each other.</returns>
         public static bool ApproximatelyEqualEpsilon(float a, float b, float epsilon)
         {

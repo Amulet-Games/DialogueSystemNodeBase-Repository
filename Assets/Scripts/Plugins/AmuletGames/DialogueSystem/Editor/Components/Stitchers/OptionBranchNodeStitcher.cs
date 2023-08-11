@@ -30,7 +30,6 @@ namespace AG.DS
         UnmetOptionDisplayTypeEnumFieldView unmetOptionDisplayTypeEnumContainer;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option branch node stitcher class.
         /// </summary>

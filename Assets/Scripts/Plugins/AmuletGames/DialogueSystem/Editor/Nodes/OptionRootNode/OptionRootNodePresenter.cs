@@ -8,19 +8,19 @@ namespace AG.DS
     <
         OptionRootNode,
         OptionRootNodeView,
-        OptionRootNodeObserver
+        OptionRootNodeCallback
     >
     {
         /// <inheritdoc />
         public override OptionRootNode CreateElements
         (
             OptionRootNodeView view,
-            OptionRootNodeObserver observer,
+            OptionRootNodeCallback callback,
             GraphViewer graphViewer,
             HeadBar headBar
         )
         {
-            var node = new OptionRootNode(view, observer, graphViewer, headBar);
+            var node = new OptionRootNode(view, callback, graphViewer, headBar);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

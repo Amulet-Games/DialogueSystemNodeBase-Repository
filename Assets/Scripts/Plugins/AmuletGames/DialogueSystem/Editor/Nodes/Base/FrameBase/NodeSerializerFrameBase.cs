@@ -13,14 +13,14 @@ namespace AG.DS
         : NodeSerializerBase
         where TNode : NodeFrameBase<TNode, TNodeView, TNodeCallback>
         where TNodeView : NodeViewBase
-        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView>
+        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
         where TNodeModel : NodeModelBase
     {
         /// <summary>
-        /// Save the node values to the type node model.
+        /// Save the node values to the given node model.
         /// </summary>
-        /// <param name="node">The type node element to set for.</param>
-        /// <param name="model">The type node model to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public virtual void Save(TNode node, TNodeModel model)
         {
             // node basic info
@@ -37,10 +37,10 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the node values from the type node model.
+        /// Load the node values from the given node model.
         /// </summary>
-        /// <param name="node">The type node element to set for.</param>
-        /// <param name="model">The type node model to set for.</param>
+        /// <param name="node">The node element to set for.</param>
+        /// <param name="model">The node model to set for.</param>
         public virtual void Load(TNode node, TNodeModel model)
         {
             // node basic info

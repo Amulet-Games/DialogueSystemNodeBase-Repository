@@ -9,25 +9,28 @@ namespace AG.DS
         EventNodeCallback
     >
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the event node class.
         /// </summary>
-        /// <param name="view">The node view to set for.</param>
+        /// <param name="view">The event node view to set for.</param>
+        /// <param name="callback">The event node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public EventNode
         (
             EventNodeView view,
+            EventNodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup details
+            // Setup references
             {
                 View = view;
+                m_Callback = callback;
                 GraphViewer = graphViewer;
+            }
 
-                m_Callback = new(View);
-
+            // Setup details
+            {
                 style.minWidth = NumberConfig.EVENT_NODE_MIN_WIDTH;
             }
 

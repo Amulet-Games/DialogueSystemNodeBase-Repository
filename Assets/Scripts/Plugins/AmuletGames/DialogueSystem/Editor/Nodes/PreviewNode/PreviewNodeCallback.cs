@@ -5,18 +5,15 @@ namespace AG.DS
     public class PreviewNodeCallback : NodeCallbackFrameBase
     <
         PreviewNode,
-        PreviewNodeView
+        PreviewNodeView,
+        PreviewNodeCallback
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the preview node callback class.
-        /// </summary>
-        /// <param name="view">The node view to set for.</param>
-        /// <param name="observer">The node observer to set for.</param>
-        public PreviewNodeCallback(PreviewNodeView view)
+        /// <inheritdoc />
+        public override PreviewNodeCallback Setup(PreviewNodeView view)
         {
             View = view;
+            return this;
         }
 
 

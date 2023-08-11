@@ -27,7 +27,6 @@ namespace AG.DS
         public DefaultPort OutputDefaultPort;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the event node view class.
         /// </summary>

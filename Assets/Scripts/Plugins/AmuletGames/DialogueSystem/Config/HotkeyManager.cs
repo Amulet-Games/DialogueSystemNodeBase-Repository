@@ -33,7 +33,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup for the class.
+        /// Setup for the hotkey manager class.
         /// </summary>
         public static void Setup()
         {

@@ -42,7 +42,6 @@ namespace AG.DS
         public DefaultPort OutputDefaultPort;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the preview node view class.
         /// </summary>

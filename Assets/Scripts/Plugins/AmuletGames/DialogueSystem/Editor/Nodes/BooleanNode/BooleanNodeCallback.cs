@@ -5,17 +5,15 @@ namespace AG.DS
     public class BooleanNodeCallback : NodeCallbackFrameBase
     <
         BooleanNode,
-        BooleanNodeView
+        BooleanNodeView,
+        BooleanNodeCallback
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the boolean node callback class.
-        /// </summary>
-        /// <param name="view">The node view to set for.</param>
-        public BooleanNodeCallback(BooleanNodeView view)
+        /// <inheritdoc />
+        public override BooleanNodeCallback Setup(BooleanNodeView view)
         {
             View = view;
+            return this;
         }
 
 

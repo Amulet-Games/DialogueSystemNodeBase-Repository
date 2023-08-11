@@ -9,7 +9,6 @@ namespace AG.DS
         public DefaultPort InputDefaultPort;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the end node view class.
         /// </summary>

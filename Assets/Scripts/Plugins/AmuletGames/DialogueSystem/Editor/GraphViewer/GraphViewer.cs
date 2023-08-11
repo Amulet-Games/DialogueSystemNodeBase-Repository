@@ -44,7 +44,6 @@ namespace AG.DS
         public Vector2 MouseScreenPosition => GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the graph viewer element class.
         /// </summary>
@@ -58,8 +57,7 @@ namespace AG.DS
 
         // ----------------------------- Overrides -----------------------------
         /// <summary>
-        /// Get all ports compatible with given port under certain conditions, 
-        /// <br>to limit which nodes can connect to each other.</br>
+        /// Get all ports compatible with given port.
         /// <para>Read More https://docs.unity3d.com/ScriptReference/Experimental.GraphView.GraphView.GetCompatiblePorts.html</para>
         /// </summary>
         /// <param name="connectFromPort">The starting port to validate against.</param>

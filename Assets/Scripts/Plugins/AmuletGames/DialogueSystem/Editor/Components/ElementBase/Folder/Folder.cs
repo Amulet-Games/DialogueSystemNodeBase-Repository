@@ -34,7 +34,6 @@ namespace AG.DS
         public bool Expanded { get; private set; }
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the folder element class.
         /// </summary>

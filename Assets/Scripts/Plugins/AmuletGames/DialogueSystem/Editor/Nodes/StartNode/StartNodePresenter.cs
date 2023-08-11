@@ -7,19 +7,19 @@ namespace AG.DS
     <
         StartNode,
         StartNodeView,
-        StartNodeObserver
+        StartNodeCallback
     >
     {
         /// <inheritdoc />
         public override StartNode CreateElements
         (
             StartNodeView view,
-            StartNodeObserver observer,
+            StartNodeCallback callback,
             GraphViewer graphViewer,
             HeadBar headBar
         )
         {
-            var node = new StartNode(view, graphViewer);
+            var node = new StartNode(view, callback, graphViewer);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

@@ -8,7 +8,6 @@ namespace AG.DS
     /// </summary>
     public class DefaultEdgeConnectorListener : EdgeConnectorListenerBase<DefaultEdge>
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the default edge connector listener class.
         /// </summary>
@@ -19,7 +18,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- IEdgeConnectorListener -----------------------------
+        // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
         protected override void OnDrop(GraphViewer graphViewer, DefaultEdge edge)
         {

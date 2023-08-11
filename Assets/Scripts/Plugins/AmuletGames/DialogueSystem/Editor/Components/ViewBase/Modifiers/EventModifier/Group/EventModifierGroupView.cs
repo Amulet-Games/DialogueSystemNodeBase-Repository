@@ -117,7 +117,6 @@ namespace AG.DS
         EventModifierView m_soleModifier;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the event modifier group view class.
         /// </summary>

@@ -5,7 +5,6 @@ namespace AG.DS
 {
     public class ContentButtonClickable : Clickable
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the content button clickable class.
         /// </summary>
@@ -18,6 +17,7 @@ namespace AG.DS
         }
 
 
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Invoke the base clickable class's clicked action.
         /// </summary>

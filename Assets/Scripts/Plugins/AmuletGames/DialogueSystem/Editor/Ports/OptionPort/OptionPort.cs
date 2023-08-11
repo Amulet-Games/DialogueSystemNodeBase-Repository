@@ -12,7 +12,6 @@ namespace AG.DS
         public OptionPort OpponentPort;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option port element class.
         /// </summary>
@@ -50,7 +49,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Disconnect -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <inheritdoc />
         public override void Disconnect(GraphViewer graphViewer)
         {
@@ -65,7 +64,6 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Hide Opponent Connect Style -----------------------------
         /// <summary>
         /// Hide the opponent port's connect style if it's not connecting to other option port. 
         /// </summary>

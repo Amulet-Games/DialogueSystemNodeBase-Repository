@@ -24,7 +24,6 @@ namespace AG
         public float z;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the serializable vector3 struct.
         /// </summary>
@@ -43,7 +42,7 @@ namespace AG
 
         // ----------------------------- Operators -----------------------------
         /// <summary>
-        /// Allows explict convertion from variable type serializable vector3 value to vector3.
+        /// Allows explicit conversion from variable type serializable vector3 value to vector3.
         /// </summary>
         /// <param name="v">The serializable vector3 variable to convert from.</param>
         public static explicit operator Vector3(SerializableVector3 v)
@@ -53,7 +52,7 @@ namespace AG
 
 
         /// <summary>
-        /// Allows explict convertion from variable type vector3 to serializable vector3.
+        /// Allows explicit conversion from variable type vector3 to serializable vector3.
         /// </summary>
         /// <param name="v">The vector3 variable to convert from.</param>
         public static explicit operator SerializableVector3(Vector3 v)

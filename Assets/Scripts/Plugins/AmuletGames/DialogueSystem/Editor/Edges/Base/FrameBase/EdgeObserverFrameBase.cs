@@ -10,12 +10,11 @@ namespace AG.DS
         protected TEdge Edge;
 
 
-        // ----------------------------- Setup -----------------------------
         /// <summary>
-        /// Setup for the class.
+        /// Setup for the edge observer frame base class.
         /// </summary>
-        /// <param name="edge">The type edge element to set for.</param>
-        /// <returns>The type edge observer frame base class.</returns>
+        /// <param name="edge">The edge element to set for.</param>
+        /// <returns>The after setup edge observer frame base class.</returns>
         public abstract EdgeObserverFrameBase<TEdge> Setup(TEdge edge);
 
 

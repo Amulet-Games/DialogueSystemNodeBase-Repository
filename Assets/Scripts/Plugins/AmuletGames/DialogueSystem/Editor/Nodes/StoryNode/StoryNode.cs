@@ -17,27 +17,27 @@ namespace AG.DS
         public HeadBar HeadBar;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the story node class.
         /// </summary>
-        /// <param name="view">The node view to set for.</param>
+        /// <param name="view">The story node view to set for.</param>
+        /// <param name="callback">The story node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
         public StoryNode
         (
             StoryNodeView view,
+            StoryNodeCallback callback,
             GraphViewer graphViewer,
             HeadBar headBar
         )
         {
-            // Setup frame fields
+            // Setup references
             {
                 View = view;
+                m_Callback = callback;
                 GraphViewer = graphViewer;
                 HeadBar = headBar;
-
-                m_Callback = new(View);
             }
 
             // Add style sheet

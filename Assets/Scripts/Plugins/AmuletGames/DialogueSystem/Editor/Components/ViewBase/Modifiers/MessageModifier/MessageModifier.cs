@@ -72,7 +72,6 @@ namespace AG.DS
         string csvGUID;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the message modifier component class.
         /// </summary>

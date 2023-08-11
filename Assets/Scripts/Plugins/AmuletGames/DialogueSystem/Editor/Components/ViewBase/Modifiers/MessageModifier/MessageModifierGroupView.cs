@@ -47,7 +47,6 @@ namespace AG.DS
         MessageModifier tempSoleModifier;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the message modifier group view class.
         /// </summary>

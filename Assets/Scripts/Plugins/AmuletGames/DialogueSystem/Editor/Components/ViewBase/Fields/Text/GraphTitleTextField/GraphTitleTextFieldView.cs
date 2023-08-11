@@ -68,13 +68,16 @@ namespace AG.DS
         [SerializeField] string m_value;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the graph title text field view class.
         /// </summary>
         /// <param name="value">The value of the view to set for.</param>
         /// <param name="bindingSO">The binding serialized object to set for.</param>
-        public GraphTitleTextFieldView(string value, SerializedObject bindingSO)
+        public GraphTitleTextFieldView
+        (
+            string value,
+            SerializedObject bindingSO
+        )
         {
             m_value = value;
             m_bindingSO = bindingSO;

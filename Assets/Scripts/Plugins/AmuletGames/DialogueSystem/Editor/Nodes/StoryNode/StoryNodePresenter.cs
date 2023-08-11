@@ -9,19 +9,19 @@ namespace AG.DS
     <
         StoryNode,
         StoryNodeView,
-        StoryNodeObserver
+        StoryNodeCallback
     >
     {
         /// <inheritdoc />
         public override StoryNode CreateElements
         (
             StoryNodeView view,
-            StoryNodeObserver observer,
+            StoryNodeCallback callback,
             GraphViewer graphViewer,
             HeadBar headBar
         )
         {
-            var node = new StoryNode(view, graphViewer, headBar);
+            var node = new StoryNode(view, callback, graphViewer, headBar);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

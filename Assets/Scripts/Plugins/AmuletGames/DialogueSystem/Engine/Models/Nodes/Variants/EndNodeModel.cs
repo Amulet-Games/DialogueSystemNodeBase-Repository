@@ -13,7 +13,6 @@ namespace AG.DS
         [SerializeField] public PortModelBase InputPortModel;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the end node model class.
         /// </summary>

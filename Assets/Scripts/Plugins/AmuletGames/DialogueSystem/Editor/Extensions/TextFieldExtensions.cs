@@ -97,7 +97,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Add a icon image UIElement to the given text field.
+        /// Add a icon image UIElement to the text field.
         /// </summary>
         /// <param name="field">Extension text field.</param>
         /// <param name="iconSprite">The sprite to set for the icon.</param>

@@ -25,32 +25,6 @@ namespace AG.DS
         public PortBase ConnectorPort { get; private set; }
 
 
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the node create details class.
-        /// </summary>
-        public NodeCreateDetails() { }
-
-
-        /// <summary>
-        /// Constructor of the node create details class.
-        /// </summary>
-        /// <param name="horizontalAlignType">The horizontal alignment type to set for.</param>
-        /// <param name="connectorType">The connector type to set for.</param>
-        /// <param name="connectorPort">The connector port to set for.</param>
-        public NodeCreateDetails
-        (
-            HorizontalAlignmentType horizontalAlignType,
-            ConnectorType connectorType = ConnectorType.NONE,
-            PortBase connectorPort = null
-        )
-        {
-            HorizontalAlignmentType = horizontalAlignType;
-            ConnectorType = connectorType;
-            ConnectorPort = connectorPort;
-        }
-
-
         // ----------------------------- Service -----------------------------
         /// <summary>
         /// Set a new value to the horizontal alignment type.

@@ -10,7 +10,6 @@ namespace AG.DS
         FolderTitleTextFieldView view;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the folder title text field observer class.
         /// </summary>

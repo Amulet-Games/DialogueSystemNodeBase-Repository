@@ -9,25 +9,28 @@ namespace AG.DS
         EndNodeCallback
     >
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the end node class.
         /// </summary>
-        /// <param name="view">The node view to set for.</param>
+        /// <param name="view">The end node view to set for.</param>
+        /// <param name="callback">The end node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public EndNode
         (
             EndNodeView view,
+            EndNodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup details
+            // Setup references
             {
                 View = view;
+                m_Callback = callback;
                 GraphViewer = graphViewer;
+            }
 
-                m_Callback = new(View);
-
+            // Setup details
+            {
                 style.minWidth = NumberConfig.END_NODE_MIN_WIDTH;
             }
 

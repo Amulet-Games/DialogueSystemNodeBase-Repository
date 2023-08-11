@@ -16,19 +16,18 @@ namespace AG.DS
         public TPort Input;
 
 
-        // ----------------------------- Setup -----------------------------
         /// <summary>
-        /// Setup for the class.
+        /// Setup for the edge frame base class.
         /// </summary>
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
         public void Setup(TPort output, TPort input)
         {
-            Output = output;
-            Input = input;
-
             this.output = output;
             this.input = input;
+
+            Output = output;
+            Input = input;
 
             Output.Connect(this);
             Input.Connect(this);

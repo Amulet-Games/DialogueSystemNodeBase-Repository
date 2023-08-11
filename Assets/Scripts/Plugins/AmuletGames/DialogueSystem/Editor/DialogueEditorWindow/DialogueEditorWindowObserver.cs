@@ -54,7 +54,6 @@ namespace AG.DS
         bool isHotkeyReleased;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue editor window observer class.
         /// </summary>

@@ -31,7 +31,6 @@ namespace AG.DS
         [SerializeField] public OptionBranchNodeStitcherModel OptionBranchNodeStitcherModel;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option branch node model class.
         /// </summary>

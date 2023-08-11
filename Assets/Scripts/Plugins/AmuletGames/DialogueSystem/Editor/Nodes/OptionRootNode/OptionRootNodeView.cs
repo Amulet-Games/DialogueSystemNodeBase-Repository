@@ -35,7 +35,6 @@ namespace AG.DS
         public OptionPortGroupView OutputOptionPortGroupView;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option root node view class.
         /// </summary>

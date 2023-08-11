@@ -5,29 +5,15 @@ namespace AG.DS
     public class OptionRootNodeCallback : NodeCallbackFrameBase
     <
         OptionRootNode,
-        OptionRootNodeView
+        OptionRootNodeView,
+        OptionRootNodeCallback
     >
     {
-        /// <summary>
-        /// Reference of the option root observer.
-        /// </summary>
-        OptionRootNodeObserver observer;
-
-
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the option root node callback class.
-        /// </summary>
-        /// <param name="view">The node view to set for.</param>
-        /// <param name="observer">The option root node observer to set for.</param>
-        public OptionRootNodeCallback
-        (
-            OptionRootNodeView view,
-            OptionRootNodeObserver observer
-        )
+        /// <inheritdoc />
+        public override OptionRootNodeCallback Setup(OptionRootNodeView view)
         {
             View = view;
-            this.observer = observer;
+            return this;
         }
 
 
@@ -48,11 +34,6 @@ namespace AG.DS
                 View.InputDefaultPort.Disconnect(graphViewer);
                 View.OutputOptionPort.Disconnect(graphViewer);
                 View.OutputOptionPortGroupView.DisconnectAll(graphViewer);
-            }
-
-            // Unregister events
-            {
-                observer.UnregisterEvents();
             }
         }
 

@@ -16,7 +16,6 @@ namespace AG.DS
         EventModifierGroupView groupView;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the event modifier observer class.
         /// </summary>

@@ -13,7 +13,6 @@ namespace AG.DS
         [SerializeField] public List<MessageModifierModel> InstanceModifierModels;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue node stitcher model class.
         /// </summary>

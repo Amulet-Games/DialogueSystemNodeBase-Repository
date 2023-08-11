@@ -31,7 +31,6 @@ namespace AG.DS
         [SerializeField] public DialogueNodeStitcherModel DialogueNodeStitcherModel;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue node model class.
         /// </summary>

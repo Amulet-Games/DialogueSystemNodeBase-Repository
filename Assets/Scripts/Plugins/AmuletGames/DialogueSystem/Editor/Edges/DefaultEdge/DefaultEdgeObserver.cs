@@ -4,7 +4,6 @@ namespace AG.DS
 {
     public class DefaultEdgeObserver : EdgeObserverFrameBase<DefaultEdge>
     {
-        // ----------------------------- Setup -----------------------------
         /// <inheritdoc />
         public override EdgeObserverFrameBase<DefaultEdge> Setup(DefaultEdge edge)
         {

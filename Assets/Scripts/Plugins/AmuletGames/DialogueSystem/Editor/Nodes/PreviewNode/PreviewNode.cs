@@ -9,25 +9,28 @@ namespace AG.DS
         PreviewNodeCallback
     >
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the preview node class.
         /// </summary>
-        /// <param name="view">The node view to set for.</param>
+        /// <param name="view">The preview node view to set for.</param>
+        /// <param name="callback">The preview node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public PreviewNode
         (
             PreviewNodeView view,
+            PreviewNodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup details
+            // Setup references
             {
                 View = view;
+                m_Callback = callback;
                 GraphViewer = graphViewer;
+            }
 
-                m_Callback = new(View);
-
+            // Setup details
+            {
                 style.minWidth = NumberConfig.PREVIEW_NODE_MIN_WIDTH;
             }
 

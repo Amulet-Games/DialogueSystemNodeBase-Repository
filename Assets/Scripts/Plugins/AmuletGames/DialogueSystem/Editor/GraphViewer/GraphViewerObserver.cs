@@ -33,7 +33,6 @@ namespace AG.DS
         event Action graphViewChangedEvent;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the graph viewer observer class.
         /// </summary>
@@ -53,7 +52,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Setup Delegates -----------------------------
+        // ----------------------------- Assign Delegates -----------------------------
         /// <summary>
         /// Assign actions to the graph viewer's delegates. 
         /// </summary>
@@ -65,7 +64,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Delegate action -----------------------------
+        // ----------------------------- Actions -----------------------------
         /// <summary>
         /// The action to invoke when certain changes have occurred in the graph.
         /// </summary>

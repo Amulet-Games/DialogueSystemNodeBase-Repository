@@ -35,11 +35,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup for the class.
+        /// Setup for the config resources manager class.
         /// </summary>
         public static void Setup()
         {
-            Instance = Instance != null ? Instance : Resources.Load<ConfigResourcesManager>(PATH);
+            Instance = Instance != null
+                ? Instance
+                : Resources.Load<ConfigResourcesManager>(PATH);
         }
     }
 }

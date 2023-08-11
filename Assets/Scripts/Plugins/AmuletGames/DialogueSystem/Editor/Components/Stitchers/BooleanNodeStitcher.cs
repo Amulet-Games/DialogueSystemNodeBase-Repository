@@ -34,7 +34,6 @@ namespace AG.DS
         ConditionModifierModel tempRootModifierModel;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the event node stitcher class.
         /// </summary>

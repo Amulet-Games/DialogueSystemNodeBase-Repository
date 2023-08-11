@@ -25,7 +25,6 @@ namespace AG.DS
         [SerializeField] public SegmentModel SegmentModel;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the boolean node stitcher model class.
         /// </summary>

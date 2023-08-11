@@ -9,25 +9,28 @@ namespace AG.DS
         BooleanNodeCallback
     >
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the boolean node class.
         /// </summary>
-        /// <param name="view">The node view to set for.</param>
+        /// <param name="view">The boolean node view to set for.</param>
+        /// <param name="callback">The boolean node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public BooleanNode
         (
             BooleanNodeView view,
+            BooleanNodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup details
+            // Setup references
             {
                 View = view;
+                m_Callback = callback;
                 GraphViewer = graphViewer;
+            }
 
-                m_Callback = new(View);
-
+            // Setup details
+            {
                 style.minWidth = NumberConfig.BOOLEAN_NODE_MIN_WIDTH;
             }
 

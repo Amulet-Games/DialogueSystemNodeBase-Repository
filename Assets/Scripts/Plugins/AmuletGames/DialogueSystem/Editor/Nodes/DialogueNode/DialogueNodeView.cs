@@ -27,7 +27,6 @@
         public DefaultPort OutputDefaultPort;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the dialogue node view class.
         /// </summary>

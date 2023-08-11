@@ -10,7 +10,6 @@ namespace AG.#Namespace#
         #Name#NodeData
     >
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the #name# node component class.
         /// </summary>
@@ -73,7 +72,6 @@ namespace AG.#Namespace#
         }
 
 
-        // ----------------------------- Constructor (Load) -----------------------------
         /// <summary>
         /// Constructor of the #name# node component class.
         /// <para>Specifically used when the node is created by the previously saved data.</para>

@@ -63,7 +63,6 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the editor application initializer class.
         /// </summary>

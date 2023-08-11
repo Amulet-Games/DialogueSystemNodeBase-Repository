@@ -13,7 +13,6 @@ namespace AG.DS
         CommonObjectFieldView<TObject> view;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the common object field observer class.
         /// </summary>

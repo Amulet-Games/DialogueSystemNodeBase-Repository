@@ -24,7 +24,6 @@ namespace AG.DS
         DialogueEditorWindow dsWindow;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the graph title field observer class.
         /// </summary>

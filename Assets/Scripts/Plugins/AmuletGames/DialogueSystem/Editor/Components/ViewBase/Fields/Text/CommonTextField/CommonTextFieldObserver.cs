@@ -22,15 +22,11 @@ namespace AG.DS
         string previousValue;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the common text field observer class.
         /// </summary>
         /// <param name="view">The common text field view to set for.</param>
-        public CommonTextFieldObserver
-        (
-            CommonTextFieldView view
-        )
+        public CommonTextFieldObserver(CommonTextFieldView view)
         {
             field = view.TextField;
             placeholderText = view.PlaceholderText;

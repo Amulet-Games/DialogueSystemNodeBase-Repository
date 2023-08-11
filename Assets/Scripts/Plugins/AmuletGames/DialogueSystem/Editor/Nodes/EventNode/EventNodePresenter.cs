@@ -7,19 +7,19 @@ namespace AG.DS
     <
         EventNode,
         EventNodeView,
-        EventNodeObserver
+        EventNodeCallback
     >
     {
         /// <inheritdoc />
         public override EventNode CreateElements
         (
             EventNodeView view,
-            EventNodeObserver observer,
+            EventNodeCallback callback,
             GraphViewer graphViewer,
             HeadBar headBar
         )
         {
-            var node = new EventNode(view, graphViewer);
+            var node = new EventNode(view, callback, graphViewer);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

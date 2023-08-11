@@ -14,7 +14,6 @@ namespace AG.DS
         OptionPort linkOptionPort;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option edge connector listener class.
         /// </summary>
@@ -31,7 +30,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- IEdgeConnectorListener -----------------------------
+        // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
         protected override void OnDrop(GraphViewer graphViewer, OptionEdge edge)
         {

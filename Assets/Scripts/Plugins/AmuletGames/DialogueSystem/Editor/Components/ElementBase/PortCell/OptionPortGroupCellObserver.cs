@@ -22,7 +22,6 @@ namespace AG.DS
         OptionPortGroupView group;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option port group cell observer class.
         /// </summary>

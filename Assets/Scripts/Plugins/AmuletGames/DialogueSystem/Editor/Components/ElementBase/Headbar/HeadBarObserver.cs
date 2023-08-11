@@ -22,7 +22,6 @@ namespace AG.DS
         DialogueEditorWindow dsWindow;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the headBar observer class.
         /// </summary>
@@ -40,6 +39,7 @@ namespace AG.DS
             this.dsModel = dsModel;
             this.dsWindow = dsWindow;
         }
+
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>

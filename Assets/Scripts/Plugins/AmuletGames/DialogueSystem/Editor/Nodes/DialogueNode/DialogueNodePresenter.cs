@@ -7,19 +7,19 @@ namespace AG.DS
     <
         DialogueNode,
         DialogueNodeView,
-        DialogueNodeObserver
+        DialogueNodeCallback
     >
     {
         /// <inheritdoc />
         public override DialogueNode CreateElements
         (
             DialogueNodeView view,
-            DialogueNodeObserver observer,
+            DialogueNodeCallback callback,
             GraphViewer graphViewer,
             HeadBar headBar
         )
         {
-            var node = new DialogueNode(view, observer, graphViewer, headBar);
+            var node = new DialogueNode(view, callback, graphViewer, headBar);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

@@ -8,7 +8,6 @@ namespace AG.DS
         NodeCreateConnectorWindow nodeCreateConnectorWindow;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the node create connector window observer class.
         /// </summary>

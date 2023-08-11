@@ -11,7 +11,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup for the class.
+        /// Setup for the edge manager class.
         /// </summary>
         public static void Setup()
         {
@@ -21,7 +21,7 @@ namespace AG.DS
 
         // ----------------------------- Connect -----------------------------
         /// <summary>
-        /// Method for connecting the two given ports.
+        /// Method for connecting the two ports.
         /// </summary>
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
@@ -37,12 +37,12 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for connecting the two given ports.
+        /// Method for connecting the two ports.
         /// </summary>
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
         /// <param name="portType">The port type to set for.</param>
-        /// <returns>A new edge base element.</returns>
+        /// <returns>A new edge element.</returns>
         public EdgeBase Connect(PortBase output, PortBase input, PortType portType)
         {
             return portType switch
@@ -55,7 +55,7 @@ namespace AG.DS
         
         
         /// <summary>
-        /// Method for connecting the two given ports.
+        /// Method for connecting the two ports.
         /// </summary>
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
@@ -77,7 +77,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for connecting the two given ports.
+        /// Method for connecting the two ports.
         /// </summary>
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
@@ -99,7 +99,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for connecting the two given ports.
+        /// Method for connecting the two ports.
         /// </summary>
         /// <typeparam name="TEdge">Type edge</typeparam>
         /// <typeparam name="TEdgePresenter">Type edge presenter</typeparam>
@@ -107,7 +107,7 @@ namespace AG.DS
         /// <typeparam name="TPort">Type port</typeparam>
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
-        /// <returns>A new type edge element.</returns>
+        /// <returns>A new edge element.</returns>
         TEdge Connect<TEdge, TEdgePresenter, TEdgeObserver, TPort>
         (
             TPort output,

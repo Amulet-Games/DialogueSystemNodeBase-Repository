@@ -9,25 +9,28 @@ namespace AG.DS
         StartNodeCallback
     >
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the start node class.
         /// </summary>
-        /// <param name="view">The node view to set for.</param>
+        /// <param name="view">The start node view to set for.</param>
+        /// <param name="callback">The start node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public StartNode
         (
             StartNodeView view,
+            StartNodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup details
+            // Setup references
             {
                 View = view;
+                m_Callback = callback;
                 GraphViewer = graphViewer;
+            }
 
-                m_Callback = new(View);
-
+            // Setup details
+            {
                 style.minWidth = NumberConfig.START_NODE_MIN_WIDTH;
             }
 

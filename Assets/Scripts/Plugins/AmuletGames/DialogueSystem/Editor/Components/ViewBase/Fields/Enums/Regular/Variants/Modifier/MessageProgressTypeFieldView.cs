@@ -5,7 +5,6 @@ namespace AG.DS
     [Serializable]
     public class MessageProgressTypeEnumFieldView : EnumFieldViewBase
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the message progress type enum field view class.
         /// </summary>

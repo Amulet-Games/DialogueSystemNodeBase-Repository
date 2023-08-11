@@ -22,7 +22,6 @@ namespace AG.DS
         Action clickEvent;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the content button observer class.
         /// </summary>

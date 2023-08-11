@@ -65,7 +65,6 @@ namespace AG.DS
         public Box MainBox;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the condition modifier component class.
         /// </summary>

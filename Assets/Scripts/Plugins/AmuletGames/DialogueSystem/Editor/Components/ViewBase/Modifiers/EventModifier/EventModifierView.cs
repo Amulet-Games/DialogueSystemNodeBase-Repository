@@ -52,7 +52,6 @@ namespace AG.DS
         public CommonDoubleFieldView DelaySecondsFieldView;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the event modifier component class.
         /// </summary>

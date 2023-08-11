@@ -5,17 +5,15 @@ namespace AG.DS
     public class EndNodeCallback : NodeCallbackFrameBase
     <
         EndNode,
-        EndNodeView
+        EndNodeView,
+        EndNodeCallback
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the end node callback class.
-        /// </summary>
-        /// <param name="view">The node view to set for.</param>
-        public EndNodeCallback(EndNodeView view)
+        /// <inheritdoc />
+        public override EndNodeCallback Setup(EndNodeView view)
         {
             View = view;
+            return this;
         }
 
 

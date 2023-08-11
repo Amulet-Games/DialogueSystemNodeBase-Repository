@@ -5,7 +5,6 @@ namespace AG.DS
 {
     public abstract class PortBase : Port
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the port base class.
         /// </summary>
@@ -25,7 +24,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Disconnect -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Disconnect any edges.
         /// </summary>

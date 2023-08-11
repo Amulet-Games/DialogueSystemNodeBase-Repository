@@ -5,17 +5,15 @@ namespace AG.DS
     public class StartNodeCallback : NodeCallbackFrameBase
     <
         StartNode,
-        StartNodeView
+        StartNodeView,
+        StartNodeCallback
     >
     {
-        // ----------------------------- Constructor -----------------------------
-        /// <summary>
-        /// Constructor of the start node callback class.
-        /// </summary>
-        /// <param name="view">The node view to set for.</param>
-        public StartNodeCallback(StartNodeView view)
+        /// <inheritdoc />
+        public override StartNodeCallback Setup(StartNodeView view)
         {
             View = view;
+            return this;
         }
 
 

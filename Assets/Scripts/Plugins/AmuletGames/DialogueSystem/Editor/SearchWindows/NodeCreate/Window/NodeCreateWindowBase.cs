@@ -52,9 +52,8 @@ namespace AG.DS
         public event Action SearchTreeEntrySelectedEvent;
 
 
-        // ----------------------------- Setup -----------------------------
         /// <summary>
-        /// Setup for the class
+        /// Setup for the node create window base class.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
@@ -213,7 +212,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register GeometryChangeEvent to the given node to set its position according to the calculated created position.
+        /// Register GeometryChangeEvent to the node element in order to set its position accordingly.
         /// </summary>
         /// <param name="details">The node create details to set for.</param>
         /// <param name="leftSideAlignmentReferencePort">The output port of the node to set for, leave this empty if the node doesn't have one.</param>

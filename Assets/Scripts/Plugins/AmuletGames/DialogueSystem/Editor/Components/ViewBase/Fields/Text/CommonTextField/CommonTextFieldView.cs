@@ -20,7 +20,6 @@ namespace AG.DS
         [NonSerialized] public string PlaceholderText;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the common text field view class.
         /// </summary>

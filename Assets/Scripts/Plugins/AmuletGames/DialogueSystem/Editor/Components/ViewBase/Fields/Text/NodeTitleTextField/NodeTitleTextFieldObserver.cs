@@ -10,7 +10,6 @@ namespace AG.DS
         NodeTitleTextFieldView view;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the node title text field observer class.
         /// </summary>

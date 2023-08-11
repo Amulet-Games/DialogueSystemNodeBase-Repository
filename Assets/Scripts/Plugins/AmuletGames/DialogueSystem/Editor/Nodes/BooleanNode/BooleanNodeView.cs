@@ -27,7 +27,6 @@ namespace AG.DS
         public DefaultPort FalseOutputDefaultPort;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the boolean node view class.
         /// </summary>

@@ -33,7 +33,6 @@ namespace AG.DS
         public DefaultPort OutputDefaultPort;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the option branch node view class.
         /// </summary>

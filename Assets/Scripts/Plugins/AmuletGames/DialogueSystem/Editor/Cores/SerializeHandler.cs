@@ -16,7 +16,6 @@ namespace AG.DS
         HeadBar headBar;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the serialize handler class.
         /// </summary>
@@ -82,7 +81,7 @@ namespace AG.DS
                 var nodeCount = graphViewer.Nodes.Count;
                 for (int i = 0; i < nodeCount; i++)
                 {
-                    //graphViewer.Nodes[i].Save(dsModel);
+                    NodeManager.Instance.Save(node: graphViewer.Nodes[i]);
                 }
             }
         }

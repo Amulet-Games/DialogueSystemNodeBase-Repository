@@ -13,7 +13,6 @@ namespace AG.#Namespace#
         #Name#NodeData
     >
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the #name# node callback module class.
         /// </summary>

@@ -8,7 +8,6 @@ namespace AG.DS
         NodeCreateRequestWindow nodeCreateRequestWindow;
 
 
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the node create request window observer class.
         /// </summary>

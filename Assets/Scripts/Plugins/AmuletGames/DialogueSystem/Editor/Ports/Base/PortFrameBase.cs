@@ -10,7 +10,6 @@ namespace AG.DS
         : PortBase
         where TPortModel : PortModelBase
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the port frame base class.
         /// </summary>
@@ -32,16 +31,16 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the port values to the type port model.
+        /// Save the port values to the given port model.
         /// </summary>
-        /// <param name="model">The type port model to set for.</param>
+        /// <param name="model">The port model to set for.</param>
         public abstract void Save(TPortModel model);
 
 
         /// <summary>
-        /// Load the port values from the type port model.
+        /// Load the port values from the given port model.
         /// </summary>
-        /// <param name="model">The type port model to set for.</param>
+        /// <param name="model">The port model to set for.</param>
         public abstract void Load(TPortModel model);
     }
 }

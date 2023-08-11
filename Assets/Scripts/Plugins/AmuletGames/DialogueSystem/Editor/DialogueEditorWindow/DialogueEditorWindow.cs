@@ -101,10 +101,11 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Initialize for the class. Logic here should only be executed once.
+        /// Init of the dialogue editor window class.
+        /// Logic here should only be executed once.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
-        void Initialize(DialogueSystemModel dsModel)
+        void Init(DialogueSystemModel dsModel)
         {
             this.dsModel = dsModel;
             dsModel.IsDsWindowAlreadyOpened = true;
@@ -112,7 +113,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup for the class.
+        /// Setup for the dialogue editor window class.
         /// </summary>
         void Setup()
         {
@@ -150,7 +151,7 @@ namespace AG.DS
                 graphViewer.NodeCreateConnectorWindow =
                     NodeCreateConnectorWindowPresenter.CreateWindow(graphViewer, headBar, nodeCreateDetails, dsWindow: this);
 
-                NodeCreateEntryProvider.SetupNodeCreateWindowEntries();
+                NodeCreateEntryProvider.Setup();
             }
 
             // Add modules to graph
@@ -215,7 +216,7 @@ namespace AG.DS
                 }
 
                 var dsWindow = DialogueEditorWindowPresenter.CreateWindow();
-                dsWindow.Initialize(dsModel);
+                dsWindow.Init(dsModel);
                 dsWindow.Setup();
             }
 

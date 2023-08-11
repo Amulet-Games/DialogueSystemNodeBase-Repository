@@ -46,11 +46,10 @@ namespace AG.DS
         public static List<SearchTreeEntry> OptionChannelInputEntries;
 
 
-        // ----------------------------- Setup -----------------------------
         /// <summary>
-        /// Setup for the class.
+        /// Setup for the node create entry provider class.
         /// </summary>
-        public static void SetupNodeCreateWindowEntries()
+        public static void Setup()
         {
             if (isSetup)
                 return;

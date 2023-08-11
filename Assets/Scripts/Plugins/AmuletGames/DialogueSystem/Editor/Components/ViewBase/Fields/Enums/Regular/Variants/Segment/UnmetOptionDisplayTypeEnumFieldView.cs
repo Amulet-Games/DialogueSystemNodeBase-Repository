@@ -5,7 +5,6 @@ namespace AG.DS
     [Serializable]
     public class UnmetOptionDisplayTypeEnumFieldView : EnumFieldViewBase
     {
-        // ----------------------------- Constructor -----------------------------
         /// <summary>
         /// Constructor of the unmet option display type enum field view class.
         /// </summary>
