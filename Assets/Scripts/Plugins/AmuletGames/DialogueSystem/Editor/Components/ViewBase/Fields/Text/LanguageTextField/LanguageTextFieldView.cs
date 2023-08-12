@@ -7,24 +7,41 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     [Serializable]
-    public class LanguageTextFieldView : IReversible
+    public class LanguageTextFieldView : IReversible, ILanguageFieldView
     {
         /// <summary>
         /// Visual element.
         /// </summary>
-        [NonSerialized] public TextField TextField;
+        [NonSerialized] public TextField Field;
 
 
         /// <summary>
         /// The text to display when the field is empty.
         /// </summary>
-        [NonSerialized] public string PlaceholderText;
+        [NonSerialized] public string placeholderText;
+
+
+        /// <summary>
+        /// The property of the view's value that matches the current dialogue editor window's language.
+        /// </summary>
+        public string CurrentLanguageValue
+        {
+            get
+            {
+                return LanguageValue.CurrentLanguageValue;
+            }
+            set
+            {
+                LanguageValue.CurrentLanguageValue = value;
+                UpdateFieldLanguageValue();
+            }
+        }
 
 
         /// <summary>
         /// The serializable value of the view.
         /// </summary>
-        [SerializeField] public LanguageGeneric<string> value;
+        [SerializeField] public LanguageGeneric<string> LanguageValue { get; }
 
 
         /// <summary>
@@ -33,57 +50,46 @@ namespace AG.DS
         /// <param name="placeholderText">The placeholder text to set for.</param>
         public LanguageTextFieldView(string placeholderText)
         {
-            PlaceholderText = placeholderText;
+            this.placeholderText = placeholderText;
 
-            value = new();
-            for (int i = 0; i < LanguageManager.Instance.SupportLanguageLength; i++)
-            {
-                value.ValueByLanguageType[LanguageManager.Instance.SupportLanguageTypes[i]] = "";
-            }
+            LanguageValue = new();
         }
 
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the view values to the given value.
+        /// Save the view values.
         /// </summary>
-        /// <param name="value">The value to set for.</param>
+        /// <param name="value">The language generic component to set for.</param>
         public void Save(LanguageGeneric<string> value)
         {
-            var languageManager = LanguageManager.Instance;
-
-            for (int i = 0; i < languageManager.SupportLanguageLength; i++)
-            {
-                value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
-                    this.value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
-            }
+            value.Save(LanguageValue);
         }
 
 
         /// <summary>
-        /// Load the view values from the given value.
+        /// Load the view values.
         /// </summary>
         /// <param name="value">The value to set for.</param>
         public void Load(LanguageGeneric<string> value)
         {
-            var languageManager = LanguageManager.Instance;
+            LanguageValue.Load(value);
 
-            for (int i = 0; i < languageManager.SupportLanguageLength; i++)
-            {
-                this.value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]] =
-                           value.ValueByLanguageType[languageManager.SupportLanguageTypes[i]];
-            }
-
-            TextField.SetValueWithoutNotify
-            (
-                this.value.ValueByLanguageType[languageManager.CurrentLanguage]
-            );
-
-            TextField.ToggleEmptyStyle(PlaceholderText);
+            UpdateFieldLanguageValue();
         }
 
 
-        // ----------------------------- IReversible -----------------------------
+        // ----------------------------- Service -----------------------------
+        /// <summary>
+        /// Update the field value to match the current view's language value.
+        /// </summary>
+        public void UpdateFieldLanguageValue()
+        {
+            Field.SetValueWithoutNotify(LanguageValue.CurrentLanguageValue);
+            Field.ToggleEmptyStyle(placeholderText);
+        }
+
+
         /// <inheritdoc />
         public byte[] StashData()
         {
@@ -93,7 +99,7 @@ namespace AG.DS
             binaryFormatter.Serialize
             (
                 serializationStream: memoryStream,
-                graph: TextField.value
+                graph: Field.value
             );
 
             memoryStream.Close();
@@ -110,32 +116,13 @@ namespace AG.DS
 
                 if (obj is string reverseValue)
                 {
-                    value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = reverseValue;
-
-                    TextField.SetValueWithoutNotify(reverseValue);
-
-                    TextField.ToggleEmptyStyle(PlaceholderText);
+                    CurrentLanguageValue = reverseValue;
                 }
                 else
                 {
                     throw new ApplicationException($"Unable to deserialize reversible byte[] data, \"{GetType()}\"");
                 }
             }
-        }
-
-
-        // ----------------------------- Update Language Field -----------------------------
-        /// <summary>
-        /// Update the field's value base on the current editor's language.
-        /// </summary>
-        public void UpdateLanguageField()
-        {
-            TextField.SetValueWithoutNotify
-            (
-                newValue: value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage]
-            );
-
-            TextField.ToggleEmptyStyle(PlaceholderText);
         }
     }
 }

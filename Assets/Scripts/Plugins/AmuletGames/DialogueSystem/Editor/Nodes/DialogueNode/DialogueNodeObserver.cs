@@ -26,8 +26,6 @@ namespace AG.DS
 
             RegisterGeometryChangedEvent();
 
-            RegisterLanguageChangedEvent();
-
             RegisterNodeTitleTextFieldEvents();
 
             RegisterNodeTitleEditButtonClickEvent();
@@ -46,13 +44,6 @@ namespace AG.DS
         /// </summary>
         void RegisterGeometryChangedEvent()
             => Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-
-
-        /// <summary>
-        /// Register LanguageChangedEvent to the node.
-        /// </summary>
-        void RegisterLanguageChangedEvent()
-            => Node.HeadBar.LanguageChangedEvent += m_LanguageChangedEvent;
 
 
         /// <summary>
@@ -79,15 +70,7 @@ namespace AG.DS
         /// </summary>
         public void UnregisterEvents()
         {
-            UnregisterLanguageChangedEvent();
         }
-
-
-        /// <summary>
-        /// Unregister LanguageChangedEvent from the node.
-        /// </summary>
-        void UnregisterLanguageChangedEvent()
-            => Node.HeadBar.LanguageChangedEvent -= m_LanguageChangedEvent;
 
 
         // ----------------------------- Event -----------------------------
@@ -113,14 +96,6 @@ namespace AG.DS
                 // Remove from hover class.
                 Node.NodeBorder.RemoveFromClassList(StyleConfig.Node_Border_Hover);
             }
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the editor window's selected language has changed.
-        /// </summary>
-        void m_LanguageChangedEvent()
-        {
         }
 
 

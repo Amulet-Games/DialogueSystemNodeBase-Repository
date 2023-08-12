@@ -56,7 +56,7 @@ namespace AG.DS
         /// Register LanguageChangedEvent to the node.
         /// </summary>
         void RegisterLanguageChangedEvent()
-            => Node.HeadBar.LanguageChangedEvent += m_LanguageChangedEvent;
+            => Node.HeadBar.languageHandler.Add(View.BranchTitleTextFieldView);
 
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace AG.DS
         /// Unregister LanguageChangedEvent from the node.
         /// </summary>
         void UnregisterLanguageChangedEvent()
-            => Node.HeadBar.LanguageChangedEvent -= m_LanguageChangedEvent;
+            => Node.HeadBar.languageHandler.Remove(View.BranchTitleTextFieldView);
 
 
         // ----------------------------- Event -----------------------------
@@ -143,7 +143,7 @@ namespace AG.DS
         /// </summary>
         void m_LanguageChangedEvent()
         {
-            View.BranchTitleTextFieldView.UpdateLanguageField();
+            View.BranchTitleTextFieldView.UpdateFieldLanguageValue();
         }
 
 

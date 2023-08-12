@@ -67,12 +67,12 @@ namespace AG.DS
             // If the field has a new value, the value needs to be different than the previous one,
             // empty string will also be count as new value.
 
-            if (evt.newValue != "")
+            view.Value = evt.newValue;
+
+            if (view.Value != "")
             {
                 WindowChangedEvent.Invoke();
             }
-
-            view.Value = evt.newValue;
         }
 
 

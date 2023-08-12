@@ -33,7 +33,7 @@ namespace AG.DS
         /// Save all the edges and nodes that are on the graph.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
-        public void SaveEdgesAndNodes(DialogueSystemModel dsModel)
+        public void Save(DialogueSystemModel dsModel)
         {
             SaveEdges(dsModel);
             SaveNodes(dsModel);
@@ -92,7 +92,7 @@ namespace AG.DS
         /// Load all the edge and node models that are stored on the scriptable object asset.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
-        public void LoadEdgesAndNodes(DialogueSystemModel dsModel)
+        public void Load(DialogueSystemModel dsModel)
         {
             LoadNodes(dsModel);
             LoadEdges(dsModel);

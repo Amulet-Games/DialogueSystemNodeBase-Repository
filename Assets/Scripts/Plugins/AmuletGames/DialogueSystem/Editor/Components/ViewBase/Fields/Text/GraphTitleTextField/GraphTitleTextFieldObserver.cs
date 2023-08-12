@@ -83,7 +83,9 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void ChangeEvent(ChangeEvent<string> evt)
         {
-            if (evt.newValue != "")
+            view.Value = evt.newValue;
+
+            if (view.Value != "")
             {
                 // Change dsModel asset name
                 {
@@ -91,8 +93,6 @@ namespace AG.DS
                     dsWindow.ApplyChangesToDisk();
                 }
             }
-
-            view.Value = evt.newValue;
         }
 
 

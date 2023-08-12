@@ -30,7 +30,7 @@ namespace AG.DS
                     m_bindingSO = value;
                 }
 
-                Field.Bind(m_bindingSO);
+                Field.Bind(value);
             }
         }
 
@@ -84,7 +84,7 @@ namespace AG.DS
         }
 
 
+        // ----------------------------- Service -----------------------------
         ///TODO: IReversible
-        // ----------------------------- IReversible -----------------------------
     }
 }

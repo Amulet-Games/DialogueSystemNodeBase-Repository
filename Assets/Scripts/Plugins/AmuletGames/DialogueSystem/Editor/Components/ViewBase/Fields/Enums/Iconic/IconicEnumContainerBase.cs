@@ -68,7 +68,7 @@ namespace AG.DS
         public abstract void UpdateIcon();
 
 
-        // ----------------------------- IReversible -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <inheritdoc/>
         public byte[] StashData()
         {

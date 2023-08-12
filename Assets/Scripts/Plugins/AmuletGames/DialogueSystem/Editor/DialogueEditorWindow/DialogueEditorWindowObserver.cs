@@ -31,6 +31,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the language handler.
+        /// </summary>
+        LanguageHandler languageHandler;
+
+
+        /// <summary>
         /// Reference of the node create request window.
         /// </summary>
         NodeCreateRequestWindow nodeCreateRequestWindow;
@@ -168,7 +174,7 @@ namespace AG.DS
         /// <param name="dsModel">The dialogue system model to set for.</param>
         void SaveToDSModelEvent(DialogueSystemModel dsModel)
         {
-            serializeHandler.SaveEdgesAndNodes(dsModel);
+            serializeHandler.Save(dsModel);
         }
 
 
@@ -181,9 +187,9 @@ namespace AG.DS
         {
             graphViewer.ClearGraph();
 
-            serializeHandler.LoadEdgesAndNodes(dsModel);
+            serializeHandler.Load(dsModel);
 
-            headBar.RefreshTitleAndLanguage(dsModel);
+            languageHandler.Load();
         }
 
 

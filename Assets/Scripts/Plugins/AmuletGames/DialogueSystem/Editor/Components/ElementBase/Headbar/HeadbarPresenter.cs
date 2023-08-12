@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -8,9 +7,14 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new headBar element.
         /// </summary>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
+        /// <param name="headBarView">The headBar view class to set for.</param>
+        /// <param name="languageHandler">The language handler to set for.</param>
         /// <returns>A new headBar element.</returns>
-        public static HeadBar CreateElement(DialogueSystemModel dsModel)
+        public static HeadBar CreateElement
+        (
+            HeadBarView headBarView,
+            LanguageHandler languageHandler
+        )
         {
             HeadBar headBar;
             VisualElement buttonsContainer;
@@ -39,7 +43,7 @@ namespace AG.DS
 
             void CreateHeadBar()
             {
-                headBar = new(dsModel);
+                headBar = new();
                 headBar.AddToClassList(StyleConfig.HeadBar_Main);
             }
 
@@ -56,7 +60,7 @@ namespace AG.DS
 
             void SetupSaveButton()
             {
-                headBar.SaveButton = CommonButtonPresenter.CreateElement
+                headBarView.SaveButton = CommonButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.HeadBar_SaveButton_LabelText,
                     buttonUSS: StyleConfig.HeadBar_SaveButton
@@ -65,7 +69,7 @@ namespace AG.DS
 
             void SetupLoadButton()
             {
-                headBar.LoadButton = CommonButtonPresenter.CreateElement
+                headBarView.LoadButton = CommonButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.HeadBar_LoadButton_LabelText,
                     buttonUSS: StyleConfig.HeadBar_LoadButton
@@ -74,10 +78,9 @@ namespace AG.DS
 
             void SetupLanguageToolbarMenu()
             {
-                var languageManager = LanguageManager.Instance;
-                headBar.LanguageToolbarMenu = ToolbarMenuPresenter.CreateElement
+                headBarView.LanguageToolbarMenu = ToolbarMenuPresenter.CreateElement
                 (
-                    labelText: languageManager.GetShort(type: languageManager.CurrentLanguage),
+                    labelText: LanguageProvider.GetShort(type: languageHandler.CurrentLanguage),
                     arrowIcon: ConfigResourcesManager.SpriteConfig.DropdownArrowIcon1Sprite,
                     menuUSS: StyleConfig.HeadBar_LanguageToolbarMenu_Main,
                     centerContainerUSS: StyleConfig.HeadBar_LanguageToolbarMenu_CenterContainer,
@@ -90,22 +93,22 @@ namespace AG.DS
             {
                 GraphTitleTextFieldPresenter.CreateElement
                 (
-                    view: headBar.GraphTitleTextFieldView,
+                    view: headBarView.GraphTitleTextFieldView,
                     fieldUSS: StyleConfig.HeadBar_GraphTitleTextField
                 );
             }
 
             void AddElementsToContainer()
             {
-                buttonsContainer.Add(headBar.SaveButton);
-                buttonsContainer.Add(headBar.LoadButton);
-                buttonsContainer.Add(headBar.LanguageToolbarMenu);
+                buttonsContainer.Add(headBarView.SaveButton);
+                buttonsContainer.Add(headBarView.LoadButton);
+                buttonsContainer.Add(headBarView.LanguageToolbarMenu);
             }
 
             void AddElementsToHeadBar()
             {
                 headBar.Add(buttonsContainer);
-                headBar.Add(headBar.GraphTitleTextFieldView.Field);
+                headBar.Add(headBarView.GraphTitleTextFieldView.Field);
             }
 
             void AddStyleSheet()

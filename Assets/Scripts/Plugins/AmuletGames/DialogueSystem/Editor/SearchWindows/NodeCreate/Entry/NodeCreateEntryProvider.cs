@@ -7,7 +7,7 @@ namespace AG.DS
     /// A class that has implemented different types of node create entries as properties,
     /// <br>and allows other classes to retrieve them.</br>
     /// </summary>
-    public class NodeCreateEntryProvider
+    public static class NodeCreateEntryProvider
     {
         /// <summary>
         /// Is this class has already been setup?

@@ -132,10 +132,10 @@ namespace AG.DS
 
                 void SetupBranchTitleTextField()
                 {
-                    view.BranchTitleTextFieldView.TextField = LanguageTextFieldPresenter.CreateElement
+                    view.BranchTitleTextFieldView.Field = LanguageTextFieldPresenter.CreateElement
                     (
                         isMultiLine: false,
-                        placeholderText: view.BranchTitleTextFieldView.PlaceholderText,
+                        placeholderText: view.BranchTitleTextFieldView.placeholderText,
                         fieldUSS: StyleConfig.OptionBranch_Title_TextField
                     );
                 }
@@ -148,7 +148,7 @@ namespace AG.DS
                     outerContainer.Add(InnerContainer);
 
                     InnerContainer.Add(branchTitleLabel);
-                    InnerContainer.Add(view.BranchTitleTextFieldView.TextField);
+                    InnerContainer.Add(view.BranchTitleTextFieldView.Field);
                 }
 
                 void AddContainersToNode()

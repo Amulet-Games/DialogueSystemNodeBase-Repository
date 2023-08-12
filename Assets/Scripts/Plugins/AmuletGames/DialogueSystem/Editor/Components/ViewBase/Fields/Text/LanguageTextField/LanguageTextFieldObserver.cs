@@ -11,12 +11,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The old value that was set when the user has given focus on the field.
-        /// </summary>
-        string previousValue;
-
-
-        /// <summary>
         /// Constructor of the language text field observer class.
         /// </summary>
         /// <param name="view">The language text field view to set for.</param>
@@ -41,13 +35,13 @@ namespace AG.DS
         /// <summary>
         /// Register FocusInEvent to the field.
         /// </summary>
-        void RegisterFocusInEvent() => view.TextField.RegisterCallback<FocusInEvent>(FocusInEvent);
+        void RegisterFocusInEvent() => view.Field.RegisterCallback<FocusInEvent>(FocusInEvent);
 
 
         /// <summary>
         /// Register FocusOutEvent to the field.
         /// </summary>
-        void RegisterFocusOutEvent() => view.TextField.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+        void RegisterFocusOutEvent() => view.Field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -57,15 +51,13 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusInEvent(FocusInEvent evt)
         {
-            var field = view.TextField;
+            var field = view.Field;
 
             InputHint.ShowHint
             (
                 hintText: StringConfig.InputHint_HintTextLabel_LabelText,
                 targetWorldBoundRect: field.worldBound
             );
-
-            previousValue = field.value;
 
             field.HideEmptyStyle();
         }
@@ -77,20 +69,9 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusOutEvent(FocusOutEvent evt)
         {
-            var field = view.TextField;
+            view.CurrentLanguageValue = view.Field.value;
 
-            if (field.value != view.PlaceholderText
-             && field.value != previousValue)
-            {
-                // Push the current container's value to the undo stack.
-                ///TestingWindow.Instance.PushUndo(languageTextContainer);
-
-                view.value.ValueByLanguageType[LanguageManager.Instance.CurrentLanguage] = field.value;
-
-                WindowChangedEvent.Invoke();
-            }
-
-            field.ToggleEmptyStyle(view.PlaceholderText);
+            WindowChangedEvent.Invoke();
 
             InputHint.HideHint();
         }

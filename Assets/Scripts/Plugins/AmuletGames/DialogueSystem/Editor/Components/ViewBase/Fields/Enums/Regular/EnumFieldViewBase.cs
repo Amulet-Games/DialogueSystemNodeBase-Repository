@@ -51,7 +51,7 @@ namespace AG.DS
         public abstract void UpdateFieldValueNonAlert();
 
 
-        // ----------------------------- IReversible -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <inheritdoc/>
         public byte[] StashData()
         {

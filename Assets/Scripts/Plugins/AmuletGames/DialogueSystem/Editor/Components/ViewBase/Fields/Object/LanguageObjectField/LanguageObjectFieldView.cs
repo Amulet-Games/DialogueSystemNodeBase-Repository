@@ -8,7 +8,7 @@ using UnityEngine;
 namespace AG.DS
 {
     [Serializable]
-    public class LanguageObjectFieldView<TObject> : IReversible
+    public class LanguageObjectFieldView<TObject> : IReversible, ILanguageFieldView
         where TObject : UnityEngine.Object
     {
         /// <summary>
@@ -24,29 +24,18 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The property of the serializable value of the view.
+        /// The property of the view's value that matches the current dialogue editor window's language.
         /// </summary>
-        public TObject Value
+        public TObject CurrentLanguageValue
         {
             get
             {
-                return m_value.CurrentLanguageValue;
+                return LanguageValue.CurrentLanguageValue;
             }
             set
             {
-                m_value.CurrentLanguageValue = value;
-
-                Field.SetValueWithoutNotify(value);
-                Field.ToggleEmptyStyle(placeholderText);
-
-                if (m_value != null)
-                {
-                    Field.Bind(obj: new SerializedObject(value));
-                }
-                else
-                {
-                    Field.Unbind();
-                }
+                LanguageValue.CurrentLanguageValue = value;
+                UpdateFieldLanguageValue();
             }
         }
 
@@ -54,7 +43,7 @@ namespace AG.DS
         /// <summary>
         /// The serializable value of the view.
         /// </summary>
-        [SerializeField] LanguageGeneric<TObject> m_value;
+        [SerializeField] public LanguageGeneric<TObject> LanguageValue { get; }
 
 
         /// <summary>
@@ -65,34 +54,53 @@ namespace AG.DS
         {
             this.placeholderText = placeholderText;
 
-            m_value = new();
+            LanguageValue = new();
         }
 
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the view values to the given value.
+        /// Save the view values.
         /// </summary>
-        /// <param name="value">The value to set for.</param>
+        /// <param name="value">The language generic component to set for.</param>
         public void Save(LanguageGeneric<TObject> value)
         {
-            value.SetValues(m_value);
+            value.Save(LanguageValue);
         }
 
 
         /// <summary>
         /// Load the view values from the given value.
         /// </summary>
-        /// <param name="value">The value to set for.</param>
+        /// <param name="value">The language generic component to set for.</param>
         public void Load(LanguageGeneric<TObject> value)
         {
-            m_value.SetValues(value);
+            LanguageValue.Load(value);
 
-            Value = value.CurrentLanguageValue;
+            UpdateFieldLanguageValue();
         }
 
 
-        // ----------------------------- IReversible -----------------------------
+        // ----------------------------- Service -----------------------------
+        /// <summary>
+        /// Update the field value to match the current view's language value.
+        /// </summary>
+        public void UpdateFieldLanguageValue()
+        {
+            Field.SetValueWithoutNotify(LanguageValue.CurrentLanguageValue);
+            Field.ToggleEmptyStyle(placeholderText);
+
+            if (LanguageValue.CurrentLanguageValue != null)
+            {
+                Field.Bind(obj: new SerializedObject(LanguageValue.CurrentLanguageValue));
+            }
+            else
+            {
+                Field.Unbind();
+            }
+        }
+
+
         /// <inheritdoc/>
         public byte[] StashData()
         {
@@ -126,7 +134,7 @@ namespace AG.DS
 
                 if (reverseValue != null)
                 {
-                    Value = reverseValue;
+                    CurrentLanguageValue = reverseValue;
                 }
                 else
                 {

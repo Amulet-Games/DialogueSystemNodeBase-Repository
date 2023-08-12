@@ -73,7 +73,7 @@ namespace AG.DS
             // Push the current container's value to the undo stack.
             ///TestingWindow.Instance.PushUndo(languageAudioClipContainer);
             
-            view.Value = evt.newValue
+            view.CurrentLanguageValue = evt.newValue
                 ? evt.newValue as TObject
                 : null;
 

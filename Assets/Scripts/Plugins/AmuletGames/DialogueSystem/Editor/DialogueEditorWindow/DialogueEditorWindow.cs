@@ -34,12 +34,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the serialize handler.
-        /// </summary>
-        SerializeHandler serializeHandler;
-
-
-        /// <summary>
         /// The event to invoke when the user clicked the save button in the headBar element.
         /// </summary>
         public event Action<DialogueSystemModel> SaveToDSModelEvent;
@@ -83,7 +77,10 @@ namespace AG.DS
 
             Load(isForceLoadWindow: true);
 
-            graphViewer.ReframeGraphOnGeometryChanged(geometryChangedElement: rootVisualElement, frameType: FrameType.All);
+            graphViewer.ReframeGraphOnGeometryChanged(
+                geometryChangedElement: rootVisualElement,
+                frameType: FrameType.All
+            );
         }
 
 
@@ -117,12 +114,23 @@ namespace AG.DS
         /// </summary>
         void Setup()
         {
+            LanguageHandler languageHandler;
+            SerializeHandler serializeHandler;
             NodeCreateRequestWindow nodeCreateRequestWindow;
+
+            HeadBar headBar;
+            HeadBarView headBarView;
+
+
+            // Setup static classes
+            {
+                LanguageProvider.Setup();
+                NodeCreateEntryProvider.Setup();
+            }
 
             // Setup singletons
             {
                 ConfigResourcesManager.Setup();
-                LanguageManager.Setup();
                 HotkeyManager.Setup();
                 EdgeManager.Setup();
                 NodeManager.Setup();
@@ -130,12 +138,18 @@ namespace AG.DS
 
             // Create modules
             {
+                // Language Handler
+                languageHandler = new();
+
                 // Graph Viewer
                 graphViewer = GraphViewerPresenter.CreateElement(dsWindow: this);
 
                 // HeadBar
-                headBar = HeadBarPresenter.CreateElement(dsModel);
-
+                {
+                    headBarView = new(dsModel);
+                    headBar = HeadBarPresenter.CreateElement(headBarView, languageHandler);
+                }
+                
                 // Input Hint
                 InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
 
@@ -150,8 +164,6 @@ namespace AG.DS
 
                 graphViewer.NodeCreateConnectorWindow =
                     NodeCreateConnectorWindowPresenter.CreateWindow(graphViewer, headBar, nodeCreateDetails, dsWindow: this);
-
-                NodeCreateEntryProvider.Setup();
             }
 
             // Add modules to graph
@@ -168,7 +180,8 @@ namespace AG.DS
                 graphViewerObserver.AssignDelegates();
                 graphViewerObserver.RegisterEvents();
 
-                new HeadBarObserver(headBar, dsModel, dsWindow: this).RegisterEvents();
+                new HeadBarObserver(headBar, headBarView,
+                    dsModel, languageHandler, dsWindow: this).RegisterEvents();
 
                 new DialogueEditorWindowObserver(
                     dsModel, graphViewer, headBar,

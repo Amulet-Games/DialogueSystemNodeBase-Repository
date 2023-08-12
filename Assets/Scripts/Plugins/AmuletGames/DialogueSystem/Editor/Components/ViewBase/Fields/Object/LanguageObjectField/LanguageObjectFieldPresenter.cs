@@ -76,7 +76,7 @@ namespace AG.DS
 
             void ShowEmptyStyle()
             {
-                view.Value = null;
+                view.CurrentLanguageValue = null;
             }
         }
     }

@@ -209,10 +209,10 @@ namespace AG.DS
 
             void SetupMessageTextField()
             {
-                messageTextView.TextField = LanguageTextFieldPresenter.CreateElement
+                messageTextView.Field = LanguageTextFieldPresenter.CreateElement
                 (
                     isMultiLine: true,
-                    placeholderText: messageTextView.PlaceholderText,
+                    placeholderText: messageTextView.placeholderText,
                     fieldUSS: StyleConfig.Modifier_Message_Text_TextField
                 );
 
@@ -221,7 +221,7 @@ namespace AG.DS
 
             void SetupMessageTextFieldIcon()
             {
-                messageTextView.TextField.AddFieldIcon
+                messageTextView.Field.AddFieldIcon
                 (
                     iconSprite: ConfigResourcesManager.SpriteConfig.TextFieldIcon1Sprite
                 );
@@ -283,7 +283,7 @@ namespace AG.DS
                 modifierButtonContainer.Add(removeButton);
 
                 // Contents.
-                Folder.AddElementToContent(messageTextView.TextField);
+                Folder.AddElementToContent(messageTextView.Field);
                 Folder.AddElementToContent(messageAudioObjectView.Field);
             }
 
