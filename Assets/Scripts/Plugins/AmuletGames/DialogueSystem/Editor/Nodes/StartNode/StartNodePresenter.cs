@@ -15,8 +15,7 @@ namespace AG.DS
         (
             StartNodeView view,
             StartNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
             var node = new StartNode(view, callback, graphViewer);

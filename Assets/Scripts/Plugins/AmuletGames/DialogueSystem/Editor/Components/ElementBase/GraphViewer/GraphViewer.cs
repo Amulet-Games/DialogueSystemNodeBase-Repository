@@ -22,19 +22,19 @@ namespace AG.DS
         /// <summary>
         /// Cache of the nodes that are on the graph.
         /// </summary>
-        public List<NodeBase> Nodes;
+        public List<NodeBase> Nodes { get; private set; }
 
 
         /// <summary>
         /// Cache of the edges that are on the graph.
         /// </summary>
-        public List<EdgeBase> Edges;
+        public List<EdgeBase> Edges { get; private set; }
 
 
         /// <summary>
         /// Cache of the ports that are on the graph.
         /// </summary>
-        public Dictionary<string, PortBase> PortByPortGUID;
+        public Dictionary<string, PortBase> PortByPortGUID { get; private set; }
 
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace AG.DS
         /// <summary>
         /// Remove the given node from the graph.
         /// </summary>
-        /// <param name="edge">The targeting edge.</param>
+        /// <param name="node">The node element to set for.</param>
         public void Remove(NodeBase node)
         {
             RemoveElement(node);
@@ -136,7 +136,7 @@ namespace AG.DS
         /// <summary>
         /// Remove the given edge from the graph.
         /// </summary>
-        /// <param name="edge">The targeting edge.</param>
+        /// <param name="edge">The edge element to set for.</param>
         public void Remove(EdgeBase edge)
         {
             RemoveElement(edge);
@@ -145,9 +145,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Remove the port with the give port name(GUID) from the graph viewer's port cache.
+        /// Remove the port with the give port name(GUID) from the graph viewer's cache.
         /// </summary>
-        /// <param name="node">The targeting port.</param>
+        /// <param name="node">The port element to set for.</param>
         public void Remove(PortBase port)
         {
             if (PortByPortGUID.ContainsKey(port.name))
@@ -164,7 +164,7 @@ namespace AG.DS
         /// <summary>
         /// Add the given node to the graph.
         /// </summary>
-        /// <param name="node">The target node.</param>
+        /// <param name="node">The node element to set for.</param>
         public void Add(NodeBase node)
         {
             AddElement(node);
@@ -175,7 +175,7 @@ namespace AG.DS
         /// <summary>
         /// Add the given edge to the graph.
         /// </summary>
-        /// <param name="edge">The targeting edge.</param>
+        /// <param name="edge">The edge element to set for.</param>
         public void Add(EdgeBase edge)
         {
             AddElement(edge);
@@ -184,9 +184,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Add the given port to the graph viewer's port cache.
+        /// Add the given port to the graph viewer's cache.
         /// </summary>
-        /// <param name="node">The targeting port.</param>
+        /// <param name="node">The port element to set for.</param>
         public void Add(PortBase port)
         {
             if (!PortByPortGUID.ContainsKey(port.name))
@@ -201,7 +201,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Remove all the graph elements and clear each of their internal cache.
+        /// Remove all the graph elements and clear the internal cache.
         /// </summary>
         public void ClearGraph()
         {

@@ -11,7 +11,7 @@ namespace AG.DS
     > 
         : NodeBase
         where TNode : NodeBase
-        where TNodeView : NodeViewBase
+        where TNodeView : NodeViewFrameBase<TNodeView>
         where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
     {
         /// <summary>

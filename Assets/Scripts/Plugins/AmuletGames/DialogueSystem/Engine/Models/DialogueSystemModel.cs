@@ -16,42 +16,44 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The key to use when saving the dialogue editor window confirm status into the editor prefs.
+        /// The key to use when saving the dialogue system window confirm status into the editor prefs.
         /// </summary>
-        string DIALOGUE_EDITOR_WINDOW_OPEN_CONFIRM_KEY => $"{GetInstanceID()}_OPEN_CONFIRM_KEY";
+        string DIALOGUE_SYSTEM_WINDOW_OPEN_CONFIRM_KEY => $"{GetInstanceID()}_OPEN_CONFIRM_KEY";
 
 
         /// <summary>
-        /// Is the dialogue editor window of this model has already been opened in the editor?
+        /// Is the dialogue system window of this model has already been opened in the editor?
         /// </summary>
-        public bool IsDsWindowAlreadyOpened
+        public bool IsAlreadyOpened
         {
             get
             {
-                return EditorPrefs.GetBool(key: DIALOGUE_EDITOR_WINDOW_OPEN_CONFIRM_KEY);
+                return EditorPrefs.GetBool(key: DIALOGUE_SYSTEM_WINDOW_OPEN_CONFIRM_KEY);
             }
             set
             {
-                EditorPrefs.SetBool(key: DIALOGUE_EDITOR_WINDOW_OPEN_CONFIRM_KEY, value);
+                EditorPrefs.SetBool(key: DIALOGUE_SYSTEM_WINDOW_OPEN_CONFIRM_KEY, value);
             }
         }
 
 
         /// <summary>
-        /// Delete the editor prefs's dialogue editor window open confirm key.
+        /// Delete the editor prefs's dialogue system window open confirm key.
         /// </summary>
-        public void DeleteOpenConfirmKey() => EditorPrefs.DeleteKey(DIALOGUE_EDITOR_WINDOW_OPEN_CONFIRM_KEY);
-
-
-        /// <summary>
-        /// Rename the dialogue system model asset.
-        /// </summary>
-        /// <param name="newName">The new dsModel asset name to set for.</param>
-        public void RenameAsset(string newName)
-        {
-            AssetDatabase.RenameAsset(pathName: AssetDatabase.GetAssetPath(GetInstanceID()), newName);
-        }
+        public void DeleteOpenConfirmKey() => EditorPrefs.DeleteKey(DIALOGUE_SYSTEM_WINDOW_OPEN_CONFIRM_KEY);
 #endif
+        /// <summary>
+        /// The property of the current dialogue system model asset's name.
+        /// </summary>
+        public string Name
+        {
+            get => name;
+            set
+            {
+                AssetDatabase.RenameAsset(pathName: AssetDatabase.GetAssetPath(GetInstanceID()), value);
+            }
+        }
+
 
         /// <summary>
         /// Cache of the edge models that will be serialized.

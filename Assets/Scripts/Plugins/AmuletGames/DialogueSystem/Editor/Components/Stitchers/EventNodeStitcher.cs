@@ -194,7 +194,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the stitcher values to the event node stitcher model.
+        /// Save the stitcher values.
         /// </summary>
         /// <param name="model">The event node stitcher model to set for.</param>
         public void SaveStitcherValues(EventNodeStitcherModel model)
@@ -226,7 +226,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the stitcher values from the event node stitcher model.
+        /// Load the stitcher values.
         /// </summary>
         /// <param name="model">The event node stitcher model to set for.</param>
         public void LoadStitcherValues(EventNodeStitcherModel model)

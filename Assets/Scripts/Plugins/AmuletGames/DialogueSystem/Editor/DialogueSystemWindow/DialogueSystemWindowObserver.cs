@@ -4,7 +4,7 @@ using Object = UnityEngine.Object;
 
 namespace AG.DS
 {
-    public class DialogueEditorWindowObserver
+    public class DialogueSystemWindowObserver
     {
         /// <summary>
         /// Reference of the dialogue system model.
@@ -25,31 +25,19 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the serialize handler.
-        /// </summary>
-        SerializeHandler serializeHandler;
-
-
-        /// <summary>
-        /// Reference of the language handler.
-        /// </summary>
-        LanguageHandler languageHandler;
-
-
-        /// <summary>
         /// Reference of the node create request window.
         /// </summary>
         NodeCreateRequestWindow nodeCreateRequestWindow;
 
 
         /// <summary>
-        /// The targeting dialogue editor window.
+        /// The targeting dialogue system window.
         /// </summary>
-        DialogueEditorWindow dsWindow;
+        DialogueSystemWindow dsWindow;
 
 
         /// <summary>
-        /// Reference of the dialogue editor window root visual element.
+        /// Reference of the root visual element in the dialogue system window.
         /// </summary>
         VisualElement windowRootElement;
 
@@ -61,28 +49,25 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the dialogue editor window observer class.
+        /// Constructor of the dialogue system window observer class.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
-        /// <param name="serializeHandler">The serialize handler to set for.</param>
         /// <param name="nodeCreateRequestWindow">The node create request window to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
-        public DialogueEditorWindowObserver
+        /// <param name="dsWindow">The dialogue system window to set for.</param>
+        public DialogueSystemWindowObserver
         (
             DialogueSystemModel dsModel,
             GraphViewer graphViewer,
             HeadBar headBar,
-            SerializeHandler serializeHandler,
             NodeCreateRequestWindow nodeCreateRequestWindow,
-            DialogueEditorWindow dsWindow
+            DialogueSystemWindow dsWindow
         )
         {
             this.dsModel = dsModel;
             this.graphViewer = graphViewer;
             this.headBar = headBar;
-            this.serializeHandler = serializeHandler;
             this.nodeCreateRequestWindow = nodeCreateRequestWindow;
             this.dsWindow = dsWindow;
 
@@ -92,13 +77,11 @@ namespace AG.DS
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the dialogue editor window.
+        /// Register events to the dialogue system window.
         /// </summary>
         public void RegisterEvents()
         {
             // Serialization events
-            RegisterSaveToDSModelEvent();
-            RegisterLoadFromDSModelEvent();
             RegisterApplyChangesToDiskEvent();
 
             // Window events
@@ -114,49 +97,37 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register SaveToDSModelEvent to the dialogue editor window.
-        /// </summary>
-        void RegisterSaveToDSModelEvent() => dsWindow.SaveToDSModelEvent += SaveToDSModelEvent;
-
-
-        /// <summary>
-        /// Register LoadFromDSModelEvent to the dialogue editor window.
-        /// </summary>
-        void RegisterLoadFromDSModelEvent() => dsWindow.LoadFromDSModelEvent += LoadFromDSModelEvent;
-
-
-        /// <summary>
-        /// Register ApplyChangesToDiskEvent to the dialogue editor window.
+        /// Register ApplyChangesToDiskEvent to the dialogue system window.
         /// </summary>
         void RegisterApplyChangesToDiskEvent() => dsWindow.ApplyChangesToDiskEvent += ApplyChangesToDiskEvent;
 
 
         /// <summary>
-        /// Register WindowOnDisableEvent to the dialogue editor window.
+        /// Register WindowOnDisableEvent to the dialogue system window.
         /// </summary>
         void RegisterWindowOnDisableEvent() => dsWindow.WindowOnDisableEvent += WindowOnDisableEvent;
 
 
         /// <summary>
-        /// Register WindowOnDestroyEvent to the dialogue editor window.
+        /// Register WindowOnDestroyEvent to the dialogue system window.
         /// </summary>
         void RegisterWindowOnDestroyEvent() => dsWindow.WindowOnDestroyEvent += WindowOnDestroyEvent;
 
 
         /// <summary>
-        /// Register KeyDownEvent to the dialogue editor window root visual element.
+        /// Register KeyDownEvent to the dialogue system window root visual element.
         /// </summary>
         void RegisterKeyDownEvent() => windowRootElement.RegisterCallback<KeyDownEvent>(KeyDownEvent);
 
 
         /// <summary>
-        /// Register KeyUpEvent to the dialogue editor window root visual element.
+        /// Register KeyUpEvent to the dialogue system window root visual element.
         /// </summary>
         void RegisterKeyUpEvent() => windowRootElement.RegisterCallback<KeyUpEvent>(KeyUpEvent);
 
 
         /// <summary>
-        /// Register GeometryChangedEvent to the dialogue editor window root visual element.
+        /// Register GeometryChangedEvent to the dialogue system window root visual element.
         /// </summary>
         void RegisterGeometryChangedEvent() => windowRootElement.ExecuteOnceOnGeometryChanged(GeometryChangedEvent);
 
@@ -169,43 +140,18 @@ namespace AG.DS
 
         // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when the user clicked the save button in the headBar element.
-        /// </summary>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
-        void SaveToDSModelEvent(DialogueSystemModel dsModel)
-        {
-            serializeHandler.Save(dsModel);
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the dialogue editor window is first opened,
-        /// <br>or when the user clicked the load button in the headBar element.</br>
-        /// </summary>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
-        void LoadFromDSModelEvent(DialogueSystemModel dsModel)
-        {
-            graphViewer.ClearGraph();
-
-            serializeHandler.Load(dsModel);
-
-            languageHandler.Load();
-        }
-
-
-        /// <summary>
         /// The event to invoke to write all the unsaved changes to the disk.
         /// </summary>
         void ApplyChangesToDiskEvent()
         {
             AssetDatabase.SaveAssets();
 
-            dsWindow.SetHasUnsavedChanges(value: false);
+            dsWindow.HasUnsavedChanges = false;
         }
 
 
         /// <summary>
-        /// The event to invoke when the dialogue editor window's OnDisable is called.
+        /// The event to invoke when the dialogue system window's OnDisable is called.
         /// </summary>
         void WindowOnDisableEvent()
         {
@@ -218,13 +164,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the dialogue editor window's OnDestroy is called.
+        /// The event to invoke when the dialogue system window's OnDestroy is called.
         /// </summary>
         void WindowOnDestroyEvent()
         {
             WindowChangedEvent.Unregister(m_WindowChangesEvent);
 
-            dsModel.IsDsWindowAlreadyOpened = false;
+            dsModel.IsAlreadyOpened = false;
         }
 
 
@@ -275,7 +221,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the dialogue editor window root visual element's geometry has changed.
+        /// The event to invoke when the dialogue system window root visual element's geometry has changed.
         /// </summary>
         /// <param name="evt">The registering event.</param>
         void GeometryChangedEvent(GeometryChangedEvent evt)
@@ -304,13 +250,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when there are new changes happened to the dialogue editor window.
+        /// The event to invoke when there are new changes happened to the dialogue system window.
         /// </summary>
         void m_WindowChangesEvent()
         {
             if (dsWindow.hasFocus)
             {
-                dsWindow.SetHasUnsavedChanges(value: true);
+                dsWindow.HasUnsavedChanges = true;
             }
         }
     }

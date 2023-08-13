@@ -53,7 +53,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Load the view values from the given value.
+        /// Load the view values.
         /// </summary>
         /// <param name="value">The value to set for.</param>
         public void Load(string value)

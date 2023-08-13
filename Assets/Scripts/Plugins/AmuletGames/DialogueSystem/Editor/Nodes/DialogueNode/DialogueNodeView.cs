@@ -1,7 +1,7 @@
 ﻿namespace AG.DS
 {
     /// <inheritdoc />
-    public class DialogueNodeView : NodeViewBase
+    public class DialogueNodeView : NodeViewFrameBase<DialogueNodeView>
     {
         /// <summary>
         /// View for the character scriptable object object field.
@@ -27,14 +27,14 @@
         public DefaultPort OutputDefaultPort;
 
 
-        /// <summary>
-        /// Constructor of the dialogue node view class.
-        /// </summary>
-        public DialogueNodeView()
+        /// <inheritdoc />
+        public override DialogueNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleTextFieldView = new(value: StringConfig.DialogueNode_TitleTextField_LabelText);
             CharacterObjectFieldView = new("");
             DialogueNodeStitcher = new();
+
+            return this;
         }
     }
 }

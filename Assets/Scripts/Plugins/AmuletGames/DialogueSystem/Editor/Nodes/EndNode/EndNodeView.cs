@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class EndNodeView : NodeViewBase
+    public class EndNodeView : NodeViewFrameBase<EndNodeView>
     {
         /// <summary>
         /// The input default port of the node.
@@ -9,12 +9,12 @@ namespace AG.DS
         public DefaultPort InputDefaultPort;
 
 
-        /// <summary>
-        /// Constructor of the end node view class.
-        /// </summary>
-        public EndNodeView()
+        /// <inheritdoc />
+        public override EndNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleTextFieldView = new(value: StringConfig.EndNode_TitleTextField_LabelText);
+
+            return this;
         }
     }
 }

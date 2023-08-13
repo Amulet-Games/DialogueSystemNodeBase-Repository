@@ -46,7 +46,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the folder values to the folder model.
+        /// Save the folder values.
         /// </summary>
         /// <param name="model">The folder model to set for.</param>
         public void Save(FolderModel model)
@@ -57,7 +57,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the folder values from the folder model.
+        /// Load the folder values.
         /// </summary>
         /// <param name="model">The folder model to set for.</param>
         public void Load(FolderModel model)

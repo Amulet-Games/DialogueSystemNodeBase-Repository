@@ -1,4 +1,3 @@
-using System;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -6,7 +5,6 @@ namespace AG.DS
     /// <summary>
     /// Holds all the element references of the node element.
     /// </summary>
-    [Serializable]
     public abstract class NodeViewBase
     {
         /// <summary>

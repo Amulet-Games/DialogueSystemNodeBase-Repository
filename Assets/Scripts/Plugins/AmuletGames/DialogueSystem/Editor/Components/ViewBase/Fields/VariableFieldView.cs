@@ -50,7 +50,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the view values to the variable group model.
+        /// Save the view values.
         /// </summary>
         /// <param name="model">The variable group model to set for.</param>
         public void Save(VariableGroupModel model)

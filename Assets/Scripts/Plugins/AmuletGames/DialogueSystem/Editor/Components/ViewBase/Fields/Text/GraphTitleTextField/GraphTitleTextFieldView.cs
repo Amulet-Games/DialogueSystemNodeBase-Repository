@@ -30,7 +30,7 @@ namespace AG.DS
                     m_bindingSO = value;
                 }
 
-                Field.Bind(value);
+                Field.Bind(m_bindingSO);
             }
         }
 

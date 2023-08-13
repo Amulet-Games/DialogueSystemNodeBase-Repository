@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class PreviewNodeView : NodeViewBase
+    public class PreviewNodeView : NodeViewFrameBase<PreviewNodeView>
     {
         /// <summary>
         /// Object field view for the left side portrait image.
@@ -42,14 +42,14 @@ namespace AG.DS
         public DefaultPort OutputDefaultPort;
 
 
-        /// <summary>
-        /// Constructor of the preview node view class.
-        /// </summary>
-        public PreviewNodeView()
+        /// <inheritdoc />
+        public override PreviewNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleTextFieldView = new(value: StringConfig.PreviewNode_TitleTextField_LabelText);
             LeftPortraitObjectFieldView = new("");
             RightPortraitObjectFieldView = new("");
+
+            return this;
         }
     }
 }

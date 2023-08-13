@@ -35,6 +35,11 @@ namespace AG.DS
                 View.OutputOptionPort.Disconnect(graphViewer);
                 View.OutputOptionPortGroupView.DisconnectAll(graphViewer);
             }
+
+            // Remove language field
+            {
+                View.RootTitleTextFieldView.LanguageHandler.Remove(View.RootTitleTextFieldView);
+            }
         }
 
 
@@ -47,6 +52,10 @@ namespace AG.DS
         /// <inheritdoc />
         public override void OnPostCreate(GeometryChangedEvent evt)
         {
+            // Add language field
+            {
+                View.RootTitleTextFieldView.LanguageHandler.Add(View.RootTitleTextFieldView);
+            }
         }
     }
 }

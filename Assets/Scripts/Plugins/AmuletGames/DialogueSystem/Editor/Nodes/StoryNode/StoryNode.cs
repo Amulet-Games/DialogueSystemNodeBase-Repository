@@ -12,24 +12,16 @@ namespace AG.DS
     >
     {
         /// <summary>
-        /// Reference of the headBar element.
-        /// </summary>
-        public HeadBar HeadBar;
-
-
-        /// <summary>
         /// Constructor of the story node class.
         /// </summary>
         /// <param name="view">The story node view to set for.</param>
         /// <param name="callback">The story node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
         public StoryNode
         (
             StoryNodeView view,
             StoryNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
             // Setup references
@@ -37,7 +29,6 @@ namespace AG.DS
                 View = view;
                 m_Callback = callback;
                 GraphViewer = graphViewer;
-                HeadBar = headBar;
             }
 
             // Add style sheet
@@ -64,7 +55,6 @@ namespace AG.DS
             var target = NodeManager.Instance.Spawn
             (
                 GraphViewer,
-                HeadBar,
                 nodeType: NodeType.Event
             );
 

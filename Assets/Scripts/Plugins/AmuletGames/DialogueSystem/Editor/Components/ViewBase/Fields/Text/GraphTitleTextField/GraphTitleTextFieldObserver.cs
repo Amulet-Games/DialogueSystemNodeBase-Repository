@@ -13,32 +13,23 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the dialogue system model.
+        /// Reference of the dialogue system window.
         /// </summary>
-        DialogueSystemModel dsModel;
-
-
-        /// <summary>
-        /// Reference of the dialogue editor window.
-        /// </summary>
-        DialogueEditorWindow dsWindow;
+        DialogueSystemWindow dsWindow;
 
 
         /// <summary>
         /// Constructor of the graph title field observer class.
         /// </summary>
         /// <param name="view">The graph title text field view to set for.</param>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
+        /// <param name="dsWindow">The dialogue system window to set for.</param>
         public GraphTitleTextFieldObserver
         (
             GraphTitleTextFieldView view,
-            DialogueSystemModel dsModel,
-            DialogueEditorWindow dsWindow
+            DialogueSystemWindow dsWindow
         )
         {
             this.view = view;
-            this.dsModel = dsModel;
             this.dsWindow = dsWindow;
         }
 
@@ -87,11 +78,7 @@ namespace AG.DS
 
             if (view.Value != "")
             {
-                // Change dsModel asset name
-                {
-                    dsModel.RenameAsset(newName: evt.newValue);
-                    dsWindow.ApplyChangesToDisk();
-                }
+                dsWindow.RenameWindow(value: evt.newValue);
             }
         }
 

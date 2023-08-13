@@ -31,14 +31,14 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the port values to the given port model.
+        /// Save the port values.
         /// </summary>
         /// <param name="model">The port model to set for.</param>
         public abstract void Save(TPortModel model);
 
 
         /// <summary>
-        /// Load the port values from the given port model.
+        /// Load the port values.
         /// </summary>
         /// <param name="model">The port model to set for.</param>
         public abstract void Load(TPortModel model);

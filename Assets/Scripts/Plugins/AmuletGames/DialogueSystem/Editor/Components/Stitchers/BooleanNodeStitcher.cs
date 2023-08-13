@@ -189,7 +189,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the stitcher values to the boolean node stitcher model.
+        /// Save the stitcher values.
         /// </summary>
         /// <param name="model">The boolean node stitcher model to set for.</param>
         public void SaveStitcherValues(BooleanNodeStitcherModel model)
@@ -221,7 +221,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the stitcher values from the boolean node stitcher model.
+        /// Load the stitcher values.
         /// </summary>
         /// <param name="model">The boolean node stitcher model to set for.</param>
         public void LoadStitcherValues(BooleanNodeStitcherModel model)

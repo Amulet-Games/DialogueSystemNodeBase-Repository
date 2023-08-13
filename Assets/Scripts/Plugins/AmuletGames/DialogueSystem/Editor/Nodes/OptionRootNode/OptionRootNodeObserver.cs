@@ -26,8 +26,6 @@ namespace AG.DS
 
             RegisterGeometryChangedEvent();
 
-            RegisterLanguageChangedEvent();
-
             RegisterNodeTitleTextFieldEvents();
 
             RegisterNodeTitleEditButtonClickEvent();
@@ -50,13 +48,6 @@ namespace AG.DS
         /// </summary>
         void RegisterGeometryChangedEvent()
             => Node.RegisterCallback<GeometryChangedEvent>(GeometryChangedEvent);
-
-
-        /// <summary>
-        /// Register LanguageChangedEvent to the node.
-        /// </summary>
-        void RegisterLanguageChangedEvent()
-            => Node.HeadBar.languageHandler.Add(View.RootTitleTextFieldView);
 
 
         /// <summary>
@@ -93,23 +84,6 @@ namespace AG.DS
         void RegisterRootTitleTextFieldEvents()
             => new LanguageTextFieldObserver(
                 view: View.RootTitleTextFieldView).RegisterEvents();
-
-
-        // ----------------------------- Unregister Events -----------------------------
-        /// <summary>
-        /// Unregister events from the node.
-        /// </summary>
-        public void UnregisterEvents()
-        {
-            UnregisterLanguageChangedEvent();
-        }
-
-
-        /// <summary>
-        /// Unregister LanguageChangedEvent from the node.
-        /// </summary>
-        void UnregisterLanguageChangedEvent()
-            => Node.HeadBar.languageHandler.Remove(View.RootTitleTextFieldView);
 
 
         // ----------------------------- Event -----------------------------

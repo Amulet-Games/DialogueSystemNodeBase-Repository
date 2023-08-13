@@ -24,17 +24,17 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The property of the view's value that matches the current dialogue editor window's language.
+        /// The property of the view's value that matches the current dialogue system window's language.
         /// </summary>
         public TObject CurrentLanguageValue
         {
             get
             {
-                return LanguageValue.CurrentLanguageValue;
+                return LanguageValue.ValueByLanguageType[LanguageHandler.CurrentLanguage];
             }
             set
             {
-                LanguageValue.CurrentLanguageValue = value;
+                LanguageValue.ValueByLanguageType[LanguageHandler.CurrentLanguage] = value;
                 UpdateFieldLanguageValue();
             }
         }
@@ -47,13 +47,24 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the language handler.
+        /// </summary>
+        [NonSerialized] public LanguageHandler LanguageHandler;
+
+
+        /// <summary>
         /// Constructor of the language object field view class.
         /// </summary>
         /// <param name="placeholderText">The placeholder text to set for.</param>
-        public LanguageObjectFieldView(string placeholderText)
+        /// <param name="languageHandler">The language handler to set for.</param>
+        public LanguageObjectFieldView
+        (
+            string placeholderText,
+            LanguageHandler languageHandler
+        )
         {
             this.placeholderText = placeholderText;
-
+            LanguageHandler = languageHandler;
             LanguageValue = new();
         }
 
@@ -87,12 +98,12 @@ namespace AG.DS
         /// </summary>
         public void UpdateFieldLanguageValue()
         {
-            Field.SetValueWithoutNotify(LanguageValue.CurrentLanguageValue);
+            Field.SetValueWithoutNotify(CurrentLanguageValue);
             Field.ToggleEmptyStyle(placeholderText);
 
-            if (LanguageValue.CurrentLanguageValue != null)
+            if (CurrentLanguageValue != null)
             {
-                Field.Bind(obj: new SerializedObject(LanguageValue.CurrentLanguageValue));
+                Field.Bind(obj: new SerializedObject(CurrentLanguageValue));
             }
             else
             {

@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class EventNodeView : NodeViewBase
+    public class EventNodeView : NodeViewFrameBase<EventNodeView>
     {
         /// <summary>
         /// Content button for adding events to the node.
@@ -27,13 +27,13 @@ namespace AG.DS
         public DefaultPort OutputDefaultPort;
 
 
-        /// <summary>
-        /// Constructor of the event node view class.
-        /// </summary>
-        public EventNodeView()
+        /// <inheritdoc />
+        public override EventNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleTextFieldView = new(value: StringConfig.EventNode_TitleTextField_LabelText);
             EventModifierGroupView = new();
+
+            return this;
         }
     }
 }

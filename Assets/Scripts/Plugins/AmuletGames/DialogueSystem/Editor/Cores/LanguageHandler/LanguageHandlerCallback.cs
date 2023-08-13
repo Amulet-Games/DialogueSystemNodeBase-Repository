@@ -11,7 +11,7 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the language handler callback class.
         /// </summary>
-        /// <param name="languageHandler">The language handler to set for.</param>
+        /// <param name="graphViewer">The language handler to set for.</param>
         public LanguageHandlerCallback(LanguageHandler languageHandler)
         {
             this.languageHandler = languageHandler;
@@ -19,13 +19,16 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The callback to invoke when the current language of the dialogue editor window's is changed.
+        /// The callback to invoke when the current language of the dialogue system window's is changed.
         /// </summary>
         public void OnLanguageChange()
         {
-            for (int i = 0; i < languageHandler.LanguageFieldViewsCount; i++)
+            var views = languageHandler.LanguageFieldViews;
+            var count = views.Count;
+
+            for (int i = 0; i < count; i++)
             {
-                languageHandler.LanguageFieldViews[i].UpdateFieldLanguageValue();
+                views[i].UpdateFieldLanguageValue();
             }
         }
     }

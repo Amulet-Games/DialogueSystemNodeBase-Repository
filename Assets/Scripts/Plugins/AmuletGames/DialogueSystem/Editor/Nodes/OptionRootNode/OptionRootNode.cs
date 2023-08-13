@@ -10,24 +10,16 @@ namespace AG.DS
     >
     {
         /// <summary>
-        /// Reference of the headBar element.
-        /// </summary>
-        public HeadBar HeadBar;
-
-
-        /// <summary>
         /// Constructor of the option root node class.
         /// </summary>
         /// <param name="view">The option root node view to set for.</param>
         /// <param name="callback">The option root node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
         public OptionRootNode
         (
             OptionRootNodeView view,
             OptionRootNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
             // Setup references
@@ -35,7 +27,6 @@ namespace AG.DS
                 View = view;
                 m_Callback = callback;
                 GraphViewer = graphViewer;
-                HeadBar = headBar;
             }
 
             // Setup details

@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class StartNodeView : NodeViewBase
+    public class StartNodeView : NodeViewFrameBase<StartNodeView>
     {
         /// <summary>
         /// The output default port of the node.
@@ -9,12 +9,12 @@ namespace AG.DS
         public DefaultPort OutputDefaultPort;
 
 
-        /// <summary>
-        /// Constructor of the start node view class.
-        /// </summary>
-        public StartNodeView()
+        /// <inheritdoc />
+        public override StartNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleTextFieldView = new(value: StringConfig.StartNode_TitleTextField_LabelText);
+            
+            return this;
         }
     }
 }

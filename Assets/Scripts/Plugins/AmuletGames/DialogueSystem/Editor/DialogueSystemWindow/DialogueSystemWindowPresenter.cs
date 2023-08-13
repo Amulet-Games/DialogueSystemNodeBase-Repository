@@ -3,14 +3,14 @@ using UnityEngine;
 
 namespace AG.DS
 {
-    public class DialogueEditorWindowPresenter
+    public class DialogueSystemWindowPresenter
     {
         /// <summary>
-        /// Method for creating a new dialogue editor window.
+        /// Method for creating a new dialogue system window.
         /// </summary>
-        public static DialogueEditorWindow CreateWindow()
+        public static DialogueSystemWindow CreateWindow()
         {
-            DialogueEditorWindow window;
+            DialogueSystemWindow window;
 
             CreateWindow();
 
@@ -22,7 +22,7 @@ namespace AG.DS
 
             void CreateWindow()
             {
-                window = EditorWindow.CreateWindow<DialogueEditorWindow>();
+                window = EditorWindow.CreateWindow<DialogueSystemWindow>();
             }
 
             void SetupDetail()

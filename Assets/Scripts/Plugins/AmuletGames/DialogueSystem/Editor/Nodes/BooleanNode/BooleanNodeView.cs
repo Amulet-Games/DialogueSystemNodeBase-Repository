@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class BooleanNodeView : NodeViewBase
+    public class BooleanNodeView : NodeViewFrameBase<BooleanNodeView>
     {
         /// <summary>
         /// A special node's UI style that combined the use of segment, modifier and content button together.
@@ -27,13 +27,13 @@ namespace AG.DS
         public DefaultPort FalseOutputDefaultPort;
 
 
-        /// <summary>
-        /// Constructor of the boolean node view class.
-        /// </summary>
-        public BooleanNodeView()
+        /// <inheritdoc />
+        public override BooleanNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleTextFieldView = new(value: StringConfig.BooleanNode_TitleTextField_LabelText);
             booleanNodeStitcher = new();
+
+            return this;
         }
     }
 }

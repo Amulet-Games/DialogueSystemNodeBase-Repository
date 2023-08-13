@@ -51,7 +51,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the group values to the option port group model.
+        /// Save the group view values.
         /// </summary>
         /// <param name="model">The option port group model to set for.</param>
         public void Save(OptionPortGroupModel model)
@@ -68,7 +68,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the group values from the option port group model.
+        /// Load the group view values.
         /// </summary>
         /// <param name="node">The node base element to set for.</param>
         /// <param name="model">The option port group model to set for.</param>

@@ -13,8 +13,6 @@ namespace AG.DS
 
             CreateInputHint();
 
-            SetupDetail();
-
             SetupHintIconImage();
 
             SetupHintTextLabel();
@@ -29,13 +27,8 @@ namespace AG.DS
 
             void CreateInputHint()
             {
-                inputHint = new();
+                inputHint = new(graphViewer);
                 inputHint.AddToClassList(StyleConfig.InputHint_Main);
-            }
-
-            void SetupDetail()
-            {
-                inputHint.GraphViewer = graphViewer;
             }
 
             void SetupHintIconImage()

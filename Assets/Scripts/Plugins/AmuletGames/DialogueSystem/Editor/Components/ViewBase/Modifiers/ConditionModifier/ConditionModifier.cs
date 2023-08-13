@@ -300,7 +300,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the modifier values to the condition modifier model.
+        /// Save the modifier values.
         /// </summary>
         /// <param name="model">The condition modifier model to set for.</param>
         public void SaveModifierValue(ConditionModifierModel model)
@@ -318,7 +318,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the modifier values from the condition modifier model.
+        /// Load the modifier values.
         /// </summary>
         /// <param name="model">The condition modifier model to set for.</param>
         public void LoadModifierValue(ConditionModifierModel model)

@@ -15,8 +15,7 @@ namespace AG.DS
         (
             BooleanNodeView view,
             BooleanNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
             var node = new BooleanNode(view, callback, graphViewer);

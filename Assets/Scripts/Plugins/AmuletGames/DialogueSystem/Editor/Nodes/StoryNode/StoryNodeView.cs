@@ -3,7 +3,7 @@ using System;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class StoryNodeView : NodeViewBase
+    public class StoryNodeView : NodeViewFrameBase<StoryNodeView>
     {
         /// <summary>
         /// Enum container for the users to choose how they want to trigger the second line of dialogue
@@ -36,16 +36,14 @@ namespace AG.DS
         public DefaultPort OutputDefaultPort;
 
 
-        /// <summary>
-        /// Constructor of the story node view class.
-        /// </summary>
-        public StoryNodeView()
+        /// <inheritdoc />
+        public override StoryNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleTextFieldView = new(value: StringConfig.StoryNode_TitleTextField_LabelText);
-
             SecondLineTriggerTypeEnumContainer = new();
-
             CsvGUID = Guid.NewGuid().ToString();
+
+            return this;
         }
     }
 }

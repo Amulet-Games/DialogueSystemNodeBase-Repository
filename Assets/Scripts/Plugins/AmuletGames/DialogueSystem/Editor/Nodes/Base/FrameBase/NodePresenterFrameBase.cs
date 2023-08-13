@@ -11,25 +11,21 @@ namespace AG.DS
     > 
         : NodePresenterBase
         where TNode : NodeBase
-        where TNodeView : NodeViewBase
+        where TNodeView : NodeViewFrameBase<TNodeView>
         where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
     {
         /// <summary>
         /// Method for creating the elements for the node.
         /// </summary>
-        /// 
         /// <param name="view">The node view to set for.</param>
         /// <param name="callback">The node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
-        /// 
         /// <returns>A new node element.</returns>
         public abstract TNode CreateElements
         (
             TNodeView view,
             TNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         );
 
 

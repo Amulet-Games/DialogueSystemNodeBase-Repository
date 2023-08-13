@@ -15,8 +15,7 @@ namespace AG.DS
         (
             EventNodeView view,
             EventNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
             var node = new EventNode(view, callback, graphViewer);

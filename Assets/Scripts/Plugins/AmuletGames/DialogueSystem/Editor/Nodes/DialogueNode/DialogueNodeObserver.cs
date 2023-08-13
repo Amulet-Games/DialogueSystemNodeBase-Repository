@@ -64,15 +64,6 @@ namespace AG.DS
                 clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
 
 
-        // ----------------------------- Unregister Events -----------------------------
-        /// <summary>
-        /// Unregister events from the node.
-        /// </summary>
-        public void UnregisterEvents()
-        {
-        }
-
-
         // ----------------------------- Event -----------------------------
         /// <summary>
         /// The event to invoke when the pointer's state has changed.

@@ -19,14 +19,14 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The action key for saving the dialogue editor window.
+        /// The action key for saving the dialogue system window.
         /// <para>Press and hold the support key before pressing this key to perform the desired action.</para>
         /// </summary>
         public KeyCode SaveKey = KeyCode.F12;
 
 
         /// <summary>
-        /// The action key for loading the dialogue editor window.
+        /// The action key for loading the dialogue system window.
         /// <para>Press and hold the support key before pressing this key to perform the desired action.</para>
         /// </summary>
         public KeyCode LoadKey = KeyCode.F11;

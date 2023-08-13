@@ -22,6 +22,7 @@ namespace AG.DS
             Edge = edge;
             output = edge.Output;
             input = edge.Input;
+
             return this;
         }
 

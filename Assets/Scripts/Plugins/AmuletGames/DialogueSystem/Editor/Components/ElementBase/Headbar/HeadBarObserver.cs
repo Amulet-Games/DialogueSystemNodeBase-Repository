@@ -17,21 +17,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the dialogue system model.
-        /// </summary>
-        DialogueSystemModel dsModel;
-
-
-        /// <summary>
-        /// Reference of the language handler.
-        /// </summary>
-        LanguageHandler languageHandler;
-
-
-        /// <summary>
         /// Reference of the dialogue editor window.
         /// </summary>
-        DialogueEditorWindow dsWindow;
+        DialogueSystemWindow dsWindow;
 
 
         /// <summary>
@@ -39,22 +27,16 @@ namespace AG.DS
         /// </summary>
         /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="headBarView">The headBar view class to set for.</param>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
-        /// <param name="languageHandler">The language handler to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
+        /// <param name="dsWindow">The dialogue system window to set for.</param>
         public HeadBarObserver
         (
             HeadBar headBar,
             HeadBarView headBarView,
-            DialogueSystemModel dsModel,
-            LanguageHandler languageHandler,
-            DialogueEditorWindow dsWindow
+            DialogueSystemWindow dsWindow
         )
         {
             this.headBar = headBar;
             this.headBarView = headBarView;
-            this.dsModel = dsModel;
-            this.languageHandler = languageHandler;
             this.dsWindow = dsWindow;
         }
 
@@ -140,7 +122,7 @@ namespace AG.DS
         void RegisterGraphTitleTextFieldEvents()
         {
             new GraphTitleTextFieldObserver(
-                view: headBarView.GraphTitleTextFieldView, dsModel, dsWindow).RegisterEvents();
+                view: headBarView.GraphTitleTextFieldView, dsWindow).RegisterEvents();
         }
 
 
@@ -191,6 +173,7 @@ namespace AG.DS
         }
 
 
+        // ----------------------------- Action -----------------------------
         /// <summary>
         /// The action to invoke when the language toolbar menu item is clicked.
         /// </summary>
@@ -201,9 +184,7 @@ namespace AG.DS
 
             headBarView.LanguageToolbarMenu.text = LanguageProvider.GetShort(type: selectedLanguageType);
 
-            languageHandler.CurrentLanguage = selectedLanguageType;
-
-            WindowChangedEvent.Invoke();
+            dsWindow.ChangeLanguage(selectedLanguageType);
         }
     }
 }

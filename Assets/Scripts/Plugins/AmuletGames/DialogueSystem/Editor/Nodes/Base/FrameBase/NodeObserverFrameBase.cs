@@ -10,7 +10,7 @@ namespace AG.DS
     >
         : NodeObserverBase
         where TNode : NodeBase
-        where TNodeView : NodeViewBase
+        where TNodeView : NodeViewFrameBase<TNodeView>
     {
         /// <summary>
         /// Reference of the node element.

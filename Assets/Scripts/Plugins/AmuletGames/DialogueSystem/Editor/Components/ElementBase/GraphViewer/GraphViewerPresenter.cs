@@ -8,9 +8,8 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new graph viewer element.
         /// </summary>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
         /// <returns>A new graph viewer element.</returns>
-        public static GraphViewer CreateElement(DialogueEditorWindow dsWindow)
+        public static GraphViewer CreateElement()
         {
             GraphViewer graphViewer;
 

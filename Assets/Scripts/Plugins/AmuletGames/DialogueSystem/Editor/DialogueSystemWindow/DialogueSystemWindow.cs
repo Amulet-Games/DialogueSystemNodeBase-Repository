@@ -1,13 +1,11 @@
 ﻿using System;
 using UnityEditor;
-using UnityEditor.Callbacks;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
-using Object = UnityEngine.Object;
 
 namespace AG.DS
 {
-    public class DialogueEditorWindow : EditorWindow
+    public class DialogueSystemWindow : EditorWindow
     {
         /// <summary>
         /// Reference of the dialogue system model.
@@ -22,28 +20,31 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the headBar element.
-        /// </summary>
-        HeadBar headBar;
-
-
-        /// <summary>
         /// Reference of the undo redo handler.
         /// </summary>
         UndoRedoHandler undoRedoHandler;
 
 
         /// <summary>
-        /// The event to invoke when the user clicked the save button in the headBar element.
+        /// Reference of the serialize handler.
         /// </summary>
-        public event Action<DialogueSystemModel> SaveToDSModelEvent;
+        SerializeHandler serializeHandler;
 
 
         /// <summary>
-        /// The event to invoke when the dialogue editor window is first opened,
-        /// <br>or when the user clicked the load button in the headBar element.</br>
+        /// Reference of the language handler.
         /// </summary>
-        public event Action<DialogueSystemModel> LoadFromDSModelEvent;
+        LanguageHandler languageHandler;
+
+
+        /// <summary>
+        /// The property of the dialogue system window's hasUnsavedChanges value.
+        /// </summary>
+        public bool HasUnsavedChanges
+        {
+            get => hasUnsavedChanges;
+            set => hasUnsavedChanges = value;
+        }
 
 
         /// <summary>
@@ -53,13 +54,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the dialogue editor window's OnDisable is called.
+        /// The event to invoke when the dialogue system window's OnDisable is called.
         /// </summary> 
         public event Action WindowOnDisableEvent;
 
 
         /// <summary>
-        /// The event to invoke when the dialogue editor window's OnDestroy is called.
+        /// The event to invoke when the dialogue system window's OnDestroy is called.
         /// </summary> 
         public event Action WindowOnDestroyEvent;
 
@@ -98,29 +99,26 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Init of the dialogue editor window class.
+        /// Init of the dialogue system window class.
         /// Logic here should only be executed once.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
-        void Init(DialogueSystemModel dsModel)
+        public void Init(DialogueSystemModel dsModel)
         {
             this.dsModel = dsModel;
-            dsModel.IsDsWindowAlreadyOpened = true;
+            dsModel.IsAlreadyOpened = true;
         }
 
 
         /// <summary>
-        /// Setup for the dialogue editor window class.
+        /// Setup for the dialogue system window class.
         /// </summary>
-        void Setup()
+        public void Setup()
         {
-            LanguageHandler languageHandler;
-            SerializeHandler serializeHandler;
-            NodeCreateRequestWindow nodeCreateRequestWindow;
-
             HeadBar headBar;
             HeadBarView headBarView;
 
+            NodeCreateRequestWindow nodeCreateRequestWindow;
 
             // Setup static classes
             {
@@ -138,11 +136,14 @@ namespace AG.DS
 
             // Create modules
             {
+                // Graph Viewer
+                graphViewer = GraphViewerPresenter.CreateElement();
+
                 // Language Handler
                 languageHandler = new();
 
-                // Graph Viewer
-                graphViewer = GraphViewerPresenter.CreateElement(dsWindow: this);
+                // Serialize Handler
+                serializeHandler = new();
 
                 // HeadBar
                 {
@@ -153,17 +154,16 @@ namespace AG.DS
                 // Input Hint
                 InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
 
-                // Serialize Handler
-                serializeHandler = new(graphViewer, headBar);
-
                 // Node Create's
-                var nodeCreateDetails = new NodeCreateDetails();
+                {
+                    var nodeCreateDetails = new NodeCreateDetails();
 
-                nodeCreateRequestWindow =
-                    NodeCreateRequestWindowPresenter.CreateWindow(graphViewer, headBar, nodeCreateDetails, dsWindow: this);
+                    nodeCreateRequestWindow =
+                        NodeCreateRequestWindowPresenter.CreateWindow(graphViewer, languageHandler, nodeCreateDetails, dsWindow: this);
 
-                graphViewer.NodeCreateConnectorWindow =
-                    NodeCreateConnectorWindowPresenter.CreateWindow(graphViewer, headBar, nodeCreateDetails, dsWindow: this);
+                    graphViewer.NodeCreateConnectorWindow =
+                        NodeCreateConnectorWindowPresenter.CreateWindow(graphViewer, languageHandler, nodeCreateDetails, dsWindow: this);
+                }
             }
 
             // Add modules to graph
@@ -180,12 +180,10 @@ namespace AG.DS
                 graphViewerObserver.AssignDelegates();
                 graphViewerObserver.RegisterEvents();
 
-                new HeadBarObserver(headBar, headBarView,
-                    dsModel, languageHandler, dsWindow: this).RegisterEvents();
+                //new HeadBarObserver(headBar, headBarView, dsWindow: this).RegisterEvents();
 
-                new DialogueEditorWindowObserver(
-                    dsModel, graphViewer, headBar,
-                    serializeHandler, nodeCreateRequestWindow, dsWindow: this).RegisterEvents();
+                new DialogueSystemWindowObserver(
+                    dsModel, graphViewer, headBar, nodeCreateRequestWindow, dsWindow: this).RegisterEvents();
 
                 new NodeCreateRequestWindowObserver(nodeCreateRequestWindow).RegisterEvents();
                 new NodeCreateConnectorWindowObserver(graphViewer.NodeCreateConnectorWindow).RegisterEvents();
@@ -204,62 +202,14 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <summary>
-        /// Callback attribute for opening an asset in Unity (e.g the callback is fired when double clicking an asset in the Project Browser).
-        /// <para>Read More https://docs.unity3d.com/2020.1/Documentation/ScriptReference/Callbacks.OnOpenAssetAttribute.html</para>
-        /// </summary>
-        /// <param name="instanceId">The instance id of the opened asset. Required parameter for the callback attribute.</param>
-        /// <param name="line">Can be ignored. Required parameter for the callback attribute.</param>
-        [OnOpenAsset(0)]
-        public static bool OnOpenAssetDialogueSystemModel(int instanceId, int line)
-        {
-            // Get the instance id from the opened asset and translate it to an object reference.
-            Object openedAssetObject = EditorUtility.InstanceIDToObject(instanceId);
-
-            if (openedAssetObject is DialogueSystemModel)
-            {
-                var dsModel = (DialogueSystemModel)openedAssetObject;
-                if (dsModel.IsDsWindowAlreadyOpened)
-                {
-                    if (EditorApplicationInitializer.IsClosePeacefully)
-                    {
-                        // If the editor application is quited by user manually previously.
-                        Debug.LogError(StringConfig.Editor_WindowAlreadyOpened_WarningText);
-                        return false;
-                    }
-                }
-
-                var dsWindow = DialogueEditorWindowPresenter.CreateWindow();
-                dsWindow.Init(dsModel);
-                dsWindow.Setup();
-            }
-
-            return false;
-        }
-
-
-        /// <summary>
-        /// When set to true, it force Unity to recognize the custom graph editor has unsaved changes,
-        /// <br>so that it'll ask the user to save the window before it's closing.</br>
-        /// <para></para>
-        /// <br>When set to false, Unity won't ask user to save and it closes the window directly.</br>
-        /// </summary>
-        public void SetHasUnsavedChanges(bool value) => hasUnsavedChanges = value;
-
-
-        /// <summary>
-        /// Write all the unsaved changes to the disk.
-        /// </summary>
-        public void ApplyChangesToDisk() => ApplyChangesToDiskEvent.Invoke();
-
-
-        /// <summary>
         /// Save all the graph elements on the custom graph editor.
         /// </summary>
         public void Save()
         {
             if (hasUnsavedChanges)
             {
-                SaveToDSModelEvent.Invoke(dsModel);
+                serializeHandler.Save(dsModel, graphViewer);
+
                 ApplyChangesToDiskEvent.Invoke();
             }
             else
@@ -276,13 +226,42 @@ namespace AG.DS
         {
             if (isForceLoadWindow || hasUnsavedChanges)
             {
-                LoadFromDSModelEvent.Invoke(dsModel);
+                graphViewer.ClearGraph();
+
+                languageHandler.ClearCache();
+
+                serializeHandler.Load(dsModel, graphViewer, languageHandler);
+
                 ApplyChangesToDiskEvent.Invoke();
             }
             else
             {
                 Debug.LogWarning(StringConfig.Editor_WindowAlreadyLoaded_WarningText);
             }
+        }
+
+
+        /// <summary>
+        /// Rename the dialogue system window.
+        /// </summary>
+        /// <param name="value">The new dialogue system window's name to set for.</param>
+        public void RenameWindow(string value)
+        {
+            dsModel.Name = value;
+
+            ApplyChangesToDiskEvent.Invoke();
+        }
+
+
+        /// <summary>
+        /// Change the language of the dialogue system window.
+        /// </summary>
+        /// <param name="value">The new language type to set for.</param>
+        public void ChangeLanguage(LanguageType value)
+        {
+            languageHandler.CurrentLanguage = value;
+
+            WindowChangedEvent.Invoke();
         }
     }
 }

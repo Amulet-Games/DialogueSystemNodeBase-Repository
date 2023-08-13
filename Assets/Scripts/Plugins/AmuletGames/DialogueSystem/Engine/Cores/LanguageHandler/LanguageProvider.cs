@@ -1,5 +1,4 @@
 using System;
-using static TreeEditor.TreeEditorHelper;
 
 namespace AG.DS
 {
@@ -12,7 +11,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The array of language types that are supported in the dialogue editor window.
+        /// The array of language types that are supported in the dialogue system window.
         /// </summary>
         public static LanguageType[] SupportTypes { get; private set; }
 

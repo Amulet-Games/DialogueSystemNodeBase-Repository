@@ -128,7 +128,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the group values to the event modifier group model.
+        /// Save the modifier group values.
         /// </summary>
         /// <param name="model">The event modifier group model to set for.</param>
         public void Save(EventModifierGroupModel model)
@@ -145,7 +145,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the group values from the event modifier group model.
+        /// Load the modifier group values.
         /// </summary>
         /// <param name="model">The event modifier group model to set for.</param>
         public void Load(EventModifierGroupModel model)

@@ -17,8 +17,7 @@ namespace AG.DS
         (
             PreviewNodeView view,
             PreviewNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
             var node = new PreviewNode(view, callback, graphViewer);

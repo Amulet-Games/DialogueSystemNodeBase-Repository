@@ -8,21 +8,21 @@ namespace AG.DS
         /// Method for creating a new node create request window.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
+        /// <param name="languageHandler">The language handler to set for.</param>
         /// <param name="details">The node create details to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
+        /// <param name="dsWindow">The dialogue system window to set for.</param>
         /// <returns>A new node create request window.</returns>
         public static NodeCreateRequestWindow CreateWindow
         (
             GraphViewer graphViewer,
-            HeadBar headBar,
+            LanguageHandler languageHandler,
             NodeCreateDetails details,
-            DialogueEditorWindow dsWindow
+            DialogueSystemWindow dsWindow
         )
         {
             var window = ScriptableObject.CreateInstance<NodeCreateRequestWindow>();
 
-            window.Setup(graphViewer, headBar, details, dsWindow);
+            window.Setup(graphViewer, languageHandler, details, dsWindow);
             window.IsUpdateScreenMousePosition = true;
 
             return window;

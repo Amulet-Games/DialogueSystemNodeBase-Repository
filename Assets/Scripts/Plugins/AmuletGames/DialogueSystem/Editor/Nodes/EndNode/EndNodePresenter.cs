@@ -15,8 +15,7 @@ namespace AG.DS
         (
             EndNodeView view,
             EndNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
             var node = new EndNode(view, callback, graphViewer);

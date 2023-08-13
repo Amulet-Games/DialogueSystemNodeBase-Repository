@@ -14,7 +14,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the graph viewer element.
         /// </summary>
-        public GraphViewer GraphViewer;
+        public GraphViewer graphViewer;
 
 
         /// <summary>
@@ -39,6 +39,16 @@ namespace AG.DS
         /// Horizontal offset value in between the target field and the hint itself.
         /// </summary>
         const float HINT_OFFSET_LEFT = 18f;
+
+
+        /// <summary>
+        /// Constructor of the input hint element.
+        /// </summary>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        public InputHint(GraphViewer graphViewer)
+        {
+            this.graphViewer = graphViewer;
+        }
 
 
         // ----------------------------- Show / Hide Hint -----------------------------
@@ -71,10 +81,10 @@ namespace AG.DS
                 targetHintPosX = targetWorldBoundRect.x + targetWorldBoundRect.width;
 
                 // Remove the horizontal offset value that from the graph viewer's content view container.
-                targetHintPosX += Instance.GraphViewer.contentViewContainer.worldBound.x * -1;
+                targetHintPosX += Instance.graphViewer.contentViewContainer.worldBound.x * -1;
 
                 // Divide it with the graph viewer size to keep position even after zooming in and out.
-                targetHintPosX /= Instance.GraphViewer.scale;
+                targetHintPosX /= Instance.graphViewer.scale;
 
                 // Lastly add the top offset value to the field that the hint is targeting to.
                 Instance.style.left = targetHintPosX += HINT_OFFSET_LEFT;
@@ -87,10 +97,10 @@ namespace AG.DS
                 //Debug.Log("Max.y = " + targetWorldBoundRect.max.y);
 
                 // Remove the vertical offset value that created by the graph viewer's content view container.
-                targetHintPosY += Instance.GraphViewer.contentViewContainer.worldBound.y * -1;
+                targetHintPosY += Instance.graphViewer.contentViewContainer.worldBound.y * -1;
 
                 // Divide it with the graph viewer size to keep position even after zooming in and out.
-                targetHintPosY /= Instance.GraphViewer.scale;
+                targetHintPosY /= Instance.graphViewer.scale;
 
                 // Lastly add the top offset value to the field that the hint is targeting to.
                 Instance.style.top = targetHintPosY += HINT_OFFSET_TOP;

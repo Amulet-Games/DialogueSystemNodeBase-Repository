@@ -15,11 +15,10 @@ namespace AG.DS
         (
             DialogueNodeView view,
             DialogueNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
-            var node = new DialogueNode(view, callback, graphViewer, headBar);
+            var node = new DialogueNode(view, callback, graphViewer);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

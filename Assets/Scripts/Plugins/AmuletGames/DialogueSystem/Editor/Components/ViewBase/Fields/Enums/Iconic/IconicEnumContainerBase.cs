@@ -30,7 +30,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Load the container values from the given value.
+        /// Load the container values.
         /// </summary>
         /// <param name="value">The value to set for.</param>
         public void Load(int value)

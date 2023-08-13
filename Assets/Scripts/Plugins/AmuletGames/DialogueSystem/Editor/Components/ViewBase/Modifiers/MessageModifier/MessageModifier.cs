@@ -79,9 +79,9 @@ namespace AG.DS
         {
             //Folder = new();
             
-            messageTextView = new(placeholderText: StringConfig.DialogueSegmentTextlinePlaceholderText);
+            //messageTextView = new(placeholderText: StringConfig.DialogueSegmentTextlinePlaceholderText);
             
-            messageAudioObjectView = new("");
+            //messageAudioObjectView = new("");
 
             csvGUID = Guid.NewGuid().ToString();
         }
@@ -305,7 +305,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the modifier values to the message modifier model.
+        /// Save the modifier values.
         /// </summary>
         /// <param name="model">The message modifier model to set for.</param>
         public void Save(MessageModifierModel model)
@@ -342,7 +342,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the modifier values from the message modifier model.
+        /// Load the modifier values.
         /// </summary>
         /// <param name="model">The message modifier model to set for.</param>
         public void Load(MessageModifierModel model)

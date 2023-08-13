@@ -10,24 +10,16 @@ namespace AG.DS
     >
     {
         /// <summary>
-        /// Reference of the headBar element.
-        /// </summary>
-        public HeadBar HeadBar;
-
-
-        /// <summary>
         /// Constructor of the dialogue node class.
         /// </summary>
         /// <param name="view">The dialogue node view to set for.</param>
         /// <param name="callback">The dialogue node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
         public DialogueNode
         (
             DialogueNodeView view,
             DialogueNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
             // Setup references
@@ -35,7 +27,6 @@ namespace AG.DS
                 View = view;
                 m_Callback = callback;
                 GraphViewer = graphViewer;
-                HeadBar = headBar;
             }
 
             // Setup details

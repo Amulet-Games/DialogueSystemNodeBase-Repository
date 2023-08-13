@@ -1,7 +1,7 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class OptionBranchNodeView : NodeViewBase
+    public class OptionBranchNodeView : NodeViewFrameBase<OptionBranchNodeView>
     {
         /// <summary>
         /// Content button for adding conditions to the node.
@@ -33,14 +33,16 @@ namespace AG.DS
         public DefaultPort OutputDefaultPort;
 
 
-        /// <summary>
-        /// Constructor of the option branch node view class.
-        /// </summary>
-        public OptionBranchNodeView()
+        /// <inheritdoc />
+        public override OptionBranchNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleTextFieldView = new(value: StringConfig.OptionBranchNode_TitleTextField_LabelText);
-            BranchTitleTextFieldView = new(placeholderText: StringConfig.OptionBranchNode_BranchTitleTextField_PlaceholderText);
+            BranchTitleTextFieldView = new(
+                placeholderText: StringConfig.OptionBranchNode_BranchTitleTextField_PlaceholderText,
+                languageHandler);
             OptionBranchNodeStitcher = new();
+
+            return this;
         }
     }
 }

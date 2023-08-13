@@ -16,11 +16,10 @@ namespace AG.DS
         (
             OptionRootNodeView view,
             OptionRootNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
-            var node = new OptionRootNode(view, callback, graphViewer, headBar);
+            var node = new OptionRootNode(view, callback, graphViewer);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

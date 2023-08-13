@@ -7,16 +7,6 @@ namespace AG.DS
     public class LanguageGeneric<T>
     {
         /// <summary>
-        /// The property of the value that matches the current dialogue editor window's language.
-        /// </summary>
-        public T CurrentLanguageValue
-        {
-            get => m_value[LanguageProvider.Instance.CurrentLanguage];
-            set => m_value[LanguageProvider.Instance.CurrentLanguage] = value;
-        }
-
-
-        /// <summary>
         /// The property of the serializable value of the component.
         /// </summary>
         public SerializableDictionary<LanguageType, T> ValueByLanguageType

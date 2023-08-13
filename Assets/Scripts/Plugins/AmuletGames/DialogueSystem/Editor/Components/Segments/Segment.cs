@@ -139,7 +139,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the segment values to the segment model.
+        /// Save the segment values.
         /// </summary>
         /// <param name="model">The segment model to set for.</param>
         public void SaveSegmentValues(SegmentModel model)
@@ -150,7 +150,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the segment values from the segment model.
+        /// Load the segment values.
         /// </summary>
         /// <param name="model">The segment model to set for.</param>
         public void LoadSegmentValues(SegmentModel model)

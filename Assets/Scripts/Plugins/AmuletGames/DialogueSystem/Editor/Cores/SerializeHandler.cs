@@ -4,39 +4,20 @@ namespace AG.DS
 {
     public class SerializeHandler
     {
-        /// <summary>
-        /// Reference of the graph viewer element.
-        /// </summary>
-        GraphViewer graphViewer;
-
-
-        /// <summary>
-        /// Reference of the headBar element.
-        /// </summary>
-        HeadBar headBar;
-
-
-        /// <summary>
-        /// Constructor of the serialize handler class.
-        /// </summary>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
-        public SerializeHandler(GraphViewer graphViewer, HeadBar headBar)
-        {
-            this.graphViewer = graphViewer;
-            this.headBar = headBar;
-        }
-
-
         // ----------------------------- Save -----------------------------
         /// <summary>
         /// Save all the edges and nodes that are on the graph.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
-        public void Save(DialogueSystemModel dsModel)
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        public void Save
+        (
+            DialogueSystemModel dsModel,
+            GraphViewer graphViewer
+        )
         {
-            SaveEdges(dsModel);
-            SaveNodes(dsModel);
+            SaveEdges(dsModel, graphViewer);
+            SaveNodes(dsModel, graphViewer);
 
             // Set dirty when the saving is finished.
             EditorUtility.SetDirty(dsModel);
@@ -47,7 +28,12 @@ namespace AG.DS
         /// Save all the edges that are on the graph.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
-        void SaveEdges(DialogueSystemModel dsModel)
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        void SaveEdges
+        (
+            DialogueSystemModel dsModel,
+            GraphViewer graphViewer
+        )
         {
             // Clear existing edge models
             {
@@ -69,7 +55,12 @@ namespace AG.DS
         /// Save all the nodes that are on the graph.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
-        void SaveNodes(DialogueSystemModel dsModel)
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        void SaveNodes
+        (
+            DialogueSystemModel dsModel,
+            GraphViewer graphViewer
+        )
         {
             // Clear existing node models
             {
@@ -81,7 +72,7 @@ namespace AG.DS
                 var nodeCount = graphViewer.Nodes.Count;
                 for (int i = 0; i < nodeCount; i++)
                 {
-                    NodeManager.Instance.Save(node: graphViewer.Nodes[i]);
+                    NodeManager.Instance.Save(graphViewer.Nodes[i]);
                 }
             }
         }
@@ -92,10 +83,17 @@ namespace AG.DS
         /// Load all the edge and node models that are stored on the scriptable object asset.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
-        public void Load(DialogueSystemModel dsModel)
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <param name="languageHandler">The language handler to set for.</param>
+        public void Load
+        (
+            DialogueSystemModel dsModel,
+            GraphViewer graphViewer,
+            LanguageHandler languageHandler
+        )
         {
-            LoadNodes(dsModel);
-            LoadEdges(dsModel);
+            LoadNodes(dsModel, graphViewer, languageHandler);
+            LoadEdges(dsModel, graphViewer);
 
             // Set dirty when the loading is finished.
             EditorUtility.SetDirty(dsModel);
@@ -106,14 +104,20 @@ namespace AG.DS
         /// Load the node models and spawn the nodes to the graph.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
-        void LoadNodes(DialogueSystemModel dsModel)
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <param name="languageHandler">The language handler to set for.</param>
+        void LoadNodes
+        (
+            DialogueSystemModel dsModel,
+            GraphViewer graphViewer,
+            LanguageHandler languageHandler
+        )
         {
-            var modelCount = dsModel.NodeModels.Count;
-
-            for (int i = 0; i < modelCount; i++)
+            var count = dsModel.NodeModels.Count;
+            for (int i = 0; i < count; i++)
             {
                 graphViewer.Add(
-                    NodeManager.Instance.Spawn(graphViewer, headBar, model: dsModel.NodeModels[i])
+                    NodeManager.Instance.Spawn(graphViewer, dsModel.NodeModels[i], languageHandler)
                 );
             }
         }
@@ -124,11 +128,16 @@ namespace AG.DS
         /// and attempt to connect the previously linked nodes again.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
-        void LoadEdges(DialogueSystemModel dsModel)
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        void LoadEdges
+        (
+            DialogueSystemModel dsModel,
+            GraphViewer graphViewer
+        )
         {
-            var modelCount = dsModel.EdgeModels.Count;
+            var count = dsModel.EdgeModels.Count;
 
-            for (int i = 0; i < modelCount; i++)
+            for (int i = 0; i < count; i++)
             {
                 var model = dsModel.EdgeModels[i];
 

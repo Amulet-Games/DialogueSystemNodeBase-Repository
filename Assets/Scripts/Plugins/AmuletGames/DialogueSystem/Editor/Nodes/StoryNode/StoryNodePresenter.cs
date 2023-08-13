@@ -17,11 +17,10 @@ namespace AG.DS
         (
             StoryNodeView view,
             StoryNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
-            var node = new StoryNode(view, callback, graphViewer, headBar);
+            var node = new StoryNode(view, callback, graphViewer);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

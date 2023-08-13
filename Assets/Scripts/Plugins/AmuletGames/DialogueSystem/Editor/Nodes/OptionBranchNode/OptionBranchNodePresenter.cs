@@ -16,11 +16,10 @@ namespace AG.DS
         (
             OptionBranchNodeView view,
             OptionBranchNodeCallback callback,
-            GraphViewer graphViewer,
-            HeadBar headBar
+            GraphViewer graphViewer
         )
         {
-            var node = new OptionBranchNode(view, callback, graphViewer, headBar);
+            var node = new OptionBranchNode(view, callback, graphViewer);
 
             CreateTitleElements(node, view);
             CreatePortElements(node, view);

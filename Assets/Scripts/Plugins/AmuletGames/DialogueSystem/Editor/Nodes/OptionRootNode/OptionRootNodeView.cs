@@ -3,7 +3,7 @@ using UnityEditor.Experimental.GraphView;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class OptionRootNodeView : NodeViewBase
+    public class OptionRootNodeView : NodeViewFrameBase<OptionRootNodeView>
     {
         /// <summary>
         /// Content button for adding output option port to the node.
@@ -35,14 +35,16 @@ namespace AG.DS
         public OptionPortGroupView OutputOptionPortGroupView;
 
 
-        /// <summary>
-        /// Constructor of the option root node view class.
-        /// </summary>
-        public OptionRootNodeView()
+        /// <inheritdoc />
+        public override OptionRootNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleTextFieldView = new(value: StringConfig.OptionRootNode_TitleTextField_LabelText);
-            RootTitleTextFieldView = new(placeholderText: StringConfig.OptionRootNode_RootTitleTextField_PlaceholderText);
+            RootTitleTextFieldView = new(
+                placeholderText: StringConfig.OptionRootNode_RootTitleTextField_PlaceholderText,
+                languageHandler);
             OutputOptionPortGroupView = new(direction: Direction.Output);
+
+            return this;
         }
     }
 }

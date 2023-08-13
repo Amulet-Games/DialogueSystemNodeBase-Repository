@@ -4,7 +4,7 @@ namespace AG.DS
     {
         #region Window Labels.
         public const string Editor_WindowDefaultTitleText = "New Dialogue Editor Graph";
-        public const string Editor_WindowAlreadyOpened_WarningText = "Action is ignored since a dialogue editor window is already opened.";
+        public const string Editor_WindowAlreadyOpened_WarningText = "Action is ignored since the dialogue system window of this asset is already opened.";
         public const string Editor_WindowAlreadySaved_WarningText = "Action is ignored since there's no unsaved changes.";
         public const string Editor_WindowAlreadyLoaded_WarningText = "Action is ignored since there's nothing changed from the last time it loaded.";
         #endregion

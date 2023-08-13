@@ -25,8 +25,8 @@ namespace AG.DS
         /// </summary>
         /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="nodeType">The node type to set for.</param>
+        /// <param name="languageHandler">The language handler to set for.</param>
         /// 
         /// <returns>A new node element.</returns>
         /// 
@@ -36,38 +36,38 @@ namespace AG.DS
         public NodeBase Spawn
         (
             GraphViewer graphViewer,
-            HeadBar headBar,
-            NodeType nodeType
+            NodeType nodeType,
+            LanguageHandler languageHandler = null
         )
         {
             return nodeType switch
             {
                 NodeType.Boolean => Spawn<BooleanNode, BooleanNodeView, BooleanNodePresenter, BooleanNodeObserver,
-                                      BooleanNodeSerializer, BooleanNodeCallback, BooleanNodeModel>(graphViewer, headBar),
+                                      BooleanNodeSerializer, BooleanNodeCallback, BooleanNodeModel>(graphViewer),
 
                 NodeType.Dialogue => Spawn<DialogueNode, DialogueNodeView, DialogueNodePresenter, DialogueNodeObserver,
-                                       DialogueNodeSerializer, DialogueNodeCallback, DialogueNodeModel>(graphViewer, headBar),
+                                       DialogueNodeSerializer, DialogueNodeCallback, DialogueNodeModel>(graphViewer, languageHandler),
 
                 NodeType.End => Spawn<EndNode, EndNodeView, EndNodePresenter, EndNodeObserver,
-                                  EndNodeSerializer, EndNodeCallback, EndNodeModel>(graphViewer, headBar),
+                                  EndNodeSerializer, EndNodeCallback, EndNodeModel>(graphViewer),
 
                 NodeType.Event => Spawn<EventNode, EventNodeView, EventNodePresenter, EventNodeObserver,
-                                    EventNodeSerializer, EventNodeCallback, EventNodeModel>(graphViewer, headBar),
+                                    EventNodeSerializer, EventNodeCallback, EventNodeModel>(graphViewer),
 
                 NodeType.OptionBranch => Spawn<OptionBranchNode, OptionBranchNodeView, OptionBranchNodePresenter, OptionBranchNodeObserver,
-                                           OptionBranchNodeSerializer, OptionBranchNodeCallback, OptionBranchNodeModel>(graphViewer, headBar),
+                                           OptionBranchNodeSerializer, OptionBranchNodeCallback, OptionBranchNodeModel>(graphViewer, languageHandler),
 
                 NodeType.OptionRoot => Spawn<OptionRootNode, OptionRootNodeView, OptionRootNodePresenter, OptionRootNodeObserver,
-                                         OptionRootNodeSerializer, OptionRootNodeCallback, OptionRootNodeModel>(graphViewer, headBar),
+                                         OptionRootNodeSerializer, OptionRootNodeCallback, OptionRootNodeModel>(graphViewer, languageHandler),
 
                 NodeType.Preview => Spawn<PreviewNode, PreviewNodeView, PreviewNodePresenter, PreviewNodeObserver,
-                                      PreviewNodeSerializer, PreviewNodeCallback, PreviewNodeModel>(graphViewer, headBar),
+                                      PreviewNodeSerializer, PreviewNodeCallback, PreviewNodeModel>(graphViewer),
 
                 NodeType.Start => Spawn<StartNode, StartNodeView, StartNodePresenter, StartNodeObserver,
-                                    StartNodeSerializer, StartNodeCallback, StartNodeModel>(graphViewer, headBar),
+                                    StartNodeSerializer, StartNodeCallback, StartNodeModel>(graphViewer),
 
                 NodeType.Story => Spawn<StoryNode, StoryNodeView, StoryNodePresenter, StoryNodeObserver,
-                                    StoryNodeSerializer, StoryNodeCallback, StoryNodeModel>(graphViewer, headBar),
+                                    StoryNodeSerializer, StoryNodeCallback, StoryNodeModel>(graphViewer),
 
                 _ => throw new ArgumentException("Invalid node type: " + nodeType)
             };
@@ -81,8 +81,8 @@ namespace AG.DS
         /// <typeparam name="TNodeModel">Type node model</typeparam>
         /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="model">The node model to set for.</param>
+        /// <param name="languageHandler">The language handler to set for.</param>
         /// 
         /// <returns>A new node element.</returns>
         /// 
@@ -92,39 +92,39 @@ namespace AG.DS
         public NodeBase Spawn<TNodeModel>
         (
             GraphViewer graphViewer,
-            HeadBar headBar,
-            TNodeModel model
+            TNodeModel model,
+            LanguageHandler languageHandler = null
         )
             where TNodeModel : NodeModelBase
         {
             return model switch
             {
                 BooleanNodeModel m_model => Spawn<BooleanNode, BooleanNodeView, BooleanNodePresenter, BooleanNodeObserver,
-                                  BooleanNodeSerializer, BooleanNodeCallback, BooleanNodeModel>(graphViewer, headBar, m_model),
+                                  BooleanNodeSerializer, BooleanNodeCallback, BooleanNodeModel>(graphViewer, null, m_model),
 
                 DialogueNodeModel m_model => Spawn<DialogueNode, DialogueNodeView, DialogueNodePresenter, DialogueNodeObserver,
-                                   DialogueNodeSerializer, DialogueNodeCallback, DialogueNodeModel>(graphViewer, headBar, m_model),
+                                   DialogueNodeSerializer, DialogueNodeCallback, DialogueNodeModel>(graphViewer, languageHandler, m_model),
 
                 EndNodeModel m_model => Spawn<EndNode, EndNodeView, EndNodePresenter, EndNodeObserver,
-                              EndNodeSerializer, EndNodeCallback, EndNodeModel>(graphViewer, headBar, m_model),
+                              EndNodeSerializer, EndNodeCallback, EndNodeModel>(graphViewer, null, m_model),
 
                 EventNodeModel m_model => Spawn<EventNode, EventNodeView, EventNodePresenter, EventNodeObserver,
-                                EventNodeSerializer, EventNodeCallback, EventNodeModel>(graphViewer, headBar, m_model),
+                                EventNodeSerializer, EventNodeCallback, EventNodeModel>(graphViewer, null, m_model),
 
                 OptionBranchNodeModel m_model => Spawn<OptionBranchNode, OptionBranchNodeView, OptionBranchNodePresenter, OptionBranchNodeObserver,
-                                       OptionBranchNodeSerializer, OptionBranchNodeCallback, OptionBranchNodeModel>(graphViewer, headBar, m_model),
+                                       OptionBranchNodeSerializer, OptionBranchNodeCallback, OptionBranchNodeModel>(graphViewer, languageHandler, m_model),
 
                 OptionRootNodeModel m_model => Spawn<OptionRootNode, OptionRootNodeView, OptionRootNodePresenter, OptionRootNodeObserver,
-                                     OptionRootNodeSerializer, OptionRootNodeCallback, OptionRootNodeModel>(graphViewer, headBar, m_model),
+                                     OptionRootNodeSerializer, OptionRootNodeCallback, OptionRootNodeModel>(graphViewer, languageHandler, m_model),
 
                 PreviewNodeModel m_model => Spawn<PreviewNode, PreviewNodeView, PreviewNodePresenter, PreviewNodeObserver,
-                                  PreviewNodeSerializer, PreviewNodeCallback, PreviewNodeModel>(graphViewer, headBar, m_model),
+                                  PreviewNodeSerializer, PreviewNodeCallback, PreviewNodeModel>(graphViewer, null, m_model),
 
                 StartNodeModel m_model => Spawn<StartNode, StartNodeView, StartNodePresenter, StartNodeObserver,
-                                StartNodeSerializer, StartNodeCallback, StartNodeModel>(graphViewer, headBar, m_model),
+                                StartNodeSerializer, StartNodeCallback, StartNodeModel>(graphViewer, null, m_model),
 
                 StoryNodeModel m_model => Spawn<StoryNode, StoryNodeView, StoryNodePresenter, StoryNodeObserver,
-                                StoryNodeSerializer, StoryNodeCallback, StoryNodeModel>(graphViewer, headBar, m_model),
+                                StoryNodeSerializer, StoryNodeCallback, StoryNodeModel>(graphViewer, null, m_model),
 
                 _ => throw new ArgumentException("Invalid node model type: " + model.GetType().Name)
             };
@@ -144,30 +144,30 @@ namespace AG.DS
         /// <typeparam name="TNodeModel">Type node model</typeparam>
         /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
+        /// <param name="languageHandler">The language handler to set for.</param>
         /// <param name="model">The node model to set for.</param>
         /// 
         /// <returns>A new node element.</returns>
         TNode Spawn<TNode, TNodeView, TNodePresenter, TNodeObserver, TNodeSerializer, TNodeCallback, TNodeModel>
         (
             GraphViewer graphViewer,
-            HeadBar headBar = null,
+            LanguageHandler languageHandler = null,
             TNodeModel model = null
         )
             where TNode : NodeFrameBase<TNode, TNodeView, TNodeCallback>
-            where TNodeView : NodeViewBase, new()
+            where TNodeView : NodeViewFrameBase<TNodeView>, new()
             where TNodePresenter : NodePresenterFrameBase<TNode, TNodeView, TNodeCallback>, new()
             where TNodeObserver : NodeObserverFrameBase<TNode, TNodeView>, new()
             where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeCallback, TNodeModel>, new()
             where TNodeCallback: NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>, new()
             where TNodeModel : NodeModelBase
         {
-            var view = new TNodeView();
+            var view = new TNodeView().Setup(languageHandler);
             var observer = new TNodeObserver();
             var presenter = new TNodePresenter();
             var callback = new TNodeCallback().Setup(view);
 
-            var node = presenter.CreateElements(view, callback, graphViewer, headBar);
+            var node = presenter.CreateElements(view, callback, graphViewer);
 
             observer.RegisterEvents(node, view);
             
@@ -246,7 +246,7 @@ namespace AG.DS
             TNode node
         )
             where TNode : NodeFrameBase<TNode, TNodeView, TNodeCallback>
-            where TNodeView : NodeViewBase
+            where TNodeView : NodeViewFrameBase<TNodeView>
             where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeCallback, TNodeModel>, new()
             where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
             where TNodeModel : NodeModelBase, new()

@@ -69,7 +69,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the modifier values to the event modifier model.
+        /// Save the modifier values.
         /// </summary>
         /// <param name="model">The event modifier model to set for.</param>
         public void SaveModifierValue(EventModifierModel model)
@@ -98,7 +98,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the modifier values from the event modifier model.
+        /// Load the modifier values.
         /// </summary>
         /// <param name="model">The event modifier model to set for.</param>
         public void LoadModifierValue(EventModifierModel model)

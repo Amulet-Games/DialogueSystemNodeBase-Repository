@@ -16,15 +16,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the dialogue editor window.
+        /// Reference of the dialogue system window.
         /// </summary>
-        DialogueEditorWindow dsWindow;
+        DialogueSystemWindow dsWindow;
 
 
         /// <summary>
-        /// Reference of the headBar element.
+        /// Reference of the language handler.
         /// </summary>
-        HeadBar headBar;
+        LanguageHandler languageHandler;
 
 
         /// <summary>
@@ -56,19 +56,19 @@ namespace AG.DS
         /// Setup for the node create window base class.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
+        /// <param name="languageHandler">The language handler to set for.</param>
         /// <param name="details">The node create details to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
+        /// <param name="dsWindow">The dialogue system window to set for.</param>
         public void Setup
         (
             GraphViewer graphViewer,
-            HeadBar headBar,
+            LanguageHandler languageHandler,
             NodeCreateDetails details,
-            DialogueEditorWindow dsWindow
+            DialogueSystemWindow dsWindow
         )
         {
             this.graphViewer = graphViewer;
-            this.headBar = headBar;
+            this.languageHandler = languageHandler;
             this.dsWindow = dsWindow;
             Details = details;
         }
@@ -116,8 +116,8 @@ namespace AG.DS
             var node = NodeManager.Instance.Spawn
             (
                 graphViewer,
-                headBar,
-                nodeType: ((NodeCreateEntry)searchTreeEntry).NodeType
+                nodeType: ((NodeCreateEntry)searchTreeEntry).NodeType,
+                languageHandler
             );
 
             // Set spawn position.

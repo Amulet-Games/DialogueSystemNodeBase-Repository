@@ -19,7 +19,7 @@ namespace AG.DS
 
         // ----------------------------- Serialization -----------------------------
         /// <summary>
-        /// Save the edge values to the dialogue system model.
+        /// Save the edge values.
         /// </summary>
         /// <param name="dsModel">The dialogue system model to set for.</param>
         public abstract void Save(DialogueSystemModel dsModel);

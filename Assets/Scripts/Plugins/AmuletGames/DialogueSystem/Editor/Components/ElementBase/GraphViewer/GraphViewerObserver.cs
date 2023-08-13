@@ -22,9 +22,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the dialogue editor window.
+        /// Reference of the dialogue system window.
         /// </summary>
-        DialogueEditorWindow dsWindow;
+        DialogueSystemWindow dsWindow;
 
 
         /// <summary>
@@ -38,12 +38,12 @@ namespace AG.DS
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="nodeCreateRequestWindow">The node create request window to set for.</param>
-        /// <param name="dsWindow">The dialogue editor window to set for.</param>
+        /// <param name="dsWindow">The dialogue system window to set for.</param>
         public GraphViewerObserver
         (
             GraphViewer graphViewer,
             NodeCreateRequestWindow nodeCreateRequestWindow,
-            DialogueEditorWindow dsWindow
+            DialogueSystemWindow dsWindow
         )
         {
             this.graphViewer = graphViewer;
