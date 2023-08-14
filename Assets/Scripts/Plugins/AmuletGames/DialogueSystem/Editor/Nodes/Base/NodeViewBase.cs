@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <summary>
-    /// Holds all the element references of the node element.
+    /// Holds all the element references for the node element.
     /// </summary>
     public abstract class NodeViewBase
     {

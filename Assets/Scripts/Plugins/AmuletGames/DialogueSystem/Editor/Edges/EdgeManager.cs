@@ -101,22 +101,29 @@ namespace AG.DS
         /// <summary>
         /// Method for connecting the two ports.
         /// </summary>
+        /// 
+        /// <typeparam name="TPort">Type port</typeparam>
         /// <typeparam name="TEdge">Type edge</typeparam>
+        /// <typeparam name="TEdgeView">Type edge view</typeparam>
         /// <typeparam name="TEdgePresenter">Type edge presenter</typeparam>
         /// <typeparam name="TEdgeObserver">Type edge observer</typeparam>
-        /// <typeparam name="TPort">Type port</typeparam>
+        /// <typeparam name="TEdgeCallback">Type edge callback</typeparam>
+        /// 
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
+        /// 
         /// <returns>A new edge element.</returns>
-        TEdge Connect<TEdge, TEdgePresenter, TEdgeObserver, TPort>
+        TEdge Connect<TPort, TEdge, TEdgeView, TEdgePresenter, TEdgeObserver, TEdgeCallback>
         (
             TPort output,
             TPort input
         )
+            where TPort : PortBase
             where TEdge : EdgeBase
+            where TEdgeView: EdgeViewFrameBase<TPort, TEdgeView>, new()
             where TEdgePresenter : EdgePresenterFrameBase<TEdge, TPort>, new()
             where TEdgeObserver : EdgeObserverFrameBase<TEdge>, new()
-            where TPort : PortBase
+            where TEdgeCallback : EdgeCallbackFrameBase<TPort, TEdge, TEdgeView, TEdgeCallback>
         {
             var edge = new TEdgePresenter().CreateElement(output, input);
 

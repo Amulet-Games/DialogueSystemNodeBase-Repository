@@ -4,6 +4,13 @@ namespace AG.DS
 {
     public abstract class EdgeBase : Edge
     {
+        /// <summary>
+        /// The property of the edge callback reference.
+        /// </summary>
+        public virtual IEdgeCallback Callback { get; }
+
+
+        /*
         // ----------------------------- Action -----------------------------
         /// <summary>
         /// Action to invoke just before the edge is going to be removed from the graph manually.
@@ -30,5 +37,6 @@ namespace AG.DS
         /// Disconnect any ports.
         /// </summary>
         public abstract void Disconnect();
+        */
     }
 }

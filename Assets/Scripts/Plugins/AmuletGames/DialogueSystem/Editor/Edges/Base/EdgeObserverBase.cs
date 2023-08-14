@@ -1,6 +1,9 @@
 namespace AG.DS
 {
-    public class EdgeObserverBase
+    /// <summary>
+    /// Register events to the edge element.
+    /// </summary>
+    public abstract class EdgeObserverBase
     {
     }
 }
