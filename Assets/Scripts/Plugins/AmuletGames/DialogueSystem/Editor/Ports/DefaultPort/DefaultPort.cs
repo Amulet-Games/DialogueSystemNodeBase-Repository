@@ -42,6 +42,13 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <inheritdoc />
+        public override void Disconnect(Edge edge)
+        {
+            base.Disconnect(edge);
+        }
+
+
+        /// <inheritdoc />
         public override void Disconnect(GraphViewer graphViewer)
         {
             if (connected)

@@ -45,7 +45,9 @@ namespace AG.DS
                 var edgeCount = graphViewer.Edges.Count;
                 for (int i = 0; i < edgeCount; i++)
                 {
-                    graphViewer.Edges[i].Save(dsModel);
+                    dsModel.EdgeModels.Add(
+                        EdgeManager.Instance.Save(graphViewer.Edges[i])
+                    );
                 }
             }
         }
@@ -72,7 +74,9 @@ namespace AG.DS
                 var nodeCount = graphViewer.Nodes.Count;
                 for (int i = 0; i < nodeCount; i++)
                 {
-                    NodeManager.Instance.Save(graphViewer.Nodes[i]);
+                    dsModel.NodeModels.Add(
+                        NodeManager.Instance.Save(graphViewer.Nodes[i])
+                    );
                 }
             }
         }

@@ -150,11 +150,11 @@ namespace AG.DS
                     if (edgesToDelete[i] == null)
                         continue;
 
-                    edgesToDelete[i].PreManualRemoveAction();
+                    edgesToDelete[i].Callback.OnPreManualRemove(graphViewer);
 
                     graphViewer.Remove(edgesToDelete[i]);
 
-                    edgesToDelete[i].PostManualRemoveAction();
+                    edgesToDelete[i].Callback.OnPostManualRemove(graphViewer);
                 }
             }
 

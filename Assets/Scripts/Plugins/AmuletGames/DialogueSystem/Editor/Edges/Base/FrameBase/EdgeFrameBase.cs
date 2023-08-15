@@ -1,61 +1,32 @@
 namespace AG.DS
 {
+    /// <inheritdoc />
     public abstract class EdgeFrameBase
     <
         TPort,
         TEdge,
-        TEdgeView,
-        TEdgeCallback
+        TEdgeView
     >
         : EdgeBase
         where TPort : PortBase
-        where TEdge : EdgeBase
+        where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
         where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
-        where TEdgeCallback : EdgeCallbackFrameBase<TPort, TEdge, TEdgeView, TEdgeCallback>
     {
-        /// <inheritdoc />
-        public override IEdgeCallback Callback
-        {
-            get
-            {
-                return m_Callback;
-            }
-        }
-
-
         /// <summary>
-        /// Reference of the edge callback.
+        /// Reference of the edge view;
         /// </summary>
-        protected IEdgeCallback m_Callback;
-        /*
-        /// <summary>
-        /// The output port of the edge.
-        /// </summary>
-        public TPort Output;
-
-
-        /// <summary>
-        /// The input port of the edge.
-        /// </summary>
-        public TPort Input;
+        public TEdgeView View;
 
 
         /// <summary>
         /// Setup for the edge frame base class.
         /// </summary>
-        /// <param name="output">The output port to set for.</param>
-        /// <param name="input">The input port to set for.</param>
-        public void Setup(TPort output, TPort input)
-        {
-            this.output = output;
-            this.input = input;
-
-            Output = output;
-            Input = input;
-
-            Output.Connect(this);
-            Input.Connect(this);
-        }
-        */
+        /// <param name="view">The edge view to set for.</param>
+        /// <param name="callback">The edge callback to set for.</param>
+        public abstract TEdge Setup
+        (
+            TEdgeView view,
+            IEdgeCallback callback
+        );
     }
 }

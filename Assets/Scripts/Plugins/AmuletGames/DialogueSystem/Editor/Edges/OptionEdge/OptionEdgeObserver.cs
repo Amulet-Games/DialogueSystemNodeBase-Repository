@@ -2,35 +2,36 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
+    /// <inheritdoc />
     public class OptionEdgeObserver : EdgeObserverFrameBase<OptionEdge>
     {
         /// <summary>
-        /// Reference of the output port that the edge is connecting with.
+        /// Reference of the option edge view.
+        /// </summary>
+        OptionEdgeView view;
+
+        /// <summary>
+        /// Reference of the option output port.
         /// </summary>
         OptionPort output;
 
 
         /// <summary>
-        /// Reference of the input port that the edge is connecting with.
+        /// Reference of the option input port.
         /// </summary>
         OptionPort input;
 
 
-        /// <inheritdoc />
-        public override EdgeObserverFrameBase<OptionEdge> Setup(OptionEdge edge)
-        {
-            Edge = edge;
-            output = edge.Output;
-            input = edge.Input;
-
-            return this;
-        }
-
-
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents()
+        public override void RegisterEvents(OptionEdge edge)
         {
+            Edge = edge;
+            view = edge.View;
+
+            output = view.Output;
+            input = view.Input;
+
             RegisterMouseMoveEvent();
 
             RegisterMouseUpEvent();
@@ -97,7 +98,7 @@ namespace AG.DS
             /// The edge is forming a new connection to a new output port.
             else if (Edge.output != null && !Edge.output.IsShowingConnectStyle())
             {
-                output = Edge.Output;
+                output = view.Output;
 
                 output.HideOpponentConnectStyle();
 
@@ -111,7 +112,7 @@ namespace AG.DS
             /// The edge is forming a new connection to a new input port.
             else if (Edge.input != null && !Edge.input.IsShowingConnectStyle())
             {
-                input = Edge.Input;
+                input = view.Input;
 
                 input.HideOpponentConnectStyle();
                 

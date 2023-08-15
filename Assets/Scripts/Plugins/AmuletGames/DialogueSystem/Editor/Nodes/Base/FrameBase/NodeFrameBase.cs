@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
+    /// <inheritdoc />
     public abstract class NodeFrameBase
     <
         TNode,

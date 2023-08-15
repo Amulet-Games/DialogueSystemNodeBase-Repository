@@ -1,42 +1,46 @@
 namespace AG.DS
 {
-    public class OptionEdge : EdgeFrameBase<OptionPort>
+    /// <inheritdoc />
+    public class OptionEdge : EdgeFrameBase
+    <
+        OptionPort,
+        OptionEdge,
+        OptionEdgeView
+    >
     {
-        // ----------------------------- Action -----------------------------
         /// <inheritdoc />
-        public override void PreManualRemoveAction()
+        public override OptionEdge Setup
+        (
+            OptionEdgeView view,
+            IEdgeCallback callback
+        )
         {
-            Disconnect();
-        }
-
-
-        // ----------------------------- Serialization -----------------------------
-        /// <inheritdoc />
-        public override void Save(DialogueSystemModel dsModel)
-        {
-            var model = new EdgeModelBase()
+            // Setup references
             {
-                InputPortGUID = input.name,
-                OutputPortGUID = output.name,
-                PortType = PortType.OPTION
-            };
+                View = view;
+                Callback = callback;
 
-            dsModel.EdgeModels.Add(model);
-        }
+                output = view.Output;
+                input = view.Input;
+            }
 
+            // connect ports
+            {
+                output.ConnectTo(input);
+            }
 
-        // ----------------------------- Disconnect -----------------------------
-        /// <inheritdoc />
-        public override void Disconnect()
-        {
-            Input.Disconnect(this);
-            Input.HideConnectStyle();
+            // setup details
+            {
+                focusable = true;
+            }
 
-            Output.Disconnect(this);
-            Output.HideConnectStyle();
+            // Add style class
+            {
+                AddToClassList(StyleConfig.Option_Edge);
+                this.ShowConnectStyle();
+            }
 
-            input = null;
-            output = null;
+            return this;
         }
     }
 }

@@ -3,6 +3,9 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
+    /// <summary>
+    /// The graph view node element.
+    /// </summary>
     public abstract class NodeBase : Node
     {
         /// <summary>

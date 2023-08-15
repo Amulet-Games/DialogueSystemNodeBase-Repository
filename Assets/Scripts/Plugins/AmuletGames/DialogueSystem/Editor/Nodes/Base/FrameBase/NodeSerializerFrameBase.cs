@@ -17,7 +17,7 @@ namespace AG.DS
         where TNodeModel : NodeModelBase
     {
         /// <summary>
-        /// Save the node values to the given node model.
+        /// Save the node element values.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
         /// <param name="model">The node model to set for.</param>
@@ -37,7 +37,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the node values from the given node model.
+        /// Load the node element values.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
         /// <param name="model">The node model to set for.</param>

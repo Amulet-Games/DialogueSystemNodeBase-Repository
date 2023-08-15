@@ -2,19 +2,12 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
+    /// <inheritdoc />
     public class DefaultEdgeObserver : EdgeObserverFrameBase<DefaultEdge>
     {
-        /// <inheritdoc />
-        public override EdgeObserverFrameBase<DefaultEdge> Setup(DefaultEdge edge)
-        {
-            Edge = edge;
-            return this;
-        }
-
-
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents()
+        public override void RegisterEvents(DefaultEdge edge)
         {
             RegisterFocusEvent();
 

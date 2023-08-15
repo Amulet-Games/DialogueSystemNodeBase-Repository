@@ -1,39 +1,45 @@
 namespace AG.DS
 {
-    public class DefaultEdge : EdgeFrameBase<DefaultPort>
+    /// <inheritdoc />
+    public class DefaultEdge : EdgeFrameBase
+    <
+        DefaultPort,
+        DefaultEdge,
+        DefaultEdgeView
+    >
     {
-        // ----------------------------- Action -----------------------------
         /// <inheritdoc />
-        public override void PreManualRemoveAction()
+        public override DefaultEdge Setup
+        (
+            DefaultEdgeView view,
+            IEdgeCallback callback
+        )
         {
-            Disconnect();
-        }
-
-
-        // ----------------------------- Serialization -----------------------------
-        /// <inheritdoc />
-        public override void Save(DialogueSystemModel dsModel)
-        {
-            var model = new EdgeModelBase()
+            // Setup references
             {
-                InputPortGUID = input.name,
-                OutputPortGUID = output.name,
-                PortType = PortType.DEFAULT
-            };
+                View = view;
+                Callback = callback;
 
-            dsModel.EdgeModels.Add(model);
-        }
+                output = view.Output;
+                input = view.Input;
+            }
 
+            // connect ports
+            {
+                output.ConnectTo(input);
+            }
 
-        // ----------------------------- Disconnect -----------------------------
-        /// <inheritdoc />
-        public override void Disconnect()
-        {
-            Input.Disconnect(this);
-            Output.Disconnect(this);
+            // setup details
+            {
+                focusable = true;
+            }
 
-            input = null;
-            output = null;
+            // Add style class
+            {
+                AddToClassList(StyleConfig.Default_Edge);
+            }
+
+            return this;
         }
     }
 }
