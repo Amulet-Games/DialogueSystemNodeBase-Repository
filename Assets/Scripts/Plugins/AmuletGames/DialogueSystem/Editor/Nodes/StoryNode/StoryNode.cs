@@ -7,34 +7,25 @@ namespace AG.DS
     public class StoryNode : NodeFrameBase
     <
         StoryNode,
-        StoryNodeView,
-        StoryNodeCallback
+        StoryNodeView
     >
     {
-        /// <summary>
-        /// Constructor of the story node class.
-        /// </summary>
-        /// <param name="view">The story node view to set for.</param>
-        /// <param name="callback">The story node callback to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public StoryNode
+        /// <inheritdoc />
+        public override StoryNode Setup
         (
             StoryNodeView view,
-            StoryNodeCallback callback,
+            INodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup references
-            {
-                View = view;
-                m_Callback = callback;
-                GraphViewer = graphViewer;
-            }
+            base.Setup(view, callback, graphViewer);
 
             // Add style sheet
             {
                 styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSStoryNodeStyle);
             }
+
+            return this;
         }
 
 

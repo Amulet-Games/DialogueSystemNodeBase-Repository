@@ -68,18 +68,59 @@ namespace AG.DS
         /// </summary>
         /// <param name="graphView">Reference to the graph view element.</param>
         /// <param name="edge">The edge being created.</param>
-        public void OnDrop(GraphView graphView, Edge edge)
-        {
-            OnDrop((GraphViewer)graphView, (TEdge)edge);
-
-            graphView.graphViewChanged(m_GraphViewChange);
-        }
+        public void OnDrop(GraphView graphView, Edge edge) => OnDrop((GraphViewer)graphView, (TEdge)edge);
 
 
         /// <summary>
         /// <see cref="OnDrop(GraphView, Edge)"/>
         /// </summary>
-        protected abstract void OnDrop(GraphViewer graphViewer, TEdge edge);
+        void OnDrop(GraphViewer graphViewer, TEdge edge)
+        {
+            m_EdgesToCreate.Clear();
+            m_EdgesToCreate.Add(edge);
+
+            m_EdgesToDelete.Clear();
+            m_ElementsToRemove.Clear();
+
+            foreach (TEdge m_edge in edge.input.connections)
+            {
+                if (m_edge != edge)
+                {
+                    m_EdgesToDelete.Add(m_edge);
+                    m_ElementsToRemove.Add(m_edge);
+                }
+            }
+
+            foreach (TEdge m_edge in edge.output.connections)
+            {
+                if (m_edge != edge)
+                {
+                    m_EdgesToDelete.Add(m_edge);
+                    m_ElementsToRemove.Add(m_edge);
+                }
+            }
+
+            if (m_EdgesToDelete.Count > 0)
+            {
+                for (int i = 0; i < m_EdgesToDelete.Count; i++)
+                {
+                    m_EdgesToDelete[i].Callback.OnPreManualRemove(graphViewer);
+
+                    graphViewer.Remove(m_EdgesToDelete[i]);
+
+                    m_EdgesToDelete[i].Callback.OnPostManualRemove(graphViewer);
+                }
+            }
+
+            var newEdge = EdgeManager.Instance.Connect
+            (
+                output: edge.output,
+                input: edge.input
+            );
+
+            graphViewer.Add(newEdge);
+            graphViewer.graphViewChanged(m_GraphViewChange);
+        }
 
 
         /// <summary>

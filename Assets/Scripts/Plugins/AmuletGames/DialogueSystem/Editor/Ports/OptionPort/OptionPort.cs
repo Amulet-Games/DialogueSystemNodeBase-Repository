@@ -54,7 +54,10 @@ namespace AG.DS
         public override void Disconnect(Edge edge)
         {
             base.Disconnect(edge);
+
             this.HideConnectStyle();
+            
+            OpponentPort = null;
         }
 
 
@@ -63,10 +66,24 @@ namespace AG.DS
         {
             if (connected)
             {
+                // get connecting edge
                 var edge = (OptionEdge)connections.First();
 
-                edge.Disconnect();
+                // Disconnect ports.
+                {
+                    if (direction == Direction.Output)
+                    {
+                        edge.View.Input.Disconnect(edge);
+                    }
+                    else
+                    {
+                        edge.View.Output.Disconnect(edge);
+                    }
 
+                    base.Disconnect(edge);
+                }
+                
+                // Remove edge from graph viewer.
                 graphViewer.Remove(edge);
             }
         }

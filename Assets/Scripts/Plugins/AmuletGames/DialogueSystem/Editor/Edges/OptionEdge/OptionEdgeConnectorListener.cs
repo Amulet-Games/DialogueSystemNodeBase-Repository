@@ -32,50 +32,52 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        protected override void OnDrop(GraphViewer graphViewer, OptionEdge edge)
-        {
-            m_EdgesToCreate.Clear();
-            m_EdgesToCreate.Add(edge);
+        //protected override void OnDrop(GraphViewer graphViewer, OptionEdge edge)
+        //{
+        //    m_EdgesToCreate.Clear();
+        //    m_EdgesToCreate.Add(edge);
 
-            m_EdgesToDelete.Clear();
-            m_ElementsToRemove.Clear();
+        //    m_EdgesToDelete.Clear();
+        //    m_ElementsToRemove.Clear();
 
-            foreach (OptionEdge m_edge in edge.input.connections)
-            {
-                if (m_edge != edge)
-                {
-                    m_EdgesToDelete.Add(m_edge);
-                    m_ElementsToRemove.Add(m_edge);
-                }
-            }
+        //    foreach (OptionEdge m_edge in edge.input.connections)
+        //    {
+        //        if (m_edge != edge)
+        //        {
+        //            m_EdgesToDelete.Add(m_edge);
+        //            m_ElementsToRemove.Add(m_edge);
+        //        }
+        //    }
 
-            foreach (OptionEdge m_edge in edge.output.connections)
-            {
-                if (m_edge != edge)
-                {
-                    m_EdgesToDelete.Add(m_edge);
-                    m_ElementsToRemove.Add(m_edge);
-                }
-            }
+        //    foreach (OptionEdge m_edge in edge.output.connections)
+        //    {
+        //        if (m_edge != edge)
+        //        {
+        //            m_EdgesToDelete.Add(m_edge);
+        //            m_ElementsToRemove.Add(m_edge);
+        //        }
+        //    }
 
-            if (m_EdgesToDelete.Count > 0)
-            {
-                for (int i = 0; i < m_EdgesToDelete.Count; i++)
-                {
-                    m_EdgesToDelete[i].Disconnect();
+        //    if (m_EdgesToDelete.Count > 0)
+        //    {
+        //        for (int i = 0; i < m_EdgesToDelete.Count; i++)
+        //        {
+        //            m_EdgesToDelete[i].Callback.OnPreManualRemove(graphViewer);
 
-                    graphViewer.Remove(m_EdgesToDelete[i]);
-                }
-            }
+        //            graphViewer.Remove(m_EdgesToDelete[i]);
 
-            var newEdge = EdgeManager.Instance.Connect
-            (
-                output: (OptionPort)edge.output,
-                input: (OptionPort)edge.input
-            );
+        //            m_EdgesToDelete[i].Callback.OnPostManualRemove(graphViewer);
+        //        }
+        //    }
 
-            graphViewer.Add(newEdge);
-        }
+        //    var newEdge = EdgeManager.Instance.Connect
+        //    (
+        //        output: (OptionPort)edge.output,
+        //        input: (OptionPort)edge.input
+        //    );
+
+        //    graphViewer.Add(newEdge);
+        //}
 
 
         /// <inheritdoc />

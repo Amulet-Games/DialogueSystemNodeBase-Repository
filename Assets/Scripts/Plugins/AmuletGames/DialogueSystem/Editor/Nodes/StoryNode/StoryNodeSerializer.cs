@@ -5,7 +5,6 @@ namespace AG.DS
     <
         StoryNode,
         StoryNodeView,
-        StoryNodeCallback,
         StoryNodeModel
     >
     {

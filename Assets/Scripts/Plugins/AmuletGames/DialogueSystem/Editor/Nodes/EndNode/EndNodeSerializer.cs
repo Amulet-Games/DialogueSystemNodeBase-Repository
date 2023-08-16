@@ -5,7 +5,6 @@ namespace AG.DS
     <
         EndNode,
         EndNodeView,
-        EndNodeCallback,
         EndNodeModel
     >
     {

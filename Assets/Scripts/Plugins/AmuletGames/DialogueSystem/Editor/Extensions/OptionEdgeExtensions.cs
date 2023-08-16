@@ -8,8 +8,8 @@ namespace AG.DS
         /// <param name="edge">Extensions option channel edge.</param>
         public static void ShowConnectStyle(this OptionEdge edge)
         {
-            var output = edge.Output;
-            var input = edge.Input;
+            var output = edge.View.Output;
+            var input = edge.View.Input;
 
             var siblingIndex = output.GetSiblingIndex(additionNumber: 1);
 

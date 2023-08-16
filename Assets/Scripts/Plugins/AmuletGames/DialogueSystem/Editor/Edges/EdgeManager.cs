@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 
 namespace AG.DS
 {
@@ -25,7 +26,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="output">The output port to set for.</param>
         /// <param name="input">The input port to set for.</param>
-        public EdgeBase Connect<T>(T output, T input) where T : PortBase
+        public EdgeBase Connect<T>(T output, T input) where T : Port
         {
             return output switch
             {
@@ -100,9 +101,29 @@ namespace AG.DS
 
 
         // ----------------------------- Save -----------------------------
+        /// <summary>
+        /// Method for saving the edge element's values.
+        /// </summary>
+        /// 
+        /// <param name="edge">The edge element to set for.</param>
+        /// 
+        /// <returns>A new edge model.</returns>
+        /// 
+        /// <exception cref="ArgumentException">
+        /// Throw when the given edge element is invalid to any of the current existing edge's type.
+        /// </exception>
         public EdgeModelBase Save(EdgeBase edge)
         {
+            return edge switch
+            {
+                DefaultEdge m_edge => Save<DefaultPort, DefaultEdge, DefaultEdgeView,
+                             DefaultEdgeSerializer, EdgeModelBase>(m_edge),
 
+                OptionEdge m_edge => Save<OptionPort, OptionEdge, OptionEdgeView,
+                            OptionEdgeSerializer, EdgeModelBase>(m_edge),
+
+                _ => throw new ArgumentException("Invalid edge type: " + edge)
+            };
         }
 
 

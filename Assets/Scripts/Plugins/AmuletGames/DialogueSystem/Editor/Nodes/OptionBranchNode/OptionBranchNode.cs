@@ -5,29 +5,18 @@ namespace AG.DS
     public class OptionBranchNode : NodeFrameBase
     <
         OptionBranchNode,
-        OptionBranchNodeView,
-        OptionBranchNodeCallback
+        OptionBranchNodeView
     >
     {
-        /// <summary>
-        /// Constructor of the option branch node class.
-        /// </summary>
-        /// <param name="view">The option branch node view to set for.</param>
-        /// <param name="callback">The option branch node callback to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public OptionBranchNode
+        /// <inheritdoc />
+        public override OptionBranchNode Setup
         (
             OptionBranchNodeView view,
-            OptionBranchNodeCallback callback,
+            INodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup references
-            {
-                View = view;
-                m_Callback = callback;
-                GraphViewer = graphViewer;
-            }
+            base.Setup(view, callback, graphViewer);
 
             // Setup details
             {
@@ -41,6 +30,8 @@ namespace AG.DS
                 styleSheets.Add(styleSheetConfig.DSModifierStyle);
                 styleSheets.Add(styleSheetConfig.DSSegmentStyle);
             }
+
+            return this;
         }
 
 

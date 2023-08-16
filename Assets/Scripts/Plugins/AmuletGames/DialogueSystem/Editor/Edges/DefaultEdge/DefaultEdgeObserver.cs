@@ -9,6 +9,8 @@ namespace AG.DS
         /// <inheritdoc />
         public override void RegisterEvents(DefaultEdge edge)
         {
+            Edge = edge;
+
             RegisterFocusEvent();
 
             RegisterBlurEvent();

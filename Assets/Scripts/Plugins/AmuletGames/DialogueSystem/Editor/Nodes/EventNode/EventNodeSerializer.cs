@@ -5,7 +5,6 @@ namespace AG.DS
     <
         EventNode,
         EventNodeView,
-        EventNodeCallback,
         EventNodeModel
     >
     {

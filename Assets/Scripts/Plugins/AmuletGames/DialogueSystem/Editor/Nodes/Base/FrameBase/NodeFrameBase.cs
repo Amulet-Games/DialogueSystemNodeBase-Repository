@@ -7,13 +7,11 @@ namespace AG.DS
     public abstract class NodeFrameBase
     <
         TNode,
-        TNodeView,
-        TNodeCallback
+        TNodeView
     > 
         : NodeBase
         where TNode : NodeBase
         where TNodeView : NodeViewFrameBase<TNodeView>
-        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
     {
         /// <summary>
         /// Reference of the node view.
@@ -21,27 +19,26 @@ namespace AG.DS
         public TNodeView View;
 
 
-        /// <inheritdoc />
-        public override INodeCallback Callback
+        /// <summary>
+        /// Setup for the node frame base class.
+        /// </summary>
+        /// <param name="view">The node view to set for.</param>
+        /// <param name="callback">The node callback to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        public virtual TNode Setup
+        (
+            TNodeView view,
+            INodeCallback callback,
+            GraphViewer graphViewer
+        )
         {
-            get
+            // Setup references
             {
-                return m_Callback;
+                View = view;
+                Callback = callback;
+                GraphViewer = graphViewer;
             }
-        }
 
-
-        /// <summary>
-        /// Reference of the node callback.
-        /// </summary>
-        protected TNodeCallback m_Callback;
-
-
-        /// <summary>
-        /// Constructor of the node frame base class.
-        /// </summary>
-        public NodeFrameBase()
-        {
             // Setup details
             {
                 NodeGUID = Guid.NewGuid().ToString();
@@ -127,6 +124,8 @@ namespace AG.DS
                 styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
                 styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
             }
+
+            return null;
         }
 
 

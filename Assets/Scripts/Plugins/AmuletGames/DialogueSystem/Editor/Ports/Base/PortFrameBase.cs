@@ -42,5 +42,9 @@ namespace AG.DS
         /// </summary>
         /// <param name="model">The port model to set for.</param>
         public abstract void Load(TPortModel model);
+
+
+        // ----------------------------- Service -----------------------------
+
     }
 }

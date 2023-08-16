@@ -7,7 +7,6 @@ namespace AG.DS
     <
         BooleanNode,
         BooleanNodeView,
-        BooleanNodeCallback,
         BooleanNodeModel
     >
     {

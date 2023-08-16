@@ -5,7 +5,6 @@
     <
         DialogueNode,
         DialogueNodeView,
-        DialogueNodeCallback,
         DialogueNodeModel
     >
     {

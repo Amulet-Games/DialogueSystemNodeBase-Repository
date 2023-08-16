@@ -5,29 +5,18 @@ namespace AG.DS
     public class EventNode : NodeFrameBase
     <
         EventNode,
-        EventNodeView,
-        EventNodeCallback
+        EventNodeView
     >
     {
-        /// <summary>
-        /// Constructor of the event node class.
-        /// </summary>
-        /// <param name="view">The event node view to set for.</param>
-        /// <param name="callback">The event node callback to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public EventNode
+        /// <inheritdoc />
+        public override EventNode Setup
         (
             EventNodeView view,
-            EventNodeCallback callback,
+            INodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup references
-            {
-                View = view;
-                m_Callback = callback;
-                GraphViewer = graphViewer;
-            }
+            base.Setup(view, callback, graphViewer);
 
             // Setup details
             {
@@ -41,6 +30,8 @@ namespace AG.DS
                 styleSheets.Add(styleSheetConfig.DSEventModifierStyle);
                 styleSheets.Add(styleSheetConfig.DSEventModifierGroupStyle);
             }
+
+            return this;
         }
 
 

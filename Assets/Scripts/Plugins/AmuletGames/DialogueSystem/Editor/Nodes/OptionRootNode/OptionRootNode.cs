@@ -5,29 +5,18 @@ namespace AG.DS
     public class OptionRootNode : NodeFrameBase
     <
         OptionRootNode,
-        OptionRootNodeView,
-        OptionRootNodeCallback
+        OptionRootNodeView
     >
     {
-        /// <summary>
-        /// Constructor of the option root node class.
-        /// </summary>
-        /// <param name="view">The option root node view to set for.</param>
-        /// <param name="callback">The option root node callback to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public OptionRootNode
+        /// <inheritdoc />
+        public override OptionRootNode Setup
         (
             OptionRootNodeView view,
-            OptionRootNodeCallback callback,
+            INodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup references
-            {
-                View = view;
-                m_Callback = callback;
-                GraphViewer = graphViewer;
-            }
+            base.Setup(view, callback, graphViewer);
 
             // Setup details
             {
@@ -40,6 +29,8 @@ namespace AG.DS
                 styleSheets.Add(styleSheetConfig.DSOptionRootNodeStyle);
                 styleSheets.Add(styleSheetConfig.DSSegmentStyle);
             }
+
+            return this;
         }
 
 

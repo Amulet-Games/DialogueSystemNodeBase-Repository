@@ -5,29 +5,18 @@ namespace AG.DS
     public class PreviewNode : NodeFrameBase
     <
         PreviewNode,
-        PreviewNodeView,
-        PreviewNodeCallback
+        PreviewNodeView
     >
     {
-        /// <summary>
-        /// Constructor of the preview node class.
-        /// </summary>
-        /// <param name="view">The preview node view to set for.</param>
-        /// <param name="callback">The preview node callback to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public PreviewNode
+        /// <inheritdoc />
+        public override PreviewNode Setup
         (
             PreviewNodeView view,
-            PreviewNodeCallback callback,
+            INodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup references
-            {
-                View = view;
-                m_Callback = callback;
-                GraphViewer = graphViewer;
-            }
+            base.Setup(view, callback, graphViewer);
 
             // Setup details
             {
@@ -38,6 +27,8 @@ namespace AG.DS
             {
                 styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSPreviewNodeStyle);
             }
+
+            return this;
         }
 
 

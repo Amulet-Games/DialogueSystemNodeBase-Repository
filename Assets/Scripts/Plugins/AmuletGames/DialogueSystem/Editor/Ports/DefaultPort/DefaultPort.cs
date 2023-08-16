@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
 
@@ -6,6 +7,14 @@ namespace AG.DS
 {
     public partial class DefaultPort : PortFrameBase<PortModelBase>
     {
+        public override IEnumerable<Edge> connections
+        {
+            get
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// Constructor of the default port element class.
         /// </summary>
@@ -42,10 +51,12 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <inheritdoc />
-        public override void Disconnect(Edge edge)
-        {
-            base.Disconnect(edge);
-        }
+        //public override void Disconnect(Edge edge)
+        //{
+        //    base.Disconnect(edge);
+
+        //    Debug.Log("edge type = " + connections.First().GetType());
+        //}
 
 
         /// <inheritdoc />
@@ -55,20 +66,48 @@ namespace AG.DS
             {
                 if (this.IsSingle())
                 {
+                    // get connecting edge
                     var edge = (DefaultEdge)connections.First();
 
-                    edge.Disconnect();
+                    // Disconnect ports.
+                    {
+                        if (direction == Direction.Output)
+                        {
+                            edge.View.Input.Disconnect(edge);
+                        }
+                        else
+                        {
+                            edge.View.Output.Disconnect(edge);
+                        }
 
+                        base.Disconnect(edge);
+                    }
+
+                    // Remove edge from graph viewer.
                     graphViewer.Remove(edge);
                 }
                 else
                 {
+                    // get connecting edge
                     var edges = (DefaultEdge[])connections.ToArray();
 
                     for (int i = 0; i < edges.Length; i++)
                     {
-                        edges[i].Disconnect();
+                        // Disconnect ports.
+                        {
+                            if (direction == Direction.Output)
+                            {
+                                edges[i].View.Input.Disconnect(edges[i]);
+                            }
+                            else
+                            {
+                                edges[i].View.Output.Disconnect(edges[i]);
+                            }
 
+                            base.Disconnect(edges[i]);
+                        }
+
+                        // Remove edge from graph viewer.
                         graphViewer.Remove(edges[i]);
                     }
                 }

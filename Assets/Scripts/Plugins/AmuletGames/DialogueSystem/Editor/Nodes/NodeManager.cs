@@ -154,11 +154,11 @@ namespace AG.DS
             LanguageHandler languageHandler = null,
             TNodeModel model = null
         )
-            where TNode : NodeFrameBase<TNode, TNodeView, TNodeCallback>
+            where TNode : NodeFrameBase<TNode, TNodeView>, new()
             where TNodeView : NodeViewFrameBase<TNodeView>, new()
             where TNodePresenter : NodePresenterFrameBase<TNode, TNodeView, TNodeCallback>, new()
             where TNodeObserver : NodeObserverFrameBase<TNode, TNodeView>, new()
-            where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeCallback, TNodeModel>, new()
+            where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeModel>, new()
             where TNodeCallback: NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>, new()
             where TNodeModel : NodeModelBase
         {
@@ -166,9 +166,9 @@ namespace AG.DS
             var observer = new TNodeObserver();
             var presenter = new TNodePresenter();
             var callback = new TNodeCallback().Setup(view);
+            var node = new TNode().Setup(view, callback, graphViewer);
 
-            var node = presenter.CreateElements(view, callback, graphViewer);
-
+            presenter.CreateElements(view, callback, graphViewer);
             observer.RegisterEvents(node, view);
             
             if (model != null)
@@ -196,32 +196,26 @@ namespace AG.DS
         {
             return node switch
             {
-                BooleanNode m_node => Save<BooleanNode, BooleanNodeView, BooleanNodeSerializer,
-                             BooleanNodeCallback, BooleanNodeModel>(m_node),
+                BooleanNode m_node => Save<BooleanNode, BooleanNodeView, BooleanNodeSerializer, BooleanNodeModel>(m_node),
 
-                DialogueNode m_node => Save<DialogueNode, DialogueNodeView, DialogueNodeSerializer,
-                              DialogueNodeCallback, DialogueNodeModel>(m_node),
+                DialogueNode m_node => Save<DialogueNode, DialogueNodeView,
+                              DialogueNodeSerializer, DialogueNodeModel>(m_node),
 
-                EndNode m_node => Save<EndNode, EndNodeView, EndNodeSerializer,
-                         EndNodeCallback, EndNodeModel>(m_node),
+                EndNode m_node => Save<EndNode, EndNodeView, EndNodeSerializer, EndNodeModel>(m_node),
 
-                EventNode m_node => Save<EventNode, EventNodeView, EventNodeSerializer,
-                           EventNodeCallback, EventNodeModel>(m_node),
+                EventNode m_node => Save<EventNode, EventNodeView, EventNodeSerializer, EventNodeModel>(m_node),
 
-                OptionBranchNode m_node => Save<OptionBranchNode, OptionBranchNodeView, OptionBranchNodeSerializer,
-                                  OptionBranchNodeCallback, OptionBranchNodeModel>(m_node),
+                OptionBranchNode m_node => Save<OptionBranchNode, OptionBranchNodeView,
+                                  OptionBranchNodeSerializer, OptionBranchNodeModel>(m_node),
 
-                OptionRootNode m_node => Save<OptionRootNode, OptionRootNodeView, OptionRootNodeSerializer,
-                                OptionRootNodeCallback, OptionRootNodeModel>(m_node),
+                OptionRootNode m_node => Save<OptionRootNode, OptionRootNodeView,
+                                OptionRootNodeSerializer, OptionRootNodeModel>(m_node),
 
-                PreviewNode m_node => Save<PreviewNode, PreviewNodeView, PreviewNodeSerializer,
-                             PreviewNodeCallback, PreviewNodeModel>(m_node),
+                PreviewNode m_node => Save<PreviewNode, PreviewNodeView, PreviewNodeSerializer, PreviewNodeModel>(m_node),
 
-                StartNode m_node => Save<StartNode, StartNodeView, StartNodeSerializer,
-                           StartNodeCallback, StartNodeModel>(m_node),
+                StartNode m_node => Save<StartNode, StartNodeView, StartNodeSerializer, StartNodeModel>(m_node),
 
-                StoryNode m_node => Save<StoryNode, StoryNodeView, StoryNodeSerializer,
-                           StoryNodeCallback, StoryNodeModel>(m_node),
+                StoryNode m_node => Save<StoryNode, StoryNodeView, StoryNodeSerializer, StoryNodeModel>(m_node),
 
                 _ => throw new ArgumentException("Invalid node element type: " + node.GetType().Name)
             };
@@ -235,20 +229,18 @@ namespace AG.DS
         /// <typeparam name="TNode">Type node</typeparam>
         /// <typeparam name="TNodeView">Type node view</typeparam>
         /// <typeparam name="TNodeSerializer">Type node serializer</typeparam>
-        /// <typeparam name="TNodeCallback">Type node callback</typeparam>
         /// <typeparam name="TNodeModel">Type node model</typeparam>
         /// 
         /// <param name="node">The node element to set for.</param>
         /// 
         /// <returns>A new node model.</returns>
-        TNodeModel Save<TNode, TNodeView, TNodeSerializer, TNodeCallback, TNodeModel>
+        TNodeModel Save<TNode, TNodeView, TNodeSerializer, TNodeModel>
         (
             TNode node
         )
-            where TNode : NodeFrameBase<TNode, TNodeView, TNodeCallback>
+            where TNode : NodeFrameBase<TNode, TNodeView>
             where TNodeView : NodeViewFrameBase<TNodeView>
-            where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeCallback, TNodeModel>, new()
-            where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
+            where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeModel>, new()
             where TNodeModel : NodeModelBase, new()
         {
             var model = new TNodeModel();

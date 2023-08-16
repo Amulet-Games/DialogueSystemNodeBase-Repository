@@ -5,29 +5,18 @@ namespace AG.DS
     public class BooleanNode : NodeFrameBase
     <
         BooleanNode,
-        BooleanNodeView,
-        BooleanNodeCallback
+        BooleanNodeView
     >
     {
-        /// <summary>
-        /// Constructor of the boolean node class.
-        /// </summary>
-        /// <param name="view">The boolean node view to set for.</param>
-        /// <param name="callback">The boolean node callback to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public BooleanNode
+        /// <inheritdoc />
+        public override BooleanNode Setup
         (
             BooleanNodeView view,
-            BooleanNodeCallback callback,
+            INodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup references
-            {
-                View = view;
-                m_Callback = callback;
-                GraphViewer = graphViewer;
-            }
+            base.Setup(view, callback, graphViewer);
 
             // Setup details
             {
@@ -43,6 +32,8 @@ namespace AG.DS
                 styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
                 styleSheets.Add(styleSheetConfig.DSRootedModifierStyle);
             }
+
+            return this;
         }
 
 

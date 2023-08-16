@@ -5,7 +5,6 @@ namespace AG.DS
     <
         OptionBranchNode,
         OptionBranchNodeView,
-        OptionBranchNodeCallback,
         OptionBranchNodeModel
     >
     {

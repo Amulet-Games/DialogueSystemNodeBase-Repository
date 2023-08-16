@@ -5,7 +5,6 @@ namespace AG.DS
     <
         PreviewNode,
         PreviewNodeView,
-        PreviewNodeCallback,
         PreviewNodeModel
     >
     {

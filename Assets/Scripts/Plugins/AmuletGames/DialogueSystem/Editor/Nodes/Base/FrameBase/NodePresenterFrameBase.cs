@@ -15,6 +15,18 @@ namespace AG.DS
         where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
     {
         /// <summary>
+        /// Reference of the node element.
+        /// </summary>
+        protected TNode Node;
+
+
+        /// <summary>
+        /// Reference of the node view.
+        /// </summary>
+        protected TNodeView View;
+
+
+        /// <summary>
         /// Method for creating the elements for the node.
         /// </summary>
         /// <param name="view">The node view to set for.</param>

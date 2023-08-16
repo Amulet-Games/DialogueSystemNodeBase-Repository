@@ -5,7 +5,6 @@ namespace AG.DS
     <
         OptionRootNode,
         OptionRootNodeView,
-        OptionRootNodeCallback,
         OptionRootNodeModel
     >
     {

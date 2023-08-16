@@ -5,29 +5,18 @@ namespace AG.DS
     public class EndNode : NodeFrameBase
     <
         EndNode,
-        EndNodeView,
-        EndNodeCallback
+        EndNodeView
     >
     {
-        /// <summary>
-        /// Constructor of the end node class.
-        /// </summary>
-        /// <param name="view">The end node view to set for.</param>
-        /// <param name="callback">The end node callback to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public EndNode
+        /// <inheritdoc />
+        public override EndNode Setup
         (
             EndNodeView view,
-            EndNodeCallback callback,
+            INodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup references
-            {
-                View = view;
-                m_Callback = callback;
-                GraphViewer = graphViewer;
-            }
+            base.Setup(view, callback, graphViewer);
 
             // Setup details
             {
@@ -38,6 +27,8 @@ namespace AG.DS
             {
                 styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSEndNodeStyle);
             }
+
+            return this;
         }
 
 

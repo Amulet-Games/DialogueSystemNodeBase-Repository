@@ -7,13 +7,11 @@ namespace AG.DS
     <
         TNode,
         TNodeView,
-        TNodeCallback,
         TNodeModel
     > 
         : NodeSerializerBase
-        where TNode : NodeFrameBase<TNode, TNodeView, TNodeCallback>
+        where TNode : NodeFrameBase<TNode, TNodeView>
         where TNodeView : NodeViewFrameBase<TNodeView>
-        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
         where TNodeModel : NodeModelBase
     {
         /// <summary>

@@ -5,29 +5,18 @@ namespace AG.DS
     public class DialogueNode : NodeFrameBase
     <
         DialogueNode,
-        DialogueNodeView,
-        DialogueNodeCallback
+        DialogueNodeView
     >
     {
-        /// <summary>
-        /// Constructor of the dialogue node class.
-        /// </summary>
-        /// <param name="view">The dialogue node view to set for.</param>
-        /// <param name="callback">The dialogue node callback to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public DialogueNode
+        /// <inheritdoc />
+        public override DialogueNode Setup
         (
             DialogueNodeView view,
-            DialogueNodeCallback callback,
+            INodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup references
-            {
-                View = view;
-                m_Callback = callback;
-                GraphViewer = graphViewer;
-            }
+            base.Setup(view, callback, graphViewer);
 
             // Setup details
             {
@@ -41,6 +30,8 @@ namespace AG.DS
                 styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
                 styleSheets.Add(styleSheetConfig.DSModifierStyle);
             }
+
+            return this;
         }
 
 

@@ -5,7 +5,6 @@ namespace AG.DS
     <
         StartNode,
         StartNodeView,
-        StartNodeCallback,
         StartNodeModel
     >
     {

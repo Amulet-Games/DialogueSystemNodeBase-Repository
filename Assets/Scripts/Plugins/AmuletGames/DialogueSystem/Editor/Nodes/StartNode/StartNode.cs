@@ -5,29 +5,18 @@ namespace AG.DS
     public class StartNode : NodeFrameBase
     <
         StartNode,
-        StartNodeView,
-        StartNodeCallback
+        StartNodeView
     >
     {
-        /// <summary>
-        /// Constructor of the start node class.
-        /// </summary>
-        /// <param name="view">The start node view to set for.</param>
-        /// <param name="callback">The start node callback to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public StartNode
+        /// <inheritdoc />
+        public override StartNode Setup
         (
             StartNodeView view,
-            StartNodeCallback callback,
+            INodeCallback callback,
             GraphViewer graphViewer
         )
         {
-            // Setup references
-            {
-                View = view;
-                m_Callback = callback;
-                GraphViewer = graphViewer;
-            }
+            base.Setup(view, callback, graphViewer);
 
             // Setup details
             {
@@ -38,6 +27,8 @@ namespace AG.DS
             {
                 styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSStartNodeStyle);
             }
+
+            return this;
         }
 
 
