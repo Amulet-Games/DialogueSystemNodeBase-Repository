@@ -7,7 +7,7 @@ namespace AG.DS
     public class LanguageObjectFieldPresenter
     {
         /// <summary>
-        /// Method for creating a new language object field element.
+        /// Create a new language object field element.
         /// </summary>
         /// <typeparam name="TObject">Type object</typeparam>
         /// <param name="view">The language object field view to set for.</param>

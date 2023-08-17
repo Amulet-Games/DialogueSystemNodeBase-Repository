@@ -15,27 +15,21 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The special GUID of this node.
-        /// </summary>
-        public string NodeGUID;
-
-
-        /// <summary>
         /// Reference of the node's border visual element.
         /// </summary>
         public VisualElement NodeBorder;
 
 
         /// <summary>
-        /// The element that contains other visual elements within the node content section.
-        /// </summary>
-        public VisualElement ContentContainer;
-
-
-        /// <summary>
         /// The property of the node callback reference.
         /// </summary>
         public INodeCallback Callback;
+
+
+        /// <summary>
+        /// The Guid of the node.
+        /// </summary>
+        public string Guid;
 
 
         // ----------------------------- Add -----------------------------

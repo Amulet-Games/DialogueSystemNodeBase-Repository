@@ -7,7 +7,7 @@ namespace AG.DS
     public partial class OptionPort
     {
         /// <summary>
-        /// Method for creating a new option port element.
+        /// Create a new option port element.
         /// </summary>
         /// <typeparam name="TEdge">Edge type</typeparam>
         /// <param name="connectorWindow">The connector window to set for.</param>

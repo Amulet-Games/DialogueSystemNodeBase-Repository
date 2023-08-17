@@ -26,18 +26,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The node's true output port opponent node's GUID value.
-        /// </summary>
-        [SerializeField] public string TrueOutputOpponentNodeGUID;
-
-
-        /// <summary>
-        /// The node's false output port opponent node's GUID value.
-        /// </summary>
-        [SerializeField] public string FalseOutputOpponentNodeGUID;
-
-
-        /// <summary>
         /// The node's boolean node stitcher model.
         /// </summary>
         [SerializeField] public BooleanNodeStitcherModel BooleanNodeStitcherModel;

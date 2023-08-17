@@ -7,7 +7,7 @@ namespace AG.DS
     public partial class DefaultPort
     {
         /// <summary>
-        /// Method for creating a new default port element.
+        /// Create a new default port element.
         /// </summary>
         /// <typeparam name="TEdge">Edge type</typeparam>
         /// <param name="connectorWindow">The connector window to set for.</param>

@@ -5,7 +5,7 @@ namespace AG.DS
     public class NodeCreateRequestWindowPresenter
     {
         /// <summary>
-        /// Method for creating a new node create request window.
+        /// Create a new node create request window.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>

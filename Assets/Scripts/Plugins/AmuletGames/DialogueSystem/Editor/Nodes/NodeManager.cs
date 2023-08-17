@@ -156,7 +156,7 @@ namespace AG.DS
         )
             where TNode : NodeFrameBase<TNode, TNodeView>, new()
             where TNodeView : NodeViewFrameBase<TNodeView>, new()
-            where TNodePresenter : NodePresenterFrameBase<TNode, TNodeView, TNodeCallback>, new()
+            where TNodePresenter : NodePresenterFrameBase<TNode, TNodeView>, new()
             where TNodeObserver : NodeObserverFrameBase<TNode, TNodeView>, new()
             where TNodeSerializer : NodeSerializerFrameBase<TNode, TNodeView, TNodeModel>, new()
             where TNodeCallback: NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>, new()
@@ -168,8 +168,8 @@ namespace AG.DS
             var callback = new TNodeCallback().Setup(view);
             var node = new TNode().Setup(view, callback, graphViewer);
 
-            presenter.CreateElements(view, callback, graphViewer);
-            observer.RegisterEvents(node, view);
+            presenter.CreateElements(node);
+            observer.RegisterEvents(node);
             
             if (model != null)
             {

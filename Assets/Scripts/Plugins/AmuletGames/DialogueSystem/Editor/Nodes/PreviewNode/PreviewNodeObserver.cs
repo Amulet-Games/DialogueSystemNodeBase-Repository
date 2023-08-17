@@ -12,9 +12,13 @@ namespace AG.DS
     {
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents(PreviewNode node, PreviewNodeView view)
+        public override void RegisterEvents(PreviewNode node)
         {
-            base.RegisterEvents(node, view);
+            base.RegisterEvents(node);
+            
+            RegisterPointerEnterEvent();
+
+            RegisterPointerLeaveEvent();
 
             RegisterNodeTitleTextFieldEvents();
 

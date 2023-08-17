@@ -1,4 +1,3 @@
-using System;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -32,100 +31,218 @@ namespace AG.DS
             GraphViewer graphViewer
         )
         {
-            // Setup references
-            {
-                View = view;
-                Callback = callback;
-                GraphViewer = graphViewer;
-            }
+            View = view;
+            Callback = callback;
+            GraphViewer = graphViewer;
+            NodeBorder = ElementAt(0);
+            Guid = System.Guid.NewGuid().ToString();
 
-            // Setup details
-            {
-                NodeGUID = Guid.NewGuid().ToString();
-            }
+            return null;
 
-            // Setup node border
-            {
-                // Get the node border from node's children.
-                NodeBorder = ElementAt(0);
+            //// Setup node border
+            //{
+            //    // Brings the it to the front of any children element's under this nodes.
+            //    NodeBorder.BringToFront();
 
-                // Brings the it to the front of any children element's under this nodes.
+            //    // Override default properties.
+            //    NodeBorder.style.overflow = Overflow.Visible;
+            //    NodeBorder.focusable = true;
+
+            //    // Remove the default USS names and add to custom class.
+            //    NodeBorder.name = "";
+            //    NodeBorder.AddToClassList(StyleConfig.Node_Border);
+
+            //    // Place the top container inside the node border.
+            //    NodeBorder.Insert(index: 1, element: topContainer);
+            //}
+
+            //// Remove unused elements
+            //{
+            //    // Remove #selection-border from the node.
+            //    Remove(ElementAt(0));
+
+            //    // Remove #title-label from the title container.
+            //    titleContainer.Remove(titleContainer.ElementAt(0));
+
+            //    // Remove #title-button-container from the title container.
+            //    titleContainer.Remove(titleContainer.ElementAt(0));
+
+            //    // Remove the #divider visual element from the top container.
+            //    topContainer.Remove(topContainer.ElementAt(1));
+
+            //    // Remove the #contents visual element from the node's border
+            //    NodeBorder.Remove(NodeBorder.ElementAt(2));
+            //}
+
+            //// Override containers default style
+            //{
+            //    // Title
+            //    titleContainer.name = "";
+            //    titleContainer.AddToClassList(StyleConfig.Node_Title_Container);
+
+            //    topContainer.name = "";
+            //    topContainer.AddToClassList(StyleConfig.Node_Top_Container);
+
+            //    // Input
+            //    inputContainer.name = "";
+            //    inputContainer.AddToClassList(StyleConfig.Node_Input_Container);
+
+            //    // Output
+            //    outputContainer.name = "";
+            //    outputContainer.AddToClassList(StyleConfig.Node_Output_Container);
+            //}
+
+            //// Setup class list
+            //{
+            //    ClearClassList();
+            //    AddToClassList(StyleConfig.Node);
+            //}
+
+            //// Add style sheet
+            //{
+            //    styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
+            //    styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
+            //}
+        }
+
+
+        protected void SetupNodeBorder()
+        {
+            Reposition();
+
+            RemoveUnusedElements();
+
+            SetupDetail();
+
+            SetupStyleClass();
+
+            void Reposition()
+            {
+                // Brings it in front of any of the child elements that are under the node.
                 NodeBorder.BringToFront();
-
-                // Override default properties.
-                NodeBorder.style.overflow = Overflow.Visible;
-                NodeBorder.focusable = true;
-
-                // Remove the default USS names and add to custom class.
-                NodeBorder.name = "";
-                NodeBorder.AddToClassList(StyleConfig.Node_Border);
-
-                // Place the top container inside the node border.
-                NodeBorder.Insert(index: 1, element: topContainer);
             }
 
-            // Remove unused elements
+            void RemoveUnusedElements()
             {
                 // Remove #selection-border from the node.
                 Remove(ElementAt(0));
 
-                // Remove #title-label from the title container.
-                titleContainer.Remove(titleContainer.ElementAt(0));
-
-                // Remove #title-button-container from the title container.
-                titleContainer.Remove(titleContainer.ElementAt(0));
-
-                // Remove the #divider visual element from the top container.
-                topContainer.Remove(topContainer.ElementAt(1));
-
-                // Remove the #contents visual element from the node's border
-                NodeBorder.Remove(NodeBorder.ElementAt(2));
+                // Remove the #contents visual element.
+                NodeBorder.Remove(NodeBorder.ElementAt(1));
             }
 
-            // Add custom elements
+            void SetupDetail()
             {
-                // Add content container to main container.
-                ContentContainer = new();
-                ContentContainer.AddToClassList(StyleConfig.Node_Content_Container);
-
-                mainContainer.Add(ContentContainer);
+                NodeBorder.style.overflow = Overflow.Visible;
+                NodeBorder.focusable = true;
             }
 
-            // Override containers default style
+            void SetupStyleClass()
             {
-                // Title
-                titleContainer.pickingMode = PickingMode.Position;
+                NodeBorder.name = "";
+                NodeBorder.AddToClassList(StyleConfig.Node_Border);
+            }
+        }
+
+
+        protected void SetupTitleContainer()
+        {
+            RemoveUnusedElements();
+
+            SetupDetail();
+
+            SetupStyleClass();
+
+            void RemoveUnusedElements()
+            {
+                // Remove #title-label.
+                titleContainer.Remove(titleContainer.ElementAt(0));
+
+                // Remove #title-button-container.
+                titleContainer.Remove(titleContainer.ElementAt(0));
+            }
+
+            void SetupDetail()
+            {
+                titleContainer.SetPickingMode(PickingMode.Position);
+            }
+
+            void SetupStyleClass()
+            {
                 titleContainer.name = "";
                 titleContainer.AddToClassList(StyleConfig.Node_Title_Container);
+            }
+        }
 
+
+        protected void SetupTopContainer()
+        {
+            Reposition();
+
+            RemoveUnusedElements();
+
+            SetupStyleClass();
+
+            void Reposition()
+            {
+                // Place the top container inside the node border.
+                NodeBorder.Insert(index: 1, element: topContainer);
+            }
+
+            void RemoveUnusedElements()
+            {
+                // Remove the #divider visual element.
+                topContainer.Remove(topContainer.ElementAt(1));
+            }
+
+            void SetupStyleClass()
+            {
                 topContainer.name = "";
                 topContainer.AddToClassList(StyleConfig.Node_Top_Container);
+            }
+        }
 
-                // Input
+
+        protected void SetupInputContainer()
+        {
+            // Setup style class
+            {
                 inputContainer.name = "";
                 inputContainer.AddToClassList(StyleConfig.Node_Input_Container);
+            }
+        }
 
-                // Output
+
+        protected void SetupOutputContainer()
+        {
+            // Setup style class
+            {
                 outputContainer.name = "";
                 outputContainer.AddToClassList(StyleConfig.Node_Output_Container);
-
-                // Main
-                mainContainer.pickingMode = PickingMode.Position;
             }
+        }
 
-            // Setup class list
+
+        protected void SetupMainContainer()
+        {
+            // Setup detail
             {
-                ClearClassList();
-                AddToClassList(StyleConfig.Node);
+                mainContainer.SetPickingMode(PickingMode.Position);
             }
+        }
 
-            // Add style sheet
-            {
-                styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
-                styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
-            }
 
-            return null;
+        protected void SetupBaseStyleClass()
+        {
+            ClearClassList();
+            AddToClassList(StyleConfig.Node);
+        }
+
+
+        protected void SetupBaseStyleSheets()
+        {
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
         }
 
 

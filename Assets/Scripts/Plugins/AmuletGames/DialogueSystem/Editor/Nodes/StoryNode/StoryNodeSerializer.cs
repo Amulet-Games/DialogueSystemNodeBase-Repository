@@ -8,65 +8,95 @@ namespace AG.DS
         StoryNodeModel
     >
     {
+        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
         public override void Save(StoryNode node, StoryNodeModel model)
         {
             base.Save(node, model);
+
+            SaveNodeBaseValues();
+
+            SaveNodeTitle();
 
             SavePorts();
 
             SaveSecondContentBoxContainers();
 
             Save_CSV_GUID();
-
-            void SavePorts()
-            {
-                node.View.InputDefaultPort.Save(model.InputPortModel);
-                node.View.OutputDefaultPort.Save(model.OutputPortModel);
-            }
-
-            void SaveSecondContentBoxContainers()
-            {
-                // Second line trigger type enum.
-                model.SecondLineTriggerTypeEnumIndex = node.View.SecondLineTriggerTypeEnumContainer.Value;
-            }
-
-            void Save_CSV_GUID()
-            {
-                // CSV GUID.
-                model.CsvGUID = node.View.CsvGUID;
-            }
         }
 
 
+        /// <summary>
+        /// Save the node ports.
+        /// </summary>
+        void SavePorts()
+        {
+            View.InputDefaultPort.Save(Model.InputPortModel);
+            View.OutputDefaultPort.Save(Model.OutputPortModel);
+        }
+
+
+        /// <summary>
+        /// Save the second content box containers.
+        /// </summary>
+        void SaveSecondContentBoxContainers()
+        {
+            Model.SecondLineTriggerTypeEnumIndex = View.SecondLineTriggerTypeEnumContainer.Value;
+        }
+
+
+        /// <summary>
+        /// Save the csv guid.
+        /// </summary>
+        void Save_CSV_GUID()
+        {
+            Model.CsvGUID = View.CsvGUID;
+        }
+
+
+        // ----------------------------- Load -----------------------------
         /// <inheritdoc />
         public override void Load(StoryNode node, StoryNodeModel model)
         {
             base.Load(node, model);
+
+            LoadNodeBaseValues();
+
+            LoadNodeTitle();
 
             LoadPorts();
 
             LoadSecondContentBoxContainers();
 
             Load_CSV_Guid();
+        }
 
-            void LoadPorts()
-            {
-                node.View.InputDefaultPort.Load(model.InputPortModel);
-                node.View.OutputDefaultPort.Load(model.OutputPortModel);
-            }
 
-            void LoadSecondContentBoxContainers()
-            {
-                // Second line trigger type enum.
-                node.View.SecondLineTriggerTypeEnumContainer.Load(model.SecondLineTriggerTypeEnumIndex);
-            }
+        /// <summary>
+        /// Load the node ports.
+        /// </summary>
+        void LoadPorts()
+        {
+            View.InputDefaultPort.Load(Model.InputPortModel);
+            View.OutputDefaultPort.Load(Model.OutputPortModel);
+        }
 
-            void Load_CSV_Guid()
-            {
-                // CSV GUID.
-                node.View.CsvGUID = model.CsvGUID;
-            }
+
+        /// <summary>
+        /// Load the second content box containers.
+        /// </summary>
+        void LoadSecondContentBoxContainers()
+        {
+            View.SecondLineTriggerTypeEnumContainer.Load(Model.SecondLineTriggerTypeEnumIndex);
+        }
+
+
+        /// <summary>
+        /// Load the csv guid.
+        /// </summary>
+        void Load_CSV_Guid()
+        {
+            View.CsvGUID = Model.CsvGUID;
         }
     }
 }

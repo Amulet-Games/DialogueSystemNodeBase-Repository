@@ -6,7 +6,7 @@ namespace AG.DS
     public class CommonButtonPresenter
     {
         /// <summary>
-        /// Method for creating a new common button element.
+        /// Create a new common button element.
         /// </summary>
         /// <param name="buttonText">The text to set for the button.</param>
         /// <param name="buttonUSS">The USS style to set for the button.</param>

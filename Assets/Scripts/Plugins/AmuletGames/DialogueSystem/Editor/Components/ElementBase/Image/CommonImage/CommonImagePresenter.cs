@@ -6,7 +6,7 @@ namespace AG.DS
     public class CommonImagePresenter
     {
         /// <summary>
-        /// Method for creating a new common Image element.
+        /// Create a new common Image element.
         /// </summary>
         /// <param name="imageSprite">The displaying sprite to set for the image.</param>
         /// <param name="imageUSS01">The first USS style to set for the image.</param>

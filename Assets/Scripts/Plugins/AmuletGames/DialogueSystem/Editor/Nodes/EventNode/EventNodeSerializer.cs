@@ -8,47 +8,73 @@ namespace AG.DS
         EventNodeModel
     >
     {
+        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
         public override void Save(EventNode node, EventNodeModel model)
         {
             base.Save(node, model);
 
+            SaveNodeBaseValues();
+
+            SaveNodeTitle();
+
             SavePorts();
 
             SaveEventModifierGroup();
-
-            void SavePorts()
-            {
-                node.View.InputDefaultPort.Save(model.InputPortModel);
-                node.View.OutputDefaultPort.Save(model.OutputPortModel);
-            }
-
-            void SaveEventModifierGroup()
-            {
-                node.View.EventModifierGroupView.Save(model.EventModifierGroupModel);
-            }
         }
 
 
+        /// <summary>
+        /// Save the node ports.
+        /// </summary>
+        void SavePorts()
+        {
+            View.InputDefaultPort.Save(Model.InputPortModel);
+            View.OutputDefaultPort.Save(Model.OutputPortModel);
+        }
+
+
+        /// <summary>
+        /// Save the event modifier group.
+        /// </summary>
+        void SaveEventModifierGroup()
+        {
+            View.EventModifierGroupView.Save(Model.EventModifierGroupModel);
+        }
+
+
+        // ----------------------------- Load -----------------------------
         /// <inheritdoc />
         public override void Load(EventNode node, EventNodeModel model)
         {
             base.Load(node, model);
 
+            LoadNodeBaseValues();
+
+            LoadNodeTitle();
+
             LoadPorts();
 
             LoadEventModifierGroup();
+        }
 
-            void LoadPorts()
-            {
-                node.View.InputDefaultPort.Load(model.InputPortModel);
-                node.View.OutputDefaultPort.Load(model.OutputPortModel);
-            }
 
-            void LoadEventModifierGroup()
-            {
-                node.View.EventModifierGroupView.Load(model.EventModifierGroupModel);
-            }
+        /// <summary>
+        /// Load the node ports.
+        /// </summary>
+        void LoadPorts()
+        {
+            View.InputDefaultPort.Load(Model.InputPortModel);
+            View.OutputDefaultPort.Load(Model.OutputPortModel);
+        }
+
+
+        /// <summary>
+        /// Load the event modifier group.
+        /// </summary>
+        void LoadEventModifierGroup()
+        {
+            View.EventModifierGroupView.Load(Model.EventModifierGroupModel);
         }
     }
 }

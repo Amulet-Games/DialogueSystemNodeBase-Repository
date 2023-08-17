@@ -5,7 +5,7 @@ namespace AG.DS
     public class GraphTitleTextFieldPresenter
     {
         /// <summary>
-        /// Method for creating a new graph title text field element.
+        /// Create a new graph title text field element.
         /// </summary>
         /// <param name="view">The graph title text field view to set for.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>

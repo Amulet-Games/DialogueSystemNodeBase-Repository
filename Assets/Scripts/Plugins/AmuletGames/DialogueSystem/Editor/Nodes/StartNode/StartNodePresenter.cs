@@ -6,55 +6,35 @@ namespace AG.DS
     public class StartNodePresenter : NodePresenterFrameBase
     <
         StartNode,
-        StartNodeView,
-        StartNodeCallback
+        StartNodeView
     >
     {
         /// <inheritdoc />
-        public override StartNode CreateElements
-        (
-            StartNodeView view,
-            StartNodeCallback callback,
-            GraphViewer graphViewer
-        )
+        public override void CreateElements(StartNode node)
         {
-            var node = new StartNode(view, callback, graphViewer);
+            base.CreateElements(node);
 
-            CreateTitleElements(node, view);
-            CreatePortElements(node, view);
-            CreateContentElements(node, view);
+            CreateTitleElements();
 
-            return node;
+            CreatePortElements();
         }
 
 
         /// <summary>
-        /// Method for creating the node's port elements.
+        /// Create the node's port elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreatePortElements(StartNode node, StartNodeView view)
+        void CreatePortElements()
         {
-            view.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Output_LabelText
             );
 
-            node.Add(view.OutputDefaultPort);
-            node.RefreshPorts();
-        }
-
-
-        /// <summary>
-        /// Method for creating the node's content elements.
-        /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreateContentElements(StartNode node, StartNodeView view)
-        {
+            Node.Add(View.OutputDefaultPort);
+            Node.RefreshPorts();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace AG.DS
     public class GraphViewerPresenter
     {
         /// <summary>
-        /// Method for creating a new graph viewer element.
+        /// Create a new graph viewer element.
         /// </summary>
         /// <returns>A new graph viewer element.</returns>
         public static GraphViewer CreateElement()

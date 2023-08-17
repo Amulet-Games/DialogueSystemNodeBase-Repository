@@ -5,7 +5,7 @@ namespace AG.DS
     public class NodeTitleTextFieldPresenter
     {
         /// <summary>
-        /// Method for creating a new node title text field element.
+        /// Create a new node title text field element.
         /// </summary>
         /// <param name="view">The node title text field view to set for.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>

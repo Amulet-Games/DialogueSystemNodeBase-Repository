@@ -5,7 +5,7 @@ namespace AG.DS
     public class FolderTitleTextFieldPresenter
     {
         /// <summary>
-        /// Method for creating a new folder title text field element.
+        /// Create a new folder title text field element.
         /// </summary>
         /// <param name="view">The folder title text field view to set for.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>

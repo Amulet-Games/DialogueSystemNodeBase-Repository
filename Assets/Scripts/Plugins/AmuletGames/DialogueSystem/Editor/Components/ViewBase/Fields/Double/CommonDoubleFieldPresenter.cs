@@ -5,7 +5,7 @@ namespace AG.DS
     public class CommonDoubleFieldPresenter
     {
         /// <summary>
-        /// Method for creating a new common double field element.
+        /// Create a new common double field element.
         /// </summary>
         /// <param name="view">The common double field view to set for the field.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>

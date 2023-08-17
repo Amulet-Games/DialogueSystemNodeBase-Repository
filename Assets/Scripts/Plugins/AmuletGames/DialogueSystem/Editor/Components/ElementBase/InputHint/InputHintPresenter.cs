@@ -3,7 +3,7 @@ namespace AG.DS
     public class InputHintPresenter
     {
         /// <summary>
-        /// Method for creating a new input hint element.
+        /// Create a new input hint element.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <returns>A new input hint element.</returns>

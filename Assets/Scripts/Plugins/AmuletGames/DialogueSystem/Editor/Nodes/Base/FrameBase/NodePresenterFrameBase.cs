@@ -6,13 +6,11 @@ namespace AG.DS
     public abstract class NodePresenterFrameBase
     <
         TNode,
-        TNodeView,
-        TNodeCallback
+        TNodeView
     > 
         : NodePresenterBase
-        where TNode : NodeBase
+        where TNode : NodeFrameBase<TNode, TNodeView>
         where TNodeView : NodeViewFrameBase<TNodeView>
-        where TNodeCallback : NodeCallbackFrameBase<TNode, TNodeView, TNodeCallback>
     {
         /// <summary>
         /// Reference of the node element.
@@ -27,51 +25,68 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for creating the elements for the node.
+        /// Create the elements for the node.
         /// </summary>
-        /// <param name="view">The node view to set for.</param>
-        /// <param name="callback">The node callback to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <param name="node">The node element to set for.</param>
         /// <returns>A new node element.</returns>
-        public abstract TNode CreateElements
-        (
-            TNodeView view,
-            TNodeCallback callback,
-            GraphViewer graphViewer
-        );
+        public virtual void CreateElements(TNode node)
+        {
+            Node = node;
+            View = node.View;
+        }
 
 
         /// <summary>
-        /// Method for creating the node's title elements.
+        /// Create the node's title elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        protected void CreateTitleElements
-        (
-            TNode node,
-            TNodeView view
-        )
+        protected void CreateTitleElements()
         {
-            VisualElement titleContainer = new();
+            VisualElement titleContainer;
 
-            NodeTitleTextFieldPresenter.CreateElement
-            (
-                view: view.NodeTitleTextFieldView,
-                fieldUSS: StyleConfig.Node_Title_TextField
-            );
+            SetupContainers();
 
-            view.EditTitleButton = CommonButtonPresenter.CreateElement
-            (
-                buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
-                buttonUSS: StyleConfig.Node_EditTitle_Button
-            );
+            SetupNodeTitleTextField();
 
-            titleContainer.Add(view.NodeTitleTextFieldView.Field);
-            titleContainer.Add(view.EditTitleButton);
+            SetupEditTitleButton();
 
-            titleContainer.AddToClassList(StyleConfig.node_Title_Main);
+            AddElementsToContainer();
 
-            node.titleContainer.Add(titleContainer);
+            AddContainersToNode();
+
+            void SetupContainers()
+            {
+                titleContainer = new();
+                titleContainer.AddToClassList(StyleConfig.node_Title_Main);
+            }
+            
+            void SetupNodeTitleTextField()
+            {
+                NodeTitleTextFieldPresenter.CreateElement
+                (
+                    view: View.NodeTitleTextFieldView,
+                    fieldUSS: StyleConfig.Node_Title_TextField
+                );
+            }
+            
+            void SetupEditTitleButton()
+            {
+                View.EditTitleButton = CommonButtonPresenter.CreateElement
+                (
+                    buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
+                    buttonUSS: StyleConfig.Node_EditTitle_Button
+                );
+            }
+            
+            void AddElementsToContainer()
+            {
+                titleContainer.Add(View.NodeTitleTextFieldView.Field);
+                titleContainer.Add(View.EditTitleButton);
+            }
+            
+            void AddContainersToNode()
+            {
+                Node.titleContainer.Add(titleContainer);
+            }
         }
     }
 }

@@ -7,7 +7,7 @@ namespace AG.DS
     public class CommonObjectFieldPresenter
     {
         /// <summary>
-        /// Method for creating a new common object field element.
+        /// Create a new common object field element.
         /// </summary>
         /// <typeparam name="TObject">Type object</typeparam>
         /// <param name="view">The common object field view to set for.</param>

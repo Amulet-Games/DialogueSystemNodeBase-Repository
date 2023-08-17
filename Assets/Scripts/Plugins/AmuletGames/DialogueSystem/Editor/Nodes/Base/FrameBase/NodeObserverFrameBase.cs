@@ -9,7 +9,7 @@ namespace AG.DS
         TNodeView
     >
         : NodeObserverBase
-        where TNode : NodeBase
+        where TNode : NodeFrameBase<TNode, TNodeView>
         where TNodeView : NodeViewFrameBase<TNodeView>
     {
         /// <summary>
@@ -29,29 +29,24 @@ namespace AG.DS
         /// Register events to the node.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        public virtual void RegisterEvents(TNode node, TNodeView view)
+        public virtual void RegisterEvents(TNode node)
         {
             Node = node;
-            View = view;
-
-            RegisterPointerEnterEvent();
-
-            RegisterPointerLeaveEvent();
+            View = node.View;
         }
 
 
         /// <summary>
         /// Register PointerEnterEvent to the node.
         /// </summary>
-        void RegisterPointerEnterEvent()
+        protected void RegisterPointerEnterEvent()
             => Node.RegisterCallback<PointerEnterEvent>(PointerEnterEvent);
 
 
         /// <summary>
         /// Register PointerLeaveEvent to the node.
         /// </summary>
-        void RegisterPointerLeaveEvent()
+        protected void RegisterPointerLeaveEvent()
             => Node.RegisterCallback<PointerLeaveEvent>(PointerLeaveEvent);
 
 

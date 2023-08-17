@@ -12,7 +12,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for creating a new ancestor entry.
+        /// Create a new ancestor entry.
         /// <br>This entry will be placed on the first layer(0) within the whole node create tree.</br>
         /// </summary>
         /// <returns>A new ancestor entry.</returns>
@@ -27,7 +27,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for creating a new node family entry.
+        /// Create a new node family entry.
         /// </summary>
         /// <param name="entryLevel">The entry level of the new node family entry to set for.</param>
         /// <returns>A new node family entry.</returns>

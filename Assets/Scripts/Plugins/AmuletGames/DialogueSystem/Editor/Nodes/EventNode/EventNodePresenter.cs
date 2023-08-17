@@ -1,4 +1,5 @@
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -6,84 +7,96 @@ namespace AG.DS
     public class EventNodePresenter : NodePresenterFrameBase
     <
         EventNode,
-        EventNodeView,
-        EventNodeCallback
+        EventNodeView
     >
     {
         /// <inheritdoc />
-        public override EventNode CreateElements
-        (
-            EventNodeView view,
-            EventNodeCallback callback,
-            GraphViewer graphViewer
-        )
+        public override void CreateElements(EventNode node)
         {
-            var node = new EventNode(view, callback, graphViewer);
+            base.CreateElements(node);
 
-            CreateTitleElements(node, view);
-            CreatePortElements(node, view);
-            CreateContentElements(node, view);
+            CreateTitleElements();
 
-            return node;
+            CreatePortElements();
+
+            CreateContentElements();
         }
 
 
         /// <summary>
-        /// Method for creating the node's port elements.
+        /// Create the node's port elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreatePortElements(EventNode node, EventNodeView view)
+        void CreatePortElements()
         {
-            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            view.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Output_LabelText
             );
 
-            node.Add(view.InputDefaultPort);
-            node.Add(view.OutputDefaultPort);
-            node.RefreshPorts();
+            Node.Add(View.InputDefaultPort);
+            Node.Add(View.OutputDefaultPort);
+            Node.RefreshPorts();
         }
 
 
         /// <summary>
-        /// Method for creating the node's content elements.
+        /// Create the node's content elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreateContentElements(EventNode node, EventNodeView view)
+        void CreateContentElements()
         {
+            VisualElement contentContainer;
+
             SetupContentButton();
+
+            SetupContainers();
 
             SetupEventModifierGroup();
 
+            AddElementsToContainer();
+
+            AddContainersToNode();
+
             void SetupContentButton()
             {
-                view.ContentButton = ContentButtonPresenter.CreateElement
+                View.ContentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.ContentButton_AddEvent_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEventModifierButtonIconSprite
                 );
-
-                node.titleContainer.Add(view.ContentButton);
+            }
+            
+            void SetupContainers()
+            {
+                contentContainer = new();
+                contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
             }
 
             void SetupEventModifierGroup()
             {
-                EventModifierGroupPresenter.CreateElement(view: view.EventModifierGroupView);
+                EventModifierGroupPresenter.CreateElement(view: View.EventModifierGroupView);
+            }
 
-                node.ContentContainer.Add(view.EventModifierGroupView.GroupContainer);
+            void AddElementsToContainer()
+            {
+                Node.titleContainer.Add(View.ContentButton);
+
+                contentContainer.Add(View.EventModifierGroupView.GroupContainer);
+            }
+
+            void AddContainersToNode()
+            {
+                Node.mainContainer.Add(contentContainer);
             }
         }
     }

@@ -5,7 +5,7 @@ namespace AG.DS
     public class EventModifierPresenter
     {
         /// <summary>
-        /// Create all the elements for the event modifier.
+        /// Create the elements for the event modifier.
         /// </summary>
         /// <param name="view">The event modifier view to set for.</param>
         /// <param name="index">The index of the modifier to set for.</param>

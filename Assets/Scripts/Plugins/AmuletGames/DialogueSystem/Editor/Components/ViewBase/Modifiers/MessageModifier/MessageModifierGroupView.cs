@@ -90,7 +90,7 @@ namespace AG.DS
 
             void AddFieldsToBox()
             {
-                node.ContentContainer.Add(modifierContainer);
+                //node.ContentContainer.Add(modifierContainer);
             }
 
             void StitcherCreatedAction()

@@ -6,7 +6,7 @@ namespace AG.DS
     public class DialogueSystemWindowPresenter
     {
         /// <summary>
-        /// Method for creating a new dialogue system window.
+        /// Create a new dialogue system window.
         /// </summary>
         public static DialogueSystemWindow CreateWindow()
         {

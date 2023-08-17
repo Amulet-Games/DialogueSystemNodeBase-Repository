@@ -5,7 +5,7 @@ namespace AG.DS
     public class LanguageTextFieldPresenter
     {
         /// <summary>
-        /// Method for creating a new language text field element.
+        /// Create a new language text field element.
         /// </summary>
         /// <param name="isMultiLine">Can the texts separate into multiple lines inside the text field when they too long to show in one line.</param>
         /// <param name="placeholderText">The placeholder text to set for the field.</param>

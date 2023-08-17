@@ -18,9 +18,13 @@ namespace AG.DS
 
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents(OptionRootNode node, OptionRootNodeView view)
+        public override void RegisterEvents(OptionRootNode node)
         {
-            base.RegisterEvents(node, view);
+            base.RegisterEvents(node);
+
+            RegisterPointerEnterEvent();
+
+            RegisterPointerLeaveEvent();
 
             RegisterPointerMoveEvent();
 
@@ -89,7 +93,7 @@ namespace AG.DS
         // ----------------------------- Event -----------------------------
         /// <summary>
         /// The event to invoke when the pointer's state has changed.
-        /// <br>Like position or pressure change, or a different button is pressed.</br>
+        /// Like position or pressure change, or a different button is pressed.
         /// </summary>
         /// <param name="evt">The registering event.</param>
         void PointerMoveEvent(PointerMoveEvent evt)
@@ -109,15 +113,6 @@ namespace AG.DS
                 // Remove from hover class.
                 Node.NodeBorder.RemoveFromClassList(StyleConfig.Node_Border_Hover);
             }
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the editor window's selected language has changed.
-        /// </summary>
-        void m_LanguageChangedEvent()
-        {
-            View.RootTitleTextFieldView.UpdateFieldLanguageValue();
         }
 
 

@@ -6,44 +6,35 @@ namespace AG.DS
     public class EndNodePresenter : NodePresenterFrameBase
     <
         EndNode,
-        EndNodeView,
-        EndNodeCallback
+        EndNodeView
     >
     {
         /// <inheritdoc />
-        public override EndNode CreateElements
-        (
-            EndNodeView view,
-            EndNodeCallback callback,
-            GraphViewer graphViewer
-        )
+        public override void CreateElements(EndNode node)
         {
-            var node = new EndNode(view, callback, graphViewer);
+            base.CreateElements(node);
 
-            CreateTitleElements(node, view);
-            CreatePortElements(node, view);
+            CreateTitleElements();
 
-            return node;
+            CreatePortElements();
         }
 
 
         /// <summary>
-        /// Method for creating the node's port elements.
+        /// Create the node's port elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreatePortElements(EndNode node, EndNodeView view)
+        void CreatePortElements()
         {
-            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            node.Add(view.InputDefaultPort);
-            node.RefreshPorts();
+            Node.Add(View.InputDefaultPort);
+            Node.RefreshPorts();
         }
     }
 }

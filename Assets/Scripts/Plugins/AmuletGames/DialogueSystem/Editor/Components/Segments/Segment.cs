@@ -118,7 +118,7 @@ namespace AG.DS
 
             void AddBoxToMainContainer()
             {
-                node.ContentContainer.Add(MainBox);
+                //node.ContentContainer.Add(MainBox);
             }
 
             void SegmentCreatedAction()

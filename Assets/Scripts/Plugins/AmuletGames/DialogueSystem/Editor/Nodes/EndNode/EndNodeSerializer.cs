@@ -8,23 +8,49 @@ namespace AG.DS
         EndNodeModel
     >
     {
+        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
         public override void Save(EndNode node, EndNodeModel model)
         {
             base.Save(node, model);
 
-            // Save ports
-            node.View.InputDefaultPort.Save(model.InputPortModel);
+            SaveNodeBaseValues();
+
+            SaveNodeTitle();
+
+            SavePorts();
         }
 
 
+        /// <summary>
+        /// Save the node ports.
+        /// </summary>
+        void SavePorts()
+        {
+            View.InputDefaultPort.Save(Model.InputPortModel);
+        }
+
+
+        // ----------------------------- Load -----------------------------
         /// <inheritdoc />
         public override void Load(EndNode node, EndNodeModel model)
         {
             base.Load(node, model);
 
-            // Load ports
-            node.View.InputDefaultPort.Load(model.InputPortModel);
+            LoadNodeBaseValues();
+
+            LoadNodeTitle();
+
+            LoadPorts();
+        }
+
+
+        /// <summary>
+        /// Load the node ports.
+        /// </summary>
+        void LoadPorts()
+        {
+            View.InputDefaultPort.Load(Model.InputPortModel);
         }
     }
 }

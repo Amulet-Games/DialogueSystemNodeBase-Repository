@@ -8,52 +8,78 @@ namespace AG.DS
         PreviewNodeModel
     >
     {
+        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
         public override void Save(PreviewNode node, PreviewNodeModel model)
         {
             base.Save(node, model);
 
+            SaveNodeBaseValues();
+
+            SaveNodeTitle();
+
             SavePorts();
 
             SavePortraitObjectFields();
-
-            void SavePorts()
-            {
-                node.View.InputDefaultPort.Save(model.InputPortModel);
-                node.View.OutputDefaultPort.Save(model.OutputPortModel);
-            }
-
-            void SavePortraitObjectFields()
-            {
-                model.LeftPortraitSprite = node.View.LeftPortraitObjectFieldView.Value;
-                model.RightPortraitSprite = node.View.RightPortraitObjectFieldView.Value;
-            }
         }
 
 
+        /// <summary>
+        /// Save the node ports.
+        /// </summary>
+        void SavePorts()
+        {
+            View.InputDefaultPort.Save(Model.InputPortModel);
+            View.OutputDefaultPort.Save(Model.OutputPortModel);
+        }
+
+
+        /// <summary>
+        /// Save the portrait object fields.
+        /// </summary>
+        void SavePortraitObjectFields()
+        {
+            Model.LeftPortraitSprite = View.LeftPortraitObjectFieldView.Value;
+            Model.RightPortraitSprite = View.RightPortraitObjectFieldView.Value;
+        }
+
+
+        // ----------------------------- Load -----------------------------
         /// <inheritdoc />
         public override void Load(PreviewNode node, PreviewNodeModel model)
         {
             base.Load(node, model);
 
+            LoadNodeBaseValues();
+
+            LoadNodeTitle();
+
             LoadPorts();
 
             LoadPortraitObjectFields();
+        }
 
-            void LoadPorts()
-            {
-                node.View.InputDefaultPort.Load(model.InputPortModel);
-                node.View.OutputDefaultPort.Load(model.OutputPortModel);
-            }
 
-            void LoadPortraitObjectFields()
-            {
-                node.View.LeftPortraitObjectFieldView.Load(model.LeftPortraitSprite);
-                node.View.RightPortraitObjectFieldView.Load(model.RightPortraitSprite);
+        /// <summary>
+        /// Load the node ports.
+        /// </summary>
+        void LoadPorts()
+        {
+            View.InputDefaultPort.Load(Model.InputPortModel);
+            View.OutputDefaultPort.Load(Model.OutputPortModel);
+        }
 
-                node.View.LeftPortraitImage.image = node.View.LeftPortraitObjectFieldView.Value.texture;
-                node.View.RightPortraitImage.image = node.View.RightPortraitObjectFieldView.Value.texture;
-            }
+
+        /// <summary>
+        /// Load the portrait object fields.
+        /// </summary>
+        void LoadPortraitObjectFields()
+        {
+            View.LeftPortraitObjectFieldView.Load(Model.LeftPortraitSprite);
+            View.RightPortraitObjectFieldView.Load(Model.RightPortraitSprite);
+
+            View.LeftPortraitImage.image = View.LeftPortraitObjectFieldView.Value.texture;
+            View.RightPortraitImage.image = View.RightPortraitObjectFieldView.Value.texture;
         }
     }
 }

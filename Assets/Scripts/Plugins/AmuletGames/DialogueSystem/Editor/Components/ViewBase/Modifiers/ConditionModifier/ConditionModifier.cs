@@ -228,7 +228,7 @@ namespace AG.DS
 
             void AddBoxToNode()
             {
-                node.ContentContainer.Add(MainBox);
+                //node.ContentContainer.Add(MainBox);
             }
         }
 

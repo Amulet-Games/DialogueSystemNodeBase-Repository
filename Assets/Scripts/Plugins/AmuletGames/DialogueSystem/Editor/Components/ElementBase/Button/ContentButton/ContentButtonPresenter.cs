@@ -5,7 +5,7 @@ namespace AG.DS
     public class ContentButtonPresenter
     {
         /// <summary>
-        /// Method for creating a new content button element.
+        /// Create a new content button element.
         /// </summary>
         /// <param name="buttonText">The name for this content button.</param>
         /// <param name="buttonIconSprite">The icon that displays beside the button text.</param>

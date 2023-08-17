@@ -5,7 +5,7 @@ namespace AG.DS
     public class OptionPortGroupCellPresenter
     {
         /// <summary>
-        /// Method for creating a new option port group cell element.
+        /// Create a new option port group cell element.
         /// </summary>
         /// <param name="connectorWindow">The node create connector window to set for.</param>
         /// <param name="direction">The direction type to set for.</param>

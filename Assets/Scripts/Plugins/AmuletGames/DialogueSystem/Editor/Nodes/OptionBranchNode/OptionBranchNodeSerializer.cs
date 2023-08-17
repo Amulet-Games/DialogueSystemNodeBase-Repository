@@ -8,61 +8,73 @@ namespace AG.DS
         OptionBranchNodeModel
     >
     {
+        // ----------------------------- Save -----------------------------
         /// <inheritdoc />
         public override void Save(OptionBranchNode node, OptionBranchNodeModel model)
         {
             base.Save(node, model);
 
+            SaveNodeBaseValues();
+
+            SaveNodeTitle();
+
             SavePorts();
 
             SaveBranchTitleTextField();
-
-            SaveOptionBranchNodeStitcher();
-
-            void SavePorts()
-            {
-                node.View.OutputDefaultPort.Save(model.OutputPortModel);
-                node.View.InputOptionPort.Save(model.InputOptionPortModel);
-            }
-
-            void SaveBranchTitleTextField()
-            {
-                node.View.BranchTitleTextFieldView.Save(model.HeadlineText);
-            }
-
-            void SaveOptionBranchNodeStitcher()
-            {
-                node.View.OptionBranchNodeStitcher.SaveStitcherValues(model.OptionBranchNodeStitcherModel);
-            }
         }
 
 
+        /// <summary>
+        /// Save the node ports.
+        /// </summary>
+        void SavePorts()
+        {
+            View.OutputDefaultPort.Save(Model.OutputPortModel);
+            View.InputOptionPort.Save(Model.InputOptionPortModel);
+        }
+
+
+        /// <summary>
+        /// Save the branch title text field.
+        /// </summary>
+        void SaveBranchTitleTextField()
+        {
+            View.BranchTitleTextFieldView.Save(Model.HeadlineText);
+        }
+
+
+        // ----------------------------- Load -----------------------------
         /// <inheritdoc />
         public override void Load(OptionBranchNode node, OptionBranchNodeModel model)
         {
             base.Load(node, model);
 
+            LoadNodeBaseValues();
+
+            LoadNodeTitle();
+
             LoadPorts();
 
             LoadBranchTitleTextField();
+        }
 
-            LoadOptionBranchNodeStitcher();
 
-            void LoadPorts()
-            {
-                node.View.OutputDefaultPort.Load(model.OutputPortModel);
-                node.View.InputOptionPort.Load(model.InputOptionPortModel);
-            }
+        /// <summary>
+        /// Load the node ports.
+        /// </summary>
+        void LoadPorts()
+        {
+            View.OutputDefaultPort.Load(Model.OutputPortModel);
+            View.InputOptionPort.Load(Model.InputOptionPortModel);
+        }
 
-            void LoadBranchTitleTextField()
-            {
-                node.View.BranchTitleTextFieldView.Load(model.HeadlineText);
-            }
 
-            void LoadOptionBranchNodeStitcher()
-            {
-                node.View.OptionBranchNodeStitcher.LoadStitcherValues(model.OptionBranchNodeStitcherModel);
-            }
+        /// <summary>
+        /// Load the branch title text field.
+        /// </summary>
+        void LoadBranchTitleTextField()
+        {
+            View.BranchTitleTextFieldView.Load(Model.HeadlineText);
         }
     }
 }

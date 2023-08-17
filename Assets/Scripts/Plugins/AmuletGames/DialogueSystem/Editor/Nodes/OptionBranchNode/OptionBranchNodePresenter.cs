@@ -7,153 +7,143 @@ namespace AG.DS
     public class OptionBranchNodePresenter : NodePresenterFrameBase
     <
         OptionBranchNode,
-        OptionBranchNodeView,
-        OptionBranchNodeCallback
+        OptionBranchNodeView
     >
     {
         /// <inheritdoc />
-        public override OptionBranchNode CreateElements
-        (
-            OptionBranchNodeView view,
-            OptionBranchNodeCallback callback,
-            GraphViewer graphViewer
-        )
+        public override void CreateElements(OptionBranchNode node)
         {
-            var node = new OptionBranchNode(view, callback, graphViewer);
+            base.CreateElements(node);
 
-            CreateTitleElements(node, view);
-            CreatePortElements(node, view);
-            CreateContentElements(node, view);
+            CreateTitleElements();
 
-            return node;
+            CreatePortElements();
+
+            CreateContentElements();
         }
 
 
         /// <summary>
-        /// Method for creating the node's port elements.
+        /// Create the node's port elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreatePortElements(OptionBranchNode node, OptionBranchNodeView view)
+        void CreatePortElements()
         {
-            view.InputOptionPort = OptionPort.CreateElement<OptionEdge>
+            View.InputOptionPort = OptionPort.CreateElement<OptionEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input
             );
 
-            view.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Output_LabelText
             );
 
-            node.Add(view.InputOptionPort);
-            node.Add(view.OutputDefaultPort);
-            node.RefreshPorts();
+            Node.Add(View.InputOptionPort);
+            Node.Add(View.OutputDefaultPort);
+            Node.RefreshPorts();
         }
 
 
         /// <summary>
-        /// Method for creating the node's content elements.
+        /// Create the node's content elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreateContentElements(OptionBranchNode node, OptionBranchNodeView view)
+        void CreateContentElements()
         {
+            VisualElement contentContainer;
+            VisualElement branchMainContainer;
+            VisualElement branchOuterContainer;
+            VisualElement branchInnerContainer;
+
+            Image branchIconImage;
+            Label branchTitleLabel;
+
             SetupContentButton();
 
-            SetupOptionBranch();
+            SetupContainers();
+
+            SetupBranchIconImage();
+
+            SetupBranchTitleLabel();
+
+            SetupBranchTitleTextField();
+
+            AddElementsToContainer();
+
+            AddContainersToNode();
 
             void SetupContentButton()
             {
-                view.ContentButton = ContentButtonPresenter.CreateElement
+                View.ContentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.ContentButton_AddCondition_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddConditionModifierButtonIconSprite
                 );
-
-                node.titleContainer.Add(view.ContentButton);
             }
 
-            void SetupOptionBranch()
+            void SetupContainers()
             {
-                VisualElement mainContainer;
-                VisualElement outerContainer;
-                VisualElement InnerContainer;
+                contentContainer = new();
+                contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
 
-                Image branchIconImage;
-                Label branchTitleLabel;
+                branchMainContainer = new();
+                branchMainContainer.AddToClassList(StyleConfig.OptionBranch_MainContainer);
 
-                SetupContainers();
+                branchOuterContainer = new();
+                branchOuterContainer.AddToClassList(StyleConfig.OptionBranch_OuterContainer);
 
-                SetupBranchIconImage();
+                branchInnerContainer = new();
+                branchInnerContainer.AddToClassList(StyleConfig.OptionBranch_InnerContainer);
+            }
 
-                SetupBranchTitleLabel();
+            void SetupBranchIconImage()
+            {
+                branchIconImage = CommonImagePresenter.CreateElement
+                (
+                    imageSprite: ConfigResourcesManager.SpriteConfig.OptionBranchIconSprite,
+                    imageUSS01: StyleConfig.OptionBranch_Icon
+                );
+            }
 
-                SetupBranchTitleTextField();
+            void SetupBranchTitleLabel()
+            {
+                branchTitleLabel = CommonLabelPresenter.CreateElement
+                (
+                    labelText: StringConfig.OptionBranchNode_BranchTitleLabel_LabelText,
+                    labelUSS: StyleConfig.OptionBranch_Title_Label
+                );
+            }
 
-                AddElementsToContainer();
+            void SetupBranchTitleTextField()
+            {
+                View.BranchTitleTextFieldView.Field = LanguageTextFieldPresenter.CreateElement
+                (
+                    isMultiLine: false,
+                    placeholderText: View.BranchTitleTextFieldView.placeholderText,
+                    fieldUSS: StyleConfig.OptionBranch_Title_TextField
+                );
+            }
 
-                AddContainersToNode();
+            void AddElementsToContainer()
+            {
+                Node.titleContainer.Add(View.ContentButton);
 
-                void SetupContainers()
-                {
-                    mainContainer = new();
-                    mainContainer.AddToClassList(StyleConfig.OptionBranch_MainContainer);
+                branchOuterContainer.Add(branchIconImage);
+                branchOuterContainer.Add(branchInnerContainer);
 
-                    outerContainer = new();
-                    outerContainer.AddToClassList(StyleConfig.OptionBranch_OuterContainer);
+                branchInnerContainer.Add(branchTitleLabel);
+                branchInnerContainer.Add(View.BranchTitleTextFieldView.Field);
 
-                    InnerContainer = new();
-                    InnerContainer.AddToClassList(StyleConfig.OptionBranch_InnerContainer);
-                }
+                branchMainContainer.Add(branchOuterContainer);
+                contentContainer.Add(branchMainContainer);
+            }
 
-                void SetupBranchIconImage()
-                {
-                    branchIconImage = CommonImagePresenter.CreateElement
-                    (
-                        imageSprite: ConfigResourcesManager.SpriteConfig.OptionBranchIconSprite,
-                        imageUSS01: StyleConfig.OptionBranch_Icon
-                    );
-                }
-
-                void SetupBranchTitleLabel()
-                {
-                    branchTitleLabel = CommonLabelPresenter.CreateElement
-                    (
-                        labelText: StringConfig.OptionBranchNode_BranchTitleLabel_LabelText,
-                        labelUSS: StyleConfig.OptionBranch_Title_Label
-                    );
-                }
-
-                void SetupBranchTitleTextField()
-                {
-                    view.BranchTitleTextFieldView.Field = LanguageTextFieldPresenter.CreateElement
-                    (
-                        isMultiLine: false,
-                        placeholderText: view.BranchTitleTextFieldView.placeholderText,
-                        fieldUSS: StyleConfig.OptionBranch_Title_TextField
-                    );
-                }
-
-                void AddElementsToContainer()
-                {
-                    mainContainer.Add(outerContainer);
-
-                    outerContainer.Add(branchIconImage);
-                    outerContainer.Add(InnerContainer);
-
-                    InnerContainer.Add(branchTitleLabel);
-                    InnerContainer.Add(view.BranchTitleTextFieldView.Field);
-                }
-
-                void AddContainersToNode()
-                {
-                    node.ContentContainer.Add(mainContainer);
-                }
+            void AddContainersToNode()
+            {
+                Node.mainContainer.Add(contentContainer);
             }
         }
     }

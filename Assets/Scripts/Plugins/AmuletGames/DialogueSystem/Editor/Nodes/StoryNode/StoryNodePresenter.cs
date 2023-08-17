@@ -8,65 +8,59 @@ namespace AG.DS
     public class StoryNodePresenter : NodePresenterFrameBase
     <
         StoryNode,
-        StoryNodeView,
-        StoryNodeCallback
+        StoryNodeView
     >
     {
         /// <inheritdoc />
-        public override StoryNode CreateElements
-        (
-            StoryNodeView view,
-            StoryNodeCallback callback,
-            GraphViewer graphViewer
-        )
+        public override void CreateElements(StoryNode node)
         {
-            var node = new StoryNode(view, callback, graphViewer);
+            base.CreateElements(node);
 
-            CreateTitleElements(node, view);
-            CreatePortElements(node, view);
-            ApplyDesign(node, view);
+            CreateTitleElements();
 
-            return node;
+            CreatePortElements();
+
+            ApplyDesign();
         }
 
 
         /// <summary>
-        /// Method for creating the node's port elements.
+        /// Create the node's port elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreatePortElements(StoryNode node, StoryNodeView view)
+        void CreatePortElements()
         {
-            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            view.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Output_LabelText
             );
 
-            node.Add(view.InputDefaultPort);
-            node.Add(view.OutputDefaultPort);
-            node.RefreshPorts();
+            Node.Add(View.InputDefaultPort);
+            Node.Add(View.OutputDefaultPort);
+            Node.RefreshPorts();
         }
 
 
         /// <summary>
         /// Apply design method.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void ApplyDesign(StoryNode node, StoryNodeView view)
+        void ApplyDesign()
         {
+            VisualElement contentContainer;
+
             var margin = 10;
+
+            SetupContainers();
 
             SetupPreferenceImage();
 
@@ -74,11 +68,19 @@ namespace AG.DS
 
             DisableReferenceNode();
 
+            AddContainersToNode();
+
+            void SetupContainers()
+            {
+                contentContainer = new();
+                contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
+            }
+
             void SetupPreferenceImage()
             {
                 Image preferenceImage;
                 preferenceImage = CommonImagePresenter.CreateElement(imageUSS01: StyleConfig.StoryNode_PreferenceImage_Image);
-                node.ContentContainer.Add(preferenceImage);
+                contentContainer.Add(preferenceImage);
 
                 preferenceImage.sprite = ConfigResourcesManager.SpriteConfig.ApplyDesignSampleImage;
                 preferenceImage.style.opacity = 0.6f;
@@ -87,25 +89,30 @@ namespace AG.DS
                 preferenceImage.style.marginTop = margin;
                 preferenceImage.style.marginLeft = margin;
                 preferenceImage.style.marginRight = margin;
-                node.ContentContainer.style.backgroundColor = new Color(r: 1, g: 1, b: 1, a: 0.35f);
+                contentContainer.style.backgroundColor = new Color(r: 1, g: 1, b: 1, a: 0.35f);
 
 
-                node.NodeBorder.style.borderBottomColor = new Color(r: 0, g: 0, b: 0, a: 0);
-                node.NodeBorder.style.borderLeftColor = new Color(r: 0, g: 0, b: 0, a: 0);
-                node.NodeBorder.style.borderRightColor = new Color(r: 0, g: 0, b: 0, a: 0);
-                node.NodeBorder.style.borderTopColor = new Color(r: 0, g: 0, b: 0, a: 0);
+                Node.NodeBorder.style.borderBottomColor = new Color(r: 0, g: 0, b: 0, a: 0);
+                Node.NodeBorder.style.borderLeftColor = new Color(r: 0, g: 0, b: 0, a: 0);
+                Node.NodeBorder.style.borderRightColor = new Color(r: 0, g: 0, b: 0, a: 0);
+                Node.NodeBorder.style.borderTopColor = new Color(r: 0, g: 0, b: 0, a: 0);
 
-                node.capabilities = Capabilities.Movable;
+                Node.capabilities = Capabilities.Movable;
             }
             
             void SetupGraphViewerZoom()
             {
-                node.GraphViewer.SetupZoom(ContentZoomer.DefaultMinScale, 6f);
+                Node.GraphViewer.SetupZoom(ContentZoomer.DefaultMinScale, 6f);
             }
 
             void DisableReferenceNode()
             {
-                node.SetEnabled(false);
+                Node.SetEnabled(false);
+            }
+
+            void AddContainersToNode()
+            {
+                Node.mainContainer.Add(contentContainer);
             }
         }
     }

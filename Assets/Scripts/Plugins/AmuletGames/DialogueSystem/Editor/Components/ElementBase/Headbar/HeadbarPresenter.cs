@@ -5,7 +5,7 @@ namespace AG.DS
     public class HeadBarPresenter
     {
         /// <summary>
-        /// Method for creating a new headBar element.
+        /// Create a new headBar element.
         /// </summary>
         /// <param name="headBarView">The headBar view class to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>

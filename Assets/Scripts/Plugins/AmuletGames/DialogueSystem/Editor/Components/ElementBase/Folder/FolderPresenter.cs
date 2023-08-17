@@ -3,7 +3,7 @@ namespace AG.DS
     public class FolderPresenter
     {
         /// <summary>
-        /// Method for creating a new folder element.
+        /// Create a new folder element.
         /// </summary>
         /// <param name="folderTitle">The folder title to set for.</param>
         /// <returns>A new folder element.</returns>

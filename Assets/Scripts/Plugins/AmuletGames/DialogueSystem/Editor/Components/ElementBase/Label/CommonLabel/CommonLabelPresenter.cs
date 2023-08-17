@@ -5,7 +5,7 @@ namespace AG.DS
     public class CommonLabelPresenter
     {
         /// <summary>
-        /// Method for creating a new common Label element.
+        /// Create a new common Label element.
         /// </summary>
         /// <param name="labelText">The text to set for the label.</param>
         /// <param name="labelUSS">The USS style to set for the label.</param>

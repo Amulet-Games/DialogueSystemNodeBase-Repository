@@ -7,7 +7,7 @@ namespace AG.DS
     public class ToolbarMenuPresenter
     {
         /// <summary>
-        /// Method for creating a new toolbar menu element.
+        /// Create a new toolbar menu element.
         /// </summary>
         /// <param name="labelText">The toolbar label text to set for.</param>
         /// <param name="arrowIcon">The sprite icon to set for the toolbar arrow image.</param>

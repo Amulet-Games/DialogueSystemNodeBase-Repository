@@ -5,7 +5,7 @@ namespace AG.DS
     public class CommonIntegerFieldPresenter
     {
         /// <summary>
-        /// Method for creating a new common integer field element.
+        /// Create a new common integer field element.
         /// </summary>
         /// <param name="view">The common integer field view to set for the field.</param>
         /// <param name="fieldUSS">The USS style to set for the field.</param>

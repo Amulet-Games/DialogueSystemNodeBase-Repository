@@ -1,4 +1,5 @@
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -6,76 +7,93 @@ namespace AG.DS
     public class BooleanNodePresenter : NodePresenterFrameBase
     <
         BooleanNode,
-        BooleanNodeView,
-        BooleanNodeCallback
+        BooleanNodeView
     >
     {
         /// <inheritdoc />
-        public override BooleanNode CreateElements
-        (
-            BooleanNodeView view,
-            BooleanNodeCallback callback,
-            GraphViewer graphViewer
-        )
+        public override void CreateElements(BooleanNode node)
         {
-            var node = new BooleanNode(view, callback, graphViewer);
+            base.CreateElements(node);
 
-            CreateTitleElements(node, view);
-            CreatePortElements(node, view);
-            CreateContentElements(node, view);
+            CreateTitleElements();
 
-            return node;
+            CreatePortElements();
+
+            CreateContentElements();
         }
 
 
         /// <summary>
-        /// Method for creating the node's port elements.
+        /// Create the node's port elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreatePortElements(BooleanNode node, BooleanNodeView view)
+        void CreatePortElements()
         {
-            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            view.TrueOutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.TrueOutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_True_LabelText
             );
 
-            view.FalseOutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.FalseOutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_False_LabelText,
                 isSiblings: true
             );
 
-            node.Add(view.InputDefaultPort);
-            node.Add(view.TrueOutputDefaultPort);
-            node.Add(view.FalseOutputDefaultPort);
-            node.RefreshPorts();
+            Node.Add(View.InputDefaultPort);
+            Node.Add(View.TrueOutputDefaultPort);
+            Node.Add(View.FalseOutputDefaultPort);
+            Node.RefreshPorts();
         }
 
 
         /// <summary>
-        /// Method for creating the node's content elements.
+        /// Create the node's content elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreateContentElements(BooleanNode node, BooleanNodeView view)
+        void CreateContentElements()
         {
-            // Create all the root elements required in the node stitcher.
-            view.booleanNodeStitcher.CreateRootElements(node);
+            VisualElement contentContainer;
+
+            SetupContainers();
+
+            AddBooleanNodeStitcher();
+
+            AddElementsToContainer();
+
+            AddContainersToNode();
+
+            void SetupContainers()
+            {
+                contentContainer = new();
+                contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
+            }
+
+            void AddBooleanNodeStitcher()
+            {
+                View.booleanNodeStitcher.CreateRootElements(Node);
+            }
+
+            void AddElementsToContainer()
+            {
+            }
+
+            void AddContainersToNode()
+            {
+                Node.mainContainer.Add(contentContainer);
+            }
         }
     }
 }

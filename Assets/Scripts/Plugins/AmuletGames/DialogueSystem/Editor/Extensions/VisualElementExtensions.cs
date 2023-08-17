@@ -24,6 +24,19 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Set the picking mode of the given visual element.
+        /// </summary>
+        /// <param name="element">Extension visual element.</param>
+        /// <param name="mode">The picking mode to set for.</param>
+        /// <returns>The after setup visual element.</returns>
+        public static VisualElement SetPickingMode(this VisualElement element, PickingMode mode)
+        {
+            element.pickingMode = mode;
+            return element;
+        }
+
+
+        /// <summary>
         /// Remove the visual element from the display none style class.
         /// </summary>
         /// <param name="element">Extension visual element.</param>

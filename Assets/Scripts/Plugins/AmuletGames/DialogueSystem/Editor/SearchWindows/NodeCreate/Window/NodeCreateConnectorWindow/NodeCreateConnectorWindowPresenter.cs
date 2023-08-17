@@ -5,7 +5,7 @@ namespace AG.DS
     public class NodeCreateConnectorWindowPresenter
     {
         /// <summary>
-        /// Method for creating a new node create connector window.
+        /// Create a new node create connector window.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>

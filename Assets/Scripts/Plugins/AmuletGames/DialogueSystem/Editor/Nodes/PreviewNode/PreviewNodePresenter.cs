@@ -8,64 +8,56 @@ namespace AG.DS
     public class PreviewNodePresenter : NodePresenterFrameBase
     <
         PreviewNode,
-        PreviewNodeView,
-        PreviewNodeCallback
+        PreviewNodeView
     >
     {
         /// <inheritdoc />
-        public override PreviewNode CreateElements
-        (
-            PreviewNodeView view,
-            PreviewNodeCallback callback,
-            GraphViewer graphViewer
-        )
+        public override void CreateElements(PreviewNode node)
         {
-            var node = new PreviewNode(view, callback, graphViewer);
+            base.CreateElements(node);
 
-            CreateTitleElements(node, view);
-            CreatePortElements(node, view);
-            CreateContentElements(node, view);
+            CreateTitleElements();
 
-            return node;
+            CreatePortElements();
+
+            CreateContentElements();
         }
 
 
         /// <summary>
-        /// Method for creating the node's port elements.
+        /// Create the node's port elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreatePortElements(PreviewNode node, PreviewNodeView view)
+        void CreatePortElements()
         {
-            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            view.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 label: StringConfig.DefaultPort_Output_LabelText
             );
 
-            node.Add(view.InputDefaultPort);
-            node.Add(view.OutputDefaultPort);
-            node.RefreshPorts();
+            Node.Add(View.InputDefaultPort);
+            Node.Add(View.OutputDefaultPort);
+            Node.RefreshPorts();
         }
 
 
         /// <summary>
-        /// Method for creating the node's content elements.
+        /// Create the node's content elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreateContentElements(PreviewNode node, PreviewNodeView view)
+        void CreateContentElements()
         {
+            VisualElement contentContainer;
+
             Box previewImageBox;
             Box previewSpriteBox;
             Box middleEmptyBox;
@@ -82,10 +74,13 @@ namespace AG.DS
 
             AddElementsToContainer();
 
-            AddContainerToNode();
+            AddContainersToNode();
 
             void SetupContainers()
             {
+                contentContainer = new();
+                contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
+
                 previewImageBox = new();
                 previewImageBox.AddToClassList(StyleConfig.PreviewNode_PreviewImage_Box);
 
@@ -98,7 +93,7 @@ namespace AG.DS
 
             void SetupLeftPortraitImage()
             {
-                view.LeftPortraitImage = CommonImagePresenter.CreateElement
+                View.LeftPortraitImage = CommonImagePresenter.CreateElement
                 (
                     imageUSS01: StyleConfig.PreviewNode_PreviewImage_Image,
                     imageUSS02: StyleConfig.PreviewNode_PreviewImage_Image_L
@@ -107,7 +102,7 @@ namespace AG.DS
 
             void SetupRightPortraitImage()
             {
-                view.RightPortraitImage = CommonImagePresenter.CreateElement
+                View.RightPortraitImage = CommonImagePresenter.CreateElement
                 (
                     imageUSS01: StyleConfig.PreviewNode_PreviewImage_Image,
                     imageUSS02: StyleConfig.PreviewNode_PreviewImage_Image_R
@@ -116,9 +111,9 @@ namespace AG.DS
 
             void SetupLeftPortraitObjectField()
             {   
-                CommonObjectFieldPresenter.CreateElement<Sprite>
+                CommonObjectFieldPresenter.CreateElement
                 (
-                    view: view.LeftPortraitObjectFieldView,
+                    view: View.LeftPortraitObjectFieldView,
                     fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
                     fieldUSS02: StyleConfig.PreviewNode_PreviewSprite_ObjectField_L
                 );
@@ -126,9 +121,9 @@ namespace AG.DS
 
             void SetupRightPortraitObjectField()
             {
-                CommonObjectFieldPresenter.CreateElement<Sprite>
+                CommonObjectFieldPresenter.CreateElement
                 (
-                    view: view.RightPortraitObjectFieldView,
+                    view: View.RightPortraitObjectFieldView,
                     fieldUSS01: StyleConfig.PreviewNode_PreviewSprite_ObjectField,
                     fieldUSS02: StyleConfig.PreviewNode_PreviewSprite_ObjectField_R
                 );
@@ -136,18 +131,20 @@ namespace AG.DS
 
             void AddElementsToContainer()
             {
-                previewImageBox.Add(view.LeftPortraitImage);
-                previewImageBox.Add(view.RightPortraitImage);
+                previewImageBox.Add(View.LeftPortraitImage);
+                previewImageBox.Add(View.RightPortraitImage);
 
-                previewSpriteBox.Add(view.LeftPortraitObjectFieldView.Field);
+                previewSpriteBox.Add(View.LeftPortraitObjectFieldView.Field);
                 previewSpriteBox.Add(middleEmptyBox);
-                previewSpriteBox.Add(view.RightPortraitObjectFieldView.Field);
+                previewSpriteBox.Add(View.RightPortraitObjectFieldView.Field);
+
+                contentContainer.Add(previewImageBox);
+                contentContainer.Add(previewSpriteBox);
             }
 
-            void AddContainerToNode()
+            void AddContainersToNode()
             {
-                node.ContentContainer.Add(previewImageBox);
-                node.ContentContainer.Add(previewSpriteBox);
+                Node.mainContainer.Add(contentContainer);
             }
         }
     }

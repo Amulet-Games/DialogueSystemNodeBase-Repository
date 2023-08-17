@@ -7,153 +7,143 @@ namespace AG.DS
     public class OptionRootNodePresenter : NodePresenterFrameBase
     <
         OptionRootNode,
-        OptionRootNodeView,
-        OptionRootNodeCallback
+        OptionRootNodeView
     >
     {
         /// <inheritdoc />
-        public override OptionRootNode CreateElements
-        (
-            OptionRootNodeView view,
-            OptionRootNodeCallback callback,
-            GraphViewer graphViewer
-        )
+        public override void CreateElements(OptionRootNode node)
         {
-            var node = new OptionRootNode(view, callback, graphViewer);
+            base.CreateElements(node);
 
-            CreateTitleElements(node, view);
-            CreatePortElements(node, view);
-            CreateContentElements(node, view);
+            CreateTitleElements();
 
-            return node;
+            CreatePortElements();
+
+            CreateContentElements();
         }
 
 
         /// <summary>
-        /// Method for creating the node's port elements.
+        /// Create the node's port elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreatePortElements(OptionRootNode node, OptionRootNodeView view)
+        void CreatePortElements()
         {
-            view.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.InputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Multi,
                 label: StringConfig.DefaultPort_Input_LabelText
             );
 
-            view.OutputOptionPort = OptionPort.CreateElement<OptionEdge>
+            View.OutputOptionPort = OptionPort.CreateElement<OptionEdge>
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output
             );
 
-            node.Add(view.InputDefaultPort);
-            node.Add(view.OutputOptionPort);
-            node.RefreshPorts();
+            Node.Add(View.InputDefaultPort);
+            Node.Add(View.OutputOptionPort);
+            Node.RefreshPorts();
         }
 
 
         /// <summary>
-        /// Method for creating the node's content elements.
+        /// Create the node's content elements.
         /// </summary>
-        /// <param name="node">The node element to set for.</param>
-        /// <param name="view">The node view to set for.</param>
-        void CreateContentElements(OptionRootNode node, OptionRootNodeView view)
+        void CreateContentElements()
         {
+            VisualElement contentContainer;
+            VisualElement rootMainContainer;
+            VisualElement rootOuterContainer;
+            VisualElement rootInnerContainer;
+
+            Image rootIconImage;
+            Label rootTitleLabel;
+
             SetupContentButton();
 
-            SetupOptionRoot();
+            SetupContainers();
+
+            SetupOptionRootIconImage();
+
+            SetupOptionRootTitleLabel();
+
+            SetupOptionRootTitleTextField();
+
+            AddElementsToContainer();
+
+            AddContainersToNode();
 
             void SetupContentButton()
             {
-                view.ContentButton = ContentButtonPresenter.CreateElement
+                View.ContentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.ContentButton_AddEntry_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEntryButtonIconSprite
                 );
-
-                node.titleContainer.Add(view.ContentButton);
             }
 
-            void SetupOptionRoot()
+            void SetupContainers()
             {
-                VisualElement mainContainer;
-                VisualElement outerContainer;
-                VisualElement InnerContainer;
+                contentContainer = new();
+                contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
 
-                Image rootIconImage;
-                Label rootTitleLabel;
+                rootMainContainer = new();
+                rootMainContainer.AddToClassList(StyleConfig.OptionRoot_MainContainer);
 
-                SetupContainers();
+                rootOuterContainer = new();
+                rootOuterContainer.AddToClassList(StyleConfig.OptionRoot_OuterContainer);
 
-                SetupOptionRootIconImage();
+                rootInnerContainer = new();
+                rootInnerContainer.AddToClassList(StyleConfig.OptionRoot_InnerContainer);
+            }
 
-                SetupOptionRootTitleLabel();
+            void SetupOptionRootIconImage()
+            {
+                rootIconImage = CommonImagePresenter.CreateElement
+                (
+                    imageSprite: ConfigResourcesManager.SpriteConfig.OptionRootIconSprite,
+                    imageUSS01: StyleConfig.OptionRoot_Icon
+                );
+            }
 
-                SetupOptionRootTitleTextField();
+            void SetupOptionRootTitleLabel()
+            {
+                rootTitleLabel = CommonLabelPresenter.CreateElement
+                (
+                    labelText: StringConfig.OptionRootNode_RootTitleLabel_LabelText,
+                    labelUSS: StyleConfig.OptionRoot_Title_Label
+                );
+            }
 
-                AddElementsToContainer();
+            void SetupOptionRootTitleTextField()
+            {
+                View.RootTitleTextFieldView.Field = LanguageTextFieldPresenter.CreateElement
+                (
+                    isMultiLine: false,
+                    placeholderText: View.RootTitleTextFieldView.placeholderText,
+                    fieldUSS: StyleConfig.OptionRoot_Title_TextField
+                );
+            }
 
-                AddContainersToNode();
+            void AddElementsToContainer()
+            {
+                Node.titleContainer.Add(View.ContentButton);
 
-                void SetupContainers()
-                {
-                    mainContainer = new();
-                    mainContainer.AddToClassList(StyleConfig.OptionRoot_MainContainer);
+                rootOuterContainer.Add(rootIconImage);
+                rootOuterContainer.Add(rootInnerContainer);
 
-                    outerContainer = new();
-                    outerContainer.AddToClassList(StyleConfig.OptionRoot_OuterContainer);
+                rootInnerContainer.Add(rootTitleLabel);
+                rootInnerContainer.Add(View.RootTitleTextFieldView.Field);
 
-                    InnerContainer = new();
-                    InnerContainer.AddToClassList(StyleConfig.OptionRoot_InnerContainer);
-                }
+                rootMainContainer.Add(rootOuterContainer);
+                contentContainer.Add(rootMainContainer);
+            }
 
-                void SetupOptionRootIconImage()
-                {
-                    rootIconImage = CommonImagePresenter.CreateElement
-                    (
-                        imageSprite: ConfigResourcesManager.SpriteConfig.OptionRootIconSprite,
-                        imageUSS01: StyleConfig.OptionRoot_Icon
-                    );
-                }
-
-                void SetupOptionRootTitleLabel()
-                {
-                    rootTitleLabel = CommonLabelPresenter.CreateElement
-                    (
-                        labelText: StringConfig.OptionRootNode_RootTitleLabel_LabelText,
-                        labelUSS: StyleConfig.OptionRoot_Title_Label
-                    );
-                }
-
-                void SetupOptionRootTitleTextField()
-                {
-                    view.RootTitleTextFieldView.Field = LanguageTextFieldPresenter.CreateElement
-                    (
-                        isMultiLine: false,
-                        placeholderText: view.RootTitleTextFieldView.placeholderText,
-                        fieldUSS: StyleConfig.OptionRoot_Title_TextField
-                    );
-                }
-
-                void AddElementsToContainer()
-                {
-                    mainContainer.Add(outerContainer);
-
-                    outerContainer.Add(rootIconImage);
-                    outerContainer.Add(InnerContainer);
-
-                    InnerContainer.Add(rootTitleLabel);
-                    InnerContainer.Add(view.RootTitleTextFieldView.Field);
-                }
-
-                void AddContainersToNode()
-                {
-                    node.ContentContainer.Add(mainContainer);
-                }
+            void AddContainersToNode()
+            {
+                Node.mainContainer.Add(contentContainer);
             }
         }
     }
