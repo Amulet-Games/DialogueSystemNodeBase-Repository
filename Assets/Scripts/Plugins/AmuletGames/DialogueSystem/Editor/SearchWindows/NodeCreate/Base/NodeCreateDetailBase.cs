@@ -1,10 +1,9 @@
 namespace AG.DS
 {
     /// <summary>
-    /// A class that provides an additional details about creating nodes, like its alignment and connector port.
-    /// <br>Other classes can freely edit or use the values within the class.</br>
+    /// Holds the raw data that can be used when creating a new node.
     /// </summary>
-    public class NodeCreateDetails
+    public class NodeCreateDetailBase
     {
         /// <summary>
         /// The horizontal alignment type to use when creating the node to the graph.

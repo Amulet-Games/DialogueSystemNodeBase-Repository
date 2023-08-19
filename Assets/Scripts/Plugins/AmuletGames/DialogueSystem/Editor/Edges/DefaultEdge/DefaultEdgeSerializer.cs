@@ -4,17 +4,27 @@ namespace AG.DS
     public class DefaultEdgeSerializer : EdgeSerializerFrameBase
     <
         DefaultPort,
-        DefaultEdge,
         DefaultEdgeView,
         EdgeModelBase
     >
     {
         /// <inheritdoc />
-        public override void Save(DefaultEdge edge, EdgeModelBase model)
+        public override void Save(DefaultEdgeView view, EdgeModelBase model)
         {
-            base.Save(edge, model);
+            base.Save(view, model);
 
-            model.PortType = PortType.DEFAULT;
+            SaveEdgeBaseValues();
+
+            SavePortType();
+        }
+
+
+        /// <summary>
+        /// Save the port type.
+        /// </summary>
+        void SavePortType()
+        {
+            Model.PortType = PortType.DEFAULT;
         }
     }
 }

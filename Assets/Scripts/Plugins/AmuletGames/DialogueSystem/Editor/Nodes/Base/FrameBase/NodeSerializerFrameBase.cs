@@ -27,7 +27,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the node element.
+        /// Reference of the node model.
         /// </summary>
         protected TNodeModel Model;
 

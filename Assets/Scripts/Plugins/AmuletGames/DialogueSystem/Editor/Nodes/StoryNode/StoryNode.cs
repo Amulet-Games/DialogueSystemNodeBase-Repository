@@ -20,12 +20,36 @@ namespace AG.DS
         {
             base.Setup(view, callback, graphViewer);
 
-            // Add style sheet
-            {
-                styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSStoryNodeStyle);
-            }
+            SetupSelectionBorder();
+
+            SetupNodeBorder();
+
+            SetupTitleContainer();
+
+            SetupTopContainer();
+
+            SetupInputContainer();
+
+            SetupOutputContainer();
+
+            SetupMainContainer();
+
+            SetupDefaultStyleClass();
+
+            SetupDefaultStyleSheets();
+
+            SetupStyleSheets();
 
             return this;
+        }
+
+
+        /// <summary>
+        /// Setup the style sheets.
+        /// </summary>
+        void SetupStyleSheets()
+        {
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSStoryNodeStyle);
         }
 
 

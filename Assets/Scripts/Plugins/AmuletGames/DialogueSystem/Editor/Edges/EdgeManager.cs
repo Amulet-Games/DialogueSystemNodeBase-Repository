@@ -147,13 +147,13 @@ namespace AG.DS
             where TPort : PortBase
             where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
             where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
-            where TEdgeSerializer : EdgeSerializerFrameBase<TPort, TEdge, TEdgeView, TEdgeModel>, new()
+            where TEdgeSerializer : EdgeSerializerFrameBase<TPort, TEdgeView, TEdgeModel>, new()
             where TEdgeModel : EdgeModelBase, new()
         {
             var model = new TEdgeModel();
             var serializer = new TEdgeSerializer();
 
-            serializer.Save(edge, model);
+            serializer.Save(edge.View, model);
             
             return model;
         }

@@ -9,7 +9,7 @@ namespace AG.DS
         /// <summary>
         /// The node's GUID value.
         /// </summary>
-        [SerializeField] public string Guid;
+        [SerializeField] public Guid Guid;
 
 
         /// <summary>

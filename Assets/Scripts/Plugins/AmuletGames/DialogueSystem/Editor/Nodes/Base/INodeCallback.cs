@@ -22,6 +22,6 @@ namespace AG.DS
         /// Read more:
         /// <see cref="NodeCallbackFrameBase{TNode, TNodeView, TNodeCallback}.OnPostCreate"/>
         /// </summary>
-        void OnPostCreate(GeometryChangedEvent evt);
+        void OnPostCreate();
     }
 }

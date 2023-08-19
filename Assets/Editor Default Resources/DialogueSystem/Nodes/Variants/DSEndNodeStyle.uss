@@ -6,6 +6,9 @@
 	background-color: rgba(57, 62, 65, 1);
 
 	min-width: 142px;
+	
+	/* top - right - bottom - left */
+	border-radius: 4px 4px 0px 0px;
 }
 
 

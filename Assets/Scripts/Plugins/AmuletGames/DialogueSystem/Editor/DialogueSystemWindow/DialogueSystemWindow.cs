@@ -132,6 +132,7 @@ namespace AG.DS
                 HotkeyManager.Setup();
                 EdgeManager.Setup();
                 NodeManager.Setup();
+                NodeCreateWindowManager.Setup();
             }
 
             // Create modules
@@ -156,13 +157,11 @@ namespace AG.DS
 
                 // Node Create's
                 {
-                    var nodeCreateDetails = new NodeCreateDetails();
-
                     nodeCreateRequestWindow =
-                        NodeCreateRequestWindowPresenter.CreateWindow(graphViewer, languageHandler, nodeCreateDetails, dsWindow: this);
+                        NodeCreateWindowManager.Instance.CreateRequest(graphViewer, languageHandler, dsWindow: this);
 
                     graphViewer.NodeCreateConnectorWindow =
-                        NodeCreateConnectorWindowPresenter.CreateWindow(graphViewer, languageHandler, nodeCreateDetails, dsWindow: this);
+                        NodeCreateWindowManager.Instance.CreateConnector(graphViewer, languageHandler, dsWindow: this);
                 }
             }
 
@@ -180,13 +179,10 @@ namespace AG.DS
                 graphViewerObserver.AssignDelegates();
                 graphViewerObserver.RegisterEvents();
 
-                //new HeadBarObserver(headBar, headBarView, dsWindow: this).RegisterEvents();
+                new HeadBarObserver(headBar, headBarView, dsWindow: this).RegisterEvents();
 
                 new DialogueSystemWindowObserver(
                     dsModel, graphViewer, headBar, nodeCreateRequestWindow, dsWindow: this).RegisterEvents();
-
-                new NodeCreateRequestWindowObserver(nodeCreateRequestWindow).RegisterEvents();
-                new NodeCreateConnectorWindowObserver(graphViewer.NodeCreateConnectorWindow).RegisterEvents();
             }
         }
 

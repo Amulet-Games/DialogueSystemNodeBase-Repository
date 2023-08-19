@@ -8,7 +8,7 @@ namespace AG.DS
     public abstract class EdgeBase : Edge
     {
         /// <summary>
-        /// The property of the edge callback reference.
+        /// Reference of the edge callback.
         /// </summary>
         public IEdgeCallback Callback;
     }

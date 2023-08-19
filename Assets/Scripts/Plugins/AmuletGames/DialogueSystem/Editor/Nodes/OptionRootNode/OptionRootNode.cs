@@ -18,19 +18,49 @@ namespace AG.DS
         {
             base.Setup(view, callback, graphViewer);
 
-            // Setup details
-            {
-                style.minWidth = NumberConfig.OPTION_ROOT_NODE_MIN_WIDTH;
-            }
+            SetupSelectionBorder();
 
-            // Add style sheet
-            {
-                var styleSheetConfig = ConfigResourcesManager.StyleSheetConfig;
-                styleSheets.Add(styleSheetConfig.DSOptionRootNodeStyle);
-                styleSheets.Add(styleSheetConfig.DSSegmentStyle);
-            }
+            SetupNodeBorder();
+
+            SetupTitleContainer();
+
+            SetupTopContainer();
+
+            SetupInputContainer();
+
+            SetupOutputContainer();
+
+            SetupMainContainer();
+
+            SetupDefaultStyleClass();
+
+            SetupDefaultStyleSheets();
+
+            SetupDetails();
+
+            SetupStyleSheets();
 
             return this;
+        }
+
+
+        /// <summary>
+        /// Setup the details
+        /// </summary>
+        void SetupDetails()
+        {
+            style.minWidth = NumberConfig.OPTION_ROOT_NODE_MIN_WIDTH;
+        }
+
+
+        /// <summary>
+        /// Setup the style sheets.
+        /// </summary>
+        void SetupStyleSheets()
+        {
+            var styleSheetConfig = ConfigResourcesManager.StyleSheetConfig;
+            styleSheets.Add(styleSheetConfig.DSOptionRootNodeStyle);
+            styleSheets.Add(styleSheetConfig.DSSegmentStyle);
         }
 
 

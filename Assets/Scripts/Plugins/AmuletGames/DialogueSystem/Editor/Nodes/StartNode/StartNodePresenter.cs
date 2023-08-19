@@ -25,7 +25,7 @@ namespace AG.DS
         /// </summary>
         void CreatePortElements()
         {
-            View.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.OutputDefaultPort = DefaultPortPresenter.CreateElement<DefaultEdge>
             (
                 connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,

@@ -19,7 +19,7 @@ namespace AG.DS
         /// <param name="direction">Input or output.</param>
         /// <param name="capacity">Support multiple or only single.</param>
         /// <param name="type">Port data type.</param>
-        protected OptionPort
+        public OptionPort
         (
             Orientation orientation,
             Direction direction,

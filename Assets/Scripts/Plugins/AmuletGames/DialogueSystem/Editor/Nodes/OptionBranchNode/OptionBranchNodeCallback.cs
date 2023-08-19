@@ -44,7 +44,7 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override void OnPostCreate(GeometryChangedEvent evt)
+        public override void OnPostCreate()
         {
             // Add language field
             {

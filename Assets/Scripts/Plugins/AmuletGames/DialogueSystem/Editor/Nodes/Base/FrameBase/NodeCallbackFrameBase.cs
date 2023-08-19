@@ -44,9 +44,8 @@ namespace AG.DS
 
         /// <summary>
         /// The callback to invoke when the node is created from the graph.
-        /// <br>Note that this is called after the node's loading is done, if loading is needed.</br>
+        /// Note that this is called after the previous node's data is loaded.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        public abstract void OnPostCreate(GeometryChangedEvent evt);
+        public abstract void OnPostCreate();
     }
 }

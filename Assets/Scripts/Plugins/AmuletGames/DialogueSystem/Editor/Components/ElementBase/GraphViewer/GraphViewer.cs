@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -20,6 +21,26 @@ namespace AG.DS
 
 
         /// <summary>
+        /// The current mouse position on screen when an unity's event is invoked.
+        /// <para>Note that NullReferenceException will occur if there's no event invoked</para>
+        /// </summary>
+        public Vector2 ScreenMousePosition
+        {
+            get
+            {
+                if (Event.current != null)
+                {
+                    return GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
+                }
+                else
+                {
+                    throw new ArgumentException("Can't get the current mouse position since there's no event has been invoked yet!");
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Cache of the nodes that are on the graph.
         /// </summary>
         public List<NodeBase> Nodes { get; private set; }
@@ -35,13 +56,6 @@ namespace AG.DS
         /// Cache of the ports that are on the graph.
         /// </summary>
         public Dictionary<string, PortBase> PortByPortGUID { get; private set; }
-
-
-        /// <summary>
-        /// The current mouse position on screen whenever an unity's event is invoked.
-        /// <para>Note that NullReferenceException will occur if there's no event invoked</para>
-        /// </summary>
-        public Vector2 MouseScreenPosition => GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
 
 
         /// <summary>

@@ -83,7 +83,7 @@ namespace AG.DS
             if (edge.input != null)
             {
                 // If the edge that user dropped is from a input port.
-                NodeCreateConnectorWindow.UpdateNodeCreateDetails
+                NodeCreateConnectorWindow.Open
                 (
                     horizontalAlignmentType: HorizontalAlignmentType.LEFT,
 
@@ -91,13 +91,13 @@ namespace AG.DS
 
                     connectorPort: (PortBase)edge.input,
 
-                    toShowSearchEntries: NodeCreateEntryProvider.DefaultNodeInputEntries
+                    toShowEntries: NodeCreateEntryProvider.DefaultNodeInputEntries
                 );
             }
             else
             {
                 // If the edge that user dropped is from a output port.
-                NodeCreateConnectorWindow.UpdateNodeCreateDetails
+                NodeCreateConnectorWindow.Open
                 (
                     horizontalAlignmentType: HorizontalAlignmentType.RIGHT,
 
@@ -105,12 +105,9 @@ namespace AG.DS
 
                     connectorPort: (PortBase)edge.output,
 
-                    toShowSearchEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries
+                    toShowEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries
                 );
             }
-
-            // Open window.
-            NodeCreateConnectorWindow.Open();
         }
     }
 }

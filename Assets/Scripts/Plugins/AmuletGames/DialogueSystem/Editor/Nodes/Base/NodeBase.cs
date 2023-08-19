@@ -1,4 +1,5 @@
-﻿using UnityEditor.Experimental.GraphView;
+﻿using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -21,7 +22,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The property of the node callback reference.
+        /// Reference of the node callback.
         /// </summary>
         public INodeCallback Callback;
 
@@ -29,10 +30,30 @@ namespace AG.DS
         /// <summary>
         /// The Guid of the node.
         /// </summary>
-        public string Guid;
+        public Guid Guid;
 
 
-        // ----------------------------- Add -----------------------------
+        // ----------------------------- Overrides -----------------------------
+        /// <summary>
+        /// Add menu items to the node contextual menu.
+        /// <para>Read More https://docs.unity3d.com/ScriptReference/ContextMenu.html</para>
+        /// </summary>
+        /// <param name="evt">The event holding the menu to populate.</param>
+        public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
+        {
+            AddContextualMenuItems(evt);
+            evt.menu.AppendSeparator();
+        }
+
+
+        /// <summary>
+        /// Methods for adding menu items to the node contextual menu, items are added at the end of the current item list.
+        /// </summary>
+        /// <param name="evt">The event holding the menu to populate.</param>
+        protected abstract void AddContextualMenuItems(ContextualMenuPopulateEvent evt);
+
+
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Add the given port to the node.
         /// </summary>
@@ -76,7 +97,6 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Remove -----------------------------
         /// <summary>
         /// Remove the given port from the node.
         /// </summary>

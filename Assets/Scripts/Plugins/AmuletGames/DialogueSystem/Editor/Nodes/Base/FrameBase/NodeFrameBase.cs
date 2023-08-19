@@ -35,98 +35,38 @@ namespace AG.DS
             Callback = callback;
             GraphViewer = graphViewer;
             NodeBorder = ElementAt(0);
-            Guid = System.Guid.NewGuid().ToString();
+            Guid = System.Guid.NewGuid();
 
             return null;
-
-            //// Setup node border
-            //{
-            //    // Brings the it to the front of any children element's under this nodes.
-            //    NodeBorder.BringToFront();
-
-            //    // Override default properties.
-            //    NodeBorder.style.overflow = Overflow.Visible;
-            //    NodeBorder.focusable = true;
-
-            //    // Remove the default USS names and add to custom class.
-            //    NodeBorder.name = "";
-            //    NodeBorder.AddToClassList(StyleConfig.Node_Border);
-
-            //    // Place the top container inside the node border.
-            //    NodeBorder.Insert(index: 1, element: topContainer);
-            //}
-
-            //// Remove unused elements
-            //{
-            //    // Remove #selection-border from the node.
-            //    Remove(ElementAt(0));
-
-            //    // Remove #title-label from the title container.
-            //    titleContainer.Remove(titleContainer.ElementAt(0));
-
-            //    // Remove #title-button-container from the title container.
-            //    titleContainer.Remove(titleContainer.ElementAt(0));
-
-            //    // Remove the #divider visual element from the top container.
-            //    topContainer.Remove(topContainer.ElementAt(1));
-
-            //    // Remove the #contents visual element from the node's border
-            //    NodeBorder.Remove(NodeBorder.ElementAt(2));
-            //}
-
-            //// Override containers default style
-            //{
-            //    // Title
-            //    titleContainer.name = "";
-            //    titleContainer.AddToClassList(StyleConfig.Node_Title_Container);
-
-            //    topContainer.name = "";
-            //    topContainer.AddToClassList(StyleConfig.Node_Top_Container);
-
-            //    // Input
-            //    inputContainer.name = "";
-            //    inputContainer.AddToClassList(StyleConfig.Node_Input_Container);
-
-            //    // Output
-            //    outputContainer.name = "";
-            //    outputContainer.AddToClassList(StyleConfig.Node_Output_Container);
-            //}
-
-            //// Setup class list
-            //{
-            //    ClearClassList();
-            //    AddToClassList(StyleConfig.Node);
-            //}
-
-            //// Add style sheet
-            //{
-            //    styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
-            //    styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
-            //}
         }
 
 
+        /// <summary>
+        /// Setup the selection border element.
+        /// </summary>
+        protected void SetupSelectionBorder()
+        {
+            // Remove unused elements
+            {
+                // Remove #selection-border from the node.
+                Remove(ElementAt(1));
+            }
+        }
+
+
+        /// <summary>
+        /// Setup the node border element.
+        /// </summary>
         protected void SetupNodeBorder()
         {
-            Reposition();
-
             RemoveUnusedElements();
 
             SetupDetail();
 
             SetupStyleClass();
 
-            void Reposition()
-            {
-                // Brings it in front of any of the child elements that are under the node.
-                NodeBorder.BringToFront();
-            }
-
             void RemoveUnusedElements()
             {
-                // Remove #selection-border from the node.
-                Remove(ElementAt(0));
-
                 // Remove the #contents visual element.
                 NodeBorder.Remove(NodeBorder.ElementAt(1));
             }
@@ -145,6 +85,9 @@ namespace AG.DS
         }
 
 
+        /// <summary>
+        /// Setup the title container element.
+        /// </summary>
         protected void SetupTitleContainer()
         {
             RemoveUnusedElements();
@@ -175,6 +118,9 @@ namespace AG.DS
         }
 
 
+        /// <summary>
+        /// Setup the top container element.
+        /// </summary>
         protected void SetupTopContainer()
         {
             Reposition();
@@ -203,6 +149,9 @@ namespace AG.DS
         }
 
 
+        /// <summary>
+        /// Setup the input container element.
+        /// </summary>
         protected void SetupInputContainer()
         {
             // Setup style class
@@ -213,6 +162,9 @@ namespace AG.DS
         }
 
 
+        /// <summary>
+        /// Setup the output container element.
+        /// </summary>
         protected void SetupOutputContainer()
         {
             // Setup style class
@@ -223,6 +175,9 @@ namespace AG.DS
         }
 
 
+        /// <summary>
+        /// Setup the main container element.
+        /// </summary>
         protected void SetupMainContainer()
         {
             // Setup detail
@@ -232,37 +187,23 @@ namespace AG.DS
         }
 
 
-        protected void SetupBaseStyleClass()
+        /// <summary>
+        /// Setup the default style class.
+        /// </summary>
+        protected void SetupDefaultStyleClass()
         {
             ClearClassList();
             AddToClassList(StyleConfig.Node);
         }
 
 
-        protected void SetupBaseStyleSheets()
+        /// <summary>
+        /// Setup the default style sheets.
+        /// </summary>
+        protected void SetupDefaultStyleSheets()
         {
             styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
             styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
         }
-
-
-        // ----------------------------- Overrides -----------------------------
-        /// <summary>
-        /// Add menu items to the node contextual menu.
-        /// <para>Read More https://docs.unity3d.com/ScriptReference/ContextMenu.html</para>
-        /// </summary>
-        /// <param name="evt">The event holding the menu to populate.</param>
-        public override void BuildContextualMenu(ContextualMenuPopulateEvent evt)
-        {
-            AddContextualMenuItems(evt);
-            evt.menu.AppendSeparator();
-        }
-
-
-        /// <summary>
-        /// Methods for adding menu items to the node contextual menu, items are added at the end of the current item list.
-        /// </summary>
-        /// <param name="evt">The event holding the menu to populate.</param>
-        protected abstract void AddContextualMenuItems(ContextualMenuPopulateEvent evt);
     }
 }

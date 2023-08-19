@@ -1,10 +1,11 @@
 using System;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.Port;
 
 namespace AG.DS
 {
-    public partial class DefaultPort
+    public class DefaultPortPresenter
     {
         /// <summary>
         /// Create a new default port element.
@@ -64,12 +65,12 @@ namespace AG.DS
 
             void SetupEdgeConnector()
             {
-                port.m_EdgeConnector = new EdgeConnector<TEdge>
+                port.EdgeConnector = new EdgeConnector<TEdge>
                 (
                     new DefaultEdgeConnectorListener(connectorWindow)
                 );
 
-                port.AddManipulator(manipulator: port.m_EdgeConnector);
+                port.AddManipulator(manipulator: port.EdgeConnector);
             }
 
             void SetupStyleSheet()
@@ -80,28 +81,28 @@ namespace AG.DS
 
             void SetupStyleClass()
             {
-                port.m_ConnectorBoxCap.pickingMode = PickingMode.Position;
+                port.ConnectorBoxCap.pickingMode = PickingMode.Position;
 
-                port.m_ConnectorBox.name = "";
-                port.m_ConnectorText.name = "";
-                port.m_ConnectorBoxCap.name = "";
+                port.ConnectorBox.name = "";
+                port.ConnectorText.name = "";
+                port.ConnectorBoxCap.name = "";
 
                 port.ClearClassList();
-                port.m_ConnectorText.ClearClassList();
+                port.ConnectorText.ClearClassList();
 
                 if (isInput)
                 {
                     port.AddToClassList(StyleConfig.Default_Input_Port);
-                    port.m_ConnectorBox.AddToClassList(StyleConfig.Default_Input_Connector);
-                    port.m_ConnectorText.AddToClassList(StyleConfig.Default_Input_Label);
-                    port.m_ConnectorBoxCap.AddToClassList(StyleConfig.Default_Input_Cap);
+                    port.ConnectorBox.AddToClassList(StyleConfig.Default_Input_Connector);
+                    port.ConnectorText.AddToClassList(StyleConfig.Default_Input_Label);
+                    port.ConnectorBoxCap.AddToClassList(StyleConfig.Default_Input_Cap);
                 }
                 else
                 {
                     port.AddToClassList(StyleConfig.Default_Output_Port);
-                    port.m_ConnectorBox.AddToClassList(StyleConfig.Default_Output_Connector);
-                    port.m_ConnectorText.AddToClassList(StyleConfig.Default_Output_Label);
-                    port.m_ConnectorBoxCap.AddToClassList(StyleConfig.Default_Output_Cap);
+                    port.ConnectorBox.AddToClassList(StyleConfig.Default_Output_Connector);
+                    port.ConnectorText.AddToClassList(StyleConfig.Default_Output_Label);
+                    port.ConnectorBoxCap.AddToClassList(StyleConfig.Default_Output_Cap);
                 }
 
                 if (isSiblings)

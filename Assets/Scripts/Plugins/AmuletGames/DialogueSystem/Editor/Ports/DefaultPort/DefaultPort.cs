@@ -22,7 +22,7 @@ namespace AG.DS
         /// <param name="direction">Input or output.</param>
         /// <param name="capacity">Support multiple or only single.</param>
         /// <param name="type">Port data type.</param>
-        protected DefaultPort
+        public DefaultPort
         (
             Orientation orientation,
             Direction direction,
@@ -51,12 +51,12 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <inheritdoc />
-        //public override void Disconnect(Edge edge)
-        //{
-        //    base.Disconnect(edge);
+        public override void Disconnect(Edge edge)
+        {
+            base.Disconnect(edge);
 
-        //    Debug.Log("edge type = " + connections.First().GetType());
-        //}
+            //Debug.Log("edge type = " + connections.First().GetType());
+        }
 
 
         /// <inheritdoc />

@@ -28,13 +28,13 @@ namespace AG.DS
         /// </summary>
         void CreatePortElements()
         {
-            View.InputOptionPort = OptionPort.CreateElement<OptionEdge>
+            View.InputOptionPort = OptionPortPresenter.CreateElement<OptionEdge>
             (
                 connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input
             );
 
-            View.OutputDefaultPort = DefaultPort.CreateElement<DefaultEdge>
+            View.OutputDefaultPort = DefaultPortPresenter.CreateElement<DefaultEdge>
             (
                 connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
