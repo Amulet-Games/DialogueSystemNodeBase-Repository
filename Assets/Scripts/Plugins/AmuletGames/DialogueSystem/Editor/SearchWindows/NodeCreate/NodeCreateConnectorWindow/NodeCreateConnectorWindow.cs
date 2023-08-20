@@ -3,6 +3,7 @@ using UnityEditor.Experimental.GraphView;
 
 namespace AG.DS
 {
+    /// <inheritdoc />
     public class NodeCreateConnectorWindow : NodeCreateWindowFrameBase
     <
         NodeCreateConnectorWindow,

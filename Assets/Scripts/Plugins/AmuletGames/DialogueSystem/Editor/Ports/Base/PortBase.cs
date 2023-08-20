@@ -25,13 +25,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The property of the port's edge connector.
+        /// The Guid of the port.
         /// </summary>
-        public EdgeConnector EdgeConnector
-        {
-            get => m_EdgeConnector;
-            set => m_EdgeConnector = value;
-        }
+        public Guid Guid;
 
 
         /// <summary>
@@ -41,7 +37,7 @@ namespace AG.DS
         /// <param name="direction">The direction to set for.</param>
         /// <param name="capacity">The capacity to set for.</param>
         /// <param name="type">The type to set for.</param>
-        public PortBase(Orientation orientation, Direction direction, Capacity capacity, Type type)
+        public PortBase(Orientation orientation, Direction direction, Capacity capacity, Type type = null)
             : base(orientation, direction, capacity, type) { }
 
 

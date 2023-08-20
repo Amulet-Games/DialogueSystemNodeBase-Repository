@@ -9,6 +9,6 @@ namespace AG.DS
         /// <summary>
         /// The port's GUID value.
         /// </summary>
-        [SerializeField] public string GUID;
+        [SerializeField] public Guid Guid;
     }
 }

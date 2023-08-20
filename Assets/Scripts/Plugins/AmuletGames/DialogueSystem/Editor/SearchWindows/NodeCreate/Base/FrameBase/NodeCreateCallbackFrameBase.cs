@@ -1,5 +1,6 @@
 namespace AG.DS
 {
+    /// <inheritdoc />
     public abstract class NodeCreateCallbackFrameBase<TNodeCreateCallback>
         : NodeCreateCallbackBase
         where TNodeCreateCallback : NodeCreateCallbackBase

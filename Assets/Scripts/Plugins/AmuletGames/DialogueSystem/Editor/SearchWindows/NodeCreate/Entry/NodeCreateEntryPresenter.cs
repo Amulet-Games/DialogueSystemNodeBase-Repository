@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace AG.DS
 {
+    /// <summary>
+    /// Holds the methods for creating the search tree entries for the node create window.
+    /// </summary>
     public class NodeCreateEntryPresenter
     {
         /// <summary>

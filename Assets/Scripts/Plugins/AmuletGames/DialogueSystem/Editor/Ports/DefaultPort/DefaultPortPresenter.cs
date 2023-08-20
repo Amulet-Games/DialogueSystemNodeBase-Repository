@@ -58,7 +58,7 @@ namespace AG.DS
 
             void SetupDetails()
             {
-                port.name = Guid.NewGuid().ToString();
+                port.Guid = Guid.NewGuid().ToString();
                 port.portName = label;
                 port.portColor = PortConfig.DefaultPortColor;
             }

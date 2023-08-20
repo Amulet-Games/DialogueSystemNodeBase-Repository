@@ -1,10 +1,15 @@
-using System;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
 
 namespace AG.DS
 {
-    public partial class OptionPort : PortFrameBase<OptionPortModel>
+    public partial class OptionPort : PortFrameBase
+    <
+        OptionEdge,
+        OptionEdgeView,
+        OptionEdgeConnectorCallback,
+        OptionPort
+    >
     {
         /// <summary>
         /// The current connecting opponent option port.
@@ -15,38 +20,38 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the option port element class.
         /// </summary>
-        /// <param name="orientation">Vertical or horizontal.</param>
-        /// <param name="direction">Input or output.</param>
-        /// <param name="capacity">Support multiple or only single.</param>
-        /// <param name="type">Port data type.</param>
+        /// <param name="edgeConnectorCallback">The option edge connector callback to set for.</param>
+        /// <param name="orientation">The orientation to set for.</param>
+        /// <param name="direction">The direction to set for.</param>
+        /// <param name="capacity">The capacity to set for.</param>
         public OptionPort
         (
+            OptionEdgeConnectorCallback edgeConnectorCallback,
             Orientation orientation,
             Direction direction,
-            Capacity capacity,
-            Type type
+            Capacity capacity
         )
-            : base(orientation, direction, capacity, type)
+            : base(edgeConnectorCallback, orientation, direction, capacity)
         {
             OpponentPort = null;
         }
 
 
         // ----------------------------- Serialization -----------------------------
-        /// <inheritdoc />
-        public override void Save(OptionPortModel model)
-        {
-            model.GUID = name;
-            model.LabelText = portName;
-        }
+        ///// <inheritdoc />
+        //public override void Save(OptionPortModel model)
+        //{
+        //    model.Guid = name;
+        //    model.LabelText = portName;
+        //}
 
 
-        /// <inheritdoc />
-        public override void Load(OptionPortModel model)
-        {
-            name = model.GUID;
-            portName = model.LabelText;
-        }
+        ///// <inheritdoc />
+        //public override void Load(OptionPortModel model)
+        //{
+        //    name = model.Guid;
+        //    portName = model.LabelText;
+        //}
 
 
         // ----------------------------- Service -----------------------------

@@ -4,6 +4,9 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
+    /// <summary>
+    /// Register events to the new created node element.
+    /// </summary>
     public class NodeCreateObserver
     {
         /// <summary>
@@ -155,7 +158,7 @@ namespace AG.DS
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register event to the new created node element.
+        /// Register events to the new created node element.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
         /// <param name="approxCreatePosition">The approximate create position to set for.</param>

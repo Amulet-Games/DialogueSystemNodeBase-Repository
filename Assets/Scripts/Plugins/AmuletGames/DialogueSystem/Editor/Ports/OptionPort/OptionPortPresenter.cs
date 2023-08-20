@@ -52,7 +52,7 @@ namespace AG.DS
 
             void SetupDetails()
             {
-                port.name = Guid.NewGuid().ToString();
+                port.Guid = Guid.NewGuid().ToString();
 
                 port.portName = isInput
                     ? StringConfig.OptionPort_Input_LabelText_Disconnect
@@ -65,7 +65,7 @@ namespace AG.DS
             {
                 port.EdgeConnector = new EdgeConnector<TEdge>
                 (
-                    new OptionEdgeConnectorListener
+                    new OptionEdgeConnectorCallback
                     (
                         linkOptionPort: port,
                         connectorWindow: connectorWindow

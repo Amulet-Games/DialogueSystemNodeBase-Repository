@@ -155,10 +155,8 @@ namespace AG.DS
         protected void SetupInputContainer()
         {
             // Setup style class
-            {
-                inputContainer.name = "";
-                inputContainer.AddToClassList(StyleConfig.Node_Input_Container);
-            }
+            inputContainer.name = "";
+            inputContainer.AddToClassList(StyleConfig.Node_Input_Container);
         }
 
 
@@ -168,10 +166,8 @@ namespace AG.DS
         protected void SetupOutputContainer()
         {
             // Setup style class
-            {
-                outputContainer.name = "";
-                outputContainer.AddToClassList(StyleConfig.Node_Output_Container);
-            }
+            outputContainer.name = "";
+            outputContainer.AddToClassList(StyleConfig.Node_Output_Container);
         }
 
 
@@ -181,9 +177,7 @@ namespace AG.DS
         protected void SetupMainContainer()
         {
             // Setup detail
-            {
-                mainContainer.SetPickingMode(PickingMode.Position);
-            }
+            mainContainer.SetPickingMode(PickingMode.Position);
         }
 
 

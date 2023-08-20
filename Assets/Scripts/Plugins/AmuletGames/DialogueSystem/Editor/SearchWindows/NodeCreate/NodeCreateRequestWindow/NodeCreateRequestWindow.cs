@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace AG.DS
 {
+    /// <inheritdoc />
     public class NodeCreateRequestWindow : NodeCreateWindowFrameBase
     <
         NodeCreateRequestWindow,

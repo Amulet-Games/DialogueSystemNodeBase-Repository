@@ -2,6 +2,7 @@ using UnityEditor.Experimental.GraphView;
 
 namespace AG.DS
 {
+    /// <inheritdoc />
     public abstract class NodeCreateWindowFrameBase
     <
         TNodeCreateWindow,

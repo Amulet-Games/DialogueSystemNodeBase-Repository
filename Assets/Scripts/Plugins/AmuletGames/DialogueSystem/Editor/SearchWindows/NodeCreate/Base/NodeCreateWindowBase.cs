@@ -4,6 +4,9 @@ using UnityEditor.Experimental.GraphView;
 
 namespace AG.DS
 {
+    /// <summary>
+    /// The node create search tree window.
+    /// </summary>
     public abstract class NodeCreateWindowBase : EditorWindow, ISearchWindowProvider
     {
         /// <summary>

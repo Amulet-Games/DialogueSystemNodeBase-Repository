@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace AG.DS
 {
+    /// <summary>
+    /// The node create window's search tree entry.
+    /// </summary>
     public class NodeCreateEntry : SearchTreeEntry
     {
         /// <summary>

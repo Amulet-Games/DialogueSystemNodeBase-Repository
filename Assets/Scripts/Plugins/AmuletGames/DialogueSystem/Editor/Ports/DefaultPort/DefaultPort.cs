@@ -1,11 +1,17 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public partial class DefaultPort : PortFrameBase<PortModelBase>
+    public partial class DefaultPort : PortFrameBase
+    <
+        DefaultEdge,
+        DefaultEdgeView,
+        DefaultEdgeConnectorCallback,
+        DefaultPort
+    >
     {
         public override IEnumerable<Edge> connections
         {
@@ -24,28 +30,104 @@ namespace AG.DS
         /// <param name="type">Port data type.</param>
         public DefaultPort
         (
+            DefaultEdgeConnectorCallback edgeConnectorCallback,
             Orientation orientation,
             Direction direction,
-            Capacity capacity,
-            Type type
+            Capacity capacity
         )
-            : base(orientation, direction, capacity, type)
+            : base(edgeConnectorCallback, orientation, direction, capacity)
         {
         }
 
 
-        // ----------------------------- Serialization -----------------------------
-        /// <inheritdoc />
-        public override void Save(PortModelBase model)
+        /// <summary>
+        /// Setup the connector box element.
+        /// </summary>
+        void SetupConnectorBox()
         {
-            model.GUID = name;
+            // Setup style class
+            {
+                ConnectorBox.name = "";
+
+                if (this.IsInput())
+                    ConnectorBox.AddToClassList(StyleConfig.Default_Input_Connector);
+                else
+                    ConnectorBox.AddToClassList(StyleConfig.Default_Output_Connector);
+            }
         }
 
 
-        /// <inheritdoc />
-        public override void Load(PortModelBase model)
+        /// <summary>
+        /// Setup the connector text element.
+        /// </summary>
+        void SetupConnectorText()
         {
-            name = model.GUID;
+            // Setup style class
+            {
+                ConnectorText.name = "";
+                ConnectorText.ClearClassList();
+
+                if (this.IsInput())
+                    ConnectorText.AddToClassList(StyleConfig.Default_Input_Label);
+                else
+                    ConnectorText.AddToClassList(StyleConfig.Default_Output_Label);
+            }
+        }
+
+
+        /// <summary>
+        /// Setup the connector box cap element.
+        /// </summary>
+        void SetupConnectorBoxCap()
+        {
+            SetupDetail();
+
+            SetupStyleClass();
+
+            void SetupDetail()
+            {
+                ConnectorBoxCap.pickingMode = PickingMode.Position;
+            }
+
+            void SetupStyleClass()
+            {
+                ConnectorBoxCap.name = "";
+
+                if (this.IsInput())
+                    ConnectorBoxCap.AddToClassList(StyleConfig.Default_Input_Cap);
+                else
+                    ConnectorBoxCap.AddToClassList(StyleConfig.Default_Output_Cap);
+            }
+        }
+
+
+        /// <summary>
+        /// Setup the default style class.
+        /// </summary>
+        void SetupDefaultStyleClass(bool isSiblings)
+        {
+            name = "";
+            ClearClassList();
+
+            if (this.IsInput())
+                AddToClassList(StyleConfig.Default_Input_Port);
+            else
+                AddToClassList(StyleConfig.Default_Output_Port);
+
+            if (isSiblings)
+            {
+                AddToClassList(StyleConfig.Port_Sibling);
+            }
+        }
+
+
+        /// <summary>
+        /// Setup the default style sheets.
+        /// </summary>
+        protected void SetupDefaultStyleSheets()
+        {
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
         }
 
 
