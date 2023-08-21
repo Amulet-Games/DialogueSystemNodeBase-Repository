@@ -45,7 +45,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup the details
+        /// Setup the details.
         /// </summary>
         void SetupDetails()
         {

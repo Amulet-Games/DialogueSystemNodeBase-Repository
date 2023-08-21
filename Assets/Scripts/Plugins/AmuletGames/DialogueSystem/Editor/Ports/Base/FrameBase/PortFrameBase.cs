@@ -1,4 +1,5 @@
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -16,28 +17,18 @@ namespace AG.DS
         where TPort : PortBase
     {
         /// <inheritdoc />
-        protected PortFrameBase
-        (
-            TEdgeConnectorCallback edgeConnectorCallback,
-            Orientation orientation,
-            Direction direction,
-            Capacity capacity
-        )
-            : base(orientation, direction, capacity)
-        {
-            m_EdgeConnector = new EdgeConnector<TEdge>(edgeConnectorCallback);
-        }
+        protected PortFrameBase(Direction direction, Capacity capacity)
+            : base(direction, capacity) { }
 
 
         /// <summary>
-        /// Setup the default style class.
+        /// Setup the edge connector.
         /// </summary>
-        protected void SetupDefaultStyleClass(bool isSiblings)
+        /// <param name="edgeConnectorCallback">The edge connector callback to set for.</param>
+        protected void SetupEdgeConnector(TEdgeConnectorCallback edgeConnectorCallback)
         {
-            if (isSiblings)
-            {
-                AddToClassList(StyleConfig.Port_Sibling);
-            }
+            m_EdgeConnector = new EdgeConnector<TEdge>(edgeConnectorCallback);
+            this.AddManipulator(manipulator: m_EdgeConnector);
         }
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
@@ -13,30 +12,37 @@ namespace AG.DS
         DefaultPort
     >
     {
-        public override IEnumerable<Edge> connections
-        {
-            get
-            {
-                return null;
-            }
-        }
-
         /// <summary>
         /// Constructor of the default port element class.
         /// </summary>
-        /// <param name="orientation">Vertical or horizontal.</param>
-        /// <param name="direction">Input or output.</param>
-        /// <param name="capacity">Support multiple or only single.</param>
-        /// <param name="type">Port data type.</param>
+        /// <param name="edgeConnectorCallback">The edge connector callback to set for.</param>
+        /// <param name="direction">The direction to set for.</param>
+        /// <param name="capacity">The capacity to set for.</param>
+        /// <param name="portName">The port name to set for.</param>
+        /// <param name="isSibling">The isSibling value to set for.</param>
         public DefaultPort
         (
             DefaultEdgeConnectorCallback edgeConnectorCallback,
-            Orientation orientation,
             Direction direction,
-            Capacity capacity
+            Capacity capacity,
+            string portName,
+            bool isSibling = false
         )
-            : base(edgeConnectorCallback, orientation, direction, capacity)
+            : base(direction, capacity)
         {
+            SetupEdgeConnector(edgeConnectorCallback);
+
+            SetupConnectorBox();
+
+            SetupConnectorText();
+
+            SetupConnectorBoxCap();
+
+            SetupDetails(portName);
+
+            SetupStyleClass(isSibling);
+
+            SetupStyleSheets();
         }
 
 
@@ -102,9 +108,21 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup the default style class.
+        /// Setup the details.
         /// </summary>
-        void SetupDefaultStyleClass(bool isSiblings)
+        /// <param name="portName">The port name to set for.</param>
+        void SetupDetails(string portName)
+        {
+            this.portName = portName;
+            portColor = PortConfig.DefaultPortColor;
+        }
+
+
+        /// <summary>
+        /// Setup the style class.
+        /// </summary>
+        /// <param name="isSibling">The isSibling value to set for.</param>
+        void SetupStyleClass(bool isSibling)
         {
             name = "";
             ClearClassList();
@@ -114,7 +132,7 @@ namespace AG.DS
             else
                 AddToClassList(StyleConfig.Default_Output_Port);
 
-            if (isSiblings)
+            if (isSibling)
             {
                 AddToClassList(StyleConfig.Port_Sibling);
             }
@@ -122,12 +140,12 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup the default style sheets.
+        /// Setup the style sheets.
         /// </summary>
-        protected void SetupDefaultStyleSheets()
+        void SetupStyleSheets()
         {
-            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
-            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
+            styleSheets.Clear();
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSDefaultPortStyle);
         }
 
 

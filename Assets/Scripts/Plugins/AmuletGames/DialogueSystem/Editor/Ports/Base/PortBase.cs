@@ -33,12 +33,10 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the port base class.
         /// </summary>
-        /// <param name="orientation">The orientation to set for.</param>
         /// <param name="direction">The direction to set for.</param>
         /// <param name="capacity">The capacity to set for.</param>
-        /// <param name="type">The type to set for.</param>
-        public PortBase(Orientation orientation, Direction direction, Capacity capacity, Type type = null)
-            : base(orientation, direction, capacity, type) { }
+        public PortBase(Direction direction, Capacity capacity)
+            : base(Orientation.Horizontal, direction, capacity, null) { }
 
 
         // ----------------------------- Service -----------------------------
