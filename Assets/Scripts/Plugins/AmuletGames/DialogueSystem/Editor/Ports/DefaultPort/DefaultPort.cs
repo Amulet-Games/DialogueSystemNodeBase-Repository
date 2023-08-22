@@ -151,67 +151,11 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <inheritdoc />
-        public override void Disconnect(Edge edge)
+        public override void Disconnect(DefaultEdge edge)
         {
             base.Disconnect(edge);
 
             //Debug.Log("edge type = " + connections.First().GetType());
-        }
-
-
-        /// <inheritdoc />
-        public override void Disconnect(GraphViewer graphViewer)
-        {
-            if (connected)
-            {
-                if (this.IsSingle())
-                {
-                    // get connecting edge
-                    var edge = (DefaultEdge)connections.First();
-
-                    // Disconnect ports.
-                    {
-                        if (direction == Direction.Output)
-                        {
-                            edge.View.Input.Disconnect(edge);
-                        }
-                        else
-                        {
-                            edge.View.Output.Disconnect(edge);
-                        }
-
-                        base.Disconnect(edge);
-                    }
-
-                    // Remove edge from graph viewer.
-                    graphViewer.Remove(edge);
-                }
-                else
-                {
-                    // get connecting edge
-                    var edges = (DefaultEdge[])connections.ToArray();
-
-                    for (int i = 0; i < edges.Length; i++)
-                    {
-                        // Disconnect ports.
-                        {
-                            if (direction == Direction.Output)
-                            {
-                                edges[i].View.Input.Disconnect(edges[i]);
-                            }
-                            else
-                            {
-                                edges[i].View.Output.Disconnect(edges[i]);
-                            }
-
-                            base.Disconnect(edges[i]);
-                        }
-
-                        // Remove edge from graph viewer.
-                        graphViewer.Remove(edges[i]);
-                    }
-                }
-            }
         }
     }
 }

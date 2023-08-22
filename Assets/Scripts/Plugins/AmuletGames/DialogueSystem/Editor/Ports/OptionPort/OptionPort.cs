@@ -1,7 +1,5 @@
-using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
-using Orientation = UnityEditor.Experimental.GraphView.Orientation;
 
 namespace AG.DS
 {
@@ -148,60 +146,15 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Serialization -----------------------------
-        ///// <inheritdoc />
-        //public override void Save(OptionPortModel model)
-        //{
-        //    model.Guid = name;
-        //    model.LabelText = portName;
-        //}
-
-
-        ///// <inheritdoc />
-        //public override void Load(OptionPortModel model)
-        //{
-        //    name = model.Guid;
-        //    portName = model.LabelText;
-        //}
-
-
         // ----------------------------- Service -----------------------------
         /// <inheritdoc />
-        public override void Disconnect(Edge edge)
+        public override void Disconnect(OptionEdge edge)
         {
             base.Disconnect(edge);
 
             this.HideConnectStyle();
             
             OpponentPort = null;
-        }
-
-
-        /// <inheritdoc />
-        public override void Disconnect(GraphViewer graphViewer)
-        {
-            if (connected)
-            {
-                // get connecting edge
-                var edge = (OptionEdge)connections.First();
-
-                // Disconnect ports.
-                {
-                    if (direction == Direction.Output)
-                    {
-                        edge.View.Input.Disconnect(edge);
-                    }
-                    else
-                    {
-                        edge.View.Output.Disconnect(edge);
-                    }
-
-                    base.Disconnect(edge);
-                }
-                
-                // Remove edge from graph viewer.
-                graphViewer.Remove(edge);
-            }
         }
 
 

@@ -7,8 +7,8 @@ namespace AG.DS
     public class OptionPortModel : PortModelBase
     {
         /// <summary>
-        /// The port's label text value.
+        /// The port's port name value.
         /// </summary>
-        [SerializeField] public string LabelText;
+        [SerializeField] public string PortName;
     }
 }

@@ -23,10 +23,20 @@ namespace AG.DS
         /// </summary>
         /// <param name="view">The edge view to set for.</param>
         /// <param name="callback">The edge callback to set for.</param>
-        public abstract TEdge Setup
+        public virtual TEdge Setup
         (
             TEdgeView view,
             IEdgeCallback callback
-        );
+        )
+        {
+            View = view;
+            Callback = callback;
+
+            output = view.Output;
+            input = view.Input;
+            input.ConnectTo(output);
+
+            return null;
+        }
     }
 }

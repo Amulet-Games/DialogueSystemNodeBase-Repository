@@ -15,31 +15,31 @@ namespace AG.DS
             IEdgeCallback callback
         )
         {
-            // Setup references
-            {
-                View = view;
-                Callback = callback;
+            base.Setup(view, callback);
 
-                output = view.Output;
-                input = view.Input;
-            }
+            SetupDetails();
 
-            // connect ports
-            {
-                output.ConnectTo(input);
-            }
-
-            // setup details
-            {
-                focusable = true;
-            }
-
-            // Add style class
-            {
-                AddToClassList(StyleConfig.Default_Edge);
-            }
+            SetupStyleClass();
 
             return this;
+        }
+
+
+        /// <summary>
+        /// Setup the details
+        /// </summary>
+        void SetupDetails()
+        {
+            focusable = true;
+        }
+
+
+        /// <summary>
+        /// Setup the style class.
+        /// </summary>
+        void SetupStyleClass()
+        {
+            AddToClassList(StyleConfig.Default_Edge);
         }
     }
 }

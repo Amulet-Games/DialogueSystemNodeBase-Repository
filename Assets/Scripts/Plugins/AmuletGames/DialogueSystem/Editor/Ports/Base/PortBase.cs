@@ -4,6 +4,9 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
+    /// <summary>
+    /// The graph view port element.
+    /// </summary>
     public abstract class PortBase : Port
     {
         /// <summary>
@@ -37,13 +40,5 @@ namespace AG.DS
         /// <param name="capacity">The capacity to set for.</param>
         public PortBase(Direction direction, Capacity capacity)
             : base(Orientation.Horizontal, direction, capacity, null) { }
-
-
-        // ----------------------------- Service -----------------------------
-        /// <summary>
-        /// Disconnect any edges that are connecting with the port.
-        /// </summary>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public abstract void Disconnect(GraphViewer graphViewer);
     }
 }
