@@ -5,10 +5,9 @@ namespace AG.DS
 {
     public partial class OptionPort : PortFrameBase
     <
+        OptionPort,
         OptionEdge,
-        OptionEdgeView,
-        OptionEdgeConnectorCallback,
-        OptionPort
+        OptionEdgeView
     >
     {
         /// <summary>
@@ -20,16 +19,17 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the option port element class.
         /// </summary>
-        /// <param name="edgeConnectorCallback">The edge connector callback to set for.</param>
         /// <param name="direction">The direction to set for.</param>
-        public OptionPort
-        (
-            OptionEdgeConnectorCallback edgeConnectorCallback,
-            Direction direction
-        )
-            : base(direction, Capacity.Single)
+        public OptionPort(Direction direction) : base(direction, Capacity.Single) { }
+
+
+        /// <summary>
+        /// Setup of the option port element class.
+        /// </summary>
+        /// <param name="edgeConnector">The edge connector to set for.</param>
+        public void Setup(EdgeConnector edgeConnector)
         {
-            SetupEdgeConnector(edgeConnectorCallback);
+            SetupEdgeConnector(edgeConnector);
 
             SetupConnectorBox();
 

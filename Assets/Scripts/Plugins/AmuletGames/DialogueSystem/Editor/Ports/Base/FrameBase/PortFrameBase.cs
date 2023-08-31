@@ -7,17 +7,32 @@ namespace AG.DS
     /// <inheritdoc />
     public abstract class PortFrameBase
     <
+        TPort,
         TEdge,
-        TEdgeView,
-        TEdgeConnectorCallback,
-        TPort
+        TEdgeView
     >
         : PortBase
-        where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>, new()
-        where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
-        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TEdge, TPort, TEdgeConnectorCallback>
         where TPort : PortBase
+        where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
     {
+        /// <summary>
+        /// Reference of the edge connector.
+        /// </summary>
+        public EdgeConnector EdgeConnector
+        {
+            get
+            {
+                return m_EdgeConnector;
+            }
+            set
+            {
+                m_EdgeConnector = value;
+                this.AddManipulator(manipulator: m_EdgeConnector);
+            }
+        }
+
+
         /// <inheritdoc />
         protected PortFrameBase(Direction direction, Capacity capacity)
             : base(direction, capacity) { }
@@ -26,11 +41,10 @@ namespace AG.DS
         /// <summary>
         /// Setup the edge connector.
         /// </summary>
-        /// <param name="edgeConnectorCallback">The edge connector callback to set for.</param>
-        protected void SetupEdgeConnector(TEdgeConnectorCallback edgeConnectorCallback)
+        /// <param name="edgeConnector">The edge connector to set for.</param>
+        protected void SetupEdgeConnector(EdgeConnector edgeConnector)
         {
-            m_EdgeConnector = new EdgeConnector<TEdge>(edgeConnectorCallback);
-            this.AddManipulator(manipulator: m_EdgeConnector);
+            EdgeConnector = edgeConnector;
         }
 
 
@@ -81,7 +95,7 @@ namespace AG.DS
                 }
 
                 Disconnect(edge);
-
+                
                 graphViewer.Remove(edge);
             }
         }

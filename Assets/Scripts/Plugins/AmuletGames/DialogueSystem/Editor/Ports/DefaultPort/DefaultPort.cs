@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
@@ -6,31 +5,34 @@ namespace AG.DS
 {
     public partial class DefaultPort : PortFrameBase
     <
+        DefaultPort,
         DefaultEdge,
-        DefaultEdgeView,
-        DefaultEdgeConnectorCallback,
-        DefaultPort
+        DefaultEdgeView
     >
     {
         /// <summary>
         /// Constructor of the default port element class.
         /// </summary>
-        /// <param name="edgeConnectorCallback">The edge connector callback to set for.</param>
         /// <param name="direction">The direction to set for.</param>
         /// <param name="capacity">The capacity to set for.</param>
+        public DefaultPort(Direction direction, Capacity capacity)
+            : base(direction, capacity) { }
+
+
+        /// <summary>
+        /// Setup of the default port element class.
+        /// </summary>
+        /// <param name="edgeConnector">The edge connector to set for.</param>
         /// <param name="portName">The port name to set for.</param>
         /// <param name="isSibling">The isSibling value to set for.</param>
-        public DefaultPort
+        public void Setup
         (
-            DefaultEdgeConnectorCallback edgeConnectorCallback,
-            Direction direction,
-            Capacity capacity,
+            EdgeConnector edgeConnector,
             string portName,
             bool isSibling = false
         )
-            : base(direction, capacity)
         {
-            SetupEdgeConnector(edgeConnectorCallback);
+            SetupEdgeConnector(edgeConnector);
 
             SetupConnectorBox();
 

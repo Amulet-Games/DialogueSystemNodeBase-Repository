@@ -6,14 +6,14 @@ namespace AG.DS
     /// <inheritdoc />
     public abstract class EdgeConnectorCallbackFrameBase
     <
-        TEdge,
         TPort,
+        TEdge,
         TEdgeConnectorCallback
     >
         : EdgeConnectorCallbackBase
-        where TEdge : EdgeBase
         where TPort : PortBase
-        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TEdge, TPort, TEdgeConnectorCallback>
+        where TEdge : EdgeBase
+        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TEdge, TEdgeConnectorCallback>
     {
         /// <summary>
         /// The list of edges that are going to be removed from the graph from the OnDrop callback.

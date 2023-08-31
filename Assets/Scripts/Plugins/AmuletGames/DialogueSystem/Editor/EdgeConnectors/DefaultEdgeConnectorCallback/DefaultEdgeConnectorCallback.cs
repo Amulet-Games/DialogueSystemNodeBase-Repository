@@ -6,8 +6,8 @@ namespace AG.DS
     /// <inheritdoc />
     public class DefaultEdgeConnectorCallback : EdgeConnectorCallbackFrameBase
     <
-        DefaultEdge,
         DefaultPort,
+        DefaultEdge,
         DefaultEdgeConnectorCallback
     >
     {

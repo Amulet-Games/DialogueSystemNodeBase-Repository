@@ -6,8 +6,8 @@ namespace AG.DS
     /// <inheritdoc />
     public class OptionEdgeConnectorCallback : EdgeConnectorCallbackFrameBase
     <
-        OptionEdge,
         OptionPort,
+        OptionEdge,
         OptionEdgeConnectorCallback
     >
     {
