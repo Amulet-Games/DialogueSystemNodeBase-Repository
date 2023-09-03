@@ -36,9 +36,6 @@ namespace AG.DS
         /// </summary>
         public BooleanNodeModel()
         {
-            InputPortModel = new();
-            TrueOutputPortModel = new();
-            FalseOutputPortModel = new();
             BooleanNodeStitcherModel = new();
         }
     }

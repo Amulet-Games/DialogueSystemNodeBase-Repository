@@ -1,5 +1,3 @@
-using System.Linq;
-
 namespace AG.DS
 {
     /// <inheritdoc />
@@ -31,9 +29,9 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            View.InputDefaultPort.Save(Model.InputPortModel);
-            View.TrueOutputDefaultPort.Save(Model.TrueOutputPortModel);
-            View.FalseOutputDefaultPort.Save(Model.FalseOutputPortModel);
+            Model.InputPortModel = PortManager.Instance.Save(View.InputDefaultPort);
+            Model.TrueOutputPortModel =  PortManager.Instance.Save(View.TrueOutputDefaultPort);
+            Model.FalseOutputPortModel = PortManager.Instance.Save(View.FalseOutputDefaultPort);
         }
 
 

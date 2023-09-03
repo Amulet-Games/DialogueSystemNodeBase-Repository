@@ -36,8 +36,6 @@ namespace AG.DS
         /// </summary>
         public OptionBranchNodeModel()
         {
-            InputOptionPortModel = new();
-            OutputPortModel = new();
             HeadlineText = new();
             OptionBranchNodeStitcherModel = new();
         }

@@ -18,7 +18,6 @@ namespace AG.DS
         /// </summary>
         public StartNodeModel()
         {
-            OutputPortModel = new();
         }
     }
 }

@@ -151,9 +151,7 @@ namespace AG.DS
             where TEdgeModel : EdgeModelBase, new()
         {
             var model = new TEdgeModel();
-            var serializer = new TEdgeSerializer();
-
-            serializer.Save(edge.View, model);
+            new TEdgeSerializer().Save(edge.View, model);
             
             return model;
         }

@@ -28,18 +28,18 @@ namespace AG.DS
         /// </summary>
         void CreatePortElements()
         {
-            View.InputOptionPort = OptionPortPresenter.CreateElement<OptionEdge>
+            View.InputOptionPort = PortManager.Instance.CreateOption
             (
                 connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Input
             );
 
-            View.OutputDefaultPort = DefaultPortPresenter.CreateElement<DefaultEdge>
+            View.OutputDefaultPort = PortManager.Instance.CreateDefault
             (
                 connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
-                label: StringConfig.DefaultPort_Output_LabelText
+                name: StringConfig.DefaultPort_Output_LabelText
             );
 
             Node.Add(View.InputOptionPort);

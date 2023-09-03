@@ -30,8 +30,6 @@ namespace AG.DS
         /// </summary>
         public EventNodeModel()
         {
-            InputPortModel = new();
-            OutputPortModel = new();
             EventModifierGroupModel = new();
         }
     }

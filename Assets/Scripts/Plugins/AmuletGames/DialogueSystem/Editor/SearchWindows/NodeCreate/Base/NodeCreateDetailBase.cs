@@ -12,14 +12,14 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The port type of the connector port.
+        /// The connector port's connector type.
         /// </summary>
         public ConnectorType ConnectorType { get; private set; }
 
 
         /// <summary>
-        /// The port to connect to after the node is created.
-        /// <br>If a node is created through the node create request window, the field's value will be null.</br>
+        /// Reference of the connector port.
+        /// <br>If the node is created through the node create request window, the field's value will be null.</br>
         /// </summary>
         public PortBase ConnectorPort { get; private set; }
 

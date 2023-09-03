@@ -66,8 +66,6 @@ namespace AG.DS
         /// </summary>
         public StoryNodeModel()
         {
-            InputPortModel = new();
-            OutputPortModel = new();
         }
     }
 }

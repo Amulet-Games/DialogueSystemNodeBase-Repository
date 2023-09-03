@@ -27,7 +27,7 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            View.OutputDefaultPort.Save(Model.OutputPortModel);
+            Model.OutputPortModel = PortManager.Instance.Save<DefaultPort, PortModelBase>(View.OutputDefaultPort);
         }
 
 

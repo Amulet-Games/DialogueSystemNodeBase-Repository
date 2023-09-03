@@ -182,7 +182,7 @@ namespace AG.DS
 
         // ----------------------------- Save -----------------------------
         /// <summary>
-        /// Method for saving the node element's values.
+        /// Save the node element values.
         /// </summary>
         /// 
         /// <param name="node">The node element to set for.</param>
@@ -196,14 +196,17 @@ namespace AG.DS
         {
             return node switch
             {
-                BooleanNode m_node => Save<BooleanNode, BooleanNodeView, BooleanNodeSerializer, BooleanNodeModel>(m_node),
+                BooleanNode m_node => Save<BooleanNode, BooleanNodeView,
+                             BooleanNodeSerializer, BooleanNodeModel>(m_node),
 
                 DialogueNode m_node => Save<DialogueNode, DialogueNodeView,
                               DialogueNodeSerializer, DialogueNodeModel>(m_node),
 
-                EndNode m_node => Save<EndNode, EndNodeView, EndNodeSerializer, EndNodeModel>(m_node),
+                EndNode m_node => Save<EndNode, EndNodeView,
+                         EndNodeSerializer, EndNodeModel>(m_node),
 
-                EventNode m_node => Save<EventNode, EventNodeView, EventNodeSerializer, EventNodeModel>(m_node),
+                EventNode m_node => Save<EventNode, EventNodeView,
+                           EventNodeSerializer, EventNodeModel>(m_node),
 
                 OptionBranchNode m_node => Save<OptionBranchNode, OptionBranchNodeView,
                                   OptionBranchNodeSerializer, OptionBranchNodeModel>(m_node),
@@ -211,11 +214,14 @@ namespace AG.DS
                 OptionRootNode m_node => Save<OptionRootNode, OptionRootNodeView,
                                 OptionRootNodeSerializer, OptionRootNodeModel>(m_node),
 
-                PreviewNode m_node => Save<PreviewNode, PreviewNodeView, PreviewNodeSerializer, PreviewNodeModel>(m_node),
+                PreviewNode m_node => Save<PreviewNode, PreviewNodeView,
+                             PreviewNodeSerializer, PreviewNodeModel>(m_node),
 
-                StartNode m_node => Save<StartNode, StartNodeView, StartNodeSerializer, StartNodeModel>(m_node),
+                StartNode m_node => Save<StartNode, StartNodeView,
+                           StartNodeSerializer, StartNodeModel>(m_node),
 
-                StoryNode m_node => Save<StoryNode, StoryNodeView, StoryNodeSerializer, StoryNodeModel>(m_node),
+                StoryNode m_node => Save<StoryNode, StoryNodeView,
+                           StoryNodeSerializer, StoryNodeModel>(m_node),
 
                 _ => throw new ArgumentException("Invalid node element type: " + node.GetType().Name)
             };
@@ -223,7 +229,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for saving the node element's values.
+        /// Save the node element values.
         /// </summary>
         /// 
         /// <typeparam name="TNode">Type node</typeparam>

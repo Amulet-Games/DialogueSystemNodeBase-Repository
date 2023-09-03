@@ -36,8 +36,6 @@ namespace AG.DS
         /// </summary>
         public PreviewNodeModel()
         {
-            InputPortModel = new();
-            OutputPortModel = new();
         }
     }
 }

@@ -16,20 +16,18 @@ namespace AG.DS
         public OptionPort OpponentPort;
 
 
-        /// <summary>
-        /// Constructor of the option port element class.
-        /// </summary>
-        /// <param name="direction">The direction to set for.</param>
-        public OptionPort(Direction direction) : base(direction, Capacity.Single) { }
+        /// <inheritdoc />
+        public OptionPort(PortCreateDetail detail) : base(detail) { }
 
 
-        /// <summary>
-        /// Setup of the option port element class.
-        /// </summary>
-        /// <param name="edgeConnector">The edge connector to set for.</param>
-        public void Setup(EdgeConnector edgeConnector)
+        /// <inheritdoc />
+        public override OptionPort Setup
+        (
+            EdgeConnector edgeConnector,
+            PortCreateDetail detail
+        )
         {
-            SetupEdgeConnector(edgeConnector);
+            base.Setup(edgeConnector, detail);
 
             SetupConnectorBox();
 
@@ -42,6 +40,8 @@ namespace AG.DS
             SetupStyleClass();
 
             SetupStyleSheets();
+
+            return this;
         }
 
 
@@ -111,13 +111,13 @@ namespace AG.DS
         /// </summary>
         void SetupDetails()
         {
-            portName = this.IsInput()
-                ? StringConfig.OptionPort_Input_LabelText_Disconnect
-                : StringConfig.OptionPort_Output_LabelText_Disconnect;
+            //portName = this.IsInput()
+            //    ? StringConfig.OptionPort_Input_LabelText_Disconnect
+            //    : StringConfig.OptionPort_Output_LabelText_Disconnect;
 
             portColor = PortConfig.OptionPortColor;
 
-            OpponentPort = null;
+            //OpponentPort = null;
         }
 
 

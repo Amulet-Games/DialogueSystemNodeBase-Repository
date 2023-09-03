@@ -14,11 +14,11 @@ namespace AG.DS
         /// <inheritdoc />
         public override DefaultEdgeConnectorCallback Setup
         (
-            NodeCreateConnectorWindow connectorWindow,
-            DefaultPort connectorPort
+            DefaultPort connectorPort,
+            NodeCreateConnectorWindow connectorWindow
         )
         {
-            base.Setup(connectorWindow, connectorPort);
+            base.Setup(connectorPort, connectorWindow);
             return this;
         }
 

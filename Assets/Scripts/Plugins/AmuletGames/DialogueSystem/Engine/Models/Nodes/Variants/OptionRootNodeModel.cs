@@ -36,8 +36,6 @@ namespace AG.DS
         /// </summary>
         public OptionRootNodeModel()
         {
-            InputPortModel = new();
-            OutputOptionPortModel = new();
             OutputOptionPortGroupModel = new();
             HeadlineText = new();
         }

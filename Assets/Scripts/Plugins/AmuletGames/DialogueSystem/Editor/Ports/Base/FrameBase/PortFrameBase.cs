@@ -27,24 +27,32 @@ namespace AG.DS
             }
             set
             {
+                if (m_EdgeConnector != null)
+                    return;
+
                 m_EdgeConnector = value;
                 this.AddManipulator(manipulator: m_EdgeConnector);
             }
         }
 
 
-        /// <inheritdoc />
-        protected PortFrameBase(Direction direction, Capacity capacity)
-            : base(direction, capacity) { }
+        /// <summary>
+        /// Constructor of the port frame base class.
+        /// </summary>
+        /// <param name="detail">The port create detail to set for.</param>
+        protected PortFrameBase(PortCreateDetail detail) : base(detail.Direction, detail.Capacity) { }
 
 
         /// <summary>
-        /// Setup the edge connector.
+        /// Setup for the port frame base class.
         /// </summary>
         /// <param name="edgeConnector">The edge connector to set for.</param>
-        protected void SetupEdgeConnector(EdgeConnector edgeConnector)
+        /// <param name="detail">The port create detail to set for.</param>
+        public virtual TPort Setup(EdgeConnector edgeConnector, PortCreateDetail detail)
         {
             EdgeConnector = edgeConnector;
+            portName = detail.Name;
+            return null;
         }
 
 
@@ -85,17 +93,12 @@ namespace AG.DS
                 // Disconnect opponent port.
                 {
                     if (this.IsInput())
-                    {
                         edge.View.Output.Disconnect(edge);
-                    }
                     else
-                    {
                         edge.View.Input.Disconnect(edge);
-                    }
                 }
 
                 Disconnect(edge);
-                
                 graphViewer.Remove(edge);
             }
         }

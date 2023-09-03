@@ -33,12 +33,12 @@ namespace AG.DS
         /// <param name="nodeCreateConnectorWindow">The node create connector window to set for.</param>
         public virtual TEdgeConnectorCallback Setup
         (
-            NodeCreateConnectorWindow nodeCreateConnectorWindow,
-            TPort connectorPort
+            TPort connectorPort,
+            NodeCreateConnectorWindow nodeCreateConnectorWindow
         )
         {
-            NodeCreateConnectorWindow = nodeCreateConnectorWindow;
             ConnectorPort = connectorPort;
+            NodeCreateConnectorWindow = nodeCreateConnectorWindow;
 
             EdgesToCreate = new();
             edgesToDelete = new();

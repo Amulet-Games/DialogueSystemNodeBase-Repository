@@ -133,6 +133,7 @@ namespace AG.DS
                 EdgeManager.Setup();
                 NodeManager.Setup();
                 NodeCreateWindowManager.Setup();
+                PortManager.Setup();
             }
 
             // Create modules

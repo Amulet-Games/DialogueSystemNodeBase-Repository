@@ -10,29 +10,18 @@ namespace AG.DS
         DefaultEdgeView
     >
     {
-        /// <summary>
-        /// Constructor of the default port element class.
-        /// </summary>
-        /// <param name="direction">The direction to set for.</param>
-        /// <param name="capacity">The capacity to set for.</param>
-        public DefaultPort(Direction direction, Capacity capacity)
-            : base(direction, capacity) { }
+        /// <inheritdoc />
+        public DefaultPort(PortCreateDetail detail) : base(detail) { }
 
 
-        /// <summary>
-        /// Setup of the default port element class.
-        /// </summary>
-        /// <param name="edgeConnector">The edge connector to set for.</param>
-        /// <param name="portName">The port name to set for.</param>
-        /// <param name="isSibling">The isSibling value to set for.</param>
-        public void Setup
+        /// <inheritdoc />
+        public override DefaultPort Setup
         (
             EdgeConnector edgeConnector,
-            string portName,
-            bool isSibling = false
+            PortCreateDetail detail
         )
         {
-            SetupEdgeConnector(edgeConnector);
+            base.Setup(edgeConnector, detail);
 
             SetupConnectorBox();
 
@@ -40,11 +29,13 @@ namespace AG.DS
 
             SetupConnectorBoxCap();
 
-            SetupDetails(portName);
+            SetupDetails();
 
-            SetupStyleClass(isSibling);
+            SetupStyleClass();
 
             SetupStyleSheets();
+
+            return this;
         }
 
 
@@ -112,10 +103,8 @@ namespace AG.DS
         /// <summary>
         /// Setup the details.
         /// </summary>
-        /// <param name="portName">The port name to set for.</param>
-        void SetupDetails(string portName)
+        void SetupDetails()
         {
-            this.portName = portName;
             portColor = PortConfig.DefaultPortColor;
         }
 
@@ -123,8 +112,7 @@ namespace AG.DS
         /// <summary>
         /// Setup the style class.
         /// </summary>
-        /// <param name="isSibling">The isSibling value to set for.</param>
-        void SetupStyleClass(bool isSibling)
+        void SetupStyleClass()
         {
             name = "";
             ClearClassList();
@@ -133,11 +121,6 @@ namespace AG.DS
                 AddToClassList(StyleConfig.Default_Input_Port);
             else
                 AddToClassList(StyleConfig.Default_Output_Port);
-
-            if (isSibling)
-            {
-                AddToClassList(StyleConfig.Port_Sibling);
-            }
         }
 
 
