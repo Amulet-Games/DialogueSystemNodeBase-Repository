@@ -37,7 +37,7 @@ namespace AG.DS
 
             void CreateOptionPort()
             {
-                cell.Port = OptionPort.CreateElement<OptionEdge>
+                cell.Port = PortManager.Instance.CreateOption
                 (
                     connectorWindow: connectorWindow,
                     direction: direction

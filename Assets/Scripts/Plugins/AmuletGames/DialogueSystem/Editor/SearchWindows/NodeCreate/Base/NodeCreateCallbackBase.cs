@@ -25,12 +25,6 @@ namespace AG.DS
         protected LanguageHandler LanguageHandler;
 
 
-        /// <summary>
-        /// Reference of the node create observer.
-        /// </summary>
-        protected NodeCreateObserver Observer;
-
-
         // ----------------------------- Callback -----------------------------
         /// <summary>
         /// Read more:

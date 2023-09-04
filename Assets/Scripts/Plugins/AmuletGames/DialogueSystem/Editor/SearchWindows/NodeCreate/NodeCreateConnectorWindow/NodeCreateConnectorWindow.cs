@@ -4,13 +4,23 @@ using UnityEditor.Experimental.GraphView;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class NodeCreateConnectorWindow : NodeCreateWindowFrameBase
+    public class NodeCreateConnectorWindow
     <
-        NodeCreateConnectorWindow,
-        NodeCreateConnectorCallback,
-        NodeCreateConnectorDetail
+        TPort,
+        TEdge,
+        TEdgeView
     >
+        : NodeCreateWindowFrameBase<NodeCreateConnectorCallback>
+        where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
+        where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
     {
+        /// <summary>
+        /// Reference of the node create detail.
+        /// </summary>
+        public NodeCreateConnectorDetail<TPort, TEdge, TEdgeView> detail;
+
+
         /// <inheritdoc />
         protected override List<SearchTreeEntry> ToShowEntries => toShowEntries;
 
@@ -21,15 +31,23 @@ namespace AG.DS
         List<SearchTreeEntry> toShowEntries;
 
 
-        /// <inheritdoc />
-        public override NodeCreateConnectorWindow Setup
+        /// <summary>
+        /// Setup for the node create connector window class.
+        /// </summary>
+        /// <param name="callback">The node create callback to set for.</param>
+        /// <param name="detail">The node create connector detail to set for.</param>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <returns>The after setup node create connector window.</returns>
+        public NodeCreateConnectorWindow<TPort, TEdge, TEdgeView> Setup
         (
             NodeCreateConnectorCallback callback,
-            NodeCreateConnectorDetail detail,
+            NodeCreateConnectorDetail<TPort, TEdge, TEdgeView> detail,
             GraphViewer graphViewer
         )
         {
-            base.Setup(callback, detail, graphViewer);
+            Setup(callback, graphViewer);
+            this.detail = detail;
+
             return this;
         }
 
@@ -39,22 +57,19 @@ namespace AG.DS
         /// Open the node create connector window.
         /// </summary>
         /// <param name="horizontalAlignmentType">The horizontal align type to set for.</param>
-        /// <param name="connectorType">The connector type to set for. </param>
         /// <param name="connectorPort">The connector port to set for. </param>
         /// <param name="toShowEntries">The to show search tree entries to set for.</param>
         public void Open
         (
             HorizontalAlignmentType horizontalAlignmentType,
-            ConnectorType connectorType,
-            PortBase connectorPort,
+            TPort connectorPort,
             List<SearchTreeEntry> toShowEntries
         )
         {
             // Update detail
             {
-                Detail.SetTypeHorizontalAlignment(value: horizontalAlignmentType);
-                Detail.SetTypeConnector(value: connectorType);
-                Detail.SetPortConnector(value: connectorPort);
+                detail.SetTypeHorizontalAlignment(value: horizontalAlignmentType);
+                detail.SetPortConnector(value: connectorPort);
 
                 this.toShowEntries = toShowEntries;
             }

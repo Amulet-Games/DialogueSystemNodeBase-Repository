@@ -26,7 +26,7 @@ namespace AG.DS
 
             if (model != null)
             {
-                cell.Port.Load(model.OptionPortModel);
+                PortManager.Instance.Load(cell.Port, model.OptionPortModel);
             }
 
             return cell;

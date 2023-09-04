@@ -17,7 +17,6 @@ namespace AG.DS
         /// </summary>
         public OptionPortGroupCellModel()
         {
-            OptionPortModel = new();
         }
     }
 }

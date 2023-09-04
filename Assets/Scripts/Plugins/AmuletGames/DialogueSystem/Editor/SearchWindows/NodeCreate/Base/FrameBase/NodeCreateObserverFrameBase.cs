@@ -7,24 +7,30 @@ namespace AG.DS
     /// <summary>
     /// Register events to the new created node element.
     /// </summary>
-    public class NodeCreateObserver
+    public abstract class NodeCreateObserverFrameBase
+    <
+        TNodeCreateDetail,
+        TNodeCreateObserver
+    >
+        where TNodeCreateDetail : NodeCreateDetailBase
+        where TNodeCreateObserver : NodeCreateObserverFrameBase<TNodeCreateDetail, TNodeCreateObserver>
     {
-        /// <summary>
-        /// Reference of the graph viewer element.
-        /// </summary>
-        GraphViewer graphViewer;
-
-
         /// <summary>
         /// Reference of the node create detail base.
         /// </summary>
-        NodeCreateDetailBase detail;
+        protected TNodeCreateDetail Detail;
+
+
+        /// <summary>
+        /// Reference of the graph viewer element.
+        /// </summary>
+        protected GraphViewer GraphViewer;
 
 
         /// <summary>
         /// Reference of the node element.
         /// </summary>
-        NodeBase node;
+        protected NodeBase Node;
 
 
         /// <summary>
@@ -44,17 +50,17 @@ namespace AG.DS
         /// </summary>
         /// <param name="detail">The node create detail to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <returns>The after setup observer class.</returns>
-        public NodeCreateObserver Setup
+        /// <returns>The after setup node create observer class.</returns>
+        public virtual TNodeCreateObserver Setup
         (
-            NodeCreateDetailBase detail,
+            TNodeCreateDetail detail,
             GraphViewer graphViewer
         )
         {
-            this.detail = detail;
-            this.graphViewer = graphViewer;
+            this.Detail = detail;
+            this.GraphViewer = graphViewer;
 
-            return this;
+            return null;
         }
 
 
@@ -69,7 +75,7 @@ namespace AG.DS
             Vector2 approxCreatePosition
         )
         {
-            this.node = node;
+            this.Node = node;
             this.approxCreatePosition = approxCreatePosition;
 
             SetupYAxisReferencePort();
@@ -88,7 +94,7 @@ namespace AG.DS
             PortBase rightAlignmentPort = null;
             PortBase middleAlignmentPort = null;
 
-            switch (node)
+            switch (Node)
             {
                 case BooleanNode booleanNode:
                     leftAlignmentPort = booleanNode.View.TrueOutputDefaultPort;
@@ -145,13 +151,13 @@ namespace AG.DS
                     break;
             }
 
-            yAxisReferencePort = detail.HorizontalAlignmentType switch
+            yAxisReferencePort = Detail.HorizontalAlignmentType switch
             {
                 HorizontalAlignmentType.LEFT => leftAlignmentPort,
                 HorizontalAlignmentType.RIGHT => rightAlignmentPort,
                 HorizontalAlignmentType.MIDDLE => middleAlignmentPort,
                 _ => throw new ArgumentException(
-                    "Invalid horizontal alignment type when creating a new node: " + detail.HorizontalAlignmentType.ToString())
+                    "Invalid horizontal alignment type when creating a new node: " + Detail.HorizontalAlignmentType.ToString())
             };
         }
 
@@ -178,7 +184,7 @@ namespace AG.DS
         /// Register the InitializeNewNodePositionEvent to the new created node element.
         /// </summary>
         void RegisterInitializeNewNodePositionEvent()
-            => node.ExecuteOnceOnGeometryChanged(InitializeNewNodePositionEvent);
+            => Node.ExecuteOnceOnGeometryChanged(InitializeNewNodePositionEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -186,29 +192,7 @@ namespace AG.DS
         /// The event to invoke when the new node's position needed to be initialized
         /// </summary>
         /// <param name="evt">The registering event</param>
-        void InitializeNewNodePositionEvent(GeometryChangedEvent evt)
-        {
-            node.SetPosition
-            (
-                newPos: new Rect
-                (
-                    position: CalculateFinalCreatePosition(),
-                    size: Vector2Utility.Zero
-                )
-            );
-
-            ConnectNewNode();
-
-            //TODO: Delete after apply design is done.
-            if (node is StoryNode storyNode)
-            {
-                storyNode.ExecuteOnceOnGeometryChanged(storyNode.GeometryChangedEvent);
-            }
-            else
-            {
-                node.ExecuteOnceOnGeometryChanged(NewNodeOnPostCreateEvent);
-            }
-        }
+        protected abstract avoid InitializeNewNodePositionEvent(GeometryChangedEvent evt);
 
 
         /// <summary>
@@ -218,21 +202,21 @@ namespace AG.DS
         /// <exception cref="ArgumentException">
         /// Thrown when the node create detail's horizontal alignment type is not left, right or middle.
         /// </exception>
-        Vector2 CalculateFinalCreatePosition()
+        protected Vector2 CalculateFinalCreatePosition()
         {
             var targetPos = approxCreatePosition;
 
-            targetPos.y -= (node.titleContainer.worldBound.height
+            targetPos.y -= (Node.titleContainer.worldBound.height
                               + yAxisReferencePort.localBound.position.y
                               + NumberConfig.MANUAL_CREATE_Y_OFFSET)
-                              / graphViewer.scale;
+                              / GraphViewer.scale;
 
-            targetPos.x -= detail.HorizontalAlignmentType switch
+            targetPos.x -= Detail.HorizontalAlignmentType switch
             {
-                HorizontalAlignmentType.LEFT => node.localBound.width,
-                HorizontalAlignmentType.MIDDLE => node.localBound.width / 2,
+                HorizontalAlignmentType.LEFT => Node.localBound.width,
+                HorizontalAlignmentType.MIDDLE => Node.localBound.width / 2,
                 _ => throw new ArgumentException(
-                    "Invalid horizontal alignment type when creating a new node: " + detail.HorizontalAlignmentType.ToString())
+                    "Invalid horizontal alignment type when creating a new node: " + Detail.HorizontalAlignmentType.ToString())
             };
 
             return targetPos;
@@ -240,38 +224,12 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Connect the new created node to the connector port.
-        /// </summary>
-        void ConnectNewNode()
-        {
-            if (detail.ConnectorPort != null)
-            {
-                var port = detail.ConnectorPort;
-                var isInput = port.IsInput();
-
-                if (port.connected)
-                {
-                    port.Disconnect(graphViewer);
-                }
-
-                var edge = EdgeManager.Instance.Connect
-                (
-                    output: !isInput ? port : yAxisReferencePort,
-                    input: isInput ? port : yAxisReferencePort
-                );
-
-                graphViewer.Add(edge);
-            }
-        }
-
-
-        /// <summary>
         /// The event to invoke when a new node has finished all its creation steps.
         /// </summary>
         /// <param name="evt">The registering event</param>
-        void NewNodeOnPostCreateEvent(GeometryChangedEvent evt)
+        protected void NewNodeOnPostCreateEvent(GeometryChangedEvent evt)
         {
-            node.Callback.OnPostCreate();
+            Node.Callback.OnPostCreate();
         }
     }
 }

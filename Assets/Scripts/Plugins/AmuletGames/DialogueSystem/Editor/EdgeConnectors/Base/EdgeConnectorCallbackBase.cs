@@ -30,12 +30,6 @@ namespace AG.DS
         protected List<GraphElement> ElementsToRemove;
 
 
-        /// <summary>
-        /// Reference of the node create connector window.
-        /// </summary>
-        protected NodeCreateConnectorWindow NodeCreateConnectorWindow;
-
-
         // ----------------------------- Callback -----------------------------
         /// <summary>
         /// Called when a new edge is dropped on a port.

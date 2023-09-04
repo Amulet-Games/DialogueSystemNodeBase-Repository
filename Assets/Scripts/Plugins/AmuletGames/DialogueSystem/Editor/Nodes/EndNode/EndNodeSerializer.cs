@@ -50,7 +50,7 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            View.InputDefaultPort.Load(Model.InputPortModel);
+            PortManager.Instance.Load(View.InputDefaultPort, Model.InputPortModel);
         }
     }
 }

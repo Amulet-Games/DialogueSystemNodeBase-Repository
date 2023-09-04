@@ -1,10 +1,23 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public abstract class NodeCreateCallbackFrameBase<TNodeCreateCallback>
+    public abstract class NodeCreateCallbackFrameBase
+    <
+        TNodeCreateDetail,
+        TNodeCreateObserver,
+        TNodeCreateCallback
+    >
         : NodeCreateCallbackBase
-        where TNodeCreateCallback : NodeCreateCallbackBase
+        where TNodeCreateDetail : NodeCreateDetailBase
+        where TNodeCreateObserver : NodeCreateObserverFrameBase<TNodeCreateDetail, TNodeCreateObserver>
+        where TNodeCreateCallback : NodeCreateCallbackFrameBase<TNodeCreateDetail, TNodeCreateObserver, TNodeCreateCallback>
     {
+        /// <summary>
+        /// Reference of the node create observer.
+        /// </summary>
+        protected TNodeCreateObserver Observer;
+
+
         /// <summary>
         /// Setup for the node create callback frame base class.
         /// </summary>
@@ -18,7 +31,7 @@ namespace AG.DS
             GraphViewer graphViewer,
             LanguageHandler languageHandler,
             DialogueSystemWindow dsWindow,
-            NodeCreateObserver observer
+            TNodeCreateObserver observer
         )
         {
             GraphViewer = graphViewer;

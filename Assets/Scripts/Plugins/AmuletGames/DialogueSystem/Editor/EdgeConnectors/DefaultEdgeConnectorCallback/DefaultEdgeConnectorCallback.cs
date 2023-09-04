@@ -8,6 +8,7 @@ namespace AG.DS
     <
         DefaultPort,
         DefaultEdge,
+        DefaultEdgeView,
         DefaultEdgeConnectorCallback
     >
     {
@@ -15,7 +16,7 @@ namespace AG.DS
         public override DefaultEdgeConnectorCallback Setup
         (
             DefaultPort connectorPort,
-            NodeCreateConnectorWindow connectorWindow
+            NodeCreateConnectorWindow<DefaultPort, DefaultEdge, DefaultEdgeView> connectorWindow
         )
         {
             base.Setup(connectorPort, connectorWindow);
@@ -34,8 +35,6 @@ namespace AG.DS
                 (
                     horizontalAlignmentType: HorizontalAlignmentType.LEFT,
 
-                    connectorType: ConnectorType.DEFAULT,
-
                     connectorPort: ConnectorPort,
 
                     toShowEntries: NodeCreateEntryProvider.DefaultNodeInputEntries
@@ -47,8 +46,6 @@ namespace AG.DS
                 NodeCreateConnectorWindow.Open
                 (
                     horizontalAlignmentType: HorizontalAlignmentType.RIGHT,
-
-                    connectorType: ConnectorType.DEFAULT,
 
                     connectorPort: ConnectorPort,
 

@@ -5,7 +5,12 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class NodeCreateRequestCallback : NodeCreateCallbackFrameBase<NodeCreateRequestCallback>
+    public class NodeCreateRequestCallback : NodeCreateCallbackFrameBase
+    <
+        NodeCreateRequestDetail,
+        NodeCreateRequestObserver,
+        NodeCreateRequestCallback
+    >
     {
         /// <summary>
         /// The direction vector from mouse screen position to window center position.

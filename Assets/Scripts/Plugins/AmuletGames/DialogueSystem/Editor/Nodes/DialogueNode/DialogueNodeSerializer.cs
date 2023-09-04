@@ -77,8 +77,8 @@
         /// </summary>
         void LoadPorts()
         {
-            View.InputDefaultPort.Load(Model.InputPortModel);
-            View.OutputDefaultPort.Load(Model.OutputPortModel);
+            PortManager.Instance.Load(View.InputDefaultPort, Model.InputPortModel);
+            PortManager.Instance.Load(View.OutputDefaultPort, Model.OutputPortModel);
         }
 
 

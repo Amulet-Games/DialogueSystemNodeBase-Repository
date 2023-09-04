@@ -67,8 +67,8 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            View.InputDefaultPort.Load(Model.InputPortModel);
-            View.OutputOptionPort.Load(Model.OutputOptionPortModel);
+            PortManager.Instance.Load(View.InputDefaultPort, Model.InputPortModel);
+            PortManager.Instance.Load(View.OutputOptionPort, Model.OutputOptionPortModel);
             View.OutputOptionPortGroupView.Load(Node, Model.OutputOptionPortGroupModel);
         }
 

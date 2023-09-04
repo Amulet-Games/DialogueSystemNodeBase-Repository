@@ -8,6 +8,7 @@ namespace AG.DS
     <
         OptionPort,
         OptionEdge,
+        OptionEdgeView,
         OptionEdgeConnectorCallback
     >
     {
@@ -15,7 +16,7 @@ namespace AG.DS
         public override OptionEdgeConnectorCallback Setup
         (
             OptionPort connectorPort,
-            NodeCreateConnectorWindow connectorWindow
+            NodeCreateConnectorWindow<OptionPort, OptionEdge, OptionEdgeView> connectorWindow
         )
         {
             base.Setup(connectorPort, connectorWindow);
@@ -34,8 +35,6 @@ namespace AG.DS
                 (
                     horizontalAlignmentType: HorizontalAlignmentType.LEFT,
 
-                    connectorType: ConnectorType.OPTION,
-
                     connectorPort: ConnectorPort,
 
                     toShowEntries: NodeCreateEntryProvider.OptionChannelInputEntries
@@ -47,8 +46,6 @@ namespace AG.DS
                 NodeCreateConnectorWindow.Open
                 (
                     horizontalAlignmentType: HorizontalAlignmentType.RIGHT,
-
-                    connectorType: ConnectorType.OPTION,
 
                     connectorPort: ConnectorPort,
 

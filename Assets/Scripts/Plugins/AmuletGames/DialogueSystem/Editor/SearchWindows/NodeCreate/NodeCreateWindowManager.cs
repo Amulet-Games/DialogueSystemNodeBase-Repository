@@ -76,16 +76,16 @@ namespace AG.DS
         /// <param name="dsWindow">The dialogue system window to set for.</param>
         /// 
         /// <returns>A new node create window.</returns>
-        TNodeCreateWindow Create<TNodeCreateWindow, TNodeCreateCallback, TNodeCreateDetail, TNodeCreateObserver>
+        TNodeCreateWindow Create<TNodeCreateDetail, TNodeCreateCallback, TNodeCreateObserver, TNodeCreateWindow>
         (
             GraphViewer graphViewer,
             LanguageHandler languageHandler,
             DialogueSystemWindow dsWindow
         )
-            where TNodeCreateWindow : NodeCreateWindowFrameBase<TNodeCreateWindow, TNodeCreateCallback, TNodeCreateDetail>, new()
-            where TNodeCreateCallback : NodeCreateCallbackFrameBase<TNodeCreateCallback>, new()
             where TNodeCreateDetail : NodeCreateDetailBase, new()
-            where TNodeCreateObserver : NodeCreateObserver, new()
+            where TNodeCreateCallback : NodeCreateCallbackFrameBase<TNodeCreateCallback>, new()
+            where TNodeCreateWindow : NodeCreateWindowFrameBase<TNodeCreateCallback>, new()
+            where TNodeCreateObserver : NodeCreateObserverFrameBase<TNodeCreateDetail, TNodeCreateObserver>, new()
         {
             var detail = new TNodeCreateDetail();
             var observer = new TNodeCreateObserver().Setup(detail, graphViewer);
@@ -94,5 +94,24 @@ namespace AG.DS
 
             return window;
         }
+
+        // TNodeCreateWindow Create<TNodeCreateWindow, TNodeCreateCallback, TNodeCreateDetail, TNodeCreateObserver>
+        // (
+        //     GraphViewer graphViewer,
+        //     LanguageHandler languageHandler,
+        //     DialogueSystemWindow dsWindow
+        // )
+        //     where TNodeCreateWindow : NodeCreateWindowFrameBase<TNodeCreateWindow, TNodeCreateCallback, TNodeCreateDetail>, new()
+        //     where TNodeCreateCallback : NodeCreateCallbackFrameBase<TNodeCreateCallback>, new()
+        //     where TNodeCreateDetail : NodeCreateDetailBase, new()
+        //     where TNodeCreateObserver : NodeCreateObserverFrameBase<TNodeCreateDetail, TNodeCreateObserver>, new()
+        // {
+        //     var detail = new TNodeCreateDetail();
+        //     var observer = new TNodeCreateObserver().Setup(detail, graphViewer);
+        //     var callback = new TNodeCreateCallback().Setup(graphViewer, languageHandler, dsWindow, observer);
+        //     var window = ScriptableObject.CreateInstance<TNodeCreateWindow>().Setup(callback, detail, graphViewer);
+
+        //     return window;
+        // }
     }
 }

@@ -58,9 +58,10 @@ namespace AG.DS
         {
             for (int i = 0; i < Cells.Count; i++)
             {
-                var cellModel = new OptionPortGroupCellModel();
-
-                Cells[i].Port.Save(cellModel.OptionPortModel);
+                var cellModel = new OptionPortGroupCellModel
+                {
+                    OptionPortModel = PortManager.Instance.Save(Cells[i].Port)
+                };
 
                 model.cellModels.Add(cellModel);
             }

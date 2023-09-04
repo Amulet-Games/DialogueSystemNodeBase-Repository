@@ -117,7 +117,7 @@ namespace AG.DS
         /// <summary>
         /// Save the default port values.
         /// </summary>
-        /// <param name="port">The port to set for.</param>
+        /// <param name="port">The port element to set for.</param>
         /// <returns>A new port model.</returns>
         public PortModelBase Save(DefaultPort port)
             => Save<DefaultPort, DefaultPortSerializer, PortModelBase>(port);
@@ -126,7 +126,7 @@ namespace AG.DS
         /// <summary>
         /// Save the option port values.
         /// </summary>
-        /// <param name="port">The port to set for.</param>
+        /// <param name="port">The port element to set for.</param>
         /// <returns>A new port model.</returns>
         public OptionPortModel Save(OptionPort port)
             => Save<OptionPort, OptionPortSerializer, OptionPortModel>(port);
@@ -159,6 +159,24 @@ namespace AG.DS
 
 
         // ----------------------------- Load -----------------------------
+        /// <summary>
+        /// Load the default port values.
+        /// </summary>
+        /// <param name="port">The port element to set for.</param>
+        /// <param name="model">The port model to set for.</param>
+        public void Load(DefaultPort port, PortModelBase model)
+            => Load<DefaultPort , DefaultPortSerializer, PortModelBase>(port, model);
+
+
+        /// <summary>
+        /// Load the option port values.
+        /// </summary>
+        /// <param name="port">The port element to set for.</param>
+        /// <param name="model">The port model to set for.</param>
+        public void Load(OptionPort port, OptionPortModel model)
+            => Load<OptionPort, OptionPortSerializer, OptionPortModel>(port, model);
+
+
         /// <summary>
         /// Load the port element values.
         /// </summary>

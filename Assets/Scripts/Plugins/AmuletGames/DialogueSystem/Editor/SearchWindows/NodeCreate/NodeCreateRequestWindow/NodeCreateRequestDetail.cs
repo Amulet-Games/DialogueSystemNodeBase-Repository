@@ -9,8 +9,6 @@ namespace AG.DS
         public NodeCreateRequestDetail()
         {
             SetTypeHorizontalAlignment(value: HorizontalAlignmentType.MIDDLE);
-            SetTypeConnector(value: ConnectorType.NONE);
-            SetPortConnector(value: null);
         }
     }
 }

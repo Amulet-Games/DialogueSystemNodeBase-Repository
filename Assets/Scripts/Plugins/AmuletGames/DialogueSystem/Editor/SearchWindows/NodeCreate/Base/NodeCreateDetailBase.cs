@@ -11,38 +11,11 @@ namespace AG.DS
         public HorizontalAlignmentType HorizontalAlignmentType { get; private set; }
 
 
-        /// <summary>
-        /// The connector port's connector type.
-        /// </summary>
-        public ConnectorType ConnectorType { get; private set; }
-
-
-        /// <summary>
-        /// Reference of the connector port.
-        /// <br>If the node is created through the node create request window, the field's value will be null.</br>
-        /// </summary>
-        public PortBase ConnectorPort { get; private set; }
-
-
         // ----------------------------- Service -----------------------------
         /// <summary>
         /// Set a new value to the horizontal alignment type.
         /// </summary>
         /// <param name="value">The horizontal alignment type to set for.</param>
         public void SetTypeHorizontalAlignment(HorizontalAlignmentType value) => HorizontalAlignmentType = value;
-
-
-        /// <summary>
-        /// Set a new value to the connector type.
-        /// </summary>
-        /// <param name="value">The connector type to set for.</param>
-        public void SetTypeConnector(ConnectorType value) => ConnectorType = value;
-
-
-        /// <summary>
-        /// Set a new value to the connector port.
-        /// </summary>
-        /// <param name="value">The connector port to set for.</param>
-        public void SetPortConnector(PortBase value) => ConnectorPort = value;
     }
 }

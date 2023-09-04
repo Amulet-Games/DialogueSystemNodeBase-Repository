@@ -5,7 +5,21 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class NodeCreateConnectorCallback : NodeCreateCallbackFrameBase<NodeCreateConnectorCallback>
+    public class NodeCreateConnectorCallback
+    <
+        TPort,
+        TEdge,
+        TEdgeView
+    >
+        : NodeCreateCallbackFrameBase
+    <
+        NodeCreateConnectorDetail<TPort, TEdge, TEdgeView>,
+        NodeCreateConnectorObserver<TPort, TEdge, TEdgeView>,
+        NodeCreateConnectorCallback<TPort, TEdge, TEdgeView>
+    >
+        where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
+        where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
     {
         /// <summary>
         /// The direction vector from mouse screen position to window center position.
@@ -26,12 +40,12 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override NodeCreateConnectorCallback Setup
+        public override NodeCreateConnectorCallback<TPort, TEdge, TEdgeView> Setup
         (
             GraphViewer graphViewer,
             LanguageHandler languageHandler,
             DialogueSystemWindow dsWindow,
-            NodeCreateObserver observer
+            NodeCreateConnectorObserver<TPort, TEdge, TEdgeView> observer
         )
         {
             base.Setup(graphViewer, languageHandler, dsWindow, observer);

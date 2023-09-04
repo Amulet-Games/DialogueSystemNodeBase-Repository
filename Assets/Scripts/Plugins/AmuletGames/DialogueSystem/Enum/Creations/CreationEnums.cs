@@ -22,14 +22,4 @@ namespace AG.DS
 
         FREE
     }
-
-
-    public enum ConnectorType
-    {
-        NONE,
-
-        DEFAULT,
-
-        OPTION
-    }
 }
