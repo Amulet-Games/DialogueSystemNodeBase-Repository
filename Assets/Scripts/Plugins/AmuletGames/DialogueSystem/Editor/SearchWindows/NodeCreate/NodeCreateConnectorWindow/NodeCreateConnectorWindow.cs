@@ -10,17 +10,16 @@ namespace AG.DS
         TEdge,
         TEdgeView
     >
-        : NodeCreateWindowFrameBase<NodeCreateConnectorCallback>
+        : NodeCreateWindowFrameBase
+    <
+        NodeCreateConnectorCallback<TPort, TEdge, TEdgeView>,
+        NodeCreateConnectorDetail<TPort, TEdge, TEdgeView>,
+        NodeCreateConnectorWindow<TPort, TEdge, TEdgeView>
+    >
         where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
         where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
         where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
     {
-        /// <summary>
-        /// Reference of the node create detail.
-        /// </summary>
-        public NodeCreateConnectorDetail<TPort, TEdge, TEdgeView> detail;
-
-
         /// <inheritdoc />
         protected override List<SearchTreeEntry> ToShowEntries => toShowEntries;
 
@@ -31,23 +30,15 @@ namespace AG.DS
         List<SearchTreeEntry> toShowEntries;
 
 
-        /// <summary>
-        /// Setup for the node create connector window class.
-        /// </summary>
-        /// <param name="callback">The node create callback to set for.</param>
-        /// <param name="detail">The node create connector detail to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <returns>The after setup node create connector window.</returns>
-        public NodeCreateConnectorWindow<TPort, TEdge, TEdgeView> Setup
+        /// <inheritdoc />
+        public override NodeCreateConnectorWindow<TPort, TEdge, TEdgeView> Setup
         (
-            NodeCreateConnectorCallback callback,
+            NodeCreateConnectorCallback<TPort, TEdge, TEdgeView> callback,
             NodeCreateConnectorDetail<TPort, TEdge, TEdgeView> detail,
             GraphViewer graphViewer
         )
         {
-            Setup(callback, graphViewer);
-            this.detail = detail;
-
+            base.Setup(callback, detail, graphViewer);
             return this;
         }
 
@@ -68,8 +59,8 @@ namespace AG.DS
         {
             // Update detail
             {
-                detail.SetTypeHorizontalAlignment(value: horizontalAlignmentType);
-                detail.SetPortConnector(value: connectorPort);
+                Detail.SetTypeHorizontalAlignment(value: horizontalAlignmentType);
+                Detail.SetPortConnector(value: connectorPort);
 
                 this.toShowEntries = toShowEntries;
             }

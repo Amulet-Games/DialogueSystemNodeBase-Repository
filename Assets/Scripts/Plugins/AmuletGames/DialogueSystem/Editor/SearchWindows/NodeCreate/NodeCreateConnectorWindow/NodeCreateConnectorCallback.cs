@@ -13,9 +13,9 @@ namespace AG.DS
     >
         : NodeCreateCallbackFrameBase
     <
+        NodeCreateConnectorCallback<TPort, TEdge, TEdgeView>,
         NodeCreateConnectorDetail<TPort, TEdge, TEdgeView>,
-        NodeCreateConnectorObserver<TPort, TEdge, TEdgeView>,
-        NodeCreateConnectorCallback<TPort, TEdge, TEdgeView>
+        NodeCreateConnectorObserver<TPort, TEdge, TEdgeView>
     >
         where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
         where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>

@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
+    /// <inheritdoc />
     public class NodeCreateConnectorObserver
     <
         TPort,
@@ -20,20 +20,20 @@ namespace AG.DS
         where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
     {
         /// <inheritdoc />
-        public override NodeCreateConnectorObserver<TPort, TEdge, TEdgeView> Setup()
+        public override NodeCreateConnectorObserver<TPort, TEdge, TEdgeView> Setup
+        (
+            NodeCreateConnectorDetail<TPort, TEdge, TEdgeView> detail,
+            GraphViewer graphViewer
+        )
         {
-            NodeCreateRequestDetail detail,
-            GraphView graphViewer
-        }
-        {
-            base.NodeCreateConnectorObserver(detail, graphViewer);
+            base.Setup(detail, graphViewer);
             return this;
         }
 
 
         // ----------------------------- Event -----------------------------
         /// <inheritdoc />
-        public override void InitializeNewNodePositionEvent(GeometryChangedEvent evt)
+        protected override void InitializeNewNodePositionEvent(GeometryChangedEvent evt)
         {
             Node.SetPosition
             (
@@ -46,13 +46,13 @@ namespace AG.DS
 
             ConnectNewNode();
 
-            if (node is StoryNode storyNode)
+            if (Node is StoryNode storyNode)
             {
                 storyNode.ExecuteOnceOnGeometryChanged(storyNode.GeometryChangedEvent);
             }
             else
             {
-                node.ExecuteOnceOnGeometryChanged(NewNodeOnPostCreateEvent);
+                Node.ExecuteOnceOnGeometryChanged(NewNodeOnPostCreateEvent);
             }
         }
 
@@ -62,23 +62,23 @@ namespace AG.DS
         /// </summary>
         void ConnectNewNode()
         {
-            if (detail.ConnectorPort != null)
+            if (Detail.ConnectorPort != null)
             {
-                var port = detail.ConnectorPort;
+                var port = Detail.ConnectorPort;
                 var isInput = port.IsInput();
 
                 if (port.connected)
                 {
-                    port.Disconnect(graphViewer);
+                    port.Disconnect(GraphViewer);
                 }
 
                 var edge = EdgeManager.Instance.Connect
                 (
-                    output: !isInput ? port : yAxisReferencePort,
-                    input: isInput ? port : yAxisReferencePort
+                    output: !isInput ? port : YAxisReferencePort,
+                    input: isInput ? port : YAxisReferencePort
                 );
 
-                graphViewer.Add(edge);
+                GraphViewer.Add(edge);
             }
         }
     }

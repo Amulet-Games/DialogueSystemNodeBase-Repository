@@ -7,9 +7,9 @@ namespace AG.DS
     /// <inheritdoc />
     public class NodeCreateRequestCallback : NodeCreateCallbackFrameBase
     <
+        NodeCreateRequestCallback,
         NodeCreateRequestDetail,
-        NodeCreateRequestObserver,
-        NodeCreateRequestCallback
+        NodeCreateRequestObserver
     >
     {
         /// <summary>
@@ -36,7 +36,7 @@ namespace AG.DS
             GraphViewer graphViewer,
             LanguageHandler languageHandler,
             DialogueSystemWindow dsWindow,
-            NodeCreateObserver observer
+            NodeCreateRequestObserver observer
         )
         {
             base.Setup(graphViewer, languageHandler, dsWindow, observer);

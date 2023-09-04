@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -12,11 +11,11 @@ namespace AG.DS
     >
     {
         /// <inheritdoc />
-        public override NodeCreateRequestObserver Setup()
-        {
+        public override NodeCreateRequestObserver Setup
+        (
             NodeCreateRequestDetail detail,
-            GraphView graphViewer
-        }
+            GraphViewer graphViewer
+        )
         {
             base.Setup(detail, graphViewer);
             return this;
@@ -25,7 +24,7 @@ namespace AG.DS
 
         // ----------------------------- Event -----------------------------
         /// <inheritdoc />
-        public override void InitializeNewNodePositionEvent(GeometryChangedEvent evt)
+        protected override void InitializeNewNodePositionEvent(GeometryChangedEvent evt)
         {
             Node.SetPosition
             (
@@ -36,13 +35,13 @@ namespace AG.DS
                 )
             );
 
-            if (node is StoryNode storyNode)
+            if (Node is StoryNode storyNode)
             {
                 storyNode.ExecuteOnceOnGeometryChanged(storyNode.GeometryChangedEvent);
             }
             else
             {
-                node.ExecuteOnceOnGeometryChanged(NewNodeOnPostCreateEvent);
+                Node.ExecuteOnceOnGeometryChanged(NewNodeOnPostCreateEvent);
             }
         }
     }

@@ -3,9 +3,16 @@ using UnityEditor.Experimental.GraphView;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public abstract class NodeCreateWindowFrameBase<TNodeCreateCallback>
+    public abstract class NodeCreateWindowFrameBase
+    <
+        TNodeCreateCallback,
+        TNodeCreateDetail,
+        TNodeCreateWindow
+    >
         : NodeCreateWindowBase
         where TNodeCreateCallback : NodeCreateCallbackBase
+        where TNodeCreateDetail : NodeCreateDetailBase
+        where TNodeCreateWindow : NodeCreateWindowFrameBase<TNodeCreateCallback, TNodeCreateDetail, TNodeCreateWindow>
     {
         /// <summary>
         /// Reference of the node create callback.
@@ -14,19 +21,30 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the node create detail.
+        /// </summary>
+        public TNodeCreateDetail Detail;
+
+
+        /// <summary>
         /// Setup for the node create window frame base class.
         /// </summary>
         /// <param name="callback">The node create callback to set for.</param>
+        /// <param name="detail">The node create detail to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <returns>The after setup node create window.</returns>
-        protected void Setup
+        public virtual TNodeCreateWindow Setup
         (
             TNodeCreateCallback callback,
+            TNodeCreateDetail detail,
             GraphViewer graphViewer
         )
         {
             Callback = callback;
+            Detail = detail;
             GraphViewer = graphViewer;
+
+            return null;
         }
 
 

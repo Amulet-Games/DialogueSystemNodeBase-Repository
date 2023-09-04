@@ -36,7 +36,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the port element that is used as a measure reference when calculating the final create position.
         /// </summary>
-        PortBase yAxisReferencePort;
+        protected PortBase YAxisReferencePort;
 
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace AG.DS
             GraphViewer graphViewer
         )
         {
-            this.Detail = detail;
-            this.GraphViewer = graphViewer;
+            Detail = detail;
+            GraphViewer = graphViewer;
 
             return null;
         }
@@ -75,7 +75,7 @@ namespace AG.DS
             Vector2 approxCreatePosition
         )
         {
-            this.Node = node;
+            Node = node;
             this.approxCreatePosition = approxCreatePosition;
 
             SetupYAxisReferencePort();
@@ -151,7 +151,7 @@ namespace AG.DS
                     break;
             }
 
-            yAxisReferencePort = Detail.HorizontalAlignmentType switch
+            YAxisReferencePort = Detail.HorizontalAlignmentType switch
             {
                 HorizontalAlignmentType.LEFT => leftAlignmentPort,
                 HorizontalAlignmentType.RIGHT => rightAlignmentPort,
@@ -192,7 +192,7 @@ namespace AG.DS
         /// The event to invoke when the new node's position needed to be initialized
         /// </summary>
         /// <param name="evt">The registering event</param>
-        protected abstract avoid InitializeNewNodePositionEvent(GeometryChangedEvent evt);
+        protected abstract void InitializeNewNodePositionEvent(GeometryChangedEvent evt);
 
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace AG.DS
             var targetPos = approxCreatePosition;
 
             targetPos.y -= (Node.titleContainer.worldBound.height
-                              + yAxisReferencePort.localBound.position.y
+                              + YAxisReferencePort.localBound.position.y
                               + NumberConfig.MANUAL_CREATE_Y_OFFSET)
                               / GraphViewer.scale;
 

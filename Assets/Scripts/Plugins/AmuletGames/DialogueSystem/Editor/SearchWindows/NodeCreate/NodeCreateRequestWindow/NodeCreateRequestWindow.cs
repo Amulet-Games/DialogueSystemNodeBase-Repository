@@ -5,15 +5,13 @@ using UnityEngine;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class NodeCreateRequestWindow
-        : NodeCreateWindowFrameBase<NodeCreateRequestCallback>
+    public class NodeCreateRequestWindow : NodeCreateWindowFrameBase
+    <
+        NodeCreateRequestCallback,
+        NodeCreateRequestDetail,
+        NodeCreateRequestWindow
+    >
     {
-        /// <summary>
-        /// Reference of the node create detail.
-        /// </summary>
-        public NodeCreateRequestDetail detail;
-
-
         /// <inheritdoc />
         protected override List<SearchTreeEntry> ToShowEntries
         {
@@ -21,23 +19,15 @@ namespace AG.DS
         }
 
 
-        /// <summary>
-        /// Setup for the node create request window class.
-        /// </summary>
-        /// <param name="callback">The node create callback to set for.</param>
-        /// <param name="detail">The node create request detail to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <returns>The after setup node create request window.</returns>
-        public NodeCreateRequestWindow Setup
+        /// <inheritdoc />
+        public override NodeCreateRequestWindow Setup
         (
             NodeCreateRequestCallback callback,
             NodeCreateRequestDetail detail,
             GraphViewer graphViewer
         )
         {
-            Setup(callback, graphViewer);
-            this.detail = detail;
-
+            base.Setup(callback, detail, graphViewer);
             return this;
         }
 

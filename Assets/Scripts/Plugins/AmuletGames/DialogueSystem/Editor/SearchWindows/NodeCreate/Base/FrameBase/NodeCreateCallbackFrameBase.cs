@@ -3,14 +3,14 @@ namespace AG.DS
     /// <inheritdoc />
     public abstract class NodeCreateCallbackFrameBase
     <
+        TNodeCreateCallback,
         TNodeCreateDetail,
-        TNodeCreateObserver,
-        TNodeCreateCallback
+        TNodeCreateObserver
     >
         : NodeCreateCallbackBase
+        where TNodeCreateCallback : NodeCreateCallbackFrameBase<TNodeCreateCallback, TNodeCreateDetail, TNodeCreateObserver>
         where TNodeCreateDetail : NodeCreateDetailBase
         where TNodeCreateObserver : NodeCreateObserverFrameBase<TNodeCreateDetail, TNodeCreateObserver>
-        where TNodeCreateCallback : NodeCreateCallbackFrameBase<TNodeCreateDetail, TNodeCreateObserver, TNodeCreateCallback>
     {
         /// <summary>
         /// Reference of the node create observer.
