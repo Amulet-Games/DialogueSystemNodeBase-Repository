@@ -30,7 +30,7 @@ namespace AG.DS
         {
             View.InputDefaultPort = PortManager.Instance.CreateDefault
             (
-                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
                 name: StringConfig.DefaultPort_Input_LabelText
@@ -38,7 +38,7 @@ namespace AG.DS
 
             View.TrueOutputDefaultPort = PortManager.Instance.CreateDefault
             (
-                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 name: StringConfig.DefaultPort_True_LabelText
@@ -46,7 +46,7 @@ namespace AG.DS
 
             View.FalseOutputDefaultPort = PortManager.Instance.CreateDefault
             (
-                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 name: StringConfig.DefaultPort_False_LabelText

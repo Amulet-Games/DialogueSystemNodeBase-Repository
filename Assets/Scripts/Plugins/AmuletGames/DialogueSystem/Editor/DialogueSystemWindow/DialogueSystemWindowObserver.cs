@@ -158,7 +158,7 @@ namespace AG.DS
             // Dispose node create windows
             {
                 Object.DestroyImmediate(nodeCreateRequestWindow, allowDestroyingAssets: true);
-                Object.DestroyImmediate(graphViewer.NodeCreateConnectorWindow, allowDestroyingAssets: true);
+                Object.DestroyImmediate(graphViewer.NodeCreateDefaultConnectorWindow, allowDestroyingAssets: true);
             }
         }
 

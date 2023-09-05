@@ -9,9 +9,15 @@ namespace AG.DS
     public class GraphViewer : GraphView
     {
         /// <summary>
-        /// Reference of the node create connector window.
+        /// Reference of the node create default connector window.
         /// </summary>
-        public NodeCreateConnectorWindow NodeCreateConnectorWindow;
+        public NodeCreateConnectorWindow<DefaultPort, DefaultEdge, DefaultEdgeView> NodeCreateDefaultConnectorWindow;
+
+
+        /// <summary>
+        /// Reference of the node create option connector window.
+        /// </summary>
+        public NodeCreateConnectorWindow<OptionPort, OptionEdge, OptionEdgeView> NodeCreateOptionConnectorWindow;
 
 
         /// <summary>

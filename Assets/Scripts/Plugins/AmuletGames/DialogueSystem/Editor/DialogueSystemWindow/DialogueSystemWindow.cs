@@ -161,8 +161,11 @@ namespace AG.DS
                     nodeCreateRequestWindow =
                         NodeCreateWindowManager.Instance.CreateRequest(graphViewer, languageHandler, dsWindow: this);
 
-                    graphViewer.NodeCreateConnectorWindow =
-                        NodeCreateWindowManager.Instance.CreateConnector(graphViewer, languageHandler, dsWindow: this);
+                    graphViewer.NodeCreateDefaultConnectorWindow = NodeCreateWindowManager.Instance.
+                        CreateConnector<DefaultPort, DefaultEdge, DefaultEdgeView>(graphViewer, languageHandler, dsWindow: this);
+
+                    graphViewer.NodeCreateOptionConnectorWindow = NodeCreateWindowManager.Instance.
+                        CreateConnector<OptionPort, OptionEdge, OptionEdgeView>(graphViewer, languageHandler, dsWindow: this);
                 }
             }
 

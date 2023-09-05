@@ -5,7 +5,6 @@ namespace AG.DS
 {
     public class PortManager
     {
-
         /// <summary>
         /// The singleton reference of the class.
         /// </summary>
@@ -20,6 +19,7 @@ namespace AG.DS
             Instance ??= new();
         }
 
+
         // ----------------------------- Create -----------------------------
         /// <summary>
         /// Method for creating a new default port element. 
@@ -31,7 +31,7 @@ namespace AG.DS
         /// <returns>A new default port element.</returns>
         public DefaultPort CreateDefault
         (
-            NodeCreateConnectorWindow connectorWindow,
+            NodeCreateConnectorWindow<DefaultPort, DefaultEdge, DefaultEdgeView> connectorWindow,
             Direction direction,
             Capacity capacity,
             string name
@@ -58,7 +58,7 @@ namespace AG.DS
         /// <returns>A new option port element.</returns>
         public OptionPort CreateOption
         (
-            NodeCreateConnectorWindow connectorWindow,
+            NodeCreateConnectorWindow<OptionPort, OptionEdge, OptionEdgeView> connectorWindow,
             Direction direction
         )
         {
@@ -93,14 +93,14 @@ namespace AG.DS
         /// <returns>A port element.</returns>
         TPort Create<TPort, TPortPresenter, TEdge, TEdgeView, TEdgeConnectorCallback>
         (
-            NodeCreateConnectorWindow connectorWindow,
+            NodeCreateConnectorWindow<TPort, TEdge, TEdgeView> connectorWindow,
             PortCreateDetail detail
         )
             where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
             where TPortPresenter: PortPresenterFrameBase<TPort, TEdge, TEdgeView, TPortPresenter>, new()
             where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>, new()
             where TEdgeView: EdgeViewFrameBase<TPort, TEdgeView>
-            where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TEdge, TEdgeConnectorCallback>, new()
+            where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TEdge, TEdgeView, TEdgeConnectorCallback>, new()
         {
             TPort port = new TPortPresenter().Setup(detail).Create();
 

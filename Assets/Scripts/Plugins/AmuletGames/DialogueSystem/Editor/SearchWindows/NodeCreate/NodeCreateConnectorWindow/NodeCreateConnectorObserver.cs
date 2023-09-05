@@ -62,24 +62,21 @@ namespace AG.DS
         /// </summary>
         void ConnectNewNode()
         {
-            if (Detail.ConnectorPort != null)
+            var port = Detail.ConnectorPort;
+            var isInput = port.IsInput();
+
+            if (port.connected)
             {
-                var port = Detail.ConnectorPort;
-                var isInput = port.IsInput();
-
-                if (port.connected)
-                {
-                    port.Disconnect(GraphViewer);
-                }
-
-                var edge = EdgeManager.Instance.Connect
-                (
-                    output: !isInput ? port : YAxisReferencePort,
-                    input: isInput ? port : YAxisReferencePort
-                );
-
-                GraphViewer.Add(edge);
+                port.Disconnect(GraphViewer);
             }
+
+            var edge = EdgeManager.Instance.Connect
+            (
+                output: !isInput ? port : YAxisReferencePort,
+                input: isInput ? port : YAxisReferencePort
+            );
+
+            GraphViewer.Add(edge);
         }
     }
 }

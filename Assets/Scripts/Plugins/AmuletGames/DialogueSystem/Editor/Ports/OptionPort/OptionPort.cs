@@ -111,13 +111,7 @@ namespace AG.DS
         /// </summary>
         void SetupDetails()
         {
-            //portName = this.IsInput()
-            //    ? StringConfig.OptionPort_Input_LabelText_Disconnect
-            //    : StringConfig.OptionPort_Output_LabelText_Disconnect;
-
             portColor = PortConfig.OptionPortColor;
-
-            //OpponentPort = null;
         }
 
 

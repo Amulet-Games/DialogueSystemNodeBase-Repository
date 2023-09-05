@@ -30,13 +30,13 @@ namespace AG.DS
         {
             View.InputOptionPort = PortManager.Instance.CreateOption
             (
-                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateOptionConnectorWindow,
                 direction: Direction.Input
             );
 
             View.OutputDefaultPort = PortManager.Instance.CreateDefault
             (
-                connectorWindow: Node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
                 name: StringConfig.DefaultPort_Output_LabelText

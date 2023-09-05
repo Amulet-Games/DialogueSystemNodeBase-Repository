@@ -18,7 +18,7 @@ namespace AG.DS
         {
             var cell = OptionPortGroupCellPresenter.CreateElement
             (
-                connectorWindow: node.GraphViewer.NodeCreateConnectorWindow,
+                connectorWindow: node.GraphViewer.NodeCreateOptionConnectorWindow,
                 direction: groupView.Direction
             );
 
