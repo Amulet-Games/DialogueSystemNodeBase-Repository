@@ -78,7 +78,7 @@ namespace AG.DS
                 if (group.Cells[i].Port.connected)
                 {
                     var port = group.Cells[i].Port;
-                    var siblingIndex = port.GetSiblingIndex(additionNumber: 1);
+                    var siblingIndex = port.GetSiblingIndex();
 
                     port.UpdatePortLabel(siblingIndex);
                     port.OpponentPort.UpdatePortLabel(siblingIndex);

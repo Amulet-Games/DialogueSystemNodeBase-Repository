@@ -11,9 +11,27 @@ namespace AG.DS
     >
     {
         /// <summary>
+        /// The property of the current connecting opponent option port.
+        /// </summary>
+        public OptionPort OpponentPort
+        {
+            get
+            {
+                return m_opponentPort;
+            }
+            set
+            {
+                m_opponentPort = value;
+
+                this.ToggleConnectStyle();
+            }
+        }
+
+
+        /// <summary>
         /// The current connecting opponent option port.
         /// </summary>
-        public OptionPort OpponentPort;
+        OptionPort m_opponentPort;
 
 
         /// <inheritdoc />
@@ -145,8 +163,6 @@ namespace AG.DS
         public override void Disconnect(OptionEdge edge)
         {
             base.Disconnect(edge);
-
-            this.HideConnectStyle();
             
             OpponentPort = null;
         }
@@ -159,8 +175,8 @@ namespace AG.DS
         {
             if (OpponentPort?.connected == false)
             {
-                // If the opponent port is no longer connecting remove it from connect style class.
-                OpponentPort.HideConnectStyle();
+                // Set the opponent port's opponent port property to null.
+                OpponentPort.OpponentPort = null;
             }
         }
     }

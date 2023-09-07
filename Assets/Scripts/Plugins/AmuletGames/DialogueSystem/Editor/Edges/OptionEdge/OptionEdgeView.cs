@@ -13,6 +13,9 @@ namespace AG.DS
             Output = output;
             Input = input;
 
+            Output.OpponentPort = input;
+            Input.OpponentPort = output;
+
             return this;
         }
     }

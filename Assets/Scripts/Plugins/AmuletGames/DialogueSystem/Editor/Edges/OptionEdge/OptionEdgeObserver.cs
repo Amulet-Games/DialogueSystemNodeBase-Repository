@@ -73,11 +73,11 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void MouseMoveEvent(MouseMoveEvent evt)
         {
-            if (Edge.output == null && Edge.output.IsShowingConnectStyle())
+            if (Edge.output == null && Edge.output.IsConnectStyle())
             {
                 output.HideConnectStyle();
             }
-            else if (Edge.input == null && Edge.input.IsShowingConnectStyle())
+            else if (Edge.input == null && Edge.input.IsConnectStyle())
             {
                 input.HideConnectStyle();
             }
@@ -91,32 +91,32 @@ namespace AG.DS
         void MouseUpEvent(MouseUpEvent evt)
         {
             /// The edge is going to be destroyed.
-            if (Edge.output == null && !Edge.output.IsShowingConnectStyle())
+            if (Edge.output == null && !Edge.output.IsConnectStyle())
             {
                 input.HideConnectStyle();
             }
             /// The edge is forming a new connection to a new output port.
-            else if (Edge.output != null && !Edge.output.IsShowingConnectStyle())
+            else if (Edge.output != null && !Edge.output.IsConnectStyle())
             {
-                output = view.Output;
-
-                output.HideOpponentConnectStyle();
-
-                Edge.ShowConnectStyle();
+                view.Output.OpponentPort.OpponentPort = null;
+                view.Setup(
+                    output: (OptionPort)Edge.output,
+                    input: (OptionPort)Edge.input
+                );
             }
             /// The edge is going to be destroyed.
-            else if (Edge.input == null && !Edge.input.IsShowingConnectStyle())
+            else if (Edge.input == null && !Edge.input.IsConnectStyle())
             {
                 output.HideConnectStyle();
             }
             /// The edge is forming a new connection to a new input port.
-            else if (Edge.input != null && !Edge.input.IsShowingConnectStyle())
+            else if (Edge.input != null && !Edge.input.IsConnectStyle())
             {
-                input = view.Input;
-
-                input.HideOpponentConnectStyle();
-                
-                Edge.ShowConnectStyle();
+                view.Input.OpponentPort.OpponentPort = null;
+                view.Setup(
+                    output: (OptionPort)Edge.output,
+                    input: (OptionPort)Edge.input
+                );
             }
         }
 

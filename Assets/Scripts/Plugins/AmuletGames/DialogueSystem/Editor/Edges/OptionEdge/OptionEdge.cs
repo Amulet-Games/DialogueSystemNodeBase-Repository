@@ -40,7 +40,6 @@ namespace AG.DS
         void SetupStyleClass()
         {
             AddToClassList(StyleConfig.Option_Edge);
-            this.ShowConnectStyle();
         }
     }
 }

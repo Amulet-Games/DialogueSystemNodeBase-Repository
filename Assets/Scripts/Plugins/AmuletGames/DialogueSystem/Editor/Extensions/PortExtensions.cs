@@ -13,7 +13,7 @@ namespace AG.DS
         public static int GetSiblingIndex
         (
             this Port port,
-            int additionNumber = 0
+            int additionNumber = 1
         )
         {
             return port.parent.IndexOf(port) + additionNumber;
@@ -47,7 +47,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="port">Extension port.</param>
         /// <returns>True if the port is added to the connect style.</returns>
-        public static bool IsShowingConnectStyle(this Port port)
+        public static bool IsConnectStyle(this Port port)
         {
             return port.ClassListContains(StyleConfig.Port_Connect);
         }

@@ -3,27 +3,20 @@ namespace AG.DS
     public static class OptionPortExtensions
     {
         /// <summary>
-        /// Add the option port to the connect style class and update its label with
-        /// <br>the sibling index.</br>
+        /// Add the option port to the connect style class if it's connecting to another port,
+        /// <br>Otherwise remove the port from the connect style class.</br>
         /// </summary>
         /// <param name="port">Extension option port.</param>
-        /// <param name="siblingIndex">The index to set for the port label.</param>
-        public static void ShowConnectStyle
-        (
-            this OptionPort port,
-            int siblingIndex
-        )
+        public static void ToggleConnectStyle(this OptionPort port)
         {
-            port.AddToClassList(StyleConfig.Port_Connect);
-
-            port.portName = StringUtility.New
-                            (
-                                str01: port.IsInput()
-                                        ? StringConfig.OptionPort_Input_LabelText_Connect
-                                        : StringConfig.OptionPort_Output_LabelText_Connect,
-
-                                str02: siblingIndex.ToString()
-                            );
+            if (port.OpponentPort != null)
+            {
+                port.ShowConnectStyle();
+            }
+            else
+            {
+                port.HideConnectStyle();
+            }
         }
 
 
@@ -33,15 +26,40 @@ namespace AG.DS
         /// <param name="port">Extension option port.</param>
         public static void HideConnectStyle(this OptionPort port)
         {
+            port.RemoveFromClassList(StyleConfig.Port_Connect);
+
+            port.portName = port.IsInput()
+                ? StringConfig.OptionPort_Input_LabelText_Disconnect
+                : StringConfig.OptionPort_Output_LabelText_Disconnect;
+        }
+
+
+        /// <summary>
+        /// Add the option port to the connect style class.
+        /// </summary>
+        /// <param name="port">Extension option port.</param>
+        public static void ShowConnectStyle(this OptionPort port)
+        {
+            port.AddToClassList(StyleConfig.Port_Connect);
+
+            int siblingIndex;
             if (port.IsInput())
             {
-                port.RemoveFromClassList(StyleConfig.Port_Connect);
-                port.portName = StringConfig.OptionPort_Input_LabelText_Disconnect;
+                siblingIndex = port.OpponentPort.GetSiblingIndex();
+                port.portName = StringUtility.New
+                                (
+                                    str01: StringConfig.OptionPort_Input_LabelText_Connect,
+                                    str02: siblingIndex.ToString()
+                                );
             }
             else
             {
-                port.RemoveFromClassList(StyleConfig.Port_Connect);
-                port.portName = StringConfig.OptionPort_Output_LabelText_Disconnect;
+                siblingIndex = port.GetSiblingIndex();
+                port.portName = StringUtility.New
+                                (
+                                    str01: StringConfig.OptionPort_Output_LabelText_Connect,
+                                    str02: siblingIndex.ToString()
+                                );
             }
         }
 
