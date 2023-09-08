@@ -9,6 +9,7 @@ namespace AG.DS
         DefaultPort,
         DefaultEdge,
         DefaultEdgeView,
+        NodeCreateDefaultConnectorWindow,
         DefaultEdgeConnectorCallback
     >
     {
@@ -16,7 +17,7 @@ namespace AG.DS
         public override DefaultEdgeConnectorCallback Setup
         (
             DefaultPort connectorPort,
-            NodeCreateConnectorWindow<DefaultPort, DefaultEdge, DefaultEdgeView> connectorWindow
+            NodeCreateDefaultConnectorWindow connectorWindow
         )
         {
             base.Setup(connectorPort, connectorWindow);

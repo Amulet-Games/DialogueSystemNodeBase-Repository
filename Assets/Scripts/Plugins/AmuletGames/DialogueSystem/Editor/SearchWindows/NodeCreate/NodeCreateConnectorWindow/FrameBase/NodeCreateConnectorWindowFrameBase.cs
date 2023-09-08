@@ -4,21 +4,23 @@ using UnityEditor.Experimental.GraphView;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class NodeCreateConnectorWindow
+    public abstract class NodeCreateConnectorWindowFrameBase
     <
         TPort,
         TEdge,
-        TEdgeView
+        TEdgeView,
+        TNodeCreateConnectorWindow
     >
         : NodeCreateWindowFrameBase
     <
         NodeCreateConnectorCallback<TPort, TEdge, TEdgeView>,
         NodeCreateConnectorDetail<TPort, TEdge, TEdgeView>,
-        NodeCreateConnectorWindow<TPort, TEdge, TEdgeView>
+        NodeCreateConnectorWindowFrameBase<TPort, TEdge, TEdgeView, TNodeCreateConnectorWindow>
     >
         where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
         where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
         where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
+        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TEdge, TEdgeView, TNodeCreateConnectorWindow>
     {
         /// <inheritdoc />
         protected override List<SearchTreeEntry> ToShowEntries => toShowEntries;
@@ -30,8 +32,14 @@ namespace AG.DS
         List<SearchTreeEntry> toShowEntries;
 
 
-        /// <inheritdoc />
-        public override NodeCreateConnectorWindow<TPort, TEdge, TEdgeView> Setup
+        /// <summary>
+        /// Setup for the node create option connector window class.
+        /// </summary>
+        /// <param name="callback">The node create connector callback to set for.</param>
+        /// <param name="detail">The node create connector detail to set for.</param>
+        /// <param name="graphViewer">The graph viewer to set for.</param>
+        /// <returns>A new node create option connector window.</returns>
+        public virtual new TNodeCreateConnectorWindow Setup
         (
             NodeCreateConnectorCallback<TPort, TEdge, TEdgeView> callback,
             NodeCreateConnectorDetail<TPort, TEdge, TEdgeView> detail,
@@ -39,7 +47,7 @@ namespace AG.DS
         )
         {
             base.Setup(callback, detail, graphViewer);
-            return this;
+            return null;
         }
 
 

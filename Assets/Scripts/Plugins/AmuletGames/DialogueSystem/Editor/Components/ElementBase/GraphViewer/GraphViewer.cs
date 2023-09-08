@@ -11,13 +11,13 @@ namespace AG.DS
         /// <summary>
         /// Reference of the node create default connector window.
         /// </summary>
-        public NodeCreateConnectorWindow<DefaultPort, DefaultEdge, DefaultEdgeView> NodeCreateDefaultConnectorWindow;
+        public NodeCreateDefaultConnectorWindow NodeCreateDefaultConnectorWindow;
 
 
         /// <summary>
         /// Reference of the node create option connector window.
         /// </summary>
-        public NodeCreateConnectorWindow<OptionPort, OptionEdge, OptionEdgeView> NodeCreateOptionConnectorWindow;
+        public NodeCreateOptionConnectorWindow NodeCreateOptionConnectorWindow;
 
 
         /// <summary>

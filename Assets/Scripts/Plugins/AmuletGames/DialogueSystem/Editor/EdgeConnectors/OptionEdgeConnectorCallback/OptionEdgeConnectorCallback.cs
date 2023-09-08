@@ -9,6 +9,7 @@ namespace AG.DS
         OptionPort,
         OptionEdge,
         OptionEdgeView,
+        NodeCreateOptionConnectorWindow,
         OptionEdgeConnectorCallback
     >
     {
@@ -16,7 +17,7 @@ namespace AG.DS
         public override OptionEdgeConnectorCallback Setup
         (
             OptionPort connectorPort,
-            NodeCreateConnectorWindow<OptionPort, OptionEdge, OptionEdgeView> connectorWindow
+            NodeCreateOptionConnectorWindow connectorWindow
         )
         {
             base.Setup(connectorPort, connectorWindow);

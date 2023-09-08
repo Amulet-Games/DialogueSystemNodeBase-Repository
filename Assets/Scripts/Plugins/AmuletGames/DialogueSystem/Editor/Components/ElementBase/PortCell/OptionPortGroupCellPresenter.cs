@@ -12,7 +12,7 @@ namespace AG.DS
         /// <returns>A new option port group cell element.</returns>
         public static OptionPortGroupCell CreateElement
         (
-            NodeCreateConnectorWindow<OptionPort, OptionEdge, OptionEdgeView> connectorWindow,
+            NodeCreateOptionConnectorWindow connectorWindow,
             Direction direction
         )
         {

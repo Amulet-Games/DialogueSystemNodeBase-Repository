@@ -9,13 +9,15 @@ namespace AG.DS
         TPort,
         TEdge,
         TEdgeView,
+        TNodeCreateConnectorWindow,
         TEdgeConnectorCallback
     >
         : EdgeConnectorCallbackBase
         where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
         where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
         where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
-        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TEdge, TEdgeView, TEdgeConnectorCallback>
+        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TEdge, TEdgeView, TNodeCreateConnectorWindow>
+        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TEdge, TEdgeView, TNodeCreateConnectorWindow, TEdgeConnectorCallback>
     {
         /// <summary>
         /// The list of edges that are going to be removed from the graph from the OnDrop callback.
@@ -32,7 +34,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the node create connector window.
         /// </summary>
-        protected NodeCreateConnectorWindow<TPort, TEdge, TEdgeView> NodeCreateConnectorWindow;
+        protected TNodeCreateConnectorWindow NodeCreateConnectorWindow;
 
 
         /// <summary>
@@ -42,7 +44,7 @@ namespace AG.DS
         public virtual TEdgeConnectorCallback Setup
         (
             TPort connectorPort,
-            NodeCreateConnectorWindow<TPort, TEdge, TEdgeView> nodeCreateConnectorWindow
+            TNodeCreateConnectorWindow nodeCreateConnectorWindow
         )
         {
             ConnectorPort = connectorPort;
