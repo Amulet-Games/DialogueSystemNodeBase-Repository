@@ -59,7 +59,7 @@ namespace AG.DS
         {
             CalculateApproxCreatePosition(context);
 
-            CreateNode(searchTreeEntry);
+            node = CreateNode(searchTreeEntry);
 
             Observer.RegisterEvents(node, approxCreatePosition);
 
@@ -93,13 +93,12 @@ namespace AG.DS
         /// Create a new node element.
         /// </summary>
         /// <param name="searchTreeEntry">The selected entry.</param>
-        void CreateNode(SearchTreeEntry searchTreeEntry)
-        {
-            node = NodeManager.Instance.Spawn(
+        NodeBase CreateNode(SearchTreeEntry searchTreeEntry)
+            => NodeManager.Instance.Spawn
+            (
                 GraphViewer,
                 nodeType: ((NodeCreateEntry)searchTreeEntry).NodeType,
                 LanguageHandler
             );
-        }
     }
 }
