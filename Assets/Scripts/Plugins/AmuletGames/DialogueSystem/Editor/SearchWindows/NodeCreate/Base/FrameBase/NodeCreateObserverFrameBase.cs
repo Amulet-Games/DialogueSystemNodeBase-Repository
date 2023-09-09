@@ -215,6 +215,7 @@ namespace AG.DS
             {
                 HorizontalAlignmentType.LEFT => Node.localBound.width,
                 HorizontalAlignmentType.MIDDLE => Node.localBound.width / 2,
+                HorizontalAlignmentType.RIGHT => 0,
                 _ => throw new ArgumentException(
                     "Invalid horizontal alignment type when creating a new node: " + Detail.HorizontalAlignmentType.ToString())
             };

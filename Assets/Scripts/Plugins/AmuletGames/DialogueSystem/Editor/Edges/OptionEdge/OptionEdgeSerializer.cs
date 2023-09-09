@@ -4,6 +4,7 @@ namespace AG.DS
     public class OptionEdgeSerializer : EdgeSerializerFrameBase
     <
         OptionPort,
+        OptionEdge,
         OptionEdgeView,
         EdgeModelBase
     >

@@ -9,13 +9,13 @@ namespace AG.DS
         /// <summary>
         /// The edge's input port GUID value.
         /// </summary>
-        [SerializeField] public string InputPortGUID;
+        [SerializeField] public Guid InputPortGUID;
 
 
         /// <summary>
         /// The edge's output port GUID value.
         /// </summary>
-        [SerializeField] public string OutputPortGUID;
+        [SerializeField] public Guid OutputPortGUID;
 
 
         /// <summary>

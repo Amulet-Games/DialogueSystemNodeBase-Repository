@@ -1,5 +1,7 @@
+using System;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -12,12 +14,12 @@ namespace AG.DS
         TEdgeView
     >
         : PortBase
-        where TPort : PortBase
+        where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
         where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
     {
         /// <summary>
-        /// Reference of the edge connector.
+        /// The property of edge connector.
         /// </summary>
         public EdgeConnector EdgeConnector
         {
@@ -52,6 +54,7 @@ namespace AG.DS
         {
             EdgeConnector = edgeConnector;
             portName = detail.Name;
+            Guid = Guid.NewGuid();
             return null;
         }
 
@@ -76,15 +79,14 @@ namespace AG.DS
             if (this.IsSingle())
             {
                 var edge = (TEdge)connections.First();
-
                 m_Disconnect(edge);
             }
             else
             {
-                var edges = (TEdge[])connections.ToArray();
+                var edges = connections.ToArray();
                 for (int i = 0; i < edges.Length; i++)
                 {
-                    m_Disconnect(edges[i]);
+                    m_Disconnect((TEdge)edges[i]);
                 }
             }
 

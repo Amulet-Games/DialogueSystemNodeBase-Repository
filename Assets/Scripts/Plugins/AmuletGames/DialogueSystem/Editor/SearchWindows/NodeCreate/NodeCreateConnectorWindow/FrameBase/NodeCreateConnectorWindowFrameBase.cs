@@ -19,7 +19,7 @@ namespace AG.DS
     >
         where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
         where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
         where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TEdge, TEdgeView, TNodeCreateConnectorWindow>
     {
         /// <inheritdoc />
@@ -33,12 +33,12 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup for the node create option connector window class.
+        /// Setup for the node create connector window frame base class.
         /// </summary>
         /// <param name="callback">The node create connector callback to set for.</param>
         /// <param name="detail">The node create connector detail to set for.</param>
         /// <param name="graphViewer">The graph viewer to set for.</param>
-        /// <returns>A new node create option connector window.</returns>
+        /// <returns>A new node create connector window.</returns>
         public virtual new TNodeCreateConnectorWindow Setup
         (
             NodeCreateConnectorCallback<TPort, TEdge, TEdgeView> callback,

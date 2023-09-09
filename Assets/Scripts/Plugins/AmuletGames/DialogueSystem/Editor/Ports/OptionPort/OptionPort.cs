@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public partial class OptionPort : PortFrameBase
+    public class OptionPort : PortFrameBase
     <
         OptionPort,
         OptionEdge,
@@ -163,21 +163,7 @@ namespace AG.DS
         public override void Disconnect(OptionEdge edge)
         {
             base.Disconnect(edge);
-            
             OpponentPort = null;
-        }
-
-
-        /// <summary>
-        /// Hide the opponent port's connect style if it's not connecting to other option port. 
-        /// </summary>
-        public void HideOpponentConnectStyle()
-        {
-            if (OpponentPort?.connected == false)
-            {
-                // Set the opponent port's opponent port property to null.
-                OpponentPort.OpponentPort = null;
-            }
         }
     }
 }

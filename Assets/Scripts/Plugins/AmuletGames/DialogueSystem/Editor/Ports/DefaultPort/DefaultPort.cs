@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public partial class DefaultPort : PortFrameBase
+    public class DefaultPort : PortFrameBase
     <
         DefaultPort,
         DefaultEdge,

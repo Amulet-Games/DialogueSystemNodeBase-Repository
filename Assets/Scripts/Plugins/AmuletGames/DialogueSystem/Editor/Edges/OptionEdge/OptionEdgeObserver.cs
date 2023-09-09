@@ -10,17 +10,6 @@ namespace AG.DS
         /// </summary>
         OptionEdgeView view;
 
-        /// <summary>
-        /// Reference of the option output port.
-        /// </summary>
-        OptionPort output;
-
-
-        /// <summary>
-        /// Reference of the option input port.
-        /// </summary>
-        OptionPort input;
-
 
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
@@ -28,9 +17,6 @@ namespace AG.DS
         {
             Edge = edge;
             view = edge.View;
-
-            output = view.Output;
-            input = view.Input;
 
             RegisterMouseMoveEvent();
 
@@ -73,13 +59,15 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void MouseMoveEvent(MouseMoveEvent evt)
         {
-            if (Edge.output == null && Edge.output.IsConnectStyle())
+            if (Edge.output == null && view.Output != null)
             {
-                output.HideConnectStyle();
+                view.Output.HideConnectStyle();
+                view.Output = null;
             }
-            else if (Edge.input == null && Edge.input.IsConnectStyle())
+            else if (Edge.input == null && view.Input != null)
             {
-                input.HideConnectStyle();
+                view.Input.HideConnectStyle();
+                view.Input = null;
             }
         }
 
@@ -90,33 +78,13 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void MouseUpEvent(MouseUpEvent evt)
         {
-            /// The edge is going to be destroyed.
-            if (Edge.output == null && !Edge.output.IsConnectStyle())
+            if (view.Output == null)
             {
-                input.HideConnectStyle();
+                view.Input.HideConnectStyle();
             }
-            /// The edge is forming a new connection to a new output port.
-            else if (Edge.output != null && !Edge.output.IsConnectStyle())
+            else if (view.Input == null)
             {
-                view.Output.OpponentPort.OpponentPort = null;
-                view.Setup(
-                    output: (OptionPort)Edge.output,
-                    input: (OptionPort)Edge.input
-                );
-            }
-            /// The edge is going to be destroyed.
-            else if (Edge.input == null && !Edge.input.IsConnectStyle())
-            {
-                output.HideConnectStyle();
-            }
-            /// The edge is forming a new connection to a new input port.
-            else if (Edge.input != null && !Edge.input.IsConnectStyle())
-            {
-                view.Input.OpponentPort.OpponentPort = null;
-                view.Setup(
-                    output: (OptionPort)Edge.output,
-                    input: (OptionPort)Edge.input
-                );
+                view.Output.HideConnectStyle();
             }
         }
 

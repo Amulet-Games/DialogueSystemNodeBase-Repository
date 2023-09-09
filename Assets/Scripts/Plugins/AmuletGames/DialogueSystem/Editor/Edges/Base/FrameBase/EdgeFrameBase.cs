@@ -8,9 +8,9 @@ namespace AG.DS
         TEdgeView
     >
         : EdgeBase
-        where TPort : PortBase
+        where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
         where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
     {
         /// <summary>
         /// Reference of the edge view;
@@ -34,7 +34,9 @@ namespace AG.DS
 
             output = view.Output;
             input = view.Input;
-            input.ConnectTo(output);
+
+            output.Connect(this);
+            input.Connect(this);
 
             return null;
         }

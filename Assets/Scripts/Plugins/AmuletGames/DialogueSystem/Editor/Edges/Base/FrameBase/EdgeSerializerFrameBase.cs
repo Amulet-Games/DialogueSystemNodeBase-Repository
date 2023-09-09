@@ -4,12 +4,14 @@ namespace AG.DS
     public abstract class EdgeSerializerFrameBase
     <
         TPort,
+        TEdge,
         TEdgeView,
         TEdgeModel
     >
         : EdgeSerializerBase
-        where TPort : PortBase
-        where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
+        where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
+        where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
         where TEdgeModel : EdgeModelBase
     {
         /// <summary>
@@ -41,8 +43,8 @@ namespace AG.DS
         /// </summary>
         protected void SaveEdgeBaseValues()
         {
-            Model.InputPortGUID = View.Input.name;
-            Model.OutputPortGUID = View.Output.name;
+            Model.InputPortGUID = View.Input.Guid;
+            Model.OutputPortGUID = View.Output.Guid;
         }
     }
 }

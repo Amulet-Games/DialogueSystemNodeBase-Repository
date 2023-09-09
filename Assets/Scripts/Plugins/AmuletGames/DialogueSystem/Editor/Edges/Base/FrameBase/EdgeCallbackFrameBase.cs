@@ -8,9 +8,9 @@ namespace AG.DS
         TEdgeView
     >
         : EdgeCallbackBase, IEdgeCallback
-        where TPort : PortBase
-        where TEdge : EdgeBase
-        where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
+        where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
+        where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
     {
         /// <summary>
         /// Reference of the edge element.

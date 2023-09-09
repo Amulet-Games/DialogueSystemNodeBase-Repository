@@ -82,9 +82,9 @@ namespace AG.DS
             TPort output,
             TPort input
         )
-            where TPort : PortBase
+            where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
             where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>, new()
-            where TEdgeView: EdgeViewFrameBase<TPort, TEdgeView>, new()
+            where TEdgeView: EdgeViewFrameBase<TPort, TEdge, TEdgeView>, new()
             where TEdgeObserver : EdgeObserverFrameBase<TEdge>, new()
             where TEdgeCallback : EdgeCallbackFrameBase<TPort, TEdge, TEdgeView>, new()
         {
@@ -144,10 +144,10 @@ namespace AG.DS
         (
             TEdge edge
         )
-            where TPort : PortBase
+            where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
             where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
-            where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
-            where TEdgeSerializer : EdgeSerializerFrameBase<TPort, TEdgeView, TEdgeModel>, new()
+            where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
+            where TEdgeSerializer : EdgeSerializerFrameBase<TPort, TEdge, TEdgeView, TEdgeModel>, new()
             where TEdgeModel : EdgeModelBase, new()
         {
             var model = new TEdgeModel();

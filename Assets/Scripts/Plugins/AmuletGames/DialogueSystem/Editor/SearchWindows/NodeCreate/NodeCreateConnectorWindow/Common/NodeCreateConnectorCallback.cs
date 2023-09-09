@@ -19,7 +19,7 @@ namespace AG.DS
     >
         where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
         where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
     {
         /// <summary>
         /// The direction vector from mouse screen position to window center position.

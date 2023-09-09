@@ -54,7 +54,7 @@ namespace AG.DS
             LanguageHandler languageHandler,
             DialogueSystemWindow dsWindow
         )
-        => CreateConnector
+        => Create
             <DefaultPort, DefaultEdge, DefaultEdgeView,
             NodeCreateConnectorCallback<DefaultPort, DefaultEdge, DefaultEdgeView>,
             NodeCreateConnectorDetail<DefaultPort, DefaultEdge, DefaultEdgeView>,
@@ -78,7 +78,7 @@ namespace AG.DS
             LanguageHandler languageHandler,
             DialogueSystemWindow dsWindow
         )
-        => CreateConnector
+        => Create
             <OptionPort, OptionEdge, OptionEdgeView,
             NodeCreateConnectorCallback<OptionPort, OptionEdge, OptionEdgeView>,
             NodeCreateConnectorDetail<OptionPort, OptionEdge, OptionEdgeView>,
@@ -129,25 +129,25 @@ namespace AG.DS
         /// <typeparam name="TPort">Type port.</typeparam>
         /// <typeparam name="TEdge">Type edge.</typeparam>
         /// <typeparam name="TEdgeView">Type edge view.</typeparam>
-        /// <typeparam name="TNodeCreateCallback">Type node create callback.</typeparam>
-        /// <typeparam name="TNodeCreateDetail">Type node create detail.</typeparam>
-        /// <typeparam name="TNodeCreateObserver">Type node create observer.</typeparam>
-        /// <typeparam name="TNodeCreateWindow">Type node create window.</typeparam>
+        /// <typeparam name="TNodeCreateConnectorCallback">Type node create callback.</typeparam>
+        /// <typeparam name="TNodeCreateConnectorDetail">Type node create detail.</typeparam>
+        /// <typeparam name="TNodeCreateConnectorObserver">Type node create observer.</typeparam>
+        /// <typeparam name="TNodeCreateConnectorWindow">Type node create window.</typeparam>
         /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>
         /// <param name="dsWindow">The dialogue system window to set for.</param>
         /// 
         /// <returns>A new node create window.</returns>
-        TNodeCreateWindow CreateConnector
+        TNodeCreateConnectorWindow Create
         <
             TPort,
             TEdge,
             TEdgeView,
-            TNodeCreateCallback,
-            TNodeCreateDetail,
-            TNodeCreateObserver,
-            TNodeCreateWindow
+            TNodeCreateConnectorCallback,
+            TNodeCreateConnectorDetail,
+            TNodeCreateConnectorObserver,
+            TNodeCreateConnectorWindow
         >
         (
             GraphViewer graphViewer,
@@ -156,16 +156,16 @@ namespace AG.DS
         )
             where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
             where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
-            where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
-            where TNodeCreateCallback : NodeCreateConnectorCallback<TPort, TEdge, TEdgeView>, new()
-            where TNodeCreateDetail : NodeCreateConnectorDetail<TPort, TEdge, TEdgeView>, new()
-            where TNodeCreateObserver : NodeCreateConnectorObserver<TPort, TEdge, TEdgeView>, new()
-            where TNodeCreateWindow : NodeCreateConnectorWindowFrameBase<TPort, TEdge, TEdgeView, TNodeCreateWindow>, new()
+            where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
+            where TNodeCreateConnectorCallback : NodeCreateConnectorCallback<TPort, TEdge, TEdgeView>, new()
+            where TNodeCreateConnectorDetail : NodeCreateConnectorDetail<TPort, TEdge, TEdgeView>, new()
+            where TNodeCreateConnectorObserver : NodeCreateConnectorObserver<TPort, TEdge, TEdgeView>, new()
+            where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TEdge, TEdgeView, TNodeCreateConnectorWindow>, new()
         {
-            var detail = new TNodeCreateDetail();
-            var observer = new TNodeCreateObserver().Setup(detail, graphViewer);
-            var callback = new TNodeCreateCallback().Setup(graphViewer, languageHandler, dsWindow, observer);
-            var window = ScriptableObject.CreateInstance<TNodeCreateWindow>().Setup(callback, detail, graphViewer);
+            var detail = new TNodeCreateConnectorDetail();
+            var observer = new TNodeCreateConnectorObserver().Setup(detail, graphViewer);
+            var callback = new TNodeCreateConnectorCallback().Setup(graphViewer, languageHandler, dsWindow, observer);
+            var window = ScriptableObject.CreateInstance<TNodeCreateConnectorWindow>().Setup(callback, detail, graphViewer);
 
             return window;
         }

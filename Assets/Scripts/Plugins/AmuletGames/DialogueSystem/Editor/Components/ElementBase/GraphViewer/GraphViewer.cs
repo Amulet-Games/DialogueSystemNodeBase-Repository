@@ -61,7 +61,7 @@ namespace AG.DS
         /// <summary>
         /// Cache of the ports that are on the graph.
         /// </summary>
-        public Dictionary<string, PortBase> PortByPortGUID { get; private set; }
+        public Dictionary<Guid, PortBase> PortByPortGUID { get; private set; }
 
 
         /// <summary>
@@ -170,9 +170,9 @@ namespace AG.DS
         /// <param name="node">The port element to set for.</param>
         public void Remove(PortBase port)
         {
-            if (PortByPortGUID.ContainsKey(port.name))
+            if (PortByPortGUID.ContainsKey(port.Guid))
             {
-                PortByPortGUID.Remove(port.name);
+                PortByPortGUID.Remove(port.Guid);
             }
             else
             {
@@ -209,9 +209,9 @@ namespace AG.DS
         /// <param name="node">The port element to set for.</param>
         public void Add(PortBase port)
         {
-            if (!PortByPortGUID.ContainsKey(port.name))
+            if (!PortByPortGUID.ContainsKey(port.Guid))
             {
-                PortByPortGUID.Add(key: port.name, value: port);
+                PortByPortGUID.Add(key: port.Guid, value: port);
             }
             else
             {

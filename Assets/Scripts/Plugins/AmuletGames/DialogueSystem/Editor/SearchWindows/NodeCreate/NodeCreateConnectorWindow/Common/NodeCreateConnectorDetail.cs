@@ -10,7 +10,7 @@ namespace AG.DS
         : NodeCreateDetailBase
         where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
         where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
     {
         /// <summary>
         /// Reference of the connector port.

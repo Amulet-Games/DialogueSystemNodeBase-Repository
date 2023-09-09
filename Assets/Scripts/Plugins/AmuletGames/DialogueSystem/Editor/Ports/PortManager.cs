@@ -107,7 +107,7 @@ namespace AG.DS
             where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
             where TPortPresenter: PortPresenterFrameBase<TPort, TEdge, TEdgeView, TPortPresenter>, new()
             where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>, new()
-            where TEdgeView: EdgeViewFrameBase<TPort, TEdgeView>
+            where TEdgeView: EdgeViewFrameBase<TPort, TEdge, TEdgeView>
             where TNodeCreateConnectorWindow: NodeCreateConnectorWindowFrameBase<TPort, TEdge, TEdgeView, TNodeCreateConnectorWindow>
             where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TEdge, TEdgeView, TNodeCreateConnectorWindow, TEdgeConnectorCallback>, new()
         {
