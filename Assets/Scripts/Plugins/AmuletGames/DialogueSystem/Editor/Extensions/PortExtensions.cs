@@ -5,7 +5,7 @@ namespace AG.DS
     public static class PortExtensions
     {
         /// <summary>
-        /// Returns the port's sibling index within its parent hierarchy.
+        /// Returns the child index of the port.
         /// </summary>
         /// <param name="port">Extension port</param>
         /// <param name="additionNumber">An additional number that it can be used to combine with the result.</param>

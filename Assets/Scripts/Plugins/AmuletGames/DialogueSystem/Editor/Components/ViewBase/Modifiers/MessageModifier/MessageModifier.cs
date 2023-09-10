@@ -211,7 +211,7 @@ namespace AG.DS
             {
                 messageTextView.Field = LanguageTextFieldPresenter.CreateElement
                 (
-                    isMultiLine: true,
+                    multiline: true,
                     placeholderText: messageTextView.placeholderText,
                     fieldUSS: StyleConfig.Modifier_Message_Text_TextField
                 );

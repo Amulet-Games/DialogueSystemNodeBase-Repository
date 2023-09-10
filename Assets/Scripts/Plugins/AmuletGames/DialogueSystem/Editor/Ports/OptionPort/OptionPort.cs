@@ -3,9 +3,11 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
+    /// <inheritdoc />
     public class OptionPort : PortFrameBase
     <
         OptionPort,
+        OptionPortCreateDetail,
         OptionEdge,
         OptionEdgeView
     >
@@ -34,15 +36,24 @@ namespace AG.DS
         OptionPort m_opponentPort;
 
 
+        /// <summary>
+        /// Is the option port comes from the option port group.
+        /// </summary>
+        public bool IsGroup;
+
+
         /// <inheritdoc />
-        public OptionPort(PortCreateDetail detail) : base(detail) { }
+        public OptionPort(OptionPortCreateDetail detail) : base(detail)
+        {
+            IsGroup = detail.IsGroup;
+        }
 
 
         /// <inheritdoc />
         public override OptionPort Setup
         (
             EdgeConnector edgeConnector,
-            PortCreateDetail detail
+            PortCreateDetailBase detail
         )
         {
             base.Setup(edgeConnector, detail);

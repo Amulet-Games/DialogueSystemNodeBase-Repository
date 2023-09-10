@@ -40,7 +40,8 @@ namespace AG.DS
                 cell.Port = PortManager.Instance.CreateOption
                 (
                     connectorWindow: connectorWindow,
-                    direction: direction
+                    direction: direction,
+                    isGroup: true
                 );
             }
 

@@ -37,7 +37,7 @@ namespace AG.DS
         {
             this.cell = cell;
             this.node = node;
-            this.group = groupView;
+            group = groupView;
         }
 
 

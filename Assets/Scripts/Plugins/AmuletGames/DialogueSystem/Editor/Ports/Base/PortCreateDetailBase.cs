@@ -6,7 +6,7 @@ namespace AG.DS
     /// <summary>
     /// Holds the raw data that can be used when creating a new port.
     /// </summary>
-    public class PortCreateDetail
+    public class PortCreateDetailBase
     {
         /// <summary>
         /// The creating port's type.
@@ -32,13 +32,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the port create detail class.
+        /// Constructor of the port create detail base class.
         /// </summary>
         /// <param name="portType">The port type to set for.</param>
         /// <param name="direction">The direction to set for.</param>
         /// <param name="capacity">The capacity to set for.</param>
         /// <param name="name">The name to set for.</param>
-        public PortCreateDetail
+        public PortCreateDetailBase
         (
             PortType portType,
             Direction direction,

@@ -44,7 +44,7 @@ namespace AG.DS
             void CreateHeadBar()
             {
                 headBar = new();
-                headBar.AddToClassList(StyleConfig.HeadBar_Main);
+                headBar.AddToClassList(StyleConfig.HeadBar);
             }
 
             void SetupDetail()
@@ -55,7 +55,7 @@ namespace AG.DS
             void SetupContainers()
             {
                 buttonsContainer = new();
-                buttonsContainer.AddToClassList(StyleConfig.HeadBar_ButtonContainer);
+                buttonsContainer.AddToClassList(StyleConfig.HeadBar_Button_Container);
             }
 
             void SetupSaveButton()
@@ -63,7 +63,7 @@ namespace AG.DS
                 headBarView.SaveButton = CommonButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.HeadBar_SaveButton_LabelText,
-                    buttonUSS: StyleConfig.HeadBar_SaveButton
+                    buttonUSS: StyleConfig.HeadBar_Save_Button
                 );
             }
 
@@ -72,7 +72,7 @@ namespace AG.DS
                 headBarView.LoadButton = CommonButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.HeadBar_LoadButton_LabelText,
-                    buttonUSS: StyleConfig.HeadBar_LoadButton
+                    buttonUSS: StyleConfig.HeadBar_Load_Button
                 );
             }
 
@@ -80,12 +80,12 @@ namespace AG.DS
             {
                 headBarView.LanguageToolbarMenu = ToolbarMenuPresenter.CreateElement
                 (
-                    labelText: LanguageProvider.GetShort(type: languageHandler.CurrentLanguage),
-                    arrowIcon: ConfigResourcesManager.SpriteConfig.DropdownArrowIcon1Sprite,
-                    menuUSS: StyleConfig.HeadBar_LanguageToolbarMenu_Main,
-                    centerContainerUSS: StyleConfig.HeadBar_LanguageToolbarMenu_CenterContainer,
-                    textLabelUSS: StyleConfig.HeadBar_LanguageToolbarMenu_TextLabel,
-                    arrowImageUSS: StyleConfig.HeadBar_LanguageToolbarMenu_ArrowImage
+                    dropdownLabel: LanguageProvider.GetShort(type: languageHandler.CurrentLanguage),
+                    dropdownIcon: ConfigResourcesManager.SpriteConfig.DropdownArrowIcon1Sprite,
+                    toolbarMenuUSS: StyleConfig.HeadBar_LanguageToolbarMenu_Main,
+                    centerContainerUSS: StyleConfig.HeadBar_LanguageToolbarMenu_Center_Container,
+                    dropdownLabelUSS: StyleConfig.HeadBar_LanguageToolbarMenu_Dropdown_Label,
+                    dropdownImageUSS: StyleConfig.HeadBar_LanguageToolbarMenu_Dropdown_Image
                 );
             }
 
@@ -94,7 +94,7 @@ namespace AG.DS
                 GraphTitleTextFieldPresenter.CreateElement
                 (
                     view: headBarView.GraphTitleTextFieldView,
-                    fieldUSS: StyleConfig.HeadBar_GraphTitleTextField
+                    fieldUSS: StyleConfig.HeadBar_GraphTitleText_Field
                 );
             }
 

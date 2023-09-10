@@ -7,13 +7,13 @@ namespace AG.DS
         /// <summary>
         /// Create a new language text field element.
         /// </summary>
-        /// <param name="isMultiLine">Can the texts separate into multiple lines inside the text field when they too long to show in one line.</param>
+        /// <param name="multiline">Set this to true to allow multiple lines in the text field and false if otherwise.</param>
         /// <param name="placeholderText">The placeholder text to set for the field.</param>
-        /// <param name="fieldUSS">The USS style to set for the field.</param>
+        /// <param name="fieldUSS">The field USS style to set for.</param>
         /// <returns>A new language text field element.</returns>
         public static TextField CreateElement
         (
-            bool isMultiLine,
+            bool multiline,
             string placeholderText,
             string fieldUSS
         )
@@ -37,12 +37,12 @@ namespace AG.DS
 
             void SetFieldDetails()
             {
-                textField.multiline = isMultiLine;
+                textField.multiline = multiline;
 
                 // Set white space style,
                 // Normal means the texts will auto line break when it reaches the end of the field input element,
                 // No wrap means the texts are shown in one line even when it's expanded outside of the field input element.
-                textField.style.whiteSpace = isMultiLine
+                textField.style.whiteSpace = multiline
                     ? WhiteSpace.Normal
                     : WhiteSpace.NoWrap;
 

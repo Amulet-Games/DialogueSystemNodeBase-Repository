@@ -7,10 +7,11 @@ namespace AG.DS
     public class OptionEdgeConnectorCallback : EdgeConnectorCallbackFrameBase
     <
         OptionPort,
+        OptionPortCreateDetail,
         OptionEdge,
         OptionEdgeView,
-        NodeCreateOptionConnectorWindow,
-        OptionEdgeConnectorCallback
+        OptionEdgeConnectorCallback,
+        NodeCreateOptionConnectorWindow
     >
     {
         /// <inheritdoc />

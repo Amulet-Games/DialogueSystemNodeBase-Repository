@@ -4,13 +4,15 @@ namespace AG.DS
     public abstract class EdgeViewFrameBase
     <
         TPort,
+        TPortCreateDetail,
         TEdge,
         TEdgeView
     >
         : EdgeViewBase
-        where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
-        where TEdge: EdgeFrameBase<TPort, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TPortCreateDetail : PortCreateDetailBase
+        where TEdge: EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
     {
         /// <summary>
         /// Reference of the output port.

@@ -65,7 +65,7 @@ namespace AG.DS
             void SetupContainers()
             {
                 helperButtonsContainer = new();
-                helperButtonsContainer.AddToClassList(StyleConfig.Helper_Button_Container);
+                helperButtonsContainer.AddToClassList(StyleConfig.EventModifier_HelperButton_Container);
 
                 dialogueEventContainer = new();
                 dialogueEventContainer.AddToClassList(StyleConfig.EventModifier_DialogueEvent_Container);

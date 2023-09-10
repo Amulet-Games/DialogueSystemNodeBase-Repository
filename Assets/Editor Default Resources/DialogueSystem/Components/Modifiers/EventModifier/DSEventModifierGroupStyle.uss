@@ -1,9 +1,6 @@
-/* =========================================================== Event Modifier Group =========================================================== */
-
 /*< ---------------------------------------------------------- Main >*/
-.event-modifier-group {
+.eventModifier-group {
 	
 	/* top - right - bottom - left */
 	padding: 5px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
 }

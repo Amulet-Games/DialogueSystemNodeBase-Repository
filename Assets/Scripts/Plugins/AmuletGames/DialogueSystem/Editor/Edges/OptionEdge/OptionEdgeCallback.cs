@@ -1,11 +1,10 @@
-using UnityEngine;
-
 namespace AG.DS
 {
     /// <inheritdoc />
     public class OptionEdgeCallback : EdgeCallbackFrameBase
     <
         OptionPort,
+        OptionPortCreateDetail,
         OptionEdge,
         OptionEdgeView
     >

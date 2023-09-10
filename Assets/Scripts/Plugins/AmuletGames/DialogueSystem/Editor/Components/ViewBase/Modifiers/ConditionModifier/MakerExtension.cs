@@ -91,7 +91,7 @@ namespace AG.DS
             {
                 SecondTermTextFieldView.TextField = CommonTextFieldPresenter.CreateElement
                 (
-                    isMultiLine: false,
+                    multiline: false,
                     placeholderText: SecondTermTextFieldView.PlaceholderText,
                     fieldUSS: StyleConfig.Modifier_Condition_Rooted_SecondTerm_TextField
                 );

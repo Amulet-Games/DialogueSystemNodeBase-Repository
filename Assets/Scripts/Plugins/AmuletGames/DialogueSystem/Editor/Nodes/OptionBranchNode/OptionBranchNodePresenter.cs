@@ -31,7 +31,8 @@ namespace AG.DS
             View.InputOptionPort = PortManager.Instance.CreateOption
             (
                 connectorWindow: Node.GraphViewer.NodeCreateOptionConnectorWindow,
-                direction: Direction.Input
+                direction: Direction.Input,
+                isGroup: false
             );
 
             View.OutputDefaultPort = PortManager.Instance.CreateDefault
@@ -121,7 +122,7 @@ namespace AG.DS
             {
                 View.BranchTitleTextFieldView.Field = LanguageTextFieldPresenter.CreateElement
                 (
-                    isMultiLine: false,
+                    multiline: false,
                     placeholderText: View.BranchTitleTextFieldView.placeholderText,
                     fieldUSS: StyleConfig.OptionBranch_Title_TextField
                 );

@@ -7,8 +7,8 @@ namespace AG.DS
         /// <summary>
         /// Create a new common integer field element.
         /// </summary>
-        /// <param name="view">The common integer field view to set for the field.</param>
-        /// <param name="fieldUSS">The USS style to set for the field.</param>
+        /// <param name="view">The common integer field view to set for.</param>
+        /// <param name="fieldUSS">The field USS style to set for.</param>
         public static void CreateElement
         (
             CommonIntegerFieldView view,

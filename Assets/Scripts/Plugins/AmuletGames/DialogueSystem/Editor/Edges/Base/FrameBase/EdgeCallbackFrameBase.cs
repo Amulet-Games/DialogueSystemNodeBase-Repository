@@ -4,13 +4,15 @@ namespace AG.DS
     public abstract class EdgeCallbackFrameBase
     <
         TPort,
+        TPortCreateDetail,
         TEdge,
         TEdgeView
     >
         : EdgeCallbackBase, IEdgeCallback
-        where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
-        where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TPortCreateDetail : PortCreateDetailBase
+        where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
     {
         /// <summary>
         /// Reference of the edge element.

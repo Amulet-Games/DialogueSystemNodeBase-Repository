@@ -38,16 +38,15 @@ namespace AG.DS
         #endregion
 
         #region HeadBar USS Classes.
-        public const string HeadBar_Main = "headBar_Main";
-        public const string HeadBar_ButtonContainer = "headBar_ButtonContainer";
-        public const string HeadBar_SaveButton = "headBar_SaveButton";
-        public const string HeadBar_LoadButton = "headBar_LoadButton";
-        public const string HeadBar_GraphTitleTextField = "headBar_GraphTitleTextField";
-
-        public const string HeadBar_LanguageToolbarMenu_Main = "headBar_LanguageToolbarMenu_Main";
-        public const string HeadBar_LanguageToolbarMenu_CenterContainer = "headBar_LanguageToolbarMenu_CenterContainer";
-        public const string HeadBar_LanguageToolbarMenu_TextLabel = "headBar_LanguageToolbarMenu_TextLabel";
-        public const string HeadBar_LanguageToolbarMenu_ArrowImage = "headBar_LanguageToolbarMenu_ArrowImage";
+        public const string HeadBar = "headBar";
+        public const string HeadBar_Button_Container = "headBar-button-container";
+        public const string HeadBar_Save_Button = "headBar-save-button";
+        public const string HeadBar_Load_Button = "headBar-load-button";
+        public const string HeadBar_GraphTitleText_Field = "headBar-graphTitleText-field";
+        public const string HeadBar_LanguageToolbarMenu_Main = "headBar-languageToolbarMenu-main";
+        public const string HeadBar_LanguageToolbarMenu_Center_Container = "headBar-languageToolbarMenu-center-container";
+        public const string HeadBar_LanguageToolbarMenu_Dropdown_Label = "headBar-languageToolbarMenu-dropdown-label";
+        public const string HeadBar_LanguageToolbarMenu_Dropdown_Image = "headBar-languageToolbarMenu-dropdown-image";
         #endregion
 
         #region Input Hint USS Classes.
@@ -56,23 +55,30 @@ namespace AG.DS
         public const string InputHint_Label = "inputHint-label";
         #endregion
 
-        #region Modifier Event USS Classes.
-        public const string Helper_Button_Container = "helper-button-container";
-        public const string EventModifier_MoveUp_Button = "eventModifier_MoveUp_Button";
-        public const string EventModifier_MoveDown_Button = "eventModifier_MoveDown_Button";
-        public const string EventModifier_Rename_Button = "eventModifier_Rename_Button";
-        public const string EventModifier_Remove_Button = "eventModifier_Remove_Button";
-        public const string EventModifier_DialogueEvent_Container = "eventModifier_DialogueEvent_Container";
-        public const string EventModifier_DialogueEvent_Label = "eventModifier_DialogueEvent_Label";
-        public const string EventModifier_DialogueEvent_Field = "eventModifier_DialogueEvent_Field";
-        public const string EventModifier_StartDelay_Container = "eventModifier_StartDelay_Container";
-        public const string EventModifier_StartDelay_Label = "eventModifier_StartDelay_Label";
-        public const string EventModifier_DelaySeconds_Container = "eventModifier_DelaySeconds_Container";
-        public const string EventModifier_DelaySeconds_Field = "eventModifier_DelaySeconds_Field";
-        public const string EventModifier_DelaySeconds_Label = "eventModifier_DelaySeconds_Label";
+        #region Folder Common USS Classes.
+        public const string Folder = "folder";
+        public const string Folder_Title_Container = "folder-title-container";
+        public const string Folder_Expand_Button = "folder-expand-button";
+        public const string Folder_TitleText_Field = "folder_titleText-field";
+        public const string Folder_Content_Container = "folder-content-container";
+        public const string Folder_Closed = "folder-closed";
+        #endregion
 
-        /*< -------------------- Group -------------------- >*/
-        public const string Event_Modifier_Group = "event-modifier-group";
+        #region Modifier Event USS Classes.
+        public const string EventModifier_HelperButton_Container = "eventModifier-helperButton-container";
+        public const string EventModifier_MoveUp_Button = "eventModifier-moveUp-button";
+        public const string EventModifier_MoveDown_Button = "eventModifier-moveDown-button";
+        public const string EventModifier_Rename_Button = "eventModifier-rename-button";
+        public const string EventModifier_Remove_Button = "eventModifier-remove-button";
+        public const string EventModifier_DialogueEvent_Container = "eventModifier-dialogueEvent-container";
+        public const string EventModifier_DialogueEvent_Label = "eventModifier-dialogueEvent-label";
+        public const string EventModifier_DialogueEvent_Field = "eventModifier-dialogueEvent-field";
+        public const string EventModifier_StartDelay_Container = "eventModifier-startDelay-container";
+        public const string EventModifier_StartDelay_Label = "eventModifier-startDelay-label";
+        public const string EventModifier_DelaySeconds_Container = "eventModifier-delaySeconds-container";
+        public const string EventModifier_DelaySeconds_Field = "eventModifier-delaySeconds-field";
+        public const string EventModifier_DelaySeconds_Label = "eventModifier-delaySeconds-label";
+        public const string EventModifier_Group = "eventModifier-group";
         #endregion
 
         #region Modifier Condition USS Classes.
@@ -157,17 +163,8 @@ namespace AG.DS
         public const string Segment_Event_Content_Box = "segment_Event_Content_Box";
         #endregion
 
-        #region Folder Common USS Classes.
-        public const string Folder_Main = "folder_Main";
-        public const string Folder_Title_Container = "folder_Title_Container";
-        public const string Folder_ExpandFolder_Button = "folder_ExpandFolder_Button";
-        public const string Folder_Title_TextField = "folder_Title_TextField";
-        public const string Folder_ContentContainer = "folder_ContentContainer";
-        public const string Folder_Closed = "folder_Closed";
-        #endregion
-
         #region Content Button USS Classes.
-        public const string ContentButton_Main = "contentButton-main";
+        public const string ContentButton = "contentButton";
         public const string ContentButton_Label = "contentButton-label";
         public const string ContentButton_Icon = "contentButton-icon";
         #endregion

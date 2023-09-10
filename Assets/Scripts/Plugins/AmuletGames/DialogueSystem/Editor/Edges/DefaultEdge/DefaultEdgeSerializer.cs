@@ -4,6 +4,7 @@ namespace AG.DS
     public class DefaultEdgeSerializer : EdgeSerializerFrameBase
     <
         DefaultPort,
+        PortCreateDetailBase,
         DefaultEdge,
         DefaultEdgeView,
         EdgeModelBase

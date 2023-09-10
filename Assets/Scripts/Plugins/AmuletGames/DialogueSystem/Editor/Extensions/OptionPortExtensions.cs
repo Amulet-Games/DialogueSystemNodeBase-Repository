@@ -1,7 +1,40 @@
+using UnityEngine;
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     public static class OptionPortExtensions
     {
+        /// <summary>
+        /// Returns the child index of the option port.
+        /// </summary>
+        /// <param name="port">Extension option port.</param>
+        /// <param name="additionNumber">An additional number that it can be used to combine with the result.</param>
+        /// <returns>The sibling index of the port within its parent hierarchy.</returns>
+        public static int GetSiblingIndex
+        (
+            this OptionPort port,
+            int additionNumber = 1
+        )
+        {
+            VisualElement outputPortContainer;
+            int indexOf;
+            
+            if (port.IsGroup)
+            {
+                outputPortContainer = port.parent.parent;
+                indexOf = outputPortContainer.IndexOf(port.parent);
+            }
+            else
+            {
+                outputPortContainer = port.parent;
+                indexOf = outputPortContainer.IndexOf(port);
+            }
+
+            return indexOf + additionNumber;
+        }
+
+
         /// <summary>
         /// Add the option port to the connect style class if it's connecting to another port,
         /// <br>Otherwise remove the port from the connect style class.</br>

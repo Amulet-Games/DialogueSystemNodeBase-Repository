@@ -26,7 +26,7 @@ namespace AG.DS
         /// <summary>
         /// Element that contains the group modifiers.
         /// </summary>
-        public Box GroupContainer;
+        public VisualElement GroupContainer;
 
 
         /// <summary>

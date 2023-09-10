@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -10,13 +9,15 @@ namespace AG.DS
     public abstract class PortFrameBase
     <
         TPort,
+        TPortCreateDetail,
         TEdge,
         TEdgeView
     >
         : PortBase
-        where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
-        where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TPortCreateDetail : PortCreateDetailBase
+        where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
     {
         /// <summary>
         /// The property of edge connector.
@@ -42,7 +43,7 @@ namespace AG.DS
         /// Constructor of the port frame base class.
         /// </summary>
         /// <param name="detail">The port create detail to set for.</param>
-        protected PortFrameBase(PortCreateDetail detail) : base(detail.Direction, detail.Capacity) { }
+        protected PortFrameBase(PortCreateDetailBase detail) : base(detail.Direction, detail.Capacity) { }
 
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="edgeConnector">The edge connector to set for.</param>
         /// <param name="detail">The port create detail to set for.</param>
-        public virtual TPort Setup(EdgeConnector edgeConnector, PortCreateDetail detail)
+        public virtual TPort Setup(EdgeConnector edgeConnector, PortCreateDetailBase detail)
         {
             EdgeConnector = edgeConnector;
             portName = detail.Name;
@@ -76,21 +77,7 @@ namespace AG.DS
             if (!connected)
                 return;
 
-            if (this.IsSingle())
-            {
-                var edge = (TEdge)connections.First();
-                m_Disconnect(edge);
-            }
-            else
-            {
-                var edges = connections.ToArray();
-                for (int i = 0; i < edges.Length; i++)
-                {
-                    m_Disconnect((TEdge)edges[i]);
-                }
-            }
-
-            void m_Disconnect(TEdge edge)
+            foreach (TEdge edge in connections.ToList())
             {
                 // Disconnect opponent port.
                 {

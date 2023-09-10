@@ -30,7 +30,7 @@ namespace AG.DS
             void CreateFolder()
             {
                 folder = new(folderTitle);
-                folder.AddToClassList(StyleConfig.Folder_Main);
+                folder.AddToClassList(StyleConfig.Folder);
             }
 
             void SetupContainers()
@@ -39,7 +39,7 @@ namespace AG.DS
                 folder.TitleContainer.AddToClassList(StyleConfig.Folder_Title_Container);
 
                 folder.ContentContainer = new();
-                folder.ContentContainer.AddToClassList(StyleConfig.Folder_ContentContainer);
+                folder.ContentContainer.AddToClassList(StyleConfig.Folder_Content_Container);
             }
 
             void SetupTitleTextField()
@@ -47,7 +47,7 @@ namespace AG.DS
                 FolderTitleTextFieldPresenter.CreateElement
                 (
                     view: folder.TitleTextFieldView,
-                    fieldUSS: StyleConfig.Folder_Title_TextField
+                    fieldUSS: StyleConfig.Folder_TitleText_Field
                 );
             }
 
@@ -56,7 +56,7 @@ namespace AG.DS
                 folder.ExpandButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.SpriteConfig.FolderExpandButtonCloseIconSprite,
-                    buttonUSS: StyleConfig.Folder_ExpandFolder_Button
+                    buttonUSS: StyleConfig.Folder_Expand_Button
                 );
 
                 folder.ExpandButton.AddBackgroundHighlighter();

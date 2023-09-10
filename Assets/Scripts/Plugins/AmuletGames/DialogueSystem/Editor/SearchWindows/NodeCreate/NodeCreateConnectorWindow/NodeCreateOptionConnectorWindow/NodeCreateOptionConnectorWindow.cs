@@ -4,6 +4,7 @@ namespace AG.DS
     public class NodeCreateOptionConnectorWindow : NodeCreateConnectorWindowFrameBase
     <
         OptionPort,
+        OptionPortCreateDetail,
         OptionEdge,
         OptionEdgeView,
         NodeCreateOptionConnectorWindow
@@ -12,8 +13,8 @@ namespace AG.DS
         /// <inheritdoc />
         public override NodeCreateOptionConnectorWindow Setup
         (
-            NodeCreateConnectorCallback<OptionPort, OptionEdge, OptionEdgeView> callback,
-            NodeCreateConnectorDetail<OptionPort, OptionEdge, OptionEdgeView> detail,
+            NodeCreateConnectorCallback<OptionPort, OptionPortCreateDetail, OptionEdge, OptionEdgeView> callback,
+            NodeCreateConnectorDetail<OptionPort, OptionPortCreateDetail, OptionEdge, OptionEdgeView> detail,
             GraphViewer graphViewer
         )
         {

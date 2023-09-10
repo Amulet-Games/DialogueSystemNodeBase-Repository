@@ -8,7 +8,7 @@ namespace AG.DS
         /// Create a new graph title text field element.
         /// </summary>
         /// <param name="view">The graph title text field view to set for.</param>
-        /// <param name="fieldUSS">The USS style to set for the field.</param>
+        /// <param name="fieldUSS">The field USS style to set for.</param>
         /// <returns>A new graph title text field element.</returns>
         public static TextField CreateElement
         (

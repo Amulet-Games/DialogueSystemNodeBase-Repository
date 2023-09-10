@@ -1,13 +1,8 @@
-/* =========================================================== Event Modifier =========================================================== */
-
 /*< ---------------------------------------------------------- Helper Button Container >*/
-.helper-button-container {
-
-	background-color: rgba(0, 0, 0, 0);
+.eventModifier-helperButton-container {
 
 	align-items: center;
 
-	flex-grow: 0;
 	flex-shrink: 0;
 	flex-direction: row;
 
@@ -19,7 +14,7 @@
 
 
 /*< ---------------------------------------------------------- Move Up Button >*/
-.eventModifier_MoveUp_Button {
+.eventModifier-moveUp-button {
 
 	align-self: center;
 
@@ -32,12 +27,12 @@
 	margin: 3px 2px 0px 0px;
 }
 
-.eventModifier_MoveUp_Button:disabled {
+.eventModifier-moveUp-button:disabled {
 
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier_MoveUp_Button:enabled:hover
+.eventModifier-moveUp-button:enabled:hover
 .background-highlighter {
 	
 	align-self: center;
@@ -48,12 +43,12 @@
 	width: 21px;
 
 	/* top - right - bottom - left */
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
 
 /*< ---------------------------------------------------------- Move Down Button >*/
-.eventModifier_MoveDown_Button {
+.eventModifier-moveDown-button {
 
 	align-self: center;
 
@@ -66,12 +61,12 @@
 	margin: 3px 0px 0px 0px;
 }
 
-.eventModifier_MoveDown_Button:disabled {
+.eventModifier-moveDown-button:disabled {
 
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier_MoveDown_Button:enabled:hover
+.eventModifier-moveDown-button:enabled:hover
 .background-highlighter {
 	
 	align-self: center;
@@ -82,12 +77,12 @@
 	width: 21px;
 
 	/* top - right - bottom - left */
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
 
 /*< ---------------------------------------------------------- Rename Button >*/
-.eventModifier_Rename_Button {
+.eventModifier-rename-button {
 
 	align-self: center;
 
@@ -100,12 +95,12 @@
 	margin: 2.5px -2px 0px 0px;
 }
 
-.eventModifier_Rename_Button:disabled {
+.eventModifier-rename-button:disabled {
 	
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier_Rename_Button:enabled:hover
+.eventModifier-rename-button:enabled:hover
 .background-highlighter {
 	
 	align-self: center;
@@ -117,12 +112,12 @@
 
 	/* top - right - bottom - left */
 	margin: 1px 0px 0px 0px;
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
 
 /*< ---------------------------------------------------------- Remove Button >*/
-.eventModifier_Remove_Button {
+.eventModifier-remove-button {
 
 	align-self: center;
 
@@ -135,12 +130,12 @@
 	margin: 4px 2.5px 0px 0px;
 }
 
-.eventModifier_Remove_Button:disabled {
+.eventModifier-remove-button:disabled {
 
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier_Remove_Button:enabled:hover
+.eventModifier-remove-button:enabled:hover
 .background-highlighter {
 	
 	align-self: center;
@@ -152,23 +147,23 @@
 
 	/* top - right - bottom - left */
 	margin: 2.5px 0px 0px 0px;
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
 
 /*< ---------------------------------------------------------- Dialogue Event Container >*/
-.eventModifier_DialogueEvent_Container {
+.eventModifier-dialogueEvent-container {
 	
 	background-color: rgba(42, 42, 42, 1);
 
 	/* top - right - bottom - left */
 	margin: 0px 6px 0px 6px;
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
 
 /*< ---------------------------------------------------------- Dialogue Event Label >*/
-.eventModifier_DialogueEvent_Label {
+.eventModifier-dialogueEvent-label {
 	
 	color: rgba(210, 210, 210, 1);
 	
@@ -186,7 +181,7 @@
 
 
 /*< ---------------------------------------------------------- Dialogue Event Field >*/
-.eventModifier_DialogueEvent_Field {
+.eventModifier-dialogueEvent-field {
 
 	height: 27px;
 	width: Auto;
@@ -202,26 +197,26 @@
 
 	/* top - right - bottom - left */
 	margin: 3px 6px 6px 6px;
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
-.eventModifier_DialogueEvent_Field:hover {
+.eventModifier-dialogueEvent-field:hover {
 
 	border-color: rgba(71, 71, 71, 1);
 
 	/* top - right - bottom - left */
-	border-width: 1px 1px 1px 1px;
+	border-width: 1px;
 }
 
-.eventModifier_DialogueEvent_Field:focus {
+.eventModifier-dialogueEvent-field:focus {
 
 	border-color: rgba(58, 121, 187, 1);
 
 	/* top - right - bottom - left */
-	border-width: 1px 1px 1px 1px;
+	border-width: 1px;
 }
 
-.eventModifier_DialogueEvent_Field
+.eventModifier-dialogueEvent-field
 .object-field-input {
 
 	background-color: rgba(32, 32, 32, 1);
@@ -235,20 +230,20 @@
 	overflow: hidden;
 
 	/* top - right - bottom - left */
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
-.eventModifier_DialogueEvent_Field:hover
+.eventModifier-dialogueEvent-field:hover
 .object-field-input,
 
-.eventModifier_DialogueEvent_Field:focus
+.eventModifier-dialogueEvent-field:focus
 .object-field-input {
 
 	/* top - right - bottom - left */
 	margin: -1px -1.5px -1px -1.5px;
 }
 
-.eventModifier_DialogueEvent_Field
+.eventModifier-dialogueEvent-field
 .object-field-display {
 	
 	flex-basis: 0;
@@ -262,7 +257,7 @@
 	-unity-slice-left: 4;
 }
 
-.eventModifier_DialogueEvent_Field
+.eventModifier-dialogueEvent-field
 .object-field-display-image {
 
 	height: 18.5px;
@@ -276,13 +271,13 @@
 	--unity-image-tint-color: white;
 }
 
-.eventModifier_DialogueEvent_Field.object-field-empty
+.eventModifier-dialogueEvent-field.object-field-empty
 .object-field-display-image {
 
 	--unity-image-tint-color: rgba(81, 81, 81, 1);
 }
 
-.eventModifier_DialogueEvent_Field
+.eventModifier-dialogueEvent-field
 .object-field-display-label {
 
 	color: white;
@@ -305,13 +300,13 @@
 	margin: 0px 3px 0px 3px;
 }
 
-.eventModifier_DialogueEvent_Field.object-field-empty
+.eventModifier-dialogueEvent-field.object-field-empty
 .object-field-display-label {
 	
 	color: rgba(81, 81, 81, 1);
 }
 
-.eventModifier_DialogueEvent_Field
+.eventModifier-dialogueEvent-field
 .unity-object-field__selector {
 
 	background-color: rgba(0, 0, 0, 0);
@@ -333,7 +328,7 @@
 	margin: 0px 1px 0px 0px;
 }
 
-.eventModifier_DialogueEvent_Field
+.eventModifier-dialogueEvent-field
 .unity-object-field__selector:hover
 .background-highlighter {
 	
@@ -346,25 +341,25 @@
 	
 	/* top - right - bottom - left */
 	margin: 0.5px 0px 0px 0px;
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
 
 /*< ---------------------------------------------------------- Start Delay Container >*/
-.eventModifier_StartDelay_Container {
+.eventModifier-startDelay-container {
 	
 	background-color: rgba(42, 42, 42, 1);
 
 	width: 135px;
 
 	/* top - right - bottom - left */
-	margin: 6px 6px 6px 6px;
-	border-radius: 4px 4px 4px 4px;
+	margin: 6px;
+	border-radius: 4px;
 }
 
 
 /*< ---------------------------------------------------------- Start Delay Label >*/
-.eventModifier_StartDelay_Label {
+.eventModifier-startDelay-label {
 	
 	color: rgba(210, 210, 210, 1);
 	
@@ -382,7 +377,7 @@
 
 
 /*< ---------------------------------------------------------- Delay Seconds Container >*/
-.eventModifier_DelaySeconds_Container {
+.eventModifier-delaySeconds-container {
 	
 	flex-direction: row;
 
@@ -391,7 +386,7 @@
 
 
 /*< ---------------------------------------------------------- Delay Seconds Field >*/
-.eventModifier_DelaySeconds_Field {
+.eventModifier-delaySeconds-field {
 	
 	background-color: rgba(32, 32, 32, 1);
 
@@ -411,29 +406,29 @@
 
 	/* top - right - bottom - left */
 	margin: 4px 6px 6px 6px;
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 
 	--unity-selection-color: rgba(61, 128, 223, 0.65);
 	--unity-cursor-color: rgba(180, 180, 180, 1);
 }
 
-.eventModifier_DelaySeconds_Field:hover {
+.eventModifier-delaySeconds-field:hover {
 	
 	border-color: rgba(101, 101, 101, 1);
 
 	/* top - right - bottom - left */
-	border-width: 0.5px 0.5px 0.5px 0.5px;
+	border-width: 0.5px;
 }
 
-.eventModifier_DelaySeconds_Field:focus {
+.eventModifier-delaySeconds-field:focus {
 	
 	border-color: rgba(58, 121, 187, 1);
 
 	/* top - right - bottom - left */
-	border-width: 0.5px 0.5px 0.5px 0.5px;
+	border-width: 0.5px;
 }
 
-.eventModifier_DelaySeconds_Field
+.eventModifier-delaySeconds-field
 .double-field-input {
 
 	cursor: text;
@@ -450,7 +445,7 @@
 	--unity-sync-text-editor: true;
 }
 
-.eventModifier_DelaySeconds_Field
+.eventModifier-delaySeconds-field
 .double-field-element {
 
 	color: white;
@@ -471,10 +466,10 @@
 	margin: 0px 4.5px 0px 4.5px;
 }
 
-.eventModifier_DelaySeconds_Field:hover
+.eventModifier-delaySeconds-field:hover
 .double-field-element,
 
-.eventModifier_DelaySeconds_Field:focus
+.eventModifier-delaySeconds-field:focus
 .double-field-element
 {
 	/* top - right - bottom - left */
@@ -483,7 +478,7 @@
 
 
 /*< ---------------------------------------------------------- Delay Seconds Label >*/
-.eventModifier_DelaySeconds_Label {
+.eventModifier-delaySeconds-label {
 	
 	align-self: center;
 	

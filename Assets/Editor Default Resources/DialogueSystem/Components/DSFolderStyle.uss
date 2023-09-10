@@ -1,19 +1,15 @@
-/* =========================================================== Folder =========================================================== */
-
 /*< ---------------------------------------------------------- Main >*/
-.folder_Main {
+.folder {
 	
 	background-color: rgba(51, 51, 51, 1);
 
 	/* top - right - bottom - left */
 	margin: 0px 5px 5px 5px;
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
-
-/* =========================================================== Expand Button =========================================================== */
-
-.folder_ExpandFolder_Button {
+/*< ---------------------------------------------------------- Expand Button >*/
+.folder-expand-button {
 	
 	align-self: center;
 	
@@ -28,19 +24,19 @@
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.folder_Closed
-.folder_ExpandFolder_Button {
+.folder-closed
+.folder-expand-button {
 	
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 2px;
 }
 
-.folder_ExpandFolder_Button:hover {
+.folder-expand-button:hover {
 
 	-unity-background-image-tint-color: white;
 }
 
-.folder_ExpandFolder_Button:hover
+.folder-expand-button:hover
 .background-highlighter {
 	
 	align-self: center;
@@ -52,11 +48,11 @@
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 0px;
-	border-radius: 3px 3px 3px 3px;
+	border-radius: 3px;
 }
 
-.folder_Closed
-.folder_ExpandFolder_Button:hover
+.folder-closed
+.folder-expand-button:hover
 .background-highlighter {
 	
 	/* top - right - bottom - left */
@@ -64,10 +60,8 @@
 }
 
 
-/* =========================================================== Title =========================================================== */
-
-/*< ---------------------------------------------------------- Container >*/
-.folder_Title_Container {
+/*< ---------------------------------------------------------- Title Container >*/
+.folder-title-container {
 	
 	height: 30px;
 
@@ -77,15 +71,15 @@
 	border-radius: 4px 4px 0px 0px;
 }
 
-.folder_Closed
-.folder_Title_Container {
+.folder-closed
+.folder-title-container {
 	
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
 
-/*< ---------------------------------------------------------- Text Field >*/
-.folder_Title_TextField {
+/*< ---------------------------------------------------------- Title Text Field >*/
+.folder_titleText-field {
 	
 	height: 25px;
 
@@ -101,7 +95,7 @@
 	--unity-cursor-color: rgba(180, 180, 180, 1);
 }
 
-.folder_Title_TextField
+.folder_titleText-field
 .text-field-input {
 	
 	cursor: text;
@@ -114,7 +108,7 @@
 	--unity-sync-text-editor: true;
 }
 
-.folder_Title_TextField
+.folder_titleText-field
 .text-field-input.pseudo-focus  {
 
 	overflow: visible;
@@ -123,7 +117,7 @@
 	margin: 0px 0px 0px -4.5px;
 }
 
-.folder_Title_TextField
+.folder_titleText-field
 .text-field-element {
 	
 	color: white;
@@ -139,10 +133,10 @@
 	letter-spacing: 0.3px;
 
 	/* top - right - bottom - left */
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
-.folder_Title_TextField
+.folder_titleText-field
 .text-field-input.pseudo-focus
 .text-field-element {
 	
@@ -151,13 +145,10 @@
 	
 	/* top - right - bottom - left */
 	padding: 0px 4px 0px 4px;
-	border-width: 0.5px 0.5px 0.5px 0.5px;
+	border-width: 0.5px;
 }
 
 
-/* =========================================================== Content =========================================================== */
-
-/*< ---------------------------------------------------------- Container >*/
-.folder_ContentContainer {
-
+/*< ---------------------------------------------------------- Content Container >*/
+.folder-content-container {
 }

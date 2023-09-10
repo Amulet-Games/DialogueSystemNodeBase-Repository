@@ -11,8 +11,8 @@ namespace AG.DS
         /// </summary>
         /// <typeparam name="TObject">Type object</typeparam>
         /// <param name="view">The language object field view to set for.</param>
-        /// <param name="fieldUSS01">The first USS style to set for the field.</param>
-        /// <param name="fieldUSS02">The second USS style to set for the field.</param>
+        /// <param name="fieldUSS01">The first field USS style to set for.</param>
+        /// <param name="fieldUSS02">The second field USS style to set for.</param>
         public static void CreateElement<TObject> 
         (
             LanguageObjectFieldView<TObject> view,

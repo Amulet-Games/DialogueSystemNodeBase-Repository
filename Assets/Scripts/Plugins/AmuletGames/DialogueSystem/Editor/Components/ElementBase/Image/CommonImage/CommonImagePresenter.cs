@@ -8,9 +8,9 @@ namespace AG.DS
         /// <summary>
         /// Create a new common Image element.
         /// </summary>
-        /// <param name="imageSprite">The displaying sprite to set for the image.</param>
-        /// <param name="imageUSS01">The first USS style to set for the image.</param>
-        /// <param name="imageUSS02">The second USS style to set for the image.</param>
+        /// <param name="imageSprite">The image sprite to set for.</param>
+        /// <param name="imageUSS01">The first image USS style to set for.</param>
+        /// <param name="imageUSS02">The second image USS style to set for.</param>
         /// <returns>A new common Image element.</returns>
         public static Image CreateElement
         (

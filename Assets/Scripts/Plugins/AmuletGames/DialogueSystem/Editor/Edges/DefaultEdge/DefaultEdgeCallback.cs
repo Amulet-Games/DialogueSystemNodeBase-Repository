@@ -4,6 +4,7 @@ namespace AG.DS
     public class DefaultEdgeCallback : EdgeCallbackFrameBase
     <
         DefaultPort,
+        PortCreateDetailBase,
         DefaultEdge,
         DefaultEdgeView
     >

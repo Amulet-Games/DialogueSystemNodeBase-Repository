@@ -7,10 +7,11 @@ namespace AG.DS
     public class DefaultEdgeConnectorCallback : EdgeConnectorCallbackFrameBase
     <
         DefaultPort,
+        PortCreateDetailBase,
         DefaultEdge,
         DefaultEdgeView,
-        NodeCreateDefaultConnectorWindow,
-        DefaultEdgeConnectorCallback
+        DefaultEdgeConnectorCallback,
+        NodeCreateDefaultConnectorWindow
     >
     {
         /// <inheritdoc />

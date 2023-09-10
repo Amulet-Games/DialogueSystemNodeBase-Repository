@@ -3,22 +3,24 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
+    /// <inheritdoc />
     public class DefaultPort : PortFrameBase
     <
         DefaultPort,
+        PortCreateDetailBase,
         DefaultEdge,
         DefaultEdgeView
     >
     {
         /// <inheritdoc />
-        public DefaultPort(PortCreateDetail detail) : base(detail) { }
+        public DefaultPort(PortCreateDetailBase detail) : base(detail) { }
 
 
         /// <inheritdoc />
         public override DefaultPort Setup
         (
             EdgeConnector edgeConnector,
-            PortCreateDetail detail
+            PortCreateDetailBase detail
         )
         {
             base.Setup(edgeConnector, detail);

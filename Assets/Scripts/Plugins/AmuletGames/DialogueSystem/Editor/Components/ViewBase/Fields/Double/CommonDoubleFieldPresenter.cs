@@ -7,8 +7,8 @@ namespace AG.DS
         /// <summary>
         /// Create a new common double field element.
         /// </summary>
-        /// <param name="view">The common double field view to set for the field.</param>
-        /// <param name="fieldUSS">The USS style to set for the field.</param>
+        /// <param name="view">The common double field view to set for.</param>
+        /// <param name="fieldUSS">The field USS style to set for.</param>
         /// <returns>A new common double field element.</returns>
         public static void CreateElement
         (

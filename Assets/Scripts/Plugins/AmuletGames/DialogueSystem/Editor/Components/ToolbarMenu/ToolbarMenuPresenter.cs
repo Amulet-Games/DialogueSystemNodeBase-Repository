@@ -9,21 +9,21 @@ namespace AG.DS
         /// <summary>
         /// Create a new toolbar menu element.
         /// </summary>
-        /// <param name="labelText">The toolbar label text to set for.</param>
-        /// <param name="arrowIcon">The sprite icon to set for the toolbar arrow image.</param>
-        /// <param name="menuUSS">The USS style to set for the toolbar menu.</param>
-        /// <param name="centerContainerUSS">The USS style to set for the center container in the toolbar menu.</param>
-        /// <param name="textLabelUSS">The USS style to set for the text label element in the toolbar menu.</param>
-        /// <param name="arrowImageUSS">The USS style to set for the arrow image element in the toolbar menu.</param>
+        /// <param name="dropdownLabel">The dropdown label text to set for.</param>
+        /// <param name="dropdownIcon">The dropdown icon to set for.</param>
+        /// <param name="toolbarMenuUSS">The toolbar menu USS style to set for.</param>
+        /// <param name="centerContainerUSS">The center container USS style to set for.</param>
+        /// <param name="dropdownLabelUSS">The dropdown label USS style to set for.</param>
+        /// <param name="dropdownImageUSS">The dropdown image USS style to set for.</param>
         /// <returns>A new toolbar menu element.</returns>
         public static ToolbarMenu CreateElement
         (
-            string labelText,
-            Sprite arrowIcon,
-            string menuUSS,
+            string dropdownLabel,
+            Sprite dropdownIcon,
+            string toolbarMenuUSS,
             string centerContainerUSS,
-            string textLabelUSS,
-            string arrowImageUSS
+            string dropdownLabelUSS,
+            string dropdownImageUSS
         )
         {
             ToolbarMenu toolbarMenu;
@@ -62,8 +62,8 @@ namespace AG.DS
 
             void SetupDetail()
             {
-                toolbarMenu.text = labelText;
-                arrowImage.style.backgroundImage = arrowIcon.texture;
+                toolbarMenu.text = dropdownLabel;
+                arrowImage.style.backgroundImage = dropdownIcon.texture;
             }
 
             void RemoveDefaultStyleClass()
@@ -75,10 +75,10 @@ namespace AG.DS
 
             void AddStyleClass()
             {
-                toolbarMenu.AddToClassList(menuUSS);
+                toolbarMenu.AddToClassList(toolbarMenuUSS);
                 centerContainer.AddToClassList(centerContainerUSS);
-                textLabel.AddToClassList(textLabelUSS);
-                arrowImage.AddToClassList(arrowImageUSS);
+                textLabel.AddToClassList(dropdownLabelUSS);
+                arrowImage.AddToClassList(dropdownImageUSS);
             }
         }
     }

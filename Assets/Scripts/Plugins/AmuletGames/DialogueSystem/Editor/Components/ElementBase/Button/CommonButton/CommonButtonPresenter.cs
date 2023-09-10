@@ -8,8 +8,8 @@ namespace AG.DS
         /// <summary>
         /// Create a new common button element.
         /// </summary>
-        /// <param name="buttonText">The text to set for the button.</param>
-        /// <param name="buttonUSS">The USS style to set for the button.</param>
+        /// <param name="buttonText">The button text to set for.</param>
+        /// <param name="buttonUSS">The button USS style to set for.</param>
         /// <returns>A new common button element.</returns>
         public static Button CreateElement
         (
@@ -48,8 +48,8 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new common button element.
         /// </summary>
-        /// <param name="buttonSprite">The sprite to set for the button.</param>
-        /// <param name="buttonUSS">The USS style to set for the button.</param>
+        /// <param name="buttonSprite">The button sprite to set for.</param>
+        /// <param name="buttonUSS">The button USS style to set for.</param>
         /// <returns>A new common button element.</returns>
         public static Button CreateElement
         (

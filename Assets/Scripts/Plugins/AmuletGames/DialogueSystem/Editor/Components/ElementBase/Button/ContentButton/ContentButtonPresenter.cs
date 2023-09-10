@@ -33,7 +33,7 @@ namespace AG.DS
             void SetupContainer()
             {
                 contentButton = new();
-                contentButton.AddToClassList(StyleConfig.ContentButton_Main);
+                contentButton.AddToClassList(StyleConfig.ContentButton);
             }
 
             void AddButtonLabel()

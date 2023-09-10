@@ -39,7 +39,8 @@ namespace AG.DS
             View.OutputOptionPort = PortManager.Instance.CreateOption
             (
                 connectorWindow: Node.GraphViewer.NodeCreateOptionConnectorWindow,
-                direction: Direction.Output
+                direction: Direction.Output,
+                isGroup: false
             );
 
             Node.Add(View.InputDefaultPort);
@@ -121,7 +122,7 @@ namespace AG.DS
             {
                 View.RootTitleTextFieldView.Field = LanguageTextFieldPresenter.CreateElement
                 (
-                    isMultiLine: false,
+                    multiline: false,
                     placeholderText: View.RootTitleTextFieldView.placeholderText,
                     fieldUSS: StyleConfig.OptionRoot_Title_TextField
                 );

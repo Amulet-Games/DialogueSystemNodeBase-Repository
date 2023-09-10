@@ -1,7 +1,5 @@
-/* =========================================================== Content Button =========================================================== */
-
 /*< ---------------------------------------------------------- Main >*/
-.contentButton-main {
+.contentButton {
 
 	min-width: 201px;
 
@@ -18,7 +16,7 @@
 	border-radius: 0px 4px 0px 0px;
 }
 
-.contentButton-main:hover {
+.contentButton:hover {
 
 	background-color: rgba(88, 88, 88, 1);
 }

@@ -55,10 +55,10 @@ namespace AG.DS
             DialogueSystemWindow dsWindow
         )
         => Create
-            <DefaultPort, DefaultEdge, DefaultEdgeView,
-            NodeCreateConnectorCallback<DefaultPort, DefaultEdge, DefaultEdgeView>,
-            NodeCreateConnectorDetail<DefaultPort, DefaultEdge, DefaultEdgeView>,
-            NodeCreateConnectorObserver<DefaultPort, DefaultEdge, DefaultEdgeView>,
+            <DefaultPort, PortCreateDetailBase, DefaultEdge, DefaultEdgeView,
+            NodeCreateConnectorCallback<DefaultPort, PortCreateDetailBase, DefaultEdge, DefaultEdgeView>,
+            NodeCreateConnectorDetail<DefaultPort, PortCreateDetailBase, DefaultEdge, DefaultEdgeView>,
+            NodeCreateConnectorObserver<DefaultPort, PortCreateDetailBase, DefaultEdge, DefaultEdgeView>,
             NodeCreateDefaultConnectorWindow>
             (graphViewer, languageHandler, dsWindow);
 
@@ -79,10 +79,10 @@ namespace AG.DS
             DialogueSystemWindow dsWindow
         )
         => Create
-            <OptionPort, OptionEdge, OptionEdgeView,
-            NodeCreateConnectorCallback<OptionPort, OptionEdge, OptionEdgeView>,
-            NodeCreateConnectorDetail<OptionPort, OptionEdge, OptionEdgeView>,
-            NodeCreateConnectorObserver<OptionPort, OptionEdge, OptionEdgeView>,
+            <OptionPort, OptionPortCreateDetail, OptionEdge, OptionEdgeView,
+            NodeCreateConnectorCallback<OptionPort, OptionPortCreateDetail, OptionEdge, OptionEdgeView>,
+            NodeCreateConnectorDetail<OptionPort, OptionPortCreateDetail, OptionEdge, OptionEdgeView>,
+            NodeCreateConnectorObserver<OptionPort, OptionPortCreateDetail, OptionEdge, OptionEdgeView>,
             NodeCreateOptionConnectorWindow>
             (graphViewer, languageHandler, dsWindow);
 
@@ -127,6 +127,7 @@ namespace AG.DS
         /// </summary>
         /// 
         /// <typeparam name="TPort">Type port.</typeparam>
+        /// <typeparam name="TPortCreateDetail">Type port create detail.</typeparam>
         /// <typeparam name="TEdge">Type edge.</typeparam>
         /// <typeparam name="TEdgeView">Type edge view.</typeparam>
         /// <typeparam name="TNodeCreateConnectorCallback">Type node create callback.</typeparam>
@@ -142,6 +143,7 @@ namespace AG.DS
         TNodeCreateConnectorWindow Create
         <
             TPort,
+            TPortCreateDetail,
             TEdge,
             TEdgeView,
             TNodeCreateConnectorCallback,
@@ -154,13 +156,14 @@ namespace AG.DS
             LanguageHandler languageHandler,
             DialogueSystemWindow dsWindow
         )
-            where TPort : PortFrameBase<TPort, TEdge, TEdgeView>
-            where TEdge : EdgeFrameBase<TPort, TEdge, TEdgeView>
-            where TEdgeView : EdgeViewFrameBase<TPort, TEdge, TEdgeView>
-            where TNodeCreateConnectorCallback : NodeCreateConnectorCallback<TPort, TEdge, TEdgeView>, new()
-            where TNodeCreateConnectorDetail : NodeCreateConnectorDetail<TPort, TEdge, TEdgeView>, new()
-            where TNodeCreateConnectorObserver : NodeCreateConnectorObserver<TPort, TEdge, TEdgeView>, new()
-            where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TEdge, TEdgeView, TNodeCreateConnectorWindow>, new()
+            where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+            where TPortCreateDetail : PortCreateDetailBase
+            where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+            where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+            where TNodeCreateConnectorCallback : NodeCreateConnectorCallback<TPort, TPortCreateDetail, TEdge, TEdgeView>, new()
+            where TNodeCreateConnectorDetail : NodeCreateConnectorDetail<TPort, TPortCreateDetail, TEdge, TEdgeView>, new()
+            where TNodeCreateConnectorObserver : NodeCreateConnectorObserver<TPort, TPortCreateDetail, TEdge, TEdgeView>, new()
+            where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView, TNodeCreateConnectorWindow>, new()
         {
             var detail = new TNodeCreateConnectorDetail();
             var observer = new TNodeCreateConnectorObserver().Setup(detail, graphViewer);
