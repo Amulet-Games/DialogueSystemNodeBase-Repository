@@ -8,13 +8,13 @@ namespace AG.DS
         /// <summary>
         /// Label element for the button's name.
         /// </summary>
-        public Label Label;
+        public Label ButtonTextLabel;
 
 
         /// <summary>
         /// Image element for the button's icon.
         /// </summary>
-        public Image IconImage;
+        public Image ButtonIconImage;
 
 
         /// <summary>

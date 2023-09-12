@@ -28,7 +28,7 @@ namespace AG.DS
             void CreateInputHint()
             {
                 inputHint = new(graphViewer);
-                inputHint.AddToClassList(StyleConfig.InputHint_Main);
+                inputHint.AddToClassList(StyleConfig.InputHint);
             }
 
             void SetupHintIconImage()
@@ -36,7 +36,7 @@ namespace AG.DS
                 inputHint.HintIconImage = CommonImagePresenter.CreateElement
                 (
                     imageSprite: ConfigResourcesManager.SpriteConfig.LanguageFieldHintIconSprite,
-                    imageUSS01: StyleConfig.InputHint_Icon
+                    imageUSS01: StyleConfig.InputHint_HintIcon_Image
                 );
             }
 
@@ -45,7 +45,7 @@ namespace AG.DS
                 inputHint.HintTextLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: "",
-                    labelUSS: StyleConfig.InputHint_Label
+                    labelUSS: StyleConfig.InputHint_HintText_Label
                 );
             }
 

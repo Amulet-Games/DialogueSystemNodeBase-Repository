@@ -57,8 +57,6 @@ namespace AG.DS
             LoadPorts();
 
             LoadRootTitleTextField();
-
-            Node.RefreshPorts();
         }
 
 

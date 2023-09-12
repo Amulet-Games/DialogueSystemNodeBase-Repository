@@ -111,7 +111,7 @@ namespace AG.DS
             if (!Node.worldBound.Contains(pointerMovePosition))
             {
                 // Remove from hover class.
-                Node.NodeBorder.RemoveFromClassList(StyleConfig.Node_Border_Hover);
+                Node.NodeBorder.RemoveFromClassList(StyleConfig.Pseudo_Hover);
             }
         }
 
@@ -143,9 +143,6 @@ namespace AG.DS
 
                 groupView.Add(cell, Node);
             }
-
-            // Update ports layout.
-            Node.RefreshPorts();
         }
     }
 }

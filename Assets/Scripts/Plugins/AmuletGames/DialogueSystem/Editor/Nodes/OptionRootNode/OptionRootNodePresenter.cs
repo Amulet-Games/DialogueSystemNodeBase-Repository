@@ -45,7 +45,6 @@ namespace AG.DS
 
             Node.Add(View.InputDefaultPort);
             Node.Add(View.OutputOptionPort);
-            Node.RefreshPorts();
         }
 
 
@@ -91,13 +90,13 @@ namespace AG.DS
                 contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
 
                 rootMainContainer = new();
-                rootMainContainer.AddToClassList(StyleConfig.OptionRoot_MainContainer);
+                rootMainContainer.AddToClassList(StyleConfig.OptionRoot_Main_Container);
 
                 rootOuterContainer = new();
-                rootOuterContainer.AddToClassList(StyleConfig.OptionRoot_OuterContainer);
+                rootOuterContainer.AddToClassList(StyleConfig.OptionRoot_Outer_Container);
 
                 rootInnerContainer = new();
-                rootInnerContainer.AddToClassList(StyleConfig.OptionRoot_InnerContainer);
+                rootInnerContainer.AddToClassList(StyleConfig.OptionRoot_Inner_Container);
             }
 
             void SetupOptionRootIconImage()
@@ -105,7 +104,7 @@ namespace AG.DS
                 rootIconImage = CommonImagePresenter.CreateElement
                 (
                     imageSprite: ConfigResourcesManager.SpriteConfig.OptionRootIconSprite,
-                    imageUSS01: StyleConfig.OptionRoot_Icon
+                    imageUSS01: StyleConfig.OptionRoot_RootIcon_Image
                 );
             }
 
@@ -114,7 +113,7 @@ namespace AG.DS
                 rootTitleLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: StringConfig.OptionRootNode_RootTitleLabel_LabelText,
-                    labelUSS: StyleConfig.OptionRoot_Title_Label
+                    labelUSS: StyleConfig.OptionRoot_RootTitle_Label
                 );
             }
 
@@ -124,13 +123,13 @@ namespace AG.DS
                 (
                     multiline: false,
                     placeholderText: View.RootTitleTextFieldView.placeholderText,
-                    fieldUSS: StyleConfig.OptionRoot_Title_TextField
+                    fieldUSS: StyleConfig.OptionRoot_RootTitleText_Field
                 );
             }
 
             void AddElementsToContainer()
             {
-                Node.titleContainer.Add(View.ContentButton);
+                Node.topContainer.Add(View.ContentButton);
 
                 rootOuterContainer.Add(rootIconImage);
                 rootOuterContainer.Add(rootInnerContainer);

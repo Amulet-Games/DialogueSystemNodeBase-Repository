@@ -1,0 +1,37 @@
+/*< ---------------------------------------------------------- Option Port Group Cell >*/
+.optionPortGroup-groupCell {
+
+	align-items: center;
+	align-self: flex-end;
+	
+	flex-direction: row-reverse;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 13px 0px 0px 0px;
+}
+
+/*< ---------------------------------------------------------- Remove Cell Button >*/
+.optionPortGroup-removeCell-button {
+	
+	background-color: rgba(88, 88, 88, 1);
+
+	height: 15px;
+	width: 15px;
+
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: -1px 8.5px 0px 0px;
+	border-radius: 4px;
+}
+
+.optionPortGroup-removeCell-button:hover {
+	
+	background-color: rgba(106, 106, 106, 1);
+}
+
+.optionPortGroup-removeCell-button:focus {
+	
+	background-color: rgba(65, 65, 65, 1);
+}

@@ -22,9 +22,11 @@ namespace AG.DS
 
             SetupNodeBorder();
 
+            SetupTopContainer();
+
             SetupTitleContainer();
 
-            SetupTopContainer();
+            SetupPortContainer();
 
             SetupInputContainer();
 

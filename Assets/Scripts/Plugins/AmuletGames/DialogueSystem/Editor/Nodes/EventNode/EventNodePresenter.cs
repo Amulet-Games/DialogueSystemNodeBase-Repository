@@ -46,7 +46,6 @@ namespace AG.DS
 
             Node.Add(View.InputDefaultPort);
             Node.Add(View.OutputDefaultPort);
-            Node.RefreshPorts();
         }
 
 
@@ -89,7 +88,7 @@ namespace AG.DS
 
             void AddElementsToContainer()
             {
-                Node.titleContainer.Add(View.ContentButton);
+                Node.topContainer.Add(View.ContentButton);
 
                 contentContainer.Add(View.EventModifierGroupView.GroupContainer);
             }

@@ -22,6 +22,8 @@ namespace AG.DS
 
             SetupStyleClass();
 
+            SetupStyleSheet();
+
             return this;
         }
 
@@ -40,7 +42,13 @@ namespace AG.DS
         /// </summary>
         void SetupStyleClass()
         {
-            AddToClassList(StyleConfig.Option_Edge);
+            AddToClassList(StyleConfig.OptionEdge);
+        }
+
+
+        void SetupStyleSheet()
+        {
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSOptionEdgeStyle);
         }
     }
 }

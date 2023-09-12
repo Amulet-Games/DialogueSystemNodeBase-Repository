@@ -29,9 +29,12 @@ MonoBehaviour:
   DSStartNodeStyle: {fileID: 7433441132597879392, guid: 75d40b219d60bea449cf773c32534845, type: 3}
   DSStoryNodeStyle: {fileID: 7433441132597879392, guid: 4dfe9ea756acd054ea42e167ec759ca4, type: 3}
   DSNodeCommonStyle: {fileID: 7433441132597879392, guid: 7032114cadd063f4098146372e3d3c0b, type: 3}
+  DSOptionPortGroupStyle: {fileID: 7433441132597879392, guid: 61f764997de1660419221eafd70d3a00, type: 3}
   DSDefaultPortStyle: {fileID: 7433441132597879392, guid: bdc013eea59f8ac42ac003bf5284d5be, type: 3}
   DSOptionPortStyle: {fileID: 7433441132597879392, guid: da3f5c84d1cf7364bbca0e7a6e674c31, type: 3}
   DSPortStyle: {fileID: 7433441132597879392, guid: b00727118f591514ca4af58104d93f95, type: 3}
+  DSDefaultEdgeStyle: {fileID: 7433441132597879392, guid: 41088e26e1dd87447a5d7b669eaf0d8a, type: 3}
+  DSOptionEdgeStyle: {fileID: 7433441132597879392, guid: 9ce2ad735e252fb489f32838ff6374a6, type: 3}
   DSGlobalStyle: {fileID: 7433441132597879392, guid: 9b5e16d70bc9fef4baaaa1efc2d58378, type: 3}
   DSModifierStyle: {fileID: 7433441132597879392, guid: 99aeac0040b49004684fcda1a71c0530, type: 3}
   DSRootedModifierStyle: {fileID: 7433441132597879392, guid: 3b64ec0a103d89341bd3b0dd3ad4ba50, type: 3}

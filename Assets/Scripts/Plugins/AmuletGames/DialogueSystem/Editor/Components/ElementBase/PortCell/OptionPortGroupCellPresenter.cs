@@ -8,7 +8,7 @@ namespace AG.DS
         /// Create a new option port group cell element.
         /// </summary>
         /// <param name="connectorWindow">The node create connector window to set for.</param>
-        /// <param name="direction">The direction type to set for.</param>
+        /// <param name="direction">The direction to set for.</param>
         /// <returns>A new option port group cell element.</returns>
         public static OptionPortGroupCell CreateElement
         (
@@ -33,6 +33,7 @@ namespace AG.DS
             void CreateCell()
             {
                 cell = new();
+                cell.AddToClassList(StyleConfig.OptionPortGroup_GroupCell);
             }
 
             void CreateOptionPort()
@@ -50,7 +51,7 @@ namespace AG.DS
                 cell.RemoveButton = CommonButtonPresenter.CreateElement
                 (
                     buttonSprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
-                    buttonUSS: StyleConfig.OptionPortGroup_RemoveButton
+                    buttonUSS: StyleConfig.OptionPortGroup_RemoveCell_Button
                 );
             }
 
@@ -62,7 +63,7 @@ namespace AG.DS
 
             void AddStyleSheet()
             {
-                cell.AddToClassList(StyleConfig.OptionPortGroup_Cell);
+                cell.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSOptionPortGroupStyle);
             }
         }
     }

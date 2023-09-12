@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace AG.DS
@@ -28,31 +27,39 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        public override void OnDropOutsidePort(Edge edge, Vector2 position)
+        protected override void OnDropOutsidePort(OptionEdge edge, Vector2 position)
         {
-            if (edge.input != null)
+            if (ConnectorPort.IsInput())
             {
                 // If the edge that user dropped is from a input port.
-                NodeCreateConnectorWindow.Open
-                (
-                    horizontalAlignmentType: HorizontalAlignmentType.LEFT,
+                {
+                    edge.View?.Input.HideConnectStyle();
 
-                    connectorPort: ConnectorPort,
+                    NodeCreateConnectorWindow.Open
+                    (
+                        horizontalAlignmentType: HorizontalAlignmentType.LEFT,
 
-                    toShowEntries: NodeCreateEntryProvider.OptionChannelInputEntries
-                );
+                        connectorPort: ConnectorPort,
+
+                        toShowEntries: NodeCreateEntryProvider.OptionChannelInputEntries
+                    );
+                }
             }
             else
             {
                 // If the edge that user dropped is from a output port.
-                NodeCreateConnectorWindow.Open
-                (
-                    horizontalAlignmentType: HorizontalAlignmentType.RIGHT,
+                {
+                    edge.View?.Output.HideConnectStyle();
 
-                    connectorPort: ConnectorPort,
+                    NodeCreateConnectorWindow.Open
+                    (
+                        horizontalAlignmentType: HorizontalAlignmentType.RIGHT,
 
-                    toShowEntries: NodeCreateEntryProvider.OptionChannelOutputEntries
-                );
+                        connectorPort: ConnectorPort,
+
+                        toShowEntries: NodeCreateEntryProvider.OptionChannelOutputEntries
+                    );
+                }
             }
         }
     }

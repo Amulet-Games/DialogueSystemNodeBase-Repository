@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace AG.DS
@@ -28,7 +27,7 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        public override void OnDropOutsidePort(Edge edge, Vector2 position)
+        protected override void OnDropOutsidePort(DefaultEdge edge, Vector2 position)
         {
             if (ConnectorPort.IsInput())
             {

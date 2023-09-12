@@ -206,7 +206,7 @@ namespace AG.DS
         {
             var targetPos = approxCreatePosition;
 
-            targetPos.y -= (Node.titleContainer.worldBound.height
+            targetPos.y -= (Node.topContainer.worldBound.height
                               + YAxisReferencePort.localBound.position.y
                               + NumberConfig.MANUAL_CREATE_Y_OFFSET)
                               / GraphViewer.scale;

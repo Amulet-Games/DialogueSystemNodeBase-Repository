@@ -28,8 +28,6 @@ namespace AG.#Namespace#
 
             CreateNodePorts();
 
-            RefreshPorts();
-
             AddStyleSheet();
 
             ManualCreatedAction();
@@ -90,8 +88,6 @@ namespace AG.#Namespace#
             CreateNodeElements();
 
             CreateNodePorts();
-
-            RefreshPorts();
 
             AddStyleSheet();
 

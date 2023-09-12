@@ -1,4 +1,5 @@
-.node_NodeTitle_Main_Box {
+/*< ---------------------------------------------------------- Title Container >*/
+.node-title-container {
 	background-color: rgba(184, 150, 74, 1);
 }
 

@@ -22,8 +22,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Label >*/
-.contentButton-label {
+/*< ---------------------------------------------------------- Button Text Label >*/
+.contentButton-buttonText-label {
 	
 	color: white;
 	
@@ -46,11 +46,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Icon >*/
-.contentButton-icon {
-
-	align-self: auto;
-
+/*< ---------------------------------------------------------- Button Icon Image >*/
+.contentButton-buttonIcon-image {
+	
 	flex-shrink: 0;
-	flex-direction: row;
 }

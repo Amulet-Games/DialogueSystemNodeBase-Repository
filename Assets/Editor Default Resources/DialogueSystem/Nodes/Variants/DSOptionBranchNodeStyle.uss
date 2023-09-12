@@ -1,7 +1,5 @@
-/* =========================================================== Node Title =========================================================== */
-
-/*< ---------------------------------------------------------- Main >*/
-.node_Title_Main {
+/*< ---------------------------------------------------------- Title Container >*/
+.node-title-container {
 
 	background-color: rgba(149, 95, 124, 1);
 
@@ -9,10 +7,8 @@
 }
 
 
-/* =========================================================== Content Button =========================================================== */
-
-/*< ---------------------------------------------------------- Icon >*/
-.contentButton-icon {
+/*< ---------------------------------------------------------- Content Button Icon >*/
+.contentButton-buttonIcon-image {
 
 	height: 27.5px;
 	width: 27.5px;
@@ -22,43 +18,36 @@
 }
 
 
-/* =========================================================== Option Branch =========================================================== */
-
-/*< ---------------------------------------------------------- Main Container >*/
-.optionBranch_MainContainer {
+/*< ---------------------------------------------------------- Option Branch Main Container >*/
+.optionBranch-main-container {
 
 	background-color: rgba(51, 51, 51, 1);
 
 	/* top - right - bottom - left */
-	margin: 5px 5px 5px 5px;
-	padding: 0px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 4px 4px 4px 4px;
+	margin: 5px;
+	border-radius: 4px;
 }
 
 
-/*< ---------------------------------------------------------- Outer Container >*/
-.optionBranch_OuterContainer {
+/*< ---------------------------------------------------------- Option Branch Outer Container >*/
+.optionBranch-outer-container {
 
 	background-color: rgba(42, 42, 42, 1);
 	
 	flex-direction: row;
 
 	/* top - right - bottom - left */
-	margin: 6px 6px 6px 6px;
+	margin: 6px;
 	padding: 0.5px 0px 0px 0px;
-	border-width: 0px 0px 0px 0px;
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 }
 
 
-/*< ---------------------------------------------------------- Icon >*/
-.optionBranch-icon {
+/*< ---------------------------------------------------------- Option Branch Icon >*/
+.optionBranch-branchIcon-image {
 	
 	height: 39px;
 	width: 39px;
-
-	align-self: auto;
 	
 	flex-shrink: 0;
 
@@ -67,8 +56,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Inner Container >*/
-.optionBranch_InnerContainer {
+/*< ---------------------------------------------------------- Option Branch Inner Container >*/
+.optionBranch-inner-container {
 	
 	height: 56.5px;
 
@@ -76,8 +65,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Title Label >*/
-.optionBranch_Title_Label {
+/*< ---------------------------------------------------------- Option Branch Title Label >*/
+.optionBranch-branchTitle-label {
 	
 	color: white;
 	
@@ -97,8 +86,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Title Text Field >*/
-.optionBranch_Title_TextField {
+/*< ---------------------------------------------------------- Option Branch Title Text Field >*/
+.optionBranch-branchTitleText-field {
 
 	background-color: rgba(32, 32, 32, 1);
 
@@ -114,29 +103,29 @@
 
 	/* top - right - bottom - left */
 	margin: 2px 6px 0px 12px;
-	border-radius: 4px 4px 4px 4px;
+	border-radius: 4px;
 
 	--unity-selection-color: rgba(61, 128, 223, 0.65);
 	--unity-cursor-color: rgba(180, 180, 180, 1);
 }
 
-.optionBranch_Title_TextField:hover {
+.optionBranch-branchTitleText-field:hover {
 	
 	border-color: rgba(101, 101, 101, 1);
 
 	/* top - right - bottom - left */
-	border-width: 0.5px 0.5px 0.5px 0.5px;
+	border-width: 0.5px;
 }
 
-.optionBranch_Title_TextField:focus {
+.optionBranch-branchTitleText-field:focus {
 	
 	border-color: rgba(58, 121, 187, 1);
 
 	/* top - right - bottom - left */
-	border-width: 0.5px 0.5px 0.5px 0.5px;
+	border-width: 0.5px;
 }
 
-.optionBranch_Title_TextField
+.optionBranch-branchTitleText-field
 .text-field-input {
 	
 	cursor: text;
@@ -152,7 +141,7 @@
 	--unity-sync-text-editor: true;
 }
 
-.optionBranch_Title_TextField
+.optionBranch-branchTitleText-field
 .text-field-element {
 
 	color: white;
@@ -174,16 +163,16 @@
 	margin: 0px 0px 0px 5px;
 }
 
-.optionBranch_Title_TextField.text-field-empty
+.optionBranch-branchTitleText-field.text-field-empty
 .text-field-element {
 	
 	color: rgba(101, 101, 101, 1);
 }
 
-.optionBranch_Title_TextField:hover
+.optionBranch-branchTitleText-field:hover
 .text-field-element,
 
-.optionBranch_Title_TextField:focus
+.optionBranch-branchTitleText-field:focus
 .text-field-element
 {
 	/* top - right - bottom - left */

@@ -45,7 +45,6 @@ namespace AG.DS
 
             Node.Add(View.InputOptionPort);
             Node.Add(View.OutputDefaultPort);
-            Node.RefreshPorts();
         }
 
 
@@ -91,13 +90,13 @@ namespace AG.DS
                 contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
 
                 branchMainContainer = new();
-                branchMainContainer.AddToClassList(StyleConfig.OptionBranch_MainContainer);
+                branchMainContainer.AddToClassList(StyleConfig.OptionBranch_Main_Container);
 
                 branchOuterContainer = new();
-                branchOuterContainer.AddToClassList(StyleConfig.OptionBranch_OuterContainer);
+                branchOuterContainer.AddToClassList(StyleConfig.OptionBranch_Outer_Container);
 
                 branchInnerContainer = new();
-                branchInnerContainer.AddToClassList(StyleConfig.OptionBranch_InnerContainer);
+                branchInnerContainer.AddToClassList(StyleConfig.OptionBranch_Inner_Container);
             }
 
             void SetupBranchIconImage()
@@ -105,7 +104,7 @@ namespace AG.DS
                 branchIconImage = CommonImagePresenter.CreateElement
                 (
                     imageSprite: ConfigResourcesManager.SpriteConfig.OptionBranchIconSprite,
-                    imageUSS01: StyleConfig.OptionBranch_Icon
+                    imageUSS01: StyleConfig.OptionBranch_BranchIcon_Image
                 );
             }
 
@@ -114,7 +113,7 @@ namespace AG.DS
                 branchTitleLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: StringConfig.OptionBranchNode_BranchTitleLabel_LabelText,
-                    labelUSS: StyleConfig.OptionBranch_Title_Label
+                    labelUSS: StyleConfig.OptionBranch_BranchTitle_Label
                 );
             }
 
@@ -124,13 +123,13 @@ namespace AG.DS
                 (
                     multiline: false,
                     placeholderText: View.BranchTitleTextFieldView.placeholderText,
-                    fieldUSS: StyleConfig.OptionBranch_Title_TextField
+                    fieldUSS: StyleConfig.OptionBranch_BranchTitleText_Field
                 );
             }
 
             void AddElementsToContainer()
             {
-                Node.titleContainer.Add(View.ContentButton);
+                Node.topContainer.Add(View.ContentButton);
 
                 branchOuterContainer.Add(branchIconImage);
                 branchOuterContainer.Add(branchInnerContainer);

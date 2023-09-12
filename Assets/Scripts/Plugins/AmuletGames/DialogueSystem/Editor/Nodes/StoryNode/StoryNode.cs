@@ -24,9 +24,11 @@ namespace AG.DS
 
             SetupNodeBorder();
 
+            SetupTopContainer();
+
             SetupTitleContainer();
 
-            SetupTopContainer();
+            SetupPortContainer();
 
             SetupInputContainer();
 
@@ -76,7 +78,7 @@ namespace AG.DS
             // Set sample node position
             var createPosition = localBound.position;
             createPosition.x += margin;
-            createPosition.y += titleContainer.layout.height + inputContainer.parent.layout.height + margin + 1;
+            createPosition.y += topContainer.layout.height + InputContainer.parent.layout.height + margin + 1;
 
             target.SetPosition(newPos: new Rect(createPosition, Vector2Utility.Zero));
 
@@ -87,7 +89,7 @@ namespace AG.DS
             target.capabilities = Capabilities.Movable;
             target.SetEnabled(false);
             target.style.opacity = 1;
-            target.titleContainer.ElementAt(index: 1).style.backgroundColor = new Color(0.357f, 0.537f, 0.75f, 1);
+            target.topContainer.ElementAt(index: 1).style.backgroundColor = new Color(0.357f, 0.537f, 0.75f, 1);
 
             target.NodeBorder.style.borderBottomColor = new Color(r: 0, g: 0, b: 0, a: 0);
             target.NodeBorder.style.borderLeftColor = new Color(r: 0, g: 0, b: 0, a: 0);

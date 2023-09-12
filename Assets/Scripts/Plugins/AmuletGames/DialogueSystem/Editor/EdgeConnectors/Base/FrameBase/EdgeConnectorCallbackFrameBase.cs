@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 namespace AG.DS
 {
@@ -67,42 +68,46 @@ namespace AG.DS
         /// <inheritdoc />
         public override void OnDrop(GraphView graphView, Edge edge)
         {
-            GraphViewer graphViewer = (GraphViewer)graphView;
+            var graphViewer = (GraphViewer)graphView;
 
             EdgesToCreate.Clear();
-            edgesToDelete.Clear();
-            ElementsToRemove.Clear();
 
-            foreach (var m_edge in edge.input.connections)
+            if (ConnectorPort.IsSingle())
             {
-                if (m_edge != edge)
+                edgesToDelete.Clear();
+                ElementsToRemove.Clear();
+
+                foreach (var m_edge in edge.input.connections)
                 {
-                    edgesToDelete.Add((TEdge)m_edge);
-                    ElementsToRemove.Add(m_edge);
+                    if (m_edge != edge)
+                    {
+                        edgesToDelete.Add((TEdge)m_edge);
+                        ElementsToRemove.Add(m_edge);
+                    }
+                }
+
+                foreach (var m_edge in edge.output.connections)
+                {
+                    if (m_edge != edge)
+                    {
+                        edgesToDelete.Add((TEdge)m_edge);
+                        ElementsToRemove.Add(m_edge);
+                    }
+                }
+
+                if (edgesToDelete.Count > 0)
+                {
+                    for (int i = 0; i < edgesToDelete.Count; i++)
+                    {
+                        edgesToDelete[i].Callback.OnPreManualRemove(graphViewer);
+
+                        graphViewer.Remove(edgesToDelete[i]);
+
+                        edgesToDelete[i].Callback.OnPostManualRemove(graphViewer);
+                    }
                 }
             }
-
-            foreach (var m_edge in edge.output.connections)
-            {
-                if (m_edge != edge)
-                {
-                    edgesToDelete.Add((TEdge)m_edge);
-                    ElementsToRemove.Add(m_edge);
-                }
-            }
-
-            if (edgesToDelete.Count > 0)
-            {
-                for (int i = 0; i < edgesToDelete.Count; i++)
-                {
-                    edgesToDelete[i].Callback.OnPreManualRemove(graphViewer);
-
-                    graphViewer.Remove(edgesToDelete[i]);
-
-                    edgesToDelete[i].Callback.OnPostManualRemove(graphViewer);
-                }
-            }
-
+            
             var newEdge = EdgeManager.Instance.Connect
             (
                 output: edge.output,
@@ -114,5 +119,17 @@ namespace AG.DS
             graphViewer.Add(newEdge);
             graphViewer.graphViewChanged(GraphViewChange);
         }
+
+
+        /// <inheritdoc />
+        public override void OnDropOutsidePort(Edge edge, Vector2 position)
+            => OnDropOutsidePort((TEdge)edge, position);
+
+
+        /// <summary>
+        /// Read more: 
+        /// <br><see cref="OnDropOutsidePort(Edge, Vector2)"/></br>
+        /// </summary>
+        protected abstract void OnDropOutsidePort(TEdge edge, Vector2 position);
     }
 }

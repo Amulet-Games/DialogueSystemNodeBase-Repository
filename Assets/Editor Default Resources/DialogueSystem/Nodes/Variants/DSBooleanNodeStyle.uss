@@ -1,14 +1,16 @@
-.node_NodeTitle_Main_Box {
-	background-color: rgba(116, 150, 98, 1);
-}
-
-.node_Border #contents {
+/*< ---------------------------------------------------------- Border >*/
+.node-border #contents {
 	
 	flex-grow: 0;
 }
 
+/*< ---------------------------------------------------------- Title Container >*/
+.node-title-container {
+	background-color: rgba(116, 150, 98, 1);
+}
 
-/* ---------------------------------------------------------------- Port ---------------------------------------------------------------- */
+
+/*< ---------------------------------------------------------- Input Port >*/
 .port_Input_Port {
 
 	/* top - right - bottom - left */

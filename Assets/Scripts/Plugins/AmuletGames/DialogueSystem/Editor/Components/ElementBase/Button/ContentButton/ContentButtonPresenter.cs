@@ -20,7 +20,7 @@ namespace AG.DS
 
             SetupContainer();
 
-            AddButtonLabel();
+            AddButtonTextLabel();
 
             AddButtonIconImage();
 
@@ -36,28 +36,28 @@ namespace AG.DS
                 contentButton.AddToClassList(StyleConfig.ContentButton);
             }
 
-            void AddButtonLabel()
+            void AddButtonTextLabel()
             {
-                contentButton.Label = CommonLabelPresenter.CreateElement
+                contentButton.ButtonTextLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: buttonText,
-                    labelUSS: StyleConfig.ContentButton_Label
+                    labelUSS: StyleConfig.ContentButton_ButtonText_Label
                 );
             }
 
             void AddButtonIconImage()
             {
-                contentButton.IconImage = CommonImagePresenter.CreateElement
+                contentButton.ButtonIconImage = CommonImagePresenter.CreateElement
                 (
                     imageSprite: buttonIconSprite,
-                    imageUSS01: StyleConfig.ContentButton_Icon
+                    imageUSS01: StyleConfig.ContentButton_ButtonIcon_Image
                 );
             }
 
             void AddElementsToContentButton()
             {
-                contentButton.Add(contentButton.Label);
-                contentButton.Add(contentButton.IconImage);
+                contentButton.Add(contentButton.ButtonTextLabel);
+                contentButton.Add(contentButton.ButtonIconImage);
             }
 
             void SetupStyleSheet()

@@ -34,7 +34,12 @@ namespace AG.DS
             View = view;
             Callback = callback;
             GraphViewer = graphViewer;
+
             NodeBorder = ElementAt(0);
+            PortContainer = new();
+            InputContainer = new();
+            OutputContainer = new();
+            
             Guid = System.Guid.NewGuid();
 
             return null;
@@ -86,11 +91,40 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup the title container element.
+        /// Setup the top container element.
         /// </summary>
+        protected void SetupTopContainer()
+        {
+            RemoveUnusedElements();
+
+            RepositionElement();
+
+            SetupStyleClass();
+
+            void RemoveUnusedElements()
+            {
+                topContainer.Clear();
+            }
+
+            void RepositionElement()
+            {
+                // Place the top container inside the node border.
+                NodeBorder.Add(topContainer);
+            }
+
+            void SetupStyleClass()
+            {
+                topContainer.name = "";
+                topContainer.AddToClassList(StyleConfig.Node_Top_Container);
+            }
+        }
+
+
         protected void SetupTitleContainer()
         {
             RemoveUnusedElements();
+
+            RepositionElement();
 
             SetupDetail();
 
@@ -98,16 +132,18 @@ namespace AG.DS
 
             void RemoveUnusedElements()
             {
-                // Remove #title-label.
-                titleContainer.Remove(titleContainer.ElementAt(0));
+                titleContainer.Clear();
+            }
 
-                // Remove #title-button-container.
-                titleContainer.Remove(titleContainer.ElementAt(0));
+            void RepositionElement()
+            {
+                // Place the title container inside the top container.
+                topContainer.Add(titleContainer);
             }
 
             void SetupDetail()
             {
-                titleContainer.SetPickingMode(PickingMode.Position);
+                topContainer.SetPickingMode(PickingMode.Position);
             }
 
             void SetupStyleClass()
@@ -119,32 +155,23 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup the top container element.
+        /// Setup the port container element.
         /// </summary>
-        protected void SetupTopContainer()
+        protected void SetupPortContainer()
         {
-            Reposition();
-
-            RemoveUnusedElements();
-
+            RepositionElement();
+            
             SetupStyleClass();
 
-            void Reposition()
+            void RepositionElement()
             {
-                // Place the top container inside the node border.
-                NodeBorder.Insert(index: 1, element: topContainer);
-            }
-
-            void RemoveUnusedElements()
-            {
-                // Remove the #divider visual element.
-                topContainer.Remove(topContainer.ElementAt(1));
+                // Place the port container inside the node border.
+                NodeBorder.Add(PortContainer);
             }
 
             void SetupStyleClass()
             {
-                topContainer.name = "";
-                topContainer.AddToClassList(StyleConfig.Node_Top_Container);
+                PortContainer.AddToClassList(StyleConfig.Node_Port_Container);
             }
         }
 
@@ -154,9 +181,20 @@ namespace AG.DS
         /// </summary>
         protected void SetupInputContainer()
         {
-            // Setup style class
-            inputContainer.name = "";
-            inputContainer.AddToClassList(StyleConfig.Node_Input_Container);
+            RepositionElement();
+
+            SetupStyleClass();
+
+            void RepositionElement()
+            {
+                // Place the input container inside the port container.
+                PortContainer.Add(InputContainer);
+            }
+
+            void SetupStyleClass()
+            {
+                InputContainer.AddToClassList(StyleConfig.Node_Input_Container);
+            }
         }
 
 
@@ -165,9 +203,20 @@ namespace AG.DS
         /// </summary>
         protected void SetupOutputContainer()
         {
-            // Setup style class
-            outputContainer.name = "";
-            outputContainer.AddToClassList(StyleConfig.Node_Output_Container);
+            Reposition();
+
+            SetupStyleClass();
+
+            void Reposition()
+            {
+                // Place the output container inside the port container.
+                PortContainer.Add(OutputContainer);
+            }
+
+            void SetupStyleClass()
+            {
+                OutputContainer.AddToClassList(StyleConfig.Node_Output_Container);
+            }
         }
 
 

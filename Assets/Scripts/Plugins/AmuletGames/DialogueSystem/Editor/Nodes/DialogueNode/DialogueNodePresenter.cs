@@ -46,7 +46,6 @@ namespace AG.DS
 
             Node.Add(View.InputDefaultPort);
             Node.Add(View.OutputDefaultPort);
-            Node.RefreshPorts();
         }
 
 

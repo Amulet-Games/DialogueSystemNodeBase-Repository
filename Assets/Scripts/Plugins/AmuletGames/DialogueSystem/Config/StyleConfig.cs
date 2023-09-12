@@ -7,6 +7,7 @@ namespace AG.DS
         #endregion
 
         #region Pseudo States.
+        public const string Pseudo_Hover = "pseudo-hover";
         public const string Pseudo_Focus = "pseudo-focus";
         #endregion
 
@@ -50,9 +51,127 @@ namespace AG.DS
         #endregion
 
         #region Input Hint USS Classes.
-        public const string InputHint_Main = "inputHint-main";
-        public const string InputHint_Icon = "inputHint-icon";
-        public const string InputHint_Label = "inputHint-label";
+        public const string InputHint = "inputHint";
+        public const string InputHint_HintIcon_Image = "inputHint-hintIcon-image";
+        public const string InputHint_HintText_Label = "inputHint-hintText-label";
+        #endregion
+
+        #region Content Button USS Classes.
+        public const string ContentButton = "contentButton";
+        public const string ContentButton_ButtonText_Label = "contentButton-buttonText-label";
+        public const string ContentButton_ButtonIcon_Image = "contentButton-buttonIcon-image";
+        #endregion
+
+        #region Node Common USS Classes.
+        public const string Node = "node";
+
+        /*< -------------------- Node Border -------------------- >*/
+        public const string Node_Border = "node-border";
+
+        /*< -------------------- Node Top, Title Container -------------------- >*/
+        public const string Node_Top_Container = "node-top-container";
+        public const string Node_Title_Container = "node-title-container";
+        public const string Node_TitleText_Field = "node-titleText-field";
+        public const string Node_EditTitle_Button = "node-editTitle-button";
+
+        /*< -------------------- Node Port, Input / Output Container -------------------- >*/
+        public const string Node_Port_Container = "node-port-container";
+        public const string Node_Input_Container = "node-input-container";
+        public const string Node_Output_Container = "node-output-container";
+
+        /*< -------------------- Node Content Container -------------------- >*/
+        public const string Node_Content_Container = "node-content-container";
+        #endregion
+
+        #region Node Dialogue USS Classes.
+        public const string DialogueNode_Character_ObjectField = "dialogueNode_Character_ObjectField";
+        public const string MessageModifierGroup_Content_Container = "dialogueNode_Stitcher_Modifiers_Box";
+        #endregion
+
+        #region Node Option Branch USS Classes.
+        public const string OptionBranch_Main_Container = "optionBranch-main-container";
+        public const string OptionBranch_Outer_Container = "optionBranch-outer-container";
+        public const string OptionBranch_BranchIcon_Image = "optionBranch-branchIcon-image";
+        public const string OptionBranch_Inner_Container = "optionBranch-inner-container";
+        public const string OptionBranch_BranchTitle_Label = "optionBranch-branchTitle-label";
+        public const string OptionBranch_BranchTitleText_Field = "optionBranch-branchTitleText-field";
+        #endregion
+
+        #region Node Option Root USS Classes.
+        public const string OptionRoot_Main_Container = "optionRoot-main-container";
+        public const string OptionRoot_Outer_Container = "optionRoot-outer-container";
+        public const string OptionRoot_RootIcon_Image = "optionRoot-rootIcon-image";
+        public const string OptionRoot_Inner_Container = "optionRoot-inner-container";
+        public const string OptionRoot_RootTitle_Label = "optionRoot-rootTitle-label";
+        public const string OptionRoot_RootTitleText_Field = "optionRoot-rootTitleText-field";
+        #endregion
+
+        #region Node Preview USS Classes.
+        public const string PreviewNode_PreviewImage_Box = "previewNode_PreviewImage_Box";
+        public const string PreviewNode_PreviewImage_Image = "previewNode_PreviewImage_Image";
+        public const string PreviewNode_PreviewImage_Image_L = "previewNode_PreviewImage_Image_L";
+        public const string PreviewNode_PreviewImage_Image_R = "previewNode_PreviewImage_Image_R";
+
+        public const string PreviewNode_PreviewSprite_Box = "previewNode_PreviewSprite_Box";
+        public const string PreviewNode_PreviewSprite_ObjectField = "previewNode_PreviewSprite_ObjectField";
+        public const string PreviewNode_PreviewSprite_ObjectField_L = "previewNode_PreviewSprite_ObjectField_L";
+        public const string PreviewNode_PreviewSprite_ObjectField_R = "previewNode_PreviewSprite_ObjectField_R";
+        public const string PreviewNode_MiddleEmpty_Box = "previewNode_MiddleEmpty_Box";
+        #endregion
+
+        #region Node Story USS Classes.
+        public const string StoryNode_PreferenceImage_Image = "storyNode_PreferenceImage_Image";
+        #endregion
+
+        #region Port Common USS Classes.
+        public const string Port_Sibling = "port_Sibling";
+        public const string Port_Connect = "port_Connect";
+        #endregion
+
+        #region Port Default USS Classes.
+        /*< -------------------- Port -------------------- >*/
+        public const string Default_Input_Port = "default_Input_Port";
+        public const string Default_Output_Port = "default_Output_Port";
+
+        /*< -------------------- Connector -------------------- >*/
+        public const string Default_Input_Connector = "default_Input_Connector";
+        public const string Default_Output_Connector = "default_Output_Connector";
+
+        /*< -------------------- Label -------------------- >*/
+        public const string Default_Input_Label = "default_Input_Label";
+        public const string Default_Output_Label = "default_Output_Label";
+
+        /*< -------------------- Cap -------------------- >*/
+        public const string Default_Input_Cap = "default_Input_Cap";
+        public const string Default_Output_Cap = "default_Output_Cap";
+        #endregion
+
+        #region Port Option USS Classes.
+        /*< -------------------- Port -------------------- >*/
+        public const string Option_Input_Port = "option_Input_Port";
+        public const string Option_Output_Port = "option_Output_Port";
+
+        /*< -------------------- Connector -------------------- >*/
+        public const string Option_Input_Connector = "option_Input_Connector";
+        public const string Option_Output_Connector = "option_Output_Connector";
+
+        /*< -------------------- Label -------------------- >*/
+        public const string Option_Input_Label = "option_Input_Label";
+        public const string Option_Output_Label = "option_Output_Label";
+
+        /*< -------------------- Cap -------------------- >*/
+        public const string Option_Input_Cap = "option_Input_Cap";
+        public const string Option_Output_Cap = "option_Output_Cap";
+        #endregion
+
+        #region Port Group Option USS Classes.
+        public const string OptionPortGroup_GroupCell = "optionPortGroup-groupCell";
+        public const string OptionPortGroup_RemoveCell_Button = "optionPortGroup-removeCell-button";
+        #endregion
+
+        #region Edge USS Classes.
+        public const string DefaultEdge = "defaultEdge";
+        public const string OptionEdge = "optionEdge";
         #endregion
 
         #region Folder Common USS Classes.
@@ -78,7 +197,9 @@ namespace AG.DS
         public const string EventModifier_DelaySeconds_Container = "eventModifier-delaySeconds-container";
         public const string EventModifier_DelaySeconds_Field = "eventModifier-delaySeconds-field";
         public const string EventModifier_DelaySeconds_Label = "eventModifier-delaySeconds-label";
-        public const string EventModifier_Group = "eventModifier-group";
+
+        /*< -------------------- Event Modifier Group -------------------- >*/
+        public const string EventModifierGroup = "eventModifierGroup";
         #endregion
 
         #region Modifier Condition USS Classes.
@@ -163,137 +284,9 @@ namespace AG.DS
         public const string Segment_Event_Content_Box = "segment_Event_Content_Box";
         #endregion
 
-        #region Content Button USS Classes.
-        public const string ContentButton = "contentButton";
-        public const string ContentButton_Label = "contentButton-label";
-        public const string ContentButton_Icon = "contentButton-icon";
-        #endregion
-
         #region Field Icon USS Classes.
-        public const string ObjectField_Icon = "objectField_Icon";
         public const string TextField_Icon = "textField_Icon";
-        public const string FloatField_Icon = "floatField_Icon";
         #endregion
 
-        #region Node Common USS Classes.
-        /*< -------------------- Border -------------------- >*/
-        public const string Node = "Node";
-        public const string Node_Border = "node_Border";
-        public const string Node_Border_Hover = "node_Border_Hover";
-
-        /*< -------------------- Node Title -------------------- >*/
-        public const string Node_Title_Container = "node_Title_Container";
-        public const string node_Title_Main = "node_Title_Main";
-        public const string Node_Title_TextField = "node_Title_TextField";
-        public const string Node_EditTitle_Button = "node_EditTitle_Button";
-
-        /*< -------------------- Node Top -------------------- >*/
-        public const string Node_Top_Container = "node_Top_Container";
-
-        /*< -------------------- Input / Output Container -------------------- >*/
-        public const string Node_Input_Container = "node_Input_Container";
-        public const string Node_Output_Container = "node_Output_Container";
-
-        /*< -------------------- Content Container -------------------- >*/
-        public const string Node_Content_Container = "node_Content_Container";
-        #endregion
-
-        #region Node Dialogue USS Classes.
-        public const string DialogueNode_Character_ObjectField = "dialogueNode_Character_ObjectField";
-        public const string MessageModifierGroup_Content_Container = "dialogueNode_Stitcher_Modifiers_Box";
-        #endregion
-
-        #region Node Option Branch USS Classes.
-        public const string OptionBranch_MainContainer = "optionBranch_MainContainer";
-        public const string OptionBranch_OuterContainer = "optionBranch_OuterContainer";
-        public const string OptionBranch_Icon = "optionBranch-icon";
-        public const string OptionBranch_InnerContainer = "optionBranch_InnerContainer";
-        public const string OptionBranch_Title_Label = "optionBranch_Title_Label";
-        public const string OptionBranch_Title_TextField = "optionBranch_Title_TextField";
-        #endregion
-
-        #region Node Option Root USS Classes.
-        public const string OptionRoot_MainContainer = "optionRoot_MainContainer";
-        public const string OptionRoot_OuterContainer = "optionRoot_OuterContainer";
-        public const string OptionRoot_Icon = "optionRoot-icon";
-        public const string OptionRoot_InnerContainer = "optionRoot_InnerContainer";
-        public const string OptionRoot_Title_Label = "optionRoot_Title_Label";
-        public const string OptionRoot_Title_TextField = "optionRoot_Title_TextField";
-        #endregion
-
-        #region Node Preview USS Classes.
-        public const string PreviewNode_PreviewImage_Box = "previewNode_PreviewImage_Box";
-        public const string PreviewNode_PreviewImage_Image = "previewNode_PreviewImage_Image";
-        public const string PreviewNode_PreviewImage_Image_L = "previewNode_PreviewImage_Image_L";
-        public const string PreviewNode_PreviewImage_Image_R = "previewNode_PreviewImage_Image_R";
-
-        public const string PreviewNode_PreviewSprite_Box = "previewNode_PreviewSprite_Box";
-        public const string PreviewNode_PreviewSprite_ObjectField = "previewNode_PreviewSprite_ObjectField";
-        public const string PreviewNode_PreviewSprite_ObjectField_L = "previewNode_PreviewSprite_ObjectField_L";
-        public const string PreviewNode_PreviewSprite_ObjectField_R = "previewNode_PreviewSprite_ObjectField_R";
-        public const string PreviewNode_MiddleEmpty_Box = "previewNode_MiddleEmpty_Box";
-        #endregion
-
-        #region Node Story USS Classes.
-        public const string StoryNode_PreferenceImage_Image = "storyNode_PreferenceImage_Image";
-        #endregion
-
-        #region Port Common USS Classes.
-        public const string Port_Sibling = "port_Sibling";
-        public const string Port_Connect = "port_Connect";
-        #endregion
-
-        #region Port Default USS Classes.
-        /*< -------------------- Port -------------------- >*/
-        public const string Default_Input_Port = "default_Input_Port";
-        public const string Default_Output_Port = "default_Output_Port";
-
-        /*< -------------------- Connector -------------------- >*/
-        public const string Default_Input_Connector = "default_Input_Connector";
-        public const string Default_Output_Connector = "default_Output_Connector";
-
-        /*< -------------------- Label -------------------- >*/
-        public const string Default_Input_Label = "default_Input_Label";
-        public const string Default_Output_Label = "default_Output_Label";
-
-        /*< -------------------- Cap -------------------- >*/
-        public const string Default_Input_Cap = "default_Input_Cap";
-        public const string Default_Output_Cap = "default_Output_Cap";
-        #endregion
-
-        #region Port Option USS Classes.
-        /*< -------------------- Port -------------------- >*/
-        public const string Option_Input_Port = "option_Input_Port";
-        public const string Option_Output_Port = "option_Output_Port";
-
-        /*< -------------------- Connector -------------------- >*/
-        public const string Option_Input_Connector = "option_Input_Connector";
-        public const string Option_Output_Connector = "option_Output_Connector";
-
-        /*< -------------------- Label -------------------- >*/
-        public const string Option_Input_Label = "option_Input_Label";
-        public const string Option_Output_Label = "option_Output_Label";
-
-        /*< -------------------- Cap -------------------- >*/
-        public const string Option_Input_Cap = "option_Input_Cap";
-        public const string Option_Output_Cap = "option_Output_Cap";
-        #endregion
-
-        #region Option Port Group USS Classes.
-        public const string OptionPortGroup_Cell = "optionPortGroup_Cell";
-        public const string OptionPortGroup_RemoveButton = "optionPortGroup_RemoveButton";
-        #endregion
-
-        #region Edge Default USS Classes.
-        /*< -------------------- Common -------------------- >*/
-        public const string Edge_Selected = "edge_Selected";
-
-        /*< -------------------- Default -------------------- >*/
-        public const string Default_Edge = "default_Edge";
-        #endregion
-
-        #region Edge Option USS Classes.
-        public const string Option_Edge = "option_Edge";
-        #endregion
     }
 }

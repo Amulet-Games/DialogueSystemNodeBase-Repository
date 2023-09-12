@@ -1,7 +1,5 @@
-/* =========================================================== Input Hint =========================================================== */
-
 /*< ---------------------------------------------------------- Main >*/
-.inputHint-main {
+.inputHint {
 
 	background-color: rgba(255, 74, 116, 1);
 	border-color: rgba(135, 143, 204, 1);
@@ -13,13 +11,13 @@
 	position: absolute;
 	
 	/* top - right - bottom - left */
-	border-width: 2px 2px 2px 2px;
-	border-radius: 3px 3px 3px 3px;
+	border-width: 2px;
+	border-radius: 3px;
 }
 
 
-/*< ---------------------------------------------------------- Icon >*/
-.inputHint-icon {
+/*< ---------------------------------------------------------- Hint Icon Image >*/
+.inputHint-hintIcon-image {
 
 	background-color: rgba(255, 112, 102, 1);
 
@@ -37,8 +35,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Label >*/
-.inputHint-label {
+/*< ---------------------------------------------------------- Hint Text Label >*/
+.inputHint-hintText-label {
 
 	color: white;
 

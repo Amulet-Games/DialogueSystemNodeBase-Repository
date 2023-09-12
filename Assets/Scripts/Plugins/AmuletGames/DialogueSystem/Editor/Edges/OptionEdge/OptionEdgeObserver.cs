@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -19,12 +20,6 @@ namespace AG.DS
             view = edge.View;
 
             RegisterMouseMoveEvent();
-
-            RegisterMouseUpEvent();
-
-            RegisterFocusEvent();
-
-            RegisterBlurEvent();
         }
 
 
@@ -32,24 +27,6 @@ namespace AG.DS
         /// Register MouseMoveEvent to the edge.
         /// </summary>
         void RegisterMouseMoveEvent() => Edge.RegisterCallback<MouseMoveEvent>(MouseMoveEvent);
-
-
-        /// <summary>
-        /// Register MouseUpEvent to the edge.
-        /// </summary>
-        void RegisterMouseUpEvent() => Edge.RegisterCallback<MouseUpEvent>(MouseUpEvent);
-
-
-        /// <summary>
-        /// Register FocusEvent to the edge.
-        /// </summary>
-        void RegisterFocusEvent() => Edge.RegisterCallback<FocusEvent>(FocusEvent);
-
-
-        /// <summary>
-        /// Register BlurEvent to the edge.
-        /// </summary>
-        void RegisterBlurEvent() => Edge.RegisterCallback<BlurEvent>(BlurEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -69,43 +46,6 @@ namespace AG.DS
                 view.Input.HideConnectStyle();
                 view.Input = null;
             }
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the user release the mouse button on the edge.
-        /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void MouseUpEvent(MouseUpEvent evt)
-        {
-            if (view.Output == null)
-            {
-                view.Input.HideConnectStyle();
-            }
-            else if (view.Input == null)
-            {
-                view.Output.HideConnectStyle();
-            }
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the edge has given focus.
-        /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void FocusEvent(FocusEvent evt)
-        {
-            Edge.AddToClassList(StyleConfig.Edge_Selected);
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the edge has lost focus.
-        /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void BlurEvent(BlurEvent evt)
-        {
-            Edge.RemoveFromClassList(StyleConfig.Edge_Selected);
         }
     }
 }

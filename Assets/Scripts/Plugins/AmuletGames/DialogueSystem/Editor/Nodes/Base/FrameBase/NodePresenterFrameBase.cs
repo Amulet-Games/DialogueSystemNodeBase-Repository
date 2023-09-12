@@ -1,5 +1,3 @@
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
     /// <inheritdoc />
@@ -41,30 +39,18 @@ namespace AG.DS
         /// </summary>
         protected void CreateTitleElements()
         {
-            VisualElement titleContainer;
-
-            SetupContainers();
-
             SetupNodeTitleTextField();
 
             SetupEditTitleButton();
 
-            AddElementsToContainer();
+            AddElementsToNode();
 
-            AddContainersToNode();
-
-            void SetupContainers()
-            {
-                titleContainer = new();
-                titleContainer.AddToClassList(StyleConfig.node_Title_Main);
-            }
-            
             void SetupNodeTitleTextField()
             {
                 NodeTitleTextFieldPresenter.CreateElement
                 (
                     view: View.NodeTitleTextFieldView,
-                    fieldUSS: StyleConfig.Node_Title_TextField
+                    fieldUSS: StyleConfig.Node_TitleText_Field
                 );
             }
             
@@ -77,15 +63,10 @@ namespace AG.DS
                 );
             }
             
-            void AddElementsToContainer()
+            void AddElementsToNode()
             {
-                titleContainer.Add(View.NodeTitleTextFieldView.Field);
-                titleContainer.Add(View.EditTitleButton);
-            }
-            
-            void AddContainersToNode()
-            {
-                Node.titleContainer.Add(titleContainer);
+                Node.titleContainer.Add(View.NodeTitleTextFieldView.Field);
+                Node.titleContainer.Add(View.EditTitleButton);
             }
         }
     }

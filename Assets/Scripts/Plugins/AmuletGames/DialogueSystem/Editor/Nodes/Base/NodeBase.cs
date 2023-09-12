@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -17,9 +16,27 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the node's border visual element.
+        /// Reference of the node border visual element.
         /// </summary>
         public VisualElement NodeBorder;
+
+
+        /// <summary>
+        /// Reference of the node port container visual element.
+        /// </summary>
+        public VisualElement PortContainer;
+
+
+        /// <summary>
+        /// Reference of the node input container visual element.
+        /// </summary>
+        public VisualElement InputContainer;
+
+
+        /// <summary>
+        /// Reference of the node output container visual element.
+        /// </summary>
+        public VisualElement OutputContainer;
 
 
         /// <summary>
@@ -59,20 +76,16 @@ namespace AG.DS
         /// Add the given port to the node.
         /// </summary>
         /// <param name="port">The port base to set for.</param>
-        /// <param name="isRefresh">Is refreshing the node's port container afterward.</param>
-        public void Add(PortBase port, bool isRefresh = false)
+        public void Add(PortBase port)
         {
             if (port.direction == Direction.Input)
             {
-                inputContainer.Add(port);
+                InputContainer.Add(port);
             }
             else
             {
-                outputContainer.Add(port);
+                OutputContainer.Add(port);
             }
-
-            if (isRefresh)
-                RefreshPorts();
 
             GraphViewer.Add(port);
         }
@@ -86,14 +99,13 @@ namespace AG.DS
         {
             if (cell.Port.direction == Direction.Input)
             {
-                inputContainer.Add(cell);
+                InputContainer.Add(cell);
             }
             else
             {
-                outputContainer.Add(cell);
+                OutputContainer.Add(cell);
             }
 
-            RefreshPorts();
             GraphViewer.Add(cell.Port);
         }
 
@@ -106,14 +118,13 @@ namespace AG.DS
         {
             if (port.direction == Direction.Input)
             {
-                inputContainer.Remove(port);
+                InputContainer.Remove(port);
             }
             else
             {
-                outputContainer.Remove(port);
+                OutputContainer.Remove(port);
             }
 
-            RefreshPorts();
             GraphViewer.Remove(port);
         }
 
@@ -126,14 +137,13 @@ namespace AG.DS
         {
             if (cell.Port.direction == Direction.Input)
             {
-                inputContainer.Remove(cell);
+                InputContainer.Remove(cell);
             }
             else
             {
-                outputContainer.Remove(cell);
+                OutputContainer.Remove(cell);
             }
 
-            RefreshPorts();
             GraphViewer.Remove(cell.Port);
         }
     }

@@ -43,11 +43,22 @@ namespace AG.DS
         public StyleSheet DSNodeCommonStyle;
         #endregion
 
+        #region Port Groups.
+        [Header("Port Groups")]
+        public StyleSheet DSOptionPortGroupStyle;
+        #endregion
+
         #region Ports.
         [Header("Ports")]
         public StyleSheet DSDefaultPortStyle;
         public StyleSheet DSOptionPortStyle;
         public StyleSheet DSPortStyle;
+        #endregion
+
+        #region Edges.
+        [Header("Edges")]
+        public StyleSheet DSDefaultEdgeStyle;
+        public StyleSheet DSOptionEdgeStyle;
         #endregion
 
         #region Globals.

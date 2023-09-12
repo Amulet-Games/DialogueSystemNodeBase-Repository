@@ -67,7 +67,7 @@ namespace AG.DS
             var port = Detail.ConnectorPort;
             var isInput = port.IsInput();
 
-            if (port.connected)
+            if (port.IsSingle() && port.connected)
             {
                 port.Disconnect(GraphViewer);
             }

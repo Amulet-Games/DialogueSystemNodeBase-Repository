@@ -9,7 +9,7 @@ namespace AG.DS
         public static void CreateElement(EventModifierGroupView view)
         {
             view.GroupContainer = new();
-            view.GroupContainer.AddToClassList(StyleConfig.EventModifier_Group);
+            view.GroupContainer.AddToClassList(StyleConfig.EventModifierGroup);
         }
     }
 }
