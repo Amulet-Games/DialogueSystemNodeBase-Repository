@@ -71,7 +71,7 @@ namespace AG.DS
         /*< -------------------- Node Top, Title Container -------------------- >*/
         public const string Node_Top_Container = "node-top-container";
         public const string Node_Title_Container = "node-title-container";
-        public const string Node_TitleText_Field = "node-titleText-field";
+        public const string Node_NodeTitle_Field = "node-nodeTitle-field";
         public const string Node_EditTitle_Button = "node-editTitle-button";
 
         /*< -------------------- Node Port, Input / Output Container -------------------- >*/
@@ -84,7 +84,7 @@ namespace AG.DS
         #endregion
 
         #region Node Dialogue USS Classes.
-        public const string DialogueNode_Character_ObjectField = "dialogueNode_Character_ObjectField";
+        public const string DialogueNode_Speaker_ObjectField = "dialogueNode_Character_ObjectField";
         public const string MessageModifierGroup_Content_Container = "dialogueNode_Stitcher_Modifiers_Box";
         #endregion
 
@@ -178,7 +178,7 @@ namespace AG.DS
         public const string Folder = "folder";
         public const string Folder_Title_Container = "folder-title-container";
         public const string Folder_Expand_Button = "folder-expand-button";
-        public const string Folder_TitleText_Field = "folder_titleText-field";
+        public const string Folder_FolderTitle_Field = "folder-folderTitle-field";
         public const string Folder_Content_Container = "folder-content-container";
         public const string Folder_Closed = "folder-closed";
         #endregion

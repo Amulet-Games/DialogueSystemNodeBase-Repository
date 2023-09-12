@@ -44,15 +44,15 @@ namespace AG.DS
         #endregion
 
         #region Node Title Labels.
-        public const string BooleanNode_TitleTextField_LabelText = "Boolean";
-        public const string DialogueNode_TitleTextField_LabelText = "Dialogue";
-        public const string EndNode_TitleTextField_LabelText = "End";
-        public const string EventNode_TitleTextField_LabelText = "Event";
-        public const string OptionBranchNode_TitleTextField_LabelText = "Option Branch";
-        public const string OptionRootNode_TitleTextField_LabelText = "Option Root";
-        public const string PreviewNode_TitleTextField_LabelText = "Preview";
-        public const string StartNode_TitleTextField_LabelText = "Start";
-        public const string StoryNode_TitleTextField_LabelText = "Story";
+        public const string BooleanNode_NodeTitleField_DefaultText = "Boolean";
+        public const string DialogueNode_NodeTitleField_DefaultText = "Dialogue";
+        public const string EndNode_NodeTitleField_DefaultText = "End";
+        public const string EventNode_NodeTitleField_DefaultText = "Event";
+        public const string OptionBranchNode_NodeTitleField_DefaultText = "Option Branch";
+        public const string OptionRootNode_NodeTitleField_DefaultText = "Option Root";
+        public const string PreviewNode_NodeTitleField_DefaultText = "Preview";
+        public const string StartNode_NodeTitleField_DefaultText = "Start";
+        public const string StoryNode_NodeTitleField_DefaultText = "Story";
         #endregion
 
         #region Input / Output Port Labels.
@@ -85,27 +85,28 @@ namespace AG.DS
         #endregion
 
         #region Event Modifier Texts.
-        public const string EventModifier_Folder_TitleText = "Event ";
+        public const string EventModifier_FolderTitleField_DefaultText = "Event ";
         public const string EventModifier_DialogueEventLabel_LabelText = "Dialogue Event";
-        public const string EventModifier_DialogueEventObjectField_PlaceholderText = "None (Dialogue Event)";
+        public const string EventModifier_DialogueEventField_PlaceholderText = "None (Dialogue Event)";
         public const string EventModifier_StartDelay_LabelText = "Start Delay";
         public const string EventModifier_DelaySeconds_LabelText = "seconds";
         #endregion
 
         #region Message Modifier Texts.
         public const string MessageModifier_Folder_TitleText = "Message ";
+        public const string MessageModifier_DialogueSpeakerField_PlaceholderText = "None (Dialogue Character)";
         public const string MessageModifierProgressTypeLabelText = "Progress Type";
         public const string DurationLabelText = "Duration";
         #endregion
 
         #region Option Root Node Texts.
         public const string OptionRootNode_RootTitleLabel_LabelText = "Root Title";
-        public const string OptionRootNode_RootTitleTextField_PlaceholderText = "“Did you have lunch yet?”";
+        public const string OptionRootNode_RootTitleField_PlaceholderText = "“Did you have lunch yet?”";
         #endregion
 
         #region Option Branch Node Texts.
         public const string OptionBranchNode_BranchTitleLabel_LabelText = "Branch Title";
-        public const string OptionBranchNode_BranchTitleTextField_PlaceholderText = "“Yeah I had it in the Indian restaurant.”";
+        public const string OptionBranchNode_BranchTitleField_PlaceholderText = "“Yeah I had it in the Indian restaurant.”";
         #endregion
     }
 }

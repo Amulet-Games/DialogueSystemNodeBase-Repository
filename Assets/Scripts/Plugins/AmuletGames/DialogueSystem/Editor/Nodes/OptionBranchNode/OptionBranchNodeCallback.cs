@@ -30,7 +30,7 @@ namespace AG.DS
 
             // Remove language field
             {
-                View.BranchTitleTextFieldView.LanguageHandler.Remove(View.BranchTitleTextFieldView);
+                View.BranchTitleFieldView.LanguageHandler.Remove(View.BranchTitleFieldView);
             }
         }
 
@@ -46,7 +46,7 @@ namespace AG.DS
         {
             // Add language field
             {
-                View.BranchTitleTextFieldView.LanguageHandler.Add(View.BranchTitleTextFieldView);
+                View.BranchTitleFieldView.LanguageHandler.Add(View.BranchTitleFieldView);
             }
         }
     }

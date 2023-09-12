@@ -4,15 +4,21 @@
     public class DialogueNodeView : NodeViewFrameBase<DialogueNodeView>
     {
         /// <summary>
-        /// View for the character scriptable object object field.
+        /// Content button for adding messages to the node.
         /// </summary>
-        public CommonObjectFieldView<DialogueCharacter> CharacterObjectFieldView;
+        public ContentButton ContentButton;
 
 
         /// <summary>
-        /// A special node's UI style that combined the use of segment, modifier and content button together.
+        /// View for the dialogue speaker field.
         /// </summary>
-        public MessageModifierGroupView DialogueNodeStitcher;
+        public CommonObjectFieldView<DialogueCharacter> DialogueSpeakerFieldView;
+
+
+        /// <summary>
+        /// View for the message modifier group.
+        /// </summary>
+        public MessageModifierGroupView MessageModifierGroupView;
 
 
         /// <summary>
@@ -30,9 +36,9 @@
         /// <inheritdoc />
         public override DialogueNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleTextFieldView = new(value: StringConfig.DialogueNode_TitleTextField_LabelText);
-            CharacterObjectFieldView = new("");
-            DialogueNodeStitcher = new();
+            NodeTitleFieldView = new(value: StringConfig.DialogueNode_NodeTitleField_DefaultText);
+            DialogueSpeakerFieldView = new(placeholderText: StringConfig.MessageModifier_DialogueSpeakerField_PlaceholderText);
+            MessageModifierGroupView = new();
 
             return this;
         }

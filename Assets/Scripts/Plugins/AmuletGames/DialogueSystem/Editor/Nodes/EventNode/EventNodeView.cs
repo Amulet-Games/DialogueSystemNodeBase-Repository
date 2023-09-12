@@ -30,7 +30,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override EventNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleTextFieldView = new(value: StringConfig.EventNode_TitleTextField_LabelText);
+            NodeTitleFieldView = new(value: StringConfig.EventNode_NodeTitleField_DefaultText);
             EventModifierGroupView = new();
 
             return this;

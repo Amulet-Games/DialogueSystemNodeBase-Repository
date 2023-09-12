@@ -80,7 +80,7 @@ namespace AG.DS
                 View.ContentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.ContentButton_AddCondition_LabelText,
-                    buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddConditionModifierButtonIconSprite
+                    buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddConditionButtonIconSprite
                 );
             }
 
@@ -119,10 +119,10 @@ namespace AG.DS
 
             void SetupBranchTitleTextField()
             {
-                View.BranchTitleTextFieldView.Field = LanguageTextFieldPresenter.CreateElement
+                View.BranchTitleFieldView.Field = LanguageTextFieldPresenter.CreateElement
                 (
                     multiline: false,
-                    placeholderText: View.BranchTitleTextFieldView.placeholderText,
+                    placeholderText: View.BranchTitleFieldView.placeholderText,
                     fieldUSS: StyleConfig.OptionBranch_BranchTitleText_Field
                 );
             }
@@ -135,7 +135,7 @@ namespace AG.DS
                 branchOuterContainer.Add(branchInnerContainer);
 
                 branchInnerContainer.Add(branchTitleLabel);
-                branchInnerContainer.Add(View.BranchTitleTextFieldView.Field);
+                branchInnerContainer.Add(View.BranchTitleFieldView.Field);
 
                 branchMainContainer.Add(branchOuterContainer);
                 contentContainer.Add(branchMainContainer);

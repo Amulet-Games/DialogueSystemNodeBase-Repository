@@ -59,7 +59,7 @@ namespace AG.DS
         /// </summary>
         void RegisterNodeTitleTextFieldEvents()
             => new NodeTitleTextFieldObserver(
-                view: View.NodeTitleTextFieldView).RegisterEvents();
+                view: View.NodeTitleFieldView).RegisterEvents();
 
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace AG.DS
         /// </summary>
         void RegisterBranchTitleTextFieldEvents()
             => new LanguageTextFieldObserver(
-                view: View.BranchTitleTextFieldView).RegisterEvents();
+                view: View.BranchTitleFieldView).RegisterEvents();
 
 
         // ----------------------------- Event -----------------------------
@@ -122,7 +122,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void NodeTitleEditButtonClickEvent(ClickEvent evt)
         {
-            var fieldInput = View.NodeTitleTextFieldView.Field.GetFieldInput();
+            var fieldInput = View.NodeTitleFieldView.Field.GetFieldInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }
@@ -135,9 +135,6 @@ namespace AG.DS
         {
             // Release the focus of the node's border.
             Node.NodeBorder.Blur();
-
-            // Add a new instance modifier to the node.
-            View.OptionBranchNodeStitcher.AddInstanceModifier(model: null);
         }
     }
 }

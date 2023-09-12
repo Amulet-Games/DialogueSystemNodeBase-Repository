@@ -56,9 +56,13 @@ namespace AG.DS
         {
             VisualElement contentContainer;
 
+
+
+            SetupContentButton();
+
             SetupContainers();
 
-            AddCharacterObjectField();
+            AddSpeakerObjectField();
 
             AddCharacterObjectFieldIcon();
 
@@ -68,18 +72,27 @@ namespace AG.DS
 
             AddContainersToNode();
 
+            void SetupContentButton()
+            {
+                View.ContentButton = ContentButtonPresenter.CreateElement
+                (
+                    buttonText: StringConfig.ContentButton_AddMessage_LabelText,
+                    buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddMessageButtonIconSprite
+                );
+            }
+
             void SetupContainers()
             {
                 contentContainer = new();
                 contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
             }
 
-            void AddCharacterObjectField()
+            void AddSpeakerObjectField()
             {
                 CommonObjectFieldPresenter.CreateElement
                 (
-                    view: View.CharacterObjectFieldView,
-                    fieldUSS01: StyleConfig.DialogueNode_Character_ObjectField
+                    view: View.DialogueSpeakerFieldView,
+                    fieldUSS01: StyleConfig.DialogueNode_Speaker_ObjectField
                 );
             }
 
@@ -95,12 +108,12 @@ namespace AG.DS
             void AddDialogueNodeStitcher()
             {
                 // Create all the root elements required in the node stitcher.
-                View.DialogueNodeStitcher.CreateElement(Node);
+                View.MessageModifierGroupView.CreateElement(Node);
             }
 
             void AddElementsToContainer()
             {
-                contentContainer.Add(View.CharacterObjectFieldView.Field);
+                contentContainer.Add(View.DialogueSpeakerFieldView.Field);
             }
 
             void AddContainersToNode()

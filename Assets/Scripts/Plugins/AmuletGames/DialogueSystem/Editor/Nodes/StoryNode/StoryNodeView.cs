@@ -39,7 +39,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override StoryNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleTextFieldView = new(value: StringConfig.StoryNode_TitleTextField_LabelText);
+            NodeTitleFieldView = new(value: StringConfig.StoryNode_NodeTitleField_DefaultText);
             SecondLineTriggerTypeEnumContainer = new();
             CsvGUID = Guid.NewGuid().ToString();
 

@@ -12,7 +12,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override EndNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleTextFieldView = new(value: StringConfig.EndNode_TitleTextField_LabelText);
+            NodeTitleFieldView = new(value: StringConfig.EndNode_NodeTitleField_DefaultText);
 
             return this;
         }

@@ -21,10 +21,10 @@ namespace AG.DS
 
         #region Content Buttons.
         [Header("Content Buttons")]
-        public Sprite AddConditionModifierButtonIconSprite;
+        public Sprite AddConditionButtonIconSprite;
         public Sprite AddEntryButtonIconSprite;
-        public Sprite AddEventModifierButtonIconSprite;
-        public Sprite AddMessageModifierButtonIconSprite;
+        public Sprite AddEventButtonIconSprite;
+        public Sprite AddMessageButtonIconSprite;
         #endregion
 
         #region Dropdown Arrows

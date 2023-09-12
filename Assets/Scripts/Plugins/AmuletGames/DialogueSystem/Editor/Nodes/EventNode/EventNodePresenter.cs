@@ -71,7 +71,7 @@ namespace AG.DS
                 View.ContentButton = ContentButtonPresenter.CreateElement
                 (
                     buttonText: StringConfig.ContentButton_AddEvent_LabelText,
-                    buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEventModifierButtonIconSprite
+                    buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEventButtonIconSprite
                 );
             }
             

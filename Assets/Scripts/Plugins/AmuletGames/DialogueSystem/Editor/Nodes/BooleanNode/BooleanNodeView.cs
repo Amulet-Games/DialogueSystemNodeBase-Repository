@@ -30,7 +30,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override BooleanNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleTextFieldView = new(value: StringConfig.BooleanNode_TitleTextField_LabelText);
+            NodeTitleFieldView = new(value: StringConfig.BooleanNode_NodeTitleField_DefaultText);
             booleanNodeStitcher = new();
 
             return this;

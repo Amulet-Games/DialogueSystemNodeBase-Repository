@@ -58,7 +58,7 @@ namespace AG.DS
         public EventModifierView()
         {
             DialogueEventFieldView = new(
-                placeholderText: StringConfig.EventModifier_DialogueEventObjectField_PlaceholderText);
+                placeholderText: StringConfig.EventModifier_DialogueEventField_PlaceholderText);
 
             DelaySecondsFieldView = new(
                 maxValue: NumberConfig.MAX_DELAY_SECOND,

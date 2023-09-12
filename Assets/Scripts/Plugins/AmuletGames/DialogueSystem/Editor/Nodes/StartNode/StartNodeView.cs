@@ -12,7 +12,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override StartNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleTextFieldView = new(value: StringConfig.StartNode_TitleTextField_LabelText);
+            NodeTitleFieldView = new(value: StringConfig.StartNode_NodeTitleField_DefaultText);
             
             return this;
         }

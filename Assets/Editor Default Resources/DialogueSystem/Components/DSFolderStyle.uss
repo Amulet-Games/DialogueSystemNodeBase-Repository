@@ -78,8 +78,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Title Text Field >*/
-.folder_titleText-field {
+/*< ---------------------------------------------------------- Folder Title Field >*/
+.folder-folderTitle-field {
 	
 	height: 25px;
 
@@ -95,7 +95,7 @@
 	--unity-cursor-color: rgba(180, 180, 180, 1);
 }
 
-.folder_titleText-field
+.folder-folderTitle-field
 .text-field-input {
 	
 	cursor: text;
@@ -108,7 +108,7 @@
 	--unity-sync-text-editor: true;
 }
 
-.folder_titleText-field
+.folder-folderTitle-field
 .text-field-input.pseudo-focus  {
 
 	overflow: visible;
@@ -117,7 +117,7 @@
 	margin: 0px 0px 0px -4.5px;
 }
 
-.folder_titleText-field
+.folder-folderTitle-field
 .text-field-element {
 	
 	color: white;
@@ -136,7 +136,7 @@
 	border-radius: 4px;
 }
 
-.folder_titleText-field
+.folder-folderTitle-field
 .text-field-input.pseudo-focus
 .text-field-element {
 	

@@ -38,7 +38,7 @@ namespace AG.DS
 
             // Remove language field
             {
-                View.RootTitleTextFieldView.LanguageHandler.Remove(View.RootTitleTextFieldView);
+                View.RootTitleFieldView.LanguageHandler.Remove(View.RootTitleFieldView);
             }
         }
 
@@ -54,7 +54,7 @@ namespace AG.DS
         {
             // Add language field
             {
-                View.RootTitleTextFieldView.LanguageHandler.Add(View.RootTitleTextFieldView);
+                View.RootTitleFieldView.LanguageHandler.Add(View.RootTitleFieldView);
             }
         }
     }

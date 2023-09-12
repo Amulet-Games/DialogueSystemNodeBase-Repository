@@ -23,9 +23,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// View for the title text field.
+        /// View for the folder title field.
         /// </summary>
-        public FolderTitleTextFieldView TitleTextFieldView;
+        public FolderTitleTextFieldView FolderTitleFieldView;
 
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace AG.DS
         /// <param name="folderTitle">The folder title to set for.</param>
         public Folder(string folderTitle)
         {
-            TitleTextFieldView = new(value: folderTitle);
+            FolderTitleFieldView = new(value: folderTitle);
         }
 
 
@@ -51,7 +51,7 @@ namespace AG.DS
         /// <param name="model">The folder model to set for.</param>
         public void Save(FolderModel model)
         {
-            model.TitleText = TitleTextFieldView.Value;
+            model.TitleText = FolderTitleFieldView.Value;
             model.Expanded = Expanded;
         }
 
@@ -62,7 +62,7 @@ namespace AG.DS
         /// <param name="model">The folder model to set for.</param>
         public void Load(FolderModel model)
         {
-            TitleTextFieldView.Load(model.TitleText);
+            FolderTitleFieldView.Load(model.TitleText);
             SetExpanded(value: model.Expanded);
         }
 
@@ -109,7 +109,7 @@ namespace AG.DS
         /// </summary>
         public void StartEditingFolderTitle()
         {
-            var fieldInput = TitleTextFieldView.Field.GetFieldInput();
+            var fieldInput = FolderTitleFieldView.Field.GetFieldInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }

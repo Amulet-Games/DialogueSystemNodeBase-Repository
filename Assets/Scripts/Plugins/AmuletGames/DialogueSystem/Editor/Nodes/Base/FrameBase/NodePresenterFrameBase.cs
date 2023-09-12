@@ -39,18 +39,18 @@ namespace AG.DS
         /// </summary>
         protected void CreateTitleElements()
         {
-            SetupNodeTitleTextField();
+            SetupNodeTitleField();
 
             SetupEditTitleButton();
 
             AddElementsToNode();
 
-            void SetupNodeTitleTextField()
+            void SetupNodeTitleField()
             {
                 NodeTitleTextFieldPresenter.CreateElement
                 (
-                    view: View.NodeTitleTextFieldView,
-                    fieldUSS: StyleConfig.Node_TitleText_Field
+                    view: View.NodeTitleFieldView,
+                    fieldUSS: StyleConfig.Node_NodeTitle_Field
                 );
             }
             
@@ -65,7 +65,7 @@ namespace AG.DS
             
             void AddElementsToNode()
             {
-                Node.titleContainer.Add(View.NodeTitleTextFieldView.Field);
+                Node.titleContainer.Add(View.NodeTitleFieldView.Field);
                 Node.titleContainer.Add(View.EditTitleButton);
             }
         }

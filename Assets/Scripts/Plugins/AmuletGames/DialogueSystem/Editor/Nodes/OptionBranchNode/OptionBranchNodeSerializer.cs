@@ -39,7 +39,7 @@ namespace AG.DS
         /// </summary>
         void SaveBranchTitleTextField()
         {
-            View.BranchTitleTextFieldView.Save(Model.HeadlineText);
+            View.BranchTitleFieldView.Save(Model.HeadlineText);
         }
 
 
@@ -74,7 +74,7 @@ namespace AG.DS
         /// </summary>
         void LoadBranchTitleTextField()
         {
-            View.BranchTitleTextFieldView.Load(Model.HeadlineText);
+            View.BranchTitleFieldView.Load(Model.HeadlineText);
         }
     }
 }

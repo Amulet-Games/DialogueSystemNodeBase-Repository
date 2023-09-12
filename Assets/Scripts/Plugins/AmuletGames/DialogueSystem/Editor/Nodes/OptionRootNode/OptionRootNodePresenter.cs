@@ -119,10 +119,10 @@ namespace AG.DS
 
             void SetupOptionRootTitleTextField()
             {
-                View.RootTitleTextFieldView.Field = LanguageTextFieldPresenter.CreateElement
+                View.RootTitleFieldView.Field = LanguageTextFieldPresenter.CreateElement
                 (
                     multiline: false,
-                    placeholderText: View.RootTitleTextFieldView.placeholderText,
+                    placeholderText: View.RootTitleFieldView.placeholderText,
                     fieldUSS: StyleConfig.OptionRoot_RootTitleText_Field
                 );
             }
@@ -135,7 +135,7 @@ namespace AG.DS
                 rootOuterContainer.Add(rootInnerContainer);
 
                 rootInnerContainer.Add(rootTitleLabel);
-                rootInnerContainer.Add(View.RootTitleTextFieldView.Field);
+                rootInnerContainer.Add(View.RootTitleFieldView.Field);
 
                 rootMainContainer.Add(rootOuterContainer);
                 contentContainer.Add(rootMainContainer);

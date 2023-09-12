@@ -12,9 +12,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Text field view for the root title.
+        /// View for the root title field.
         /// </summary>
-        public LanguageTextFieldView RootTitleTextFieldView;
+        public LanguageTextFieldView RootTitleFieldView;
 
 
         /// <summary>
@@ -38,10 +38,14 @@ namespace AG.DS
         /// <inheritdoc />
         public override OptionRootNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleTextFieldView = new(value: StringConfig.OptionRootNode_TitleTextField_LabelText);
-            RootTitleTextFieldView = new(
-                placeholderText: StringConfig.OptionRootNode_RootTitleTextField_PlaceholderText,
-                languageHandler);
+            NodeTitleFieldView = new(value: StringConfig.OptionRootNode_NodeTitleField_DefaultText);
+
+            RootTitleFieldView = new
+            (
+                placeholderText: StringConfig.OptionRootNode_RootTitleField_PlaceholderText,
+                languageHandler
+            );
+
             OutputOptionPortGroupView = new(direction: Direction.Output);
 
             return this;

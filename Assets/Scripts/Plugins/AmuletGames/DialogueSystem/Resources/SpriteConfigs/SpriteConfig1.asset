@@ -18,10 +18,10 @@ MonoBehaviour:
   RemoveButtonIconSprite: {fileID: 21300000, guid: 461baa3ae24877b4abbe184d5b83f8c6, type: 3}
   LinkConditionIconSprite: {fileID: 21300000, guid: 9d3ef865572e44603b9851d2029dfc6b, type: 3}
   UnlinkConditionIconSprite: {fileID: 21300000, guid: fded6c667f63b524ea130804643fe786, type: 3}
-  AddConditionModifierButtonIconSprite: {fileID: 21300000, guid: 8ee07045343650f409ed2cfc8acb7e32, type: 3}
+  AddConditionButtonIconSprite: {fileID: 21300000, guid: 8ee07045343650f409ed2cfc8acb7e32, type: 3}
   AddEntryButtonIconSprite: {fileID: 21300000, guid: 151785b89ea5c47729fefda27509d6df, type: 3}
-  AddEventModifierButtonIconSprite: {fileID: 21300000, guid: 4d9f578eee56a22468aad41c49557a14, type: 3}
-  AddMessageModifierButtonIconSprite: {fileID: 21300000, guid: b74ee3fa3df474d4a8b6be6511ca30f8, type: 3}
+  AddEventButtonIconSprite: {fileID: 21300000, guid: 4d9f578eee56a22468aad41c49557a14, type: 3}
+  AddMessageButtonIconSprite: {fileID: 21300000, guid: b74ee3fa3df474d4a8b6be6511ca30f8, type: 3}
   DropdownArrowIcon1Sprite: {fileID: 21300000, guid: a2e0941619c6c7f48880f6edee3321ac, type: 3}
   DropdownArrowIcon2Sprite: {fileID: 21300000, guid: 7b70c1c1dbd114943b47d7800581186e, type: 3}
   AudioClipFieldIconSprite: {fileID: 21300000, guid: 0bdd3a99a3ded58478d11ad38c153a7c, type: 3}

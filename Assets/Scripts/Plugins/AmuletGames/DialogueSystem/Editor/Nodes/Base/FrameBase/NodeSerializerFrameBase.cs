@@ -61,7 +61,7 @@ namespace AG.DS
         /// </summary>
         protected void SaveNodeTitle()
         {
-            Model.TitleText = View.NodeTitleTextFieldView.Field.value;
+            Model.TitleText = View.NodeTitleFieldView.Field.value;
         }
 
 
@@ -96,7 +96,7 @@ namespace AG.DS
         /// </summary>
         protected void LoadNodeTitle()
         {
-            View.NodeTitleTextFieldView.Load(Model.TitleText);
+            View.NodeTitleFieldView.Load(Model.TitleText);
         }
     }
 }

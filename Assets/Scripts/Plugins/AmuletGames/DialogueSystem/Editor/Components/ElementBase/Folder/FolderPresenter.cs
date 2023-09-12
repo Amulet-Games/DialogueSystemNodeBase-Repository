@@ -46,8 +46,8 @@ namespace AG.DS
             {
                 FolderTitleTextFieldPresenter.CreateElement
                 (
-                    view: folder.TitleTextFieldView,
-                    fieldUSS: StyleConfig.Folder_TitleText_Field
+                    view: folder.FolderTitleFieldView,
+                    fieldUSS: StyleConfig.Folder_FolderTitle_Field
                 );
             }
 
@@ -65,7 +65,7 @@ namespace AG.DS
             void AddElementsToContainer()
             {
                 folder.TitleContainer.Add(folder.ExpandButton);
-                folder.TitleContainer.Add(folder.TitleTextFieldView.Field);
+                folder.TitleContainer.Add(folder.FolderTitleFieldView.Field);
             }
 
             void AddContainersToFolder()

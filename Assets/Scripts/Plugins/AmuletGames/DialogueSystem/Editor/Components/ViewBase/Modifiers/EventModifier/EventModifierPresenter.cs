@@ -56,7 +56,7 @@ namespace AG.DS
                 (
                     folderTitle: StringUtility.New
                     (
-                        str01: StringConfig.EventModifier_Folder_TitleText,
+                        str01: StringConfig.EventModifier_FolderTitleField_DefaultText,
                         str02: index.ToString()
                     )
                 );

@@ -55,7 +55,7 @@ namespace AG.DS
         /// </summary>
         void RegisterNodeTitleTextFieldEvents()
             => new NodeTitleTextFieldObserver(
-                view: View.NodeTitleTextFieldView).RegisterEvents();
+                view: View.NodeTitleFieldView).RegisterEvents();
 
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void NodeTitleEditButtonClickEvent(ClickEvent evt)
         {
-            var fieldInput = View.NodeTitleTextFieldView.Field.GetFieldInput();
+            var fieldInput = View.NodeTitleFieldView.Field.GetFieldInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
         }

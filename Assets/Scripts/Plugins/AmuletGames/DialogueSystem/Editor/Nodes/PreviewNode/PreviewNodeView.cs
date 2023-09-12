@@ -45,7 +45,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override PreviewNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleTextFieldView = new(value: StringConfig.PreviewNode_TitleTextField_LabelText);
+            NodeTitleFieldView = new(value: StringConfig.PreviewNode_NodeTitleField_DefaultText);
             LeftPortraitObjectFieldView = new("");
             RightPortraitObjectFieldView = new("");
 

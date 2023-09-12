@@ -10,15 +10,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Text field view for the branch title.
+        /// View for the branch title field.
         /// </summary>
-        public LanguageTextFieldView BranchTitleTextFieldView;
-
-
-        /// <summary>
-        /// A special node's UI style that combined the use of segment, modifier and content button together.
-        /// </summary>
-        public OptionBranchNodeStitcher OptionBranchNodeStitcher;
+        public LanguageTextFieldView BranchTitleFieldView;
 
 
         /// <summary>
@@ -36,11 +30,13 @@ namespace AG.DS
         /// <inheritdoc />
         public override OptionBranchNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleTextFieldView = new(value: StringConfig.OptionBranchNode_TitleTextField_LabelText);
-            BranchTitleTextFieldView = new(
-                placeholderText: StringConfig.OptionBranchNode_BranchTitleTextField_PlaceholderText,
-                languageHandler);
-            OptionBranchNodeStitcher = new();
+            NodeTitleFieldView = new(value: StringConfig.OptionBranchNode_NodeTitleField_DefaultText);
+
+            BranchTitleFieldView = new
+            (
+                placeholderText: StringConfig.OptionBranchNode_BranchTitleField_PlaceholderText,
+                languageHandler
+            );
 
             return this;
         }

@@ -8,9 +8,9 @@ namespace AG.DS
     public abstract class NodeViewBase
     {
         /// <summary>
-        /// View for the node's title text field.
+        /// View for the node title field.
         /// </summary>
-        public NodeTitleTextFieldView NodeTitleTextFieldView;
+        public NodeTitleTextFieldView NodeTitleFieldView;
 
 
         /// <summary>

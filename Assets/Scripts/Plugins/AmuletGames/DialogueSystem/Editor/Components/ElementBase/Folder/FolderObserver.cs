@@ -47,7 +47,7 @@ namespace AG.DS
         /// </summary>
         void RegisterTitleTextFieldEvents()
             => new FolderTitleTextFieldObserver(
-                view: folder.TitleTextFieldView).RegisterEvents();
+                view: folder.FolderTitleFieldView).RegisterEvents();
 
 
         // ----------------------------- Event -----------------------------
