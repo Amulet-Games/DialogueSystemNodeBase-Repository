@@ -21,7 +21,7 @@ namespace AG.DS
         /// <summary>
         /// Returns true if any of the option port cell's port is connecting.
         /// </summary>
-        public bool connected
+        public bool Connected
         {
             get
             {

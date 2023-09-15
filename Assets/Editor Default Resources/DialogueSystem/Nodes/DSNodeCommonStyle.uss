@@ -179,7 +179,6 @@
 	background-color: rgba(35, 35, 35, 1);
 
 	/* top - right - bottom - left */
-	border-width: 0px;
 	border-radius: 0px 0px 4px 4px;
 }
 

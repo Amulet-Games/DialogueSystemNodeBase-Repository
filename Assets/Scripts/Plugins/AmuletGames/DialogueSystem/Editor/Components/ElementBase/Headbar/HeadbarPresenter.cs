@@ -23,15 +23,15 @@ namespace AG.DS
 
             SetupDetail();
 
-            SetupContainers();
+            CreateContainers();
 
-            SetupSaveButton();
+            CreateSaveButton();
 
-            SetupLoadButton();
+            CreateLoadButton();
 
-            SetupLanguageToolbarMenu();
+            CreateLanguageToolbarMenu();
 
-            SetupGraphTitleField();
+            CreateGraphTitleField();
 
             AddElementsToContainer();
 
@@ -52,13 +52,13 @@ namespace AG.DS
                 headBar.focusable = true;
             }
 
-            void SetupContainers()
+            void CreateContainers()
             {
                 buttonsContainer = new();
                 buttonsContainer.AddToClassList(StyleConfig.HeadBar_Button_Container);
             }
 
-            void SetupSaveButton()
+            void CreateSaveButton()
             {
                 headBarView.SaveButton = CommonButtonPresenter.CreateElement
                 (
@@ -67,7 +67,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupLoadButton()
+            void CreateLoadButton()
             {
                 headBarView.LoadButton = CommonButtonPresenter.CreateElement
                 (
@@ -76,7 +76,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupLanguageToolbarMenu()
+            void CreateLanguageToolbarMenu()
             {
                 headBarView.LanguageToolbarMenu = ToolbarMenuPresenter.CreateElement
                 (
@@ -89,7 +89,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupGraphTitleField()
+            void CreateGraphTitleField()
             {
                 GraphTitleTextFieldPresenter.CreateElement
                 (

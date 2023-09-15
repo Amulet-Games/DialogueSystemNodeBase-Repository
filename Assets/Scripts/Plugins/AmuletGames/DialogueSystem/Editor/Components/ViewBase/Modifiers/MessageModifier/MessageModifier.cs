@@ -135,7 +135,7 @@ namespace AG.DS
                 Folder = FolderPresenter.CreateElement
                 (
                     folderTitle: StringUtility.New(
-                                   str01: StringConfig.MessageModifier_Folder_TitleText,
+                                   str01: StringConfig.MessageModifier_FolderTitleField_DefaultText,
                                    str02: index.ToString())
                 );
 

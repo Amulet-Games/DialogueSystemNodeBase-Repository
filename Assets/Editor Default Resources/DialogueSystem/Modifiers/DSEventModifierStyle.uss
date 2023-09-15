@@ -258,26 +258,6 @@
 }
 
 .eventModifier-dialogueEvent-field
-.object-field-display-image {
-
-	height: 18.5px;
-	width: 17px;
-
-	align-self: center;
-
-	/* top - right - bottom - left */
-	margin: 0px 0px 0.5px 4px;
-
-	--unity-image-tint-color: white;
-}
-
-.eventModifier-dialogueEvent-field.object-field-empty
-.object-field-display-image {
-
-	--unity-image-tint-color: rgba(81, 81, 81, 1);
-}
-
-.eventModifier-dialogueEvent-field
 .object-field-display-label {
 
 	color: white;
@@ -342,6 +322,27 @@
 	/* top - right - bottom - left */
 	margin: 0.5px 0px 0px 0px;
 	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Dialogue Event Image >*/
+.eventModifier-dialogueEvent-image {
+
+	height: 18.5px;
+	width: 17px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0.5px 4px;
+
+	--unity-image-tint-color: white;
+}
+
+.eventModifier-dialogueEvent-field.object-field-empty
+.eventModifier-dialogueEvent-image {
+
+	--unity-image-tint-color: rgba(81, 81, 81, 1);
 }
 
 

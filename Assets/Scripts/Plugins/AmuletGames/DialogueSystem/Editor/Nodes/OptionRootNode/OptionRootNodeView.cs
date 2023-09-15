@@ -38,7 +38,9 @@ namespace AG.DS
         /// <inheritdoc />
         public override OptionRootNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleFieldView = new(value: StringConfig.OptionRootNode_NodeTitleField_DefaultText);
+            NodeTitleFieldView = new(
+                value: StringConfig.OptionRootNode_NodeTitleField_DefaultText
+            );
 
             RootTitleFieldView = new
             (

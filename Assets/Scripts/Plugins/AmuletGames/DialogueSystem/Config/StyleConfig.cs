@@ -24,7 +24,6 @@ namespace AG.DS
         public const string Object_Field_Empty = "object-field-empty";
         public const string Object_Field_Input = "object-field-input";
         public const string Object_Field_Display = "object-field-display";
-        public const string Object_Field_Display_Image = "object-field-display-image";
         public const string Object_Field_Display_Label = "object-field-display-label";
 
         /*< -------------------- Integer Field -------------------- >*/
@@ -86,24 +85,31 @@ namespace AG.DS
         #region Node Dialogue USS Classes.
         public const string DialogueNode_Speaker_ObjectField = "dialogueNode_Character_ObjectField";
         public const string MessageModifierGroup_Content_Container = "dialogueNode_Stitcher_Modifiers_Box";
+
+        public const string DialogueNode_DialogueSpeaker_Main_Container = "dialogueSpeaker-main-container";
+        public const string DialogueNode_DialogueSpeaker_Outer_Container = "dialogueSpeaker-outer-container";
+        public const string DialogueNode_DialogueSpeaker_Image = "dialogueSpeaker-speakerIcon-image";
+        public const string DialogueNode_DialogueSpeaker_Inner_Container = "dialogueSpeaker-inner-container";
+        public const string DialogueNode_DialogueSpeaker_Label = "dialogueSpeaker-speakerTitle-label";
+        public const string DialogueNode_DialogueSpeaker_Field = "dialogueSpeaker-dialogueSpeaker-field";
         #endregion
 
         #region Node Option Branch USS Classes.
-        public const string OptionBranch_Main_Container = "optionBranch-main-container";
-        public const string OptionBranch_Outer_Container = "optionBranch-outer-container";
-        public const string OptionBranch_BranchIcon_Image = "optionBranch-branchIcon-image";
-        public const string OptionBranch_Inner_Container = "optionBranch-inner-container";
-        public const string OptionBranch_BranchTitle_Label = "optionBranch-branchTitle-label";
-        public const string OptionBranch_BranchTitleText_Field = "optionBranch-branchTitleText-field";
+        public const string OptionBranchNode_BranchTitle_Main_Container = "optionBranchNode-branchTitle-main-container";
+        public const string OptionBranchNode_BranchTitle_Outer_Container = "optionBranchNode-branchTitle-outer-container";
+        public const string OptionBranchNode_BranchTitle_Image = "optionBranchNode-branchTitle-image";
+        public const string OptionBranchNode_BranchTitle_Inner_Container = "optionBranchNode-branchTitle-inner-container";
+        public const string OptionBranchNode_BranchTitle_Label = "optionBranchNode-branchTitle-label";
+        public const string OptionBranchNode_BranchTitle_Field = "optionBranchNode-branchTitle-field";
         #endregion
 
         #region Node Option Root USS Classes.
-        public const string OptionRoot_Main_Container = "optionRoot-main-container";
-        public const string OptionRoot_Outer_Container = "optionRoot-outer-container";
-        public const string OptionRoot_RootIcon_Image = "optionRoot-rootIcon-image";
-        public const string OptionRoot_Inner_Container = "optionRoot-inner-container";
-        public const string OptionRoot_RootTitle_Label = "optionRoot-rootTitle-label";
-        public const string OptionRoot_RootTitleText_Field = "optionRoot-rootTitleText-field";
+        public const string OptionRootNode_RootTitle_Main_Container = "optionRootNode-rootTitle-main-container";
+        public const string OptionRootNode_RootTitle_Outer_Container = "optionRootNode-rootTitle-outer-container";
+        public const string OptionRootNode_RootTitle_Image = "optionRootNode-rootTitle-image";
+        public const string OptionRootNode_RootTitle_Inner_Container = "optionRootNode-rootTitle-inner-container";
+        public const string OptionRootNode_RootTitle_Label = "optionRootNode-rootTitle-label";
+        public const string OptionRootNode_RootTitle_Field = "optionRootNode-rootTitle-field";
         #endregion
 
         #region Node Preview USS Classes.
@@ -190,6 +196,7 @@ namespace AG.DS
         public const string EventModifier_Rename_Button = "eventModifier-rename-button";
         public const string EventModifier_Remove_Button = "eventModifier-remove-button";
         public const string EventModifier_DialogueEvent_Container = "eventModifier-dialogueEvent-container";
+        public const string EventModifier_DialogueEvent_Image = "eventModifier-dialogueEvent-image";
         public const string EventModifier_DialogueEvent_Label = "eventModifier-dialogueEvent-label";
         public const string EventModifier_DialogueEvent_Field = "eventModifier-dialogueEvent-field";
         public const string EventModifier_StartDelay_Container = "eventModifier-startDelay-container";
@@ -279,14 +286,14 @@ namespace AG.DS
         public const string Segment_Condition_Content_Box = "segment_Condition_Content_Box";
         #endregion
 
-        #region Segment Event USS Classes.
-        public const string Segment_Event_Title_Box = "segment_Event_Title_Box";
-        public const string Segment_Event_Content_Box = "segment_Event_Content_Box";
-        #endregion
-
         #region Field Icon USS Classes.
         public const string TextField_Icon = "textField_Icon";
         #endregion
 
+        #region Radio USS Classes.
+        public const string Radio = "radio";
+        public const string Radio_RadioText_Label = "radio-radioText-label";
+        public const string Radio_RadioIcon_Image = "radio-radioIcon-image";
+        #endregion
     }
 }

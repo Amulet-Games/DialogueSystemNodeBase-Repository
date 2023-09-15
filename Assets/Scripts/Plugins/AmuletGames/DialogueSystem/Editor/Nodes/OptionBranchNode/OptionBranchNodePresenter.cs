@@ -54,22 +54,22 @@ namespace AG.DS
         void CreateContentElements()
         {
             VisualElement contentContainer;
-            VisualElement branchMainContainer;
-            VisualElement branchOuterContainer;
-            VisualElement branchInnerContainer;
+            VisualElement branchTitleMainContainer;
+            VisualElement branchTitleOuterContainer;
+            VisualElement branchTitleInnerContainer;
 
-            Image branchIconImage;
+            Image branchTitleImage;
             Label branchTitleLabel;
 
             SetupContentButton();
 
             SetupContainers();
 
-            SetupBranchIconImage();
+            SetupBranchTitleImage();
 
             SetupBranchTitleLabel();
 
-            SetupBranchTitleTextField();
+            SetupBranchTitleField();
 
             AddElementsToContainer();
 
@@ -89,22 +89,22 @@ namespace AG.DS
                 contentContainer = new();
                 contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
 
-                branchMainContainer = new();
-                branchMainContainer.AddToClassList(StyleConfig.OptionBranch_Main_Container);
+                branchTitleMainContainer = new();
+                branchTitleMainContainer.AddToClassList(StyleConfig.OptionBranchNode_BranchTitle_Main_Container);
 
-                branchOuterContainer = new();
-                branchOuterContainer.AddToClassList(StyleConfig.OptionBranch_Outer_Container);
+                branchTitleOuterContainer = new();
+                branchTitleOuterContainer.AddToClassList(StyleConfig.OptionBranchNode_BranchTitle_Outer_Container);
 
-                branchInnerContainer = new();
-                branchInnerContainer.AddToClassList(StyleConfig.OptionBranch_Inner_Container);
+                branchTitleInnerContainer = new();
+                branchTitleInnerContainer.AddToClassList(StyleConfig.OptionBranchNode_BranchTitle_Inner_Container);
             }
 
-            void SetupBranchIconImage()
+            void SetupBranchTitleImage()
             {
-                branchIconImage = CommonImagePresenter.CreateElement
+                branchTitleImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.OptionBranchIconSprite,
-                    imageUSS01: StyleConfig.OptionBranch_BranchIcon_Image
+                    imageSprite: ConfigResourcesManager.SpriteConfig.BranchTitleFieldSprite,
+                    imageUSS01: StyleConfig.OptionBranchNode_BranchTitle_Image
                 );
             }
 
@@ -113,17 +113,17 @@ namespace AG.DS
                 branchTitleLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: StringConfig.OptionBranchNode_BranchTitleLabel_LabelText,
-                    labelUSS: StyleConfig.OptionBranch_BranchTitle_Label
+                    labelUSS: StyleConfig.OptionBranchNode_BranchTitle_Label
                 );
             }
 
-            void SetupBranchTitleTextField()
+            void SetupBranchTitleField()
             {
                 View.BranchTitleFieldView.Field = LanguageTextFieldPresenter.CreateElement
                 (
                     multiline: false,
                     placeholderText: View.BranchTitleFieldView.placeholderText,
-                    fieldUSS: StyleConfig.OptionBranch_BranchTitleText_Field
+                    fieldUSS: StyleConfig.OptionBranchNode_BranchTitle_Field
                 );
             }
 
@@ -131,14 +131,14 @@ namespace AG.DS
             {
                 Node.topContainer.Add(View.ContentButton);
 
-                branchOuterContainer.Add(branchIconImage);
-                branchOuterContainer.Add(branchInnerContainer);
+                branchTitleOuterContainer.Add(branchTitleImage);
+                branchTitleOuterContainer.Add(branchTitleInnerContainer);
 
-                branchInnerContainer.Add(branchTitleLabel);
-                branchInnerContainer.Add(View.BranchTitleFieldView.Field);
+                branchTitleInnerContainer.Add(branchTitleLabel);
+                branchTitleInnerContainer.Add(View.BranchTitleFieldView.Field);
 
-                branchMainContainer.Add(branchOuterContainer);
-                contentContainer.Add(branchMainContainer);
+                branchTitleMainContainer.Add(branchTitleOuterContainer);
+                contentContainer.Add(branchTitleMainContainer);
             }
 
             void AddContainersToNode()

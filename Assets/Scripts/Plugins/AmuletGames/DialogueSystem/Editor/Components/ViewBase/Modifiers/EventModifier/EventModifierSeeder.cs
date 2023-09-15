@@ -22,7 +22,7 @@ namespace AG.DS
 
             if (model != null)
             {
-                view.LoadModifierValue(model);
+                new EventModifierSerializer().Load(view, model);
             }
 
             return view;

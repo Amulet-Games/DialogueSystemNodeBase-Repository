@@ -7,7 +7,7 @@
 }
 
 
-/*< ---------------------------------------------------------- Content Button Icon >*/
+/*< ---------------------------------------------------------- Content Button Icon Image >*/
 .contentButton-buttonIcon-image {
 
 	height: 27.5px;
@@ -18,8 +18,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Branch Main Container >*/
-.optionBranch-main-container {
+/*< ---------------------------------------------------------- Branch Title Main Container >*/
+.optionBranchNode-branchTitle-main-container {
 
 	background-color: rgba(51, 51, 51, 1);
 
@@ -29,8 +29,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Branch Outer Container >*/
-.optionBranch-outer-container {
+/*< ---------------------------------------------------------- Branch Title Outer Container >*/
+.optionBranchNode-branchTitle-outer-container {
 
 	background-color: rgba(42, 42, 42, 1);
 	
@@ -43,8 +43,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Branch Icon >*/
-.optionBranch-branchIcon-image {
+/*< ---------------------------------------------------------- Branch Title Image >*/
+.optionBranchNode-branchTitle-image {
 	
 	height: 39px;
 	width: 39px;
@@ -56,8 +56,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Branch Inner Container >*/
-.optionBranch-inner-container {
+/*< ---------------------------------------------------------- Branch Title Inner Container >*/
+.optionBranchNode-branchTitle-inner-container {
 	
 	height: 56.5px;
 
@@ -65,8 +65,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Branch Title Label >*/
-.optionBranch-branchTitle-label {
+/*< ---------------------------------------------------------- Branch Title Label >*/
+.optionBranchNode-branchTitle-label {
 	
 	color: white;
 	
@@ -86,8 +86,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Branch Title Text Field >*/
-.optionBranch-branchTitleText-field {
+/*< ---------------------------------------------------------- Branch Title Field >*/
+.optionBranchNode-branchTitle-field {
 
 	background-color: rgba(32, 32, 32, 1);
 
@@ -109,7 +109,7 @@
 	--unity-cursor-color: rgba(180, 180, 180, 1);
 }
 
-.optionBranch-branchTitleText-field:hover {
+.optionBranchNode-branchTitle-field:hover {
 	
 	border-color: rgba(101, 101, 101, 1);
 
@@ -117,7 +117,7 @@
 	border-width: 0.5px;
 }
 
-.optionBranch-branchTitleText-field:focus {
+.optionBranchNode-branchTitle-field:focus {
 	
 	border-color: rgba(58, 121, 187, 1);
 
@@ -125,7 +125,7 @@
 	border-width: 0.5px;
 }
 
-.optionBranch-branchTitleText-field
+.optionBranchNode-branchTitle-field
 .text-field-input {
 	
 	cursor: text;
@@ -141,7 +141,7 @@
 	--unity-sync-text-editor: true;
 }
 
-.optionBranch-branchTitleText-field
+.optionBranchNode-branchTitle-field
 .text-field-element {
 
 	color: white;
@@ -163,16 +163,16 @@
 	margin: 0px 0px 0px 5px;
 }
 
-.optionBranch-branchTitleText-field.text-field-empty
+.optionBranchNode-branchTitle-field.text-field-empty
 .text-field-element {
 	
 	color: rgba(101, 101, 101, 1);
 }
 
-.optionBranch-branchTitleText-field:hover
+.optionBranchNode-branchTitle-field:hover
 .text-field-element,
 
-.optionBranch-branchTitleText-field:focus
+.optionBranchNode-branchTitle-field:focus
 .text-field-element
 {
 	/* top - right - bottom - left */

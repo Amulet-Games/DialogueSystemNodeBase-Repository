@@ -13,11 +13,11 @@ namespace AG.DS
 
             CreateFolder();
 
-            SetupContainers();
+            CreateContainers();
 
-            SetupTitleTextField();
+            CreateFolderTitleField();
 
-            SetupExpandButton();
+            CreateExpandButton();
 
             AddElementsToContainer();
 
@@ -33,7 +33,7 @@ namespace AG.DS
                 folder.AddToClassList(StyleConfig.Folder);
             }
 
-            void SetupContainers()
+            void CreateContainers()
             {
                 folder.TitleContainer = new();
                 folder.TitleContainer.AddToClassList(StyleConfig.Folder_Title_Container);
@@ -42,7 +42,7 @@ namespace AG.DS
                 folder.ContentContainer.AddToClassList(StyleConfig.Folder_Content_Container);
             }
 
-            void SetupTitleTextField()
+            void CreateFolderTitleField()
             {
                 FolderTitleTextFieldPresenter.CreateElement
                 (
@@ -51,7 +51,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupExpandButton()
+            void CreateExpandButton()
             {
                 folder.ExpandButton = CommonButtonPresenter.CreateElement
                 (

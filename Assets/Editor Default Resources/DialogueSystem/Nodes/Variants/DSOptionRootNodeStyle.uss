@@ -7,7 +7,7 @@
 }
 
 
-/*< ---------------------------------------------------------- Content Button Icon >*/
+/*< ---------------------------------------------------------- Content Button Icon Image >*/
 .contentButton-buttonIcon-image {
 
 	height: 28px;
@@ -18,8 +18,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Root Main Container >*/
-.optionRoot-main-container {
+/*< ---------------------------------------------------------- Root Title Main Container >*/
+.optionRootNode-rootTitle-main-container {
 
 	background-color: rgba(51, 51, 51, 1);
 
@@ -29,8 +29,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Root Outer Container >*/
-.optionRoot-outer-container {
+/*< ---------------------------------------------------------- Root Title Outer Container >*/
+.optionRootNode-rootTitle-outer-container {
 
 	background-color: rgba(42, 42, 42, 1);
 	
@@ -42,8 +42,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Root Icon >*/
-.optionRoot-rootIcon-image {
+/*< ---------------------------------------------------------- Root Title Image >*/
+.optionRootNode-rootTitle-image {
 	
 	height: 39px;
 	width: 39px;
@@ -55,8 +55,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Root Inner Container >*/
-.optionRoot-inner-container {
+/*< ---------------------------------------------------------- Root Title Inner Container >*/
+.optionRootNode-rootTitle-inner-container {
 	
 	height: 56.5px;
 
@@ -64,8 +64,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Root Title Label >*/
-.optionRoot-rootTitle-label {
+/*< ---------------------------------------------------------- Root Title Label >*/
+.optionRootNode-rootTitle-label {
 	
 	color: white;
 	
@@ -85,8 +85,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Option Root Title Text Field >*/
-.optionRoot-rootTitleText-field {
+/*< ---------------------------------------------------------- Root Title Field >*/
+.optionRootNode-rootTitle-field {
 
 	background-color: rgba(32, 32, 32, 1);
 
@@ -108,7 +108,7 @@
 	--unity-cursor-color: rgba(180, 180, 180, 1);
 }
 
-.optionRoot_Title_TextField:hover {
+.optionRootNode-rootTitle-field:hover {
 	
 	border-color: rgba(101, 101, 101, 1);
 
@@ -116,7 +116,7 @@
 	border-width: 0.5px;
 }
 
-.optionRoot_Title_TextField:focus {
+.optionRootNode-rootTitle-field:focus {
 	
 	border-color: rgba(58, 121, 187, 1);
 
@@ -124,7 +124,7 @@
 	border-width: 0.5px;
 }
 
-.optionRoot-rootTitleText-field
+.optionRootNode-rootTitle-field
 .text-field-input {
 	
 	cursor: text;
@@ -140,7 +140,7 @@
 	--unity-sync-text-editor: true;
 }
 
-.optionRoot-rootTitleText-field
+.optionRootNode-rootTitle-field
 .text-field-element {
 
 	color: white;
@@ -162,16 +162,16 @@
 	margin: 0px 0px 0px 5px;
 }
 
-.optionRoot-rootTitleText-field.text-field-empty
+.optionRootNode-rootTitle-field.text-field-empty
 .text-field-element {
 	
 	color: rgba(81, 81, 81, 1);
 }
 
-.optionRoot-rootTitleText-field:hover
+.optionRootNode-rootTitle-field:hover
 .text-field-element,
 
-.optionRoot-rootTitleText-field:focus
+.optionRootNode-rootTitle-field:focus
 .text-field-element
 {
 	/* top - right - bottom - left */

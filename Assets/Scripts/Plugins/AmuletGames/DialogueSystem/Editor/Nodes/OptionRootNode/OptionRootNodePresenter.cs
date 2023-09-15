@@ -54,22 +54,22 @@ namespace AG.DS
         void CreateContentElements()
         {
             VisualElement contentContainer;
-            VisualElement rootMainContainer;
-            VisualElement rootOuterContainer;
-            VisualElement rootInnerContainer;
+            VisualElement rootTitleMainContainer;
+            VisualElement rootTitleOuterContainer;
+            VisualElement rootTitleInnerContainer;
 
-            Image rootIconImage;
+            Image rootTitleImage;
             Label rootTitleLabel;
 
             SetupContentButton();
 
             SetupContainers();
 
-            SetupOptionRootIconImage();
+            SetupRootTitleImage();
 
-            SetupOptionRootTitleLabel();
+            SetupRootTitleLabel();
 
-            SetupOptionRootTitleTextField();
+            SetupRootTitleField();
 
             AddElementsToContainer();
 
@@ -89,41 +89,41 @@ namespace AG.DS
                 contentContainer = new();
                 contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
 
-                rootMainContainer = new();
-                rootMainContainer.AddToClassList(StyleConfig.OptionRoot_Main_Container);
+                rootTitleMainContainer = new();
+                rootTitleMainContainer.AddToClassList(StyleConfig.OptionRootNode_RootTitle_Main_Container);
 
-                rootOuterContainer = new();
-                rootOuterContainer.AddToClassList(StyleConfig.OptionRoot_Outer_Container);
+                rootTitleOuterContainer = new();
+                rootTitleOuterContainer.AddToClassList(StyleConfig.OptionRootNode_RootTitle_Outer_Container);
 
-                rootInnerContainer = new();
-                rootInnerContainer.AddToClassList(StyleConfig.OptionRoot_Inner_Container);
+                rootTitleInnerContainer = new();
+                rootTitleInnerContainer.AddToClassList(StyleConfig.OptionRootNode_RootTitle_Inner_Container);
             }
 
-            void SetupOptionRootIconImage()
+            void SetupRootTitleImage()
             {
-                rootIconImage = CommonImagePresenter.CreateElement
+                rootTitleImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.OptionRootIconSprite,
-                    imageUSS01: StyleConfig.OptionRoot_RootIcon_Image
+                    imageSprite: ConfigResourcesManager.SpriteConfig.RootTitleFieldSprite,
+                    imageUSS01: StyleConfig.OptionRootNode_RootTitle_Image
                 );
             }
 
-            void SetupOptionRootTitleLabel()
+            void SetupRootTitleLabel()
             {
                 rootTitleLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: StringConfig.OptionRootNode_RootTitleLabel_LabelText,
-                    labelUSS: StyleConfig.OptionRoot_RootTitle_Label
+                    labelUSS: StyleConfig.OptionRootNode_RootTitle_Label
                 );
             }
 
-            void SetupOptionRootTitleTextField()
+            void SetupRootTitleField()
             {
                 View.RootTitleFieldView.Field = LanguageTextFieldPresenter.CreateElement
                 (
                     multiline: false,
                     placeholderText: View.RootTitleFieldView.placeholderText,
-                    fieldUSS: StyleConfig.OptionRoot_RootTitleText_Field
+                    fieldUSS: StyleConfig.OptionRootNode_RootTitle_Field
                 );
             }
 
@@ -131,14 +131,14 @@ namespace AG.DS
             {
                 Node.topContainer.Add(View.ContentButton);
 
-                rootOuterContainer.Add(rootIconImage);
-                rootOuterContainer.Add(rootInnerContainer);
+                rootTitleOuterContainer.Add(rootTitleImage);
+                rootTitleOuterContainer.Add(rootTitleInnerContainer);
 
-                rootInnerContainer.Add(rootTitleLabel);
-                rootInnerContainer.Add(View.RootTitleFieldView.Field);
+                rootTitleInnerContainer.Add(rootTitleLabel);
+                rootTitleInnerContainer.Add(View.RootTitleFieldView.Field);
 
-                rootMainContainer.Add(rootOuterContainer);
-                contentContainer.Add(rootMainContainer);
+                rootTitleMainContainer.Add(rootTitleOuterContainer);
+                contentContainer.Add(rootTitleMainContainer);
             }
 
             void AddContainersToNode()

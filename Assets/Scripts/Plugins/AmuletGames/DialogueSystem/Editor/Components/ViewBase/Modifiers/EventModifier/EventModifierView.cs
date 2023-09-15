@@ -43,7 +43,7 @@ namespace AG.DS
         /// <summary>
         /// Image for the dialogue event field.
         /// </summary>
-        public Image DialogueEventFieldIcon;
+        public Image DialogueEventImage;
 
 
         /// <summary>
@@ -53,76 +53,18 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the event modifier component class.
+        /// Constructor of the event modifier class.
         /// </summary>
         public EventModifierView()
         {
             DialogueEventFieldView = new(
-                placeholderText: StringConfig.EventModifier_DialogueEventField_PlaceholderText);
+                placeholderText: StringConfig.EventModifier_DialogueEventField_PlaceholderText
+            );
 
             DelaySecondsFieldView = new(
                 maxValue: NumberConfig.MAX_DELAY_SECOND,
                 minValue: NumberConfig.MIN_DELAY_SECOND
             );
-        }
-
-
-        // ----------------------------- Serialization -----------------------------
-        /// <summary>
-        /// Save the modifier values.
-        /// </summary>
-        /// <param name="model">The event modifier model to set for.</param>
-        public void SaveModifierValue(EventModifierModel model)
-        {
-            SaveFolder();
-
-            SaveDialogueEvent();
-
-            SaveDelaySecondsInteger();
-
-            void SaveFolder()
-            {
-                Folder.Save(model.FolderModel);
-            }
-
-            void SaveDialogueEvent()
-            {
-                model.DialogueEvent = DialogueEventFieldView.Value;
-            }
-
-            void SaveDelaySecondsInteger()
-            {
-                model.DelaySeconds = DelaySecondsFieldView.Value;
-            }
-        }
-
-
-        /// <summary>
-        /// Load the modifier values.
-        /// </summary>
-        /// <param name="model">The event modifier model to set for.</param>
-        public void LoadModifierValue(EventModifierModel model)
-        {
-            LoadFolder();
-
-            LoadDialogueEvent();
-
-            LoadDelaySecondsInteger();
-
-            void LoadFolder()
-            {
-                Folder.Load(model: model.FolderModel);
-            }
-
-            void LoadDialogueEvent()
-            {
-                DialogueEventFieldView.Load(value: model.DialogueEvent);
-            }
-
-            void LoadDelaySecondsInteger()
-            {
-                DelaySecondsFieldView.Load(value: model.DelaySeconds);
-            }
         }
 
 

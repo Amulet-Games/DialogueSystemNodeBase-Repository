@@ -40,7 +40,7 @@ namespace AG.DS
 
             SetupDialogueEventField();
 
-            SetupDialogueEventFieldIcon();
+            SetupDialogueEventImage();
 
             SetupStartDelayLabel();
 
@@ -139,15 +139,15 @@ namespace AG.DS
                 );
             }
 
-            void SetupDialogueEventFieldIcon()
+            void SetupDialogueEventImage()
             {
-                view.DialogueEventFieldIcon = CommonImagePresenter.CreateElement
+                view.DialogueEventImage = CommonImagePresenter.CreateElement
                 (
                     imageSprite: ConfigResourcesManager.SpriteConfig.EventFieldIconSprite,
-                    imageUSS01: StyleConfig.Object_Field_Display_Image
+                    imageUSS01: StyleConfig.EventModifier_DialogueEvent_Image
                 );
 
-                view.DialogueEventFieldView.Field.SetDisplayImage(view.DialogueEventFieldIcon);
+                view.DialogueEventFieldView.Field.SetDisplayImage(view.DialogueEventImage);
             }
 
             void SetupStartDelayLabel()

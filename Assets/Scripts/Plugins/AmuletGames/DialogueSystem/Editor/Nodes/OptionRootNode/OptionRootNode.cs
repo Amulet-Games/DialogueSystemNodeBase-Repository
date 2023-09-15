@@ -100,7 +100,7 @@ namespace AG.DS
             // Disconnect All
             var isAnyConnected = defaultInput.connected
                               || optionOutput.connected
-                              || optionGroupOutput.connected;
+                              || optionGroupOutput.Connected;
 
             evt.menu.AppendAction
             (

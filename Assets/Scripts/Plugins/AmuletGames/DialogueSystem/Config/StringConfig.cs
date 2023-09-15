@@ -93,7 +93,7 @@ namespace AG.DS
         #endregion
 
         #region Message Modifier Texts.
-        public const string MessageModifier_Folder_TitleText = "Message ";
+        public const string MessageModifier_FolderTitleField_DefaultText = "Message ";
         public const string MessageModifier_DialogueSpeakerField_PlaceholderText = "None (Dialogue Character)";
         public const string MessageModifierProgressTypeLabelText = "Progress Type";
         public const string DurationLabelText = "Duration";
@@ -107,6 +107,11 @@ namespace AG.DS
         #region Option Branch Node Texts.
         public const string OptionBranchNode_BranchTitleLabel_LabelText = "Branch Title";
         public const string OptionBranchNode_BranchTitleField_PlaceholderText = "“Yeah I had it in the Indian restaurant.”";
+        #endregion
+
+        #region Dialogue Node Texts.
+        public const string DialogueNode_DialogueSpeakerLabel_LabelText = "Speaker";
+        public const string DialogueNode_DialogueSpeakerField_PlaceholderText = "None (Dialogue Character)";
         #endregion
     }
 }

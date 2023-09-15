@@ -23,9 +23,9 @@ namespace AG.DS
 
             CreateImage();
 
-            SetupDetail();
+            SetupDetails();
 
-            AddImageToStyleClass();
+            AddStyleClass();
 
             return image;
 
@@ -34,7 +34,7 @@ namespace AG.DS
                 image = new();
             }
 
-            void SetupDetail()
+            void SetupDetails()
             {
                 if (imageSprite != null)
                     image.sprite = imageSprite;
@@ -42,7 +42,7 @@ namespace AG.DS
                 image.pickingMode = PickingMode.Ignore;
             }
 
-            void AddImageToStyleClass()
+            void AddStyleClass()
             {
                 image.ClearClassList();
 

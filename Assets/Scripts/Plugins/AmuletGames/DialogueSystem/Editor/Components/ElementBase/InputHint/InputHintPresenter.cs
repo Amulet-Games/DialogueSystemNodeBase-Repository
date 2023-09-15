@@ -13,9 +13,9 @@ namespace AG.DS
 
             CreateInputHint();
 
-            SetupHintIconImage();
+            CreateHintIconImage();
 
-            SetupHintTextLabel();
+            CreateHintTextLabel();
 
             AddElementsToInputHint();
 
@@ -31,7 +31,7 @@ namespace AG.DS
                 inputHint.AddToClassList(StyleConfig.InputHint);
             }
 
-            void SetupHintIconImage()
+            void CreateHintIconImage()
             {
                 inputHint.HintIconImage = CommonImagePresenter.CreateElement
                 (
@@ -40,7 +40,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupHintTextLabel()
+            void CreateHintTextLabel()
             {
                 inputHint.HintTextLabel = CommonLabelPresenter.CreateElement
                 (

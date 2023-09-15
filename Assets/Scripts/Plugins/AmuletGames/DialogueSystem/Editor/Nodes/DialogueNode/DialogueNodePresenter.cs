@@ -55,18 +55,24 @@ namespace AG.DS
         void CreateContentElements()
         {
             VisualElement contentContainer;
+            VisualElement dialogueSpeakerMainContainer;
+            VisualElement dialogueSpeakerOuterContainer;
+            VisualElement dialogueSpeakerInnerContainer;
 
-
+            Image dialogueSpeakerImage;
+            Label dialogueSpeakerLabel;
 
             SetupContentButton();
 
             SetupContainers();
 
-            AddSpeakerObjectField();
+            SetupDialogueSpeakerImage();
 
-            AddCharacterObjectFieldIcon();
+            SetupDialogueSpeakerLabel();
 
-            AddDialogueNodeStitcher();
+            SetupDialogueSpeakerField();
+
+            SetupMessageModifierGroup();
 
             AddElementsToContainer();
 
@@ -85,35 +91,61 @@ namespace AG.DS
             {
                 contentContainer = new();
                 contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
+
+                dialogueSpeakerMainContainer = new();
+                dialogueSpeakerMainContainer.AddToClassList(StyleConfig.DialogueNode_DialogueSpeaker_Main_Container);
+
+                dialogueSpeakerOuterContainer = new();
+                dialogueSpeakerOuterContainer.AddToClassList(StyleConfig.DialogueNode_DialogueSpeaker_Outer_Container);
+
+                dialogueSpeakerInnerContainer = new();
+                dialogueSpeakerInnerContainer.AddToClassList(StyleConfig.DialogueNode_DialogueSpeaker_Inner_Container);
             }
 
-            void AddSpeakerObjectField()
+            void SetupDialogueSpeakerImage()
+            {
+                dialogueSpeakerImage = CommonImagePresenter.CreateElement
+                (
+                    imageSprite: ConfigResourcesManager.SpriteConfig.DialogueSpeakerFieldSprite,
+                    imageUSS01: StyleConfig.DialogueNode_DialogueSpeaker_Image
+                );
+            }
+
+            void SetupDialogueSpeakerLabel()
+            {
+                dialogueSpeakerLabel = CommonLabelPresenter.CreateElement
+                (
+                    labelText: StringConfig.DialogueNode_DialogueSpeakerLabel_LabelText,
+                    labelUSS: StyleConfig.DialogueNode_DialogueSpeaker_Label
+                );
+            }
+
+            void SetupDialogueSpeakerField()
             {
                 CommonObjectFieldPresenter.CreateElement
                 (
                     view: View.DialogueSpeakerFieldView,
-                    fieldUSS01: StyleConfig.DialogueNode_Speaker_ObjectField
+                    fieldUSS01: StyleConfig.DialogueNode_DialogueSpeaker_Field
                 );
             }
-
-            void AddCharacterObjectFieldIcon()
-            {
-                //view.CharacterObjectFieldView.ObjectField.RemoveFieldIcon();
-                //view.CharacterObjectFieldView.ObjectField.SetDisplayImage
-                //(
-                //    iconSprite: ConfigResourcesManager.SpriteConfig.CharacterFieldIconSprite
-                //);
-            }
             
-            void AddDialogueNodeStitcher()
+            void SetupMessageModifierGroup()
             {
-                // Create all the root elements required in the node stitcher.
-                View.MessageModifierGroupView.CreateElement(Node);
+                Node.topContainer.Add(View.ContentButton);
             }
 
             void AddElementsToContainer()
             {
                 contentContainer.Add(View.DialogueSpeakerFieldView.Field);
+
+                dialogueSpeakerOuterContainer.Add(dialogueSpeakerImage);
+                dialogueSpeakerOuterContainer.Add(dialogueSpeakerInnerContainer);
+
+                dialogueSpeakerInnerContainer.Add(dialogueSpeakerLabel);
+                dialogueSpeakerInnerContainer.Add(View.DialogueSpeakerFieldView.Field);
+
+                dialogueSpeakerMainContainer.Add(dialogueSpeakerOuterContainer);
+                contentContainer.Add(dialogueSpeakerMainContainer);
             }
 
             void AddContainersToNode()

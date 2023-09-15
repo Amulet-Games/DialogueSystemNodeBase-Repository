@@ -44,10 +44,10 @@ namespace AG.DS
         public Sprite ImageFieldIconSprite;
         public Sprite KeyboardInputFieldIconSprite;
         public Sprite LanguageFieldHintIconSprite;
-        public Sprite OptionBranchIconSprite;
-        public Sprite OptionRootIconSprite;
+        public Sprite BranchTitleFieldSprite;
+        public Sprite RootTitleFieldSprite;
         public Sprite ScriptableObjectFieldIconSprite;
-        public Sprite SpeakerFieldIconSprite;
+        public Sprite DialogueSpeakerFieldSprite;
         public Sprite TextFieldIcon1Sprite;
         #endregion
 

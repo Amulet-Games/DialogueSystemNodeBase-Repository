@@ -6,27 +6,23 @@ namespace AG.DS
     [CreateAssetMenu(menuName = "### AG ###/Dialogue System/Config/New Style Sheets Config")]
     public class StyleSheetConfig : ScriptableObject
     {
+        #region Edges.
+        [Header("Edges")]
+        public StyleSheet DSDefaultEdgeStyle;
+        public StyleSheet DSOptionEdgeStyle;
+        #endregion
+
+        #region Modifiers.
+        [Header("Modifiers")]
+        public StyleSheet DSEventModifierGroupStyle;
+        public StyleSheet DSEventModifierStyle;
+        #endregion
+
         #region Modules.
         [Header("Modules")]
         public StyleSheet DSGraphViewerStyle;
         public StyleSheet DSHeadBarStyle;
         public StyleSheet DSInputHintStyle;
-        #endregion
-
-        #region Modifiers.
-        [Header("Modifiers")]
-        public StyleSheet DSEventModifierStyle;
-        #endregion
-
-        #region Modifier Groups.
-        [Header("Modifier Groups")]
-        public StyleSheet DSEventModifierGroupStyle;
-        #endregion
-
-        #region Elements.
-        [Header("Elements.")]
-        public StyleSheet DSContentButtonStyle;
-        public StyleSheet DSFolderStyle;
         #endregion
 
         #region Nodes.
@@ -43,9 +39,15 @@ namespace AG.DS
         public StyleSheet DSNodeCommonStyle;
         #endregion
 
-        #region Port Groups.
-        [Header("Port Groups")]
-        public StyleSheet DSOptionPortGroupStyle;
+        #region Others.
+        [Header("Others.")]
+        public StyleSheet DSContentButtonStyle;
+        public StyleSheet DSFolderStyle;
+        #endregion
+
+        #region Port Cells.
+        [Header("Port Cells")]
+        public StyleSheet DSOptionPortCellStyle;
         #endregion
 
         #region Ports.
@@ -55,10 +57,9 @@ namespace AG.DS
         public StyleSheet DSPortStyle;
         #endregion
 
-        #region Edges.
-        [Header("Edges")]
-        public StyleSheet DSDefaultEdgeStyle;
-        public StyleSheet DSOptionEdgeStyle;
+        #region Radio.
+        public StyleSheet DSRadioGroupStyle;
+        public StyleSheet DSRadioStyle;
         #endregion
 
         #region Globals.

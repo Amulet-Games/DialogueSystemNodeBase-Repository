@@ -8,13 +8,13 @@ namespace AG.DS
         /// <summary>
         /// Cache of the event modifiers that are within the group.
         /// </summary>
-        List<EventModifierView> modifiers;
+        public List<EventModifierView> Modifiers { get; private set; }
 
 
         /// <summary>
         /// The event modifiers cache counter.
         /// </summary>
-        int modifiersCount = 0;
+        public int ModifiersCount { get; private set; } = 0;
 
 
         /// <summary>
@@ -122,50 +122,7 @@ namespace AG.DS
         /// </summary>
         public EventModifierGroupView()
         {
-            modifiers = new();
-        }
-
-
-        // ----------------------------- Serialization -----------------------------
-        /// <summary>
-        /// Save the modifier group values.
-        /// </summary>
-        /// <param name="model">The event modifier group model to set for.</param>
-        public void Save(EventModifierGroupModel model)
-        {
-            model.ModifierModels = new EventModifierModel[modifiersCount];
-
-            for (int i = 0; i < modifiersCount; i++)
-            {
-                model.ModifierModels[i] = new();
-
-                modifiers[i].SaveModifierValue(model: model.ModifierModels[i]);
-            }
-        }
-
-
-        /// <summary>
-        /// Load the modifier group values.
-        /// </summary>
-        /// <param name="model">The event modifier group model to set for.</param>
-        public void Load(EventModifierGroupModel model)
-        {
-            modifiersCount = model.ModifierModels.Length;
-
-            // Load modifiers
-            {
-                for (int i = 0; i <= modifiersCount; i++)
-                {
-                    var modifier = new EventModifierSeeder().Generate(
-                        groupView: this,
-                        model: model.ModifierModels[i]
-                    );
-
-                    Add(modifier);
-                }
-            }
-            
-            UpdateReferences();
+            Modifiers = new();
         }
 
 
@@ -177,16 +134,16 @@ namespace AG.DS
         /// <param name="swapUp">The swap up value to set for.</param>
         public void Swap(EventModifierView modifier, bool swapUp)
         {
-            var swapFromIndex = modifiers.IndexOf(modifier);
+            var swapFromIndex = Modifiers.IndexOf(modifier);
 
             var swapToIndex = swapFromIndex + (swapUp ? -1 : 1);
 
-            var swapToModifier = modifiers[swapToIndex];
+            var swapToModifier = Modifiers[swapToIndex];
 
             // Swap array
             {
-                modifiers[swapToIndex] = modifier;
-                modifiers[swapFromIndex] = swapToModifier;
+                Modifiers[swapToIndex] = modifier;
+                Modifiers[swapFromIndex] = swapToModifier;
             }
 
             // Swap element
@@ -214,9 +171,9 @@ namespace AG.DS
         /// <param name="modifier">The event modifier view to set for.</param>
         public void Remove(EventModifierView modifier)
         {
-            modifiersCount--;
+            ModifiersCount--;
 
-            modifiers.Remove(modifier);
+            Modifiers.Remove(modifier);
 
             GroupContainer.Remove(modifier.Folder);
         }
@@ -228,9 +185,9 @@ namespace AG.DS
         /// <param name="modifier">The event modifier view to set for.</param>
         public void Add(EventModifierView modifier)
         {
-            modifiersCount++;
+            ModifiersCount++;
 
-            modifiers.Add(modifier);
+            Modifiers.Add(modifier);
 
             GroupContainer.Add(modifier.Folder);
 
@@ -243,11 +200,11 @@ namespace AG.DS
         /// </summary>
         public void UpdateReferences()
         {
-            if (modifiersCount > 0)
+            if (ModifiersCount > 0)
             {
-                FirstModifier = modifiers[0];
-                LastModifier = modifiers[modifiersCount - 1];
-                SoleModifier = modifiersCount == 1 ? modifiers[0] : null;
+                FirstModifier = Modifiers[0];
+                LastModifier = Modifiers[ModifiersCount - 1];
+                SoleModifier = ModifiersCount == 1 ? Modifiers[0] : null;
             }
             else
             {

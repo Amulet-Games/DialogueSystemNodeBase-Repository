@@ -18,25 +18,25 @@ namespace AG.DS
         {
             ContentButton contentButton;
 
-            SetupContainer();
+            CreateContainer();
 
-            AddButtonTextLabel();
+            CreateButtonTextLabel();
 
-            AddButtonIconImage();
+            CreateButtonIconImage();
 
             AddElementsToContentButton();
 
-            SetupStyleSheet();
+            AddStyleSheet();
 
             return contentButton;
 
-            void SetupContainer()
+            void CreateContainer()
             {
                 contentButton = new();
                 contentButton.AddToClassList(StyleConfig.ContentButton);
             }
 
-            void AddButtonTextLabel()
+            void CreateButtonTextLabel()
             {
                 contentButton.ButtonTextLabel = CommonLabelPresenter.CreateElement
                 (
@@ -45,7 +45,7 @@ namespace AG.DS
                 );
             }
 
-            void AddButtonIconImage()
+            void CreateButtonIconImage()
             {
                 contentButton.ButtonIconImage = CommonImagePresenter.CreateElement
                 (
@@ -60,7 +60,7 @@ namespace AG.DS
                 contentButton.Add(contentButton.ButtonIconImage);
             }
 
-            void SetupStyleSheet()
+            void AddStyleSheet()
             {
                 contentButton.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSContentButtonStyle);
             }

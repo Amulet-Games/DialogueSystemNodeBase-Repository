@@ -21,21 +21,21 @@ namespace AG.DS
 
             CreateButton();
 
-            SetButtonDetails();
+            SetupDetails();
 
-            SetupStyleClass();
+            AddStyleClass();
 
             void CreateButton()
             {
                 button = new();
             }
 
-            void SetButtonDetails()
+            void SetupDetails()
             {
                 button.text = buttonText;
             }
 
-            void SetupStyleClass()
+            void AddStyleClass()
             {
                 button.ClearClassList();
                 button.AddToClassList(buttonUSS);
@@ -61,21 +61,21 @@ namespace AG.DS
 
             CreateButton();
 
-            SetButtonDetails();
+            SetupDetails();
 
-            SetupStyleClass();
+            AddStyleClass();
 
             void CreateButton()
             {
                 button = new();
             }
 
-            void SetButtonDetails()
+            void SetupDetails()
             {
                 button.style.backgroundImage = buttonSprite.texture;
             }
 
-            void SetupStyleClass()
+            void AddStyleClass()
             {
                 button.ClearClassList();
                 button.AddToClassList(buttonUSS);

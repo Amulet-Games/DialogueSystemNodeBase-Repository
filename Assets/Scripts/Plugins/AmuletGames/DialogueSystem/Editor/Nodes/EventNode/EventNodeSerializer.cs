@@ -39,7 +39,7 @@ namespace AG.DS
         /// </summary>
         void SaveEventModifierGroup()
         {
-            View.EventModifierGroupView.Save(Model.EventModifierGroupModel);
+            new EventModifierGroupSerializer().Save(View.EventModifierGroupView, Model.EventModifierGroupModel);
         }
 
 
@@ -74,7 +74,7 @@ namespace AG.DS
         /// </summary>
         void LoadEventModifierGroup()
         {
-            View.EventModifierGroupView.Load(Model.EventModifierGroupModel);
+            new EventModifierGroupSerializer().Load(View.EventModifierGroupView, Model.EventModifierGroupModel);
         }
     }
 }

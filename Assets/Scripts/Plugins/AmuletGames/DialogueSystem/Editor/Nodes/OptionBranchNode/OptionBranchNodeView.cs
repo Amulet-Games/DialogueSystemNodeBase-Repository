@@ -30,7 +30,9 @@ namespace AG.DS
         /// <inheritdoc />
         public override OptionBranchNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleFieldView = new(value: StringConfig.OptionBranchNode_NodeTitleField_DefaultText);
+            NodeTitleFieldView = new(
+                value: StringConfig.OptionBranchNode_NodeTitleField_DefaultText
+            );
 
             BranchTitleFieldView = new
             (

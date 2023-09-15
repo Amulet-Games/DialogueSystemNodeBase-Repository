@@ -20,9 +20,9 @@ namespace AG.DS
 
             CreateField();
 
-            AddFieldToStyleClass();
+            AddStyleClass();
 
-            ShowEmptyStyle();
+            ShowEmptyStyleByDefault();
 
             void CreateField()
             {
@@ -30,7 +30,7 @@ namespace AG.DS
                 field = view.Field;
             }
 
-            void AddFieldToStyleClass()
+            void AddStyleClass()
             {
                 var fieldInput = field.GetFieldInput();
                 var textElement = field.GetTextElement();
@@ -44,7 +44,7 @@ namespace AG.DS
                 textElement.AddToClassList(StyleConfig.Double_Field_Element);
             }
 
-            void ShowEmptyStyle()
+            void ShowEmptyStyleByDefault()
             {
                 field.ShowEmptyStyle();
             }

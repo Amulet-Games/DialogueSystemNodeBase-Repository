@@ -46,7 +46,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The Guid of the node.
+        /// Node element Guid.
         /// </summary>
         public Guid Guid;
 
