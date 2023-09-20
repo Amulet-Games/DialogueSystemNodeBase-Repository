@@ -6,7 +6,7 @@ namespace AG.DS
     public class EventModifierGroupView
     {
         /// <summary>
-        /// Cache of the event modifiers that are within the group.
+        /// The event modifiers cache.
         /// </summary>
         public List<EventModifierView> Modifiers { get; private set; }
 

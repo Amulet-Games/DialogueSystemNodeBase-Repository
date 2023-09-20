@@ -61,21 +61,21 @@ namespace AG.DS
             Image branchTitleImage;
             Label branchTitleLabel;
 
-            SetupContentButton();
+            CreateContentButton();
 
-            SetupContainers();
+            CreateContainers();
 
-            SetupBranchTitleImage();
+            CreateBranchTitleImage();
 
-            SetupBranchTitleLabel();
+            CreateBranchTitleLabel();
 
-            SetupBranchTitleField();
+            CreateBranchTitleField();
 
             AddElementsToContainer();
 
             AddContainersToNode();
 
-            void SetupContentButton()
+            void CreateContentButton()
             {
                 View.ContentButton = ContentButtonPresenter.CreateElement
                 (
@@ -84,7 +84,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupContainers()
+            void CreateContainers()
             {
                 contentContainer = new();
                 contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
@@ -99,7 +99,7 @@ namespace AG.DS
                 branchTitleInnerContainer.AddToClassList(StyleConfig.OptionBranchNode_BranchTitle_Inner_Container);
             }
 
-            void SetupBranchTitleImage()
+            void CreateBranchTitleImage()
             {
                 branchTitleImage = CommonImagePresenter.CreateElement
                 (
@@ -108,7 +108,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupBranchTitleLabel()
+            void CreateBranchTitleLabel()
             {
                 branchTitleLabel = CommonLabelPresenter.CreateElement
                 (
@@ -117,12 +117,12 @@ namespace AG.DS
                 );
             }
 
-            void SetupBranchTitleField()
+            void CreateBranchTitleField()
             {
-                View.BranchTitleFieldView.Field = LanguageTextFieldPresenter.CreateElement
+                LanguageTextFieldPresenter.CreateElement
                 (
+                    view: View.BranchTitleFieldView,
                     multiline: false,
-                    placeholderText: View.BranchTitleFieldView.placeholderText,
                     fieldUSS: StyleConfig.OptionBranchNode_BranchTitle_Field
                 );
             }

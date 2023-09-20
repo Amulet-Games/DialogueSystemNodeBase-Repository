@@ -11,7 +11,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Cache of the language field views that on the graph.
+        /// The language field elements cache.
         /// </summary>
         public List<ILanguageFieldView> LanguageFieldViews { get; private set; }
 

@@ -61,21 +61,21 @@ namespace AG.DS
             Image rootTitleImage;
             Label rootTitleLabel;
 
-            SetupContentButton();
+            CreateContentButton();
 
-            SetupContainers();
+            CreateContainers();
 
-            SetupRootTitleImage();
+            CreateRootTitleImage();
 
-            SetupRootTitleLabel();
+            CreateRootTitleLabel();
 
-            SetupRootTitleField();
+            CreateRootTitleField();
 
             AddElementsToContainer();
 
             AddContainersToNode();
 
-            void SetupContentButton()
+            void CreateContentButton()
             {
                 View.ContentButton = ContentButtonPresenter.CreateElement
                 (
@@ -84,7 +84,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupContainers()
+            void CreateContainers()
             {
                 contentContainer = new();
                 contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
@@ -99,7 +99,7 @@ namespace AG.DS
                 rootTitleInnerContainer.AddToClassList(StyleConfig.OptionRootNode_RootTitle_Inner_Container);
             }
 
-            void SetupRootTitleImage()
+            void CreateRootTitleImage()
             {
                 rootTitleImage = CommonImagePresenter.CreateElement
                 (
@@ -108,7 +108,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupRootTitleLabel()
+            void CreateRootTitleLabel()
             {
                 rootTitleLabel = CommonLabelPresenter.CreateElement
                 (
@@ -117,12 +117,12 @@ namespace AG.DS
                 );
             }
 
-            void SetupRootTitleField()
+            void CreateRootTitleField()
             {
-                View.RootTitleFieldView.Field = LanguageTextFieldPresenter.CreateElement
+                LanguageTextFieldPresenter.CreateElement
                 (
+                    view: View.RootTitleFieldView,
                     multiline: false,
-                    placeholderText: View.RootTitleFieldView.placeholderText,
                     fieldUSS: StyleConfig.OptionRootNode_RootTitle_Field
                 );
             }

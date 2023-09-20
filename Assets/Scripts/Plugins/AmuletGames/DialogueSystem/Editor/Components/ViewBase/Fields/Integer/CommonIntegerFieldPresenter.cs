@@ -5,7 +5,7 @@ namespace AG.DS
     public class CommonIntegerFieldPresenter
     {
         /// <summary>
-        /// Create a new common integer field element.
+        /// Create the elements for the integer field view.
         /// </summary>
         /// <param name="view">The common integer field view to set for.</param>
         /// <param name="fieldUSS">The field USS style to set for.</param>
@@ -19,17 +19,23 @@ namespace AG.DS
 
             CreateField();
 
-            AddFieldToStyleClass();
+            SetupDetails();
 
-            ShowEmptyStyle();
+            AddStyleClass();
 
             void CreateField()
             {
                 view.Field = new();
+
                 field = view.Field;
             }
 
-            void AddFieldToStyleClass()
+            void SetupDetails()
+            {
+                view.Value = 0;
+            }
+
+            void AddStyleClass()
             {
                 var fieldInput = field.GetFieldInput();
                 var textElement = field.GetTextElement();
@@ -41,11 +47,6 @@ namespace AG.DS
                 field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Integer_Field_Input);
                 textElement.AddToClassList(StyleConfig.Integer_Field_Element);
-            }
-
-            void ShowEmptyStyle()
-            {
-                field.ShowEmptyStyle();
             }
         }
     }

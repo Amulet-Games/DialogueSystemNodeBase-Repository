@@ -89,7 +89,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusOutEvent(FocusOutEvent evt)
         {
-            view.Field.RefreshValueNonAlert();
+            view.Field.SetValueWithoutNotify(view.Field.value);
         }
 
 

@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -36,12 +35,21 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Refresh the text field with its current value without invoking the ChangeEvent.
+        /// Set the text field's display image.
         /// </summary>
         /// <param name="field">Extension text field.</param>
-        public static void RefreshValueNonAlert(this TextField field)
+        /// <param name="image">The image to set for.</param>
+        public static void SetDisplayImage
+        (
+            this TextField field,
+            Image image
+        )
         {
-            field.SetValueWithoutNotify(field.value);
+            field.Add(image);
+
+            // Place it as the first element within the field's hierarchy list
+            // so that it's align on the left side.
+            image.SendToBack();
         }
 
 
@@ -59,12 +67,11 @@ namespace AG.DS
         {
             if (!string.IsNullOrEmpty(field.text))
             {
-                field.RemoveFromClassList(StyleConfig.Text_Field_Empty);
+                HideEmptyStyle(field);
             }
             else
             {
-                field.SetValueWithoutNotify(placeholderText);
-                field.AddToClassList(StyleConfig.Text_Field_Empty);
+                ShowEmptyStyle(field, placeholderText);
             }
         }
 
@@ -93,31 +100,6 @@ namespace AG.DS
         {
             field.SetValueWithoutNotify(placeholderText);
             field.AddToClassList(StyleConfig.Text_Field_Empty);
-        }
-
-
-        /// <summary>
-        /// Add a icon image UIElement to the text field.
-        /// </summary>
-        /// <param name="field">Extension text field.</param>
-        /// <param name="iconSprite">The sprite to set for the icon.</param>
-        public static void AddFieldIcon
-        (
-            this TextField field,
-            Sprite iconSprite
-        )
-        {
-            var iconImage = CommonImagePresenter.CreateElement
-            (
-                imageSprite: iconSprite,
-                imageUSS01: StyleConfig.TextField_Icon
-            );
-
-            field.Add(iconImage);
-
-            // Place it as the first element within the field's hierarchy list
-            // so that it's align on the left side.
-            iconImage.SendToBack();
         }
     }
 }

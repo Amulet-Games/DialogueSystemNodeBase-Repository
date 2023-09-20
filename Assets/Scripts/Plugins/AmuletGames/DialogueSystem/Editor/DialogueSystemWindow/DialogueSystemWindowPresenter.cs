@@ -8,13 +8,14 @@ namespace AG.DS
         /// <summary>
         /// Create a new dialogue system window.
         /// </summary>
+        /// <returns>A new dialogue system window.</returns>
         public static DialogueSystemWindow CreateWindow()
         {
             DialogueSystemWindow window;
 
             CreateWindow();
 
-            SetupDetail();
+            SetupDetails();
 
             CenterToMainWindow();
 
@@ -25,7 +26,7 @@ namespace AG.DS
                 window = EditorWindow.CreateWindow<DialogueSystemWindow>();
             }
 
-            void SetupDetail()
+            void SetupDetails()
             {
                 window.minSize = new Vector2
                 (

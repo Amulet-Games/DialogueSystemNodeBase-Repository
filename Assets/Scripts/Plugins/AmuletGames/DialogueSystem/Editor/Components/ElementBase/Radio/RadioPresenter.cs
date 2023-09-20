@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -23,6 +24,8 @@ namespace AG.DS
             CreateRadioIconImage();
 
             CreateRadioTextLabel();
+
+            SetupDetails();
 
             AddElementsToRadio();
 
@@ -52,6 +55,12 @@ namespace AG.DS
                     labelText: radioText,
                     labelUSS: StyleConfig.Radio_RadioText_Label
                 );
+            }
+
+            void SetupDetails()
+            {
+                radio.focusable = true;
+                radio.pickingMode = PickingMode.Ignore;
             }
 
             void AddElementsToRadio()

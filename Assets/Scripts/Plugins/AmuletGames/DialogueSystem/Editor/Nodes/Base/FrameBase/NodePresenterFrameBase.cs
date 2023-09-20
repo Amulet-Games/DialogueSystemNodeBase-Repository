@@ -39,13 +39,13 @@ namespace AG.DS
         /// </summary>
         protected void CreateTitleElements()
         {
-            SetupNodeTitleField();
+            CreateNodeTitleField();
 
-            SetupEditTitleButton();
+            CreateEditTitleButton();
 
-            AddElementsToNode();
+            AddElementsToContainer();
 
-            void SetupNodeTitleField()
+            void CreateNodeTitleField()
             {
                 NodeTitleTextFieldPresenter.CreateElement
                 (
@@ -54,7 +54,7 @@ namespace AG.DS
                 );
             }
             
-            void SetupEditTitleButton()
+            void CreateEditTitleButton()
             {
                 View.EditTitleButton = CommonButtonPresenter.CreateElement
                 (
@@ -63,7 +63,7 @@ namespace AG.DS
                 );
             }
             
-            void AddElementsToNode()
+            void AddElementsToContainer()
             {
                 Node.titleContainer.Add(View.NodeTitleFieldView.Field);
                 Node.titleContainer.Add(View.EditTitleButton);

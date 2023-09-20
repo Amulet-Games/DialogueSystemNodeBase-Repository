@@ -22,7 +22,7 @@ namespace AG.DS
 
             CreateOptionPort();
 
-            SetupRemoveButton();
+            CreateRemoveCellButton();
 
             AddElementsToCell();
 
@@ -46,7 +46,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupRemoveButton()
+            void CreateRemoveCellButton()
             {
                 cell.RemoveButton = CommonButtonPresenter.CreateElement
                 (

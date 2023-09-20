@@ -50,7 +50,7 @@ namespace AG.DS
 
             RegisterDialogueEventFieldEvents();
 
-            RegisterDelaySecondsIntegerFieldEvents();
+            RegisterDelaySecondsFieldEvents();
         }
 
 
@@ -105,16 +105,14 @@ namespace AG.DS
         /// Register events to the dialogue event field.
         /// </summary>
         void RegisterDialogueEventFieldEvents()
-            => new CommonObjectFieldObserver<DialogueEvent>(
-                view: view.DialogueEventFieldView).RegisterEvents();
+            => new CommonObjectFieldObserver<DialogueEvent>(view: view.DialogueEventFieldView).RegisterEvents();
 
 
         /// <summary>
         /// Register events to the delay seconds field.
         /// </summary>
-        void RegisterDelaySecondsIntegerFieldEvents()
-            => new CommonDoubleFieldObserver(
-                view.DelaySecondsFieldView).RegisterEvents();
+        void RegisterDelaySecondsFieldEvents()
+            => new CommonDoubleFieldObserver(view: view.DelaySecondsFieldView).RegisterEvents();
 
 
         // ----------------------------- Event -----------------------------

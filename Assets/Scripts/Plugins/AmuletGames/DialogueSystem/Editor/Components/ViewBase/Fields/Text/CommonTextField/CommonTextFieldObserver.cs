@@ -28,8 +28,8 @@ namespace AG.DS
         /// <param name="view">The common text field view to set for.</param>
         public CommonTextFieldObserver(CommonTextFieldView view)
         {
-            field = view.TextField;
-            placeholderText = view.PlaceholderText;
+            field = view.Field;
+            placeholderText = view.placeholderText;
         }
 
 

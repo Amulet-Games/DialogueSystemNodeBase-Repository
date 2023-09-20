@@ -49,9 +49,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// View for the continue by field.
+        /// Radio group for the continue by radio elements.
         /// </summary>
-        public MessageProgressTypeEnumFieldView ContinueByFieldView;
+        public RadioGroup ContinueByRadioGroup;
 
 
         /// <summary>
@@ -67,11 +67,48 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the message modifier class.
+        /// Constructor of the message modifier view class.
         /// </summary>
-        public MessageModifierView()
+        public MessageModifierView(LanguageHandler languageHandler)
         {
+            MessageTextFieldView = new(
+                placeholderText: StringConfig.MessageModifier_MessageTextField_PlaceholderText,
+                languageHandler
+            );
+
+            MessageAudioFieldView = new(
+                placeholderText: StringConfig.MessageModifier_MessageAudioField_PlaceholderText,
+                languageHandler
+            );
+
+            DelaySecondsFieldView = new(
+                maxValue: NumberConfig.MAX_DELAY_SECOND,
+                minValue: NumberConfig.MIN_DELAY_SECOND
+            );
+
             MessageCSVGuid = Guid.NewGuid();
         }
+
+
+        // ----------------------------- Service -----------------------------
+        /// <summary>
+        /// Changes the move up button enabled state.
+        /// </summary>
+        /// <param name="value">The value to set to.</param>
+        public void SetEnabledMoveUpButton(bool value) => MoveUpButton.SetEnabled(value: value);
+
+
+        /// <summary>
+        /// Changes the move down button enabled state.
+        /// </summary>
+        /// <param name="value">The value to set to.</param>
+        public void SetEnabledMoveDownButton(bool value) => MoveDownButton.SetEnabled(value: value);
+
+
+        /// <summary>
+        /// Changes the remove button enabled state.
+        /// </summary>
+        /// <param name="value">The value to set to.</param>
+        public void SetEnabledRemoveButton(bool value) => RemoveButton.SetEnabled(value: value);
     }
 }

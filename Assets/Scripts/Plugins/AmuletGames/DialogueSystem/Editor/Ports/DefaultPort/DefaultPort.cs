@@ -33,9 +33,9 @@ namespace AG.DS
 
             SetupDetails();
 
-            SetupStyleClass();
+            AddStyleClass();
 
-            SetupStyleSheets();
+            AddStyleSheet();
 
             return this;
         }
@@ -112,9 +112,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup the style class.
+        /// Add the style class.
         /// </summary>
-        void SetupStyleClass()
+        void AddStyleClass()
         {
             name = "";
             ClearClassList();
@@ -127,9 +127,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup the style sheets.
+        /// Add the style sheet.
         /// </summary>
-        void SetupStyleSheets()
+        void AddStyleSheet()
         {
             styleSheets.Clear();
             styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSDefaultPortStyle);

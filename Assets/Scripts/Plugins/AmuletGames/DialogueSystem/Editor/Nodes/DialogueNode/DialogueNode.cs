@@ -34,13 +34,13 @@ namespace AG.DS
 
             SetupMainContainer();
 
-            SetupDefaultStyleClass();
+            AddDefaultStyleClass();
 
-            SetupDefaultStyleSheets();
+            AddDefaultStyleSheet();
 
             SetupDetails();
 
-            SetupStyleSheets();
+            AddStyleSheet();
 
             return this;
         }
@@ -56,9 +56,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup the style sheets.
+        /// Add the style sheet.
         /// </summary>
-        void SetupStyleSheets()
+        void AddStyleSheet()
         {
             var styleSheetConfig = ConfigResourcesManager.StyleSheetConfig;
             styleSheets.Add(styleSheetConfig.DSDialogueNodeStyle);

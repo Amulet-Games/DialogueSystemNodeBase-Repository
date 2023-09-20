@@ -20,15 +20,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The node's dialogue character value.
+        /// The node's dialogue speaker value.
         /// </summary>
-        [SerializeField] public DialogueCharacter DialogueCharacter;
+        [SerializeField] public DialogueCharacter DialogueSpeaker;
 
 
         /// <summary>
         /// The node's dialogue node stitcher model.
         /// </summary>
-        [SerializeField] public DialogueNodeStitcherModel DialogueNodeStitcherModel;
+        [SerializeField] public MessageModifierGroupModel MessageModifierGroupModel;
 
 
         /// <summary>
@@ -36,9 +36,7 @@ namespace AG.DS
         /// </summary>
         public DialogueNodeModel()
         {
-            InputPortModel = new();
-            OutputPortModel = new();
-            DialogueNodeStitcherModel = new();
+            MessageModifierGroupModel = new();
         }
     }
 }

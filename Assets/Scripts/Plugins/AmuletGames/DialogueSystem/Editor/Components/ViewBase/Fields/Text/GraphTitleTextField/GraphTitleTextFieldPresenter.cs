@@ -5,7 +5,7 @@ namespace AG.DS
     public class GraphTitleTextFieldPresenter
     {
         /// <summary>
-        /// Create a new graph title text field element.
+        /// Create the elements for the graph title text field view.
         /// </summary>
         /// <param name="view">The graph title text field view to set for.</param>
         /// <param name="fieldUSS">The field USS style to set for.</param>
@@ -22,11 +22,9 @@ namespace AG.DS
 
             CreateField();
 
-            SetFieldDetails();
+            SetupDetails();
 
-            SetupStyleClass();
-
-            ShowDefaultTitle();
+            AddStyleClass();
 
             return field;
 
@@ -39,12 +37,15 @@ namespace AG.DS
                 textElement = field.GetTextElement();
             }
 
-            void SetFieldDetails()
+            void SetupDetails()
             {
                 field.isDelayed = true;
+
+                view.Value = "";
+                view.BindingSO = null;
             }
 
-            void SetupStyleClass()
+            void AddStyleClass()
             {
                 field.ClearClassList();
                 fieldInput.ClearClassList();
@@ -53,12 +54,6 @@ namespace AG.DS
                 field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
                 textElement.AddToClassList(StyleConfig.Text_Field_Element);
-            }
-
-            void ShowDefaultTitle()
-            {
-                view.Value = "";
-                view.BindingSO = null;
             }
         }
     }

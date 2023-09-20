@@ -26,9 +26,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The node's headline text value.
+        /// The node's root title text value.
         /// </summary>
-        [SerializeField] public LanguageGeneric<string> HeadlineText;
+        [SerializeField] public LanguageGeneric<string> RootTitleText;
 
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace AG.DS
         public OptionRootNodeModel()
         {
             OutputOptionPortGroupModel = new();
-            HeadlineText = new();
+            RootTitleText = new();
         }
     }
 }

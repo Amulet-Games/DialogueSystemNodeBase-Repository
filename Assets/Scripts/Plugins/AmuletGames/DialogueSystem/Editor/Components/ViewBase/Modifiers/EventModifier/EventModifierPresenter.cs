@@ -20,37 +20,39 @@ namespace AG.DS
             VisualElement startDelayContainer;
             VisualElement delaySecondsContainer;
 
-            VisualElement dialogueEventLabel;
-            VisualElement startDelayLabel;
-            VisualElement delaySecondsLabel;
+            Label dialogueEventLabel;
+            Label startDelayLabel;
+            Label delaySecondsLabel;
 
-            SetupFolder();
+            Image dialogueEventImage;
 
-            SetupContainers();
+            CreateFolder();
 
-            SetupMoveUpButton();
+            CreateContainers();
 
-            SetupMoveDownButton();
+            CreateMoveUpButton();
 
-            SetupRenameButton();
+            CreateMoveDownButton();
 
-            SetupRemoveButton();
+            CreateRenameButton();
 
-            SetupDialogueEventLabel();
+            CreateRemoveButton();
 
-            SetupDialogueEventField();
+            CreateDialogueEventLabel();
 
-            SetupDialogueEventImage();
+            CreateDialogueEventField();
 
-            SetupStartDelayLabel();
+            CreateDialogueEventImage();
 
-            SetupDelaySecondsField();
+            CreateStartDelayLabel();
 
-            SetupDelaySecondsLabel();
+            CreateDelaySecondsField();
+
+            CreateDelaySecondsLabel();
 
             AddElementsToContainer();
 
-            void SetupFolder()
+            void CreateFolder()
             {
                 view.Folder = FolderPresenter.CreateElement
                 (
@@ -62,7 +64,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupContainers()
+            void CreateContainers()
             {
                 helperButtonsContainer = new();
                 helperButtonsContainer.AddToClassList(StyleConfig.EventModifier_HelperButton_Container);
@@ -77,7 +79,7 @@ namespace AG.DS
                 delaySecondsContainer.AddToClassList(StyleConfig.EventModifier_DelaySeconds_Container);
             }
 
-            void SetupMoveUpButton()
+            void CreateMoveUpButton()
             {
                 view.MoveUpButton = CommonButtonPresenter.CreateElement
                 (
@@ -88,7 +90,7 @@ namespace AG.DS
                 view.MoveUpButton.AddBackgroundHighlighter();
             }
 
-            void SetupMoveDownButton()
+            void CreateMoveDownButton()
             {
                 view.MoveDownButton = CommonButtonPresenter.CreateElement
                 (
@@ -99,7 +101,7 @@ namespace AG.DS
                 view.MoveDownButton.AddBackgroundHighlighter();
             }
 
-            void SetupRenameButton()
+            void CreateRenameButton()
             {
                 view.RenameButton = CommonButtonPresenter.CreateElement
                 (
@@ -110,7 +112,7 @@ namespace AG.DS
                 view.RenameButton.AddBackgroundHighlighter();
             }
 
-            void SetupRemoveButton()
+            void CreateRemoveButton()
             {
                 view.RemoveButton = CommonButtonPresenter.CreateElement
                 (
@@ -121,7 +123,7 @@ namespace AG.DS
                 view.RemoveButton.AddBackgroundHighlighter();
             }
 
-            void SetupDialogueEventLabel()
+            void CreateDialogueEventLabel()
             {
                 dialogueEventLabel = CommonLabelPresenter.CreateElement
                 (
@@ -130,7 +132,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupDialogueEventField()
+            void CreateDialogueEventField()
             {
                 CommonObjectFieldPresenter.CreateElement
                 (
@@ -139,18 +141,18 @@ namespace AG.DS
                 );
             }
 
-            void SetupDialogueEventImage()
+            void CreateDialogueEventImage()
             {
-                view.DialogueEventImage = CommonImagePresenter.CreateElement
+                dialogueEventImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.EventFieldIconSprite,
+                    imageSprite: ConfigResourcesManager.SpriteConfig.DialogueEventFieldSprite,
                     imageUSS01: StyleConfig.EventModifier_DialogueEvent_Image
                 );
 
-                view.DialogueEventFieldView.Field.SetDisplayImage(view.DialogueEventImage);
+                view.DialogueEventFieldView.Field.SetDisplayImage(dialogueEventImage);
             }
 
-            void SetupStartDelayLabel()
+            void CreateStartDelayLabel()
             {
                 startDelayLabel = CommonLabelPresenter.CreateElement
                 (
@@ -159,7 +161,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupDelaySecondsField()
+            void CreateDelaySecondsField()
             {
                 CommonDoubleFieldPresenter.CreateElement
                 (
@@ -168,7 +170,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupDelaySecondsLabel()
+            void CreateDelaySecondsLabel()
             {
                 delaySecondsLabel = CommonLabelPresenter.CreateElement
                 (
@@ -186,17 +188,17 @@ namespace AG.DS
                 helperButtonsContainer.Add(view.RenameButton);
                 helperButtonsContainer.Add(view.RemoveButton);
 
-                // Dialogue Event Container
+                // Dialogue event
                 view.Folder.AddElementToContent(dialogueEventContainer);
                 dialogueEventContainer.Add(dialogueEventLabel);
                 dialogueEventContainer.Add(view.DialogueEventFieldView.Field);
 
-                // Start Delay Container.
+                // Start delay
                 view.Folder.AddElementToContent(startDelayContainer);
                 startDelayContainer.Add(startDelayLabel);
                 startDelayContainer.Add(delaySecondsContainer);
 
-                // Delay Seconds Container.
+                // Delay seconds
                 delaySecondsContainer.Add(view.DelaySecondsFieldView.Field);
                 delaySecondsContainer.Add(delaySecondsLabel);
             }

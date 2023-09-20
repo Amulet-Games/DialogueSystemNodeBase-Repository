@@ -182,11 +182,11 @@ namespace AG.DS
 
         #region Folder Common USS Classes.
         public const string Folder = "folder";
+        public const string Folder_Closed = "folder-closed";
         public const string Folder_Title_Container = "folder-title-container";
         public const string Folder_Expand_Button = "folder-expand-button";
         public const string Folder_FolderTitle_Field = "folder-folderTitle-field";
         public const string Folder_Content_Container = "folder-content-container";
-        public const string Folder_Closed = "folder-closed";
         #endregion
 
         #region Modifier Event USS Classes.
@@ -202,8 +202,8 @@ namespace AG.DS
         public const string EventModifier_StartDelay_Container = "eventModifier-startDelay-container";
         public const string EventModifier_StartDelay_Label = "eventModifier-startDelay-label";
         public const string EventModifier_DelaySeconds_Container = "eventModifier-delaySeconds-container";
-        public const string EventModifier_DelaySeconds_Field = "eventModifier-delaySeconds-field";
         public const string EventModifier_DelaySeconds_Label = "eventModifier-delaySeconds-label";
+        public const string EventModifier_DelaySeconds_Field = "eventModifier-delaySeconds-field";
 
         /*< -------------------- Event Modifier Group -------------------- >*/
         public const string EventModifierGroup = "eventModifierGroup";
@@ -240,16 +240,29 @@ namespace AG.DS
         #endregion
 
         #region Modifier Message USS Classes.
-        public const string Modifier_Message_Button_Container = "modifier_Message_Button_Container";
-        public const string Modifier_Message_MoveUp_Button = "modifier_Message_MoveUp_Button";
-        public const string Modifier_Message_MoveDown_Button = "modifier_Message_MoveDown_Button";
-        public const string Modifier_Message_Rename_Button = "modifier_Message_Rename_Button";
-        public const string Modifier_Message_Remove_Button = "modifier_Message_Remove_Button";
-        public const string Modifier_Message_Text_TextField = "modifier_Message_Text_TextField";
-        public const string Modifier_Message_Audio_ObjectField = "modifier_Message_Audio_ObjectField";
-        public const string Modifier_Message_ProgressType_Box = "modifier_Message_ProgressType_Box";
-        public const string Modifier_Message_ProgressType_Label = "modifier_Message_ProgressType_Label";
-        public const string Modifier_Message_ProgressType_EnumField = "modifier_Message_ProgressType_EnumField";
+        public const string MessageModifier_HelperButton_Container = "messageModifier-helperButton-container";
+        public const string MessageModifier_MoveUp_Button = "messageModifier-moveUp-button";
+        public const string MessageModifier_MoveDown_Button = "messageModifier-moveDown-button";
+        public const string MessageModifier_Rename_Button = "messageModifier-rename-button";
+        public const string MessageModifier_Remove_Button = "messageModifier-remove-button";
+        public const string MessageModifier_MessageText_Container = "messageModifier-messageText-container";
+        public const string MessageModifier_MessageText_Image = "messageModifier-messageText-image";
+        public const string MessageModifier_MessageText_Label = "messageModifier-messageText-label";
+        public const string MessageModifier_MessageText_Field = "messageModifier-messageText-field";
+        public const string MessageModifier_MessageAudio_Container = "messageModifier-messageAudio-container";
+        public const string MessageModifier_MessageAudio_Image = "messageModifier-messageAudio-image";
+        public const string MessageModifier_MessageAudio_Label = "messageModifier-messageAudio-label";
+        public const string MessageModifier_MessageAudio_Field = "messageModifier-messageAudio-field";
+        public const string MessageModifier_ContinueBy_Container = "messageModifier-continueBy-container";
+        public const string MessageModifier_ContinueBy_Label = "messageModifier-continueBy-label";
+        public const string MessageModifier_StartDelay_Container = "messageModifier-startDelay-container";
+        public const string MessageModifier_StartDelay_Label = "messageModifier-startDelay-label";
+        public const string MessageModifier_DelaySeconds_Container = "messageModifier-delaySeconds-container";
+        public const string MessageModifier_DelaySeconds_Label = "messageModifier-delaySeconds-label";
+        public const string MessageModifier_DelaySeconds_Field = "messageModifier-delaySeconds-field";
+
+        /*< -------------------- Message Modifier Group -------------------- >*/
+        public const string MessageModifierGroup = "messageModifierGroup";
         #endregion
 
         #region Segment Common USS Classes.
@@ -292,8 +305,12 @@ namespace AG.DS
 
         #region Radio USS Classes.
         public const string Radio = "radio";
+        public const string Radio_Active = "radio-active"; 
         public const string Radio_RadioText_Label = "radio-radioText-label";
         public const string Radio_RadioIcon_Image = "radio-radioIcon-image";
+
+        /*< -------------------- Radio Group -------------------- >*/
+        public const string RadioGroup = "radioGroup";
         #endregion
     }
 }

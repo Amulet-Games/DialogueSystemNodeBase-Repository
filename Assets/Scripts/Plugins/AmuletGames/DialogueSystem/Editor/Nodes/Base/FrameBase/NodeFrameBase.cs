@@ -66,9 +66,9 @@ namespace AG.DS
         {
             RemoveUnusedElements();
 
-            SetupDetail();
+            SetupDetails();
 
-            SetupStyleClass();
+            AddStyleClass();
 
             void RemoveUnusedElements()
             {
@@ -76,13 +76,13 @@ namespace AG.DS
                 NodeBorder.Remove(NodeBorder.ElementAt(1));
             }
 
-            void SetupDetail()
+            void SetupDetails()
             {
                 NodeBorder.style.overflow = Overflow.Visible;
                 NodeBorder.focusable = true;
             }
 
-            void SetupStyleClass()
+            void AddStyleClass()
             {
                 NodeBorder.name = "";
                 NodeBorder.AddToClassList(StyleConfig.Node_Border);
@@ -99,7 +99,7 @@ namespace AG.DS
 
             RepositionElement();
 
-            SetupStyleClass();
+            AddStyleClass();
 
             void RemoveUnusedElements()
             {
@@ -112,7 +112,7 @@ namespace AG.DS
                 NodeBorder.Add(topContainer);
             }
 
-            void SetupStyleClass()
+            void AddStyleClass()
             {
                 topContainer.name = "";
                 topContainer.AddToClassList(StyleConfig.Node_Top_Container);
@@ -126,9 +126,9 @@ namespace AG.DS
 
             RepositionElement();
 
-            SetupDetail();
+            SetupDetails();
 
-            SetupStyleClass();
+            AddStyleClass();
 
             void RemoveUnusedElements()
             {
@@ -141,12 +141,12 @@ namespace AG.DS
                 topContainer.Add(titleContainer);
             }
 
-            void SetupDetail()
+            void SetupDetails()
             {
                 topContainer.SetPickingMode(PickingMode.Position);
             }
 
-            void SetupStyleClass()
+            void AddStyleClass()
             {
                 titleContainer.name = "";
                 titleContainer.AddToClassList(StyleConfig.Node_Title_Container);
@@ -161,7 +161,7 @@ namespace AG.DS
         {
             RepositionElement();
             
-            SetupStyleClass();
+            AddStyleClass();
 
             void RepositionElement()
             {
@@ -169,7 +169,7 @@ namespace AG.DS
                 NodeBorder.Add(PortContainer);
             }
 
-            void SetupStyleClass()
+            void AddStyleClass()
             {
                 PortContainer.AddToClassList(StyleConfig.Node_Port_Container);
             }
@@ -183,7 +183,7 @@ namespace AG.DS
         {
             RepositionElement();
 
-            SetupStyleClass();
+            AddStyleClass();
 
             void RepositionElement()
             {
@@ -191,7 +191,7 @@ namespace AG.DS
                 PortContainer.Add(InputContainer);
             }
 
-            void SetupStyleClass()
+            void AddStyleClass()
             {
                 InputContainer.AddToClassList(StyleConfig.Node_Input_Container);
             }
@@ -205,7 +205,7 @@ namespace AG.DS
         {
             Reposition();
 
-            SetupStyleClass();
+            AddStyleClass();
 
             void Reposition()
             {
@@ -213,7 +213,7 @@ namespace AG.DS
                 PortContainer.Add(OutputContainer);
             }
 
-            void SetupStyleClass()
+            void AddStyleClass()
             {
                 OutputContainer.AddToClassList(StyleConfig.Node_Output_Container);
             }
@@ -231,9 +231,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup the default style class.
+        /// Add the default style class.
         /// </summary>
-        protected void SetupDefaultStyleClass()
+        protected void AddDefaultStyleClass()
         {
             ClearClassList();
             AddToClassList(StyleConfig.Node);
@@ -241,9 +241,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup the default style sheets.
+        /// Add the default style sheet.
         /// </summary>
-        protected void SetupDefaultStyleSheets()
+        protected void AddDefaultStyleSheet()
         {
             styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
             styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);

@@ -36,20 +36,20 @@ namespace AG.DS
 
             SetupMainContainer();
 
-            SetupDefaultStyleClass();
+            AddDefaultStyleClass();
 
-            SetupDefaultStyleSheets();
+            AddDefaultStyleSheet();
 
-            SetupStyleSheets();
+            AddStyleSheet();
 
             return this;
         }
 
 
         /// <summary>
-        /// Setup the style sheets.
+        /// Add the style sheet.
         /// </summary>
-        void SetupStyleSheets()
+        void AddStyleSheet()
         {
             styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSStoryNodeStyle);
         }

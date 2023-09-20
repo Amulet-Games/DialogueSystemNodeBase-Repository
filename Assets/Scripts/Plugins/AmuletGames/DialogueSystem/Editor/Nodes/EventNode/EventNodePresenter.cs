@@ -56,17 +56,17 @@ namespace AG.DS
         {
             VisualElement contentContainer;
 
-            SetupContentButton();
+            CreateContentButton();
 
-            SetupContainers();
+            CreateContainers();
 
-            SetupEventModifierGroup();
+            CreateEventModifierGroup();
 
             AddElementsToContainer();
 
             AddContainersToNode();
 
-            void SetupContentButton()
+            void CreateContentButton()
             {
                 View.ContentButton = ContentButtonPresenter.CreateElement
                 (
@@ -75,13 +75,13 @@ namespace AG.DS
                 );
             }
             
-            void SetupContainers()
+            void CreateContainers()
             {
                 contentContainer = new();
                 contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
             }
 
-            void SetupEventModifierGroup()
+            void CreateEventModifierGroup()
             {
                 EventModifierGroupPresenter.CreateElement(view: View.EventModifierGroupView);
             }

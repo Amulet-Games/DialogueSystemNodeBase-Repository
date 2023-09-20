@@ -56,13 +56,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Cache of the edge models that will be serialized.
+        /// The edge models cache.
         /// </summary>
         public List<EdgeModelBase> EdgeModels;
 
 
         /// <summary>
-        /// Cache of the node models that will be serialized.
+        /// The node models cache.
         /// </summary>
         public List<NodeModelBase> NodeModels;
 

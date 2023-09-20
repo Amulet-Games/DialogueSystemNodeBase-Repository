@@ -41,19 +41,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Image for the dialogue event field.
-        /// </summary>
-        public Image DialogueEventImage;
-
-
-        /// <summary>
         /// View for the delay seconds field.
         /// </summary>
         public CommonDoubleFieldView DelaySecondsFieldView;
 
 
         /// <summary>
-        /// Constructor of the event modifier class.
+        /// Constructor of the event modifier view class.
         /// </summary>
         public EventModifierView()
         {

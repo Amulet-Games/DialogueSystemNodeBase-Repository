@@ -62,23 +62,23 @@ namespace AG.DS
             Image dialogueSpeakerImage;
             Label dialogueSpeakerLabel;
 
-            SetupContentButton();
+            CreateContentButton();
 
-            SetupContainers();
+            CreateContainers();
 
-            SetupDialogueSpeakerImage();
+            CreateDialogueSpeakerImage();
 
-            SetupDialogueSpeakerLabel();
+            CreateDialogueSpeakerLabel();
 
-            SetupDialogueSpeakerField();
+            CreateDialogueSpeakerField();
 
-            SetupMessageModifierGroup();
+            CreateMessageModifierGroup();
 
             AddElementsToContainer();
 
             AddContainersToNode();
 
-            void SetupContentButton()
+            void CreateContentButton()
             {
                 View.ContentButton = ContentButtonPresenter.CreateElement
                 (
@@ -87,7 +87,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupContainers()
+            void CreateContainers()
             {
                 contentContainer = new();
                 contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
@@ -102,7 +102,7 @@ namespace AG.DS
                 dialogueSpeakerInnerContainer.AddToClassList(StyleConfig.DialogueNode_DialogueSpeaker_Inner_Container);
             }
 
-            void SetupDialogueSpeakerImage()
+            void CreateDialogueSpeakerImage()
             {
                 dialogueSpeakerImage = CommonImagePresenter.CreateElement
                 (
@@ -111,7 +111,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupDialogueSpeakerLabel()
+            void CreateDialogueSpeakerLabel()
             {
                 dialogueSpeakerLabel = CommonLabelPresenter.CreateElement
                 (
@@ -120,7 +120,7 @@ namespace AG.DS
                 );
             }
 
-            void SetupDialogueSpeakerField()
+            void CreateDialogueSpeakerField()
             {
                 CommonObjectFieldPresenter.CreateElement
                 (
@@ -129,7 +129,7 @@ namespace AG.DS
                 );
             }
             
-            void SetupMessageModifierGroup()
+            void CreateMessageModifierGroup()
             {
                 Node.topContainer.Add(View.ContentButton);
             }

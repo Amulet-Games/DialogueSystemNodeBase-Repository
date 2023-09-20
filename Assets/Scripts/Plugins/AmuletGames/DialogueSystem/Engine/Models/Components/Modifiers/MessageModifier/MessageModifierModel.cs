@@ -25,8 +25,20 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The modifier's CSV GUID value.
+        /// The modifier's continue by radio group model.
         /// </summary>
-        [SerializeField] public string CsvGUID;
+        [SerializeField] public RadioGroupModel ContinueByRadioGroupModel;
+
+
+        /// <summary>
+        /// The modifier's delay seconds value.
+        /// </summary>
+        [SerializeField] public double DelaySeconds;
+
+
+        /// <summary>
+        /// The modifier's message CSV Guid value.
+        /// </summary>
+        [SerializeField] public Guid MessageCSVGuid;
     }
 }

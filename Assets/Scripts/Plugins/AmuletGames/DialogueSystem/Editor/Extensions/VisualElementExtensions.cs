@@ -5,25 +5,6 @@ namespace AG.DS
     public static class VisualElementExtensions
     {
         /// <summary>
-        /// Remove the visual element from the display none style class if the value is true,
-        /// <br>otherwise add the visual element to the display none style class.</br>
-        /// </summary>
-        /// <param name="element">Extension visual element.</param>
-        /// <param name="value">The display value to set for.</param>
-        public static void SetDisplay(this VisualElement element, bool value)
-        {
-            if (value)
-            {
-                element.RemoveFromClassList(StyleConfig.Global_Display_None);
-            }
-            else
-            {
-                element.AddToClassList(StyleConfig.Global_Display_None);
-            }
-        }
-
-
-        /// <summary>
         /// Set the picking mode of the given visual element.
         /// </summary>
         /// <param name="element">Extension visual element.</param>
@@ -33,6 +14,25 @@ namespace AG.DS
         {
             element.pickingMode = mode;
             return element;
+        }
+
+
+        /// <summary>
+        /// Remove the visual element from the display none style class if the value is true,
+        /// <br>otherwise add the visual element to the display none style class.</br>
+        /// </summary>
+        /// <param name="element">Extension visual element.</param>
+        /// <param name="value">The display value to set for.</param>
+        public static void SetDisplay(this VisualElement element, bool value)
+        {
+            if (value)
+            {
+                ShowElement(element);
+            }
+            else
+            {
+                HideElement(element);
+            }
         }
 
 

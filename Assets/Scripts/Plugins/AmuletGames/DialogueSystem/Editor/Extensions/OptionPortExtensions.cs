@@ -44,11 +44,11 @@ namespace AG.DS
         {
             if (port.OpponentPort != null)
             {
-                port.ShowConnectStyle();
+                ShowConnectStyle(port);
             }
             else
             {
-                port.HideConnectStyle();
+                HideConnectStyle(port);
             }
         }
 

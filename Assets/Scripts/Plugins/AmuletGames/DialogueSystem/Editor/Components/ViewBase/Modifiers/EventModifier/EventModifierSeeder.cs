@@ -7,7 +7,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="groupView">The event modifier group view to set for.</param>
         /// <param name="model">The event modifier model to set for.</param>
-        /// <returns>A new event modifier.</returns>
+        /// <returns>A new event modifier view.</returns>
         public EventModifierView Generate
         (
             EventModifierGroupView groupView,

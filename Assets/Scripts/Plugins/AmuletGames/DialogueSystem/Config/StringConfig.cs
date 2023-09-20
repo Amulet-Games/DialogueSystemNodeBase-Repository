@@ -94,9 +94,15 @@ namespace AG.DS
 
         #region Message Modifier Texts.
         public const string MessageModifier_FolderTitleField_DefaultText = "Message ";
-        public const string MessageModifier_DialogueSpeakerField_PlaceholderText = "None (Dialogue Character)";
-        public const string MessageModifierProgressTypeLabelText = "Progress Type";
-        public const string DurationLabelText = "Duration";
+        public const string MessageModifier_MessageTextLabel_LabelText = "Text";
+        public const string MessageModifier_MessageTextField_PlaceholderText = "“Hey what's up?”";
+        public const string MessageModifier_MessageAudioLabel_LabelText = "Audio";
+        public const string MessageModifier_MessageAudioField_PlaceholderText = "None (Audio Clip)";
+        public const string MessageModifier_ContinueBy_LabelText = "Continue By";
+        public const string MessageModifier_ContinueByInput_LabelText = "Input";
+        public const string MessageModifier_ContinueByAuto_LabelText = "Auto";
+        public const string MessageModifier_StartDelay_LabelText = "Start Delay";
+        public const string MessageModifier_DelaySeconds_LabelText = "seconds";
         #endregion
 
         #region Option Root Node Texts.

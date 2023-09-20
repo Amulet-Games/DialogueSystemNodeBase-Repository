@@ -41,7 +41,7 @@
         /// </summary>
         void SaveCharacterObjectField()
         {
-            Model.DialogueCharacter = View.DialogueSpeakerFieldView.Value;
+            Model.DialogueSpeaker = View.DialogueSpeakerFieldView.Value;
         }
 
 
@@ -50,7 +50,7 @@
         /// </summary>
         void SaveDialogueNodeStitcher()
         {
-            View.MessageModifierGroupView.SaveStitcherValues(Model.DialogueNodeStitcherModel);
+            //View.MessageModifierGroupView.SaveStitcherValues(Model.DialogueNodeStitcherModel);
         }
 
 
@@ -87,7 +87,7 @@
         /// </summary>
         void LoadCharacterObjectField()
         {
-            View.DialogueSpeakerFieldView.Load(Model.DialogueCharacter);
+            View.DialogueSpeakerFieldView.Load(Model.DialogueSpeaker);
         }
 
 
@@ -96,7 +96,7 @@
         /// </summary>
         void LoadDialogueNodeStitcher()
         {
-            View.MessageModifierGroupView.LoadStitcherValues(Model.DialogueNodeStitcherModel);
+            //View.MessageModifierGroupView.LoadStitcherValues(Model.DialogueNodeStitcherModel);
         }
     }
 }

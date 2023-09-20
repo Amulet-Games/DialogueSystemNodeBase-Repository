@@ -20,9 +20,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The node's headline text value.
+        /// The node's branch title text value.
         /// </summary>
-        [SerializeField] public LanguageGeneric<string> HeadlineText;
+        [SerializeField] public LanguageGeneric<string> BranchTitleText;
 
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace AG.DS
         /// </summary>
         public OptionBranchNodeModel()
         {
-            HeadlineText = new();
+            BranchTitleText = new();
             OptionBranchNodeStitcherModel = new();
         }
     }

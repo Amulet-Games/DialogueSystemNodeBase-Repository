@@ -1,5 +1,4 @@
 using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -105,12 +104,11 @@ namespace AG.DS
         {
             if (field.value != null)
             {
-                field.RemoveFromClassList(StyleConfig.Object_Field_Empty);
+                HideEmptyStyle(field);
             }
             else
             {
-                field.GetDisplayLabel().text = placeholderText;
-                field.AddToClassList(StyleConfig.Object_Field_Empty);
+                ShowEmptyStyle(field, placeholderText);
             }
         }
 

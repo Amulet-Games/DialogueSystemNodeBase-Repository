@@ -4,15 +4,27 @@ namespace AG.DS
     {
         // ----------------------------- Field -----------------------------
         /// <summary>
-        /// The maximum value of delay second that can be set in the dialogue system window.
+        /// The maximum number of delay second that can be set in the delay second field.
         /// </summary>
         public const int MAX_DELAY_SECOND = 99999;
 
 
         /// <summary>
-        /// The minimum value of delay second that can be set in the dialogue system window.
+        /// The minimum number of delay second that can be set in the delay second field.
         /// </summary>
         public const int MIN_DELAY_SECOND = 0;
+
+
+        /// <summary>
+        /// The maximum number of characters that a multiline text field can have.
+        /// </summary>
+        public const int MAX_CHAR_LENGTH_MULTI_LINE_TEXT_FIELD = 400;
+
+
+        /// <summary>
+        /// The maximum number of characters that a single line text field can have.
+        /// </summary>
+        public const int MAX_CHAR_LENGTH_SINGLE_LINE_TEXT_FIELD = 40;
 
 
         // ----------------------------- Node -----------------------------
@@ -84,7 +96,7 @@ namespace AG.DS
 
         // ----------------------------- Folder -----------------------------
         /// <summary>
-        /// The maximum length of characters that a folder element can have.
+        /// The maximum number of characters that a folder element can have.
         /// </summary>
         public const int MAX_CHAR_LENGTH_FOLDER_TITLE_TEXT = 40;
     }

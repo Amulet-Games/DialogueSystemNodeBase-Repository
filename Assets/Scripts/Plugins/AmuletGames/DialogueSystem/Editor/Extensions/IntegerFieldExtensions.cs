@@ -35,11 +35,11 @@ namespace AG.DS
         {
             if (field.value != 0)
             {
-                field.RemoveFromClassList(StyleConfig.Integer_Field_Empty);
+                HideEmptyStyle(field);
             }
             else
             {
-                field.AddToClassList(StyleConfig.Integer_Field_Empty);
+                ShowEmptyStyle(field);
             }
         }
 

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -11,13 +12,38 @@ namespace AG.DS
         /// <summary>
         /// Visual element.
         /// </summary>
-        [NonSerialized] public TextField TextField;
+        [NonSerialized] public TextField Field;
 
 
         /// <summary>
         /// The text to display when the field is empty.
         /// </summary>
-        [NonSerialized] public string PlaceholderText;
+        [NonSerialized] public string placeholderText;
+
+
+        /// <summary>
+        /// The property of the serializable value of the view.
+        /// </summary>
+        public string Value
+        {
+            get
+            {
+                return m_value;
+            }
+            set
+            {
+                m_value = value;
+
+                Field.SetValueWithoutNotify(m_value);
+                Field.ToggleEmptyStyle(placeholderText);
+            }
+        }
+
+
+        /// <summary>
+        /// The serializable value of the view.
+        /// </summary>
+        [SerializeField] string m_value;
 
 
         /// <summary>
@@ -26,7 +52,7 @@ namespace AG.DS
         /// <param name="placeholderText">The placeholder text to set for.</param>
         public CommonTextFieldView(string placeholderText)
         {
-            PlaceholderText = placeholderText;
+            this.placeholderText = placeholderText;
         }
 
 
@@ -37,8 +63,7 @@ namespace AG.DS
         /// <param name="value">The value to set for.</param>
         public void Load(string value)
         {
-            TextField.SetValueWithoutNotify(value);
-            TextField.ToggleEmptyStyle(PlaceholderText);
+            Value = value;
         }
 
 
@@ -49,7 +74,7 @@ namespace AG.DS
             MemoryStream memoryStream = new();
             BinaryFormatter binaryFormatter = new();
 
-            binaryFormatter.Serialize(memoryStream, TextField.value);
+            binaryFormatter.Serialize(memoryStream, Value);
             memoryStream.Close();
 
             return memoryStream.ToArray();

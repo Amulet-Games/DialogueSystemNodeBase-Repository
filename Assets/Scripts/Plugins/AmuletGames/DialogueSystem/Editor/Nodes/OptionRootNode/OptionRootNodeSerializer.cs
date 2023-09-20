@@ -40,7 +40,7 @@ namespace AG.DS
         /// </summary>
         void SaveRootTitleTextField()
         {
-            View.RootTitleFieldView.Save(Model.HeadlineText);
+            View.RootTitleFieldView.Save(Model.RootTitleText);
         }
 
 
@@ -76,7 +76,7 @@ namespace AG.DS
         /// </summary>
         void LoadRootTitleTextField()
         {
-            View.RootTitleFieldView.Load(Model.HeadlineText);
+            View.RootTitleFieldView.Load(Model.RootTitleText);
         }
     }
 }

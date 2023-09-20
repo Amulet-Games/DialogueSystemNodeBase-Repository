@@ -35,20 +35,20 @@ namespace AG.DS
 
         #region Fields.
         [Header("Fields")]
-        public Sprite AudioClipFieldIconSprite;
-        public Sprite AutoProgressTypeIconSprite;
+        public Sprite BranchTitleFieldSprite;
         public Sprite ChangeFieldTypeButtonDisableIconSprite;
         public Sprite ChangeFieldTypeButtonHoverIconSprite;
         public Sprite ChangeFieldTypeButtonNormalIconSprite;
-        public Sprite EventFieldIconSprite;
+        public Sprite ContinueByAutoSprite;
+        public Sprite ContinueByInputSprite;
+        public Sprite DialogueEventFieldSprite;
+        public Sprite DialogueSpeakerFieldSprite;
         public Sprite ImageFieldIconSprite;
-        public Sprite KeyboardInputFieldIconSprite;
         public Sprite LanguageFieldHintIconSprite;
-        public Sprite BranchTitleFieldSprite;
+        public Sprite MessageAudioFieldSprite;
+        public Sprite MessageTextFieldSprite;
         public Sprite RootTitleFieldSprite;
         public Sprite ScriptableObjectFieldIconSprite;
-        public Sprite DialogueSpeakerFieldSprite;
-        public Sprite TextFieldIcon1Sprite;
         #endregion
 
         #region Folders.

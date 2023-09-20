@@ -47,19 +47,19 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Cache of the nodes that are on the graph.
+        /// The node elements cache.
         /// </summary>
         public List<NodeBase> Nodes { get; private set; }
 
 
         /// <summary>
-        /// Cache of the edges that are on the graph.
+        /// The edge elements cache.
         /// </summary>
         public List<EdgeBase> Edges { get; private set; }
 
 
         /// <summary>
-        /// Cache of the ports that are on the graph.
+        /// The ports elements cache.
         /// </summary>
         public Dictionary<Guid, PortBase> PortByPortGUID { get; private set; }
 
@@ -176,7 +176,7 @@ namespace AG.DS
             }
             else
             {
-                Debug.LogWarning($"Can't remove the port {port} because it can't be found in the cache.");
+                Debug.LogWarning($"Can't remove the port {port} because it can't be found in the dictionary.");
             }
         }
 
@@ -215,7 +215,7 @@ namespace AG.DS
             }
             else
             {
-                Debug.LogWarning("A port with the same cache key has already been added!");
+                Debug.LogWarning("A port with the same dictionary key has already been added!");
             }
         }
 

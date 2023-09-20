@@ -7,7 +7,7 @@ namespace AG.DS
     public class OptionPortGroupView
     {
         /// <summary>
-        /// Cache of the option port cells that are from the group.
+        /// The option port cells cache.
         /// </summary>
         public List<OptionPortGroupCell> Cells;
 

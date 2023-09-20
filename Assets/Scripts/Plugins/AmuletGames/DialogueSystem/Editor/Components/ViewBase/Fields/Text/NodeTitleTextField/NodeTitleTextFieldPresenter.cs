@@ -5,7 +5,7 @@ namespace AG.DS
     public class NodeTitleTextFieldPresenter
     {
         /// <summary>
-        /// Create a new node title text field element.
+        /// Create the elements for the node title text field view.
         /// </summary>
         /// <param name="view">The node title text field view to set for.</param>
         /// <param name="fieldUSS">The field USS style to set for.</param>
@@ -21,11 +21,9 @@ namespace AG.DS
 
             CreateField();
 
-            SetFieldDetails();
+            SetupDetails();
 
-            SetupStyleClass();
-
-            ShowDefaultTitle();
+            AddStyleClass();
 
             void CreateField()
             {
@@ -36,7 +34,7 @@ namespace AG.DS
                 textElement = field.GetTextElement();
             }
 
-            void SetFieldDetails()
+            void SetupDetails()
             {
                 field.isDelayed = true;
                 field.multiline = false;
@@ -44,9 +42,11 @@ namespace AG.DS
 
                 fieldInput.pickingMode = PickingMode.Ignore;
                 textElement.pickingMode = PickingMode.Ignore;
+
+                view.Value = "";
             }
 
-            void SetupStyleClass()
+            void AddStyleClass()
             {
                 field.ClearClassList();
                 fieldInput.ClearClassList();
@@ -55,11 +55,6 @@ namespace AG.DS
                 field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
                 textElement.AddToClassList(StyleConfig.Text_Field_Element);
-            }
-
-            void ShowDefaultTitle()
-            {
-                view.Value = "";
             }
         }
     }

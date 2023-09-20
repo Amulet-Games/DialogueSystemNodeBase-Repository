@@ -7,7 +7,7 @@ namespace AG.DS
     public class CommonObjectFieldPresenter
     {
         /// <summary>
-        /// Create a new common object field element.
+        /// Create the elements for the common object field view.
         /// </summary>
         /// <typeparam name="TObject">Type object</typeparam>
         /// <param name="view">The common object field view to set for.</param>
@@ -28,11 +28,9 @@ namespace AG.DS
 
             CreateField();
 
-            SetFieldDetails();
+            SetupDetails();
 
-            AddFieldToStyleClass();
-
-            ShowEmptyStyle();
+            AddStyleClass();
 
             void CreateField()
             {
@@ -44,19 +42,21 @@ namespace AG.DS
                 fieldDisplayLabel = field.GetDisplayLabel();
             }
 
-            void SetFieldDetails()
+            void SetupDetails()
             {
                 field.objectType = typeof(TObject);
                 field.allowSceneObjects = false;
 
-                // Remove display image.
+                // Remove display image
                 fieldDisplay.Remove(field.GetDisplayImage());
 
                 // Add background highlighter to the selector
                 field.GetFieldSelector().AddBackgroundHighlighter();
+
+                view.Value = null;
             }
 
-            void AddFieldToStyleClass()
+            void AddStyleClass()
             {
                 field.ClearClassList();
                 fieldInput.ClearClassList();
@@ -70,11 +70,6 @@ namespace AG.DS
 
                 if (fieldUSS02 != null)
                     field.AddToClassList(fieldUSS02);
-            }
-
-            void ShowEmptyStyle()
-            {
-                view.Value = null;
             }
         }
     }

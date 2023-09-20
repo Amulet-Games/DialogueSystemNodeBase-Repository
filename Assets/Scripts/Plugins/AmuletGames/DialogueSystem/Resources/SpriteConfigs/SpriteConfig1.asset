@@ -24,20 +24,20 @@ MonoBehaviour:
   AddMessageButtonIconSprite: {fileID: 21300000, guid: b74ee3fa3df474d4a8b6be6511ca30f8, type: 3}
   DropdownArrowIcon1Sprite: {fileID: 21300000, guid: a2e0941619c6c7f48880f6edee3321ac, type: 3}
   DropdownArrowIcon2Sprite: {fileID: 21300000, guid: 7b70c1c1dbd114943b47d7800581186e, type: 3}
-  AudioClipFieldIconSprite: {fileID: 21300000, guid: 0bdd3a99a3ded58478d11ad38c153a7c, type: 3}
-  AutoProgressTypeIconSprite: {fileID: 21300000, guid: 987a083c62a26f7478a9b1af17aff2f7, type: 3}
+  BranchTitleFieldSprite: {fileID: 21300000, guid: eb4bfeac88deba8499ec3b2be8f4cabd, type: 3}
   ChangeFieldTypeButtonDisableIconSprite: {fileID: 21300000, guid: 95f6974efc9e54d4fbc809a449c3189c, type: 3}
   ChangeFieldTypeButtonHoverIconSprite: {fileID: 21300000, guid: 0a88d38db92b8a0439e40b5c4bdd0057, type: 3}
   ChangeFieldTypeButtonNormalIconSprite: {fileID: 21300000, guid: c89c414e95387ab45a9dd24b1ebecdb7, type: 3}
-  EventFieldIconSprite: {fileID: 21300000, guid: cbc310a39f98e454e89aa39b15053996, type: 3}
+  ContinueByAutoSprite: {fileID: 21300000, guid: 987a083c62a26f7478a9b1af17aff2f7, type: 3}
+  ContinueByInputSprite: {fileID: 21300000, guid: ff3308159fb56094d9421fc8d8b9fbb9, type: 3}
+  DialogueEventFieldSprite: {fileID: 21300000, guid: cbc310a39f98e454e89aa39b15053996, type: 3}
+  DialogueSpeakerFieldSprite: {fileID: 21300000, guid: bb2c168ad8fc9234e94ac63c2db1c9e2, type: 3}
   ImageFieldIconSprite: {fileID: 21300000, guid: e89b03bfb674de44bbcfdcbbbc4ee745, type: 3}
-  KeyboardInputFieldIconSprite: {fileID: 21300000, guid: ff3308159fb56094d9421fc8d8b9fbb9, type: 3}
   LanguageFieldHintIconSprite: {fileID: 21300000, guid: dfee969be4ebb0b41b125788e835c842, type: 3}
-  BranchTitleFieldSprite: {fileID: 21300000, guid: eb4bfeac88deba8499ec3b2be8f4cabd, type: 3}
+  MessageAudioFieldSprite: {fileID: 21300000, guid: 0bdd3a99a3ded58478d11ad38c153a7c, type: 3}
+  MessageTextFieldSprite: {fileID: 21300000, guid: aefa42d0ca08b2240b582d0d59ac092d, type: 3}
   RootTitleFieldSprite: {fileID: 21300000, guid: 37490b35d1d47e949b01d0b5966ce419, type: 3}
   ScriptableObjectFieldIconSprite: {fileID: 21300000, guid: 145c931dac52abf46a97bfc9cce7d8fe, type: 3}
-  DialogueSpeakerFieldSprite: {fileID: 21300000, guid: bb2c168ad8fc9234e94ac63c2db1c9e2, type: 3}
-  TextFieldIcon1Sprite: {fileID: 21300000, guid: aefa42d0ca08b2240b582d0d59ac092d, type: 3}
   FolderExpandButtonCloseIconSprite: {fileID: 21300000, guid: 82c12682d26d6a84898153daf7f104a0, type: 3}
   FolderExpandButtonOpenIconSprite: {fileID: 21300000, guid: 208f6e6eef98f2247b928ec13248934f, type: 3}
   BiggerOperatorButtonIconSprite: {fileID: 21300000, guid: 406dd0467341d494aa7e7aaf5e33d61f, type: 3}

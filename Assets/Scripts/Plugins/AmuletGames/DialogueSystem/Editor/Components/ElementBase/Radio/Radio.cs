@@ -14,5 +14,13 @@ namespace AG.DS
         /// Label for the radio text.
         /// </summary>
         public Label RadioTextLabel;
+
+
+        // ----------------------------- Service -----------------------------
+        public void SetActive(bool active)
+        {
+            pickingMode = active ? PickingMode.Ignore : PickingMode.Position;
+            this.ToggleActiveStyle();
+        }
     }
 }

@@ -89,14 +89,14 @@ namespace AG.DS
 
             void SetupSecondTermTextField()
             {
-                SecondTermTextFieldView.TextField = CommonTextFieldPresenter.CreateElement
-                (
-                    multiline: false,
-                    placeholderText: SecondTermTextFieldView.PlaceholderText,
-                    fieldUSS: StyleConfig.Modifier_Condition_Rooted_SecondTerm_TextField
-                );
+                //SecondTermTextFieldView.Field = CommonTextFieldPresenter.CreateElement
+                //(
+                //    multiline: false,
+                //    placeholderText: SecondTermTextFieldView.placeholderText,
+                //    fieldUSS: StyleConfig.Modifier_Condition_Rooted_SecondTerm_TextField
+                //);
 
-                new CommonTextFieldObserver(view: SecondTermTextFieldView).RegisterEvents();
+                //new CommonTextFieldObserver(view: SecondTermTextFieldView).RegisterEvents();
             }
 
             void SetupSecondTermFloatField()
@@ -172,7 +172,7 @@ namespace AG.DS
                 MainBox.Add(firstTermObjectField);
                 MainBox.Add(conditionComparisonTypeEnumField);
                 MainBox.Add(SecondTermFloatFieldView.Field);
-                MainBox.Add(SecondTermTextFieldView.TextField);
+                MainBox.Add(SecondTermTextFieldView.Field);
                 MainBox.Add(secondTermObjectField);
                 MainBox.Add(buttonSideBox);
             }

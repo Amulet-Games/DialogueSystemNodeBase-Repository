@@ -22,4 +22,3 @@ namespace AG.DS
         public override DefaultPort Create() => new(Detail);
     }
 }
-//

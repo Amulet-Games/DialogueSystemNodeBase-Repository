@@ -7,7 +7,7 @@ namespace AG.DS
     public class LanguageObjectFieldPresenter
     {
         /// <summary>
-        /// Create a new language object field element.
+        /// Create the elements for the language object field view.
         /// </summary>
         /// <typeparam name="TObject">Type object</typeparam>
         /// <param name="view">The language object field view to set for.</param>
@@ -25,15 +25,12 @@ namespace AG.DS
             VisualElement fieldInput;
             VisualElement fieldDisplay;
             Label fieldDisplayLabel;
-            VisualElement fieldSelector;
 
             CreateField();
 
-            SetFieldDetails();
+            SetupDetails();
 
-            AddFieldToStyleClass();
-
-            ShowEmptyStyle();
+            AddStyleClass();
 
             void CreateField()
             {
@@ -43,10 +40,9 @@ namespace AG.DS
                 fieldInput = field.GetFieldInput();
                 fieldDisplay = field.GetFieldDisplay();
                 fieldDisplayLabel = field.GetDisplayLabel();
-                fieldSelector = field.GetFieldSelector();
             }
 
-            void SetFieldDetails()
+            void SetupDetails()
             {
                 field.objectType = typeof(TObject);
                 field.allowSceneObjects = false;
@@ -56,9 +52,11 @@ namespace AG.DS
 
                 // Add background highlighter to the selector
                 field.GetFieldSelector().AddBackgroundHighlighter();
+
+                view.CurrentLanguageValue = null;
             }
 
-            void AddFieldToStyleClass()
+            void AddStyleClass()
             {
                 field.ClearClassList();
                 fieldInput.ClearClassList();
@@ -72,11 +70,6 @@ namespace AG.DS
 
                 if (fieldUSS02 != null)
                     field.AddToClassList(fieldUSS02);
-            }
-
-            void ShowEmptyStyle()
-            {
-                view.CurrentLanguageValue = null;
             }
         }
     }

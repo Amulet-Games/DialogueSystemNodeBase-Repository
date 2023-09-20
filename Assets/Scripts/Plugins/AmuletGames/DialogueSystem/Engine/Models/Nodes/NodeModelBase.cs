@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace AG.DS
 {
+    /// <summary>
+    /// Holds all the serializable values of the node element.
+    /// </summary>
     [Serializable]
     public class NodeModelBase
     {
