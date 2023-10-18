@@ -24,16 +24,19 @@ namespace AG.DS
         /// <param name="view">The node view to set for.</param>
         /// <param name="callback">The node callback to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <param name="graphViewer">The language handler to set for.</param>
         public virtual TNode Setup
         (
             TNodeView view,
             INodeCallback callback,
-            GraphViewer graphViewer
+            GraphViewer graphViewer,
+            LanguageHandler languageHandler
         )
         {
             View = view;
             Callback = callback;
             GraphViewer = graphViewer;
+            LanguageHandler = languageHandler;
 
             NodeBorder = ElementAt(0);
             PortContainer = new();

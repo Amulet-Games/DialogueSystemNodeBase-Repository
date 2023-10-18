@@ -33,6 +33,8 @@ namespace AG.DS
             RegisterNodeTitleTextFieldEvents();
 
             RegisterNodeTitleEditButtonClickEvent();
+
+            RegisterContentButtonClickEvent();
         }
 
 
@@ -66,6 +68,16 @@ namespace AG.DS
                 isAlert: false,
                 button: View.EditTitleButton,
                 clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
+
+
+        /// <summary>
+        /// Register ClickEvent to the node content button.
+        /// </summary>
+        void RegisterContentButtonClickEvent()
+            => new ContentButtonObserver(
+                isAlert: true,
+                contentButton: View.ContentButton,
+                clickEvent: ContentButtonClickEvent).RegisterEvents();
 
 
         // ----------------------------- Event -----------------------------
@@ -109,9 +121,23 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the content button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void ContentButtonClickEvent(ClickEvent evt)
+        void ContentButtonClickEvent()
         {
+            var groupView = View.MessageModifierGroupView;
+            var modifier = new MessageModifierSeeder().Generate(groupView, Node.LanguageHandler);
+
+            // Add to group
+            {
+                groupView.Add(modifier);
+                groupView.UpdateReferences();
+            }
+
+            // Edit folder name
+            {
+                var folder = modifier.Folder;
+                folder.SetExpanded(value: true);
+                folder.StartEditingFolderTitle();
+            }
         }
     }
 }

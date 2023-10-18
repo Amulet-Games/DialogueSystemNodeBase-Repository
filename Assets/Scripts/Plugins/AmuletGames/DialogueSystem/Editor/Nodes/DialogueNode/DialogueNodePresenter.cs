@@ -131,11 +131,13 @@ namespace AG.DS
             
             void CreateMessageModifierGroup()
             {
-                Node.topContainer.Add(View.ContentButton);
+                MessageModifierGroupPresenter.CreateElement(view: View.MessageModifierGroupView);
             }
 
             void AddElementsToContainer()
             {
+                Node.topContainer.Add(View.ContentButton);
+
                 contentContainer.Add(View.DialogueSpeakerFieldView.Field);
 
                 dialogueSpeakerOuterContainer.Add(dialogueSpeakerImage);
@@ -145,7 +147,9 @@ namespace AG.DS
                 dialogueSpeakerInnerContainer.Add(View.DialogueSpeakerFieldView.Field);
 
                 dialogueSpeakerMainContainer.Add(dialogueSpeakerOuterContainer);
+
                 contentContainer.Add(dialogueSpeakerMainContainer);
+                contentContainer.Add(View.MessageModifierGroupView.GroupContainer);
             }
 
             void AddContainersToNode()

@@ -16,6 +16,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the language handler.
+        /// </summary>
+        public LanguageHandler LanguageHandler;
+
+
+        /// <summary>
         /// Reference of the node border visual element.
         /// </summary>
         public VisualElement NodeBorder;

@@ -81,7 +81,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the view values from the given value.
+        /// Load the view values.
         /// </summary>
         /// <param name="value">The language generic component to set for.</param>
         public void Load(LanguageGeneric<TObject> value)

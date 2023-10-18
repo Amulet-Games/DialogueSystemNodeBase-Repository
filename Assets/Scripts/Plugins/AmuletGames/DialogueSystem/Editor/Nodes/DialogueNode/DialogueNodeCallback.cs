@@ -1,5 +1,3 @@
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
     public class DialogueNodeCallback : NodeCallbackFrameBase
@@ -41,6 +39,11 @@ namespace AG.DS
         /// <inheritdoc />
         public override void OnPostCreate()
         {
+            // If there's no modifier being created after loading, create a new one by default.
+            if (View.MessageModifierGroupView.FirstModifier == null)
+            {
+                View.ContentButton.Click();
+            }
         }
     }
 }

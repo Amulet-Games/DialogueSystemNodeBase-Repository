@@ -166,7 +166,7 @@ namespace AG.DS
             var observer = new TNodeObserver();
             var presenter = new TNodePresenter();
             var callback = new TNodeCallback().Setup(view);
-            var node = new TNode().Setup(view, callback, graphViewer);
+            var node = new TNode().Setup(view, callback, graphViewer, languageHandler);
 
             presenter.CreateElements(node);
             observer.RegisterEvents(node);

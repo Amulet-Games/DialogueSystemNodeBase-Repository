@@ -13,10 +13,11 @@ namespace AG.DS
         (
             PreviewNodeView view,
             INodeCallback callback,
-            GraphViewer graphViewer
+            GraphViewer graphViewer,
+            LanguageHandler languageHandler
         )
         {
-            base.Setup(view, callback, graphViewer);
+            base.Setup(view, callback, graphViewer, languageHandler);
 
             SetupSelectionBorder();
 

@@ -35,8 +35,8 @@ MonoBehaviour:
   DSDefaultPortStyle: {fileID: 7433441132597879392, guid: bdc013eea59f8ac42ac003bf5284d5be, type: 3}
   DSOptionPortStyle: {fileID: 7433441132597879392, guid: da3f5c84d1cf7364bbca0e7a6e674c31, type: 3}
   DSPortStyle: {fileID: 7433441132597879392, guid: b00727118f591514ca4af58104d93f95, type: 3}
-  DSRadioGroupStyle: {fileID: 0}
-  DSRadioStyle: {fileID: 0}
+  DSRadioGroupStyle: {fileID: 7433441132597879392, guid: 4c9a0be24e5da1e4da2fc2a097c2b9e8, type: 3}
+  DSRadioStyle: {fileID: 7433441132597879392, guid: 657aade3e571ba9469717bc594394d21, type: 3}
   DSGlobalStyle: {fileID: 7433441132597879392, guid: 9b5e16d70bc9fef4baaaa1efc2d58378, type: 3}
   DSModifierStyle: {fileID: 7433441132597879392, guid: 99aeac0040b49004684fcda1a71c0530, type: 3}
   DSRootedModifierStyle: {fileID: 7433441132597879392, guid: 3b64ec0a103d89341bd3b0dd3ad4ba50, type: 3}
