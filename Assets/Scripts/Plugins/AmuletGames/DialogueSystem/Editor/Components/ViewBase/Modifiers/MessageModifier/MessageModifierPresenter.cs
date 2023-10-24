@@ -18,6 +18,7 @@ namespace AG.DS
             VisualElement helperButtonsContainer;
             VisualElement messageTextContainer;
             VisualElement messageAudioContainer;
+            VisualElement continueByStartDelayContainer;
             VisualElement continueByContainer;
             VisualElement startDelayContainer;
             VisualElement delaySecondsContainer;
@@ -89,6 +90,9 @@ namespace AG.DS
 
                 messageAudioContainer = new();
                 messageAudioContainer.AddToClassList(StyleConfig.MessageModifier_MessageAudio_Container);
+
+                continueByStartDelayContainer = new();
+                continueByStartDelayContainer.AddToClassList(StyleConfig.MessageModifier_ContinueBy_StartDelay_Container);
 
                 continueByContainer = new();
                 continueByContainer.AddToClassList(StyleConfig.MessageModifier_ContinueBy_Container);
@@ -170,6 +174,8 @@ namespace AG.DS
                     imageSprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite,
                     imageUSS01: StyleConfig.MessageModifier_MessageText_Image
                 );
+
+                view.MessageTextFieldView.Field.SetDisplayImage(messageTextImage);
             }
 
             void CreateMessageAudioLabel()
@@ -197,6 +203,8 @@ namespace AG.DS
                     imageSprite: ConfigResourcesManager.SpriteConfig.MessageAudioFieldSprite,
                     imageUSS01: StyleConfig.MessageModifier_MessageAudio_Image
                 );
+
+                view.MessageAudioFieldView.Field.SetDisplayImage(messageAudioImage);
             }
         
             void CreateContinueByLabel()
@@ -223,8 +231,8 @@ namespace AG.DS
                 );
 
                 var radios = new[]{
-                    continueByInputRadio,
-                    continueByAutoRadio
+                    continueByAutoRadio,
+                    continueByInputRadio
                 };
 
                 view.ContinueByRadioGroup = RadioGroupPresenter.CreateElement(radios);
@@ -276,13 +284,16 @@ namespace AG.DS
                 messageAudioContainer.Add(messageAudioLabel);
                 messageAudioContainer.Add(view.MessageAudioFieldView.Field);
 
+                // Continue by & Start delay
+                view.Folder.AddElementToContent(continueByStartDelayContainer);
+
                 // Continue by
-                view.Folder.AddElementToContent(continueByContainer);
+                continueByStartDelayContainer.Add(continueByContainer);
                 continueByContainer.Add(continueByLabel);
                 continueByContainer.Add(view.ContinueByRadioGroup);
 
                 // Start delay
-                view.Folder.AddElementToContent(startDelayContainer);
+                continueByStartDelayContainer.Add(startDelayContainer);
                 startDelayContainer.Add(startDelayLabel);
                 startDelayContainer.Add(delaySecondsContainer);
 

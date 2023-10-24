@@ -25,6 +25,8 @@ namespace AG.DS
 
             AddStyleClass();
 
+            SetupDefaultValue();
+
             void CreateField()
             {
                 view.Field = new();
@@ -42,8 +44,6 @@ namespace AG.DS
 
                 fieldInput.pickingMode = PickingMode.Ignore;
                 textElement.pickingMode = PickingMode.Ignore;
-
-                view.Value = "";
             }
 
             void AddStyleClass()
@@ -55,6 +55,11 @@ namespace AG.DS
                 field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
                 textElement.AddToClassList(StyleConfig.Text_Field_Element);
+            }
+
+            void SetupDefaultValue()
+            {
+                view.Value = "";
             }
         }
     }

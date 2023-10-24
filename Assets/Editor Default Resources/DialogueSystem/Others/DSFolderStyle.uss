@@ -89,7 +89,7 @@
 	white-space: nowrap;
 
 	/* top - right - bottom - left */
-	margin: 2.5px 0px 0px 3px;
+	margin: 2.5px 0px 0px 1px;
 
 	--unity-selection-color: rgba(49, 132, 206, 0.65); /*0.65*/
 	--unity-cursor-color: rgba(180, 180, 180, 1);

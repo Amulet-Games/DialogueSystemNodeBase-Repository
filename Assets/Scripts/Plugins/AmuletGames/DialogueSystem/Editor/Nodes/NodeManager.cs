@@ -67,7 +67,7 @@ namespace AG.DS
                                     StartNodeSerializer, StartNodeCallback, StartNodeModel>(graphViewer),
 
                 NodeType.Story => Spawn<StoryNode, StoryNodeView, StoryNodePresenter, StoryNodeObserver,
-                                    StoryNodeSerializer, StoryNodeCallback, StoryNodeModel>(graphViewer),
+                                    StoryNodeSerializer, StoryNodeCallback, StoryNodeModel>(graphViewer, languageHandler),
 
                 _ => throw new ArgumentException("Invalid node type: " + nodeType)
             };

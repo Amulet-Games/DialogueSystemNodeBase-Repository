@@ -5,7 +5,7 @@ namespace AG.DS
     public class CommonTextFieldObserver
     {
         /// <summary>
-        /// The targeting language text field.
+        /// The targeting common text field.
         /// </summary>
         TextField field;
 
@@ -65,6 +65,11 @@ namespace AG.DS
         void FocusInEvent(FocusInEvent evt)
         {
             previousValue = field.value;
+
+            if (string.IsNullOrEmpty(field.text))
+            {
+                field.SetValueWithoutNotify(string.Empty);
+            }
 
             field.HideEmptyStyle();
         }

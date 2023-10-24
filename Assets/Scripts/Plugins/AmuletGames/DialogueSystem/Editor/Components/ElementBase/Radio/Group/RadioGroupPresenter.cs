@@ -17,6 +17,8 @@ namespace AG.DS
 
             AddClassList();
 
+            AddStyleSheet();
+
             void CreateGroup()
             {
                 group = new(radios);
@@ -34,7 +36,12 @@ namespace AG.DS
             {
                 group.AddToClassList(StyleConfig.RadioGroup);
             }
-            
+
+            void AddStyleSheet()
+            {
+                group.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSRadioGroupStyle);
+            }
+
             return group;
         }
     }

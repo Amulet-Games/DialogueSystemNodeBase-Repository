@@ -100,7 +100,7 @@ namespace AG.DS
         {
             Field.SetValueWithoutNotify(CurrentLanguageValue);
             Field.ToggleEmptyStyle(placeholderText);
-
+            
             if (CurrentLanguageValue != null)
             {
                 Field.Bind(obj: new SerializedObject(CurrentLanguageValue));

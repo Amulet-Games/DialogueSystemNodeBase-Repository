@@ -18,6 +18,7 @@ namespace AG.DS
         /*< -------------------- Text Field -------------------- >*/
         public const string Text_Field_Empty = "text-field-empty";
         public const string Text_Field_Input = "text-field-input";
+        public const string Text_Field_Multiline_Container = "text-field-multiline-container";
         public const string Text_Field_Element = "text-field-element";
 
         /*< -------------------- Object Field -------------------- >*/
@@ -83,9 +84,6 @@ namespace AG.DS
         #endregion
 
         #region Node Dialogue USS Classes.
-        public const string DialogueNode_Speaker_ObjectField = "dialogueNode_Character_ObjectField";
-        public const string MessageModifierGroup_Content_Container = "dialogueNode_Stitcher_Modifiers_Box";
-
         public const string DialogueNode_DialogueSpeaker_Main_Container = "dialogueSpeaker-main-container";
         public const string DialogueNode_DialogueSpeaker_Outer_Container = "dialogueSpeaker-outer-container";
         public const string DialogueNode_DialogueSpeaker_Image = "dialogueSpeaker-speakerIcon-image";
@@ -253,6 +251,7 @@ namespace AG.DS
         public const string MessageModifier_MessageAudio_Image = "messageModifier-messageAudio-image";
         public const string MessageModifier_MessageAudio_Label = "messageModifier-messageAudio-label";
         public const string MessageModifier_MessageAudio_Field = "messageModifier-messageAudio-field";
+        public const string MessageModifier_ContinueBy_StartDelay_Container = "messageModifier-continueBy-startDelay-container";
         public const string MessageModifier_ContinueBy_Container = "messageModifier-continueBy-container";
         public const string MessageModifier_ContinueBy_Label = "messageModifier-continueBy-label";
         public const string MessageModifier_StartDelay_Container = "messageModifier-startDelay-container";

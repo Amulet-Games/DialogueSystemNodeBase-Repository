@@ -32,6 +32,8 @@ namespace AG.DS
 
             AddStyleClass();
 
+            SetupDefaultValue();
+
             void CreateField()
             {
                 view.Field = new();
@@ -53,7 +55,6 @@ namespace AG.DS
                 // Add background highlighter to the selector
                 field.GetFieldSelector().AddBackgroundHighlighter();
 
-                view.Value = null;
             }
 
             void AddStyleClass()
@@ -70,6 +71,11 @@ namespace AG.DS
 
                 if (fieldUSS02 != null)
                     field.AddToClassList(fieldUSS02);
+            }
+
+            void SetupDefaultValue()
+            {
+                view.Value = null;
             }
         }
     }

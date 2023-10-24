@@ -63,8 +63,8 @@ namespace AG.DS
         {
             var styleSheetConfig = ConfigResourcesManager.StyleSheetConfig;
             styleSheets.Add(styleSheetConfig.DSDialogueNodeStyle);
-            styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
-            styleSheets.Add(styleSheetConfig.DSModifierStyle);
+            styleSheets.Add(styleSheetConfig.DSMessageModifierStyle);
+            styleSheets.Add(styleSheetConfig.DSMessageModifierGroupStyle);
         }
 
 

@@ -16,6 +16,8 @@ namespace AG.DS
         [Header("Modifiers")]
         public StyleSheet DSEventModifierGroupStyle;
         public StyleSheet DSEventModifierStyle;
+        public StyleSheet DSMessageModifierGroupStyle;
+        public StyleSheet DSMessageModifierStyle;
         #endregion
 
         #region Modules.

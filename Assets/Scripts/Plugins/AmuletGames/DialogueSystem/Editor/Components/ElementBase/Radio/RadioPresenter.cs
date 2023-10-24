@@ -60,7 +60,9 @@ namespace AG.DS
             void SetupDetails()
             {
                 radio.focusable = true;
-                radio.pickingMode = PickingMode.Ignore;
+                radio.pickingMode = PickingMode.Position;
+
+                radio.RadioIconImage.pickingMode = PickingMode.Position;
             }
 
             void AddElementsToRadio()

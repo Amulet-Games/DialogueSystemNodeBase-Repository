@@ -73,7 +73,8 @@ namespace AG.DS
             var target = NodeManager.Instance.Spawn
             (
                 GraphViewer,
-                nodeType: NodeType.Event
+                nodeType: NodeType.Dialogue,
+                LanguageHandler
             );
 
             // Set sample node position
@@ -96,6 +97,9 @@ namespace AG.DS
             target.NodeBorder.style.borderLeftColor = new Color(r: 0, g: 0, b: 0, a: 0);
             target.NodeBorder.style.borderRightColor = new Color(r: 0, g: 0, b: 0, a: 0);
             target.NodeBorder.style.borderTopColor = new Color(r: 0, g: 0, b: 0, a: 0);
+
+            var dNode = (DialogueNode)target;
+            dNode.View.ContentButton.Click();
 
             BringToFront();
         }

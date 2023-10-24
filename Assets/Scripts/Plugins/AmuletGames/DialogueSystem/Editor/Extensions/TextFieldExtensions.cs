@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -15,6 +16,20 @@ namespace AG.DS
         }
 
 
+
+        public static VisualElement GetMultilineContainer(this TextField field)
+        {
+            if (field.multiline)
+            {
+                return field.GetFieldInput().ElementAt(0);
+            }
+            else
+            {
+                throw new ArgumentException("Can't get the multiline container visual element from the non multiline text field.");
+            }
+        }
+
+
         /// <summary>
         /// Return the text field's text element.
         /// </summary>
@@ -24,8 +39,7 @@ namespace AG.DS
         {
             if (field.multiline)
             {
-                var multilineContainer = field.GetFieldInput().ElementAt(0);
-                return multilineContainer.ElementAt(0);
+                return field.GetMultilineContainer().ElementAt(0);
             }
             else
             {
@@ -82,7 +96,6 @@ namespace AG.DS
         /// <param name="field">Extension text field.</param>
         public static void HideEmptyStyle(this TextField field)
         {
-            field.SetValueWithoutNotify(string.Empty);
             field.RemoveFromClassList(StyleConfig.Text_Field_Empty);
         }
 

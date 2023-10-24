@@ -25,6 +25,8 @@ namespace AG.DS
 
             AddStyleClass();
 
+            SetupDefaultValue();
+
             void CreateField()
             {
                 view.Field = new();
@@ -54,8 +56,6 @@ namespace AG.DS
                 }
 
                 field.pickingMode = PickingMode.Position;
-
-                view.CurrentLanguageValue = "";
             }
 
             void AddStyleClass()
@@ -70,6 +70,18 @@ namespace AG.DS
                 field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
                 textElement.AddToClassList(StyleConfig.Text_Field_Element);
+
+                if (multiline)
+                {
+                    var fieldMultilineContainer = field.GetMultilineContainer();
+                    fieldMultilineContainer.ClearClassList();
+                    fieldMultilineContainer.AddToClassList(StyleConfig.Text_Field_Multiline_Container);
+                }
+            }
+
+            void SetupDefaultValue()
+            {
+                view.CurrentLanguageValue = "";
             }
         }
     }

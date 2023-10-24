@@ -18,7 +18,7 @@ namespace AG.DS
         /// <summary>
         /// The text to display when the field is empty.
         /// </summary>
-        [NonSerialized] public string placeholderText;
+        [NonSerialized] public string PlaceholderText;
 
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace AG.DS
             LanguageHandler languageHandler
         )
         {
-            this.placeholderText = placeholderText;
+            PlaceholderText = placeholderText;
             LanguageHandler = languageHandler;
             LanguageValue = new();
         }
@@ -97,7 +97,7 @@ namespace AG.DS
         public void UpdateFieldLanguageValue()
         {
             Field.SetValueWithoutNotify(CurrentLanguageValue);
-            Field.ToggleEmptyStyle(placeholderText);
+            Field.ToggleEmptyStyle(PlaceholderText);
         }
 
 

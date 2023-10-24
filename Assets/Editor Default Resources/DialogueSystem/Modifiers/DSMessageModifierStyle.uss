@@ -1,5 +1,5 @@
 /*< ---------------------------------------------------------- Helper Button Container >*/
-.eventModifier-helperButton-container {
+.messageModifier-helperButton-container {
 
 	align-items: center;
 
@@ -14,7 +14,7 @@
 
 
 /*< ---------------------------------------------------------- Move Up Button >*/
-.eventModifier-moveUp-button {
+.messageModifier-moveUp-button {
 
 	align-self: center;
 
@@ -27,12 +27,12 @@
 	margin: 3px 2px 0px 0px;
 }
 
-.eventModifier-moveUp-button:disabled {
+.messageModifier-moveUp-button:disabled {
 
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier-moveUp-button:enabled:hover
+.messageModifier-moveUp-button:enabled:hover
 .background-highlighter {
 	
 	align-self: center;
@@ -48,7 +48,7 @@
 
 
 /*< ---------------------------------------------------------- Move Down Button >*/
-.eventModifier-moveDown-button {
+.messageModifier-moveDown-button {
 
 	align-self: center;
 
@@ -61,12 +61,12 @@
 	margin: 3px 0px 0px 0px;
 }
 
-.eventModifier-moveDown-button:disabled {
+.messageModifier-moveDown-button:disabled {
 
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier-moveDown-button:enabled:hover
+.messageModifier-moveDown-button:enabled:hover
 .background-highlighter {
 	
 	align-self: center;
@@ -82,7 +82,7 @@
 
 
 /*< ---------------------------------------------------------- Rename Button >*/
-.eventModifier-rename-button {
+.messageModifier-rename-button {
 
 	align-self: center;
 
@@ -95,12 +95,12 @@
 	margin: 2.5px -2px 0px 0px;
 }
 
-.eventModifier-rename-button:disabled {
+.messageModifier-rename-button:disabled {
 	
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier-rename-button:enabled:hover
+.messageModifier-rename-button:enabled:hover
 .background-highlighter {
 	
 	align-self: center;
@@ -117,7 +117,7 @@
 
 
 /*< ---------------------------------------------------------- Remove Button >*/
-.eventModifier-remove-button {
+.messageModifier-remove-button {
 
 	align-self: center;
 
@@ -130,12 +130,12 @@
 	margin: 4px 2.5px 0px 0px;
 }
 
-.eventModifier-remove-button:disabled {
+.messageModifier-remove-button:disabled {
 
 	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
 }
 
-.eventModifier-remove-button:enabled:hover
+.messageModifier-remove-button:enabled:hover
 .background-highlighter {
 	
 	align-self: center;
@@ -151,19 +151,19 @@
 }
 
 
-/*< ---------------------------------------------------------- Dialogue Event Container >*/
-.eventModifier-dialogueEvent-container {
+/*< ---------------------------------------------------------- Message Text Container >*/
+.messageModifier-messageText-container {
 	
 	background-color: rgba(42, 42, 42, 1);
 
 	/* top - right - bottom - left */
-	margin: 0px 6px 0px 6px;
+	margin: 0px 6px 6px 6px;
 	border-radius: 4px;
 }
 
 
-/*< ---------------------------------------------------------- Dialogue Event Label >*/
-.eventModifier-dialogueEvent-label {
+/*< ---------------------------------------------------------- Message Text Label >*/
+.messageModifier-messageText-label {
 	
 	color: rgba(210, 210, 210, 1);
 	
@@ -180,9 +180,178 @@
 }
 
 
-/*< ---------------------------------------------------------- Dialogue Event Field >*/
-.eventModifier-dialogueEvent-field {
+/*< ---------------------------------------------------------- Message Text Field >*/
+.messageModifier-messageText-field {
+	
+	background-color: rgba(32, 32, 32, 1);
 
+	min-height: 27px;
+	width: 456px;
+	
+	flex-shrink: 0;
+	flex-direction: row;
+
+	overflow: hidden;
+
+	white-space: normal;
+
+	/* top - right - bottom - left */
+	margin: 3px 6px 6px 6px;
+	border-radius: 4px;
+	
+	--unity-selection-color: rgba(61, 128, 223, 0.65);
+	--unity-cursor-color: rgba(180, 180, 180, 1);
+}
+
+.messageModifier-messageText-field:hover {
+	
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px;
+}
+
+.messageModifier-messageText-field:focus {
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px;
+}
+
+.messageModifier-messageText-field
+.text-field-input {
+	
+	align-self: flex-start;
+
+	cursor: text;
+	
+	flex-grow: 1;
+	flex-direction: row;
+
+	overflow: scroll;
+	
+	/* top - right - bottom - left */
+	margin: 5px 4px 5px 1px;
+
+	-unity-overflow-clip-box: content-box;
+	-unity-text-align: middle-left;
+
+	--unity-sync-text-editor: true;
+}
+
+.messageModifier-messageText-field:hover
+.text-field-input,
+
+.messageModifier-messageText-field:focus
+.text-field-input {
+	
+	/* top - right - bottom - left */
+	margin: 4.5px 4px 4.5px 1px;
+}
+
+.messageModifier-messageText-field
+.text-field-multiline-container {
+	
+	flex-direction: column;
+
+	flex-shrink: 0;
+
+	overflow: scroll;
+}
+
+.messageModifier-messageText-field
+.text-field-element {
+
+	color: white;
+	cursor: text;
+
+	font-size: 13px;
+	
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
+	
+	letter-spacing: -0.25px;
+	word-spacing: -2px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+}
+
+.messageModifier-messageText-field.text-field-empty
+.text-field-element {
+	
+	color: rgba(81, 81, 81, 1);
+}
+
+
+/*< ---------------------------------------------------------- Message Text Image >*/
+.messageModifier-messageText-image {
+
+	height: 22px;
+	width: 22px;
+
+	align-self: flex-start;
+
+	/* top - right - bottom - left */
+	margin: 2.5px 0px 0px 2px;
+
+	--unity-image-tint-color: white;
+}
+
+.messageModifier-messageText-field:hover
+.messageModifier-messageText-image,
+
+.messageModifier-messageText-field:focus
+.messageModifier-messageText-image {
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 1px;
+}
+
+.messageModifier-messageText-field.text-field-empty
+.messageModifier-messageText-image {
+
+	--unity-image-tint-color: rgba(81, 81, 81, 1);
+}
+
+
+/*< ---------------------------------------------------------- Message Audio Container >*/
+.messageModifier-messageAudio-container {
+	
+	background-color: rgba(42, 42, 42, 1);
+
+	/* top - right - bottom - left */
+	margin: 0px 6px 6px 6px;
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Message Audio Label >*/
+.messageModifier-messageAudio-label {
+	
+	color: rgba(210, 210, 210, 1);
+	
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Static-SDF.asset');
+	
+	white-space: nowrap;
+	
+	word-spacing: 9px;
+
+	/* top - right - bottom - left */
+	margin: 3px 0px 0px 6px;
+}
+
+
+/*< ---------------------------------------------------------- Message Audio Field >*/
+.messageModifier-messageAudio-field {
+	
 	height: 27px;
 	width: Auto;
 
@@ -200,7 +369,7 @@
 	border-radius: 4px;
 }
 
-.eventModifier-dialogueEvent-field:hover {
+.messageModifier-messageAudio-field:hover {
 
 	border-color: rgba(71, 71, 71, 1);
 
@@ -208,7 +377,7 @@
 	border-width: 1px;
 }
 
-.eventModifier-dialogueEvent-field:focus {
+.messageModifier-messageAudio-field:focus {
 
 	border-color: rgba(58, 121, 187, 1);
 
@@ -216,7 +385,7 @@
 	border-width: 1px;
 }
 
-.eventModifier-dialogueEvent-field
+.messageModifier-messageAudio-field
 .object-field-input {
 
 	background-color: rgba(32, 32, 32, 1);
@@ -233,17 +402,17 @@
 	border-radius: 4px;
 }
 
-.eventModifier-dialogueEvent-field:hover
+.messageModifier-messageAudio-field:hover
 .object-field-input,
 
-.eventModifier-dialogueEvent-field:focus
+.messageModifier-messageAudio-field:focus
 .object-field-input {
 
 	/* top - right - bottom - left */
 	margin: -1px -1.5px -1px -1.5px;
 }
 
-.eventModifier-dialogueEvent-field
+.messageModifier-messageAudio-field
 .object-field-display {
 	
 	flex-basis: 0;
@@ -257,7 +426,7 @@
 	-unity-slice-left: 4;
 }
 
-.eventModifier-dialogueEvent-field
+.messageModifier-messageAudio-field
 .object-field-display-label {
 
 	color: white;
@@ -277,16 +446,16 @@
 	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
 	
 	/* top - right - bottom - left */
-	margin: 0px 3px 0px 3px;
+	margin: 1px 3px 0px -1px;
 }
 
-.eventModifier-dialogueEvent-field.object-field-empty
+.messageModifier-messageAudio-field.object-field-empty
 .object-field-display-label {
 	
 	color: rgba(81, 81, 81, 1);
 }
 
-.eventModifier-dialogueEvent-field
+.messageModifier-messageAudio-field
 .unity-object-field__selector {
 
 	background-color: rgba(0, 0, 0, 0);
@@ -308,7 +477,7 @@
 	margin: 0px 1px 0px 0px;
 }
 
-.eventModifier-dialogueEvent-field
+.messageModifier-messageAudio-field
 .unity-object-field__selector:hover
 .background-highlighter {
 	
@@ -325,42 +494,78 @@
 }
 
 
-/*< ---------------------------------------------------------- Dialogue Event Image >*/
-.eventModifier-dialogueEvent-image {
+/*< ---------------------------------------------------------- Message Audio Image >*/
+.messageModifier-messageAudio-image {
 
-	height: 18.5px;
-	width: 17px;
+	height: 19.5px;
+	width: 19.5px;
 
 	align-self: center;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0.5px 4px;
+	margin: 0px 0px 0px 0px;
 
 	--unity-image-tint-color: white;
 }
 
-.eventModifier-dialogueEvent-field.object-field-empty
-.eventModifier-dialogueEvent-image {
+.messageModifier-messageAudio-field.object-field-empty
+.messageModifier-messageAudio-image {
 
 	--unity-image-tint-color: rgba(81, 81, 81, 1);
 }
 
 
+/*< ---------------------------------------------------------- Continue By & Start Delay Container>*/
+.messageModifier-continueBy-startDelay-container {
+
+	flex-direction: row;
+}
+
+
+/*< ---------------------------------------------------------- Continue By Container >*/
+.messageModifier-continueBy-container {
+	
+	background-color: rgba(42, 42, 42, 1);
+	
+	/* top - right - bottom - left */
+	margin: 0px 6px 6px 6px;
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Continue By Label >*/
+.messageModifier-continueBy-label {
+	
+	color: rgba(210, 210, 210, 1);
+	
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Static-SDF.asset');
+	
+	white-space: nowrap;
+	
+	word-spacing: 3px;
+
+	/* top - right - bottom - left */
+	margin: 2.5px 0px 0px 6px;
+}
+
+
 /*< ---------------------------------------------------------- Start Delay Container >*/
-.eventModifier-startDelay-container {
+.messageModifier-startDelay-container {
 	
 	background-color: rgba(42, 42, 42, 1);
 
 	width: 133px;
 
 	/* top - right - bottom - left */
-	margin: 6px;
+	margin: 0px 6px 6px 0px;
 	border-radius: 4px;
 }
 
 
 /*< ---------------------------------------------------------- Start Delay Label >*/
-.eventModifier-startDelay-label {
+.messageModifier-startDelay-label {
 	
 	color: rgba(210, 210, 210, 1);
 	
@@ -378,7 +583,7 @@
 
 
 /*< ---------------------------------------------------------- Delay Seconds Container >*/
-.eventModifier-delaySeconds-container {
+.messageModifier-delaySeconds-container {
 	
 	flex-direction: row;
 
@@ -387,7 +592,7 @@
 
 
 /*< ---------------------------------------------------------- Delay Seconds Field >*/
-.eventModifier-delaySeconds-field {
+.messageModifier-delaySeconds-field {
 	
 	background-color: rgba(32, 32, 32, 1);
 
@@ -413,7 +618,7 @@
 	--unity-cursor-color: rgba(180, 180, 180, 1);
 }
 
-.eventModifier-delaySeconds-field:hover {
+.messageModifier-delaySeconds-field:hover {
 	
 	border-color: rgba(101, 101, 101, 1);
 
@@ -421,7 +626,7 @@
 	border-width: 0.5px;
 }
 
-.eventModifier-delaySeconds-field:focus {
+.messageModifier-delaySeconds-field:focus {
 	
 	border-color: rgba(58, 121, 187, 1);
 
@@ -429,7 +634,7 @@
 	border-width: 0.5px;
 }
 
-.eventModifier-delaySeconds-field
+.messageModifier-delaySeconds-field
 .double-field-input {
 
 	cursor: text;
@@ -446,7 +651,7 @@
 	--unity-sync-text-editor: true;
 }
 
-.eventModifier-delaySeconds-field
+.messageModifier-delaySeconds-field
 .double-field-element {
 
 	color: white;
@@ -467,10 +672,10 @@
 	margin: 0px 4.5px 0px 5px;
 }
 
-.eventModifier-delaySeconds-field:hover
+.messageModifier-delaySeconds-field:hover
 .double-field-element,
 
-.eventModifier-delaySeconds-field:focus
+.messageModifier-delaySeconds-field:focus
 .double-field-element
 {
 	/* top - right - bottom - left */
@@ -479,7 +684,7 @@
 
 
 /*< ---------------------------------------------------------- Delay Seconds Label >*/
-.eventModifier-delaySeconds-label {
+.messageModifier-delaySeconds-label {
 	
 	align-self: center;
 	

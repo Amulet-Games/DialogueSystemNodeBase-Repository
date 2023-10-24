@@ -59,7 +59,7 @@
 /*< ---------------------------------------------------------- Branch Title Inner Container >*/
 .optionBranchNode-branchTitle-inner-container {
 	
-	height: 56.5px;
+	margin: 0px 0px 6px 0px;
 
 	flex-grow: 1;
 }

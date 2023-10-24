@@ -26,6 +26,8 @@ namespace AG.DS
 
             AddStyleClass();
 
+            SetupDefaultValue();
+
             return field;
 
             void CreateField()
@@ -40,9 +42,6 @@ namespace AG.DS
             void SetupDetails()
             {
                 field.isDelayed = true;
-
-                view.Value = "";
-                view.BindingSO = null;
             }
 
             void AddStyleClass()
@@ -54,6 +53,12 @@ namespace AG.DS
                 field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
                 textElement.AddToClassList(StyleConfig.Text_Field_Element);
+            }
+
+            void SetupDefaultValue()
+            {
+                view.Value = "";
+                view.BindingSO = null;
             }
         }
     }

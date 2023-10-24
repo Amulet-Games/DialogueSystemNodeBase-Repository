@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace AG.DS
 {
     public class DialogueNodeCallback : NodeCallbackFrameBase

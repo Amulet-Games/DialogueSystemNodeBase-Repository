@@ -20,5 +20,12 @@
 /*< ---------------------------------------------------------- Input Container >*/
 .node-input-container {
 
-	border-radius: 0px 0px 6px 6px;
+	border-radius: 0px 0px 0px 6px;
+}
+
+
+/*< ---------------------------------------------------------- Output Container >*/
+.node-output-container {
+
+	border-radius: 0px 0px 6px 0px;
 }

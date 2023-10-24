@@ -11,12 +11,32 @@ namespace AG.DS
 
 
         /// <summary>
+        /// The targeting language text field.
+        /// </summary>
+        TextField field;
+
+
+        /// <summary>
+        /// The text to display when the field is empty.
+        /// </summary>
+        string placeholderText;
+
+
+        /// <summary>
+        /// The old value that was set when the user has given focus on the field.
+        /// </summary>
+        string previousValue;
+
+
+        /// <summary>
         /// Constructor of the language text field observer class.
         /// </summary>
         /// <param name="view">The language text field view to set for.</param>
         public LanguageTextFieldObserver(LanguageTextFieldView view)
         {
             this.view = view;
+            field = view.Field;
+            placeholderText = view.PlaceholderText;
         }
 
 
@@ -29,19 +49,27 @@ namespace AG.DS
             RegisterFocusInEvent();
 
             RegisterFocusOutEvent();
+
+            RegisterMouseDownEvent();
         }
 
 
         /// <summary>
         /// Register FocusInEvent to the field.
         /// </summary>
-        void RegisterFocusInEvent() => view.Field.RegisterCallback<FocusInEvent>(FocusInEvent);
+        void RegisterFocusInEvent() => field.RegisterCallback<FocusInEvent>(FocusInEvent);
 
 
         /// <summary>
         /// Register FocusOutEvent to the field.
         /// </summary>
-        void RegisterFocusOutEvent() => view.Field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+        void RegisterFocusOutEvent() => field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+
+
+        /// <summary>
+        /// Register MouseDownEvent to the field.
+        /// </summary>
+        void RegisterMouseDownEvent() => field.RegisterCallback<MouseDownEvent>(MouseDownEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -51,15 +79,23 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusInEvent(FocusInEvent evt)
         {
-            var field = view.Field;
+            previousValue = field.value;
+
+            // Hide placeholder text and empty style
+            {
+                if (string.IsNullOrEmpty(view.CurrentLanguageValue))
+                {
+                    field.SetValueWithoutNotify(string.Empty);
+                }
+
+                field.HideEmptyStyle();
+            }
 
             InputHint.ShowHint
             (
                 hintText: StringConfig.InputHint_HintTextLabel_LabelText,
                 targetWorldBoundRect: field.worldBound
             );
-
-            field.HideEmptyStyle();
         }
 
 
@@ -69,11 +105,29 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusOutEvent(FocusOutEvent evt)
         {
-            view.CurrentLanguageValue = view.Field.value;
+            view.CurrentLanguageValue = field.value;
 
-            WindowChangedEvent.Invoke();
+            if (field.value != placeholderText
+             && field.value != previousValue)
+            {
+                // Push the current view's value to the undo stack.
+                ///TestingWindow.Instance.PushUndo(textContainer);
+
+                WindowChangedEvent.Invoke();
+            }
 
             InputHint.HideHint();
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the mouse button is pressed.
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void MouseDownEvent(MouseDownEvent evt)
+        {
+            // Prevent moving the parent node when using the field.
+            evt.StopImmediatePropagation();
         }
     }
 }

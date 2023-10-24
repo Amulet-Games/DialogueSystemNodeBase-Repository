@@ -20,6 +20,8 @@ namespace AG.DS
         public void SetActive(bool active)
         {
             pickingMode = active ? PickingMode.Ignore : PickingMode.Position;
+            RadioIconImage.pickingMode = active ? PickingMode.Ignore : PickingMode.Position;
+            RadioTextLabel.pickingMode = active ? PickingMode.Ignore : PickingMode.Position;
             this.ToggleActiveStyle();
         }
     }

@@ -1,1 +1,8 @@
-VisualElement {}
+/*< ---------------------------------------------------------- Main >*/
+.radioGroup {
+
+	flex-direction: row;
+
+	/* top - right - bottom - left */
+	padding: 0px 0px 0px 6px;
+}

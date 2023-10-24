@@ -20,20 +20,15 @@ namespace AG.DS
 
             CreateField();
 
-            SetupDetails();
-
             AddStyleClass();
+
+            SetupDefaultValue();
 
             void CreateField()
             {
                 view.Field = new();
 
                 field = view.Field;
-            }
-
-            void SetupDetails()
-            {
-                view.Value = 0;
             }
 
             void AddStyleClass()
@@ -48,6 +43,11 @@ namespace AG.DS
                 field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Double_Field_Input);
                 textElement.AddToClassList(StyleConfig.Double_Field_Element);
+            }
+
+            void SetupDefaultValue()
+            {
+                view.Value = 0;
             }
         }
     }
