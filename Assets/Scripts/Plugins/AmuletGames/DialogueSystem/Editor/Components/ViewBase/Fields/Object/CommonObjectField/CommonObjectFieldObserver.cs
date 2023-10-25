@@ -33,6 +33,8 @@ namespace AG.DS
         public void RegisterEvents()
         {
             RegisterChangeEvent();
+
+            RegisterMouseDownEvent();
         }
 
 
@@ -40,6 +42,13 @@ namespace AG.DS
         /// Register ChangeEvent to the field.
         /// </summary>
         void RegisterChangeEvent() => view.Field.RegisterValueChangedCallback(ChangeEvent);
+
+
+        /// <summary>
+        /// Register MouseDownEvent to the field.
+        /// </summary>
+        void RegisterMouseDownEvent() =>
+            view.Field.RegisterCallback<MouseDownEvent>(MouseDownEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -65,6 +74,17 @@ namespace AG.DS
                 : null;
 
             WindowChangedEvent.Invoke();
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the mouse button is pressed.
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void MouseDownEvent(MouseDownEvent evt)
+        {
+            // Prevent moving the parent node when using the field.
+            evt.StopImmediatePropagation();
         }
     }
 }

@@ -56,6 +56,9 @@ namespace AG.DS
         void MouseDownEvent(MouseDownEvent evt)
         {
             radioGroup.ActiveRadio = radio;
+
+            // Prevent moving the parent node when using the field.
+            evt.StopImmediatePropagation();
         }
     }
 }

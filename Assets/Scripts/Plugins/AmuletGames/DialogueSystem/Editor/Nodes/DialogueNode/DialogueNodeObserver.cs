@@ -35,6 +35,8 @@ namespace AG.DS
             RegisterNodeTitleEditButtonClickEvent();
 
             RegisterContentButtonClickEvent();
+
+            RegisterDialogueSpeakerFieldEvents();
         }
 
 
@@ -78,6 +80,13 @@ namespace AG.DS
                 isAlert: true,
                 contentButton: View.ContentButton,
                 clickEvent: ContentButtonClickEvent).RegisterEvents();
+
+
+        /// <summary>
+        /// Register events to dialogue speaker field.
+        /// </summary>
+        void RegisterDialogueSpeakerFieldEvents()
+            => new CommonObjectFieldObserver<DialogueCharacter>(View.DialogueSpeakerFieldView).RegisterEvents();
 
 
         // ----------------------------- Event -----------------------------

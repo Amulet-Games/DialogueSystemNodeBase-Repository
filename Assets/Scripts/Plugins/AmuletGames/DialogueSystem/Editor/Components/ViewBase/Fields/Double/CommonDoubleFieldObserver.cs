@@ -35,6 +35,8 @@ namespace AG.DS
             RegisterFocusInEvent();
 
             RegisterFocusOutEvent();
+
+            RegisterMouseDownEvent();
         }
 
 
@@ -50,6 +52,13 @@ namespace AG.DS
         /// </summary>
         void RegisterFocusOutEvent() =>
             view.Field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
+
+
+        /// <summary>
+        /// Register MouseDownEvent to the field.
+        /// </summary>
+        void RegisterMouseDownEvent() =>
+            view.Field.RegisterCallback<MouseDownEvent>(MouseDownEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -82,6 +91,17 @@ namespace AG.DS
 
                 WindowChangedEvent.Invoke();
             }
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the mouse button is pressed.
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void MouseDownEvent(MouseDownEvent evt)
+        {
+            // Prevent moving the parent node when using the field.
+            evt.StopImmediatePropagation();
         }
     }
 }
