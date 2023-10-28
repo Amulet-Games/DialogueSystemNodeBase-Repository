@@ -28,8 +28,11 @@ namespace AG.DS
 
         /// <summary>
         /// The current mouse position on screen when an unity's event is invoked.
-        /// <para>Note that NullReferenceException will occur if there's no event invoked</para>
         /// </summary>
+        /// 
+        /// <exception cref="ArgumentException">
+        /// Thrown when there's no event occurred when trying to retrieve the current screen mouse position.
+        /// </exception>
         public Vector2 ScreenMousePosition
         {
             get

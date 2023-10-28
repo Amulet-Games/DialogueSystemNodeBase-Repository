@@ -25,7 +25,7 @@ namespace AG.DS
         /// Create a new string by retrieving the characters from the end of the given string value and the given length.
         /// </summary>
         /// 
-        /// <param name="str">The string value to set for.</param>
+        /// <param name="str">Extension string value.</param>
         /// <param name="length">The length to set for.</param>
         /// 
         /// <returns>A new string that made of the end of the given string value in a given length.</returns>
@@ -49,5 +49,13 @@ namespace AG.DS
             }
             return str.Substring(str.Length - length, length);
         }
+
+
+        /// <summary>
+        /// Is the given string value null or empty.
+        /// </summary>
+        /// <param name="str">Extension string value.</param>
+        /// <returns><True if the string value is null or empty./returns>
+        public static bool IsNullOrEmpty(this string str) => string.IsNullOrEmpty(str);
     }
 }

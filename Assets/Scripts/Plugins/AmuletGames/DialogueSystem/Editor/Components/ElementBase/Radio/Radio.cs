@@ -17,6 +17,10 @@ namespace AG.DS
 
 
         // ----------------------------- Service -----------------------------
+        /// <summary>
+        /// Activate or deactivate the radio element base on the given active value.
+        /// </summary>
+        /// <param name="active">The active value to set for.</param>
         public void SetActive(bool active)
         {
             pickingMode = active ? PickingMode.Ignore : PickingMode.Position;

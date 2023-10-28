@@ -18,7 +18,7 @@ namespace AG.DS
         /// <summary>
         /// The text to display when the field is empty.
         /// </summary>
-        [NonSerialized] public string placeholderText;
+        [NonSerialized] public string PlaceholderText;
 
 
         /// <summary>
@@ -35,7 +35,13 @@ namespace AG.DS
                 m_value = value;
 
                 Field.SetValueWithoutNotify(m_value);
-                Field.ToggleEmptyStyle(placeholderText);
+
+                if (m_value.IsNullOrEmpty())
+                {
+                    Field.SetActivePlaceholderText(PlaceholderText, active: true);
+                }
+
+                Field.ToggleEmptyStyle();
             }
         }
 
@@ -52,7 +58,7 @@ namespace AG.DS
         /// <param name="placeholderText">The placeholder text to set for.</param>
         public CommonTextFieldView(string placeholderText)
         {
-            this.placeholderText = placeholderText;
+            this.PlaceholderText = placeholderText;
         }
 
 

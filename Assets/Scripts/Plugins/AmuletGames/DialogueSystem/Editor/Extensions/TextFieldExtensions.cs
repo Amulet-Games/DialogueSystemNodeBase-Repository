@@ -16,7 +16,18 @@ namespace AG.DS
         }
 
 
-
+        /// <summary>
+        /// Returns the text field's multiline container.
+        /// </summary>
+        /// 
+        /// <param name="field">Extension text field</param>
+        /// 
+        /// <returns>The multiline container of the text field.</returns>
+        /// 
+        /// <exception cref="ArgumentException">
+        /// Thrown when the given text field's multiline property has set to false and thus the multiline container
+        /// visual element can't be found.
+        /// </exception>
         public static VisualElement GetMultilineContainer(this TextField field)
         {
             if (field.multiline)
@@ -67,25 +78,38 @@ namespace AG.DS
         }
 
 
+
+        /// <summary>
+        /// Activate or deactivate the text field's placeholder text base on the given active value.
+        /// </summary>
+        /// <param name="view">Extension text field view.</param>
+        /// <param name="placeholderText">The placeholder text to set for.</param>
+        /// <param name="active">The active value to set for.</param>
+        public static void SetActivePlaceholderText
+        (
+            this TextField field,
+            string placeholderText,
+            bool active
+        )
+        {
+            field.SetValueWithoutNotify(active ? placeholderText : string.Empty);
+        }
+
+
         /// <summary>
         /// Add the text field to the empty style class if its value is empty,
         /// <br>otherwise remove the field from the empty style class.</br>
         /// </summary>
         /// <param name="field">Extension text field.</param>
-        /// <param name="placeholderText">The placeholder text to set for.</param>
-        public static void ToggleEmptyStyle
-        (
-            this TextField field,
-            string placeholderText
-        )
+        public static void ToggleEmptyStyle(this TextField field)
         {
-            if (!string.IsNullOrEmpty(field.text))
+            if (!field.text.IsNullOrEmpty())
             {
                 HideEmptyStyle(field);
             }
             else
             {
-                ShowEmptyStyle(field, placeholderText);
+                ShowEmptyStyle(field);
             }
         }
 
@@ -104,14 +128,8 @@ namespace AG.DS
         /// Add the text field to the empty style class.
         /// </summary>
         /// <param name="field">Extension text field.</param>
-        /// <param name="placeholderText">The placeholder text to set for.</param>
-        public static void ShowEmptyStyle
-        (
-            this TextField field,
-            string placeholderText
-        )
+        public static void ShowEmptyStyle(this TextField field)
         {
-            field.SetValueWithoutNotify(placeholderText);
             field.AddToClassList(StyleConfig.Text_Field_Empty);
         }
     }

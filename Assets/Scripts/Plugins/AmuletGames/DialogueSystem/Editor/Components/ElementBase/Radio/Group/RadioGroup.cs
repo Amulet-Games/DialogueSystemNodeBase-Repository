@@ -9,6 +9,10 @@ namespace AG.DS
         /// <summary>
         /// The property of the radio elements cache.
         /// </summary>
+        /// 
+        /// <exception cref="ArgumentException">
+        /// Thrown when trying to initialize the radio elements cache twice.
+        /// </exception>
         public Radio[] Radios
         {
             get

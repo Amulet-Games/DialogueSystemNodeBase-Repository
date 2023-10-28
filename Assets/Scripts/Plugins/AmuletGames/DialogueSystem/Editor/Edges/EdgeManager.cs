@@ -112,7 +112,7 @@ namespace AG.DS
         /// <returns>A new edge model.</returns>
         /// 
         /// <exception cref="ArgumentException">
-        /// Throw when the given edge element is invalid to any of the current existing edge's type.
+        /// Thrown when the given edge element is invalid to any of the current existing edge's type.
         /// </exception>
         public EdgeModelBase Save(EdgeBase edge)
         {

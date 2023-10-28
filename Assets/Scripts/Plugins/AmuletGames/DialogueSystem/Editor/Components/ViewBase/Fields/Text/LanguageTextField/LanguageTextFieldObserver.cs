@@ -17,12 +17,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The text to display when the field is empty.
-        /// </summary>
-        string placeholderText;
-
-
-        /// <summary>
         /// The old value that was set when the user has given focus on the field.
         /// </summary>
         string previousValue;
@@ -36,7 +30,6 @@ namespace AG.DS
         {
             this.view = view;
             field = view.Field;
-            placeholderText = view.PlaceholderText;
         }
 
 
@@ -81,15 +74,12 @@ namespace AG.DS
         {
             previousValue = field.value;
 
-            // Hide placeholder text and empty style
+            if (view.CurrentLanguageValue.IsNullOrEmpty())
             {
-                if (string.IsNullOrEmpty(view.CurrentLanguageValue))
-                {
-                    field.SetValueWithoutNotify(string.Empty);
-                }
-
-                field.HideEmptyStyle();
+                field.SetActivePlaceholderText(view.PlaceholderText, active: false);
             }
+
+            field.HideEmptyStyle();
 
             InputHint.ShowHint
             (
@@ -107,8 +97,7 @@ namespace AG.DS
         {
             view.CurrentLanguageValue = field.value;
 
-            if (field.value != placeholderText
-             && field.value != previousValue)
+            if (view.CurrentLanguageValue != previousValue)
             {
                 // Push the current view's value to the undo stack.
                 ///TestingWindow.Instance.PushUndo(textContainer);

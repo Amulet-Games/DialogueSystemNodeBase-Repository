@@ -5,15 +5,15 @@ namespace AG.DS
     public class CommonTextFieldObserver
     {
         /// <summary>
-        /// The targeting common text field.
+        /// The targeting common text field view.
         /// </summary>
-        TextField field;
+        CommonTextFieldView view;
 
 
         /// <summary>
-        /// The text to display when the field is empty.
+        /// The targeting common text field.
         /// </summary>
-        string placeholderText;
+        TextField field;
 
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace AG.DS
         /// <param name="view">The common text field view to set for.</param>
         public CommonTextFieldObserver(CommonTextFieldView view)
         {
+            this.view = view;
             field = view.Field;
-            placeholderText = view.placeholderText;
         }
 
 
@@ -42,6 +42,8 @@ namespace AG.DS
             RegisterFocusInEvent();
 
             RegisterFocusOutEvent();
+
+            RegisterMouseDownEvent();
         }
 
 
@@ -57,6 +59,12 @@ namespace AG.DS
         void RegisterFocusOutEvent() => field.RegisterCallback<FocusOutEvent>(FocusOutEvent);
 
 
+        /// <summary>
+        /// Register MouseDownEvent to the field.
+        /// </summary>
+        void RegisterMouseDownEvent() => view.Field.RegisterCallback<MouseDownEvent>(MouseDownEvent);
+
+
         // ----------------------------- Event -----------------------------
         /// <summary>
         /// The event to invoke when the field has given focus.
@@ -66,9 +74,9 @@ namespace AG.DS
         {
             previousValue = field.value;
 
-            if (string.IsNullOrEmpty(field.text))
+            if (view.Value.IsNullOrEmpty())
             {
-                field.SetValueWithoutNotify(string.Empty);
+                field.SetActivePlaceholderText(view.PlaceholderText, active: false);
             }
 
             field.HideEmptyStyle();
@@ -81,16 +89,26 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusOutEvent(FocusOutEvent evt)
         {
-            if (field.value != placeholderText
-             && field.value != previousValue)
+            view.Value = field.value;
+
+            if (view.Value != previousValue)
             {
                 // Push the current view's value to the undo stack.
                 ///TestingWindow.Instance.PushUndo(textContainer);
 
                 WindowChangedEvent.Invoke();
             }
+        }
 
-            field.ToggleEmptyStyle(placeholderText);
+
+        /// <summary>
+        /// The event to invoke when the mouse button is pressed.
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void MouseDownEvent(MouseDownEvent evt)
+        {
+            // Prevent moving the parent node when using the field.
+            evt.StopImmediatePropagation();
         }
     }
 }

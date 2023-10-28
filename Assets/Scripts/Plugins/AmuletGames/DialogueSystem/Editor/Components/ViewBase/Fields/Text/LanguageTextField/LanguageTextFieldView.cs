@@ -97,7 +97,13 @@ namespace AG.DS
         public void UpdateFieldLanguageValue()
         {
             Field.SetValueWithoutNotify(CurrentLanguageValue);
-            Field.ToggleEmptyStyle(PlaceholderText);
+
+            if (CurrentLanguageValue.IsNullOrEmpty())
+            {
+                Field.SetActivePlaceholderText(PlaceholderText, active: true);
+            }
+
+            this.ToggleEmptyStyle();
         }
 
 
