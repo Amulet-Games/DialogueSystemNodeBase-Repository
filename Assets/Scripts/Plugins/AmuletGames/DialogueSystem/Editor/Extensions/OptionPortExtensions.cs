@@ -79,20 +79,12 @@ namespace AG.DS
             if (port.IsInput())
             {
                 siblingIndex = port.OpponentPort.GetSiblingIndex();
-                port.portName = StringUtility.New
-                                (
-                                    str01: StringConfig.OptionPort_Input_LabelText_Connect,
-                                    str02: siblingIndex.ToString()
-                                );
+                port.portName = StringConfig.OptionPort_Input_LabelText_Connect.Append(siblingIndex.ToString());
             }
             else
             {
                 siblingIndex = port.GetSiblingIndex();
-                port.portName = StringUtility.New
-                                (
-                                    str01: StringConfig.OptionPort_Output_LabelText_Connect,
-                                    str02: siblingIndex.ToString()
-                                );
+                port.portName = StringConfig.OptionPort_Output_LabelText_Connect.Append(siblingIndex.ToString());
             }
         }
 
@@ -111,24 +103,14 @@ namespace AG.DS
             if (port.IsInput())
             {
                 port.portName = port.connected
-                    ? StringUtility.New
-                      (
-                          str01: StringConfig.OptionPort_Input_LabelText_Connect,
-                          str02: siblingIndex.ToString()
-                      )
-
+                    ? StringConfig.OptionPort_Input_LabelText_Connect.Append(siblingIndex.ToString())
                     : StringConfig.OptionPort_Input_LabelText_Disconnect;
 
             }
             else
             {
                 port.portName = port.connected
-                    ? StringUtility.New
-                      (
-                          str01: StringConfig.OptionPort_Output_LabelText_Connect,
-                          str02: siblingIndex.ToString()
-                      )
-
+                    ? StringConfig.OptionPort_Output_LabelText_Connect.Append(siblingIndex.ToString())
                     : StringConfig.OptionPort_Output_LabelText_Disconnect;
             }
         }
@@ -144,23 +126,13 @@ namespace AG.DS
             if (port.IsInput())
             {
                 return port.connected
-                    ? StringUtility.New
-                      (
-                          str01: StringConfig.ContextualMenuItem_DisconnectOptionInputPort_LabelText,
-                          str02: port.portName
-                      )
-
+                    ? StringConfig.ContextualMenuItem_DisconnectOptionInputPort_LabelText.Append(port.portName)
                     : StringConfig.ContextualMenuItem_DisconnectInputPort_LabelText;
             }
             else
             {
                 return port.connected
-                    ? StringUtility.New
-                      (
-                          str01: StringConfig.ContextualMenuItem_DisconnectOptionOutputPort_LabelText,
-                          str02: port.portName
-                      )
-
+                    ? StringConfig.ContextualMenuItem_DisconnectOptionOutputPort_LabelText.Append(port.portName)
                     : StringConfig.ContextualMenuItem_DisconnectOutputPort_LabelText;
             }
         }

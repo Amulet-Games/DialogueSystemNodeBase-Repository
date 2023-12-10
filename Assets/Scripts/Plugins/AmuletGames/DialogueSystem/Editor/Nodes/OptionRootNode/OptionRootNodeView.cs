@@ -8,7 +8,7 @@ namespace AG.DS
         /// <summary>
         /// Content button for adding output option port to the node.
         /// </summary>
-        public ContentButton ContentButton;
+        public CommonButton ContentButton;
 
 
         /// <summary>

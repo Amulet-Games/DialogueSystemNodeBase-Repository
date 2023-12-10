@@ -10,7 +10,7 @@ namespace AG.DS
         /// <summary>
         /// The stitcher's instance condition modifier models
         /// </summary>
-        [SerializeField] public List<ConditionModifierModel> InstanceModifierModels;
+        [SerializeField] public List<ConditionModifierModel_Legacy> InstanceModifierModels;
 
 
         /// <summary>

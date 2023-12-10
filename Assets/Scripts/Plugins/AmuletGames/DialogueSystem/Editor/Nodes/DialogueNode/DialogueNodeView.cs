@@ -6,7 +6,7 @@
         /// <summary>
         /// Content button for adding messages to the node.
         /// </summary>
-        public ContentButton ContentButton;
+        public CommonButton ContentButton;
 
 
         /// <summary>

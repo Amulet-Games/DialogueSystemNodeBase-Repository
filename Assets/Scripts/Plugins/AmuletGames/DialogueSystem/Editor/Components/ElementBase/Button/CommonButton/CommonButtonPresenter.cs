@@ -11,17 +11,21 @@ namespace AG.DS
         /// <param name="buttonText">The button text to set for.</param>
         /// <param name="buttonUSS">The button USS style to set for.</param>
         /// <returns>A new common button element.</returns>
-        public static Button CreateElement
+        public static CommonButton CreateElement
         (
             string buttonText,
             string buttonUSS
         )
         {
-            Button button;
+            CommonButton button;
+
+            Label textLabel;
 
             CreateButton();
 
-            SetupDetails();
+            CreateTextLabel();
+
+            AddElementsToButton();
 
             AddStyleClass();
 
@@ -30,14 +34,22 @@ namespace AG.DS
                 button = new();
             }
 
-            void SetupDetails()
+            void CreateTextLabel()
             {
-                button.text = buttonText;
+                textLabel = CommonLabelPresenter.CreateElement
+                (
+                    labelText: buttonText,
+                    labelUSS: StyleConfig.Button_ButtonText_Label
+                );
+            }
+
+            void AddElementsToButton()
+            {
+                button.Add(textLabel);
             }
 
             void AddStyleClass()
             {
-                button.ClearClassList();
                 button.AddToClassList(buttonUSS);
             }
             
@@ -51,13 +63,13 @@ namespace AG.DS
         /// <param name="buttonSprite">The button sprite to set for.</param>
         /// <param name="buttonUSS">The button USS style to set for.</param>
         /// <returns>A new common button element.</returns>
-        public static Button CreateElement
+        public static CommonButton CreateElement
         (
             Sprite buttonSprite,
             string buttonUSS
         )
         {
-            Button button;
+            CommonButton button;
 
             CreateButton();
 
@@ -77,7 +89,6 @@ namespace AG.DS
 
             void AddStyleClass()
             {
-                button.ClearClassList();
                 button.AddToClassList(buttonUSS);
             }
 

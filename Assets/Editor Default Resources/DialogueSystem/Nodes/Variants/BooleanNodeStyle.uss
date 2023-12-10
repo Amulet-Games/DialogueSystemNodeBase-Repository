@@ -1,0 +1,51 @@
+/*< ---------------------------------------------------------- Title Container >*/
+.node-title-container {
+
+	background-color: rgba(116, 150, 98, 1);
+
+	min-width: 290px;
+}
+
+
+/*< ---------------------------------------------------------- Node Title Field >*/
+.node-nodeTitle-field {
+
+	/* top - right - bottom - left */
+	margin: 3px 0px 0px 0.5px;
+}
+
+
+/*< ---------------------------------------------------------- Content Button Text Label >*/
+.contentButton
+.contentButton-buttonText-label {
+	
+	/* top - right - bottom - left */
+	margin: 4px 0px 0px 12px;
+}
+
+
+/*< ---------------------------------------------------------- Content Button Icon Image >*/
+.contentButton-buttonIcon-image {
+
+	height: 27.5px;
+	width: 27.5px;
+
+	/* top - right - bottom - left */
+	margin: 4.5px 0px 0px 36.5px;
+}
+
+
+/*< ---------------------------------------------------------- Output Container >*/
+.node-output-container {
+
+	/* top - right - bottom - left */
+	padding: 10px 0px 9px 0px;
+}
+
+
+/*< ---------------------------------------------------------- False Output Port >*/
+.booleanNode-false-output-port {
+
+	/* top - right - bottom - left */
+	margin: 6.5px 0px 0px 0px;
+}

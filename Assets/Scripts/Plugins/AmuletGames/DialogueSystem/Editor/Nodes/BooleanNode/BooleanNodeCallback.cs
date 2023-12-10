@@ -41,6 +41,11 @@ namespace AG.DS
         /// <inheritdoc />
         public override void OnPostCreate()
         {
+            // If there's no modifier being created after loading, create a new one by default.
+            if (View.ConditionModifierGroupView.FirstModifier == null)
+            {
+                View.ContentButton.Click();
+            }
         }
     }
 }

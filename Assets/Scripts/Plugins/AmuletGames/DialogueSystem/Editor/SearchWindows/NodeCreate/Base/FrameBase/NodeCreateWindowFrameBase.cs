@@ -48,7 +48,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Services -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <inheritdoc />
         public override bool OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
         {

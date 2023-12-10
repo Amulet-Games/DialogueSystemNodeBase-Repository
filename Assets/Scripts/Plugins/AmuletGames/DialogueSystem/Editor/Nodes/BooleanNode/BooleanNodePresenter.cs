@@ -44,14 +44,19 @@ namespace AG.DS
                 name: StringConfig.DefaultPort_True_LabelText
             );
 
-            View.FalseOutputDefaultPort = PortManager.Instance.CreateDefault
-            (
-                connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
-                direction: Direction.Output,
-                capacity: Port.Capacity.Single,
-                name: StringConfig.DefaultPort_False_LabelText
-            );
+            // False output port
+            {
+                View.FalseOutputDefaultPort = PortManager.Instance.CreateDefault
+                (
+                    connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
+                    direction: Direction.Output,
+                    capacity: Port.Capacity.Single,
+                    name: StringConfig.DefaultPort_False_LabelText
+                );
 
+                View.FalseOutputDefaultPort.AddToClassList(StyleConfig.BooleanNode_False_Output_Port);
+            }
+            
             Node.Add(View.InputDefaultPort);
             Node.Add(View.TrueOutputDefaultPort);
             Node.Add(View.FalseOutputDefaultPort);
@@ -65,27 +70,41 @@ namespace AG.DS
         {
             VisualElement contentContainer;
 
-            SetupContainers();
+            CreateContentButton();
 
-            AddBooleanNodeStitcher();
+            CreateContainers();
+
+            CreateConditionModifierGroup();
 
             AddElementsToContainer();
 
             AddContainersToNode();
 
-            void SetupContainers()
+            void CreateContentButton()
+            {
+                View.ContentButton = ContentButtonPresenter.CreateElement
+                (
+                    buttonText: StringConfig.ContentButton_AddCondition_LabelText,
+                    buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddConditionButtonIconSprite
+                );
+            }
+
+            void CreateContainers()
             {
                 contentContainer = new();
                 contentContainer.AddToClassList(StyleConfig.Node_Content_Container);
             }
 
-            void AddBooleanNodeStitcher()
+            void CreateConditionModifierGroup()
             {
-                View.booleanNodeStitcher.CreateRootElements(Node);
+                ConditionModifierGroupPresenter.CreateElement(view: View.ConditionModifierGroupView);
             }
 
             void AddElementsToContainer()
             {
+                Node.topContainer.Add(View.ContentButton);
+
+                contentContainer.Add(View.ConditionModifierGroupView.GroupContainer);
             }
 
             void AddContainersToNode()

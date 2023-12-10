@@ -40,5 +40,17 @@ namespace AG.DS
         /// The modifier's message CSV Guid value.
         /// </summary>
         [SerializeField] public Guid MessageCSVGuid;
+
+
+        /// <summary>
+        /// Constructor of the message modifier model class.
+        /// </summary>
+        public MessageModifierModel()
+        {
+            FolderModel = new();
+            MessageText = new();
+            MessageAudio = new();
+            ContinueByRadioGroupModel = new();
+        }
     }
 }

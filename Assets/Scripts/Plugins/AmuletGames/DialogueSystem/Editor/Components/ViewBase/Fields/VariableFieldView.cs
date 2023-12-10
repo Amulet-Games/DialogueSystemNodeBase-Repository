@@ -27,13 +27,13 @@ namespace AG.DS
         /// The variable type to use for determine which value is the object field using now or has to be saved
         /// <br>or loaded from when it comes to serializing the view.</br>
         /// </summary>
-        [NonSerialized] VariableType assigningType;
+        [NonSerialized] VariableType variableType;
 
 
         /// <summary>
         /// One of the serializable value of the view.
         /// </summary>
-        [SerializeField] public BoolVariable BoolVariable;
+        [SerializeField] public BooleanVariable BoolVariable;
 
 
         /// <summary>
@@ -78,17 +78,15 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Change Assigning Type -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <summary>
-        /// Method to change the internal assigning type.
+        /// Set a new value to the variable type.
         /// </summary>
         /// <param name="variableType">Variable type to change to.</param>
-        public void ChangeAssigningType(VariableType assigningType)
+        public void ChangeAssigningType(VariableType value)
         {
-            // Change internal assigning type.
-            this.assigningType = assigningType;
+            variableType = value;
 
-            // Update field object type.
             UpdateFieldObjectType();
         }
 
@@ -100,10 +98,10 @@ namespace AG.DS
         /// <param name="value">The value to set for.</param>
         public void SetNewValue(Object value)
         {
-            switch (assigningType)
+            switch (variableType)
             {
                 case VariableType.Boolean:
-                    BoolVariable = value != null ? value as BoolVariable : null;
+                    BoolVariable = value != null ? value as BooleanVariable : null;
                     break;
                 case VariableType.Float:
                     FloatVariable = value != null ? value as FloatVariable : null;
@@ -121,10 +119,10 @@ namespace AG.DS
         /// </summary>
         void UpdateFieldObjectType()
         {
-            switch (assigningType)
+            switch (variableType)
             {
                 case VariableType.Boolean:
-                    UpdateHelper<BoolVariable, bool>(variable: BoolVariable);
+                    UpdateHelper<BooleanVariable, bool>(variable: BoolVariable);
                     break;
                 case VariableType.Float:
                     UpdateHelper<FloatVariable, float>(variable: FloatVariable);
@@ -184,10 +182,10 @@ namespace AG.DS
         {
             if (array != null)
             {
-                switch (assigningType)
+                switch (variableType)
                 {
                     case VariableType.Boolean:
-                        ReverseTo<BoolVariable, bool>(BoolVariable);
+                        ReverseTo<BooleanVariable, bool>(BoolVariable);
                         break;
                     case VariableType.Float:
                         ReverseTo<FloatVariable, float>(FloatVariable);

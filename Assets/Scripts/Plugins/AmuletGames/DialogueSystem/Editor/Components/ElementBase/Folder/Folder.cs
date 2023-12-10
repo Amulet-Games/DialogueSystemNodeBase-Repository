@@ -19,7 +19,7 @@ namespace AG.DS
         /// <summary>
         /// Button that expands the folder when clicked.
         /// </summary>
-        public Button ExpandButton;
+        public CommonButton ExpandButton;
 
 
         /// <summary>
@@ -29,13 +29,44 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The folder expanded state.
+        /// The property of the folder expanded state.
         /// </summary>
-        public bool Expanded { get; private set; }
+        public bool Expanded
+        {
+            get
+            {
+                return m_expanded;
+            }
+            set
+            {
+                m_expanded = value;
+
+                ContentContainer.SetDisplay(value: m_expanded);
+
+                if (m_expanded)
+                {
+                    RemoveFromClassList(StyleConfig.Folder_Closed);
+                }
+                else
+                {
+                    AddToClassList(StyleConfig.Folder_Closed);
+                }
+
+                ExpandButton.style.backgroundImage = m_expanded
+                    ? ConfigResourcesManager.SpriteConfig.FolderExpandButtonOpenIconSprite.texture
+                    : ConfigResourcesManager.SpriteConfig.FolderExpandButtonCloseIconSprite.texture;
+            }
+        }
 
 
         /// <summary>
-        /// Constructor of the folder element class.
+        /// The folder expanded state.
+        /// </summary>
+        private bool m_expanded;
+
+
+        /// <summary>
+        /// Constructor of the folder element.
         /// </summary>
         /// <param name="folderTitle">The folder title to set for.</param>
         public Folder(string folderTitle)
@@ -63,33 +94,11 @@ namespace AG.DS
         public void Load(FolderModel model)
         {
             FolderTitleFieldView.Load(model.TitleText);
-            SetExpanded(value: model.Expanded);
+            Expanded = model.Expanded;
         }
 
 
         // ----------------------------- Service -----------------------------
-        /// <summary>
-        /// Changes the folder expanded state
-        /// </summary>
-        /// <param name="value">The value to set for.</param>
-        public void SetExpanded(bool value)
-        {
-            Expanded = value;
-
-            ContentContainer.SetDisplay(value: Expanded);
-
-            if (Expanded) {
-                RemoveFromClassList(StyleConfig.Folder_Closed);
-            } else {
-                AddToClassList(StyleConfig.Folder_Closed);
-            }
-            
-            ExpandButton.style.backgroundImage = Expanded
-                ? ConfigResourcesManager.SpriteConfig.FolderExpandButtonOpenIconSprite.texture
-                : ConfigResourcesManager.SpriteConfig.FolderExpandButtonCloseIconSprite.texture;
-        }
-
-
         /// <summary>
         /// Add the given element to the folder title container.
         /// </summary>

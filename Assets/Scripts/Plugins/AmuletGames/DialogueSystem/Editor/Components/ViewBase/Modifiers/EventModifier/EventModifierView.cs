@@ -1,5 +1,3 @@
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
     public class EventModifierView
@@ -13,25 +11,25 @@ namespace AG.DS
         /// <summary>
         /// Button that moves the modifier up one position when clicked.
         /// </summary>
-        public Button MoveUpButton;
+        public CommonButton MoveUpButton;
 
 
         /// <summary>
         /// Button that moves the modifier down one position when clicked.
         /// </summary>
-        public Button MoveDownButton;
+        public CommonButton MoveDownButton;
 
 
         /// <summary>
         /// Button that renames the modifier when clicked.
         /// </summary>
-        public Button RenameButton;
+        public CommonButton RenameButton;
 
 
         /// <summary>
         /// Button that removes the modifier when clicked.
         /// </summary>
-        public Button RemoveButton;
+        public CommonButton RemoveButton;
 
 
         /// <summary>

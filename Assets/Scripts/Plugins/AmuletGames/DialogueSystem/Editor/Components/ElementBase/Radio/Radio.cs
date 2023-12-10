@@ -17,8 +17,8 @@ namespace AG.DS
 
 
         // ----------------------------- Service -----------------------------
-        /// <summary>
-        /// Activate or deactivate the radio element base on the given active value.
+        /// <summary
+        /// Set the radio element active status.
         /// </summary>
         /// <param name="active">The active value to set for.</param>
         public void SetActive(bool active)

@@ -6,7 +6,7 @@ namespace AG.DS
         /// <summary>
         /// Content button for adding conditions to the node.
         /// </summary>
-        public ContentButton ContentButton;
+        public CommonButton ContentButton;
 
 
         /// <summary>

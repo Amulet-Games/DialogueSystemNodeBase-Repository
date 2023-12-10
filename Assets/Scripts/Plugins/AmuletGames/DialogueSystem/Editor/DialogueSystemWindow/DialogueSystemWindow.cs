@@ -173,8 +173,6 @@ namespace AG.DS
             {
                 rootVisualElement.Add(graphViewer);
                 rootVisualElement.Add(headBar);
-
-                graphViewer.contentViewContainer.Add(InputHint.Instance);
             }
 
             // Register modules events

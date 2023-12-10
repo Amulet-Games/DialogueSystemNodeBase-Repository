@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AG.DS
 {
-    [CreateAssetMenu(menuName = "### AG ###/Dialogue System/Config/New Sprite Config")]
+    [CreateAssetMenu(menuName = "### AG ###/Dialogue System/Config/Append Sprite Config")]
     public class SpriteConfig : ScriptableObject
     {
         #region Commons.
@@ -59,14 +59,15 @@ namespace AG.DS
 
         #region Operators.
         [Header("Operators")]
-        public Sprite BiggerOperatorButtonIconSprite;
-        public Sprite EqualOperatorButtonIconSprite;
-        public Sprite EqualOrBiggerOperatorButtonIconSprite;
-        public Sprite EqualOrSmallerOperatorButtonIconSprite;
-        public Sprite FalseOperatorButtonIconSprite;
-        public Sprite MatchOperatorButtonIconSprite;
-        public Sprite SmallerOperatorButtonIconSprite;
-        public Sprite TrueOperatorButtonIconSprite;
+        public Sprite BiggerOperatorIconSprite;
+        public Sprite CustomLogicOperatorIconSprite;
+        public Sprite EqualOperatorIconSprite;
+        public Sprite EqualOrBiggerOperatorIconSprite;
+        public Sprite EqualOrSmallerOperatorIconSprite;
+        public Sprite FalseOperatorIconSprite;
+        public Sprite MatchOperatorIconSprite;
+        public Sprite SmallerOperatorIconSprite;
+        public Sprite TrueOperatorIconSprite;
         #endregion
 
         #region Segments.

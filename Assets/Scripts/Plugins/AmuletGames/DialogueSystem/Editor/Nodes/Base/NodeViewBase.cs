@@ -1,5 +1,3 @@
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
     /// <summary>
@@ -16,6 +14,6 @@ namespace AG.DS
         /// <summary>
         /// Button for editing the node title.
         /// </summary>
-        public Button EditTitleButton;
+        public CommonButton EditTitleButton;
     }
 }

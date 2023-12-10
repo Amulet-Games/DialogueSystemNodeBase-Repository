@@ -9,7 +9,7 @@ namespace AG
         /// <summary>
         /// The group's boolean variable value.
         /// </summary>
-        [SerializeField] public BoolVariable BoolVariable;
+        [SerializeField] public BooleanVariable BoolVariable;
 
 
         /// <summary>

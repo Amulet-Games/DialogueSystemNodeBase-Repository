@@ -1,5 +1,3 @@
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
     public class OptionPortGroupCellObserver
@@ -65,8 +63,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the cell view's remove button is pressed.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void RemoveButtonClickEvent(ClickEvent evt)
+        void RemoveButtonClickEvent()
         {
             group.Remove(cell, node);
 

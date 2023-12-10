@@ -23,10 +23,15 @@ namespace AG.DS
             {
                 if (m_radios != null)
                 {
-                    throw new ArgumentException("Attempted to set radio group's cache twice!");
+                    throw new ArgumentException("Attempted to set radio elements' cache twice!");
                 }
                 else
                 {
+                    for (int i = value.Length - 1; 0 <= i; i--)
+                    {
+                        Add(value[i]);
+                    }
+
                     m_radios = value;
 
                     ActiveRadio = m_radios.Last();
@@ -42,7 +47,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The property of the active radio element of the group.
+        /// The property of the active radio element.
         /// </summary>
         public Radio ActiveRadio
         {
@@ -65,7 +70,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the active radio element of the group.
+        /// The active radio element.
         /// </summary>
         Radio m_activeRadio;
 

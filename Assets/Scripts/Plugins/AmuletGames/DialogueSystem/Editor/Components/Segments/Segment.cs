@@ -94,16 +94,16 @@ namespace AG.DS
 
             void SetupExpandButton()
             {
-                ExpandButton = CommonButtonPresenter.CreateElement
-                (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.SegmentExpandButtonIconSprite,
-                    buttonUSS: StyleConfig.Segment_Common_ExpandSegment_Button
-                );
+                //ExpandButton = CommonButtonPresenter.CreateElement
+                //(
+                //    buttonSprite: ConfigResourcesManager.SpriteConfig.SegmentExpandButtonIconSprite,
+                //    buttonUSS: StyleConfig.Segment_Common_ExpandSegment_Button
+                //);
 
-                new CommonButtonObserver(
-                    isAlert: false,
-                    button: ExpandButton,
-                    clickEvent: ExpandButtonClickEvent).RegisterEvents();
+                //new CommonButtonObserver(
+                //    isAlert: false,
+                //    button: ExpandButton,
+                //    clickEvent: ExpandButtonClickEvent).RegisterEvents();
             }
 
             void AddFieldsToBox()

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -138,8 +137,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the move up button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void MoveUpButtonClickEvent(ClickEvent evt)
+        void MoveUpButtonClickEvent()
         {
             groupView.Swap(modifier: view, swapUp: true);
         }
@@ -148,8 +146,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the move down button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void MoveDownButtonClickEvent(ClickEvent evt)
+        void MoveDownButtonClickEvent()
         {
             groupView.Swap(modifier: view, swapUp: false);
         }
@@ -158,8 +155,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the rename button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void RenameButtonClickEvent(ClickEvent evt)
+        void RenameButtonClickEvent()
         {
             view.Folder.StartEditingFolderTitle();
         }
@@ -168,8 +164,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the remove button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void RemoveButtonClickEvent(ClickEvent evt)
+        void RemoveButtonClickEvent()
         {
             groupView.Remove(view);
             groupView.UpdateReferences();

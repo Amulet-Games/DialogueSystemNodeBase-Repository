@@ -1,0 +1,246 @@
+﻿/*< ---------------------------------------------------------- Title Container >*/
+.node-title-container {
+	background-color: rgba(52, 124, 143, 1);
+
+	min-width: 290px;
+}
+
+
+/*< ---------------------------------------------------------- Node Title Field >*/
+.node-nodeTitle-field {
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 0.5px;
+}
+
+
+/*< ---------------------------------------------------------- Content Button Text Label >*/
+.contentButton
+.contentButton-buttonText-label {
+	
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 12px;
+}
+
+
+/*< ---------------------------------------------------------- Content Button Icon Image >*/
+.contentButton-buttonIcon-image {
+
+	height: 27.5px;
+	width: 27.5px;
+
+	/* top - right - bottom - left */
+	margin: 4px 0px 0px 41px;
+}
+
+
+/*< ---------------------------------------------------------- Dialogue Speaker Main Container >*/
+.dialogueSpeaker-main-container {
+	
+	background-color: rgba(51, 51, 51, 1);
+
+	/* top - right - bottom - left */
+	margin: 5px 5px 0px 5px;
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Dialogue Speaker Outer Container >*/
+.dialogueSpeaker-outer-container {
+
+	background-color: rgba(42, 42, 42, 1);
+	
+	flex-direction: row;
+
+	/* top - right - bottom - left */
+	margin: 6px;
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Speaker Icon Image >*/
+.dialogueSpeaker-speakerIcon-image {
+	
+	height: 43px;
+	width: 43px;
+	
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 7px 0px 0px 6.5px;
+}
+
+
+/*< ---------------------------------------------------------- Dialogue Speaker Inner Container >*/
+.dialogueSpeaker-inner-container {
+	
+	margin: 0px 0px 6px 0px;
+
+	flex-grow: 1;
+}
+
+
+/*< ---------------------------------------------------------- Speaker Title Label >*/
+.dialogueSpeaker-speakerTitle-label {
+	
+	color: white;
+	
+	font-size: 16.3px;
+
+	flex-shrink: 0;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	
+	letter-spacing: -1px;
+	word-spacing: 4px;
+	
+	white-space: nowrap;
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 6px;
+}
+
+
+/*< ---------------------------------------------------------- Dialogue Speaker Field >*/
+.dialogueSpeaker-dialogueSpeaker-field {
+	
+	height: 27px;
+	min-width: auto;
+	
+	align-self: center;
+
+	flex-grow: 1;
+	flex-direction: row;
+
+	overflow: hidden;
+	
+	-unity-overflow-clip-box: content-box;
+
+	/* top - right - bottom - left */
+	margin: 5px 6px 0px 6.5px;
+	border-radius: 4px;
+}
+
+.dialogueSpeaker-dialogueSpeaker-field:hover {
+	
+	border-color: rgba(71, 71, 71, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px;
+}
+
+.dialogueSpeaker-dialogueSpeaker-field:focus {
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px;
+}
+
+.dialogueSpeaker-dialogueSpeaker-field
+.object-field-input {
+	
+	background-color: rgba(32, 32, 32, 1);
+	border-color: rgba(32, 32, 32, 1);
+
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-direction: row;
+
+	overflow: hidden;
+
+	/* top - right - bottom - left */
+	border-radius: 4px;
+}
+
+.dialogueSpeaker-dialogueSpeaker-field:hover
+.object-field-input,
+
+.dialogueSpeaker-dialogueSpeaker-field:focus
+.object-field-input {
+	
+	/* top - right - bottom - left */
+	margin: -1px -1.5px -1px -1.5px;
+}
+
+.dialogueSpeaker-dialogueSpeaker-field
+.object-field-display {
+	
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-direction: row;
+
+	-unity-slice-top: 4;
+	-unity-slice-right: 4;
+	-unity-slice-bottom: 4;
+	-unity-slice-left: 4;
+}
+
+.dialogueSpeaker-dialogueSpeaker-field
+.object-field-display-label {
+
+	color: white;
+
+	align-self: Center;
+
+	font-size: 13px;
+
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	overflow: hidden;
+
+	white-space: nowrap;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	
+	/* top - right - bottom - left */
+	margin: 0px 3px 0px 5px;
+}
+
+.dialogueSpeaker-dialogueSpeaker-field.object-field-empty
+.object-field-display-label {
+	
+	color: rgba(81, 81, 81, 1);
+}
+
+.dialogueSpeaker-dialogueSpeaker-field
+.unity-object-field__selector {
+
+	background-color: rgba(0, 0, 0, 0);
+
+	height: 18px;
+	width: 20px;
+
+	align-self: Center;
+
+	flex-shrink: 0;
+	
+	-unity-slice-top: 0;
+	-unity-slice-right: 0;
+	-unity-slice-bottom: 0;
+	-unity-slice-left: 0;
+	-unity-slice-scale: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 1px 0px 0px;
+}
+
+.dialogueSpeaker-dialogueSpeaker-field
+.unity-object-field__selector:hover
+.background-highlighter {
+	
+	align-self: center;
+	
+	background-color: rgba(255, 255, 255, 0.133);
+
+	height: 16.5px;
+	width: 16px;
+	
+	/* top - right - bottom - left */
+	margin: 0.5px 0px 0px 0px;
+	border-radius: 4px;
+}

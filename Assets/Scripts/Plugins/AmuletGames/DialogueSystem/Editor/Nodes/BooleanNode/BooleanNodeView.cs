@@ -4,9 +4,15 @@ namespace AG.DS
     public class BooleanNodeView : NodeViewFrameBase<BooleanNodeView>
     {
         /// <summary>
-        /// A special node's UI style that combined the use of segment, modifier and content button together.
+        /// Content button for adding conditions to the node.
         /// </summary>
-        public BooleanNodeStitcher booleanNodeStitcher;
+        public CommonButton ContentButton;
+
+
+        /// <summary>
+        /// View for the condition modifier group.
+        /// </summary>
+        public ConditionModifierGroupView ConditionModifierGroupView;
 
 
         /// <summary>
@@ -31,7 +37,7 @@ namespace AG.DS
         public override BooleanNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleFieldView = new(value: StringConfig.BooleanNode_NodeTitleField_DefaultText);
-            booleanNodeStitcher = new();
+            ConditionModifierGroupView = new();
 
             return this;
         }

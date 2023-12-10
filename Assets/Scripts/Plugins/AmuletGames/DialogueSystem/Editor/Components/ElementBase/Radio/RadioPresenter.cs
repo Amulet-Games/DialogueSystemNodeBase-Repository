@@ -9,12 +9,12 @@ namespace AG.DS
         /// Create a new radio element.
         /// </summary>
         /// <param name="radioText">The radio text to set for.</param>
-        /// <param name="radioSprite">The radio sprite to set for.</param>
+        /// <param name="radioIconSprite">The radio icon sprite to set for.</param>
         /// <returns>A new radio element.</returns>
         public static Radio CreateElement
         (
             string radioText,
-            Sprite radioSprite
+            Sprite radioIconSprite
         )
         {
             Radio radio;
@@ -43,7 +43,7 @@ namespace AG.DS
             {
                 radio.RadioIconImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: radioSprite,
+                    imageSprite: radioIconSprite,
                     imageUSS01: StyleConfig.Radio_RadioIcon_Image
                 );
             }

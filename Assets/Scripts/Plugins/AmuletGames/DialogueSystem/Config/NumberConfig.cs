@@ -31,7 +31,7 @@ namespace AG.DS
         /// <summary>
         /// The min width value of the boolean node.
         /// </summary>
-        public const int BOOLEAN_NODE_MIN_WIDTH = 531;
+        public const int BOOLEAN_NODE_MIN_WIDTH = 491;
 
 
         /// <summary>

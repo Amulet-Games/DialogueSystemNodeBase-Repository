@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AG.DS
 {
-    [CreateAssetMenu(menuName = "### AG ###/Dialogue System/New Dialogue System Model")]
+    [CreateAssetMenu(menuName = "### AG ###/Dialogue System/Append Dialogue System Model")]
     public class DialogueSystemModel : ScriptableObject
     {
 #if UNITY_EDITOR

@@ -31,7 +31,7 @@ namespace AG.DS
         /// <summary>
         /// Temporary use of root modifier model.
         /// </summary>
-        ConditionModifierModel tempRootModifierModel;
+        ConditionModifierModel_Legacy tempRootModifierModel;
 
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace AG.DS
         /// Create a new instance modifier for the stitcher.
         /// </summary>
         /// <param name="model">The condition modifier model to set for.</param>
-        void AddInstanceModifier(ConditionModifierModel model)
+        void AddInstanceModifier(ConditionModifierModel_Legacy model)
         {
             new ConditionModifier().CreateInstanceElements
             (
@@ -208,7 +208,7 @@ namespace AG.DS
                 for (int i = 0; i < instancesCount; i++)
                 {
                     // New modifier model.
-                    ConditionModifierModel newModifierModel = new();
+                    ConditionModifierModel_Legacy newModifierModel = new();
 
                     // Save values.
                     instanceModifiers[i].SaveModifierValue(newModifierModel);

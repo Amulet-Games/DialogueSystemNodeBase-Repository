@@ -1,0 +1,236 @@
+/*< ---------------------------------------------------------- Helper Button Container >*/
+.conditionModifier-helperButton-container {
+
+	align-items: center;
+
+	flex-shrink: 0;
+	flex-direction: row;
+
+	justify-content: flex-end;
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 2px 4px;
+}
+
+
+/*< ---------------------------------------------------------- Move Up Button >*/
+.conditionModifier-moveUp-button {
+
+	align-self: center;
+
+	height: 21px;
+	width: 21px;
+
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 3px 2px 0px 0px;
+}
+
+.conditionModifier-moveUp-button:disabled {
+
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
+}
+
+.conditionModifier-moveUp-button:enabled:hover {
+	
+	cursor: link;
+}
+
+.conditionModifier-moveUp-button:enabled:hover
+.background-highlighter {
+	
+	align-self: center;
+	
+	background-color: rgba(255, 255, 255, 0.133);
+
+	height: 21px;
+	width: 21px;
+
+	/* top - right - bottom - left */
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Move Down Button >*/
+.conditionModifier-moveDown-button {
+
+	align-self: center;
+
+	height: 21px;
+	width: 21px;
+
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 3px 0px 0px 0px;
+}
+
+.conditionModifier-moveDown-button:disabled {
+
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
+}
+
+.conditionModifier-moveDown-button:enabled:hover {
+	
+	cursor: link;
+}
+
+.conditionModifier-moveDown-button:enabled:hover
+.background-highlighter {
+	
+	align-self: center;
+	
+	background-color: rgba(255, 255, 255, 0.133);
+
+	height: 21px;
+	width: 21px;
+
+	/* top - right - bottom - left */
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Rename Button >*/
+.conditionModifier-rename-button {
+
+	align-self: center;
+
+	height: 24px;
+	width: 24px;
+
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 2.5px -2px 0px 0px;
+}
+
+.conditionModifier-rename-button:disabled {
+	
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
+}
+
+.conditionModifier-rename-button:enabled:hover {
+	
+	cursor: link;
+}
+
+.conditionModifier-rename-button:enabled:hover
+.background-highlighter {
+	
+	align-self: center;
+	
+	background-color: rgba(255, 255, 255, 0.133);
+
+	height: 21px;
+	width: 21px;
+
+	/* top - right - bottom - left */
+	margin: 1px 0px 0px 0px;
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Remove Button >*/
+.conditionModifier-remove-button {
+
+	align-self: center;
+
+	height: 27px;
+	width: 26.5px;
+
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 4px 2.5px 0px 0px;
+}
+
+.conditionModifier-remove-button:disabled {
+
+	-unity-background-image-tint-color: rgba(255, 255, 255, 0.35);
+}
+
+.conditionModifier-remove-button:enabled:hover {
+	
+	cursor: link;
+}
+
+.conditionModifier-remove-button:enabled:hover
+.background-highlighter {
+	
+	align-self: center;
+	
+	background-color: rgba(255, 255, 255, 0.133);
+	
+	height: 21px;
+	width: 21px;
+
+	/* top - right - bottom - left */
+	margin: 2.5px 0px 0px 0px;
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Operation & Chain With Container >*/
+.conditionModifier-operation-chainWith-container {
+	
+	flex-direction: row;
+}
+
+
+/*< ---------------------------------------------------------- Operation Container >*/
+.conditionModifier-operation-container {
+	
+	background-color: rgba(42, 42, 42, 1);
+	
+	/* top - right - bottom - left */
+	margin: 0px 6px 6px 6px;
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Operation Label >*/
+.conditionModifier-operation-label {
+	
+	color: rgba(210, 210, 210, 1);
+	
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Static-SDF.asset');
+	
+	white-space: nowrap;
+	
+	word-spacing: 3px;
+
+	/* top - right - bottom - left */
+	margin: 2.5px 0px 0px 6px;
+}
+
+
+/*< ---------------------------------------------------------- Chain with Container >*/
+.conditionModifier-chainWith-container {
+
+	background-color: rgba(42, 42, 42, 1);
+	
+	/* top - right - bottom - left */
+	margin: 0px 6px 6px 0px;
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Chain with Label >*/
+.conditionModifier-chainWith-label {
+
+	color: rgba(210, 210, 210, 1);
+	
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Static-SDF.asset');
+	
+	white-space: nowrap;
+	
+	word-spacing: 3px;
+
+	/* top - right - bottom - left */
+	margin: 2.5px 0px 0px 6px;
+}

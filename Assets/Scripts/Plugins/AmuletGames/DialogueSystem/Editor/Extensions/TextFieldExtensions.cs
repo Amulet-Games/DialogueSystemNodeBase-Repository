@@ -80,7 +80,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Activate or deactivate the text field's placeholder text base on the given active value.
+        /// Set the placeholder text active status.
         /// </summary>
         /// <param name="view">Extension text field view.</param>
         /// <param name="placeholderText">The placeholder text to set for.</param>

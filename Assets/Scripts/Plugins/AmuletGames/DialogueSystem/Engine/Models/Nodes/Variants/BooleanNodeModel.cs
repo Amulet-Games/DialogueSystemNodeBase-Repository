@@ -26,9 +26,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The node's boolean node stitcher model.
+        /// The node's condition modifier group model.
         /// </summary>
-        [SerializeField] public BooleanNodeStitcherModel BooleanNodeStitcherModel;
+        [SerializeField] public ConditionModifierGroupModel ConditionModifierGroupModel;
 
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace AG.DS
         /// </summary>
         public BooleanNodeModel()
         {
-            BooleanNodeStitcherModel = new();
+            ConditionModifierGroupModel = new();
         }
     }
 }

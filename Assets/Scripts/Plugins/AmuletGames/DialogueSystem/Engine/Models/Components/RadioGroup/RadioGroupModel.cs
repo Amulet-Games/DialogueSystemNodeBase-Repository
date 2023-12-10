@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace AG.DS
 {
@@ -8,6 +9,6 @@ namespace AG.DS
         /// <summary>
         /// The group's active radio element array index.
         /// </summary>
-        public int activeRadioIndex;
+        [SerializeField] public int activeRadioIndex;
     }
 }

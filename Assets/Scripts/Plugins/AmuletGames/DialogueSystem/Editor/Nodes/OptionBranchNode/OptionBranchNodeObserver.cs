@@ -76,9 +76,9 @@ namespace AG.DS
         /// Register ClickEvent to the node content button.
         /// </summary>
         void RegisterContentButtonClickEvent()
-            => new ContentButtonObserver(
+            => new CommonButtonObserver(
                 isAlert: true,
-                contentButton: View.ContentButton,
+                button: View.ContentButton,
                 clickEvent: ContentButtonClickEvent).RegisterEvents();
 
 
@@ -119,8 +119,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the node title edit button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void NodeTitleEditButtonClickEvent(ClickEvent evt)
+        void NodeTitleEditButtonClickEvent()
         {
             var fieldInput = View.NodeTitleFieldView.Field.GetFieldInput();
             fieldInput.focusable = true;

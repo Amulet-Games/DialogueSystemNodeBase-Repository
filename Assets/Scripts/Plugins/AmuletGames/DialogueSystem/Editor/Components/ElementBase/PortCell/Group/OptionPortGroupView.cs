@@ -92,7 +92,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Services -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Remove the given option port group cell from the group.
         /// </summary>

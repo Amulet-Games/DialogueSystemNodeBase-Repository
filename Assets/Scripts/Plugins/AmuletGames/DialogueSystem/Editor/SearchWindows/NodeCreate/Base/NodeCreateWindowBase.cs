@@ -21,7 +21,7 @@ namespace AG.DS
         protected virtual List<SearchTreeEntry> ToShowEntries { get; }
 
 
-        // ----------------------------- Services -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// The callback to invoke when an entry in the node create window's search tree list is selected.
         /// <para>Read More https://docs.unity3d.com/ScriptReference/Experimental.GraphView.ISearchWindowProvider.OnSelectEntry.html</para>

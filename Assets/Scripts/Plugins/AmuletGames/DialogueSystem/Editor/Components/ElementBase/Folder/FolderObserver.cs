@@ -1,5 +1,3 @@
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
     public class FolderObserver
@@ -54,10 +52,9 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the expand button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void ExpandButtonClickEvent(ClickEvent evt)
+        void ExpandButtonClickEvent()
         {
-            folder.SetExpanded(value: !folder.Expanded);
+            folder.Expanded = !folder.Expanded;
         }
     }
 }

@@ -58,7 +58,7 @@ namespace AG.DS
         /// <param name="placeholderText">The placeholder text to set for.</param>
         public CommonTextFieldView(string placeholderText)
         {
-            this.PlaceholderText = placeholderText;
+            PlaceholderText = placeholderText;
         }
 
 

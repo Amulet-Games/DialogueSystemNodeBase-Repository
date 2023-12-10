@@ -39,28 +39,28 @@ namespace AG.DS
             switch ((M_Condition_ComparisonType)Value)
             {
                 case M_Condition_ComparisonType.True:
-                    Icon.sprite = spriteConfig.TrueOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.TrueOperatorIconSprite;
                     break;
                 case M_Condition_ComparisonType.False:
-                    Icon.sprite = spriteConfig.FalseOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.FalseOperatorIconSprite;
                     break;
                 case M_Condition_ComparisonType.Matches:
-                    Icon.sprite = spriteConfig.MatchOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.MatchOperatorIconSprite;
                     break;
                 case M_Condition_ComparisonType.Equals:
-                    Icon.sprite = spriteConfig.EqualOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.EqualOperatorIconSprite;
                     break;
                 case M_Condition_ComparisonType.EqualsOrBigger:
-                    Icon.sprite = spriteConfig.EqualOrBiggerOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.EqualOrBiggerOperatorIconSprite;
                     break;
                 case M_Condition_ComparisonType.EqualsOrSmaller:
-                    Icon.sprite = spriteConfig.EqualOrSmallerOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.EqualOrSmallerOperatorIconSprite;
                     break;
                 case M_Condition_ComparisonType.Bigger:
-                    Icon.sprite = spriteConfig.BiggerOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.BiggerOperatorIconSprite;
                     break;
                 case M_Condition_ComparisonType.Smaller:
-                    Icon.sprite = spriteConfig.SmallerOperatorButtonIconSprite;
+                    Icon.sprite = spriteConfig.SmallerOperatorIconSprite;
                     break;
             }
         }

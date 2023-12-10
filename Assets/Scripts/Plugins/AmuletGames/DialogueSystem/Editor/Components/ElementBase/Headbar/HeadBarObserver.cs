@@ -156,8 +156,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the save button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void SaveButtonClickEvent(ClickEvent evt)
+        void SaveButtonClickEvent()
         {
             dsWindow.Save();
         }
@@ -166,8 +165,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the load button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void LoadButtonClickEvent(ClickEvent evt)
+        void LoadButtonClickEvent()
         {
             dsWindow.Load(isForceLoadWindow: false);
         }

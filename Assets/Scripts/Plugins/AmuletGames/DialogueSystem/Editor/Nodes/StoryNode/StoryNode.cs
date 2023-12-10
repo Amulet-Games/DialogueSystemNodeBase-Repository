@@ -73,7 +73,7 @@ namespace AG.DS
             var target = NodeManager.Instance.Spawn
             (
                 GraphViewer,
-                nodeType: NodeType.Dialogue,
+                nodeType: NodeType.Boolean,
                 LanguageHandler
             );
 
@@ -98,7 +98,7 @@ namespace AG.DS
             target.NodeBorder.style.borderRightColor = new Color(r: 0, g: 0, b: 0, a: 0);
             target.NodeBorder.style.borderTopColor = new Color(r: 0, g: 0, b: 0, a: 0);
 
-            var dNode = (DialogueNode)target;
+            var dNode = (BooleanNode)target;
             dNode.View.ContentButton.Click();
 
             BringToFront();

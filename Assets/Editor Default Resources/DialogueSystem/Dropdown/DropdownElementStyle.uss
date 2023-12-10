@@ -1,0 +1,69 @@
+/*< ---------------------------------------------------------- Main >*/
+.dropdownElement {
+
+	background-color: rgba(19, 19, 19, 1);
+	
+	height: 27px;
+	width: 162px;
+
+	flex-direction: row;
+}
+
+.dropdownElement:hover {
+	
+	cursor: link;
+
+	background-color: rgba(120, 120, 120, 1);
+}
+
+.dropdownElement-selected {
+	
+	background-color: rgba(58, 121, 187, 1);
+}
+
+.dropdownElement-last {
+	
+	/* top - right - bottom - left */
+	border-radius: 0px 0px 4px 4px;
+}
+
+
+/*< ---------------------------------------------------------- Dropdown Element Image >*/
+.dropdownElement-elementIcon-image {
+
+	align-self: center;
+	
+	height: 15px;
+	width: 15px;
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 4.5px;
+}
+
+.dropdownElement:hover
+.dropdownElement-elementIcon-image {
+	
+	cursor: link;
+}
+
+
+/*< ---------------------------------------------------------- Dropdown Element Text Label >*/
+.dropdownElement-elementText-label {
+
+	color: white;
+	
+	font-size: 13px;
+	
+	align-self: center;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	
+	/* top - right - bottom - left */
+	margin: 1px 16.5px 0px 4.5px;
+}
+
+.dropdownElement:hover
+.dropdownElement-elementText-label {
+	
+	cursor: link;
+}

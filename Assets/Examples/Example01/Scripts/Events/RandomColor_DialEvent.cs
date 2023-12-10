@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AG.DS
 {
-    [CreateAssetMenu(menuName = "Dialogue/New Dialogue Event/Random Color")]
+    [CreateAssetMenu(menuName = "Dialogue/Append Dialogue Event/Random Color")]
     public class RandomColor_DialEvent : DialogueEvent
     {
         public Material mat;

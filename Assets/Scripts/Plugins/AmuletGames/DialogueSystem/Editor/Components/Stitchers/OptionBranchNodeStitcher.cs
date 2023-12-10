@@ -96,7 +96,7 @@ namespace AG.DS
         /// Create a new instance modifier for the stitcher.
         /// </summary>
         /// <param name="model">The condition modifier model to set for.</param>
-        public void AddInstanceModifier(ConditionModifierModel model)
+        public void AddInstanceModifier(ConditionModifierModel_Legacy model)
         {
             new ConditionModifier().CreateInstanceElements
             (
@@ -169,7 +169,7 @@ namespace AG.DS
                 for (int i = 0; i < instancesCount; i++)
                 {
                     // New modifier model.
-                    ConditionModifierModel newModifierModel = new();
+                    ConditionModifierModel_Legacy newModifierModel = new();
 
                     // Save values.
                     instanceModifiers[i].SaveModifierValue(newModifierModel);

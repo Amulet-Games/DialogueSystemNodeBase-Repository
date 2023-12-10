@@ -21,13 +21,13 @@ namespace AG.DS
         /// <summary>
         /// Button that save the editor window when clicked.
         /// </summary>
-        public Button SaveButton;
+        public CommonButton SaveButton;
 
 
         /// <summary>
         /// Button that load the editor window when clicked.
         /// </summary>
-        public Button LoadButton;
+        public CommonButton LoadButton;
 
 
         /// <summary>

@@ -16,8 +16,8 @@ MonoBehaviour:
   MoveDownButtonIconSprite: {fileID: 21300000, guid: c1e241b752c5a424e93271867d126405, type: 3}
   MoveUpButtonIconSprite: {fileID: 21300000, guid: 81166389d3b2799488f063d41894b087, type: 3}
   RemoveButtonIconSprite: {fileID: 21300000, guid: 461baa3ae24877b4abbe184d5b83f8c6, type: 3}
-  LinkConditionIconSprite: {fileID: 21300000, guid: 9d3ef865572e44603b9851d2029dfc6b, type: 3}
-  UnlinkConditionIconSprite: {fileID: 21300000, guid: fded6c667f63b524ea130804643fe786, type: 3}
+  LinkConditionIconSprite: {fileID: 21300000, guid: fe5c61b66bee8fc47a58a806fed64765, type: 3}
+  UnlinkConditionIconSprite: {fileID: 21300000, guid: 9d322665657662349b03f17e3f4327c2, type: 3}
   AddConditionButtonIconSprite: {fileID: 21300000, guid: 8ee07045343650f409ed2cfc8acb7e32, type: 3}
   AddEntryButtonIconSprite: {fileID: 21300000, guid: 151785b89ea5c47729fefda27509d6df, type: 3}
   AddEventButtonIconSprite: {fileID: 21300000, guid: 4d9f578eee56a22468aad41c49557a14, type: 3}
@@ -40,16 +40,17 @@ MonoBehaviour:
   ScriptableObjectFieldIconSprite: {fileID: 21300000, guid: 145c931dac52abf46a97bfc9cce7d8fe, type: 3}
   FolderExpandButtonCloseIconSprite: {fileID: 21300000, guid: 82c12682d26d6a84898153daf7f104a0, type: 3}
   FolderExpandButtonOpenIconSprite: {fileID: 21300000, guid: 208f6e6eef98f2247b928ec13248934f, type: 3}
-  BiggerOperatorButtonIconSprite: {fileID: 21300000, guid: 406dd0467341d494aa7e7aaf5e33d61f, type: 3}
-  EqualOperatorButtonIconSprite: {fileID: 21300000, guid: 98f3243c8f8b38f479699e47a9e406a6, type: 3}
-  EqualOrBiggerOperatorButtonIconSprite: {fileID: 21300000, guid: f94152a46a8177c41adfab748e6aaa51, type: 3}
-  EqualOrSmallerOperatorButtonIconSprite: {fileID: 21300000, guid: ed16ef746760d004096e8c2adda069fe, type: 3}
-  FalseOperatorButtonIconSprite: {fileID: 21300000, guid: cbb8ce12d8c86c94fa45b6e2ab4e5894, type: 3}
-  MatchOperatorButtonIconSprite: {fileID: 21300000, guid: 9cf48d86b203b6e44a474f1f9c799a72, type: 3}
-  SmallerOperatorButtonIconSprite: {fileID: 21300000, guid: 83a04416aa1769a499f12d66ed0a1683, type: 3}
-  TrueOperatorButtonIconSprite: {fileID: 21300000, guid: 59d58d2f98fd7a24aa003681ccd403aa, type: 3}
+  BiggerOperatorIconSprite: {fileID: 21300000, guid: 406dd0467341d494aa7e7aaf5e33d61f, type: 3}
+  CustomLogicOperatorIconSprite: {fileID: 21300000, guid: b8873cc726264084aaad9aff435b53ae, type: 3}
+  EqualOperatorIconSprite: {fileID: 21300000, guid: 98f3243c8f8b38f479699e47a9e406a6, type: 3}
+  EqualOrBiggerOperatorIconSprite: {fileID: 21300000, guid: f94152a46a8177c41adfab748e6aaa51, type: 3}
+  EqualOrSmallerOperatorIconSprite: {fileID: 21300000, guid: ed16ef746760d004096e8c2adda069fe, type: 3}
+  FalseOperatorIconSprite: {fileID: 21300000, guid: cbb8ce12d8c86c94fa45b6e2ab4e5894, type: 3}
+  MatchOperatorIconSprite: {fileID: 21300000, guid: 9cf48d86b203b6e44a474f1f9c799a72, type: 3}
+  SmallerOperatorIconSprite: {fileID: 21300000, guid: 83a04416aa1769a499f12d66ed0a1683, type: 3}
+  TrueOperatorIconSprite: {fileID: 21300000, guid: 59d58d2f98fd7a24aa003681ccd403aa, type: 3}
   SegmentExpandButtonIconSprite: {fileID: 21300000, guid: 98443ba30dba8b142967eebed916d246, type: 3}
-  ApplyDesignSampleImage: {fileID: 21300000, guid: 442a78a1d9cdfd445b6587603afdef4f, type: 3}
+  ApplyDesignSampleImage: {fileID: 21300000, guid: 3df2b06a5c676e7498cf97a223197b24, type: 3}
   CharacterFieldIconSprite: {fileID: 21300000, guid: 2041db62825328246b33aa9370368077, type: 3}
   ChangeFieldTypeButtonIconSprite: {fileID: 21300000, guid: b855dcd523cea804faffae8f8bde0619, type: 3}
   ChangeFieldTypeButtonBlockedIconSprite: {fileID: 21300000, guid: cddfb1db3bf6041a1b35307e93beac98, type: 3}

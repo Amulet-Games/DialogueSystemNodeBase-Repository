@@ -1,5 +1,3 @@
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
     /// <inheritdoc />
@@ -47,8 +45,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the node title edit button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void NodeTitleEditButtonClickEvent(ClickEvent evt)
+        void NodeTitleEditButtonClickEvent()
         {
             var fieldInput = View.NodeTitleFieldView.Field.GetFieldInput();
             fieldInput.focusable = true;

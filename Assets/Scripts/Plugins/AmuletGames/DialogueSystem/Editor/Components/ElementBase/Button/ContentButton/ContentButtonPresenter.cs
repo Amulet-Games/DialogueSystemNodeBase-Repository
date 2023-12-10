@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -10,44 +11,47 @@ namespace AG.DS
         /// <param name="buttonText">The name for this content button.</param>
         /// <param name="buttonIconSprite">The icon that displays beside the button text.</param>
         /// <returns>A new content button element.</returns>
-        public static ContentButton CreateElement
+        public static CommonButton CreateElement
         (
             string buttonText,
             Sprite buttonIconSprite
         )
         {
-            ContentButton contentButton;
+            CommonButton button;
 
-            CreateContainer();
+            Label textLabel;
+            Image iconImage;
 
-            CreateButtonTextLabel();
+            CreateButton();
 
-            CreateButtonIconImage();
+            CreateTextLabel();
+
+            CreateIconImage();
 
             AddElementsToContentButton();
 
             AddStyleSheet();
 
-            return contentButton;
+            return button;
 
-            void CreateContainer()
+            void CreateButton()
             {
-                contentButton = new();
-                contentButton.AddToClassList(StyleConfig.ContentButton);
+                button = new();
+                button.AddToClassList(StyleConfig.ContentButton);
             }
 
-            void CreateButtonTextLabel()
+            void CreateTextLabel()
             {
-                contentButton.ButtonTextLabel = CommonLabelPresenter.CreateElement
+                textLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: buttonText,
                     labelUSS: StyleConfig.ContentButton_ButtonText_Label
                 );
             }
 
-            void CreateButtonIconImage()
+            void CreateIconImage()
             {
-                contentButton.ButtonIconImage = CommonImagePresenter.CreateElement
+                iconImage = CommonImagePresenter.CreateElement
                 (
                     imageSprite: buttonIconSprite,
                     imageUSS01: StyleConfig.ContentButton_ButtonIcon_Image
@@ -56,13 +60,13 @@ namespace AG.DS
 
             void AddElementsToContentButton()
             {
-                contentButton.Add(contentButton.ButtonTextLabel);
-                contentButton.Add(contentButton.ButtonIconImage);
+                button.Add(textLabel);
+                button.Add(iconImage);
             }
 
             void AddStyleSheet()
             {
-                contentButton.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSContentButtonStyle);
+                button.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSContentButtonStyle);
             }
         }
     }

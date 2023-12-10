@@ -3,7 +3,7 @@ namespace AG.DS
     public static class StringConfig
     {
         #region Window Labels.
-        public const string Editor_WindowDefaultTitleText = "New Dialogue Editor Graph";
+        public const string Editor_WindowDefaultTitleText = "Append Dialogue Editor Graph";
         public const string Editor_WindowAlreadyOpened_WarningText = "Action is ignored since the dialogue system window of this asset is already opened.";
         public const string Editor_WindowAlreadySaved_WarningText = "Action is ignored since there's no unsaved changes.";
         public const string Editor_WindowAlreadyLoaded_WarningText = "Action is ignored since there's nothing changed from the last time it loaded.";
@@ -103,6 +103,25 @@ namespace AG.DS
         public const string MessageModifier_ContinueByAuto_LabelText = "Auto";
         public const string MessageModifier_StartDelay_LabelText = "Start Delay";
         public const string MessageModifier_DelaySeconds_LabelText = "seconds";
+        #endregion
+
+        #region Condition Modifier Texts.
+        public const string ConditionModifier_FolderTitleField_DefaultText = "Condition ";
+        public const string ConditionModifier_Operation_LabelText = "Operation ";
+        public const string ConditionModifier_ChainWith_LabelText = "Chain With ";
+        public const string ConditionModifier_Operators_LabelText = "Operators";
+        public const string ConditionModifier_CustomLogic_LabelText = "Custom Logic";
+        public const string ConditionModifier_Match_LabelText = "Match";
+        public const string ConditionModifier_Equal_LabelText = "Equal";
+        public const string ConditionModifier_EqualOrBigger_LabelText = "Equal Or Bigger";
+        public const string ConditionModifier_EqualOrSmaller_LabelText = "Equal Or Smaller";
+        public const string ConditionModifier_Bigger_LabelText = "Bigger";
+        public const string ConditionModifier_Smaller_LabelText = "Smaller";
+        public const string ConditionModifier_Group_LabelText = "Group";
+        public const string ConditionModifier_None_LabelText = "None";
+        public const string ConditionModifier_Group1_LabelText = "Group 1";
+        public const string ConditionModifier_Group2_LabelText = "Group 2";
+        public const string ConditionModifier_Group3_LabelText = "Group 3";
         #endregion
 
         #region Option Root Node Texts.

@@ -22,7 +22,7 @@ namespace AG.DS
         )
             : base(portType, direction, capacity, name)
         {
-            this.IsGroup = isGroup;
+            IsGroup = isGroup;
         }
     }
 }

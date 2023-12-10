@@ -51,7 +51,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Services -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Remove the language field view from the graph viewer's cache.
         /// </summary>

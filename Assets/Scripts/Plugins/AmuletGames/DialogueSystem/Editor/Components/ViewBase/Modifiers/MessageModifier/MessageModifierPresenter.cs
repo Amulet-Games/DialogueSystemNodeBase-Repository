@@ -72,11 +72,7 @@ namespace AG.DS
             {
                 view.Folder = FolderPresenter.CreateElement
                 (
-                    folderTitle: StringUtility.New
-                    (
-                        str01: StringConfig.MessageModifier_FolderTitleField_DefaultText,
-                        str02: index.ToString()
-                    )
+                    folderTitle: StringConfig.MessageModifier_FolderTitleField_DefaultText.Append(index.ToString())
                 );
             }
             
@@ -221,16 +217,17 @@ namespace AG.DS
                 var continueByInputRadio = RadioPresenter.CreateElement
                 (
                     radioText: StringConfig.MessageModifier_ContinueByInput_LabelText,
-                    radioSprite: ConfigResourcesManager.SpriteConfig.ContinueByInputSprite
+                    radioIconSprite: ConfigResourcesManager.SpriteConfig.ContinueByInputSprite
                 );
 
                 var continueByAutoRadio = RadioPresenter.CreateElement
                 (
                     radioText: StringConfig.MessageModifier_ContinueByAuto_LabelText,
-                    radioSprite: ConfigResourcesManager.SpriteConfig.ContinueByAutoSprite
+                    radioIconSprite: ConfigResourcesManager.SpriteConfig.ContinueByAutoSprite
                 );
 
-                var radios = new[]{
+                var radios = new[]
+                {
                     continueByAutoRadio,
                     continueByInputRadio
                 };

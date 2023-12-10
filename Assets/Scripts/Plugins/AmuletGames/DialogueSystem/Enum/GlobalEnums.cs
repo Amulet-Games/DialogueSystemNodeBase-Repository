@@ -21,4 +21,41 @@ namespace AG.DS
         Float,
         String
     }
+
+
+    // ----------------------------- Reflection Field Enums -----------------------------
+    public enum ReflectionFieldType
+    {
+        Public,
+        Private,
+        Instance,
+        Static,
+        
+        Public_Private,
+        Public_Instance,
+        Public_Static,
+
+        Public_Private_Instance,
+        Public_Private_Static,
+        Public_Private_Instance_Static,
+
+        Public_Instance_Static,
+        
+        Private_Instance,
+        Private_Static,
+
+        Private_Instance_Static,
+
+        Instance_Static,
+    }
+
+    // ----------------------------- Reflection Data Enums -----------------------------
+    public enum ReflectionDataType
+    {
+        None,
+        Float,
+        Double,
+        Integer,
+        String
+    }
 }

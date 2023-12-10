@@ -1,4 +1,4 @@
-using UnityEngine.UIElements;
+using System;
 
 namespace AG.DS
 {
@@ -13,13 +13,13 @@ namespace AG.DS
         /// <summary>
         /// The targeting button element.
         /// </summary>
-        Button button;
+        CommonButton button;
 
 
         /// <summary>
         /// The event to invoke when the button is clicked.
         /// </summary>
-        EventCallback<ClickEvent> clickEvent;
+        Action clickEvent;
 
 
         /// <summary>
@@ -31,8 +31,8 @@ namespace AG.DS
         public CommonButtonObserver
         (
             bool isAlert,
-            Button button,
-            EventCallback<ClickEvent> clickEvent
+            CommonButton button,
+            Action clickEvent
         )
         {
             this.isAlert = isAlert;
@@ -59,21 +59,20 @@ namespace AG.DS
         /// <summary>
         /// Register ClickEvent to the button.
         /// </summary>
-        void RegisterClickEvent() => button.RegisterCallback(clickEvent);
+        void RegisterClickEvent() => button.ClickEvent += clickEvent;
 
 
         /// <summary>
-        /// Register alert ClickEvent to the button.
+        /// Register AlertClickEvent to the button.
         /// </summary>
-        void RegisterAlertClickEvent() => button.RegisterCallback<ClickEvent>(AlertClickEvent);
+        void RegisterAlertClickEvent() => button.ClickEvent += AlertClickEvent;
 
 
         // ----------------------------- Event -----------------------------
         /// <summary>
         /// The event to invoke when the button is clicked and the isAlert property.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void AlertClickEvent(ClickEvent evt)
+        void AlertClickEvent()
         {
             WindowChangedEvent.Invoke();
         }

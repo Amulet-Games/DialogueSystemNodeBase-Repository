@@ -97,7 +97,7 @@ namespace AG.DS
 
             void LoadContinueByRadioGroup()
             {
-                view.ContinueByRadioGroup.Save(model.ContinueByRadioGroupModel);
+                view.ContinueByRadioGroup.Load(model.ContinueByRadioGroupModel);
             }
 
             void LoadDelaySecondsInteger()

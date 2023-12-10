@@ -5,43 +5,19 @@ namespace AG.DS
         /// <summary>
         /// Create a new radio group element.
         /// </summary>
-        /// <param name="radios">The radio elements array to set for.</param>
+        /// <param name="radios">The radio elements to set for.</param>
         /// <returns>A new radio group element.</returns>
         public static RadioGroup CreateElement(Radio[] radios)
         {
             RadioGroup group;
 
-            CreateGroup();
+            // Create group
+            group = new(radios);
+            group.AddToClassList(StyleConfig.RadioGroup);
 
-            AddElementsToGroup();
-
-            AddClassList();
-
-            AddStyleSheet();
-
-            void CreateGroup()
-            {
-                group = new(radios);
-            }
-
-            void AddElementsToGroup()
-            {
-                for (int i = radios.Length - 1; 0 <= i; i--)
-                {
-                    group.Add(radios[i]);
-                }
-            }
-
-            void AddClassList()
-            {
-                group.AddToClassList(StyleConfig.RadioGroup);
-            }
-
-            void AddStyleSheet()
-            {
-                group.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSRadioGroupStyle);
-            }
-
+            // Add stylesheet
+            group.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSRadioGroupStyle);
+            
             return group;
         }
     }

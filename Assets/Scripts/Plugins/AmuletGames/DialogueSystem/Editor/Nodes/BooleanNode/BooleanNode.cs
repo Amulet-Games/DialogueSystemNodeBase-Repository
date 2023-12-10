@@ -63,10 +63,8 @@ namespace AG.DS
         {
             var styleSheetConfig = ConfigResourcesManager.StyleSheetConfig;
             styleSheets.Add(styleSheetConfig.DSBooleanNodeStyle);
-            styleSheets.Add(styleSheetConfig.DSModifierStyle);
-            styleSheets.Add(styleSheetConfig.DSSegmentStyle);
-            styleSheets.Add(styleSheetConfig.DSContentButtonStyle);
-            styleSheets.Add(styleSheetConfig.DSRootedModifierStyle);
+            styleSheets.Add(styleSheetConfig.DSConditionModifierStyle);
+            styleSheets.Add(styleSheetConfig.DSConditionModifierGroupStyle);
         }
 
 

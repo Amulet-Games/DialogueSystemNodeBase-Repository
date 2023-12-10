@@ -10,13 +10,13 @@ namespace AG.DS
         /// <summary>
         /// The stitcher's root condition modifier model.
         /// </summary>
-        [SerializeField] public ConditionModifierModel RootModifierModel;
+        [SerializeField] public ConditionModifierModel_Legacy RootModifierModel;
 
 
         /// <summary>
         /// The stitcher's instance condition modifier models.
         /// </summary>
-        [SerializeField] public List<ConditionModifierModel> InstanceModifiersModels;
+        [SerializeField] public List<ConditionModifierModel_Legacy> InstanceModifiersModels;
 
 
         /// <summary>

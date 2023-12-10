@@ -18,13 +18,13 @@ namespace AG.DS
         /// <summary>
         /// The maximum value that can be set to the field.
         /// </summary>
-        [NonSerialized] int? maxValue;
+        [NonSerialized] double? maxValue;
 
 
         /// <summary>
         /// The minimum value that can be set to the field.
         /// </summary>
-        [NonSerialized] int? minValue;
+        [NonSerialized] double? minValue;
 
 
         /// <summary>

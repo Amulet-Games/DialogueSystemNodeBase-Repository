@@ -33,6 +33,8 @@ namespace AG.DS
             RegisterNodeTitleTextFieldEvents();
 
             RegisterNodeTitleEditButtonClickEvent();
+
+            RegisterContentButtonClickEvent();
         }
 
 
@@ -68,6 +70,16 @@ namespace AG.DS
                 clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
 
 
+        /// <summary>
+        /// Register ClickEvent to the node content button.
+        /// </summary>
+        void RegisterContentButtonClickEvent()
+            => new CommonButtonObserver(
+                isAlert: true,
+                button: View.ContentButton,
+                clickEvent: ContentButtonClickEvent).RegisterEvents();
+
+
         // ----------------------------- Event -----------------------------
         /// <summary>
         /// The event to invoke when the pointer's state has changed.
@@ -97,12 +109,34 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the node title edit button is clicked.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void NodeTitleEditButtonClickEvent(ClickEvent evt)
+        void NodeTitleEditButtonClickEvent()
         {
             var fieldInput = View.NodeTitleFieldView.Field.GetFieldInput();
             fieldInput.focusable = true;
             fieldInput.Focus();
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the content button is clicked.
+        /// </summary>
+        void ContentButtonClickEvent()
+        {
+            var groupView = View.ConditionModifierGroupView;
+            var modifier = new ConditionModifierSeeder().Generate(groupView, Node.GraphViewer);
+
+            // Add to group
+            {
+                groupView.Add(modifier);
+                groupView.UpdateReferences();
+            }
+
+            // Create the first folder
+            {
+                var folder = modifier.Folder;
+                folder.Expanded = true;
+                folder.StartEditingFolderTitle();
+            }
         }
     }
 }

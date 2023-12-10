@@ -3,7 +3,7 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    [CreateAssetMenu(menuName = "### AG ###/Dialogue System/Config/New Style Sheets Config")]
+    [CreateAssetMenu(menuName = "### AG ###/Dialogue System/Config/Append Style Sheets Config")]
     public class StyleSheetConfig : ScriptableObject
     {
         #region Edges.
@@ -14,6 +14,8 @@ namespace AG.DS
 
         #region Modifiers.
         [Header("Modifiers")]
+        public StyleSheet DSConditionModifierGroupStyle;
+        public StyleSheet DSConditionModifierStyle;
         public StyleSheet DSEventModifierGroupStyle;
         public StyleSheet DSEventModifierStyle;
         public StyleSheet DSMessageModifierGroupStyle;
@@ -60,8 +62,15 @@ namespace AG.DS
         #endregion
 
         #region Radio.
+        [Header("Radio")]
         public StyleSheet DSRadioGroupStyle;
         public StyleSheet DSRadioStyle;
+        #endregion
+
+        #region Dropdown.
+        [Header("Dropdown")]
+        public StyleSheet DSDropdownStyle;
+        public StyleSheet DSDropdownElementStyle;
         #endregion
 
         #region Globals.

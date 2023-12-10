@@ -117,7 +117,7 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Services -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <summary>
         /// Reframe the graph viewer when the given visual element's GeometryChangedEvent is invoked.
         /// </summary>

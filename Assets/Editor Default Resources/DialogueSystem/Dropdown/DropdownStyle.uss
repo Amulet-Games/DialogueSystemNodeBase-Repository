@@ -1,0 +1,133 @@
+/*< ---------------------------------------------------------- Dropdown Button >*/
+.dropdown-dropdownButton-button {
+	
+	background-color: rgba(32, 32, 32, 1);
+	
+	height: 27px;
+
+	flex-direction: row;
+	
+	/* top - right - bottom - left */
+	margin: 4px 6px 6px 6px;
+	border-radius: 4px;
+}
+
+.dropdown-dropdownButton-button:hover {
+	
+	cursor: link;
+
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px;
+}
+
+.dropdown-dropdownButton-button:focus {
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px;
+}
+
+
+/*< ---------------------------------------------------------- Dropdown Button Image >*/
+.dropdown-dropdownButton-buttonIcon-image {
+
+	align-self: center;
+	
+	height: 15px;
+	width: 15px;
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 4.5px;
+}
+
+
+.dropdown-dropdownButton-button:hover
+.dropdown-dropdownButton-buttonIcon-image,
+
+.dropdown-dropdownButton-button:focus
+.dropdown-dropdownButton-buttonIcon-image {
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 4px;
+}
+
+/*< ---------------------------------------------------------- Dropdown Button Label >*/
+.dropdown-dropdownButton-buttonText-label {
+	
+	color: white;
+	
+	font-size: 13px;
+	
+	align-self: center;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	
+	/* top - right - bottom - left */
+	margin: 1px 16.5px 0px 4.5px;
+}
+
+.dropdown-dropdownButton-button:hover
+.dropdown-dropdownButton-buttonText-label {
+	
+	cursor: link;
+}
+
+
+/*< ---------------------------------------------------------- Dropdown Button Arrow Icon Image >*/
+.dropdown-dropdownButton-arrowIcon-image {
+	
+	align-self: center;
+	
+	height: 21px;
+	width: 21px;
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 0px;
+}
+
+
+.dropdown-dropdownButton-button:hover
+.dropdown-dropdownButton-arrowIcon-image,
+
+.dropdown-dropdownButton-button:focus
+.dropdown-dropdownButton-arrowIcon-image {
+
+	/* top - right - bottom - left */
+	margin: 0px -0.5px 0px 0px;
+}
+
+
+/*< ---------------------------------------------------------- Dropdown Menu Header Container>*/
+.dropdown-dropdownMenu-header-container {
+	
+	background-color: rgba(19, 19, 19, 1);
+	
+	height: 27px;
+	width: 162px;
+	
+	/* top - right - bottom - left */
+	border-radius: 4px 4px 0px 0px;
+	
+	flex-direction: row;
+}
+
+
+/*< ---------------------------------------------------------- Dropdown Menu Header Text Label >*/
+.dropdown-dropdownMenu-headerText-label {
+	
+	align-self: center;
+	
+	color: rgba(210, 210, 210, 1);
+	
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Static-SDF.asset');
+
+	white-space: nowrap;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 6px;
+}

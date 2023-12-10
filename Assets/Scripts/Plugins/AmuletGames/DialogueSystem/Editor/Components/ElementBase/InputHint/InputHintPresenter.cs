@@ -19,6 +19,8 @@ namespace AG.DS
 
             AddElementsToInputHint();
 
+            AddInputHintToGraph();
+
             AddStyleSheet();
 
             HideElementByDefault();
@@ -53,6 +55,11 @@ namespace AG.DS
             {
                 inputHint.Add(inputHint.HintIconImage);
                 inputHint.Add(inputHint.HintTextLabel);
+            }
+
+            void AddInputHintToGraph()
+            {
+                graphViewer.contentViewContainer.Add(inputHint);
             }
 
             void AddStyleSheet()

@@ -1,0 +1,6 @@
+/*< ---------------------------------------------------------- Main >*/
+.conditionModifierGroup {
+	
+	/* top - right - bottom - left */
+	padding: 5px 0px 0px 0px;
+}

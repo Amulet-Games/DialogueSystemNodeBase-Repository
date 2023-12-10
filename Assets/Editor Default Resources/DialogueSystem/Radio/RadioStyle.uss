@@ -1,0 +1,81 @@
+/*< ---------------------------------------------------------- Main >*/
+.radio {
+
+	background-color: rgba(32, 32, 32, 1);
+
+	flex-direction: row;
+
+	/* top - right - bottom - left */
+	margin: 4px 6px 6px 0px;
+	border-radius: 4px;
+}
+
+.radio:hover {
+	
+	cursor: link;
+
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px;
+}
+
+
+/*< ---------------------------------------------------------- Icon Image >*/
+.radio-radioIcon-image {
+
+	width: 20px; 
+	height: 20px;
+
+	/* top - right - bottom - left */
+	margin: 2.5px 0px 0px 2.5px;
+	
+	--unity-image-tint-color: rgba(81, 81, 81, 1);
+}
+
+.radio:hover
+.radio-radioIcon-image {
+	
+	cursor: link;
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 2px;
+}
+
+
+.radio-active
+.radio-radioIcon-image {
+	
+	--unity-image-tint-color: white;
+}
+
+
+/*< ---------------------------------------------------------- Text Label >*/
+.radio-radioText-label {
+	
+	color: rgba(81, 81, 81, 1);
+	
+	font-size: 13px;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+
+	letter-spacing: 2.5px;
+
+	/* top - right - bottom - left */
+	margin: 4.5px 4.5px 5px 2px;
+}
+
+.radio:hover
+.radio-radioText-label {
+	
+	cursor: link;
+
+	/* top - right - bottom - left */
+	margin: 4px 4px 4.5px 2px;
+}
+
+.radio-active
+.radio-radioText-label {
+	
+	color: white;
+}

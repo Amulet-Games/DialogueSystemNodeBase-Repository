@@ -5,8 +5,7 @@ namespace AG.DS
     public static class RadioExtensions
     {
         /// <summary>
-        /// Add the radio element to the active style class if its picking mode is ignore,
-        /// <br>otherwise remove the radio from the active style class.</br>
+        /// Add or remove the radio element's selected style class based on the certain condition.
         /// </summary>
         /// <param name="radio">Extension radio element.</param>
         public static void ToggleActiveStyle(this Radio radio)

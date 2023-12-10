@@ -30,13 +30,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Vertical offset value in between the target field and the hint itself.
+        /// The vertical offset from the target field.
         /// </summary>
         const float HINT_OFFSET_TOP = 31f;
 
 
         /// <summary>
-        /// Horizontal offset value in between the target field and the hint itself.
+        /// The horizontal offset from the target field.
         /// </summary>
         const float HINT_OFFSET_LEFT = 18f;
 
@@ -51,9 +51,9 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Show / Hide Hint -----------------------------
+        // ----------------------------- Service -----------------------------
         /// <summary>
-        /// Show the input hint next to a visual element.
+        /// Update and Show the input hint on the graph.
         /// </summary>
         /// <param name="hintText">The text of the hint to show.</param>
         /// <param name="targetWorldBoundRect">
@@ -62,8 +62,7 @@ namespace AG.DS
         /// </param>
         public static void ShowHint(string hintText, Rect targetWorldBoundRect)
         {
-            float targetHintPosX;
-            float targetHintPosY;
+            var graphViewer = Instance.graphViewer;
 
             // Show the hint.
             Instance.ShowElement();
@@ -78,31 +77,30 @@ namespace AG.DS
             void UpdatePositionHorizontal()
             {
                 // Calculate the end point of the field that this hint is going to refer to.
-                targetHintPosX = targetWorldBoundRect.x + targetWorldBoundRect.width;
+                float targetHintPosX = targetWorldBoundRect.x + targetWorldBoundRect.width;
 
-                // Remove the horizontal offset value that from the graph viewer's content view container.
-                targetHintPosX += Instance.graphViewer.contentViewContainer.worldBound.x * -1;
+                // Remove the horizontal offset value from the graph viewer's content view container.
+                targetHintPosX += graphViewer.contentViewContainer.worldBound.x * -1;
 
                 // Divide it with the graph viewer size to keep position even after zooming in and out.
-                targetHintPosX /= Instance.graphViewer.scale;
+                targetHintPosX /= graphViewer.scale;
 
-                // Lastly add the top offset value to the field that the hint is targeting to.
+                // Combine the calculated position with the offset.
                 Instance.style.left = targetHintPosX += HINT_OFFSET_LEFT;
             }
 
             void UpdatePositionVertical()
             {
-                // Calculate the height position point of the field that this hint is going to target.
-                targetHintPosY = targetWorldBoundRect.y - targetWorldBoundRect.height;
-                //Debug.Log("Max.y = " + targetWorldBoundRect.max.y);
+                // Calculate the height position point of the field that this hint is going to target..
+                float targetHintPosY = targetWorldBoundRect.y - targetWorldBoundRect.height;
 
-                // Remove the vertical offset value that created by the graph viewer's content view container.
-                targetHintPosY += Instance.graphViewer.contentViewContainer.worldBound.y * -1;
+                // Remove the vertical offset value from the graph viewer's content view container.
+                targetHintPosY += graphViewer.contentViewContainer.worldBound.y * -1;
 
                 // Divide it with the graph viewer size to keep position even after zooming in and out.
-                targetHintPosY /= Instance.graphViewer.scale;
+                targetHintPosY /= graphViewer.scale;
 
-                // Lastly add the top offset value to the field that the hint is targeting to.
+                // Combine the calculated position with the offset.
                 Instance.style.top = targetHintPosY += HINT_OFFSET_TOP;
             }
         }

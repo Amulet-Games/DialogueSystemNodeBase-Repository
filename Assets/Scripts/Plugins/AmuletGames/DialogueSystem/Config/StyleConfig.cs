@@ -36,6 +36,9 @@ namespace AG.DS
         public const string Double_Field_Empty = "double-field-empty";
         public const string Double_Field_Input = "double-field-input";
         public const string Double_Field_Element = "double-field-element";
+
+        /*< -------------------- Button -------------------- >*/
+        public const string Button_ButtonText_Label = "button-buttonText-label";
         #endregion
 
         #region HeadBar USS Classes.
@@ -81,6 +84,10 @@ namespace AG.DS
 
         /*< -------------------- Node Content Container -------------------- >*/
         public const string Node_Content_Container = "node-content-container";
+        #endregion
+
+        #region Node Boolean USS Classes.
+        public const string BooleanNode_False_Output_Port = "booleanNode-false-output-port";
         #endregion
 
         #region Node Dialogue USS Classes.
@@ -207,7 +214,7 @@ namespace AG.DS
         public const string EventModifierGroup = "eventModifierGroup";
         #endregion
 
-        #region Modifier Condition USS Classes.
+        #region Modifier Condition USS Classes (Legacy).
         public const string Modifier_Condition_Main_Box = "modifier_Condition_Main_Box";
         public const string Modifier_Condition_FirstTerm_ObjectField = "modifier_Condition_FirstTerm_ObjectField";
 
@@ -235,6 +242,22 @@ namespace AG.DS
 
         public const string Modifier_Condition_Rooted_Button_Box = "modifier_Condition_Rooted_Button_Box";
         public const string Modifier_Condition_Rooted_ChangeFieldType_Button = "modifier_Condition_Rooted_ChangeFieldType_Button";
+        #endregion
+
+        #region Modifier Condition USS Classes.
+        public const string ConditionModifier_HelperButton_Container = "conditionModifier-helperButton-container";
+        public const string ConditionModifier_MoveUp_Button = "conditionModifier-moveUp-button";
+        public const string ConditionModifier_MoveDown_Button = "conditionModifier-moveDown-button";
+        public const string ConditionModifier_Rename_Button = "conditionModifier-rename-button";
+        public const string ConditionModifier_Remove_Button = "conditionModifier-remove-button";
+        public const string ConditionModifier_Operation_ChainWith_Container = "conditionModifier-operation-chainWith-container";
+        public const string ConditionModifier_Operation_Container = "conditionModifier-operation-container";
+        public const string ConditionModifier_Operation_Label = "conditionModifier-operation-label";
+        public const string ConditionModifier_ChainWith_Container = "conditionModifier-chainWith-container";
+        public const string ConditionModifier_ChainWith_Label = "conditionModifier-chainWith-label";
+
+        /*< -------------------- Condition Modifier Group -------------------- >*/
+        public const string ConditionModifierGroup = "conditionModifierGroup";
         #endregion
 
         #region Modifier Message USS Classes.
@@ -305,11 +328,34 @@ namespace AG.DS
         #region Radio USS Classes.
         public const string Radio = "radio";
         public const string Radio_Active = "radio-active"; 
-        public const string Radio_RadioText_Label = "radio-radioText-label";
         public const string Radio_RadioIcon_Image = "radio-radioIcon-image";
+        public const string Radio_RadioText_Label = "radio-radioText-label";
 
         /*< -------------------- Radio Group -------------------- >*/
         public const string RadioGroup = "radioGroup";
+        #endregion
+
+        #region Dropdown USS Classes.
+        public const string Dropdown = "dropdown";
+
+        /*< -------------------- Dropdown Element -------------------- >*/
+        public const string DropdownElement = "dropdownElement";
+        public const string DropdownElement_Selected = "dropdownElement-selected";
+        public const string DropdownElement_Last = "dropdownElement-last";
+        public const string DropdownElement_ElementIcon_Image = "dropdownElement-elementIcon-image";
+        public const string DropdownElement_ElementText_Label = "dropdownElement-elementText-label";
+
+        /*< -------------------- Dropdown Menu -------------------- >*/
+        public const string Dropdown_DropdownMenu = "dropdownMenu-popup-container";
+        public const string Dropdown_DropdownMenu_Header_Container = "dropdown-dropdownMenu-header-container";
+        public const string Dropdown_DropdownMenu_HeaderText_Label = "dropdown-dropdownMenu-headerText-label"; 
+        public const string Dropdown_DropdownMenu_DropElements_Container = "dropdown-dropdownMenu-dropElements-container";
+
+        /*< -------------------- Dropdown Button -------------------- >*/
+        public const string Dropdown_DropdownButton_Button = "dropdown-dropdownButton-button";
+        public const string Dropdown_DropdownButton_ButtonIcon_Image = "dropdown-dropdownButton-buttonIcon-image";
+        public const string Dropdown_DropdownButton_ButtonText_Label = "dropdown-dropdownButton-buttonText-label";
+        public const string Dropdown_DropdownButton_ArrowIcon_Image = "dropdown-dropdownButton-arrowIcon-image";
         #endregion
     }
 }

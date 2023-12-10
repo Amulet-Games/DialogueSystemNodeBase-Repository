@@ -20,7 +20,7 @@ namespace AG.DS
 
             SavePorts();
 
-            SaveBooleanNodeStitcher();
+            SaveConditionModifierGroup();
         }
 
 
@@ -36,11 +36,11 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Save the boolean node stitcher.
+        /// Save the condition modifier group.
         /// </summary>
-        void SaveBooleanNodeStitcher()
+        void SaveConditionModifierGroup()
         {
-            View.booleanNodeStitcher.SaveStitcherValues(Model.BooleanNodeStitcherModel);
+            new ConditionModifierGroupSerializer().Save(View.ConditionModifierGroupView, Model.ConditionModifierGroupModel);
         }
 
 
@@ -56,7 +56,7 @@ namespace AG.DS
 
             LoadPorts();
 
-            LoadBooleanNodeStitcher();
+            LoadConditionModifierGroup();
         }
 
         /// <summary>
@@ -71,11 +71,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the boolean node stitcher.
+        /// Load the condition modifier group.
         /// </summary>
-        void LoadBooleanNodeStitcher()
+        void LoadConditionModifierGroup()
         {
-            View.booleanNodeStitcher.LoadStitcherValues(Model.BooleanNodeStitcherModel);
+            new ConditionModifierGroupSerializer().Load(
+                View.ConditionModifierGroupView,
+                Model.ConditionModifierGroupModel,
+                Node.GraphViewer
+            );
         }
     }
 }
