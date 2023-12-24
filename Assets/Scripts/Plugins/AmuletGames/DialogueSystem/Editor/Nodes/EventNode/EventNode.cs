@@ -62,9 +62,9 @@ namespace AG.DS
         void AddStyleSheet()
         {
             var styleSheetConfig = ConfigResourcesManager.StyleSheetConfig;
-            styleSheets.Add(styleSheetConfig.DSEventNodeStyle);
-            styleSheets.Add(styleSheetConfig.DSEventModifierStyle);
-            styleSheets.Add(styleSheetConfig.DSEventModifierGroupStyle);
+            styleSheets.Add(styleSheetConfig.EventNodeStyle);
+            styleSheets.Add(styleSheetConfig.EventModifierStyle);
+            styleSheets.Add(styleSheetConfig.EventModifierGroupStyle);
         }
 
 

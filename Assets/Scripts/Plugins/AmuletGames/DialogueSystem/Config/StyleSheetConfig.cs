@@ -6,76 +6,82 @@ namespace AG.DS
     [CreateAssetMenu(menuName = "### AG ###/Dialogue System/Config/Append Style Sheets Config")]
     public class StyleSheetConfig : ScriptableObject
     {
+        #region Dropdown.
+        [Header("Dropdown")]
+        public StyleSheet DropdownElementStyle;
+        public StyleSheet DropdownStyle;
+        #endregion
+
         #region Edges.
         [Header("Edges")]
-        public StyleSheet DSDefaultEdgeStyle;
-        public StyleSheet DSOptionEdgeStyle;
+        public StyleSheet DefaultEdgeStyle;
+        public StyleSheet OptionEdgeStyle;
+        #endregion
+
+        #region Enum Flags.
+        [Header("Enum Flags")]
+        public StyleSheet EnumFlagsStyle;
+        public StyleSheet FlagElementStyle;
         #endregion
 
         #region Modifiers.
         [Header("Modifiers")]
-        public StyleSheet DSConditionModifierGroupStyle;
-        public StyleSheet DSConditionModifierStyle;
-        public StyleSheet DSEventModifierGroupStyle;
-        public StyleSheet DSEventModifierStyle;
-        public StyleSheet DSMessageModifierGroupStyle;
-        public StyleSheet DSMessageModifierStyle;
+        public StyleSheet ConditionModifierGroupStyle;
+        public StyleSheet ConditionModifierStyle;
+        public StyleSheet EventModifierGroupStyle;
+        public StyleSheet EventModifierStyle;
+        public StyleSheet MessageModifierGroupStyle;
+        public StyleSheet MessageModifierStyle;
         #endregion
 
         #region Modules.
         [Header("Modules")]
-        public StyleSheet DSGraphViewerStyle;
-        public StyleSheet DSHeadBarStyle;
-        public StyleSheet DSInputHintStyle;
+        public StyleSheet GraphViewerStyle;
+        public StyleSheet HeadBarStyle;
+        public StyleSheet InputHintStyle;
         #endregion
 
         #region Nodes.
         [Header("Nodes")]
-        public StyleSheet DSBooleanNodeStyle;
-        public StyleSheet DSDialogueNodeStyle;
-        public StyleSheet DSEndNodeStyle;
-        public StyleSheet DSEventNodeStyle;
-        public StyleSheet DSOptionBranchNodeStyle;
-        public StyleSheet DSOptionRootNodeStyle;
-        public StyleSheet DSPreviewNodeStyle;
-        public StyleSheet DSStartNodeStyle;
-        public StyleSheet DSStoryNodeStyle;
-        public StyleSheet DSNodeCommonStyle;
+        public StyleSheet BooleanNodeStyle;
+        public StyleSheet DialogueNodeStyle;
+        public StyleSheet EndNodeStyle;
+        public StyleSheet EventNodeStyle;
+        public StyleSheet OptionBranchNodeStyle;
+        public StyleSheet OptionRootNodeStyle;
+        public StyleSheet PreviewNodeStyle;
+        public StyleSheet StartNodeStyle;
+        public StyleSheet StoryNodeStyle;
+        public StyleSheet NodeCommonStyle;
         #endregion
 
         #region Others.
         [Header("Others.")]
-        public StyleSheet DSContentButtonStyle;
-        public StyleSheet DSFolderStyle;
+        public StyleSheet ContentButtonStyle;
+        public StyleSheet FolderStyle;
         #endregion
 
         #region Port Cells.
         [Header("Port Cells")]
-        public StyleSheet DSOptionPortCellStyle;
+        public StyleSheet OptionPortCellStyle;
         #endregion
 
         #region Ports.
         [Header("Ports")]
-        public StyleSheet DSDefaultPortStyle;
-        public StyleSheet DSOptionPortStyle;
-        public StyleSheet DSPortStyle;
+        public StyleSheet DefaultPortStyle;
+        public StyleSheet OptionPortStyle;
+        public StyleSheet PortStyle;
         #endregion
 
         #region Radio.
         [Header("Radio")]
-        public StyleSheet DSRadioGroupStyle;
-        public StyleSheet DSRadioStyle;
-        #endregion
-
-        #region Dropdown.
-        [Header("Dropdown")]
-        public StyleSheet DSDropdownStyle;
-        public StyleSheet DSDropdownElementStyle;
+        public StyleSheet RadioGroupStyle;
+        public StyleSheet RadioStyle;
         #endregion
 
         #region Globals.
         [Header("Globals")]
-        public StyleSheet DSGlobalStyle;
+        public StyleSheet GlobalStyle;
         #endregion
 
         #region Legacy.

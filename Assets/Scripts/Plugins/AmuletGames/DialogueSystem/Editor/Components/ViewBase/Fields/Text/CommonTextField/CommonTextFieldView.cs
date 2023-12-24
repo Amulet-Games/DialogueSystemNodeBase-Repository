@@ -41,7 +41,7 @@ namespace AG.DS
                     Field.SetActivePlaceholderText(PlaceholderText, active: true);
                 }
 
-                Field.ToggleEmptyStyle();
+                this.ToggleEmptyStyle();
             }
         }
 

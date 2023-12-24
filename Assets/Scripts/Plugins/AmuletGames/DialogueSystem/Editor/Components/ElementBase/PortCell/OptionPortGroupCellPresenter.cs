@@ -63,7 +63,7 @@ namespace AG.DS
 
             void AddStyleSheet()
             {
-                cell.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSOptionPortCellStyle);
+                cell.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.OptionPortCellStyle);
             }
         }
     }

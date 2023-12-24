@@ -8,22 +8,24 @@ namespace AG.DS
         /// <summary>
         /// Create a new dropdown element.
         /// </summary>
-        /// <param name="elementText">The element text to set for.</param>
-        /// <param name="elementIconSprite">The element icon sprite to set for.</param>
+        /// <param name="labelText">The label text to set for.</param>
+        /// <param name="iconSprite">The icon sprite to set for.</param>
+        /// <param name="additionalInfo">The additional info to set for.</param>
         /// <returns>A new dropdown element.</returns>
         public static DropdownElement CreateElement
         (
-            string elementText,
-            Sprite elementIconSprite
+            string labelText,
+            Sprite iconSprite,
+            string additionalInfo
         )
         {
-            DropdownElement dropElement;
+            DropdownElement dropdownElement;
 
-            CreateDropElement();
+            CreateElement();
 
-            CreateElementIconImage();
+            CreateIconImage();
 
-            CreateElementTextLabel();
+            CreateTextLabel();
 
             SetupDetails();
 
@@ -31,49 +33,51 @@ namespace AG.DS
 
             AddStyleSheet();
 
-            return dropElement;
+            return dropdownElement;
 
-            void CreateDropElement()
+            void CreateElement()
             {
-                dropElement = new();
-                dropElement.AddToClassList(StyleConfig.DropdownElement);
+                dropdownElement = new();
+                dropdownElement.AddToClassList(StyleConfig.DropdownElement);
             }
 
-            void CreateElementIconImage()
+            void CreateIconImage()
             {
-                dropElement.ElementIconImage = CommonImagePresenter.CreateElement
+                dropdownElement.IconImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: elementIconSprite,
-                    imageUSS01: StyleConfig.DropdownElement_ElementIcon_Image
+                    imageSprite: iconSprite,
+                    imageUSS01: StyleConfig.DropdownElement_Icon_Image
                 );
             }
 
-            void CreateElementTextLabel()
+            void CreateTextLabel()
             {
-                dropElement.ElementTextLabel = CommonLabelPresenter.CreateElement
+                dropdownElement.TextLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: elementText,
-                    labelUSS: StyleConfig.DropdownElement_ElementText_Label
+                    labelText: labelText,
+                    labelUSS: StyleConfig.DropdownElement_Text_Label
                 );
             }
 
             void SetupDetails()
             {
-                dropElement.focusable = true;
-                dropElement.pickingMode = PickingMode.Position;
+                dropdownElement.AdditionalInfo = additionalInfo;
 
-                dropElement.ElementIconImage.pickingMode = PickingMode.Position;
+                dropdownElement.focusable = true;
+                dropdownElement.pickingMode = PickingMode.Position;
+
+                dropdownElement.IconImage.pickingMode = PickingMode.Position;
             }
 
             void AddElementsToDropdownElement()
             {
-                dropElement.Add(dropElement.ElementIconImage);
-                dropElement.Add(dropElement.ElementTextLabel);
+                dropdownElement.Add(dropdownElement.IconImage);
+                dropdownElement.Add(dropdownElement.TextLabel);
             }
 
             void AddStyleSheet()
             {
-                dropElement.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSDropdownElementStyle);
+                dropdownElement.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DropdownElementStyle);
             }
         }
     }

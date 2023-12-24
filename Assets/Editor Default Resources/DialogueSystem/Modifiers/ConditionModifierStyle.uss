@@ -171,6 +171,570 @@
 }
 
 
+/*< ---------------------------------------------------------- Second Variable Container >*/
+.conditionModifier-secondVariable-container {
+
+	background-color: rgba(42, 42, 42, 1);
+
+	/* top - right - bottom - left */
+	margin: 0px 6px 6px 6px;
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Second Variable Field Label Container >*/
+.conditionModifier-secondVariable-fieldLabel-container {
+
+	flex-direction: row;
+
+	justify-content: space-between;
+}
+
+
+/*< ---------------------------------------------------------- Second Variable Label >*/
+.conditionModifier-secondVariable-label {
+
+	color: rgba(210, 210, 210, 1);
+	
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Static-SDF.asset');
+	
+	white-space: nowrap;
+	
+	word-spacing: 9px;
+
+	/* top - right - bottom - left */
+	margin: 3px 0px 0px 6px;
+}
+
+
+/*< ---------------------------------------------------------- Second Variable Switch Field Button >*/
+.conditionModifier-secondVariable-switchField-button {
+
+	align-self: flex-end;
+
+	background-color: rgba(0, 0, 0, 0);
+
+	flex-direction: row;
+	flex-shrink: 0;
+
+	justify-content: flex-end;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0.5px 0px;
+}
+
+.conditionModifier-secondVariable-switchField-button:hover {
+
+	cursor: link;
+}
+
+.conditionModifier-secondVariable-switchField-button:hover
+.background-highlighter {
+	
+	align-self: center;
+	
+	background-color: rgba(255, 255, 255, 0.133);
+	
+	right: 3.5px;
+
+	height: 15px;
+	width: 104px;
+
+	position: absolute;
+
+	/* top - right - bottom - left */
+	border-radius: 3px;
+}
+
+
+/*< ---------------------------------------------------------- Second Variable Switch Field Button Icon Image >*/
+.conditionModifier-secondVariable-switchFieldButtonIcon-image {
+	
+	align-self: center;
+
+	height: 11px;
+	width: 11px;
+	
+	--unity-image-tint-color: rgba(120, 120, 120, 1);
+}
+
+.conditionModifier-secondVariable-switchField-button:hover
+.conditionModifier-secondVariable-switchFieldButtonIcon-image {
+	
+	--unity-image-tint-color: rgba(255, 255, 255, 1);
+}
+
+/*< ---------------------------------------------------------- Second Variable Switch Field Button Text Label >*/
+.conditionModifier-secondVariable-switchFieldButtonText-label {
+	
+	align-self: center;
+
+	color: rgba(120, 120, 120, 1);
+	
+	font-size: 10px;
+
+	flex-shrink: 0;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Static-SDF.asset');
+	-unity-text-align: middle-right;
+
+	letter-spacing: -2px;
+	word-spacing: 9px;
+
+	white-space: nowrap;
+
+	/* top - right - bottom - left */
+	margin: 0px 5px 0px 5px;
+}
+
+.conditionModifier-secondVariable-switchField-button:hover
+.conditionModifier-secondVariable-switchFieldButtonText-label {
+	
+	cursor: link;
+	
+	color: rgba(255, 255, 255, 1);
+}
+
+
+/*< ---------------------------------------------------------- Second Reflectable Object Field >*/
+.conditionModifier-secondReflectableObject-field {
+
+	height: 27px;
+	width: Auto;
+
+	align-self: center;
+
+	flex-grow: 1;
+	flex-direction: row;
+
+	overflow: hidden;
+
+	-unity-overflow-clip-box: content-box;
+
+	/* top - right - bottom - left */
+	margin: 3px 6px 3px 6px;
+	border-radius: 4px;
+}
+
+.conditionModifier-secondReflectableObject-field:hover {
+
+	border-color: rgba(71, 71, 71, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px;
+}
+
+.conditionModifier-secondReflectableObject-field:focus {
+
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px;
+}
+
+.conditionModifier-secondReflectableObject-field
+.object-field-input {
+
+	background-color: rgba(32, 32, 32, 1);
+	border-color: rgba(32, 32, 32, 1);
+
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-direction: row;
+
+	overflow: hidden;
+
+	/* top - right - bottom - left */
+	border-radius: 4px;
+}
+
+.conditionModifier-secondReflectableObject-field:hover
+.object-field-input,
+
+.conditionModifier-secondReflectableObject-field:focus
+.object-field-input {
+
+	/* top - right - bottom - left */
+	margin: -1px -1.5px -1px -1.5px;
+}
+
+.conditionModifier-secondReflectableObject-field
+.object-field-display {
+	
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-direction: row;
+
+	-unity-slice-top: 4;
+	-unity-slice-right: 4;
+	-unity-slice-bottom: 4;
+	-unity-slice-left: 4;
+}
+
+.conditionModifier-secondReflectableObject-field
+.object-field-display-label {
+
+	color: white;
+
+	align-self: Center;
+
+	font-size: 13px;
+
+	flex-basis: 0;
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	overflow: hidden;
+
+	white-space: nowrap;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	
+	/* top - right - bottom - left */
+	margin: 1px 3px 0px 4.5px;
+}
+
+.conditionModifier-secondReflectableObject-field.object-field-empty
+.object-field-display-label {
+	
+	color: rgba(81, 81, 81, 1);
+}
+
+.conditionModifier-secondReflectableObject-field
+.unity-object-field__selector {
+
+	background-color: rgba(0, 0, 0, 0);
+
+	height: 18px;
+	width: 20px;
+
+	align-self: Center;
+
+	flex-shrink: 0;
+	
+	-unity-slice-top: 0;
+	-unity-slice-right: 0;
+	-unity-slice-bottom: 0;
+	-unity-slice-left: 0;
+	-unity-slice-scale: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px 1px 0px 0px;
+}
+
+.conditionModifier-secondReflectableObject-field
+.unity-object-field__selector:hover
+.background-highlighter {
+	
+	align-self: center;
+	
+	background-color: rgba(255, 255, 255, 0.133);
+
+	height: 16.5px;
+	width: 16px;
+	
+	/* top - right - bottom - left */
+	margin: 0.5px 0px 0px 0px;
+	border-radius: 4px;
+}
+
+
+/*< ---------------------------------------------------------- Second Reflectable Object Image >*/
+.conditionModifier-secondReflectableObject-image {
+
+	height: 14px;
+	width: 14px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 5px;
+
+	--unity-image-tint-color: white;
+}
+
+.conditionModifier-secondReflectableObject-field.object-field-empty
+.conditionModifier-secondReflectableObject-image {
+
+	--unity-image-tint-color: rgba(81, 81, 81, 1);
+}
+
+
+/*< ---------------------------------------------------------- Second Binding Flags & Field Info Scroller >*/
+.conditionModifier-secondBindinFlags-fieldInfo-container {
+	
+	flex-direction: row;
+}
+
+/*< ---------------------------------------------------------- Second Binding Flags Label >*/
+.conditionModifier-secondBindingFlags-label {
+	
+	color: rgba(210, 210, 210, 1);
+	
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Regular-Static-SDF.asset');
+	
+	white-space: nowrap;
+	
+	word-spacing: 9px;
+
+	/* top - right - bottom - left */
+	margin: 3px 0px 4px 6px;
+}
+
+/*< ---------------------------------------------------------- Second Binding Flags Label >*/
+
+/*< ---------------------------------------------------------- Second Text Field >*/
+.conditionModifier-secondText-field {
+
+	background-color: rgba(32, 32, 32, 1);
+
+	height: 27px;
+	min-width: 406px;
+	
+	flex-shrink: 0;
+	flex-direction: row;
+
+	overflow: hidden;
+
+	white-space: normal;
+
+	/* top - right - bottom - left */
+	margin: 3.5px 6px 6px 6px;
+	border-radius: 4px;
+	
+	--unity-selection-color: rgba(61, 128, 223, 0.65);
+	--unity-cursor-color: rgba(180, 180, 180, 1);
+}
+
+.conditionModifier-secondText-field:hover {
+
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px;
+}
+
+.conditionModifier-secondText-field:focus {
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px;
+}
+
+.conditionModifier-secondText-field
+.text-field-input {
+
+	cursor: text;
+	
+	flex-grow: 1;
+	flex-direction: row;
+
+	overflow: scroll;
+
+	-unity-overflow-clip-box: content-box;
+	-unity-text-align: middle-left;
+
+	--unity-sync-text-editor: true;
+}
+
+.conditionModifier-secondText-field
+.text-field-element {
+
+	color: white;
+	cursor: text;
+
+	font-size: 13px;
+	
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
+	
+	letter-spacing: -0.25px;
+	word-spacing: -2px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 1px;
+}
+
+.conditionModifier-secondText-field.text-field-empty
+.text-field-element {
+	
+	color: rgba(81, 81, 81, 1);
+}
+
+.conditionModifier-secondText-field:hover
+.text-field-element,
+
+.conditionModifier-secondText-field:focus
+.text-field-element
+{
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 1px;
+}
+
+
+/*< ---------------------------------------------------------- Second Text Image >*/
+.conditionModifier-secondText-image {
+
+	height: 22px;
+	width: 22px;
+
+	align-self: flex-start;
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 2px;
+
+	--unity-image-tint-color: white;
+}
+
+.conditionModifier-secondText-field:hover
+.conditionModifier-secondText-image,
+
+.conditionModifier-secondText-field:focus
+.conditionModifier-secondText-image {
+
+	/* top - right - bottom - left */
+	margin: 1.5px 0px 0px 1px;
+}
+
+.conditionModifier-secondText-field.text-field-empty
+.conditionModifier-secondText-image {
+
+	--unity-image-tint-color: rgba(81, 81, 81, 1);
+}
+
+
+/*< ---------------------------------------------------------- Second Float Field & Hint Label Container >*/
+.conditionModifier-secondFloatField-hintLabel-container {
+	
+	flex-direction: row;
+}
+
+
+/*< ---------------------------------------------------------- Second Float Field >*/
+.conditionModifier-secondFloat-field {
+
+	background-color: rgba(32, 32, 32, 1);
+
+	height: 27px;
+	width: 229px;
+
+	align-self: center;
+
+	flex-shrink: 0;
+	flex-direction: row;
+
+	overflow: hidden;
+
+	white-space: nowrap;
+
+	-unity-overflow-clip-box: content-box;
+
+	/* top - right - bottom - left */
+	margin: 3.5px 6px 6px 6px;
+	border-radius: 4px;
+
+	--unity-selection-color: rgba(61, 128, 223, 0.65);
+	--unity-cursor-color: rgba(180, 180, 180, 1);
+}
+
+.conditionModifier-secondFloat-field:hover {
+	
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px;
+}
+
+.conditionModifier-secondFloat-field:focus {
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px;
+}
+
+.conditionModifier-secondFloat-field
+.float-field-input {
+
+	cursor: text;
+	
+	flex-basis: auto;
+	flex-grow: 1;
+	flex-direction: row;
+
+	overflow: scroll;
+	
+	-unity-overflow-clip-box: content-box;
+	-unity-text-align: middle-left;
+
+	--unity-sync-text-editor: true;
+}
+
+.conditionModifier-secondFloat-field
+.float-field-element {
+
+	align-self: center;
+
+	color: white;
+	cursor: text;
+
+	font-size: 13px;
+	
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
+
+	overflow: hidden;
+
+	/* top - right - bottom - left */
+	margin: 1px 4.5px 0px 5px;
+}
+
+.conditionModifier-secondFloat-field:hover
+.float-field-element,
+
+.conditionModifier-secondFloat-field:focus
+.float-field-element
+{
+	/* top - right - bottom - left */
+	margin: 1px 0px 0px 4.5px;
+}
+
+
+/*< ---------------------------------------------------------- Second Float Hint Label >*/
+.conditionModifier-secondFloatHint-label {
+	
+	align-self: center;
+
+	font-size: 13px;
+	
+	color: rgba(101, 101, 101, 1);
+	
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	
+	white-space: nowrap;
+	
+	word-spacing: 3px;
+
+	/* top - right - bottom - left */
+	margin: 0px 0px 1px 0px;
+}
+
+
 /*< ---------------------------------------------------------- Operation & Chain With Container >*/
 .conditionModifier-operation-chainWith-container {
 	
@@ -203,7 +767,7 @@
 	word-spacing: 3px;
 
 	/* top - right - bottom - left */
-	margin: 2.5px 0px 0px 6px;
+	margin: 2.5px 0px 4px 6px;
 }
 
 
@@ -232,5 +796,5 @@
 	word-spacing: 3px;
 
 	/* top - right - bottom - left */
-	margin: 2.5px 0px 0px 6px;
+	margin: 2.5px 0px 4px 6px;
 }

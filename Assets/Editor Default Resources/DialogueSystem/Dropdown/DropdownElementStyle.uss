@@ -28,8 +28,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Dropdown Element Image >*/
-.dropdownElement-elementIcon-image {
+/*< ---------------------------------------------------------- Icon Image >*/
+.dropdownElement-icon-image {
 
 	align-self: center;
 	
@@ -41,14 +41,14 @@
 }
 
 .dropdownElement:hover
-.dropdownElement-elementIcon-image {
+.dropdownElement-icon-image {
 	
 	cursor: link;
 }
 
 
-/*< ---------------------------------------------------------- Dropdown Element Text Label >*/
-.dropdownElement-elementText-label {
+/*< ---------------------------------------------------------- Text Label >*/
+.dropdownElement-text-label {
 
 	color: white;
 	
@@ -63,7 +63,7 @@
 }
 
 .dropdownElement:hover
-.dropdownElement-elementText-label {
+.dropdownElement-text-label {
 	
 	cursor: link;
 }

@@ -11,7 +11,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The old value that was set when the use has given focus on the field.
+        /// The previous value that was set when the use has given focus on the field.
         /// </summary>
         double previousValue;
 

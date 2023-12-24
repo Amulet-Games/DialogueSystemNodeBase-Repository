@@ -1,3 +1,5 @@
+using static UnityEditor.Profiling.HierarchyFrameDataView;
+
 namespace AG.DS
 {
     public class MessageModifierSeeder
@@ -26,6 +28,8 @@ namespace AG.DS
             {
                 new MessageModifierSerializer().Load(view, model);
             }
+
+            new MessageModifierCallback().OnCreate(view, model == null);
 
             return view;
         }

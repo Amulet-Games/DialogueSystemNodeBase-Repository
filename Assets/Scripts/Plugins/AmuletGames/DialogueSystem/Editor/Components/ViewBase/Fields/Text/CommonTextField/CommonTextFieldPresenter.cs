@@ -7,7 +7,7 @@ namespace AG.DS
         /// <summary>
         /// Create the elements for the common text field view.
         /// </summary>
-        /// <param name="placeholderText">The common text field view to set for.</param>
+        /// <param name="view">The common text field view to set for.</param>
         /// <param name="multiline">Set this to true to allow multiple lines in the text field and false if otherwise.</param>
         /// <param name="fieldUSS">The field USS style to set for.</param>
         public static void CreateElement

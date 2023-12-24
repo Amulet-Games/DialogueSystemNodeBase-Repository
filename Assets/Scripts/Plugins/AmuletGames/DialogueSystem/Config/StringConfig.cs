@@ -87,17 +87,17 @@ namespace AG.DS
         #region Event Modifier Texts.
         public const string EventModifier_FolderTitleField_DefaultText = "Event ";
         public const string EventModifier_DialogueEventLabel_LabelText = "Dialogue Event";
-        public const string EventModifier_DialogueEventField_PlaceholderText = "None (Dialogue Event)";
+        public const string EventModifier_DialogueEventField_PlaceholderText = "All (Dialogue Event)";
         public const string EventModifier_StartDelay_LabelText = "Start Delay";
         public const string EventModifier_DelaySeconds_LabelText = "seconds";
         #endregion
 
         #region Message Modifier Texts.
         public const string MessageModifier_FolderTitleField_DefaultText = "Message ";
-        public const string MessageModifier_MessageTextLabel_LabelText = "Text";
+        public const string MessageModifier_MessageTextLabel_LabelText = "String";
         public const string MessageModifier_MessageTextField_PlaceholderText = "“Hey what's up?”";
         public const string MessageModifier_MessageAudioLabel_LabelText = "Audio";
-        public const string MessageModifier_MessageAudioField_PlaceholderText = "None (Audio Clip)";
+        public const string MessageModifier_MessageAudioField_PlaceholderText = "All (Audio Clip)";
         public const string MessageModifier_ContinueBy_LabelText = "Continue By";
         public const string MessageModifier_ContinueByInput_LabelText = "Input";
         public const string MessageModifier_ContinueByAuto_LabelText = "Auto";
@@ -107,18 +107,29 @@ namespace AG.DS
 
         #region Condition Modifier Texts.
         public const string ConditionModifier_FolderTitleField_DefaultText = "Condition ";
+        public const string ConditionModifier_SwitchFieldButton_LabelText = "Switch Field Type";
+        public const string ConditionModifier_SecondVariable_LabelText = "With";
+        public const string ConditionModifier_SecondReflectableObjectField_PlaceholderText = "All (Object)";
+        public const string ConditionModifier_SecondTextField_PlaceholderText = "Second String";
+        public const string ConditionModifier_SecondFloatHint_LabelText = "2nd Number";
+        public const string ConditionModifier_SecondBindingFlags_LabelText = "Sort By";
+        public const string ConditionModifier_BindingFlags_FlagElement_All_LabelText = "All";
+        public const string ConditionModifier_BindingFlags_FlagElement_Instance_LabelText = "Instance";
+        public const string ConditionModifier_BindingFlags_FlagElement_Static_LabelText = "Static";
+        public const string ConditionModifier_BindingFlags_FlagElement_Public_LabelText = "Public";
+        public const string ConditionModifier_BindingFlags_FlagElement_Private_LabelText = "Private";
         public const string ConditionModifier_Operation_LabelText = "Operation ";
         public const string ConditionModifier_ChainWith_LabelText = "Chain With ";
         public const string ConditionModifier_Operators_LabelText = "Operators";
-        public const string ConditionModifier_CustomLogic_LabelText = "Custom Logic";
         public const string ConditionModifier_Match_LabelText = "Match";
         public const string ConditionModifier_Equal_LabelText = "Equal";
         public const string ConditionModifier_EqualOrBigger_LabelText = "Equal Or Bigger";
         public const string ConditionModifier_EqualOrSmaller_LabelText = "Equal Or Smaller";
         public const string ConditionModifier_Bigger_LabelText = "Bigger";
         public const string ConditionModifier_Smaller_LabelText = "Smaller";
+        public const string ConditionModifier_CustomLogic_LabelText = "Custom Logic";
         public const string ConditionModifier_Group_LabelText = "Group";
-        public const string ConditionModifier_None_LabelText = "None";
+        public const string ConditionModifier_None_LabelText = "All";
         public const string ConditionModifier_Group1_LabelText = "Group 1";
         public const string ConditionModifier_Group2_LabelText = "Group 2";
         public const string ConditionModifier_Group3_LabelText = "Group 3";
@@ -136,7 +147,7 @@ namespace AG.DS
 
         #region Dialogue Node Texts.
         public const string DialogueNode_DialogueSpeakerLabel_LabelText = "Speaker";
-        public const string DialogueNode_DialogueSpeakerField_PlaceholderText = "None (Dialogue Character)";
+        public const string DialogueNode_DialogueSpeakerField_PlaceholderText = "All (Dialogue Character)";
         #endregion
     }
 }

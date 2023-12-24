@@ -7,7 +7,7 @@ namespace AG.DS
     public class Dropdown : VisualElement
     {
         /// <summary>
-        /// Element that contains the dropdown menu and dropdown elements.
+        /// Element that contains the dropdown menu header container and dropdown elements container.
         /// </summary>
         public VisualElement DropdownMenu;
 
@@ -75,8 +75,10 @@ namespace AG.DS
                 m_selectedElement?.SetSelected(false);
                 m_selectedElement = value;
 
-                DropdownButtonIconImage.sprite = m_selectedElement.ElementIconImage.sprite;
-                DropdownButtonTextLabel.text = m_selectedElement.ElementTextLabel.text;
+                DropdownButtonIconImage.sprite = m_selectedElement.IconImage.sprite;
+                DropdownButtonTextLabel.text = m_selectedElement.TextLabel.text;
+
+                SelectedElementChangedEvent?.Invoke();
             }
         }
 
@@ -120,7 +122,7 @@ namespace AG.DS
 
                 DropdownMenu.SetDisplay(value: m_dropped);
 
-                UpdatePositionMenu();
+                UpdateMenuPosition();
             }
         }
 
@@ -144,8 +146,15 @@ namespace AG.DS
 
 
         /// <summary>
+        /// The event to invoke when the selected dropdown element has changed.
+        /// </summary>
+        public Action SelectedElementChangedEvent;
+
+
+        /// <summary>
         /// Constructor of the dropdown element.
         /// </summary>
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
         public Dropdown(GraphViewer graphViewer)
         {
             GraphViewer = graphViewer;
@@ -177,7 +186,7 @@ namespace AG.DS
         /// <summary>
         /// Update the dropdown menu position.
         /// </summary>
-        void UpdatePositionMenu()
+        void UpdateMenuPosition()
         {
             // Horizontal
             {

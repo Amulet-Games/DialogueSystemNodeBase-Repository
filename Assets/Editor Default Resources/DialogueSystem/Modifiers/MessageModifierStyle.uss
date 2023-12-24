@@ -318,7 +318,7 @@
 	align-self: flex-start;
 
 	/* top - right - bottom - left */
-	margin: 2.5px 0px 0px 2px;
+	margin: 2px 0px 0px 2px;
 
 	--unity-image-tint-color: white;
 }
@@ -330,7 +330,7 @@
 .messageModifier-messageText-image {
 
 	/* top - right - bottom - left */
-	margin: 2px 0px 0px 1px;
+	margin: 1.5px 0px 0px 1px;
 }
 
 .messageModifier-messageText-field.text-field-empty
@@ -655,7 +655,7 @@
 }
 
 .messageModifier-delaySeconds-field
-.double-field-input {
+.float-field-input {
 
 	cursor: text;
 	
@@ -672,7 +672,7 @@
 }
 
 .messageModifier-delaySeconds-field
-.double-field-element {
+.float-field-element {
 
 	color: white;
 	cursor: text;
@@ -693,10 +693,10 @@
 }
 
 .messageModifier-delaySeconds-field:hover
-.double-field-element,
+.float-field-element,
 
 .messageModifier-delaySeconds-field:focus
-.double-field-element
+.float-field-element
 {
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 4.5px;

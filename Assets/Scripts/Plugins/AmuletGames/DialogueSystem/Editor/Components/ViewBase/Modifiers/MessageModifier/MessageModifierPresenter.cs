@@ -216,14 +216,14 @@ namespace AG.DS
             {
                 var continueByInputRadio = RadioPresenter.CreateElement
                 (
-                    radioText: StringConfig.MessageModifier_ContinueByInput_LabelText,
-                    radioIconSprite: ConfigResourcesManager.SpriteConfig.ContinueByInputSprite
+                    labelText: StringConfig.MessageModifier_ContinueByInput_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.ContinueByInputSprite
                 );
 
                 var continueByAutoRadio = RadioPresenter.CreateElement
                 (
-                    radioText: StringConfig.MessageModifier_ContinueByAuto_LabelText,
-                    radioIconSprite: ConfigResourcesManager.SpriteConfig.ContinueByAutoSprite
+                    labelText: StringConfig.MessageModifier_ContinueByAuto_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.ContinueByAutoSprite
                 );
 
                 var radios = new[]
@@ -246,7 +246,7 @@ namespace AG.DS
 
             void CreateDelaySecondsField()
             {
-                CommonDoubleFieldPresenter.CreateElement
+                CommonFloatFieldPresenter.CreateElement
                 (
                     view: view.DelaySecondsFieldView,
                     fieldUSS: StyleConfig.MessageModifier_DelaySeconds_Field

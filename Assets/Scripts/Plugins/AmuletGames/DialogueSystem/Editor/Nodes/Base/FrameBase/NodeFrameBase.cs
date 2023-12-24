@@ -248,8 +248,8 @@ namespace AG.DS
         /// </summary>
         protected void AddDefaultStyleSheet()
         {
-            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
-            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSNodeCommonStyle);
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.GlobalStyle);
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.NodeCommonStyle);
         }
     }
 }

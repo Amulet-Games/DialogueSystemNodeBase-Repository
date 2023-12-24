@@ -1,5 +1,3 @@
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
     public abstract class NodeCallbackFrameBase
@@ -29,23 +27,23 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <summary>
-        /// The callback to invoke when the node is about to be removed from the graph.
+        /// The callback to invoke when the node is about to be removed from the graph by the user.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public abstract void OnPreManualRemove(GraphViewer graphViewer);
+        public abstract void OnPreRemoveByUser(GraphViewer graphViewer);
 
 
         /// <summary>
-        /// The callback to invoke when the node is removed from the graph.
+        /// The callback to invoke when the node is removed from the graph by the user.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public abstract void OnPostManualRemove(GraphViewer graphViewer);
+        public abstract void OnPostRemoveByUser(GraphViewer graphViewer);
 
 
         /// <summary>
-        /// The callback to invoke when the node is created from the graph.
-        /// Note that this is called after the previous node's data is loaded.
+        /// The callback to invoke when the node is created on the graph by the system or user.
+        /// Note that this is called after the node's save data is loaded.
         /// </summary>
-        public abstract void OnPostCreate();
+        public abstract void OnCreate();
     }
 }

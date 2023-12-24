@@ -8,22 +8,22 @@ namespace AG.DS
         /// <summary>
         /// Create a new radio element.
         /// </summary>
-        /// <param name="radioText">The radio text to set for.</param>
-        /// <param name="radioIconSprite">The radio icon sprite to set for.</param>
+        /// <param name="labelText">The label text to set for.</param>
+        /// <param name="iconSprite">The icon sprite to set for.</param>
         /// <returns>A new radio element.</returns>
         public static Radio CreateElement
         (
-            string radioText,
-            Sprite radioIconSprite
+            string labelText,
+            Sprite iconSprite
         )
         {
             Radio radio;
 
             CreateRadio();
 
-            CreateRadioIconImage();
+            CreateIconImage();
 
-            CreateRadioTextLabel();
+            CreateTextLabel();
 
             SetupDetails();
 
@@ -39,21 +39,21 @@ namespace AG.DS
                 radio.AddToClassList(StyleConfig.Radio);
             }
 
-            void CreateRadioIconImage()
+            void CreateIconImage()
             {
-                radio.RadioIconImage = CommonImagePresenter.CreateElement
+                radio.IconImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: radioIconSprite,
-                    imageUSS01: StyleConfig.Radio_RadioIcon_Image
+                    imageSprite: iconSprite,
+                    imageUSS01: StyleConfig.Radio_Icon_Image
                 );
             }
 
-            void CreateRadioTextLabel()
+            void CreateTextLabel()
             {
-                radio.RadioTextLabel = CommonLabelPresenter.CreateElement
+                radio.TextLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: radioText,
-                    labelUSS: StyleConfig.Radio_RadioText_Label
+                    labelText: labelText,
+                    labelUSS: StyleConfig.Radio_Text_Label
                 );
             }
 
@@ -62,18 +62,18 @@ namespace AG.DS
                 radio.focusable = true;
                 radio.pickingMode = PickingMode.Position;
 
-                radio.RadioIconImage.pickingMode = PickingMode.Position;
+                radio.IconImage.pickingMode = PickingMode.Position;
             }
 
             void AddElementsToRadio()
             {
-                radio.Add(radio.RadioIconImage);
-                radio.Add(radio.RadioTextLabel);
+                radio.Add(radio.IconImage);
+                radio.Add(radio.TextLabel);
             }
 
             void AddStyleSheet()
             {
-                radio.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSRadioStyle);
+                radio.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.RadioStyle);
             }
         }
     }

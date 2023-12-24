@@ -14,7 +14,7 @@ namespace AG
         [Header("Canvas (Drops).")]
         public Canvas dialogueUICanvas;
 
-        [Header("Text UI (Drops).")]
+        [Header("String UI (Drops).")]
         //public TMP_Text speakerNameText;
         //public TMP_Text speakerDialText;
 

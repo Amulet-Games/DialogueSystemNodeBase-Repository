@@ -4,15 +4,15 @@ namespace AG.DS
     {
         /// <summary>
         /// Read more:
-        /// <see cref="EdgeCallbackFrameBase{TPort, TEdge, TEdgeView, TEdgeCallback}.OnPreManualRemove"/>
+        /// <see cref="EdgeCallbackFrameBase{TPort, TEdge, TEdgeView, TEdgeCallback}.OnPreRemoveByUser"/>
         /// </summary>
-        void OnPreManualRemove(GraphViewer graphViewer);
+        void OnPreRemoveByUser(GraphViewer graphViewer);
 
 
         /// <summary>
         /// Read more:
-        /// <see cref="EdgeCallbackFrameBase{TPort, TEdge, TEdgeView, TEdgeCallback}.OnPostManualRemove"/>
+        /// <see cref="EdgeCallbackFrameBase{TPort, TEdge, TEdgeView, TEdgeCallback}.OnPostRemoveByUser"/>
         /// </summary>
-        void OnPostManualRemove(GraphViewer graphViewer);
+        void OnPostRemoveByUser(GraphViewer graphViewer);
     }
 }

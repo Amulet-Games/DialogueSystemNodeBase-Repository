@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -57,7 +56,7 @@ namespace AG.DS
         /// <summary>
         /// View for the delay seconds field.
         /// </summary>
-        public CommonDoubleFieldView DelaySecondsFieldView;
+        public CommonFloatFieldView DelaySecondsFieldView;
 
 
         /// <summary>

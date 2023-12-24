@@ -270,8 +270,8 @@ namespace AG.DS
         /// </summary>
         void ShowRootModifier()
         {
-            segment.MainBox.HideElement();
-            rootModifier.MainBox.ShowElement();
+            segment.MainBox.UnDisplayElement();
+            rootModifier.MainBox.DisplayElement();
         }
 
 
@@ -280,8 +280,8 @@ namespace AG.DS
         /// </summary>
         void ShowInstanceModifiers()
         {
-            segment.MainBox.ShowElement();
-            rootModifier.MainBox.HideElement();
+            segment.MainBox.DisplayElement();
+            rootModifier.MainBox.UnDisplayElement();
         }
 
 

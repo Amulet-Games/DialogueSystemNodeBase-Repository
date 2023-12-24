@@ -66,7 +66,7 @@ namespace AG.DS
 
             void AddStyleSheet()
             {
-                graphViewer.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGraphViewerStyle);
+                graphViewer.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.GraphViewerStyle);
             }
         }
     }

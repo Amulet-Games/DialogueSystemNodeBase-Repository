@@ -1,4 +1,9 @@
-.global-display-None
-{
+.global-display-none {
+
 	display: none;
+}
+
+.global-visibility-hidden {
+
+	visibility: hidden;
 }

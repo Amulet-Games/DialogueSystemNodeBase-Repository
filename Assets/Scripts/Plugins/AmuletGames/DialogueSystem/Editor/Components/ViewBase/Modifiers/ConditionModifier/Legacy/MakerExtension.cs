@@ -71,7 +71,7 @@ namespace AG.DS
                 firstTermObjectField = VariableFieldFactory.GetNewObjectField
                 (
                     variableContainer: FirstTermVariableContainer,
-                    fieldIcon: ConfigResourcesManager.SpriteConfig.ScriptableObjectFieldIconSprite,
+                    fieldIcon: ConfigResourcesManager.SpriteConfig.UnityObjectFieldIconSprite,
                     fieldUSS01: StyleConfig.Modifier_Condition_FirstTerm_ObjectField
                 );
             }
@@ -123,7 +123,7 @@ namespace AG.DS
                 secondTermObjectField = VariableFieldFactory.GetNewObjectField
                 (
                     variableContainer: SecondTermVariableContainer,
-                    fieldIcon: ConfigResourcesManager.SpriteConfig.ScriptableObjectFieldIconSprite,
+                    fieldIcon: ConfigResourcesManager.SpriteConfig.UnityObjectFieldIconSprite,
                     fieldUSS01: StyleConfig.Modifier_Condition_SecondTerm_ObjectField
                 );
             }

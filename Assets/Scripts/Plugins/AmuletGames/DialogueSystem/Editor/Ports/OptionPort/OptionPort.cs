@@ -165,7 +165,7 @@ namespace AG.DS
         void AddStyleSheet()
         {
             styleSheets.Clear();
-            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSOptionPortStyle);
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.OptionPortStyle);
         }
 
 

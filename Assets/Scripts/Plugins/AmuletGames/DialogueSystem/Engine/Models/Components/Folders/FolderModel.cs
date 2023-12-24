@@ -13,7 +13,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The folder's isExpand value.
+        /// The folder's expanded value.
         /// </summary>
         [SerializeField] public bool Expanded;
     }

@@ -450,7 +450,7 @@
 }
 
 .eventModifier-delaySeconds-field
-.double-field-input {
+.float-field-input {
 
 	cursor: text;
 	
@@ -467,7 +467,7 @@
 }
 
 .eventModifier-delaySeconds-field
-.double-field-element {
+.float-field-element {
 
 	color: white;
 	cursor: text;
@@ -488,10 +488,10 @@
 }
 
 .eventModifier-delaySeconds-field:hover
-.double-field-element,
+.float-field-element,
 
 .eventModifier-delaySeconds-field:focus
-.double-field-element
+.float-field-element
 {
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 4.5px;

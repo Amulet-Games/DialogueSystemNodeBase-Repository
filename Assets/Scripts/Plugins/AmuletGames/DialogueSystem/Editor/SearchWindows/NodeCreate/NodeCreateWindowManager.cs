@@ -91,10 +91,10 @@ namespace AG.DS
         /// Method for creating a new node create window.
         /// </summary>
         /// 
-        /// <typeparam name="TNodeCreateCallback">Type node create callback.</typeparam>
-        /// <typeparam name="TNodeCreateDetail">Type node create detail.</typeparam>
-        /// <typeparam name="TNodeCreateObserver">Type node create observer.</typeparam>
-        /// <typeparam name="TNodeCreateWindow">Type node create window.</typeparam>
+        /// <typeparam name="TNodeCreateCallback">Type node create callback</typeparam>
+        /// <typeparam name="TNodeCreateDetail">Type node create detail</typeparam>
+        /// <typeparam name="TNodeCreateObserver">Type node create observer</typeparam>
+        /// <typeparam name="TNodeCreateWindow">Type node create window</typeparam>
         /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>
@@ -126,14 +126,14 @@ namespace AG.DS
         /// <br>ScriptableObject.CreateInstance doesn't except generic object, so the node create connector window needs to be a derived class.</br>
         /// </summary>
         /// 
-        /// <typeparam name="TPort">Type port.</typeparam>
-        /// <typeparam name="TPortCreateDetail">Type port create detail.</typeparam>
-        /// <typeparam name="TEdge">Type edge.</typeparam>
-        /// <typeparam name="TEdgeView">Type edge view.</typeparam>
-        /// <typeparam name="TNodeCreateConnectorCallback">Type node create callback.</typeparam>
-        /// <typeparam name="TNodeCreateConnectorDetail">Type node create detail.</typeparam>
-        /// <typeparam name="TNodeCreateConnectorObserver">Type node create observer.</typeparam>
-        /// <typeparam name="TNodeCreateConnectorWindow">Type node create window.</typeparam>
+        /// <typeparam name="TPort">Type port</typeparam>
+        /// <typeparam name="TPortCreateDetail">Type port create detail</typeparam>
+        /// <typeparam name="TEdge">Type edge</typeparam>
+        /// <typeparam name="TEdgeView">Type edge view</typeparam>
+        /// <typeparam name="TNodeCreateConnectorCallback">Type node create callback</typeparam>
+        /// <typeparam name="TNodeCreateConnectorDetail">Type node create detail</typeparam>
+        /// <typeparam name="TNodeCreateConnectorObserver">Type node create observer</typeparam>
+        /// <typeparam name="TNodeCreateConnectorWindow">Type node create window</typeparam>
         /// 
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>

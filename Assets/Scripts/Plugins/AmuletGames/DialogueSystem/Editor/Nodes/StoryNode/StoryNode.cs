@@ -52,7 +52,7 @@ namespace AG.DS
         /// </summary>
         void AddStyleSheet()
         {
-            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSStoryNodeStyle);
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.StoryNodeStyle);
         }
 
 

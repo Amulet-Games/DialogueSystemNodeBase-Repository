@@ -78,7 +78,6 @@ namespace AG.DS
         }
 
 
-
         /// <summary>
         /// Set the placeholder text active status.
         /// </summary>
@@ -93,24 +92,6 @@ namespace AG.DS
         )
         {
             field.SetValueWithoutNotify(active ? placeholderText : string.Empty);
-        }
-
-
-        /// <summary>
-        /// Add the text field to the empty style class if its value is empty,
-        /// <br>otherwise remove the field from the empty style class.</br>
-        /// </summary>
-        /// <param name="field">Extension text field.</param>
-        public static void ToggleEmptyStyle(this TextField field)
-        {
-            if (!field.text.IsNullOrEmpty())
-            {
-                HideEmptyStyle(field);
-            }
-            else
-            {
-                ShowEmptyStyle(field);
-            }
         }
 
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -11,12 +12,24 @@ namespace AG.DS
 
 
         /// <summary>
+        /// The event to invoke when the dropdown selected element has changed.
+        /// </summary>
+        Action<string> selectedElementChangedEvent;
+
+
+        /// <summary>
         /// Constructor of the dropdown observer class.
         /// </summary>
         /// <param name="dropdown">The dropdown to set for.</param>
-        public DropdownObserver(Dropdown dropdown)
+        /// <param name="selectedElementChangedEvent">The SelectedElementChangedEvent to set for.</param>
+        public DropdownObserver
+        (
+            Dropdown dropdown,
+            Action<string> selectedElementChangedEvent
+        )
         {
             this.dropdown = dropdown;
+            this.selectedElementChangedEvent = selectedElementChangedEvent;
         }
 
 
@@ -26,21 +39,14 @@ namespace AG.DS
         /// </summary>
         public void RegisterEvents()
         {
-            RegisterDropdownButtonFocusInEvent();
-
             RegisterDropdownButtonFocusOutEvent();
 
             RegisterDropdownButtonMouseDownEvent();
 
             RegisterDropElementEvents();
+
+            RegisterSelectedElementChangedEvent();
         }
-
-
-        /// <summary>
-        /// Register FocusInEvent to the dropdown button.
-        /// </summary>
-        void RegisterDropdownButtonFocusInEvent() =>
-            dropdown.DropdownButton.RegisterCallback<FocusInEvent>(DropdownButtonFocusInEvent);
 
 
         /// <summary>
@@ -70,17 +76,14 @@ namespace AG.DS
         }
 
 
-        // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when the dropdown button has given focus.
+        /// Register SelectedElementChangedEvent to the dropdown.
         /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void DropdownButtonFocusInEvent(FocusInEvent evt)
-        {
-            dropdown.Dropped = true;
-        }
+        void RegisterSelectedElementChangedEvent() =>
+            dropdown.SelectedElementChangedEvent += DropdownSelectedElementChangedEvent;
 
 
+        // ----------------------------- Event -----------------------------
         /// <summary>
         /// The event to invoke when the dropdown button has lost focus.
         /// </summary>
@@ -97,8 +100,19 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void DropdownButtonMouseDownEvent(MouseDownEvent evt)
         {
+            dropdown.Dropped = !dropdown.Dropped;
+
             // Prevent moving the parent node when using the field.
             evt.StopImmediatePropagation();
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the dropdown selected element has changed.
+        /// </summary>
+        void DropdownSelectedElementChangedEvent()
+        {
+            selectedElementChangedEvent?.Invoke(dropdown.SelectedElement.AdditionalInfo);
         }
     }
 }

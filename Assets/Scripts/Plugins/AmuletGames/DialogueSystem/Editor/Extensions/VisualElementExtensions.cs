@@ -27,11 +27,11 @@ namespace AG.DS
         {
             if (value)
             {
-                ShowElement(element);
+                DisplayElement(element);
             }
             else
             {
-                HideElement(element);
+                UnDisplayElement(element);
             }
         }
 
@@ -40,7 +40,7 @@ namespace AG.DS
         /// Remove the visual element from the display none style class.
         /// </summary>
         /// <param name="element">Extension visual element.</param>
-        public static void ShowElement(this VisualElement element)
+        public static void DisplayElement(this VisualElement element)
         {
             element.RemoveFromClassList(StyleConfig.Global_Display_None);
         }
@@ -50,7 +50,7 @@ namespace AG.DS
         /// Add the visual element to the display none style class.
         /// </summary>
         /// <param name="element">Extension visual element.</param>
-        public static void HideElement(this VisualElement element)
+        public static void UnDisplayElement(this VisualElement element)
         {
             element.AddToClassList(StyleConfig.Global_Display_None);
         }
@@ -90,6 +90,45 @@ namespace AG.DS
             highlighter.AddToClassList(StyleConfig.Background_Highlighter);
 
             element.Add(highlighter);
+        }
+
+
+        /// <summary>
+        /// Remove the visual element from the visibility hidden style class if the value is true,
+        /// <br>otherwise add the visual element to the visibility hidden style class.</br>
+        /// </summary>
+        /// <param name="element">Extension visual element.</param>
+        /// <param name="value">The visibility value to set for.</param>
+        public static void SetVisibility(this VisualElement element, bool value)
+        {
+            if (value)
+            {
+                ShowElement(element);
+            }
+            else
+            {
+                HideElement(element);
+            }
+        }
+
+
+        /// <summary>
+        /// Remove the visual element from the visibility hidden style class.
+        /// </summary>
+        /// <param name="element">Extension visual element.</param>
+        public static void ShowElement(this VisualElement element)
+        {
+            element.RemoveFromClassList(StyleConfig.Global_Visibility_Hidden);
+        }
+
+
+        /// <summary>
+        /// Add the visual element to the visibility hidden style class.
+        /// </summary>
+        /// <param name="element">Extension visual element.</param>
+        public static void HideElement(this VisualElement element)
+        {
+            element.AddToClassList(StyleConfig.Global_Visibility_Hidden);
         }
     }
 }

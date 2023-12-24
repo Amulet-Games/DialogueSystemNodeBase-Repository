@@ -137,11 +137,11 @@ namespace AG.DS
                 // Delete nodes
                 for (int i = 0; i < nodesToDelete.Count; i++)
                 {
-                    nodesToDelete[i].Callback.OnPreManualRemove(graphViewer);
+                    nodesToDelete[i].Callback.OnPreRemoveByUser(graphViewer);
 
                     graphViewer.Remove(nodesToDelete[i]);
 
-                    nodesToDelete[i].Callback.OnPostManualRemove(graphViewer);
+                    nodesToDelete[i].Callback.OnPostRemoveByUser(graphViewer);
                 }
 
                 // Delete edges
@@ -150,11 +150,11 @@ namespace AG.DS
                     if (edgesToDelete[i] == null)
                         continue;
 
-                    edgesToDelete[i].Callback.OnPreManualRemove(graphViewer);
+                    edgesToDelete[i].Callback.OnPreRemoveByUser(graphViewer);
 
                     graphViewer.Remove(edgesToDelete[i]);
 
-                    edgesToDelete[i].Callback.OnPostManualRemove(graphViewer);
+                    edgesToDelete[i].Callback.OnPostRemoveByUser(graphViewer);
                 }
             }
 

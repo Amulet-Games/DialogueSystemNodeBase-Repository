@@ -56,7 +56,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the current condition comparison type.
         /// </summary>
-        M_Condition_ComparisonType conditionComparisonType;
+        Legacy_Condition_ComparisonType conditionComparisonType;
 
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace AG.DS
                 firstTermObjectField = VariableFieldFactory.GetNewObjectField
                 (
                     variableContainer: FirstTermVariableContainer,
-                    fieldIcon: ConfigResourcesManager.SpriteConfig.ScriptableObjectFieldIconSprite,
+                    fieldIcon: ConfigResourcesManager.SpriteConfig.UnityObjectFieldIconSprite,
                     fieldUSS01: StyleConfig.Modifier_Condition_Rooted_FirstTerm_ObjectField
                 );
             }
@@ -193,7 +193,7 @@ namespace AG.DS
                 secondTermObjectField = VariableFieldFactory.GetNewObjectField
                 (
                     variableContainer: SecondTermVariableContainer,
-                    fieldIcon: ConfigResourcesManager.SpriteConfig.ScriptableObjectFieldIconSprite,
+                    fieldIcon: ConfigResourcesManager.SpriteConfig.UnityObjectFieldIconSprite,
                     fieldUSS01: StyleConfig.Modifier_Condition_Rooted_SecondTerm_ObjectField
                 );
             }
@@ -243,9 +243,9 @@ namespace AG.DS
             UpdateInDisplaySecondTermType();
 
             // Hide all the second term elements.
-            SecondTermTextFieldView.Field.HideElement();
-            SecondTermFloatFieldView.Field.HideElement();
-            SecondTermVariableContainer.ObjectField.HideElement();
+            SecondTermTextFieldView.Field.UnDisplayElement();
+            SecondTermFloatFieldView.Field.UnDisplayElement();
+            SecondTermVariableContainer.ObjectField.UnDisplayElement();
 
             // Show the new in display second term element.
             ShowSecondTermElementByComparisonType();
@@ -347,7 +347,7 @@ namespace AG.DS
         {
             // Cache the current condition comparison type enum container value internally.
             conditionComparisonType =
-                (M_Condition_ComparisonType)ConditionComparisonTypeEnumContainer.Value;
+                (Legacy_Condition_ComparisonType)ConditionComparisonTypeEnumContainer.Value;
         }
 
 
@@ -357,7 +357,7 @@ namespace AG.DS
         void HideInDisplaySecondTermElement()
         {
             if (tempInDisplaySecondTermElement != null)
-                tempInDisplaySecondTermElement.HideElement();
+                tempInDisplaySecondTermElement.UnDisplayElement();
         }
 
 
@@ -373,32 +373,32 @@ namespace AG.DS
             switch (conditionComparisonType)
             {
                 // "True" / "False" doesn't show any second term field.
-                case M_Condition_ComparisonType.True:
-                case M_Condition_ComparisonType.False:
+                case Legacy_Condition_ComparisonType.True:
+                case Legacy_Condition_ComparisonType.False:
                     break;
 
                 // "Matches" shows text field.
-                case M_Condition_ComparisonType.Matches:
+                case Legacy_Condition_ComparisonType.Matches:
 
                     secondTermElement = isShowKeyboardInputField
                         ? SecondTermTextFieldView.Field
                         : SecondTermVariableContainer.ObjectField;
 
-                    secondTermElement.ShowElement();
+                    secondTermElement.DisplayElement();
                     break;
 
                 // "Equals" / "Bigger" / "Smaller" shows float field.
-                case M_Condition_ComparisonType.Equals:
-                case M_Condition_ComparisonType.EqualsOrBigger:
-                case M_Condition_ComparisonType.EqualsOrSmaller:
-                case M_Condition_ComparisonType.Bigger:
-                case M_Condition_ComparisonType.Smaller:
+                case Legacy_Condition_ComparisonType.Equals:
+                case Legacy_Condition_ComparisonType.EqualsOrBigger:
+                case Legacy_Condition_ComparisonType.EqualsOrSmaller:
+                case Legacy_Condition_ComparisonType.Bigger:
+                case Legacy_Condition_ComparisonType.Smaller:
 
                     secondTermElement = isShowKeyboardInputField
                         ? SecondTermFloatFieldView.Field
                         : SecondTermVariableContainer.ObjectField;
 
-                    secondTermElement.ShowElement();
+                    secondTermElement.DisplayElement();
                     break;
             }
 
@@ -416,24 +416,24 @@ namespace AG.DS
             switch (conditionComparisonType)
             {
                 // "True" and "False" compare type is "Boolean".
-                case M_Condition_ComparisonType.True:
-                case M_Condition_ComparisonType.False:
+                case Legacy_Condition_ComparisonType.True:
+                case Legacy_Condition_ComparisonType.False:
                     FirstTermVariableContainer.ChangeAssigningType(VariableType.Boolean);
                     break;
 
 
                 // "Matches" compare type is "String".
-                case M_Condition_ComparisonType.Matches:
+                case Legacy_Condition_ComparisonType.Matches:
                     FirstTermVariableContainer.ChangeAssigningType(VariableType.String);
                     SecondTermVariableContainer.ChangeAssigningType(VariableType.String);
                     break;
 
                 // "Equals" / "Bigger" / "Smaller" compare type is "Float".
-                case M_Condition_ComparisonType.Equals:
-                case M_Condition_ComparisonType.EqualsOrBigger:
-                case M_Condition_ComparisonType.EqualsOrSmaller:
-                case M_Condition_ComparisonType.Bigger:
-                case M_Condition_ComparisonType.Smaller:
+                case Legacy_Condition_ComparisonType.Equals:
+                case Legacy_Condition_ComparisonType.EqualsOrBigger:
+                case Legacy_Condition_ComparisonType.EqualsOrSmaller:
+                case Legacy_Condition_ComparisonType.Bigger:
+                case Legacy_Condition_ComparisonType.Smaller:
                     FirstTermVariableContainer.ChangeAssigningType(VariableType.Float);
                     SecondTermVariableContainer.ChangeAssigningType(VariableType.Float);
                     break;

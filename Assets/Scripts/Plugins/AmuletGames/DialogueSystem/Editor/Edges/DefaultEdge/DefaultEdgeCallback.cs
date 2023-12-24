@@ -19,7 +19,7 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        public override void OnPreManualRemove(GraphViewer graphViewer)
+        public override void OnPreRemoveByUser(GraphViewer graphViewer)
         {
             // Disconnect ports
             {
@@ -30,7 +30,7 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override void OnPostManualRemove(GraphViewer graphViewer)
+        public override void OnPostRemoveByUser(GraphViewer graphViewer)
         {
         }
     }

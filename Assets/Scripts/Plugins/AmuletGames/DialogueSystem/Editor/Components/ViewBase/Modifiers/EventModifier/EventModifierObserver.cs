@@ -110,7 +110,7 @@ namespace AG.DS
         /// Register events to the delay seconds field.
         /// </summary>
         void RegisterDelaySecondsFieldEvents()
-            => new CommonDoubleFieldObserver(view: view.DelaySecondsFieldView).RegisterEvents();
+            => new CommonFloatFieldObserver(view: view.DelaySecondsFieldView).RegisterEvents();
 
 
         // ----------------------------- Event -----------------------------

@@ -22,7 +22,7 @@ namespace AG.DS
 
             VisualElement dropdownMenuHeaderContainer;
 
-            Image dropdownButtonSelectImage;
+            Image menuSelectImage;
 
             Label dropdownMenuHeaderLabel;
 
@@ -36,7 +36,7 @@ namespace AG.DS
 
             CreateDropdownButtonTextLabel();
 
-            CreateDropdownArrowIconImage();
+            CreateMenuSelectImage();
 
             CreateDropdownMenuHeaderLabel();
 
@@ -61,13 +61,12 @@ namespace AG.DS
             void CreateContainers()
             {
                 dropdown.DropdownMenu = new();
-                dropdown.DropdownMenu.AddToClassList(StyleConfig.Dropdown_DropdownMenu);
 
                 dropdownMenuHeaderContainer = new();
                 dropdownMenuHeaderContainer.AddToClassList(StyleConfig.Dropdown_DropdownMenu_Header_Container);
 
                 dropdown.DropdownElementsContainer = new();
-                dropdown.DropdownElementsContainer.AddToClassList(StyleConfig.Dropdown_DropdownMenu_DropElements_Container);
+                dropdown.DropdownElementsContainer.AddToClassList(StyleConfig.Dropdown_DropdownMenu_DropdownElements_Container);
             }
 
             void CreateDropdownButton()
@@ -79,7 +78,7 @@ namespace AG.DS
             void CreateDropdownButtonIconImage()
             {
                 dropdown.DropdownButtonIconImage = CommonImagePresenter.CreateElement(
-                    imageUSS01: StyleConfig.Dropdown_DropdownButton_ButtonIcon_Image
+                    imageUSS01: StyleConfig.Dropdown_DropdownButton_Icon_Image
                 );
             }
 
@@ -87,15 +86,15 @@ namespace AG.DS
             {
                 dropdown.DropdownButtonTextLabel = CommonLabelPresenter.CreateElement(
                     labelText: "",
-                    labelUSS: StyleConfig.Dropdown_DropdownButton_ButtonText_Label
+                    labelUSS: StyleConfig.Dropdown_DropdownButton_Text_Label
                 );
             }
 
-            void CreateDropdownArrowIconImage()
+            void CreateMenuSelectImage()
             {
-                dropdownButtonSelectImage = CommonImagePresenter.CreateElement(
-                    imageSprite: ConfigResourcesManager.SpriteConfig.DropdownArrowIcon2Sprite,
-                    imageUSS01: StyleConfig.Dropdown_DropdownButton_ArrowIcon_Image
+                menuSelectImage = CommonImagePresenter.CreateElement(
+                    imageSprite: ConfigResourcesManager.SpriteConfig.MenuSelectIcon2Sprite,
+                    imageUSS01: StyleConfig.Dropdown_DropdownButton_MenuSelectImage
                 );
             }
 
@@ -116,7 +115,7 @@ namespace AG.DS
             {
                 dropdown.DropdownButton.Add(dropdown.DropdownButtonIconImage);
                 dropdown.DropdownButton.Add(dropdown.DropdownButtonTextLabel);
-                dropdown.DropdownButton.Add(dropdownButtonSelectImage);
+                dropdown.DropdownButton.Add(menuSelectImage);
 
                 dropdownMenuHeaderContainer.Add(dropdownMenuHeaderLabel);
                 dropdown.DropdownElements = dropdownElements;
@@ -129,15 +128,15 @@ namespace AG.DS
             {
                 dropdown.Add(dropdown.DropdownButton);
 
-                dropdown.GraphViewer.contentViewContainer.Add(dropdown.DropdownMenu);
+                graphViewer.contentViewContainer.Add(dropdown.DropdownMenu);
             }
 
             void AddStyleSheet()
             {
-                dropdown.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSDropdownStyle);
+                dropdown.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DropdownStyle);
                 
-                dropdown.DropdownMenu.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
-                dropdown.DropdownMenu.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSDropdownStyle);
+                dropdown.DropdownMenu.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.GlobalStyle);
+                dropdown.DropdownMenu.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DropdownStyle);
             }
 
             void HideDropdownMenuByDefault()

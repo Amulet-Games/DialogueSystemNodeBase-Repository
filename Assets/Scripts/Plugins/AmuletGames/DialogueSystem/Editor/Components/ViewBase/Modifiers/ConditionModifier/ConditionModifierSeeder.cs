@@ -27,6 +27,8 @@ namespace AG.DS
                 new ConditionModifierSerializer().Load(view, model);
             }
 
+            new ConditionModifierCallback().OnCreate(view, model == null);
+
             return view;
         }
     }

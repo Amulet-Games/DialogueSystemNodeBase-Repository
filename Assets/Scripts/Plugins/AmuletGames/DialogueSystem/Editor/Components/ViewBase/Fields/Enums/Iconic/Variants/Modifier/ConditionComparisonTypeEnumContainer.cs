@@ -10,7 +10,7 @@ namespace AG.DS
         /// </summary>
         public ConditionComparisonTypeIconicEnumFieldView()
         {
-            Value = (int)M_Condition_ComparisonType.True;
+            Value = (int)Legacy_Condition_ComparisonType.True;
         }
 
 
@@ -18,7 +18,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override void InitFieldValue()
         {
-            EnumField.Init((M_Condition_ComparisonType)Value);
+            EnumField.Init((Legacy_Condition_ComparisonType)Value);
 
             // Update the symbol icon to match the current value.
             UpdateIcon();
@@ -28,7 +28,7 @@ namespace AG.DS
         // ----------------------------- Update Field Value -----------------------------
         /// <inheritdoc />
         public override void UpdateFieldValueNonAlert() =>
-            EnumField.SetValueWithoutNotify((M_Condition_ComparisonType)Value);
+            EnumField.SetValueWithoutNotify((Legacy_Condition_ComparisonType)Value);
 
 
         // ----------------------------- Reset Icon -----------------------------
@@ -36,30 +36,30 @@ namespace AG.DS
         public override void UpdateIcon()
         {
             var spriteConfig = ConfigResourcesManager.SpriteConfig;
-            switch ((M_Condition_ComparisonType)Value)
+            switch ((Legacy_Condition_ComparisonType)Value)
             {
-                case M_Condition_ComparisonType.True:
+                case Legacy_Condition_ComparisonType.True:
                     Icon.sprite = spriteConfig.TrueOperatorIconSprite;
                     break;
-                case M_Condition_ComparisonType.False:
+                case Legacy_Condition_ComparisonType.False:
                     Icon.sprite = spriteConfig.FalseOperatorIconSprite;
                     break;
-                case M_Condition_ComparisonType.Matches:
+                case Legacy_Condition_ComparisonType.Matches:
                     Icon.sprite = spriteConfig.MatchOperatorIconSprite;
                     break;
-                case M_Condition_ComparisonType.Equals:
+                case Legacy_Condition_ComparisonType.Equals:
                     Icon.sprite = spriteConfig.EqualOperatorIconSprite;
                     break;
-                case M_Condition_ComparisonType.EqualsOrBigger:
+                case Legacy_Condition_ComparisonType.EqualsOrBigger:
                     Icon.sprite = spriteConfig.EqualOrBiggerOperatorIconSprite;
                     break;
-                case M_Condition_ComparisonType.EqualsOrSmaller:
+                case Legacy_Condition_ComparisonType.EqualsOrSmaller:
                     Icon.sprite = spriteConfig.EqualOrSmallerOperatorIconSprite;
                     break;
-                case M_Condition_ComparisonType.Bigger:
+                case Legacy_Condition_ComparisonType.Bigger:
                     Icon.sprite = spriteConfig.BiggerOperatorIconSprite;
                     break;
-                case M_Condition_ComparisonType.Smaller:
+                case Legacy_Condition_ComparisonType.Smaller:
                     Icon.sprite = spriteConfig.SmallerOperatorIconSprite;
                     break;
             }
@@ -73,10 +73,10 @@ namespace AG.DS
         /// <returns>True if the view's value is equal to "True" or "False".</returns>
         public bool IsTrueOrFalseComparisonType()
         {
-            M_Condition_ComparisonType comparisonType = (M_Condition_ComparisonType)Value;
+            Legacy_Condition_ComparisonType comparisonType = (Legacy_Condition_ComparisonType)Value;
 
-            return comparisonType == M_Condition_ComparisonType.True
-                || comparisonType == M_Condition_ComparisonType.False;
+            return comparisonType == Legacy_Condition_ComparisonType.True
+                || comparisonType == Legacy_Condition_ComparisonType.False;
         }
     }
 }

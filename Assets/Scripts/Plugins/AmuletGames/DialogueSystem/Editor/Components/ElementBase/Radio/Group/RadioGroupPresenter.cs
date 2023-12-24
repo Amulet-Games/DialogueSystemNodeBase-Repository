@@ -16,7 +16,7 @@ namespace AG.DS
             group.AddToClassList(StyleConfig.RadioGroup);
 
             // Add stylesheet
-            group.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSRadioGroupStyle);
+            group.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.RadioGroupStyle);
             
             return group;
         }

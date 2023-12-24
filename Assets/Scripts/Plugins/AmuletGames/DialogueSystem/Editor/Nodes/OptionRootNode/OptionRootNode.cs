@@ -62,7 +62,7 @@ namespace AG.DS
         void AddStyleSheet()
         {
             var styleSheetConfig = ConfigResourcesManager.StyleSheetConfig;
-            styleSheets.Add(styleSheetConfig.DSOptionRootNodeStyle);
+            styleSheets.Add(styleSheetConfig.OptionRootNodeStyle);
             styleSheets.Add(styleSheetConfig.DSSegmentStyle);
         }
 

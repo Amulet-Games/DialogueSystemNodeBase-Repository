@@ -27,11 +27,11 @@ namespace AG.DS
 
             AddElementsToButton();
 
-            AddStyleClass();
+            return button;
 
             void CreateButton()
             {
-                button = new();
+                button = CreateElement(buttonUSS);
             }
 
             void CreateTextLabel()
@@ -47,13 +47,6 @@ namespace AG.DS
             {
                 button.Add(textLabel);
             }
-
-            void AddStyleClass()
-            {
-                button.AddToClassList(buttonUSS);
-            }
-            
-            return button;
         }
 
 
@@ -75,22 +68,30 @@ namespace AG.DS
 
             SetupDetails();
 
-            AddStyleClass();
+            return button;
 
             void CreateButton()
             {
-                button = new();
+                button = CreateElement(buttonUSS);
             }
-
+            
             void SetupDetails()
             {
                 button.style.backgroundImage = buttonSprite.texture;
             }
+        }
 
-            void AddStyleClass()
-            {
-                button.AddToClassList(buttonUSS);
-            }
+
+        /// <summary>
+        /// Method for creating a new common button element.
+        /// </summary>
+        /// <param name="buttonUSS">The button USS style to set for.</param>
+        /// <returns>A new common button element.</returns>
+        public static CommonButton CreateElement(string buttonUSS)
+        {
+            CommonButton button = new();
+
+            button.AddToClassList(buttonUSS);
 
             return button;
         }

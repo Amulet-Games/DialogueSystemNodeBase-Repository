@@ -5,6 +5,11 @@ namespace AG.DS
     [CreateAssetMenu(menuName = "### AG ###/Dialogue System/Config/Append Sprite Config")]
     public class SpriteConfig : ScriptableObject
     {
+        #region Check Marks.
+        [Header("Check Marks")]
+        public Sprite CheckMarkIconSprite;
+        #endregion
+
         #region Commons.
         [Header("Commons")]
         public Sprite EditButtonIconSprite;
@@ -29,16 +34,13 @@ namespace AG.DS
 
         #region Dropdown Arrows
         [Header("Dropdown Arrows")]
-        public Sprite DropdownArrowIcon1Sprite;
-        public Sprite DropdownArrowIcon2Sprite;
+        public Sprite MenuSelectIcon1Sprite;
+        public Sprite MenuSelectIcon2Sprite;
         #endregion
 
         #region Fields.
         [Header("Fields")]
         public Sprite BranchTitleFieldSprite;
-        public Sprite ChangeFieldTypeButtonDisableIconSprite;
-        public Sprite ChangeFieldTypeButtonHoverIconSprite;
-        public Sprite ChangeFieldTypeButtonNormalIconSprite;
         public Sprite ContinueByAutoSprite;
         public Sprite ContinueByInputSprite;
         public Sprite DialogueEventFieldSprite;
@@ -48,7 +50,9 @@ namespace AG.DS
         public Sprite MessageAudioFieldSprite;
         public Sprite MessageTextFieldSprite;
         public Sprite RootTitleFieldSprite;
-        public Sprite ScriptableObjectFieldIconSprite;
+        public Sprite SwitchFieldButtonIconSprite;
+        public Sprite SwitchFieldButtonDisableIconSprite;
+        public Sprite UnityObjectFieldIconSprite;
         #endregion
 
         #region Folders.

@@ -33,7 +33,7 @@ namespace AG.DS
         /// <summary>
         /// The modifier's delay seconds value.
         /// </summary>
-        [SerializeField] public double DelaySeconds;
+        [SerializeField] public float DelaySeconds;
 
 
         /// <summary>

@@ -59,8 +59,7 @@ namespace AG.DS
         /// The serializable value of the view.
         /// <para></para>
         /// The value here is to prevent boxing/unboxing when we push it to the reversible stack.<see cref="StashData"/>,
-        /// <br>instead of serializing the value from the field, which will cause boxing,</br>
-        /// <br>we'll serialize the view itself which the included the value.</br>
+        /// <br>instead of serializing the value from the field, which will cause boxing, we'll serialize the view itself.</br>
         /// </summary>
         [SerializeField] int m_value;
 

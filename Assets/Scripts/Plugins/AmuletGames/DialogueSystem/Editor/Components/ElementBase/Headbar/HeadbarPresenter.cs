@@ -81,7 +81,7 @@ namespace AG.DS
                 headBarView.LanguageToolbarMenu = ToolbarMenuPresenter.CreateElement
                 (
                     dropdownLabel: LanguageProvider.GetShort(type: languageHandler.CurrentLanguage),
-                    dropdownIcon: ConfigResourcesManager.SpriteConfig.DropdownArrowIcon1Sprite,
+                    dropdownIcon: ConfigResourcesManager.SpriteConfig.MenuSelectIcon1Sprite,
                     toolbarMenuUSS: StyleConfig.HeadBar_LanguageToolbarMenu_Main,
                     centerContainerUSS: StyleConfig.HeadBar_LanguageToolbarMenu_Center_Container,
                     dropdownLabelUSS: StyleConfig.HeadBar_LanguageToolbarMenu_Dropdown_Label,
@@ -113,7 +113,7 @@ namespace AG.DS
 
             void AddStyleSheet()
             {
-                headBar.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSHeadBarStyle);
+                headBar.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.HeadBarStyle);
             }
         }
     }

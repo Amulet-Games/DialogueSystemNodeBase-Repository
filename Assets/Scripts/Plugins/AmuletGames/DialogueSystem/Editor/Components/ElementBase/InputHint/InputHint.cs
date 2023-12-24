@@ -65,7 +65,7 @@ namespace AG.DS
             var graphViewer = Instance.graphViewer;
 
             // Show the hint.
-            Instance.ShowElement();
+            Instance.DisplayElement();
 
             // update hint position.
             UpdatePositionHorizontal();
@@ -111,7 +111,7 @@ namespace AG.DS
         /// </summary>
         public static void HideHint()
         {
-            Instance.HideElement();
+            Instance.UnDisplayElement();
         }
     }
 }

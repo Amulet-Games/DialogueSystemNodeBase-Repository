@@ -61,7 +61,7 @@ namespace AG.DS
         /// </summary>
         void AddStyleSheet()
         {
-            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSEndNodeStyle);
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.EndNodeStyle);
         }
 
 

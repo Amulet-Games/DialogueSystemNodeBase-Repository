@@ -1,0 +1,70 @@
+/*< ---------------------------------------------------------- Main >*/
+.flagElement {
+	
+	background-color: rgba(19, 19, 19, 1);
+	
+	height: 27px;
+	width: 222px;
+
+	flex-direction: row;
+}
+
+.flagElement:hover {
+	
+	cursor: link;
+
+	background-color: rgba(120, 120, 120, 1);
+}
+
+.flagElement-first {
+	
+	/* top - right - bottom - left */
+	border-radius: 4px 4px 0px 0px;
+}
+
+.flagElement-last {
+	
+	/* top - right - bottom - left */
+	border-radius: 0px 0px 4px 4px;
+}
+
+
+/*< ---------------------------------------------------------- Selected Icon Image >*/
+.flagElement-selectedIcon-image {
+	
+	align-self: center;
+	
+	height: 15px;
+	width: 15px;
+	
+	/* top - right - bottom - left */
+	margin: 0px 0px 0px 4.5px;
+}
+
+.flagElement:hover
+.flagElement-selectedIcon-image {
+	
+	cursor: link;
+}
+
+
+/*< ---------------------------------------------------------- Text Label >*/
+.flagElement-text-label {
+
+	color: white;
+	
+	font-size: 13px;
+	
+	align-self: center;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	
+	/* top - right - bottom - left */
+	margin: 1px 16.5px 0px 4.5px;
+}
+
+.flagElement:hover
+.flagElement-text-label {
+	
+	cursor: link;
+}

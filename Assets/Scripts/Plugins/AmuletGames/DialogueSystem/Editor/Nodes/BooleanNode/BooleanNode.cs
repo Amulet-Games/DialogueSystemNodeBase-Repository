@@ -62,9 +62,9 @@ namespace AG.DS
         void AddStyleSheet()
         {
             var styleSheetConfig = ConfigResourcesManager.StyleSheetConfig;
-            styleSheets.Add(styleSheetConfig.DSBooleanNodeStyle);
-            styleSheets.Add(styleSheetConfig.DSConditionModifierStyle);
-            styleSheets.Add(styleSheetConfig.DSConditionModifierGroupStyle);
+            styleSheets.Add(styleSheetConfig.BooleanNodeStyle);
+            styleSheets.Add(styleSheetConfig.ConditionModifierStyle);
+            styleSheets.Add(styleSheetConfig.ConditionModifierGroupStyle);
         }
 
 

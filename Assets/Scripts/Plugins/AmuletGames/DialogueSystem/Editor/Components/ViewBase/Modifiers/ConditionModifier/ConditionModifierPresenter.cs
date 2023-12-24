@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -18,12 +19,21 @@ namespace AG.DS
         )
         {
             VisualElement helperButtonsContainer;
+            VisualElement secondVariableFieldLabelContainer;
+            VisualElement secondBindingFlagsContainer;
+            VisualElement secondFieldInfoContainer;
             VisualElement operationChainWithContainer;
             VisualElement operationContainer;
             VisualElement chainWithContainer;
 
+            Label secondVariableLabel;
+            Label secondFloatFieldHintLabel;
+            Label secondBindingFlagsLabel;
             Label operationLabel;
             Label chainWithLabel;
+
+            Image secondReflectableImage;
+            Image secondTextImage;
 
             CreateFolder();
 
@@ -36,6 +46,26 @@ namespace AG.DS
             CreateRenameButton();
 
             CreateRemoveButton();
+
+            CreateSecondVariableSwitchFieldButton();
+
+            CreateSecondVariableLabel();
+
+            CreateSecondTextField();
+
+            CreateSecondTextImage();
+
+            CreateSecondFloatField();
+
+            CreateSecondFloatHintLabel();
+
+            CreateSecondReflectableObjectField();
+
+            CreateSecondReflectableObjectImage();
+
+            CreateSecondBindingFlagsLabel();
+
+            CreateSecondBindingFlags();
 
             CreateOperationLabel();
 
@@ -59,6 +89,23 @@ namespace AG.DS
             {
                 helperButtonsContainer = new();
                 helperButtonsContainer.AddToClassList(StyleConfig.ConditionModifier_HelperButton_Container);
+
+                view.SecondVariableContainer = new();
+                view.SecondVariableContainer.AddToClassList(StyleConfig.ConditionModifier_SecondVariable_Container);
+
+                secondVariableFieldLabelContainer = new();
+                secondVariableFieldLabelContainer.AddToClassList(StyleConfig.ConditionModifier_SecondVariable_FieldLabel_Container);
+
+                view.SecondReflectableElementsContainer = new();
+
+                view.SecondBindingFlagsFieldInfoContainer = new();
+                view.SecondBindingFlagsFieldInfoContainer.AddToClassList(StyleConfig.ConditionModifier_SecondBindingFlags_FieldInfo_Container);
+
+                secondBindingFlagsContainer = new();
+                secondFieldInfoContainer = new();
+
+                view.SecondFloatFieldHintLabelContainer = new();
+                view.SecondFloatFieldHintLabelContainer.AddToClassList(StyleConfig.ConditionModifier_SecondFloatField_HintLabel_Container);
 
                 operationChainWithContainer = new();
                 operationChainWithContainer.AddToClassList(StyleConfig.ConditionModifier_Operation_ChainWith_Container);
@@ -114,6 +161,100 @@ namespace AG.DS
                 view.RemoveButton.AddBackgroundHighlighter();
             }
 
+            void CreateSecondVariableSwitchFieldButton()
+            {
+                view.SecondVariableSwitchFieldButton = SwitchFieldButtonPresenter.CreateElement
+                (
+                    buttonText: StringConfig.ConditionModifier_SwitchFieldButton_LabelText,
+                    buttonIconSprite: ConfigResourcesManager.SpriteConfig.SwitchFieldButtonIconSprite,
+                    buttonUSS: StyleConfig.ConditionModifier_SecondVariable_SwitchField_Button,
+                    buttonLabelUSS: StyleConfig.ConditionModifier_SecondVariable_SwitchFieldButtonText_Label,
+                    buttonIconUSS: StyleConfig.ConditionModifier_SecondVariable_SwitchFieldButtonIcon_Image
+                );
+            }
+
+            void CreateSecondVariableLabel()
+            {
+                secondVariableLabel = CommonLabelPresenter.CreateElement
+                (
+                    labelText: StringConfig.ConditionModifier_SecondVariable_LabelText,
+                    labelUSS: StyleConfig.ConditionModifier_SecondVariable_Label
+                );
+            }
+
+            void CreateSecondReflectableObjectField()
+            {
+                ReflectableObjectFieldPresenter.CreateElement
+                (
+                    view: view.SecondReflectableObjectFieldView,
+                    fieldUSS01: StyleConfig.ConditionModifier_SecondReflectableObject_Field
+                );
+            }
+
+            void CreateSecondReflectableObjectImage()
+            {
+                secondReflectableImage = CommonImagePresenter.CreateElement
+                (
+                    imageSprite: ConfigResourcesManager.SpriteConfig.UnityObjectFieldIconSprite,
+                    imageUSS01: StyleConfig.ConditionModifier_SecondReflectableObject_Image
+                );
+
+                view.SecondReflectableObjectFieldView.Field.SetDisplayImage(secondReflectableImage);
+            }
+
+            void CreateSecondBindingFlagsLabel()
+            {
+                secondBindingFlagsLabel = CommonLabelPresenter.CreateElement
+                (
+                    labelText: StringConfig.ConditionModifier_SecondBindingFlags_LabelText,
+                    labelUSS: StyleConfig.ConditionModifier_SecondBindingFlags_Label
+                );
+            }
+
+            void CreateSecondBindingFlags()
+            {
+                view.SecondBindingFlags = BindingFlagsPresenter.CreateElement(graphViewer);
+            }
+
+            void CreateSecondTextField()
+            {
+                CommonTextFieldPresenter.CreateElement
+                (
+                    view: view.SecondTextFieldView,
+                    multiline: false,
+                    fieldUSS: StyleConfig.ConditionModifier_SecondText_Field
+                );
+            }
+
+            void CreateSecondTextImage()
+            {
+                secondTextImage = CommonImagePresenter.CreateElement
+                (
+                    imageSprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite,
+                    imageUSS01: StyleConfig.ConditionModifier_SecondText_Image
+                );
+
+                view.SecondTextFieldView.Field.SetDisplayImage(secondTextImage);
+            }
+
+            void CreateSecondFloatField()
+            {
+                CommonFloatFieldPresenter.CreateElement
+                (
+                    view: view.SecondFloatFieldView,
+                    fieldUSS: StyleConfig.ConditionModifier_SecondFloat_Field
+                );
+            }
+
+            void CreateSecondFloatHintLabel()
+            {
+                secondFloatFieldHintLabel = CommonLabelPresenter.CreateElement
+                (
+                    labelText: StringConfig.ConditionModifier_SecondFloatHint_LabelText,
+                    labelUSS: StyleConfig.ConditionModifier_SecondFloatHint_Label
+                );
+            }
+
             void CreateOperationLabel()
             {
                 operationLabel = CommonLabelPresenter.CreateElement
@@ -127,44 +268,51 @@ namespace AG.DS
             {
                 var matchDropdownElement = DropdownElementPresenter.CreateElement
                 (
-                    elementText: StringConfig.ConditionModifier_Match_LabelText,
-                    elementIconSprite: ConfigResourcesManager.SpriteConfig.MatchOperatorIconSprite
+                    labelText: StringConfig.ConditionModifier_Match_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.MatchOperatorIconSprite,
+                    additionalInfo: "Match"
                 );
 
                 var equalDropdownElement = DropdownElementPresenter.CreateElement
                 (
-                    elementText: StringConfig.ConditionModifier_Equal_LabelText,
-                    elementIconSprite: ConfigResourcesManager.SpriteConfig.EqualOperatorIconSprite
+                    labelText: StringConfig.ConditionModifier_Equal_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.EqualOperatorIconSprite,
+                    additionalInfo: "Equal"
                 );
 
                 var equalOrBiggerDropdownElement = DropdownElementPresenter.CreateElement
                 (
-                    elementText: StringConfig.ConditionModifier_EqualOrBigger_LabelText,
-                    elementIconSprite: ConfigResourcesManager.SpriteConfig.EqualOrBiggerOperatorIconSprite
+                    labelText: StringConfig.ConditionModifier_EqualOrBigger_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.EqualOrBiggerOperatorIconSprite,
+                    additionalInfo: "EqualOrBigger"
                 );
 
                 var equalOrSmallerDropdownElement = DropdownElementPresenter.CreateElement
                 (
-                    elementText: StringConfig.ConditionModifier_EqualOrSmaller_LabelText,
-                    elementIconSprite: ConfigResourcesManager.SpriteConfig.EqualOrSmallerOperatorIconSprite
+                    labelText: StringConfig.ConditionModifier_EqualOrSmaller_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.EqualOrSmallerOperatorIconSprite,
+                    additionalInfo: "EqualOrSmaller"
                 );
 
                 var biggerDropdownElement = DropdownElementPresenter.CreateElement
                 (
-                    elementText: StringConfig.ConditionModifier_Bigger_LabelText,
-                    elementIconSprite: ConfigResourcesManager.SpriteConfig.BiggerOperatorIconSprite
+                    labelText: StringConfig.ConditionModifier_Bigger_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.BiggerOperatorIconSprite,
+                    additionalInfo: "Bigger"
                 );
 
                 var smallerDropdownElement = DropdownElementPresenter.CreateElement
                 (
-                    elementText: StringConfig.ConditionModifier_Smaller_LabelText,
-                    elementIconSprite: ConfigResourcesManager.SpriteConfig.SmallerOperatorIconSprite
+                    labelText: StringConfig.ConditionModifier_Smaller_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.SmallerOperatorIconSprite,
+                    additionalInfo: "Smaller"
                 );
 
                 var customLogicDropdownElement = DropdownElementPresenter.CreateElement
                 (
-                    elementText: StringConfig.ConditionModifier_CustomLogic_LabelText,
-                    elementIconSprite: ConfigResourcesManager.SpriteConfig.CustomLogicOperatorIconSprite
+                    labelText: StringConfig.ConditionModifier_CustomLogic_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.CustomLogicOperatorIconSprite,
+                    additionalInfo: "CustomLogic"
                 );
 
                 var dropdownElements = new[]
@@ -199,26 +347,30 @@ namespace AG.DS
             {
                 var noneDropdownElement = DropdownElementPresenter.CreateElement
                 (
-                    elementText: StringConfig.ConditionModifier_None_LabelText,
-                    elementIconSprite: ConfigResourcesManager.SpriteConfig.UnlinkConditionIconSprite
+                    labelText: StringConfig.ConditionModifier_None_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.UnlinkConditionIconSprite,
+                    additionalInfo: "All"
                 );
 
                 var group1DropdownElement = DropdownElementPresenter.CreateElement
                 (
-                    elementText: StringConfig.ConditionModifier_Group1_LabelText,
-                    elementIconSprite: ConfigResourcesManager.SpriteConfig.LinkConditionIconSprite
+                    labelText: StringConfig.ConditionModifier_Group1_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.LinkConditionIconSprite,
+                    additionalInfo: "Group1"
                 );
 
                 var group2DropdownElement = DropdownElementPresenter.CreateElement
                 (
-                    elementText: StringConfig.ConditionModifier_Group2_LabelText,
-                    elementIconSprite: ConfigResourcesManager.SpriteConfig.LinkConditionIconSprite
+                    labelText: StringConfig.ConditionModifier_Group2_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.LinkConditionIconSprite,
+                    additionalInfo: "Group2"
                 );
 
                 var group3DropdownElement = DropdownElementPresenter.CreateElement
                 (
-                    elementText: StringConfig.ConditionModifier_Group3_LabelText,
-                    elementIconSprite: ConfigResourcesManager.SpriteConfig.LinkConditionIconSprite
+                    labelText: StringConfig.ConditionModifier_Group3_LabelText,
+                    iconSprite: ConfigResourcesManager.SpriteConfig.LinkConditionIconSprite,
+                    additionalInfo: "Group3"
                 );
 
                 var dropdownElements = new[]
@@ -246,6 +398,28 @@ namespace AG.DS
                 helperButtonsContainer.Add(view.RenameButton);
                 helperButtonsContainer.Add(view.RemoveButton);
 
+                // Second Variable
+                view.Folder.AddElementToContent(view.SecondVariableContainer);
+                view.SecondVariableContainer.Add(secondVariableFieldLabelContainer);
+                view.SecondVariableContainer.Add(view.SecondReflectableElementsContainer);
+                view.SecondVariableContainer.Add(view.SecondTextFieldView.Field);
+                view.SecondVariableContainer.Add(view.SecondFloatFieldHintLabelContainer);
+
+                secondVariableFieldLabelContainer.Add(secondVariableLabel);
+                secondVariableFieldLabelContainer.Add(view.SecondVariableSwitchFieldButton);
+
+                view.SecondReflectableElementsContainer.Add(view.SecondReflectableObjectFieldView.Field);
+                view.SecondReflectableElementsContainer.Add(view.SecondBindingFlagsFieldInfoContainer);
+
+                view.SecondBindingFlagsFieldInfoContainer.Add(secondBindingFlagsContainer);
+                view.SecondBindingFlagsFieldInfoContainer.Add(secondFieldInfoContainer);
+
+                secondBindingFlagsContainer.Add(secondBindingFlagsLabel);
+                secondBindingFlagsContainer.Add(view.SecondBindingFlags);
+
+                view.SecondFloatFieldHintLabelContainer.Add(view.SecondFloatFieldView.Field);
+                view.SecondFloatFieldHintLabelContainer.Add(secondFloatFieldHintLabel);
+
                 // Operation & Chain With
                 view.Folder.AddElementToContent(operationChainWithContainer);
 
@@ -258,6 +432,90 @@ namespace AG.DS
                 operationChainWithContainer.Add(chainWithContainer);
                 chainWithContainer.Add(chainWithLabel);
                 chainWithContainer.Add(view.ChainWithDropdown);
+            }
+        }
+
+
+        class SwitchFieldButtonPresenter
+        {
+            /// <summary>
+            /// Create a new switch field button element.
+            /// </summary>
+            /// <param name="buttonText">The button text to set for.</param>
+            /// <param name="buttonIconSprite">The button icon sprite to set for.</param>
+            /// <param name="buttonUSS">The button USS to set for.</param>
+            /// <param name="buttonLabelUSS">The button Label USS to set for.</param>
+            /// <param name="buttonIconUSS">The button icon USS to set for.</param>
+            /// <returns>A new switch field button element.</returns>
+            public static CommonButton CreateElement
+            (
+                string buttonText,
+                Sprite buttonIconSprite,
+                string buttonUSS,
+                string buttonLabelUSS,
+                string buttonIconUSS
+            )
+            {
+                CommonButton button;
+
+                Label buttonLabel;
+                Image iconImage;
+
+                CreateButton();
+
+                CreateButtonLabel();
+
+                CreateIconImage();
+
+                SetupDetails();
+
+                AddElementsToContentButton();
+
+                AddStyleSheet();
+
+                return button;
+
+                void CreateButton()
+                {
+                    button = new();
+                    button.AddToClassList(buttonUSS);
+                }
+
+                void CreateIconImage()
+                {
+                    iconImage = CommonImagePresenter.CreateElement
+                    (
+                        imageSprite: buttonIconSprite,
+                        imageUSS01: buttonIconUSS
+                    );
+                }
+
+                void CreateButtonLabel()
+                {
+                    buttonLabel = CommonLabelPresenter.CreateElement
+                    (
+                        labelText: buttonText,
+                        labelUSS: buttonLabelUSS
+                    );
+                }
+
+                void SetupDetails()
+                {
+                    button.AddBackgroundHighlighter();
+
+                    buttonLabel.pickingMode = PickingMode.Position;
+                }
+
+                void AddElementsToContentButton()
+                {
+                    button.Add(iconImage);
+                    button.Add(buttonLabel);
+                }
+
+                void AddStyleSheet()
+                {
+                    button.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.ConditionModifierStyle);
+                }
             }
         }
     }

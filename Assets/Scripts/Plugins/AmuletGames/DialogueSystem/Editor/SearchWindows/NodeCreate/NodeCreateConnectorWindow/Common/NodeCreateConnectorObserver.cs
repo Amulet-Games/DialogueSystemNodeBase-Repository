@@ -54,7 +54,7 @@ namespace AG.DS
             }
             else
             {
-                Node.ExecuteOnceOnGeometryChanged(NewNodeOnPostCreateEvent);
+                Node.ExecuteOnceOnGeometryChanged(NewNodeOnCreateEvent);
             }
         }
 

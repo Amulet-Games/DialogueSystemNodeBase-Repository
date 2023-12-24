@@ -8,8 +8,8 @@ namespace AG.DS
         /// <summary>
         /// Create a new content button element.
         /// </summary>
-        /// <param name="buttonText">The name for this content button.</param>
-        /// <param name="buttonIconSprite">The icon that displays beside the button text.</param>
+        /// <param name="buttonText">The button text to set for.</param>
+        /// <param name="buttonIconSprite">The button icon sprite to set for.</param>
         /// <returns>A new content button element.</returns>
         public static CommonButton CreateElement
         (
@@ -19,12 +19,12 @@ namespace AG.DS
         {
             CommonButton button;
 
-            Label textLabel;
+            Label buttonLabel;
             Image iconImage;
 
             CreateButton();
 
-            CreateTextLabel();
+            CreateButtonLabel();
 
             CreateIconImage();
 
@@ -40,9 +40,9 @@ namespace AG.DS
                 button.AddToClassList(StyleConfig.ContentButton);
             }
 
-            void CreateTextLabel()
+            void CreateButtonLabel()
             {
-                textLabel = CommonLabelPresenter.CreateElement
+                buttonLabel = CommonLabelPresenter.CreateElement
                 (
                     labelText: buttonText,
                     labelUSS: StyleConfig.ContentButton_ButtonText_Label
@@ -60,13 +60,13 @@ namespace AG.DS
 
             void AddElementsToContentButton()
             {
-                button.Add(textLabel);
+                button.Add(buttonLabel);
                 button.Add(iconImage);
             }
 
             void AddStyleSheet()
             {
-                button.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSContentButtonStyle);
+                button.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.ContentButtonStyle);
             }
         }
     }

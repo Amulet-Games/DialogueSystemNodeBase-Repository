@@ -47,7 +47,12 @@ namespace AG.DS
                     value = (double)minValue;
                 }
 
-                m_value = Math.Round(value, 2);
+                if (roundDigits != -1)
+                {
+                    value = Math.Round(value, roundDigits, MidpointRounding.AwayFromZero);
+                }
+
+                m_value = value;
 
                 Field.SetValueWithoutNotify(m_value);
                 Field.ToggleEmptyStyle();
@@ -57,12 +62,19 @@ namespace AG.DS
 
         /// <summary>
         /// The serializable value of the view.
+        /// <br>If rounding is applied, the type will be MidpointRounding.AwayFromZero.</br>
         /// <para></para>
         /// The value here is to prevent boxing/unboxing when we push it to the reversible stack.<see cref="StashData"/>,
-        /// <br>instead of serializing the value from the field, which will cause boxing,</br>
-        /// <br>we'll serialize the view itself which the included the value.</br>
+        /// <br>instead of serializing the value from the field, which will cause boxing, we'll serialize the view itself.</br>
         /// </summary>
         [SerializeField] double m_value;
+
+
+        /// <summary>
+        /// The number of fractional digits to which the serializable value will be rounded.
+        /// <br>if the value is -1, the serializable value won't be rounded.</br>
+        /// </summary>
+        int roundDigits;
 
 
         /// <summary>
@@ -70,14 +82,17 @@ namespace AG.DS
         /// </summary>
         /// <param name="maxValue">The max value to set for.</param>
         /// <param name="minValue">The min value to set for.</param>
+        /// <param name="roundDigits">The round digits to set for.</param>
         public CommonDoubleFieldView
         (
             int? maxValue = null,
-            int? minValue = null
+            int? minValue = null,
+            int roundDigits = -1
         )
         {
             this.maxValue = maxValue;
             this.minValue = minValue;
+            this.roundDigits = roundDigits;
         }
 
 

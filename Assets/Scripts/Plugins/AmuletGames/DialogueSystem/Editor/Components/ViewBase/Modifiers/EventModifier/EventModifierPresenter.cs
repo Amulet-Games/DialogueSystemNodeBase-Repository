@@ -159,7 +159,7 @@ namespace AG.DS
 
             void CreateDelaySecondsField()
             {
-                CommonDoubleFieldPresenter.CreateElement
+                CommonFloatFieldPresenter.CreateElement
                 (
                     view: view.DelaySecondsFieldView,
                     fieldUSS: StyleConfig.EventModifier_DelaySeconds_Field

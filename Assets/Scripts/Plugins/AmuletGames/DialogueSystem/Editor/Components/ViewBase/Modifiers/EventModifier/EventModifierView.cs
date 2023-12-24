@@ -41,7 +41,7 @@ namespace AG.DS
         /// <summary>
         /// View for the delay seconds field.
         /// </summary>
-        public CommonDoubleFieldView DelaySecondsFieldView;
+        public CommonFloatFieldView DelaySecondsFieldView;
 
 
         /// <summary>

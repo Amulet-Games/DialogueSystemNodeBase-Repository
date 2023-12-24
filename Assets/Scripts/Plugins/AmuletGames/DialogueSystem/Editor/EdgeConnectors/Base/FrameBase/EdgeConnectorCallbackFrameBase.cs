@@ -99,11 +99,11 @@ namespace AG.DS
                 {
                     for (int i = 0; i < edgesToDelete.Count; i++)
                     {
-                        edgesToDelete[i].Callback.OnPreManualRemove(graphViewer);
+                        edgesToDelete[i].Callback.OnPreRemoveByUser(graphViewer);
 
                         graphViewer.Remove(edgesToDelete[i]);
 
-                        edgesToDelete[i].Callback.OnPostManualRemove(graphViewer);
+                        edgesToDelete[i].Callback.OnPostRemoveByUser(graphViewer);
                     }
                 }
             }

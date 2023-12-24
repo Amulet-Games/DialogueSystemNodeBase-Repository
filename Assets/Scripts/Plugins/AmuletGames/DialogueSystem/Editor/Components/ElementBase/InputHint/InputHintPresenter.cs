@@ -64,13 +64,13 @@ namespace AG.DS
 
             void AddStyleSheet()
             {
-                inputHint.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSGlobalStyle);
-                inputHint.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSInputHintStyle);
+                inputHint.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.GlobalStyle);
+                inputHint.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.InputHintStyle);
             }
 
             void HideElementByDefault()
             {
-                inputHint.HideElement();
+                inputHint.UnDisplayElement();
             }
         }
     }

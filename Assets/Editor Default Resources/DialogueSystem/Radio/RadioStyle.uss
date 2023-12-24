@@ -22,7 +22,7 @@
 
 
 /*< ---------------------------------------------------------- Icon Image >*/
-.radio-radioIcon-image {
+.radio-icon-image {
 
 	width: 20px; 
 	height: 20px;
@@ -34,7 +34,7 @@
 }
 
 .radio:hover
-.radio-radioIcon-image {
+.radio-icon-image {
 	
 	cursor: link;
 
@@ -44,14 +44,14 @@
 
 
 .radio-active
-.radio-radioIcon-image {
+.radio-icon-image {
 	
 	--unity-image-tint-color: white;
 }
 
 
 /*< ---------------------------------------------------------- Text Label >*/
-.radio-radioText-label {
+.radio-text-label {
 	
 	color: rgba(81, 81, 81, 1);
 	
@@ -66,7 +66,7 @@
 }
 
 .radio:hover
-.radio-radioText-label {
+.radio-text-label {
 	
 	cursor: link;
 
@@ -75,7 +75,7 @@
 }
 
 .radio-active
-.radio-radioText-label {
+.radio-text-label {
 	
 	color: white;
 }

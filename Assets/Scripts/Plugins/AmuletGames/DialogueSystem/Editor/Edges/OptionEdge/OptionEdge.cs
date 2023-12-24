@@ -51,7 +51,7 @@ namespace AG.DS
         /// </summary>
         void AddStyleSheet()
         {
-            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSOptionEdgeStyle);
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.OptionEdgeStyle);
         }
     }
 }

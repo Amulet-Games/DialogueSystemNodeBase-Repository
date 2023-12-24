@@ -37,16 +37,16 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <summary>
-        /// The callback to invoke when the edge is about to be removed from the graph.
+        /// The callback to invoke when the edge is about to be removed from the graph by the user.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public abstract void OnPreManualRemove(GraphViewer graphViewer);
+        public abstract void OnPreRemoveByUser(GraphViewer graphViewer);
 
 
         /// <summary>
-        /// The callback to invoke when the edge is removed from the graph.
+        /// The callback to invoke when the edge is removed from the graph by the user.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        public abstract void OnPostManualRemove(GraphViewer graphViewer);
+        public abstract void OnPostRemoveByUser(GraphViewer graphViewer);
     }
 }

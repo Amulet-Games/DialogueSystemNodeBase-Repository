@@ -3,7 +3,7 @@ namespace AG.DS
     public class ModifierEnums { }
 
     /*< -------------------- Condition -------------------- >*/
-    public enum M_Condition_ComparisonType
+    public enum Legacy_Condition_ComparisonType
     {
         True,
         False,
@@ -13,6 +13,14 @@ namespace AG.DS
         EqualsOrSmaller,
         Bigger,
         Smaller
+    }
+
+
+    public enum ConditionModifierOperationType
+    {
+        String,
+        Float,
+        CustomLogic,
     }
 
 

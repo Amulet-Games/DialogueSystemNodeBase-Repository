@@ -76,7 +76,7 @@ namespace AG.DS
 
             void AddStyleSheet()
             {
-                folder.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSFolderStyle);
+                folder.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.FolderStyle);
             }
         }
     }

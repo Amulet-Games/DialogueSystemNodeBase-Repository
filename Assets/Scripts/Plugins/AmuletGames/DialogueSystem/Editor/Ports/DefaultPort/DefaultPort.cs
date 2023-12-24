@@ -132,7 +132,7 @@ namespace AG.DS
         void AddStyleSheet()
         {
             styleSheets.Clear();
-            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DSDefaultPortStyle);
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DefaultPortStyle);
         }
 
 

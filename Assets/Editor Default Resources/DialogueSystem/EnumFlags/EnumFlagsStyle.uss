@@ -1,0 +1,109 @@
+/*< ---------------------------------------------------------- Enum Flags Button >*/
+.enumFlags-enumFlagsButton {
+
+	background-color: rgba(32, 32, 32, 1);
+	
+	height: 27px;
+	width: 222px;
+
+	flex-direction: row;
+	
+	/* top - right - bottom - left */
+	margin: 0px 6px 6px 6px;
+	border-radius: 4px;
+}
+
+.enumFlags-enumFlagsButton:hover {
+	
+	cursor: link;
+
+	border-color: rgba(101, 101, 101, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px;
+}
+
+.enumFlags-enumFlagsButton:focus {
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 0.5px;
+}
+
+/*< ---------------------------------------------------------- Enum Flags Button Label >*/
+.enumFlags-enumFlagsButton-textLabel {
+	
+	color: white;
+	
+	font-size: 13px;
+	
+	align-self: center;
+
+	white-space: nowrap;
+
+	overflow: hidden;
+
+	flex-grow: 1;
+
+	text-overflow: ellipsis;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	
+	/* top - right - bottom - left */
+	margin: 1px 16.5px 0px 5px;
+}
+
+.enumFlags-enumFlagsButton:hover
+.enumFlags-enumFlagsButton-textLabel {
+	
+	cursor: link;
+	
+	/* top - right - bottom - left */
+	margin: 1px 16.5px 0px 4.5px;
+}
+
+.enumFlags-enumFlagsButton:focus
+.enumFlags-enumFlagsButton-textLabel {
+	
+	/* top - right - bottom - left */
+	margin: 1px 16.5px 0px 4.5px;
+}
+
+
+/*< ---------------------------------------------------------- Enum Flags Menu Select Image >*/
+.enumFlags-enumFlagsButton-menuSelectImage {
+	
+	align-self: center;
+	
+	height: 21px;
+	width: 21px;
+	
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	margin: 0px -0.5px 0px 0px;
+}
+
+
+.enumFlags-enumFlagsButton:hover
+.enumFlags-enumFlagsButton-menuSelectImage,
+
+.enumFlags-enumFlagsButton:focus
+.enumFlags-enumFlagsButton-menuSelectImage {
+
+	/* top - right - bottom - left */
+	margin: 0px -1.5px 0px 0px;
+}
+
+
+/*< ---------------------------------------------------------- Enum Flags Menu>*/
+.enumFlags-enumFlagsMenu {
+	
+	background-color: rgba(19, 19, 19, 1);
+	
+	width: 222px;
+	
+	/* top - right - bottom - left */
+	border-radius: 4px;
+}

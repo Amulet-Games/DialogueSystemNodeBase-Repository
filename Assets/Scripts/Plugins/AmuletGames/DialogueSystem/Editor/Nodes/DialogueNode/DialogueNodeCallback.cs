@@ -19,7 +19,7 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        public override void OnPreManualRemove(GraphViewer graphViewer)
+        public override void OnPreRemoveByUser(GraphViewer graphViewer)
         {
             // Remove, disconnect ports
             {
@@ -33,13 +33,13 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override void OnPostManualRemove(GraphViewer graphViewer)
+        public override void OnPostRemoveByUser(GraphViewer graphViewer)
         {
         }
 
 
         /// <inheritdoc />
-        public override void OnPostCreate()
+        public override void OnCreate()
         {
             // If there's no modifier being created after loading, create a new one by default.
             if (View.MessageModifierGroupView.FirstModifier == null)

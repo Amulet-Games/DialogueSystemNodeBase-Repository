@@ -130,13 +130,6 @@ namespace AG.DS
                 groupView.Add(modifier);
                 groupView.UpdateReferences();
             }
-
-            // Create the first folder
-            {
-                var folder = modifier.Folder;
-                folder.Expanded = true;
-                folder.StartEditingFolderTitle();
-            }
         }
     }
 }

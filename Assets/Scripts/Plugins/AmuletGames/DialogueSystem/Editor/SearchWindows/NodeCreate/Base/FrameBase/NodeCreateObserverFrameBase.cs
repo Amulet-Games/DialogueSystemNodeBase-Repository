@@ -225,12 +225,12 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when a new node has finished all its creation steps.
+        /// The event to invoke when a new node is created.
         /// </summary>
         /// <param name="evt">The registering event</param>
-        protected void NewNodeOnPostCreateEvent(GeometryChangedEvent evt)
+        protected void NewNodeOnCreateEvent(GeometryChangedEvent evt)
         {
-            Node.Callback.OnPostCreate();
+            Node.Callback.OnCreate();
         }
     }
 }
