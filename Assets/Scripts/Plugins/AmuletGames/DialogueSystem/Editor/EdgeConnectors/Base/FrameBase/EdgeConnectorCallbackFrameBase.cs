@@ -8,19 +8,19 @@ namespace AG.DS
     public abstract class EdgeConnectorCallbackFrameBase
     <
         TPort,
-        TPortCreateDetail,
+        TPortModel,
         TEdge,
         TEdgeView,
         TEdgeConnectorCallback,
         TNodeCreateConnectorWindow
     >
         : EdgeConnectorCallbackBase
-        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TPortCreateDetail : PortCreateDetailBase
-        where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView, TNodeCreateConnectorWindow>
-        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView, TEdgeConnectorCallback, TNodeCreateConnectorWindow>
+        where TPort : PortFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TPortModel : PortModel
+        where TEdge : EdgeFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TEdge, TEdgeView, TNodeCreateConnectorWindow>
+        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TPortModel, TEdge, TEdgeView, TEdgeConnectorCallback, TNodeCreateConnectorWindow>
     {
         /// <summary>
         /// The list of edges that are going to be removed from the graph from the OnDrop callback.

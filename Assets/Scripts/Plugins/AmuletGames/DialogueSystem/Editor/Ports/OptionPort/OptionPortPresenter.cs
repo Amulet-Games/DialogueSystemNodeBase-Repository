@@ -4,14 +4,14 @@ namespace AG.DS
     public class OptionPortPresenter : PortPresenterFrameBase
     <
         OptionPort,
-        OptionPortCreateDetail,
+        OptionPortModel,
         OptionPortPresenter,
         OptionEdge,
         OptionEdgeView
     >
     {
         /// <inheritdoc />
-        public override OptionPortPresenter Setup(OptionPortCreateDetail detail)
+        public override OptionPortPresenter Setup(OptionPortModel detail)
         {
             base.Setup(detail);
             return this;

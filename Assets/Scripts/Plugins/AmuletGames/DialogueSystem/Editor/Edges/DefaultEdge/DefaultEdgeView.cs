@@ -4,7 +4,7 @@ namespace AG.DS
     public class DefaultEdgeView : EdgeViewFrameBase
     <
         DefaultPort,
-        PortCreateDetailBase,
+        PortModel,
         DefaultEdge,
         DefaultEdgeView
     >

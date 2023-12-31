@@ -9,15 +9,15 @@ namespace AG.DS
     public abstract class PortFrameBase
     <
         TPort,
-        TPortCreateDetail,
+        TPortModel,
         TEdge,
         TEdgeView
     >
         : PortBase
-        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TPortCreateDetail : PortCreateDetailBase
-        where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TPortModel : PortModel
+        where TEdge : EdgeFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdge, TEdgeView>
     {
         /// <summary>
         /// The property of edge connector.
@@ -43,7 +43,7 @@ namespace AG.DS
         /// Constructor of the port frame base class.
         /// </summary>
         /// <param name="detail">The port create detail to set for.</param>
-        protected PortFrameBase(PortCreateDetailBase detail) : base(detail.Direction, detail.Capacity) { }
+        protected PortFrameBase(PortModel detail) : base(detail.Direction, detail.Capacity) { }
 
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="edgeConnector">The edge connector to set for.</param>
         /// <param name="detail">The port create detail to set for.</param>
-        public virtual TPort Setup(EdgeConnector edgeConnector, PortCreateDetailBase detail)
+        public virtual TPort Setup(EdgeConnector edgeConnector, PortModel detail)
         {
             EdgeConnector = edgeConnector;
             portName = detail.Name;

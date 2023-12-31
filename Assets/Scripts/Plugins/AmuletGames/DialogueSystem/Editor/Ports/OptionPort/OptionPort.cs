@@ -7,7 +7,7 @@ namespace AG.DS
     public class OptionPort : PortFrameBase
     <
         OptionPort,
-        OptionPortCreateDetail,
+        OptionPortModel,
         OptionEdge,
         OptionEdgeView
     >
@@ -43,7 +43,7 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public OptionPort(OptionPortCreateDetail detail) : base(detail)
+        public OptionPort(OptionPortModel detail) : base(detail)
         {
             IsGroup = detail.IsGroup;
         }
@@ -53,7 +53,7 @@ namespace AG.DS
         public override OptionPort Setup
         (
             EdgeConnector edgeConnector,
-            PortCreateDetailBase detail
+            PortModel detail
         )
         {
             base.Setup(edgeConnector, detail);

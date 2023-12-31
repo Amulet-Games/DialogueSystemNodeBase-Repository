@@ -6,7 +6,7 @@ namespace AG.DS
     public class DefaultEdgeConnectorCallback : EdgeConnectorCallbackFrameBase
     <
         DefaultPort,
-        PortCreateDetailBase,
+        PortModel,
         DefaultEdge,
         DefaultEdgeView,
         DefaultEdgeConnectorCallback,

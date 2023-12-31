@@ -55,10 +55,10 @@ namespace AG.DS
             DialogueSystemWindow dsWindow
         )
         => Create
-            <DefaultPort, PortCreateDetailBase, DefaultEdge, DefaultEdgeView,
-            NodeCreateConnectorCallback<DefaultPort, PortCreateDetailBase, DefaultEdge, DefaultEdgeView>,
-            NodeCreateConnectorDetail<DefaultPort, PortCreateDetailBase, DefaultEdge, DefaultEdgeView>,
-            NodeCreateConnectorObserver<DefaultPort, PortCreateDetailBase, DefaultEdge, DefaultEdgeView>,
+            <DefaultPort, PortModel, DefaultEdge, DefaultEdgeView,
+            NodeCreateConnectorCallback<DefaultPort, PortModel, DefaultEdge, DefaultEdgeView>,
+            NodeCreateConnectorDetail<DefaultPort, PortModel, DefaultEdge, DefaultEdgeView>,
+            NodeCreateConnectorObserver<DefaultPort, PortModel, DefaultEdge, DefaultEdgeView>,
             NodeCreateDefaultConnectorWindow>
             (graphViewer, languageHandler, dsWindow);
 
@@ -79,10 +79,10 @@ namespace AG.DS
             DialogueSystemWindow dsWindow
         )
         => Create
-            <OptionPort, OptionPortCreateDetail, OptionEdge, OptionEdgeView,
-            NodeCreateConnectorCallback<OptionPort, OptionPortCreateDetail, OptionEdge, OptionEdgeView>,
-            NodeCreateConnectorDetail<OptionPort, OptionPortCreateDetail, OptionEdge, OptionEdgeView>,
-            NodeCreateConnectorObserver<OptionPort, OptionPortCreateDetail, OptionEdge, OptionEdgeView>,
+            <OptionPort, OptionPortModel, OptionEdge, OptionEdgeView,
+            NodeCreateConnectorCallback<OptionPort, OptionPortModel, OptionEdge, OptionEdgeView>,
+            NodeCreateConnectorDetail<OptionPort, OptionPortModel, OptionEdge, OptionEdgeView>,
+            NodeCreateConnectorObserver<OptionPort, OptionPortModel, OptionEdge, OptionEdgeView>,
             NodeCreateOptionConnectorWindow>
             (graphViewer, languageHandler, dsWindow);
 
@@ -157,7 +157,7 @@ namespace AG.DS
             DialogueSystemWindow dsWindow
         )
             where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-            where TPortCreateDetail : PortCreateDetailBase
+            where TPortCreateDetail : PortModel
             where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
             where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
             where TNodeCreateConnectorCallback : NodeCreateConnectorCallback<TPort, TPortCreateDetail, TEdge, TEdgeView>, new()

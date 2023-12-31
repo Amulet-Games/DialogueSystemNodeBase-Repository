@@ -4,7 +4,7 @@ namespace AG.DS
     public class OptionEdgeSerializer : EdgeSerializerFrameBase
     <
         OptionPort,
-        OptionPortCreateDetail,
+        OptionPortModel,
         OptionEdge,
         OptionEdgeView,
         EdgeDataBase
@@ -26,7 +26,7 @@ namespace AG.DS
         /// </summary>
         void SavePortType()
         {
-            Data.PortType = PortType.OPTION;
+            Data.Port = PortModel.Port.Option;
         }
     }
 }

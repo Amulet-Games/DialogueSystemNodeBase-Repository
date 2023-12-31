@@ -19,7 +19,7 @@ namespace AG.DS
         NodeCreateConnectorObserver<TPort, TPortCreateDetail, TEdge, TEdgeView>
     >
         where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TPortCreateDetail : PortCreateDetailBase
+        where TPortCreateDetail : PortModel
         where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
         where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
     {

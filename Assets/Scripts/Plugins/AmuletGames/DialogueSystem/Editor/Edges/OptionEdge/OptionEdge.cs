@@ -4,7 +4,7 @@ namespace AG.DS
     public class OptionEdge : EdgeFrameBase
     <
         OptionPort,
-        OptionPortCreateDetail,
+        OptionPortModel,
         OptionEdge,
         OptionEdgeView
     >

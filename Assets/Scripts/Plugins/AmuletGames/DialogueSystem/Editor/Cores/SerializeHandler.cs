@@ -152,7 +152,7 @@ namespace AG.DS
                     if (graphViewer.PortByPortGUID.TryGetValue(data.InputPortGUID, out PortBase input))
                     {
                         graphViewer.Add(
-                            EdgeManager.Instance.Connect(output, input, data.PortType)
+                            EdgeManager.Instance.Connect(output, input, data.Port)
                         );
                     }
                 }

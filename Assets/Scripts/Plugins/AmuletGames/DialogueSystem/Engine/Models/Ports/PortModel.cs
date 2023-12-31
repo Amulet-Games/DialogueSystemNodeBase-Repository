@@ -6,27 +6,35 @@ namespace AG.DS
     /// <summary>
     /// Holds the raw data that can be used when creating a new port.
     /// </summary>
-    public class PortCreateDetailBase
+    public class PortModel
     {
-        /// <summary>
-        /// The creating port's type.
-        /// </summary>
-        public PortType PortType { get; private set; }
+        public enum Port
+        {
+            Default = 0,
+
+            Option = 1
+        }
 
         /// <summary>
-        /// The creating port's direction type.
+        /// The type of the port.
+        /// </summary>
+        public Port PortType { get; private set; }
+
+
+        /// <summary>
+        /// The direction of the port.
         /// </summary>
         public Direction Direction { get; private set; }
 
 
         /// <summary>
-        /// The creating port's capacity type.
+        /// The capacity of the port.
         /// </summary>
         public Capacity Capacity { get; private set; }
 
 
         /// <summary>
-        /// The creating port's name.
+        /// The name of the port.
         /// </summary>
         public string Name { get; private set; }
 
@@ -34,19 +42,19 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the port create detail base class.
         /// </summary>
-        /// <param name="portType">The port type to set for.</param>
+        /// <param name="port">The port type to set for.</param>
         /// <param name="direction">The direction to set for.</param>
         /// <param name="capacity">The capacity to set for.</param>
         /// <param name="name">The name to set for.</param>
-        public PortCreateDetailBase
+        public PortModel
         (
-            PortType portType,
+            Port port,
             Direction direction,
             Capacity capacity,
             string name
         )
         {
-            PortType = portType;
+            PortType = port;
             Direction = direction;
             Capacity = capacity;
             Name = name;

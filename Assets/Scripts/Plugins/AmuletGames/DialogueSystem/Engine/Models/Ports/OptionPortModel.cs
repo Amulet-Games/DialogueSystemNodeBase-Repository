@@ -1,26 +1,27 @@
 using UnityEditor.Experimental.GraphView;
+using static UnityEditor.Experimental.GraphView.Port;
 
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class OptionPortCreateDetail : PortCreateDetailBase
+    public class OptionPortModel : PortModel
     {
         /// <summary>
-        /// Is the creating port comes from the option port group.
+        /// True if the port belongs to a group.
         /// </summary>
         public bool IsGroup;
 
 
         /// <inheritdoc />
-        public OptionPortCreateDetail
+        public OptionPortModel
         (
-            PortType portType,
+            Port port,
             Direction direction,
-            Port.Capacity capacity,
+            Capacity capacity,
             string name,
             bool isGroup
         )
-            : base(portType, direction, capacity, name)
+            : base(port, direction, capacity, name)
         {
             IsGroup = isGroup;
         }

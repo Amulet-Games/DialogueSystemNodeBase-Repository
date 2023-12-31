@@ -7,20 +7,20 @@ namespace AG.DS
     public class DefaultPort : PortFrameBase
     <
         DefaultPort,
-        PortCreateDetailBase,
+        PortModel,
         DefaultEdge,
         DefaultEdgeView
     >
     {
         /// <inheritdoc />
-        public DefaultPort(PortCreateDetailBase detail) : base(detail) { }
+        public DefaultPort(PortModel detail) : base(detail) { }
 
 
         /// <inheritdoc />
         public override DefaultPort Setup
         (
             EdgeConnector edgeConnector,
-            PortCreateDetailBase detail
+            PortModel detail
         )
         {
             base.Setup(edgeConnector, detail);

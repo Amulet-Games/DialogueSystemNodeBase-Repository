@@ -21,6 +21,6 @@ namespace AG.DS
         /// <summary>
         /// The edge's port type value.
         /// </summary>
-        [SerializeField] public PortType PortType;
+        [SerializeField] public PortModel.Port Port;
     }
 }

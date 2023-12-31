@@ -37,15 +37,15 @@ namespace AG.DS
             string name
         )
         {
-            var detail = new PortCreateDetailBase
+            var detail = new PortModel
             (
-                portType: PortType.DEFAULT,
+                port: PortModel.Port.Default,
                 direction,
                 capacity,
                 name
             );
 
-            return Create<DefaultPort, PortCreateDetailBase, DefaultPortPresenter, DefaultEdge, DefaultEdgeView,
+            return Create<DefaultPort, PortModel, DefaultPortPresenter, DefaultEdge, DefaultEdgeView,
                     DefaultEdgeConnectorCallback, NodeCreateDefaultConnectorWindow>(connectorWindow, detail);
         }
 
@@ -63,9 +63,9 @@ namespace AG.DS
             bool isGroup
         )
         {
-            var detail = new OptionPortCreateDetail
+            var detail = new OptionPortModel
             (
-                portType: PortType.OPTION,
+                port: PortModel.Port.Option,
                 direction,
                 capacity: Capacity.Single,
                 name: direction == Direction.Input
@@ -74,7 +74,7 @@ namespace AG.DS
                 isGroup
             );
 
-            return Create<OptionPort, OptionPortCreateDetail, OptionPortPresenter, OptionEdge, OptionEdgeView,
+            return Create<OptionPort, OptionPortModel, OptionPortPresenter, OptionEdge, OptionEdgeView,
                     OptionEdgeConnectorCallback, NodeCreateOptionConnectorWindow>(connectorWindow, detail);
         }
 
@@ -84,7 +84,7 @@ namespace AG.DS
         /// </summary>
         /// 
         /// <typeparam name="TPort">Type port</typeparam>
-        /// <typeparam name="TPortCreateDetail">Type port create detail</typeparam>
+        /// <typeparam name="TPortModel">Type port model</typeparam>
         /// <typeparam name="TPortPresenter">Type port presenter</typeparam>
         /// <typeparam name="TEdge">Type edge</typeparam>
         /// <typeparam name="TEdgeView">Type edge view</typeparam>
@@ -92,13 +92,13 @@ namespace AG.DS
         /// <typeparam name="TNodeCreateConnectorWindow">Type node create connector window</typeparam>
         /// 
         /// <param name="connectorWindow">The connector window to set for.</param>
-        /// <param name="detail">The port create detail to set for.</param>
+        /// <param name="model">The port model to set for.</param>
         /// 
         /// <returns>A port element.</returns>
         TPort Create
         <
             TPort,
-            TPortCreateDetail,
+            TPortModel,
             TPortPresenter,
             TEdge,
             TEdgeView,
@@ -107,23 +107,23 @@ namespace AG.DS
         >
         (
             TNodeCreateConnectorWindow connectorWindow,
-            TPortCreateDetail detail
+            TPortModel model
         )
-            where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-            where TPortCreateDetail : PortCreateDetailBase
-            where TPortPresenter: PortPresenterFrameBase<TPort, TPortCreateDetail, TPortPresenter, TEdge, TEdgeView>, new()
-            where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>, new()
-            where TEdgeView: EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-            where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView, TEdgeConnectorCallback, TNodeCreateConnectorWindow>, new()
-            where TNodeCreateConnectorWindow: NodeCreateConnectorWindowFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView, TNodeCreateConnectorWindow>
+            where TPort : PortFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+            where TPortModel : PortModel
+            where TPortPresenter: PortPresenterFrameBase<TPort, TPortModel, TPortPresenter, TEdge, TEdgeView>, new()
+            where TEdge : EdgeFrameBase<TPort, TPortModel, TEdge, TEdgeView>, new()
+            where TEdgeView: EdgeViewFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+            where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TPortModel, TEdge, TEdgeView, TEdgeConnectorCallback, TNodeCreateConnectorWindow>, new()
+            where TNodeCreateConnectorWindow: NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TEdge, TEdgeView, TNodeCreateConnectorWindow>
         {
-            TPort port = new TPortPresenter().Setup(detail).Create();
+            TPort port = new TPortPresenter().Setup(model).Create();
 
             var edgeConnector = new EdgeConnector<TEdge>(
                 listener: new TEdgeConnectorCallback().Setup(port, connectorWindow)
             );
 
-            port.Setup(edgeConnector, detail);
+            port.Setup(edgeConnector, model);
             return port;
         }
 

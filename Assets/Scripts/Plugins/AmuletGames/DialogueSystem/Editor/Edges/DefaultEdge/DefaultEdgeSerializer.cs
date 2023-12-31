@@ -4,7 +4,7 @@ namespace AG.DS
     public class DefaultEdgeSerializer : EdgeSerializerFrameBase
     <
         DefaultPort,
-        PortCreateDetailBase,
+        PortModel,
         DefaultEdge,
         DefaultEdgeView,
         EdgeDataBase
@@ -26,7 +26,7 @@ namespace AG.DS
         /// </summary>
         void SavePortType()
         {
-            Data.PortType = PortType.DEFAULT;
+            Data.Port = PortModel.Port.Default;
         }
     }
 }

@@ -4,29 +4,29 @@ namespace AG.DS
     public abstract class PortPresenterFrameBase
     <
         TPort,
-        TPortCreateDetail,
+        TPortModel,
         TPortPresenter,
         TEdge,
         TEdgeView
     >
         : PortPresenterBase
-        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TPortCreateDetail : PortCreateDetailBase
-        where TPortPresenter : PortPresenterFrameBase<TPort, TPortCreateDetail, TPortPresenter, TEdge, TEdgeView>
-        where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TPortModel : PortModel
+        where TPortPresenter : PortPresenterFrameBase<TPort, TPortModel, TPortPresenter, TEdge, TEdgeView>
+        where TEdge : EdgeFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdge, TEdgeView>
     {
         /// <summary>
         /// Reference of the port create detail.
         /// </summary>
-        protected TPortCreateDetail Detail;
+        protected TPortModel Detail;
 
 
         /// <summary>
         /// Setup for the port presenter frame base class.
         /// </summary>
         /// <returns>The after setup port presenter frame base class.</returns>
-        public virtual TPortPresenter Setup(TPortCreateDetail detail)
+        public virtual TPortPresenter Setup(TPortModel detail)
         {
             Detail = detail;
             return null;
