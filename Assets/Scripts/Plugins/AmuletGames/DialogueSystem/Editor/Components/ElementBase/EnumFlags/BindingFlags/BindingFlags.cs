@@ -49,7 +49,7 @@ namespace AG.DS
                 }
             }
         }
-
+        
 
         /// <inheritdoc/>
         public override Bindings SelectedFlags

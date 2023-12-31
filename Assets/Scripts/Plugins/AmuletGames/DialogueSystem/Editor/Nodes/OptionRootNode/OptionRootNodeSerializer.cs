@@ -5,14 +5,14 @@ namespace AG.DS
     <
         OptionRootNode,
         OptionRootNodeView,
-        OptionRootNodeModel
+        OptionRootNodeData
     >
     {
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(OptionRootNode node, OptionRootNodeModel model)
+        public override void Save(OptionRootNode node, OptionRootNodeData data)
         {
-            base.Save(node, model);
+            base.Save(node, data);
 
             SaveNodeBaseValues();
 
@@ -29,9 +29,9 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            Model.InputPortModel = PortManager.Instance.Save(View.InputDefaultPort);
-            Model.OutputOptionPortModel = PortManager.Instance.Save(View.OutputOptionPort);
-            View.OutputOptionPortGroupView.Save(Model.OutputOptionPortGroupModel);
+            Data.InputPortData = PortManager.Instance.Save(View.InputDefaultPort);
+            Data.OutputOptionPortData = PortManager.Instance.Save(View.OutputOptionPort);
+            View.OutputOptionPortGroupView.Save(Data.OutputOptionPortGroupData);
         }
 
 
@@ -40,15 +40,15 @@ namespace AG.DS
         /// </summary>
         void SaveRootTitleTextField()
         {
-            View.RootTitleFieldView.Save(Model.RootTitleText);
+            View.RootTitleFieldView.Save(Data.RootTitleText);
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(OptionRootNode node, OptionRootNodeModel model)
+        public override void Load(OptionRootNode node, OptionRootNodeData data)
         {
-            base.Load(node, model);
+            base.Load(node, data);
 
             LoadNodeBaseValues();
 
@@ -65,9 +65,9 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputDefaultPort, Model.InputPortModel);
-            PortManager.Instance.Load(View.OutputOptionPort, Model.OutputOptionPortModel);
-            View.OutputOptionPortGroupView.Load(Node, Model.OutputOptionPortGroupModel);
+            PortManager.Instance.Load(View.InputDefaultPort, Data.InputPortData);
+            PortManager.Instance.Load(View.OutputOptionPort, Data.OutputOptionPortData);
+            View.OutputOptionPortGroupView.Load(Node, Data.OutputOptionPortGroupData);
         }
 
 
@@ -76,7 +76,7 @@ namespace AG.DS
         /// </summary>
         void LoadRootTitleTextField()
         {
-            View.RootTitleFieldView.Load(Model.RootTitleText);
+            View.RootTitleFieldView.Load(Data.RootTitleText);
         }
     }
 }

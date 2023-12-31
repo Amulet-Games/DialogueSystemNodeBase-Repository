@@ -5,14 +5,14 @@ namespace AG.DS
     <
         BooleanNode,
         BooleanNodeView,
-        BooleanNodeModel
+        BooleanNodeData
     >
     {
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(BooleanNode node, BooleanNodeModel model)
+        public override void Save(BooleanNode node, BooleanNodeData data)
         {
-            base.Save(node, model);
+            base.Save(node, data);
 
             SaveNodeBaseValues();
 
@@ -29,9 +29,9 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            Model.InputPortModel = PortManager.Instance.Save(View.InputDefaultPort);
-            Model.TrueOutputPortModel =  PortManager.Instance.Save(View.TrueOutputDefaultPort);
-            Model.FalseOutputPortModel = PortManager.Instance.Save(View.FalseOutputDefaultPort);
+            Data.InputPortData = PortManager.Instance.Save(View.InputDefaultPort);
+            Data.TrueOutputPortData =  PortManager.Instance.Save(View.TrueOutputDefaultPort);
+            Data.FalseOutputPortData = PortManager.Instance.Save(View.FalseOutputDefaultPort);
         }
 
 
@@ -40,15 +40,15 @@ namespace AG.DS
         /// </summary>
         void SaveConditionModifierGroup()
         {
-            new ConditionModifierGroupSerializer().Save(View.ConditionModifierGroupView, Model.ConditionModifierGroupModel);
+            new ConditionModifierGroupSerializer().Save(View.ConditionModifierGroupView, Data.ConditionModifierGroupData);
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(BooleanNode node, BooleanNodeModel model)
+        public override void Load(BooleanNode node, BooleanNodeData data)
         {
-            base.Load(node, model);
+            base.Load(node, data);
 
             LoadNodeBaseValues();
 
@@ -64,9 +64,9 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputDefaultPort, Model.InputPortModel);
-            PortManager.Instance.Load(View.TrueOutputDefaultPort, Model.TrueOutputPortModel);
-            PortManager.Instance.Load(View.FalseOutputDefaultPort, Model.FalseOutputPortModel);
+            PortManager.Instance.Load(View.InputDefaultPort, Data.InputPortData);
+            PortManager.Instance.Load(View.TrueOutputDefaultPort, Data.TrueOutputPortData);
+            PortManager.Instance.Load(View.FalseOutputDefaultPort, Data.FalseOutputPortData);
         }
 
 
@@ -77,7 +77,7 @@ namespace AG.DS
         {
             new ConditionModifierGroupSerializer().Load(
                 View.ConditionModifierGroupView,
-                Model.ConditionModifierGroupModel,
+                Data.ConditionModifierGroupData,
                 Node.GraphViewer
             );
         }

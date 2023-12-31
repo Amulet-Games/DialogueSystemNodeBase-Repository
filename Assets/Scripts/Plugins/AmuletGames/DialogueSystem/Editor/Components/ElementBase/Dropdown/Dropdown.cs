@@ -165,20 +165,20 @@ namespace AG.DS
         /// <summary>
         /// Save the dropdown values.
         /// </summary>
-        /// <param name="model">The dropdown model to set for.</param>
-        public void Save(DropdownModel model)
+        /// <param name="data">The dropdown data to set for.</param>
+        public void Save(DropdownData data)
         {
-            model.selectedElementIndex = DropdownElements.IndexOf(SelectedElement);
+            data.selectedElementIndex = DropdownElements.IndexOf(SelectedElement);
         }
 
 
         /// <summary>
         /// Load the dropdown values.
         /// </summary>
-        /// <param name="model">The dropdown model to set for.</param>
-        public void Load(DropdownModel model)
+        /// <param name="data">The dropdown data to set for.</param>
+        public void Load(DropdownData data)
         {
-            SelectedElement = DropdownElements[model.selectedElementIndex];
+            SelectedElement = DropdownElements[data.selectedElementIndex];
         }
 
 

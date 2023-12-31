@@ -133,18 +133,18 @@ namespace AG.DS
         /// Save the default port values.
         /// </summary>
         /// <param name="port">The port element to set for.</param>
-        /// <returns>A new port model.</returns>
-        public PortModelBase Save(DefaultPort port)
-            => Save<DefaultPort, DefaultPortSerializer, PortModelBase>(port);
+        /// <returns>A new port data.</returns>
+        public PortDataBase Save(DefaultPort port)
+            => Save<DefaultPort, DefaultPortSerializer, PortDataBase>(port);
 
 
         /// <summary>
         /// Save the option port values.
         /// </summary>
         /// <param name="port">The port element to set for.</param>
-        /// <returns>A new port model.</returns>
-        public OptionPortModel Save(OptionPort port)
-            => Save<OptionPort, OptionPortSerializer, OptionPortModel>(port);
+        /// <returns>A new port data.</returns>
+        public OptionPortData Save(OptionPort port)
+            => Save<OptionPort, OptionPortSerializer, OptionPortData>(port);
 
 
         /// <summary>
@@ -153,23 +153,23 @@ namespace AG.DS
         /// 
         /// <typeparam name="TPort">Type port</typeparam>
         /// <typeparam name="TPortSerializer">Type port serializer</typeparam>
-        /// <typeparam name="TPortModel">Type port model</typeparam>
+        /// <typeparam name="TPortData">Type port data</typeparam>
         /// 
         /// <param name="port">THe port element to set for.</param>
         /// 
-        /// <returns>A new port model.</returns>
-        TPortModel Save<TPort, TPortSerializer, TPortModel>
+        /// <returns>A new port data.</returns>
+        TPortData Save<TPort, TPortSerializer, TPortData>
         (
             TPort port
         )
             where TPort: PortBase
-            where TPortSerializer : PortSerializerFrameBase<TPort, TPortModel>, new()
-            where TPortModel : PortModelBase, new()
+            where TPortSerializer : PortSerializerFrameBase<TPort, TPortData>, new()
+            where TPortData : PortDataBase, new()
         {
-            TPortModel model = new();
-            new TPortSerializer().Save(port, model);
+            TPortData data = new();
+            new TPortSerializer().Save(port, data);
 
-            return model;
+            return data;
         }
 
 
@@ -178,18 +178,18 @@ namespace AG.DS
         /// Load the default port values.
         /// </summary>
         /// <param name="port">The port element to set for.</param>
-        /// <param name="model">The port model to set for.</param>
-        public void Load(DefaultPort port, PortModelBase model)
-            => Load<DefaultPort , DefaultPortSerializer, PortModelBase>(port, model);
+        /// <param name="data">The port data to set for.</param>
+        public void Load(DefaultPort port, PortDataBase data)
+            => Load<DefaultPort , DefaultPortSerializer, PortDataBase>(port, data);
 
 
         /// <summary>
         /// Load the option port values.
         /// </summary>
         /// <param name="port">The port element to set for.</param>
-        /// <param name="model">The port model to set for.</param>
-        public void Load(OptionPort port, OptionPortModel model)
-            => Load<OptionPort, OptionPortSerializer, OptionPortModel>(port, model);
+        /// <param name="data">The port data to set for.</param>
+        public void Load(OptionPort port, OptionPortData data)
+            => Load<OptionPort, OptionPortSerializer, OptionPortData>(port, data);
 
 
         /// <summary>
@@ -198,20 +198,20 @@ namespace AG.DS
         /// 
         /// <typeparam name="TPort">Type port</typeparam>
         /// <typeparam name="TPortSerializer">Type port serializer</typeparam>
-        /// <typeparam name="TPortModel">Type port model</typeparam>
+        /// <typeparam name="TPortData">Type port data</typeparam>
         /// 
         /// <param name="port">THe port element to set for.</param>
-        /// <param name="model">THe port model to set for.</param>
-        void Load<TPort, TPortSerializer, TPortModel>
+        /// <param name="data">THe port data to set for.</param>
+        void Load<TPort, TPortSerializer, TPortData>
         (
             TPort port,
-            TPortModel model
+            TPortData data
         )
             where TPort : PortBase
-            where TPortSerializer : PortSerializerFrameBase<TPort, TPortModel>, new()
-            where TPortModel : PortModelBase
+            where TPortSerializer : PortSerializerFrameBase<TPort, TPortData>, new()
+            where TPortData : PortDataBase
         {
-            new TPortSerializer().Load(port, model);
+            new TPortSerializer().Load(port, data);
         }
     }
 }

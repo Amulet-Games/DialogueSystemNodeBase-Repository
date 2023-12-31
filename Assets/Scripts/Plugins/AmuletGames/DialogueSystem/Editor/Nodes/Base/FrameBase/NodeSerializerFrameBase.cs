@@ -7,12 +7,12 @@ namespace AG.DS
     <
         TNode,
         TNodeView,
-        TNodeModel
+        TNodeData
     > 
         : NodeSerializerBase
         where TNode : NodeFrameBase<TNode, TNodeView>
         where TNodeView : NodeViewFrameBase<TNodeView>
-        where TNodeModel : NodeModelBase
+        where TNodeData : NodeDataBase
     {
         /// <summary>
         /// Reference of the node element.
@@ -27,9 +27,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the node model.
+        /// Reference of the node data.
         /// </summary>
-        protected TNodeModel Model;
+        protected TNodeData Data;
 
 
         // ----------------------------- Save -----------------------------
@@ -37,12 +37,12 @@ namespace AG.DS
         /// Save the node element values.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public virtual void Save(TNode node, TNodeModel model)
+        /// <param name="data">The node data to set for.</param>
+        public virtual void Save(TNode node, TNodeData data)
         {
             Node = node;
             View = node.View;
-            Model = model;
+            Data = data;
         }
 
 
@@ -51,8 +51,8 @@ namespace AG.DS
         /// </summary>
         protected void SaveNodeBaseValues()
         {
-            Model.Guid = Node.Guid;
-            Model.Position = (SerializableVector2)Node.GetPosition().position;
+            Data.Guid = Node.Guid;
+            Data.Position = (SerializableVector2)Node.GetPosition().position;
         }
 
 
@@ -61,7 +61,7 @@ namespace AG.DS
         /// </summary>
         protected void SaveNodeTitle()
         {
-            Model.TitleText = View.NodeTitleFieldView.Field.value;
+            Data.TitleText = View.NodeTitleFieldView.Field.value;
         }
 
 
@@ -70,12 +70,12 @@ namespace AG.DS
         /// Load the node element values.
         /// </summary>
         /// <param name="node">The node element to set for.</param>
-        /// <param name="model">The node model to set for.</param>
-        public virtual void Load(TNode node, TNodeModel model)
+        /// <param name="data">The node data to set for.</param>
+        public virtual void Load(TNode node, TNodeData data)
         {
             Node = node;
             View = node.View;
-            Model = model;
+            Data = data;
         }
 
 
@@ -84,9 +84,9 @@ namespace AG.DS
         /// </summary>
         protected void LoadNodeBaseValues()
         {
-            Node.Guid = Model.Guid;
+            Node.Guid = Data.Guid;
             Node.SetPosition(
-                newPos: new Rect(position: (Vector2)Model.Position, size: Vector2Utility.Zero)
+                newPos: new Rect(position: (Vector2)Data.Position, size: Vector2Utility.Zero)
             );
         }
 
@@ -96,7 +96,7 @@ namespace AG.DS
         /// </summary>
         protected void LoadNodeTitle()
         {
-            View.NodeTitleFieldView.Load(Model.TitleText);
+            View.NodeTitleFieldView.Load(Data.TitleText);
         }
     }
 }

@@ -94,8 +94,8 @@ namespace AG.DS
             {
                 View.LeftPortraitImage = CommonImagePresenter.CreateElement
                 (
-                    imageUSS01: StyleConfig.PreviewNode_PreviewImage_Image,
-                    imageUSS02: StyleConfig.PreviewNode_PreviewImage_Image_L
+                    USS01: StyleConfig.PreviewNode_PreviewImage_Image,
+                    USS02: StyleConfig.PreviewNode_PreviewImage_Image_L
                 );
             }
 
@@ -103,8 +103,8 @@ namespace AG.DS
             {
                 View.RightPortraitImage = CommonImagePresenter.CreateElement
                 (
-                    imageUSS01: StyleConfig.PreviewNode_PreviewImage_Image,
-                    imageUSS02: StyleConfig.PreviewNode_PreviewImage_Image_R
+                    USS01: StyleConfig.PreviewNode_PreviewImage_Image,
+                    USS02: StyleConfig.PreviewNode_PreviewImage_Image_R
                 );
             }
 

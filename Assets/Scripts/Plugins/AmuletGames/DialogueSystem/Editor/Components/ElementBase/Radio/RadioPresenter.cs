@@ -43,8 +43,8 @@ namespace AG.DS
             {
                 radio.IconImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: iconSprite,
-                    imageUSS01: StyleConfig.Radio_Icon_Image
+                    sprite: iconSprite,
+                    USS01: StyleConfig.Radio_Icon_Image
                 );
             }
 
@@ -52,8 +52,8 @@ namespace AG.DS
             {
                 radio.TextLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: labelText,
-                    labelUSS: StyleConfig.Radio_Text_Label
+                    text: labelText,
+                    USS: StyleConfig.Radio_Text_Label
                 );
             }
 

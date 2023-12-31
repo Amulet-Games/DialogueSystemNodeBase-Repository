@@ -7,19 +7,19 @@ namespace AG.DS
         /// <summary>
         /// Create a new common Label element.
         /// </summary>
-        /// <param name="labelText">The label text to set for.</param>
-        /// <param name="labelUSS">The label USS style to set for.</param>
+        /// <param name="text">The text to set for.</param>
+        /// <param name="USS">The USS style to set for.</param>
         /// <returns>A new common Label element.</returns>
         public static Label CreateElement
         (
-            string labelText,
-            string labelUSS
+            string text,
+            string USS
         )
         {
-            Label label = new(labelText);
+            Label label = new(text);
 
             label.ClearClassList();
-            label.AddToClassList(labelUSS);
+            label.AddToClassList(USS);
 
             return label;
         }

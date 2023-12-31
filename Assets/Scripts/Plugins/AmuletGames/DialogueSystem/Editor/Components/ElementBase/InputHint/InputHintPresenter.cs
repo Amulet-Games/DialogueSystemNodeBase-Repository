@@ -19,8 +19,6 @@ namespace AG.DS
 
             AddElementsToInputHint();
 
-            AddInputHintToGraph();
-
             AddStyleSheet();
 
             HideElementByDefault();
@@ -37,8 +35,8 @@ namespace AG.DS
             {
                 inputHint.HintIconImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.LanguageFieldHintIconSprite,
-                    imageUSS01: StyleConfig.InputHint_HintIcon_Image
+                    sprite: ConfigResourcesManager.SpriteConfig.LanguageFieldHintIconSprite,
+                    USS01: StyleConfig.InputHint_HintIcon_Image
                 );
             }
 
@@ -46,8 +44,8 @@ namespace AG.DS
             {
                 inputHint.HintTextLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: "",
-                    labelUSS: StyleConfig.InputHint_HintText_Label
+                    text: "",
+                    USS: StyleConfig.InputHint_HintText_Label
                 );
             }
 
@@ -55,11 +53,6 @@ namespace AG.DS
             {
                 inputHint.Add(inputHint.HintIconImage);
                 inputHint.Add(inputHint.HintTextLabel);
-            }
-
-            void AddInputHintToGraph()
-            {
-                graphViewer.contentViewContainer.Add(inputHint);
             }
 
             void AddStyleSheet()

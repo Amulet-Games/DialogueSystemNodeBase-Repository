@@ -78,31 +78,31 @@ namespace AG.DS
             void CreateDropdownButtonIconImage()
             {
                 dropdown.DropdownButtonIconImage = CommonImagePresenter.CreateElement(
-                    imageUSS01: StyleConfig.Dropdown_DropdownButton_Icon_Image
+                    USS01: StyleConfig.Dropdown_DropdownButton_Icon_Image
                 );
             }
 
             void CreateDropdownButtonTextLabel()
             {
                 dropdown.DropdownButtonTextLabel = CommonLabelPresenter.CreateElement(
-                    labelText: "",
-                    labelUSS: StyleConfig.Dropdown_DropdownButton_Text_Label
+                    text: "",
+                    USS: StyleConfig.Dropdown_DropdownButton_Text_Label
                 );
             }
 
             void CreateMenuSelectImage()
             {
                 menuSelectImage = CommonImagePresenter.CreateElement(
-                    imageSprite: ConfigResourcesManager.SpriteConfig.MenuSelectIcon2Sprite,
-                    imageUSS01: StyleConfig.Dropdown_DropdownButton_MenuSelectImage
+                    sprite: ConfigResourcesManager.SpriteConfig.MenuSelectIcon2Sprite,
+                    USS01: StyleConfig.Dropdown_DropdownButton_MenuSelectImage
                 );
             }
 
             void CreateDropdownMenuHeaderLabel()
             {
                 dropdownMenuHeaderLabel = CommonLabelPresenter.CreateElement(
-                    labelText: dropdownMenuHeader,
-                    labelUSS: StyleConfig.Dropdown_DropdownMenu_HeaderText_Label
+                    text: dropdownMenuHeader,
+                    USS: StyleConfig.Dropdown_DropdownMenu_HeaderText_Label
                 );
             }
 

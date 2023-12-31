@@ -81,11 +81,11 @@ namespace AG.DS
         /// </summary>
         void SetupConnectorBoxCap()
         {
-            SetupDetail();
+            SetupDetails();
 
             SetupStyleClass();
 
-            void SetupDetail()
+            void SetupDetails()
             {
                 ConnectorBoxCap.pickingMode = PickingMode.Position;
             }

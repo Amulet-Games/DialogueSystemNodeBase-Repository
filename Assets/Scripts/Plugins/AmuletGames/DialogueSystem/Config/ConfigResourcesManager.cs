@@ -29,7 +29,7 @@ namespace AG.DS
 
         /// <summary>
         /// The path of the class within the resources folder.
-        /// <br>The path should always be "Resources/Config Resources Manager"</br>
+        /// <br>The full resources directory path should be "Resources/Config Resources Manager"</br>
         /// </summary>
         const string PATH = "Config Resources Manager";
 

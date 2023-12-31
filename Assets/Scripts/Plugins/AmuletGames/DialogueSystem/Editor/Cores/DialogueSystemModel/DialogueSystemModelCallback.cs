@@ -150,7 +150,7 @@ namespace AG.DS
         //  - Editor graph is currently showing to the user.
         //  - File is DS Container SO asset.
         //  - File is in the same parent folder / directory after it's moved, meaning it was simply renamed.
-        //  - User renamed the asset from editor's project window, NOT from the DSHeadBar's GraphTitleField.
+        //  - User renamed the asset from editor's project window, NOT from the Headbar's GraphTitleField.
 
         if (EditorWindow.HasOpenInstances<DialogueEditorWindow>())
         {
@@ -216,7 +216,7 @@ namespace AG.DS
         void UpdateGraphTitleField()
         {
             // Update the headbar's graph title field.
-            DSHeadBar.UpdateGraphTitleFieldNonAlert(newContainerSOName);
+            Headbar.UpdateGraphTitleFieldNonAlert(newContainerSOName);
         }
 
         void InvokeGraphTitleChangedEvent()

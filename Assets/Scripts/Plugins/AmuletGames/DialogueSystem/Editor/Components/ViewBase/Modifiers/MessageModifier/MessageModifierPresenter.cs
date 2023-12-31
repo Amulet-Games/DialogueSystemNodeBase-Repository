@@ -104,8 +104,8 @@ namespace AG.DS
             {
                 view.MoveUpButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.MoveUpButtonIconSprite,
-                    buttonUSS: StyleConfig.MessageModifier_MoveUp_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.MoveUpButtonIconSprite,
+                    USS: StyleConfig.MessageModifier_MoveUp_Button
                 );
 
                 view.MoveUpButton.AddBackgroundHighlighter();
@@ -115,8 +115,8 @@ namespace AG.DS
             {
                 view.MoveDownButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.MoveDownButtonIconSprite,
-                    buttonUSS: StyleConfig.MessageModifier_MoveDown_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.MoveDownButtonIconSprite,
+                    USS: StyleConfig.MessageModifier_MoveDown_Button
                 );
 
                 view.MoveDownButton.AddBackgroundHighlighter();
@@ -126,8 +126,8 @@ namespace AG.DS
             {
                 view.RenameButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
-                    buttonUSS: StyleConfig.MessageModifier_Rename_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
+                    USS: StyleConfig.MessageModifier_Rename_Button
                 );
 
                 view.RenameButton.AddBackgroundHighlighter();
@@ -137,8 +137,8 @@ namespace AG.DS
             {
                 view.RemoveButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
-                    buttonUSS: StyleConfig.MessageModifier_Remove_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
+                    USS: StyleConfig.MessageModifier_Remove_Button
                 );
 
                 view.RemoveButton.AddBackgroundHighlighter();
@@ -148,8 +148,8 @@ namespace AG.DS
             {
                 messageTextLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.MessageModifier_MessageTextLabel_LabelText,
-                    labelUSS: StyleConfig.MessageModifier_MessageText_Label
+                    text: StringConfig.MessageModifier_MessageTextLabel_LabelText,
+                    USS: StyleConfig.MessageModifier_MessageText_Label
                 );
             }
 
@@ -167,8 +167,8 @@ namespace AG.DS
             {
                 messageTextImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite,
-                    imageUSS01: StyleConfig.MessageModifier_MessageText_Image
+                    sprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite,
+                    USS01: StyleConfig.MessageModifier_MessageText_Image
                 );
 
                 view.MessageTextFieldView.Field.SetDisplayImage(messageTextImage);
@@ -178,8 +178,8 @@ namespace AG.DS
             {
                 messageAudioLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.MessageModifier_MessageAudioLabel_LabelText,
-                    labelUSS: StyleConfig.MessageModifier_MessageAudio_Label
+                    text: StringConfig.MessageModifier_MessageAudioLabel_LabelText,
+                    USS: StyleConfig.MessageModifier_MessageAudio_Label
                 );
             }
 
@@ -196,8 +196,8 @@ namespace AG.DS
             {
                 messageAudioImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.MessageAudioFieldSprite,
-                    imageUSS01: StyleConfig.MessageModifier_MessageAudio_Image
+                    sprite: ConfigResourcesManager.SpriteConfig.MessageAudioFieldSprite,
+                    USS01: StyleConfig.MessageModifier_MessageAudio_Image
                 );
 
                 view.MessageAudioFieldView.Field.SetDisplayImage(messageAudioImage);
@@ -207,8 +207,8 @@ namespace AG.DS
             {
                 continueByLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.MessageModifier_ContinueBy_LabelText,
-                    labelUSS: StyleConfig.MessageModifier_ContinueBy_Label
+                    text: StringConfig.MessageModifier_ContinueBy_LabelText,
+                    USS: StyleConfig.MessageModifier_ContinueBy_Label
                 );
             }
 
@@ -239,8 +239,8 @@ namespace AG.DS
             {
                 startDelayLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.MessageModifier_StartDelay_LabelText,
-                    labelUSS: StyleConfig.MessageModifier_StartDelay_Label
+                    text: StringConfig.MessageModifier_StartDelay_LabelText,
+                    USS: StyleConfig.MessageModifier_StartDelay_Label
                 );
             }
 
@@ -257,8 +257,8 @@ namespace AG.DS
             {
                 delaySecondsLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.MessageModifier_DelaySeconds_LabelText,
-                    labelUSS: StyleConfig.MessageModifier_DelaySeconds_Label
+                    text: StringConfig.MessageModifier_DelaySeconds_LabelText,
+                    USS: StyleConfig.MessageModifier_DelaySeconds_Label
                 );
             }
 

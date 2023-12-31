@@ -2,18 +2,12 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class HeadBarObserver
+    public class HeadbarObserver
     {
         /// <summary>
-        /// Reference of the headBar element.
+        /// The targeting headbar element.
         /// </summary>
-        HeadBar headBar;
-
-
-        /// <summary>
-        /// Reference of the headBar view class.
-        /// </summary>
-        HeadBarView headBarView;
+        Headbar headbar;
 
 
         /// <summary>
@@ -23,20 +17,17 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the headBar observer class.
+        /// Constructor of the headbar observer class.
         /// </summary>
-        /// <param name="headBar">The headBar element to set for.</param>
-        /// <param name="headBarView">The headBar view class to set for.</param>
+        /// <param name="headbar">The headbar element to set for.</param>
         /// <param name="dsWindow">The dialogue system window to set for.</param>
-        public HeadBarObserver
+        public HeadbarObserver
         (
-            HeadBar headBar,
-            HeadBarView headBarView,
+            Headbar headbar,
             DialogueSystemWindow dsWindow
         )
         {
-            this.headBar = headBar;
-            this.headBarView = headBarView;
+            this.headbar = headbar;
             this.dsWindow = dsWindow;
         }
 
@@ -65,14 +56,14 @@ namespace AG.DS
         /// Register FocusEvent to the headBar.
         /// </summary>
         void RegisterFocusEvent() =>
-            headBar.RegisterCallback<FocusEvent>(FocusEvent);
+            headbar.RegisterCallback<FocusEvent>(FocusEvent);
 
 
         /// <summary>
-        /// Register BlurEvent to the headBar.
+        /// Register BlurEvent to the headbar.
         /// </summary>
         void RegisterBlurEvent() =>
-            headBar.RegisterCallback<BlurEvent>(BlurEvent);
+            headbar.RegisterCallback<BlurEvent>(BlurEvent);
 
 
         /// <summary>
@@ -82,7 +73,7 @@ namespace AG.DS
         {
             new CommonButtonObserver(
                 isAlert: false,
-                button: headBarView.SaveButton,
+                button: headbar.SaveButton,
                 clickEvent: SaveButtonClickEvent).RegisterEvents();
         }
 
@@ -94,7 +85,7 @@ namespace AG.DS
         {
             new CommonButtonObserver(
                 isAlert: false,
-                button: headBarView.LoadButton,
+                button: headbar.LoadButton,
                 clickEvent: LoadButtonClickEvent).RegisterEvents();
         }
 
@@ -106,7 +97,7 @@ namespace AG.DS
         {
             foreach (var language in LanguageProvider.SupportTypes)
             {
-                headBarView.LanguageToolbarMenu.menu.AppendAction
+                headbar.LanguageToolbarMenu.menu.AppendAction
                 (
                     actionName: LanguageProvider.GetFull(language),
                     action: LanguageToolbarMenuItemClickAction,
@@ -122,13 +113,13 @@ namespace AG.DS
         void RegisterGraphTitleTextFieldEvents()
         {
             new GraphTitleTextFieldObserver(
-                view: headBarView.GraphTitleTextFieldView, dsWindow).RegisterEvents();
+                view: headbar.GraphTitleTextFieldView, dsWindow).RegisterEvents();
         }
 
 
         // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when the headBar has given focus.
+        /// The event to invoke when the headbar has given focus.
         /// <para></para>
         /// <br>Different than "Focus In", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
@@ -136,12 +127,12 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void FocusEvent(FocusEvent evt)
         {
-            headBar.IsFocus = true;
+            headbar.IsFocus = true;
         }
 
 
         /// <summary>
-        /// The event to invoke when the headBar has lost focus.
+        /// The event to invoke when the headbar has lost focus.
         /// <para></para>
         /// <br>Different than "Focus Out", this version has its bubble up property set to false.</br>
         /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
@@ -149,7 +140,7 @@ namespace AG.DS
         /// <param name="evt">The registering event.</param>
         void BlurEvent(BlurEvent evt)
         {
-            headBar.IsFocus = false;
+            headbar.IsFocus = false;
         }
 
 
@@ -180,7 +171,7 @@ namespace AG.DS
         {
             var selectedLanguageType = LanguageProvider.GetType(value: action.name);
 
-            headBarView.LanguageToolbarMenu.text = LanguageProvider.GetShort(type: selectedLanguageType);
+            headbar.LanguageToolbarMenu.text = LanguageProvider.GetShort(type: selectedLanguageType);
 
             dsWindow.ChangeLanguage(selectedLanguageType);
         }

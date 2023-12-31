@@ -7,13 +7,13 @@ namespace AG.DS
         where TEnum : struct, Enum
     {
         /// <summary>
-        /// Image for the flag element selected icon.
+        /// Image for the element selected icon.
         /// </summary>
         public Image SelectedIconImage;
 
 
         /// <summary>
-        /// Label for the flag element text.
+        /// Label for the element text.
         /// </summary>
         public Label TextLabel;
 

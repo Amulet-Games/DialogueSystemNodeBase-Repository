@@ -115,8 +115,7 @@ namespace AG.DS
         /// </summary>
         public void Setup()
         {
-            HeadBar headBar;
-            HeadBarView headBarView;
+            Headbar headBar;
 
             NodeCreateRequestWindow nodeCreateRequestWindow;
 
@@ -139,22 +138,29 @@ namespace AG.DS
             // Create modules
             {
                 // Graph Viewer
-                graphViewer = GraphViewerPresenter.CreateElement();
+                {
+                    graphViewer = GraphViewerPresenter.CreateElement();
+                }
 
                 // Language Handler
-                languageHandler = new();
+                {
+                    languageHandler = new();
+                }
 
                 // Serialize Handler
-                serializeHandler = new();
-
-                // HeadBar
                 {
-                    headBarView = new(dsModel);
-                    headBar = HeadBarPresenter.CreateElement(headBarView, languageHandler);
+                    serializeHandler = new();
                 }
-                
+
+                // Headbar
+                {
+                    headBar = HeadbarPresenter.CreateElement(languageHandler, dsModel);
+                }
+
                 // Input Hint
-                InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
+                {
+                    InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
+                }
 
                 // Node Create's
                 {
@@ -171,6 +177,7 @@ namespace AG.DS
 
             // Add modules to graph
             {
+                graphViewer.contentViewContainer.Add(InputHint.Instance);
                 rootVisualElement.Add(graphViewer);
                 rootVisualElement.Add(headBar);
             }
@@ -181,7 +188,7 @@ namespace AG.DS
                 graphViewerObserver.AssignDelegates();
                 graphViewerObserver.RegisterEvents();
 
-                new HeadBarObserver(headBar, headBarView, dsWindow: this).RegisterEvents();
+                new HeadbarObserver(headBar, dsWindow: this).RegisterEvents();
 
                 new DialogueSystemWindowObserver(
                     dsModel, graphViewer, headBar, nodeCreateRequestWindow, dsWindow: this).RegisterEvents();

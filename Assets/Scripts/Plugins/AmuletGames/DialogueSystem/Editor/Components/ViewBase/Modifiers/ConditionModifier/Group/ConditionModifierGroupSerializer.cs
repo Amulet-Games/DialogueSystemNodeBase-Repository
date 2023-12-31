@@ -6,19 +6,19 @@ namespace AG.DS
         /// Save the condition modifier group values.
         /// </summary>
         /// <param name="view">The condition modifier group view to set for.</param>
-        /// <param name="model">The condition modifier group model to set for.</param>
+        /// <param name="data">The condition modifier group data to set for.</param>
         public void Save
         (
             ConditionModifierGroupView view,
-            ConditionModifierGroupModel model
+            ConditionModifierGroupData data
         )
         {
-            model.ModifierModels = new ConditionModifierModel[view.ModifiersCount];
+            data.ModifiersData = new ConditionModifierData[view.ModifiersCount];
 
             for (int i = 0; i < view.ModifiersCount; i++)
             {
-                model.ModifierModels[i] = new();
-                new ConditionModifierSerializer().Save(view.Modifiers[i], model.ModifierModels[i]);
+                data.ModifiersData[i] = new();
+                new ConditionModifierSerializer().Save(view.Modifiers[i], data.ModifiersData[i]);
             }
         }
 
@@ -27,21 +27,21 @@ namespace AG.DS
         /// Load the condition modifier group values.
         /// </summary>
         /// <param name="view">The condition modifier group view to set for.</param>
-        /// <param name="model">The condition modifier group model to set for.</param>
+        /// <param name="data">The condition modifier group data to set for.</param>
         /// <param name="graphViewer">The graph viewer to set for.</param>
         public void Load
         (
             ConditionModifierGroupView view,
-            ConditionModifierGroupModel model,
+            ConditionModifierGroupData data,
             GraphViewer graphViewer
         )
         {
-            for (int i = 0; i <= model.ModifierModels.Length; i++)
+            for (int i = 0; i <= data.ModifiersData.Length; i++)
             {
                 var modifier = new ConditionModifierSeeder().Generate(
                     groupView: view,
                     graphViewer,
-                    model: model.ModifierModels[i]
+                    data: data.ModifiersData[i]
                 );
 
                 view.Add(modifier);

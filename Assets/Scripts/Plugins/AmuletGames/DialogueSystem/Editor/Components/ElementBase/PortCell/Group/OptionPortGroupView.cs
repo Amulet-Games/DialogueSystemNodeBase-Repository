@@ -53,17 +53,17 @@ namespace AG.DS
         /// <summary>
         /// Save the group view values.
         /// </summary>
-        /// <param name="model">The option port group model to set for.</param>
-        public void Save(OptionPortGroupModel model)
+        /// <param name="data">The option port group data to set for.</param>
+        public void Save(OptionPortGroupData data)
         {
             for (int i = 0; i < Cells.Count; i++)
             {
-                var cellModel = new OptionPortGroupCellModel
+                var cellData = new OptionPortGroupCellData
                 {
-                    OptionPortModel = PortManager.Instance.Save(Cells[i].Port)
+                    OptionPortData = PortManager.Instance.Save(Cells[i].Port)
                 };
 
-                model.cellModels.Add(cellModel);
+                data.GroupCellsData.Add(cellData);
             }
         }
 
@@ -72,19 +72,19 @@ namespace AG.DS
         /// Load the group view values.
         /// </summary>
         /// <param name="node">The node base element to set for.</param>
-        /// <param name="model">The option port group model to set for.</param>
+        /// <param name="data">The option port group data to set for.</param>
         public void Load
         (
             NodeBase node,
-            OptionPortGroupModel model
+            OptionPortGroupData data
         )
         {
-            for (int i = 0; i < model.cellModels.Count; i++)
+            for (int i = 0; i < data.GroupCellsData.Count; i++)
             {
                 var cell = new OptionPortGroupCellSeeder().Generate(
                     node,
                     groupView: this,
-                    model: model.cellModels[i]
+                    data: data.GroupCellsData[i]
                 );
 
                 Add(cell, node);

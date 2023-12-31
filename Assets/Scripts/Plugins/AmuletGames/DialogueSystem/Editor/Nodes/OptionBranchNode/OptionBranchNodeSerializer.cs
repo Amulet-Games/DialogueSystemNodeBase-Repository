@@ -5,14 +5,14 @@ namespace AG.DS
     <
         OptionBranchNode,
         OptionBranchNodeView,
-        OptionBranchNodeModel
+        OptionBranchNodeData
     >
     {
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(OptionBranchNode node, OptionBranchNodeModel model)
+        public override void Save(OptionBranchNode node, OptionBranchNodeData data)
         {
-            base.Save(node, model);
+            base.Save(node, data);
 
             SaveNodeBaseValues();
 
@@ -29,8 +29,8 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            Model.OutputPortModel = PortManager.Instance.Save(View.OutputDefaultPort);
-            Model.InputOptionPortModel = PortManager.Instance.Save(View.InputOptionPort);
+            Data.OutputPortData = PortManager.Instance.Save(View.OutputDefaultPort);
+            Data.InputOptionPortData = PortManager.Instance.Save(View.InputOptionPort);
         }
 
 
@@ -39,15 +39,15 @@ namespace AG.DS
         /// </summary>
         void SaveBranchTitleTextField()
         {
-            View.BranchTitleFieldView.Save(Model.BranchTitleText);
+            View.BranchTitleFieldView.Save(Data.BranchTitleText);
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(OptionBranchNode node, OptionBranchNodeModel model)
+        public override void Load(OptionBranchNode node, OptionBranchNodeData data)
         {
-            base.Load(node, model);
+            base.Load(node, data);
 
             LoadNodeBaseValues();
 
@@ -64,8 +64,8 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputOptionPort, Model.InputOptionPortModel);
-            PortManager.Instance.Load(View.OutputDefaultPort, Model.OutputPortModel);
+            PortManager.Instance.Load(View.InputOptionPort, Data.InputOptionPortData);
+            PortManager.Instance.Load(View.OutputDefaultPort, Data.OutputPortData);
         }
 
 
@@ -74,7 +74,7 @@ namespace AG.DS
         /// </summary>
         void LoadBranchTitleTextField()
         {
-            View.BranchTitleFieldView.Load(Model.BranchTitleText);
+            View.BranchTitleFieldView.Load(Data.BranchTitleText);
         }
     }
 }

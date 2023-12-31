@@ -8,13 +8,13 @@ namespace AG.DS
         /// <summary>
         /// Create a new common button element.
         /// </summary>
-        /// <param name="buttonText">The button text to set for.</param>
-        /// <param name="buttonUSS">The button USS style to set for.</param>
+        /// <param name="text">The text to set for.</param>
+        /// <param name="USS">The USS style to set for.</param>
         /// <returns>A new common button element.</returns>
         public static CommonButton CreateElement
         (
-            string buttonText,
-            string buttonUSS
+            string text,
+            string USS
         )
         {
             CommonButton button;
@@ -31,15 +31,15 @@ namespace AG.DS
 
             void CreateButton()
             {
-                button = CreateElement(buttonUSS);
+                button = CreateElement(USS);
             }
 
             void CreateTextLabel()
             {
                 textLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: buttonText,
-                    labelUSS: StyleConfig.Button_ButtonText_Label
+                    text: text,
+                    USS: StyleConfig.Button_ButtonText_Label
                 );
             }
 
@@ -53,13 +53,13 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new common button element.
         /// </summary>
-        /// <param name="buttonSprite">The button sprite to set for.</param>
-        /// <param name="buttonUSS">The button USS style to set for.</param>
+        /// <param name="sprite">The sprite to set for.</param>
+        /// <param name="USS">The USS style to set for.</param>
         /// <returns>A new common button element.</returns>
         public static CommonButton CreateElement
         (
-            Sprite buttonSprite,
-            string buttonUSS
+            Sprite sprite,
+            string USS
         )
         {
             CommonButton button;
@@ -72,12 +72,12 @@ namespace AG.DS
 
             void CreateButton()
             {
-                button = CreateElement(buttonUSS);
+                button = CreateElement(USS);
             }
             
             void SetupDetails()
             {
-                button.style.backgroundImage = buttonSprite.texture;
+                button.style.backgroundImage = sprite.texture;
             }
         }
 
@@ -85,13 +85,13 @@ namespace AG.DS
         /// <summary>
         /// Method for creating a new common button element.
         /// </summary>
-        /// <param name="buttonUSS">The button USS style to set for.</param>
+        /// <param name="USS">The USS style to set for.</param>
         /// <returns>A new common button element.</returns>
-        public static CommonButton CreateElement(string buttonUSS)
+        public static CommonButton CreateElement(string USS)
         {
             CommonButton button = new();
 
-            button.AddToClassList(buttonUSS);
+            button.AddToClassList(USS);
 
             return button;
         }

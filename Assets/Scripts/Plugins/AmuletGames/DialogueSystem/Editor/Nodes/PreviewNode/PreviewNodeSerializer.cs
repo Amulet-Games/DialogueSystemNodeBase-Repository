@@ -5,14 +5,14 @@ namespace AG.DS
     <
         PreviewNode,
         PreviewNodeView,
-        PreviewNodeModel
+        PreviewNodeData
     >
     {
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(PreviewNode node, PreviewNodeModel model)
+        public override void Save(PreviewNode node, PreviewNodeData data)
         {
-            base.Save(node, model);
+            base.Save(node, data);
 
             SaveNodeBaseValues();
 
@@ -29,8 +29,8 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            Model.InputPortModel = PortManager.Instance.Save(View.InputDefaultPort);
-            Model.OutputPortModel = PortManager.Instance.Save(View.OutputDefaultPort);
+            Data.InputPortData = PortManager.Instance.Save(View.InputDefaultPort);
+            Data.OutputPortData = PortManager.Instance.Save(View.OutputDefaultPort);
         }
 
 
@@ -39,16 +39,16 @@ namespace AG.DS
         /// </summary>
         void SavePortraitObjectFields()
         {
-            Model.LeftPortraitSprite = View.LeftPortraitObjectFieldView.Value;
-            Model.RightPortraitSprite = View.RightPortraitObjectFieldView.Value;
+            Data.LeftPortraitSprite = View.LeftPortraitObjectFieldView.Value;
+            Data.RightPortraitSprite = View.RightPortraitObjectFieldView.Value;
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(PreviewNode node, PreviewNodeModel model)
+        public override void Load(PreviewNode node, PreviewNodeData data)
         {
-            base.Load(node, model);
+            base.Load(node, data);
 
             LoadNodeBaseValues();
 
@@ -65,8 +65,8 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputDefaultPort, Model.InputPortModel);
-            PortManager.Instance.Load(View.OutputDefaultPort, Model.OutputPortModel);
+            PortManager.Instance.Load(View.InputDefaultPort, Data.InputPortData);
+            PortManager.Instance.Load(View.OutputDefaultPort, Data.OutputPortData);
         }
 
 
@@ -75,8 +75,8 @@ namespace AG.DS
         /// </summary>
         void LoadPortraitObjectFields()
         {
-            View.LeftPortraitObjectFieldView.Load(Model.LeftPortraitSprite);
-            View.RightPortraitObjectFieldView.Load(Model.RightPortraitSprite);
+            View.LeftPortraitObjectFieldView.Load(Data.LeftPortraitSprite);
+            View.RightPortraitObjectFieldView.Load(Data.RightPortraitSprite);
 
             View.LeftPortraitImage.image = View.LeftPortraitObjectFieldView.Value.texture;
             View.RightPortraitImage.image = View.RightPortraitObjectFieldView.Value.texture;

@@ -79,22 +79,22 @@ namespace AG.DS
         /// <summary>
         /// Save the folder values.
         /// </summary>
-        /// <param name="model">The folder model to set for.</param>
-        public void Save(FolderModel model)
+        /// <param name="data">The folder data to set for.</param>
+        public void Save(FolderData data)
         {
-            model.TitleText = FolderTitleFieldView.Value;
-            model.Expanded = Expanded;
+            data.TitleText = FolderTitleFieldView.Value;
+            data.Expanded = Expanded;
         }
 
 
         /// <summary>
         /// Load the folder values.
         /// </summary>
-        /// <param name="model">The folder model to set for.</param>
-        public void Load(FolderModel model)
+        /// <param name="data">The folder data to set for.</param>
+        public void Load(FolderData data)
         {
-            FolderTitleFieldView.Load(model.TitleText);
-            Expanded = model.Expanded;
+            FolderTitleFieldView.Load(data.TitleText);
+            Expanded = data.Expanded;
         }
 
 

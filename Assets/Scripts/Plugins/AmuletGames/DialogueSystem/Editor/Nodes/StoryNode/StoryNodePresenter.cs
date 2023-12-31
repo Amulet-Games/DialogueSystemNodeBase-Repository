@@ -78,7 +78,7 @@ namespace AG.DS
             void SetupPreferenceImage()
             {
                 Image preferenceImage;
-                preferenceImage = CommonImagePresenter.CreateElement(imageUSS01: StyleConfig.StoryNode_PreferenceImage_Image);
+                preferenceImage = CommonImagePresenter.CreateElement(USS01: StyleConfig.StoryNode_PreferenceImage_Image);
                 contentContainer.Add(preferenceImage);
 
                 preferenceImage.sprite = ConfigResourcesManager.SpriteConfig.ApplyDesignSampleImage;

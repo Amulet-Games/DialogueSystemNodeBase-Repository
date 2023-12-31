@@ -4,14 +4,14 @@ namespace AG.DS
     public class OptionPortSerializer : PortSerializerFrameBase
     <
         OptionPort,
-        OptionPortModel
+        OptionPortData
     >
     {
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(OptionPort port, OptionPortModel model)
+        public override void Save(OptionPort port, OptionPortData data)
         {
-            base.Save(port, model);
+            base.Save(port, data);
 
             SavePortBaseValues();
 
@@ -24,15 +24,15 @@ namespace AG.DS
         /// </summary>
         void SavePortName()
         {
-            Model.PortName = Port.portName;
+            Data.PortName = Port.portName;
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(OptionPort port, OptionPortModel model)
+        public override void Load(OptionPort port, OptionPortData data)
         {
-            base.Load(port, model);
+            base.Load(port, data);
 
             LoadPortBaseValues();
 
@@ -45,7 +45,7 @@ namespace AG.DS
         /// </summary>
         void LoadPortName()
         {
-            Port.portName = Model.PortName;
+            Port.portName = Data.PortName;
         }
     }
 }

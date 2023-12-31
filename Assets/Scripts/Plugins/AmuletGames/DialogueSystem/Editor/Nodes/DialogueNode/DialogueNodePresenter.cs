@@ -106,8 +106,8 @@ namespace AG.DS
             {
                 dialogueSpeakerImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.DialogueSpeakerFieldSprite,
-                    imageUSS01: StyleConfig.DialogueNode_DialogueSpeaker_Image
+                    sprite: ConfigResourcesManager.SpriteConfig.DialogueSpeakerFieldSprite,
+                    USS01: StyleConfig.DialogueNode_DialogueSpeaker_Image
                 );
             }
 
@@ -115,8 +115,8 @@ namespace AG.DS
             {
                 dialogueSpeakerLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.DialogueNode_DialogueSpeakerLabel_LabelText,
-                    labelUSS: StyleConfig.DialogueNode_DialogueSpeaker_Label
+                    text: StringConfig.DialogueNode_DialogueSpeakerLabel_LabelText,
+                    USS: StyleConfig.DialogueNode_DialogueSpeaker_Label
                 );
             }
 

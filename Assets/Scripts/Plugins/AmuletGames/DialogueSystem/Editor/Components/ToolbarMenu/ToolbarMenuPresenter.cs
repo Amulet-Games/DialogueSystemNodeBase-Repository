@@ -35,7 +35,7 @@ namespace AG.DS
 
             SetupChildElements();
 
-            SetupDetail();
+            SetupDetails();
 
             RemoveDefaultStyleClass();
 
@@ -60,7 +60,7 @@ namespace AG.DS
                 toolbarMenu.Add(centerContainer);
             }
 
-            void SetupDetail()
+            void SetupDetails()
             {
                 toolbarMenu.text = dropdownLabel;
                 arrowImage.style.backgroundImage = dropdownIcon.texture;

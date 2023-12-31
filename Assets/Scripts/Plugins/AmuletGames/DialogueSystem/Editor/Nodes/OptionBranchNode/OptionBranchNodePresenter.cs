@@ -103,8 +103,8 @@ namespace AG.DS
             {
                 branchTitleImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.BranchTitleFieldSprite,
-                    imageUSS01: StyleConfig.OptionBranchNode_BranchTitle_Image
+                    sprite: ConfigResourcesManager.SpriteConfig.BranchTitleFieldSprite,
+                    USS01: StyleConfig.OptionBranchNode_BranchTitle_Image
                 );
             }
 
@@ -112,8 +112,8 @@ namespace AG.DS
             {
                 branchTitleLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.OptionBranchNode_BranchTitleLabel_LabelText,
-                    labelUSS: StyleConfig.OptionBranchNode_BranchTitle_Label
+                    text: StringConfig.OptionBranchNode_BranchTitleLabel_LabelText,
+                    USS: StyleConfig.OptionBranchNode_BranchTitle_Label
                 );
             }
 

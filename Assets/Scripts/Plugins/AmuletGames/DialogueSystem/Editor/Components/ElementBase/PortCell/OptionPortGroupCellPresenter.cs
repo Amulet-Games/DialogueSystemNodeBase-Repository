@@ -50,8 +50,8 @@ namespace AG.DS
             {
                 cell.RemoveButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
-                    buttonUSS: StyleConfig.OptionPortGroup_RemoveCell_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
+                    USS: StyleConfig.OptionPortGroup_RemoveCell_Button
                 );
             }
 

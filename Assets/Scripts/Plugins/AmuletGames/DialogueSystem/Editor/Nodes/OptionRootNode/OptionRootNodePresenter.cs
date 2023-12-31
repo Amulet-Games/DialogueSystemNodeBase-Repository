@@ -103,8 +103,8 @@ namespace AG.DS
             {
                 rootTitleImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.RootTitleFieldSprite,
-                    imageUSS01: StyleConfig.OptionRootNode_RootTitle_Image
+                    sprite: ConfigResourcesManager.SpriteConfig.RootTitleFieldSprite,
+                    USS01: StyleConfig.OptionRootNode_RootTitle_Image
                 );
             }
 
@@ -112,8 +112,8 @@ namespace AG.DS
             {
                 rootTitleLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.OptionRootNode_RootTitleLabel_LabelText,
-                    labelUSS: StyleConfig.OptionRootNode_RootTitle_Label
+                    text: StringConfig.OptionRootNode_RootTitleLabel_LabelText,
+                    USS: StyleConfig.OptionRootNode_RootTitle_Label
                 );
             }
 

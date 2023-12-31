@@ -155,7 +155,7 @@ namespace AG
                     error = true;
                 }
 
-                file = $"{dataDestinationPath}/{baseName}NodeData.cs";
+                file = $"{dataDestinationPath}/{baseName}NodesData.cs";
                 if (File.Exists(file))
                 {
                     // Data already exists error.
@@ -192,7 +192,7 @@ namespace AG
                     builder.AppendLine($"{text}NodeSerializer.cs");
                     // Data
                     text = $"{dataDestinationPath}/{baseName}";
-                    builder.AppendLine($"{text}NodeData.cs");
+                    builder.AppendLine($"{text}NodesData.cs");
                     // USS
                     text = $"{ussDestinationPath}/DS{baseName}";
                     builder.AppendLine($"{text}NodeStyle.uss");
@@ -282,7 +282,7 @@ namespace AG
                     .Replace("#Name#", baseName)
                     .Replace("#name#", baseName.ToLower());
 
-                var destinationFile = $"{dataDestinationPath}/{baseName}NodeData.cs";
+                var destinationFile = $"{dataDestinationPath}/{baseName}NodesData.cs";
                 File.WriteAllText(destinationFile, destinationContent, Encoding.UTF8);
             }
 

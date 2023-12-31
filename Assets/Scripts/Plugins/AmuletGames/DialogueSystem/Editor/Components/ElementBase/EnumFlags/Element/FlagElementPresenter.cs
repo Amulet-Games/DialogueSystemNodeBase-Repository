@@ -48,8 +48,8 @@ namespace AG.DS
             {
                 flagElement.SelectedIconImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: selectedIconSprite,
-                    imageUSS01: StyleConfig.FlagElement_SelectedIcon_Image
+                    sprite: selectedIconSprite,
+                    USS01: StyleConfig.FlagElement_SelectedIcon_Image
                 );
             }
 
@@ -57,8 +57,8 @@ namespace AG.DS
             {
                 flagElement.TextLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: labelText,
-                    labelUSS: StyleConfig.FlagElement_Text_Label
+                    text: labelText,
+                    USS: StyleConfig.FlagElement_Text_Label
                 );
             }
 

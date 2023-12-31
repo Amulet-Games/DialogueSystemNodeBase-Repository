@@ -5,14 +5,14 @@
     <
         DialogueNode,
         DialogueNodeView,
-        DialogueNodeModel
+        DialogueNodeData
     >
     {
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DialogueNode node, DialogueNodeModel model)
+        public override void Save(DialogueNode node, DialogueNodeData data)
         {
-            base.Save(node, model);
+            base.Save(node, data);
 
             SaveNodeBaseValues();
 
@@ -31,8 +31,8 @@
         /// </summary>
         void SavePorts()
         {
-            Model.InputPortModel = PortManager.Instance.Save(View.InputDefaultPort);
-            Model.OutputPortModel = PortManager.Instance.Save(View.OutputDefaultPort);
+            Data.InputPortData = PortManager.Instance.Save(View.InputDefaultPort);
+            Data.OutputPortData = PortManager.Instance.Save(View.OutputDefaultPort);
         }
 
 
@@ -41,7 +41,7 @@
         /// </summary>
         void SaveCharacterObjectField()
         {
-            Model.DialogueSpeaker = View.DialogueSpeakerFieldView.Value;
+            Data.DialogueSpeaker = View.DialogueSpeakerFieldView.Value;
         }
 
 
@@ -50,15 +50,15 @@
         /// </summary>
         void SaveDialogueNodeStitcher()
         {
-            //View.MessageModifierGroupView.SaveStitcherValues(Model.DialogueNodeStitcherModel);
+            
         }
 
 
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Load(DialogueNode node, DialogueNodeModel model)
+        public override void Load(DialogueNode node, DialogueNodeData data)
         {
-            base.Load(node, model);
+            base.Load(node, data);
 
             LoadNodeBaseValues();
 
@@ -77,8 +77,8 @@
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputDefaultPort, Model.InputPortModel);
-            PortManager.Instance.Load(View.OutputDefaultPort, Model.OutputPortModel);
+            PortManager.Instance.Load(View.InputDefaultPort, Data.InputPortData);
+            PortManager.Instance.Load(View.OutputDefaultPort, Data.OutputPortData);
         }
 
 
@@ -87,7 +87,7 @@
         /// </summary>
         void LoadCharacterObjectField()
         {
-            View.DialogueSpeakerFieldView.Load(Model.DialogueSpeaker);
+            View.DialogueSpeakerFieldView.Load(Data.DialogueSpeaker);
         }
 
 
@@ -96,7 +96,7 @@
         /// </summary>
         void LoadDialogueNodeStitcher()
         {
-            //View.MessageModifierGroupView.LoadStitcherValues(Model.DialogueNodeStitcherModel);
+            
         }
     }
 }

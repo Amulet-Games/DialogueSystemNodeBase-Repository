@@ -5,19 +5,19 @@ namespace AG.DS
     public class DropdownElement : VisualElement
     {
         /// <summary>
-        /// Image for the dropdown element icon.
+        /// Image for the element icon.
         /// </summary>
         public Image IconImage;
 
 
         /// <summary>
-        /// Label for the dropdown element text.
+        /// Label for the element text.
         /// </summary>
         public Label TextLabel;
 
 
         /// <summary>
-        /// The additional info that the element carries.
+        /// The element's additional info.
         /// </summary>
         public string AdditionalInfo;
 

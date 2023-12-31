@@ -7,13 +7,13 @@ namespace AG.DS
         OptionPortCreateDetail,
         OptionEdge,
         OptionEdgeView,
-        EdgeModelBase
+        EdgeDataBase
     >
     {
         /// <inheritdoc />
-        public override void Save(OptionEdgeView view, EdgeModelBase model)
+        public override void Save(OptionEdgeView view, EdgeDataBase data)
         {
-            base.Save(view, model);
+            base.Save(view, data);
 
             SaveEdgeBaseValues();
 
@@ -26,7 +26,7 @@ namespace AG.DS
         /// </summary>
         void SavePortType()
         {
-            Model.PortType = PortType.OPTION;
+            Data.PortType = PortType.OPTION;
         }
     }
 }

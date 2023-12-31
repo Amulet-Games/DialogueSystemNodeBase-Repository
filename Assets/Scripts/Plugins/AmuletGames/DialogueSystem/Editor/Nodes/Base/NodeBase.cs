@@ -84,14 +84,7 @@ namespace AG.DS
         /// <param name="port">The port base to set for.</param>
         public void Add(PortBase port)
         {
-            if (port.direction == Direction.Input)
-            {
-                InputContainer.Add(port);
-            }
-            else
-            {
-                OutputContainer.Add(port);
-            }
+            (port.direction == Direction.Input ? InputContainer : OutputContainer).Add(port);
 
             GraphViewer.Add(port);
         }
@@ -103,14 +96,7 @@ namespace AG.DS
         /// <param name="cell">The option port group cell to set for.</param>
         public void Add(OptionPortGroupCell cell)
         {
-            if (cell.Port.direction == Direction.Input)
-            {
-                InputContainer.Add(cell);
-            }
-            else
-            {
-                OutputContainer.Add(cell);
-            }
+            (cell.Port.direction == Direction.Input ? InputContainer : OutputContainer).Add(cell);
 
             GraphViewer.Add(cell.Port);
         }
@@ -122,14 +108,7 @@ namespace AG.DS
         /// <param name="port">The port base to set for.</param>
         public void Remove(PortBase port)
         {
-            if (port.direction == Direction.Input)
-            {
-                InputContainer.Remove(port);
-            }
-            else
-            {
-                OutputContainer.Remove(port);
-            }
+            (port.direction == Direction.Input ? InputContainer : OutputContainer).Remove(port);
 
             GraphViewer.Remove(port);
         }
@@ -141,14 +120,7 @@ namespace AG.DS
         /// <param name="cell">The option port group cell to set for.</param>
         public void Remove(OptionPortGroupCell cell)
         {
-            if (cell.Port.direction == Direction.Input)
-            {
-                InputContainer.Remove(cell);
-            }
-            else
-            {
-                OutputContainer.Remove(cell);
-            }
+            (cell.Port.direction == Direction.Input ? InputContainer : OutputContainer).Remove(cell);
 
             GraphViewer.Remove(cell.Port);
         }

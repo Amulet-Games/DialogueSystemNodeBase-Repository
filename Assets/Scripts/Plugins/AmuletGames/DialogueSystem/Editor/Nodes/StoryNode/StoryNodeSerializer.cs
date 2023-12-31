@@ -5,14 +5,14 @@ namespace AG.DS
     <
         StoryNode,
         StoryNodeView,
-        StoryNodeModel
+        StoryNodeData
     >
     {
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(StoryNode node, StoryNodeModel model)
+        public override void Save(StoryNode node, StoryNodeData data)
         {
-            base.Save(node, model);
+            base.Save(node, data);
 
             SaveNodeBaseValues();
 
@@ -31,8 +31,8 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            Model.InputPortModel = PortManager.Instance.Save(View.InputDefaultPort);
-            Model.OutputPortModel = PortManager.Instance.Save(View.OutputDefaultPort);
+            Data.InputPortData = PortManager.Instance.Save(View.InputDefaultPort);
+            Data.OutputPortData = PortManager.Instance.Save(View.OutputDefaultPort);
         }
 
 
@@ -41,7 +41,7 @@ namespace AG.DS
         /// </summary>
         void SaveSecondContentBoxContainers()
         {
-            Model.SecondLineTriggerTypeEnumIndex = View.SecondLineTriggerTypeEnumContainer.Value;
+            Data.SecondLineTriggerTypeEnumIndex = View.SecondLineTriggerTypeEnumContainer.Value;
         }
 
 
@@ -50,15 +50,15 @@ namespace AG.DS
         /// </summary>
         void Save_CSV_GUID()
         {
-            Model.CsvGUID = View.CsvGUID;
+            Data.CsvGUID = View.CsvGUID;
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(StoryNode node, StoryNodeModel model)
+        public override void Load(StoryNode node, StoryNodeData data)
         {
-            base.Load(node, model);
+            base.Load(node, data);
 
             LoadNodeBaseValues();
 
@@ -77,8 +77,8 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputDefaultPort, Model.InputPortModel);
-            PortManager.Instance.Load(View.OutputDefaultPort, Model.OutputPortModel);
+            PortManager.Instance.Load(View.InputDefaultPort, Data.InputPortData);
+            PortManager.Instance.Load(View.OutputDefaultPort, Data.OutputPortData);
         }
 
 
@@ -87,7 +87,7 @@ namespace AG.DS
         /// </summary>
         void LoadSecondContentBoxContainers()
         {
-            View.SecondLineTriggerTypeEnumContainer.Load(Model.SecondLineTriggerTypeEnumIndex);
+            View.SecondLineTriggerTypeEnumContainer.Load(Data.SecondLineTriggerTypeEnumIndex);
         }
 
 
@@ -96,7 +96,7 @@ namespace AG.DS
         /// </summary>
         void Load_CSV_Guid()
         {
-            View.CsvGUID = Model.CsvGUID;
+            View.CsvGUID = Data.CsvGUID;
         }
     }
 }

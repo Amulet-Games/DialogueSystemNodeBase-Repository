@@ -45,7 +45,8 @@ namespace AG.DS
                     RetrieveDataType.Float => typeof(float),
                     RetrieveDataType.Double => typeof(double),
                     RetrieveDataType.Integer => typeof(int),
-                    RetrieveDataType.String => typeof(string)
+                    RetrieveDataType.String => typeof(string),
+                    _ => throw new ArgumentException("Invalid RetrieveDataType.")
                 };
 
                 return result.Where(x => x.FieldType == fieldType).ToArray();

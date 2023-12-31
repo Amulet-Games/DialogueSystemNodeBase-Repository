@@ -45,8 +45,8 @@ namespace AG.DS
             {
                 dropdownElement.IconImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: iconSprite,
-                    imageUSS01: StyleConfig.DropdownElement_Icon_Image
+                    sprite: iconSprite,
+                    USS01: StyleConfig.DropdownElement_Icon_Image
                 );
             }
 
@@ -54,8 +54,8 @@ namespace AG.DS
             {
                 dropdownElement.TextLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: labelText,
-                    labelUSS: StyleConfig.DropdownElement_Text_Label
+                    text: labelText,
+                    USS: StyleConfig.DropdownElement_Text_Label
                 );
             }
 

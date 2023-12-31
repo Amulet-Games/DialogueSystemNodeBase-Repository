@@ -6,11 +6,11 @@ namespace AG.DS
         /// Save the condition modifier values.
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
-        /// <param name="model">The condition modifier model to set for.</param>
+        /// <param name="data">The condition modifier data to set for.</param>
         public void Save
         (
             ConditionModifierView view,
-            ConditionModifierModel model
+            ConditionModifierData data
         )
         {
             SaveFolder();
@@ -21,17 +21,17 @@ namespace AG.DS
 
             void SaveFolder()
             {
-                view.Folder.Save(model.FolderModel);
+                view.Folder.Save(data.FolderData);
             }
 
             void SaveOperationDropdown()
             {
-                view.OperationDropdown.Save(model.OperationDropdownModel);
+                view.OperationDropdown.Save(data.OperationDropdownData);
             }
 
             void SaveChainWithDropdown()
             {
-                view.ChainWithDropdown.Save(model.ChainWithDropdownModel);
+                view.ChainWithDropdown.Save(data.ChainWithDropdownData);
             }
         }
 
@@ -40,11 +40,11 @@ namespace AG.DS
         /// Load the condition modifier values.
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
-        /// <param name="model">The condition modifier model to set for.</param>
+        /// <param name="data">The condition modifier data to set for.</param>
         public void Load
         (
             ConditionModifierView view,
-            ConditionModifierModel model
+            ConditionModifierData data
         )
         {
             LoadFolder();
@@ -55,17 +55,17 @@ namespace AG.DS
 
             void LoadFolder()
             {
-                view.Folder.Load(model.FolderModel);
+                view.Folder.Load(data.FolderData);
             }
 
             void LoadOperationDropdown()
             {
-                view.OperationDropdown.Load(model.OperationDropdownModel);
+                view.OperationDropdown.Load(data.OperationDropdownData);
             }
 
             void LoadChainWithDropdown()
             {
-                view.ChainWithDropdown.Load(model.ChainWithDropdownModel);
+                view.ChainWithDropdown.Load(data.ChainWithDropdownData);
             }
         }
     }

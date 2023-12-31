@@ -55,8 +55,8 @@ namespace AG.DS
             {
                 folder.ExpandButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.FolderExpandButtonCloseIconSprite,
-                    buttonUSS: StyleConfig.Folder_Expand_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.FolderExpandButtonCloseIconSprite,
+                    USS: StyleConfig.Folder_Expand_Button
                 );
 
                 folder.ExpandButton.AddBackgroundHighlighter();

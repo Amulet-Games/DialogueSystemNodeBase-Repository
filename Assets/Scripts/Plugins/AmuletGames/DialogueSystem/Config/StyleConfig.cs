@@ -47,16 +47,16 @@ namespace AG.DS
         public const string Button_ButtonText_Label = "button-buttonText-label";
         #endregion
 
-        #region HeadBar USS Classes.
-        public const string HeadBar = "headBar";
-        public const string HeadBar_Button_Container = "headBar-button-container";
-        public const string HeadBar_Save_Button = "headBar-save-button";
-        public const string HeadBar_Load_Button = "headBar-load-button";
-        public const string HeadBar_GraphTitleText_Field = "headBar-graphTitleText-field";
-        public const string HeadBar_LanguageToolbarMenu_Main = "headBar-languageToolbarMenu-main";
-        public const string HeadBar_LanguageToolbarMenu_Center_Container = "headBar-languageToolbarMenu-center-container";
-        public const string HeadBar_LanguageToolbarMenu_Dropdown_Label = "headBar-languageToolbarMenu-dropdown-label";
-        public const string HeadBar_LanguageToolbarMenu_Dropdown_Image = "headBar-languageToolbarMenu-dropdown-image";
+        #region Headbar USS Classes.
+        public const string Headbar = "headbar";
+        public const string Headbar_Button_Container = "headbar-button-container";
+        public const string Headbar_Save_Button = "headbar-save-button";
+        public const string Headbar_Load_Button = "headbar-load-button";
+        public const string Headbar_GraphTitleText_Field = "headbar-graphTitleText-field";
+        public const string Headbar_LanguageToolbarMenu_Main = "headbar-languageToolbarMenu-main";
+        public const string Headbar_LanguageToolbarMenu_Center_Container = "headbar-languageToolbarMenu-center-container";
+        public const string Headbar_LanguageToolbarMenu_Dropdown_Label = "headbar-languageToolbarMenu-dropdown-label";
+        public const string Headbar_LanguageToolbarMenu_Dropdown_Image = "headbar-languageToolbarMenu-dropdown-image";
         #endregion
 
         #region Input Hint USS Classes.
@@ -306,40 +306,6 @@ namespace AG.DS
 
         /*< -------------------- Message Modifier Group -------------------- >*/
         public const string MessageModifierGroup = "messageModifierGroup";
-        #endregion
-
-        #region Segment Common USS Classes.
-        public const string Segment_Common_Main_Box = "segment_Common_Main_Box";
-        public const string Segment_Common_Title_Box = "segment_Common_Title_Box";
-        public const string Segment_Common_Title_Label = "segment_Common_Title_Label";
-        public const string Segment_Common_Title_Button_Box = "segment_Common_Title_Button_Box";
-        public const string Segment_Common_ExpandSegment_Button = "segment_Common_ExpandSegment_Button";
-        #endregion
-
-        #region Segment Dialogue USS Classes.
-        public const string Segment_Dialogue_Title_Box = "segment_Dialogue_Title_Box";
-        public const string Segment_Dialogue_Content_Box = "segment_Dialogue_Content_Box";
-        public const string Segment_Dialogue_Character_ObjectField = "segment_Dialogue_Character_ObjectField";
-        public const string Segment_Dialogue_First_Textline_TextField = "segment_Dialogue_First_Textline_TextField";
-        public const string Segment_Dialogue_AudioClip_ObjectField = "segment_Dialogue_AudioClip_ObjectField";
-
-        public const string Segment_Dialogue_SecondContent_Box = "segment_Dialogue_SecondContent_Box";
-
-        public const string Segment_Dialogue_SecondLineTriggerType_Box = "segment_Dialogue_SecondLineTriggerType_Box";
-        public const string Segment_Dialogue_SecondLineTriggerType_Label = "segment_Dialogue_SecondLineTriggerType_Label";
-        public const string Segment_Dialogue_SecondLineTriggerType_EnumField = "segment_Dialogue_SecondLineTriggerType_EnumField";
-
-        public const string Segment_Dialogue_Duration_Box = "segment_Dialogue_Duration_Box";
-        public const string Segment_Dialogue_Duration_Label = "segment_Dialogue_Duration_Label";
-        public const string Segment_Dialogue_Duration_FloatField = "segment_Dialogue_Duration_FloatField";
-
-        public const string Segment_Dialogue_Second_Textline_TextField = "segment_Dialogue_Second_Textline_TextField";
-        #endregion
-
-        #region Segment Condition USS Classes.
-        public const string Segment_Condition_Title_Box = "segment_Condition_Title_Box";
-        public const string Segment_Condition_UnmetOptionDisplayType_EnumField = "segment_Condition_UnmetOptionDisplayType_EnumField";
-        public const string Segment_Condition_Content_Box = "segment_Condition_Content_Box";
         #endregion
 
         #region Radio USS Classes.

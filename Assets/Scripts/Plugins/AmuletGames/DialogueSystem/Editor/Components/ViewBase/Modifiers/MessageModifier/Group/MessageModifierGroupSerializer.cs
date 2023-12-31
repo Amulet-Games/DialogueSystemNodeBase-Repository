@@ -6,19 +6,19 @@ namespace AG.DS
         /// Save the message modifier group values.
         /// </summary>
         /// <param name="view">The message modifier group view to set for.</param>
-        /// <param name="model">The message modifier group model to set for.</param>
+        /// <param name="data">The message modifier group data to set for.</param>
         public void Save
         (
             MessageModifierGroupView view,
-            MessageModifierGroupModel model
+            MessageModifierGroupData data
         )
         {
-            model.ModifierModels = new MessageModifierModel[view.ModifiersCount];
+            data.ModifiersData = new MessageModifierData[view.ModifiersCount];
 
             for (int i = 0; i < view.ModifiersCount; i++)
             {
-                model.ModifierModels[i] = new();
-                new MessageModifierSerializer().Save(view.Modifiers[i], model.ModifierModels[i]);
+                data.ModifiersData[i] = new();
+                new MessageModifierSerializer().Save(view.Modifiers[i], data.ModifiersData[i]);
             }
         }
 
@@ -28,20 +28,20 @@ namespace AG.DS
         /// </summary>
         /// <param name="view">The message modifier group view to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>
-        /// <param name="model">The message modifier group model to set for.</param>
+        /// <param name="data">The message modifier group data to set for.</param>
         public void Load
         (
             MessageModifierGroupView view,
             LanguageHandler languageHandler,
-            MessageModifierGroupModel model
+            MessageModifierGroupData data
         )
         {
-            for (int i = 0; i <= model.ModifierModels.Length; i++)
+            for (int i = 0; i <= data.ModifiersData.Length; i++)
             {
                 var modifier = new MessageModifierSeeder().Generate(
                     groupView: view,
                     languageHandler,
-                    model: model.ModifierModels[i]
+                    data: data.ModifiersData[i]
                 );
 
                 view.Add(modifier);

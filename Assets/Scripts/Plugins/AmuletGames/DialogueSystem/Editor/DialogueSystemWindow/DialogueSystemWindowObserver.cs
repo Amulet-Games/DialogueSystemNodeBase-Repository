@@ -21,7 +21,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the headBar element.
         /// </summary>
-        HeadBar headBar;
+        Headbar headBar;
 
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace AG.DS
         (
             DialogueSystemModel dsModel,
             GraphViewer graphViewer,
-            HeadBar headBar,
+            Headbar headBar,
             NodeCreateRequestWindow nodeCreateRequestWindow,
             DialogueSystemWindow dsWindow
         )

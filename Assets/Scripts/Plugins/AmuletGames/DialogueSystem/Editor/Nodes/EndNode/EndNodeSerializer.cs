@@ -5,14 +5,14 @@ namespace AG.DS
     <
         EndNode,
         EndNodeView,
-        EndNodeModel
+        EndNodeData
     >
     {
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(EndNode node, EndNodeModel model)
+        public override void Save(EndNode node, EndNodeData data)
         {
-            base.Save(node, model);
+            base.Save(node, data);
 
             SaveNodeBaseValues();
 
@@ -27,15 +27,15 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            Model.InputPortModel = PortManager.Instance.Save(View.InputDefaultPort);
+            Data.InputPortData = PortManager.Instance.Save(View.InputDefaultPort);
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(EndNode node, EndNodeModel model)
+        public override void Load(EndNode node, EndNodeData data)
         {
-            base.Load(node, model);
+            base.Load(node, data);
 
             LoadNodeBaseValues();
 
@@ -50,7 +50,7 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputDefaultPort, Model.InputPortModel);
+            PortManager.Instance.Load(View.InputDefaultPort, Data.InputPortData);
         }
     }
 }

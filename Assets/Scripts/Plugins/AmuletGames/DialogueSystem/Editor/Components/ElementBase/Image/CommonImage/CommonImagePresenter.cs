@@ -8,15 +8,15 @@ namespace AG.DS
         /// <summary>
         /// Create a new common Image element.
         /// </summary>
-        /// <param name="imageSprite">The image sprite to set for.</param>
-        /// <param name="imageUSS01">The first image USS style to set for.</param>
-        /// <param name="imageUSS02">The second image USS style to set for.</param>
+        /// <param name="sprite">The sprite to set for.</param>
+        /// <param name="USS01">The first image USS style to set for.</param>
+        /// <param name="USS02">The second image USS style to set for.</param>
         /// <returns>A new common Image element.</returns>
         public static Image CreateElement
         (
-            Sprite imageSprite = null,
-            string imageUSS01 = null,
-            string imageUSS02 = null
+            Sprite sprite = null,
+            string USS01 = null,
+            string USS02 = null
         )
         {
             Image image;
@@ -36,8 +36,8 @@ namespace AG.DS
 
             void SetupDetails()
             {
-                if (imageSprite != null)
-                    image.sprite = imageSprite;
+                if (sprite != null)
+                    image.sprite = sprite;
 
                 image.pickingMode = PickingMode.Ignore;
             }
@@ -46,11 +46,11 @@ namespace AG.DS
             {
                 image.ClearClassList();
 
-                if (imageUSS01 != null)
-                    image.AddToClassList(imageUSS01);
+                if (USS01 != null)
+                    image.AddToClassList(USS01);
 
-                if (imageUSS02 != null)
-                    image.AddToClassList(imageUSS02);
+                if (USS02 != null)
+                    image.AddToClassList(USS02);
             }
         }
     }

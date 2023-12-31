@@ -7,13 +7,13 @@ namespace AG.DS
         /// </summary>
         /// <param name="groupView">The condition modifier group view to set for.</param>
         /// <param name="graphViewer">The graph viewer to set for.</param>
-        /// <param name="model">The condition modifier model to set for.</param>
+        /// <param name="data">The condition modifier data to set for.</param>
         /// <returns>A new condition modifier view.</returns>
         public ConditionModifierView Generate
         (
             ConditionModifierGroupView groupView,
             GraphViewer graphViewer,
-            ConditionModifierModel model = null
+            ConditionModifierData data = null
         )
         {
             var view = new ConditionModifierView();
@@ -22,12 +22,12 @@ namespace AG.DS
 
             new ConditionModifierObserver(view, groupView).RegisterEvents();
 
-            if (model != null)
+            if (data != null)
             {
-                new ConditionModifierSerializer().Load(view, model);
+                new ConditionModifierSerializer().Load(view, data);
             }
 
-            new ConditionModifierCallback().OnCreate(view, model == null);
+            new ConditionModifierCallback().OnCreate(view, data == null);
 
             return view;
         }

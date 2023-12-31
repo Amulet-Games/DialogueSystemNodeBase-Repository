@@ -1,5 +1,3 @@
-using static UnityEditor.Profiling.HierarchyFrameDataView;
-
 namespace AG.DS
 {
     public class MessageModifierSeeder
@@ -9,13 +7,13 @@ namespace AG.DS
         /// </summary>
         /// <param name="groupView">The message modifier group view to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>
-        /// <param name="model">The message modifier model to set for.</param>
+        /// <param name="data">The message modifier data to set for.</param>
         /// <returns>A new message modifier view.</returns>
         public MessageModifierView Generate
         (
             MessageModifierGroupView groupView,
             LanguageHandler languageHandler,
-            MessageModifierModel model = null
+            MessageModifierData data = null
         )
         {
             var view = new MessageModifierView(languageHandler);
@@ -24,12 +22,12 @@ namespace AG.DS
 
             new MessageModifierObserver(view, groupView).RegisterEvents();
 
-            if (model != null)
+            if (data != null)
             {
-                new MessageModifierSerializer().Load(view, model);
+                new MessageModifierSerializer().Load(view, data);
             }
 
-            new MessageModifierCallback().OnCreate(view, model == null);
+            new MessageModifierCallback().OnCreate(view, data == null);
 
             return view;
         }

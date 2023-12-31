@@ -6,11 +6,11 @@ namespace AG.DS
         /// Save the message modifier values.
         /// </summary>
         /// <param name="view">The message modifier view to set for.</param>
-        /// <param name="model">The message modifier model to set for.</param>
+        /// <param name="data">The message modifier data to set for.</param>
         public void Save
         (
             MessageModifierView view,
-            MessageModifierModel model
+            MessageModifierData data
         )
         {
             SaveFolder();
@@ -27,32 +27,32 @@ namespace AG.DS
 
             void SaveFolder()
             {
-                view.Folder.Save(model.FolderModel);
+                view.Folder.Save(data.FolderData);
             }
 
             void SaveMessageText()
             {
-                view.MessageTextFieldView.Save(model.MessageText);
+                view.MessageTextFieldView.Save(data.MessageText);
             }
 
             void SaveMessageAudio()
             {
-                view.MessageAudioFieldView.Save(model.MessageAudio);
+                view.MessageAudioFieldView.Save(data.MessageAudio);
             }
 
             void SaveContinueByRadioGroup()
             {
-                view.ContinueByRadioGroup.Save(model.ContinueByRadioGroupModel);
+                view.ContinueByRadioGroup.Save(data.ContinueByRadioGroupData);
             }
 
             void SaveDelaySecondsInteger()
             {
-                model.DelaySeconds = view.DelaySecondsFieldView.Value;
+                data.DelaySeconds = view.DelaySecondsFieldView.Value;
             }
 
             void SaveMessageCSVGuid()
             {
-                model.MessageCSVGuid = view.MessageCSVGuid;
+                data.MessageCSVGuid = view.MessageCSVGuid;
             }
         }
 
@@ -61,11 +61,11 @@ namespace AG.DS
         /// Load the message modifier values.
         /// </summary>
         /// <param name="view">The message modifier view to set for.</param>
-        /// <param name="model">The message modifier model to set for.</param>
+        /// <param name="data">The message modifier data to set for.</param>
         public void Load
         (
             MessageModifierView view,
-            MessageModifierModel model
+            MessageModifierData data
         )
         {
             LoadFolder();
@@ -82,32 +82,32 @@ namespace AG.DS
 
             void LoadFolder()
             {
-                view.Folder.Load(model.FolderModel);
+                view.Folder.Load(data.FolderData);
             }
 
             void LoadMessageText()
             {
-                view.MessageTextFieldView.Load(model.MessageText);
+                view.MessageTextFieldView.Load(data.MessageText);
             }
 
             void LoadMessageAudio()
             {
-                view.MessageAudioFieldView.Load(model.MessageAudio);
+                view.MessageAudioFieldView.Load(data.MessageAudio);
             }
 
             void LoadContinueByRadioGroup()
             {
-                view.ContinueByRadioGroup.Load(model.ContinueByRadioGroupModel);
+                view.ContinueByRadioGroup.Load(data.ContinueByRadioGroupData);
             }
 
             void LoadDelaySecondsInteger()
             {
-                view.DelaySecondsFieldView.Value = model.DelaySeconds;
+                view.DelaySecondsFieldView.Value = data.DelaySeconds;
             }
 
             void LoadMessageCSVGuid()
             {
-                view.MessageCSVGuid = model.MessageCSVGuid;
+                view.MessageCSVGuid = data.MessageCSVGuid;
             }
         }
     }

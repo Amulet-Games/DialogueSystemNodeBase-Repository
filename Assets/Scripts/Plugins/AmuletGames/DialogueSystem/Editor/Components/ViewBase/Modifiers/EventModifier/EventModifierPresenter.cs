@@ -79,8 +79,8 @@ namespace AG.DS
             {
                 view.MoveUpButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.MoveUpButtonIconSprite,
-                    buttonUSS: StyleConfig.EventModifier_MoveUp_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.MoveUpButtonIconSprite,
+                    USS: StyleConfig.EventModifier_MoveUp_Button
                 );
 
                 view.MoveUpButton.AddBackgroundHighlighter();
@@ -90,8 +90,8 @@ namespace AG.DS
             {
                 view.MoveDownButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.MoveDownButtonIconSprite,
-                    buttonUSS: StyleConfig.EventModifier_MoveDown_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.MoveDownButtonIconSprite,
+                    USS: StyleConfig.EventModifier_MoveDown_Button
                 );
 
                 view.MoveDownButton.AddBackgroundHighlighter();
@@ -101,8 +101,8 @@ namespace AG.DS
             {
                 view.RenameButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
-                    buttonUSS: StyleConfig.EventModifier_Rename_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
+                    USS: StyleConfig.EventModifier_Rename_Button
                 );
 
                 view.RenameButton.AddBackgroundHighlighter();
@@ -112,8 +112,8 @@ namespace AG.DS
             {
                 view.RemoveButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
-                    buttonUSS: StyleConfig.EventModifier_Remove_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
+                    USS: StyleConfig.EventModifier_Remove_Button
                 );
 
                 view.RemoveButton.AddBackgroundHighlighter();
@@ -123,8 +123,8 @@ namespace AG.DS
             {
                 dialogueEventLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.EventModifier_DialogueEventLabel_LabelText,
-                    labelUSS: StyleConfig.EventModifier_DialogueEvent_Label
+                    text: StringConfig.EventModifier_DialogueEventLabel_LabelText,
+                    USS: StyleConfig.EventModifier_DialogueEvent_Label
                 );
             }
 
@@ -141,8 +141,8 @@ namespace AG.DS
             {
                 dialogueEventImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.DialogueEventFieldSprite,
-                    imageUSS01: StyleConfig.EventModifier_DialogueEvent_Image
+                    sprite: ConfigResourcesManager.SpriteConfig.DialogueEventFieldSprite,
+                    USS01: StyleConfig.EventModifier_DialogueEvent_Image
                 );
 
                 view.DialogueEventFieldView.Field.SetDisplayImage(dialogueEventImage);
@@ -152,8 +152,8 @@ namespace AG.DS
             {
                 startDelayLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.EventModifier_StartDelay_LabelText,
-                    labelUSS: StyleConfig.EventModifier_StartDelay_Label
+                    text: StringConfig.EventModifier_StartDelay_LabelText,
+                    USS: StyleConfig.EventModifier_StartDelay_Label
                 );
             }
 
@@ -170,8 +170,8 @@ namespace AG.DS
             {
                 delaySecondsLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.EventModifier_DelaySeconds_LabelText,
-                    labelUSS: StyleConfig.EventModifier_DelaySeconds_Label
+                    text: StringConfig.EventModifier_DelaySeconds_LabelText,
+                    USS: StyleConfig.EventModifier_DelaySeconds_Label
                 );
             }
 

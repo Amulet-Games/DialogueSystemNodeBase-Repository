@@ -121,8 +121,8 @@ namespace AG.DS
             {
                 view.MoveUpButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.MoveUpButtonIconSprite,
-                    buttonUSS: StyleConfig.ConditionModifier_MoveUp_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.MoveUpButtonIconSprite,
+                    USS: StyleConfig.ConditionModifier_MoveUp_Button
                 );
 
                 view.MoveUpButton.AddBackgroundHighlighter();
@@ -132,8 +132,8 @@ namespace AG.DS
             {
                 view.MoveDownButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.MoveDownButtonIconSprite,
-                    buttonUSS: StyleConfig.ConditionModifier_MoveDown_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.MoveDownButtonIconSprite,
+                    USS: StyleConfig.ConditionModifier_MoveDown_Button
                 );
 
                 view.MoveDownButton.AddBackgroundHighlighter();
@@ -143,8 +143,8 @@ namespace AG.DS
             {
                 view.RenameButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
-                    buttonUSS: StyleConfig.ConditionModifier_Rename_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
+                    USS: StyleConfig.ConditionModifier_Rename_Button
                 );
 
                 view.RenameButton.AddBackgroundHighlighter();
@@ -154,8 +154,8 @@ namespace AG.DS
             {
                 view.RemoveButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
-                    buttonUSS: StyleConfig.ConditionModifier_Remove_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
+                    USS: StyleConfig.ConditionModifier_Remove_Button
                 );
 
                 view.RemoveButton.AddBackgroundHighlighter();
@@ -177,8 +177,8 @@ namespace AG.DS
             {
                 secondVariableLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.ConditionModifier_SecondVariable_LabelText,
-                    labelUSS: StyleConfig.ConditionModifier_SecondVariable_Label
+                    text: StringConfig.ConditionModifier_SecondVariable_LabelText,
+                    USS: StyleConfig.ConditionModifier_SecondVariable_Label
                 );
             }
 
@@ -195,8 +195,8 @@ namespace AG.DS
             {
                 secondReflectableImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.UnityObjectFieldIconSprite,
-                    imageUSS01: StyleConfig.ConditionModifier_SecondReflectableObject_Image
+                    sprite: ConfigResourcesManager.SpriteConfig.UnityObjectFieldIconSprite,
+                    USS01: StyleConfig.ConditionModifier_SecondReflectableObject_Image
                 );
 
                 view.SecondReflectableObjectFieldView.Field.SetDisplayImage(secondReflectableImage);
@@ -206,8 +206,8 @@ namespace AG.DS
             {
                 secondBindingFlagsLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.ConditionModifier_SecondBindingFlags_LabelText,
-                    labelUSS: StyleConfig.ConditionModifier_SecondBindingFlags_Label
+                    text: StringConfig.ConditionModifier_SecondBindingFlags_LabelText,
+                    USS: StyleConfig.ConditionModifier_SecondBindingFlags_Label
                 );
             }
 
@@ -230,8 +230,8 @@ namespace AG.DS
             {
                 secondTextImage = CommonImagePresenter.CreateElement
                 (
-                    imageSprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite,
-                    imageUSS01: StyleConfig.ConditionModifier_SecondText_Image
+                    sprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite,
+                    USS01: StyleConfig.ConditionModifier_SecondText_Image
                 );
 
                 view.SecondTextFieldView.Field.SetDisplayImage(secondTextImage);
@@ -250,8 +250,8 @@ namespace AG.DS
             {
                 secondFloatFieldHintLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.ConditionModifier_SecondFloatHint_LabelText,
-                    labelUSS: StyleConfig.ConditionModifier_SecondFloatHint_Label
+                    text: StringConfig.ConditionModifier_SecondFloatHint_LabelText,
+                    USS: StyleConfig.ConditionModifier_SecondFloatHint_Label
                 );
             }
 
@@ -259,8 +259,8 @@ namespace AG.DS
             {
                 operationLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.ConditionModifier_Operation_LabelText,
-                    labelUSS: StyleConfig.ConditionModifier_Operation_Label
+                    text: StringConfig.ConditionModifier_Operation_LabelText,
+                    USS: StyleConfig.ConditionModifier_Operation_Label
                 );
             }
 
@@ -338,8 +338,8 @@ namespace AG.DS
             {
                 chainWithLabel = CommonLabelPresenter.CreateElement
                 (
-                    labelText: StringConfig.ConditionModifier_ChainWith_LabelText,
-                    labelUSS: StyleConfig.ConditionModifier_ChainWith_Label
+                    text: StringConfig.ConditionModifier_ChainWith_LabelText,
+                    USS: StyleConfig.ConditionModifier_ChainWith_Label
                 );
             }
 
@@ -485,8 +485,8 @@ namespace AG.DS
                 {
                     iconImage = CommonImagePresenter.CreateElement
                     (
-                        imageSprite: buttonIconSprite,
-                        imageUSS01: buttonIconUSS
+                        sprite: buttonIconSprite,
+                        USS01: buttonIconUSS
                     );
                 }
 
@@ -494,8 +494,8 @@ namespace AG.DS
                 {
                     buttonLabel = CommonLabelPresenter.CreateElement
                     (
-                        labelText: buttonText,
-                        labelUSS: buttonLabelUSS
+                        text: buttonText,
+                        USS: buttonLabelUSS
                     );
                 }
 

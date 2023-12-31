@@ -89,20 +89,20 @@ namespace AG.DS
         /// <summary>
         /// Save the radio group values.
         /// </summary>
-        /// <param name="model">The radio group model to set for.</param>
-        public void Save(RadioGroupModel model)
+        /// <param name="data">The radio group data to set for.</param>
+        public void Save(RadioGroupData data)
         {
-            model.activeRadioIndex = Radios.IndexOf(ActiveRadio);
+            data.activeRadioIndex = Radios.IndexOf(ActiveRadio);
         }
 
 
         /// <summary>
         /// Load the radio group values.
         /// </summary>
-        /// <param name="model">The radio group model to set for.</param>
-        public void Load(RadioGroupModel model)
+        /// <param name="data">The radio group data to set for.</param>
+        public void Load(RadioGroupData data)
         {
-            ActiveRadio = Radios[model.activeRadioIndex];
+            ActiveRadio = Radios[data.activeRadioIndex];
         }
     }
 }

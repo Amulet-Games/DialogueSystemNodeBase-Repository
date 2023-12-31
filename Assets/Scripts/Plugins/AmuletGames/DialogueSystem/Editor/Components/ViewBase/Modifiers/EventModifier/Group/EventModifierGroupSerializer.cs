@@ -6,19 +6,19 @@ namespace AG.DS
         /// Save the event modifier group values.
         /// </summary>
         /// <param name="view">The event modifier group view to set for.</param>
-        /// <param name="model">The event modifier group model to set for.</param>
+        /// <param name="data">The event modifier group data to set for.</param>
         public void Save
         (
             EventModifierGroupView view,
-            EventModifierGroupModel model
+            EventModifierGroupData data
         )
         {
-            model.ModifierModels = new EventModifierModel[view.ModifiersCount];
+            data.ModifiersData = new EventModifierData[view.ModifiersCount];
 
             for (int i = 0; i < view.ModifiersCount; i++)
             {
-                model.ModifierModels[i] = new();
-                new EventModifierSerializer().Save(view.Modifiers[i], model.ModifierModels[i]);
+                data.ModifiersData[i] = new();
+                new EventModifierSerializer().Save(view.Modifiers[i], data.ModifiersData[i]);
             }
         }
 
@@ -27,18 +27,18 @@ namespace AG.DS
         /// Load the event modifier group values.
         /// </summary>
         /// <param name="view">The event modifier group view to set for.</param>
-        /// <param name="model">The event modifier group model to set for.</param>
+        /// <param name="data">The event modifier group data to set for.</param>
         public void Load
         (
             EventModifierGroupView view,
-            EventModifierGroupModel model
+            EventModifierGroupData data
         )
         {
-            for (int i = 0; i <= model.ModifierModels.Length; i++)
+            for (int i = 0; i <= data.ModifiersData.Length; i++)
             {
                 var modifier = new EventModifierSeeder().Generate(
                     groupView: view,
-                    model: model.ModifierModels[i]
+                    data: data.ModifiersData[i]
                 );
 
                 view.Add(modifier);

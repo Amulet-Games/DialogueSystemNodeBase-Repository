@@ -7,13 +7,13 @@ namespace AG.DS
         PortCreateDetailBase,
         DefaultEdge,
         DefaultEdgeView,
-        EdgeModelBase
+        EdgeDataBase
     >
     {
         /// <inheritdoc />
-        public override void Save(DefaultEdgeView view, EdgeModelBase model)
+        public override void Save(DefaultEdgeView view, EdgeDataBase data)
         {
-            base.Save(view, model);
+            base.Save(view, data);
 
             SaveEdgeBaseValues();
 
@@ -26,7 +26,7 @@ namespace AG.DS
         /// </summary>
         void SavePortType()
         {
-            Model.PortType = PortType.DEFAULT;
+            Data.PortType = PortType.DEFAULT;
         }
     }
 }

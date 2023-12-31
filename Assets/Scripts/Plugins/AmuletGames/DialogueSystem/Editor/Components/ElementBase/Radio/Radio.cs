@@ -5,13 +5,13 @@ namespace AG.DS
     public class Radio : VisualElement
     {
         /// <summary>
-        /// Image for the radio icon.
+        /// Image for the element icon.
         /// </summary>
         public Image IconImage;
 
 
         /// <summary>
-        /// Label for the radio text.
+        /// Label for the element text.
         /// </summary>
         public Label TextLabel;
 

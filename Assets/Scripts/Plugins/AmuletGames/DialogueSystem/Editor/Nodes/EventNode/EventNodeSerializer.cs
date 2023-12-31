@@ -5,14 +5,14 @@ namespace AG.DS
     <
         EventNode,
         EventNodeView,
-        EventNodeModel
+        EventNodeData
     >
     {
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(EventNode node, EventNodeModel model)
+        public override void Save(EventNode node, EventNodeData data)
         {
-            base.Save(node, model);
+            base.Save(node, data);
 
             SaveNodeBaseValues();
 
@@ -29,8 +29,8 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            Model.InputPortModel = PortManager.Instance.Save(View.InputDefaultPort);
-            Model.OutputPortModel = PortManager.Instance.Save(View.OutputDefaultPort);
+            Data.InputPortData = PortManager.Instance.Save(View.InputDefaultPort);
+            Data.OutputPortData = PortManager.Instance.Save(View.OutputDefaultPort);
         }
 
 
@@ -39,15 +39,15 @@ namespace AG.DS
         /// </summary>
         void SaveEventModifierGroup()
         {
-            new EventModifierGroupSerializer().Save(View.EventModifierGroupView, Model.EventModifierGroupModel);
+            new EventModifierGroupSerializer().Save(View.EventModifierGroupView, Data.EventModifierGroupData);
         }
 
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(EventNode node, EventNodeModel model)
+        public override void Load(EventNode node, EventNodeData data)
         {
-            base.Load(node, model);
+            base.Load(node, data);
 
             LoadNodeBaseValues();
 
@@ -64,8 +64,8 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputDefaultPort, Model.InputPortModel);
-            PortManager.Instance.Load(View.OutputDefaultPort, Model.OutputPortModel);
+            PortManager.Instance.Load(View.InputDefaultPort, Data.InputPortData);
+            PortManager.Instance.Load(View.OutputDefaultPort, Data.OutputPortData);
         }
 
 
@@ -74,7 +74,7 @@ namespace AG.DS
         /// </summary>
         void LoadEventModifierGroup()
         {
-            new EventModifierGroupSerializer().Load(View.EventModifierGroupView, Model.EventModifierGroupModel);
+            new EventModifierGroupSerializer().Load(View.EventModifierGroupView, Data.EventModifierGroupData);
         }
     }
 }

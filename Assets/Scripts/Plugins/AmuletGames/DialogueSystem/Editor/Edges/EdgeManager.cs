@@ -109,20 +109,20 @@ namespace AG.DS
         /// 
         /// <param name="edge">The edge element to set for.</param>
         /// 
-        /// <returns>A new edge model.</returns>
+        /// <returns>A new edge data.</returns>
         /// 
         /// <exception cref="ArgumentException">
         /// Thrown when the given edge element is invalid to any of the current existing edge's type.
         /// </exception>
-        public EdgeModelBase Save(EdgeBase edge)
+        public EdgeDataBase Save(EdgeBase edge)
         {
             return edge switch
             {
                 DefaultEdge m_edge => Save<DefaultPort, PortCreateDetailBase, DefaultEdge,
-                             DefaultEdgeView, DefaultEdgeSerializer, EdgeModelBase>(m_edge),
+                             DefaultEdgeView, DefaultEdgeSerializer, EdgeDataBase>(m_edge),
 
                 OptionEdge m_edge => Save<OptionPort, OptionPortCreateDetail, OptionEdge,
-                            OptionEdgeView, OptionEdgeSerializer, EdgeModelBase>(m_edge),
+                            OptionEdgeView, OptionEdgeSerializer, EdgeDataBase>(m_edge),
 
                 _ => throw new ArgumentException("Invalid edge type: " + edge)
             };
@@ -138,12 +138,12 @@ namespace AG.DS
         /// <typeparam name="TEdge">Type edge</typeparam>
         /// <typeparam name="TEdgeView">Type edge view</typeparam>
         /// <typeparam name="TEdgeSerializer">Type edge serializer</typeparam>
-        /// <typeparam name="TEdgeModel">Type edge model</typeparam>
+        /// <typeparam name="TEdgeData">Type edge data</typeparam>
         /// 
         /// <param name="edge">The edge element to set for.</param>
         /// 
-        /// <returns>A new edge model.</returns>
-        TEdgeModel Save<TPort, TPortCreateDetail, TEdge, TEdgeView, TEdgeSerializer, TEdgeModel>
+        /// <returns>A new edge data.</returns>
+        TEdgeData Save<TPort, TPortCreateDetail, TEdge, TEdgeView, TEdgeSerializer, TEdgeData>
         (
             TEdge edge
         )
@@ -151,13 +151,13 @@ namespace AG.DS
             where TPortCreateDetail : PortCreateDetailBase
             where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
             where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-            where TEdgeSerializer : EdgeSerializerFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView, TEdgeModel>, new()
-            where TEdgeModel : EdgeModelBase, new()
+            where TEdgeSerializer : EdgeSerializerFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView, TEdgeData>, new()
+            where TEdgeData : EdgeDataBase, new()
         {
-            var model = new TEdgeModel();
-            new TEdgeSerializer().Save(edge.View, model);
+            var data = new TEdgeData();
+            new TEdgeSerializer().Save(edge.View, data);
             
-            return model;
+            return data;
         }
     }
 }

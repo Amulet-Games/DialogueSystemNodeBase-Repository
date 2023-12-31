@@ -9,9 +9,9 @@ namespace AG.DS
         public const string Editor_WindowAlreadyLoaded_WarningText = "Action is ignored since there's nothing changed from the last time it loaded.";
         #endregion
 
-        #region HeadBar Labels.
-        public const string HeadBar_SaveButton_LabelText = "Save";
-        public const string HeadBar_LoadButton_LabelText = "Load";
+        #region Headbar Labels.
+        public const string Headbar_SaveButton_LabelText = "Save";
+        public const string Headbar_LoadButton_LabelText = "Load";
         #endregion
 
         #region Input Hint Texts.

@@ -58,8 +58,8 @@ namespace AG.DS
             {
                 View.EditTitleButton = CommonButtonPresenter.CreateElement
                 (
-                    buttonSprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
-                    buttonUSS: StyleConfig.Node_EditTitle_Button
+                    sprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
+                    USS: StyleConfig.Node_EditTitle_Button
                 );
             }
             

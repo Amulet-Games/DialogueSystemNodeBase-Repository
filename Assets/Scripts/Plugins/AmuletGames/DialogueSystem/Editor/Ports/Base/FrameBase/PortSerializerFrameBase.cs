@@ -4,11 +4,11 @@ namespace AG.DS
     public class PortSerializerFrameBase
     <
         TPort,
-        TPortModel
+        TPortData
     >
         : PortSerializerBase
         where TPort : PortBase
-        where TPortModel : PortModelBase
+        where TPortData : PortDataBase
     {
         /// <summary>
         /// Reference of the port element.
@@ -17,9 +17,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the port model.
+        /// Reference of the port data.
         /// </summary>
-        protected TPortModel Model;
+        protected TPortData Data;
 
 
         // ----------------------------- Save -----------------------------
@@ -27,11 +27,11 @@ namespace AG.DS
         /// Save the port element values.
         /// </summary>
         /// <param name="port">The port element to set for.</param>
-        /// <param name="model">The port model to set for.</param>
-        public virtual void Save(TPort port, TPortModel model)
+        /// <param name="data">The port data to set for.</param>
+        public virtual void Save(TPort port, TPortData data)
         {
             Port = port;
-            Model = model;
+            Data = data;
         }
 
 
@@ -40,7 +40,7 @@ namespace AG.DS
         /// </summary>
         protected void SavePortBaseValues()
         {
-            Model.Guid = Port.Guid;
+            Data.Guid = Port.Guid;
         }
 
 
@@ -49,11 +49,11 @@ namespace AG.DS
         /// Load the port element values.
         /// </summary>
         /// <param name="port">The port element to set for.</param>
-        /// <param name="model">The port model to set for.</param>
-        public virtual void Load(TPort port, TPortModel model)
+        /// <param name="data">The port data to set for.</param>
+        public virtual void Load(TPort port, TPortData data)
         {
             Port = port;
-            Model = model;
+            Data = data;
         }
 
 
@@ -62,7 +62,7 @@ namespace AG.DS
         /// </summary>
         protected void LoadPortBaseValues()
         {
-            Port.Guid = Model.Guid;
+            Port.Guid = Data.Guid;
         }
     }
 }
