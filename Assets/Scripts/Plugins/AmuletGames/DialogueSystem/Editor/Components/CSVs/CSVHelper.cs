@@ -35,12 +35,12 @@ namespace AG.DS
 
         /// This method will search through the whole "Asset" directory to find Dialogue Container SO
         /// Since it could be heavy to use based on the project size, currently it is not used.
-        public static List<DialogueSystemModel> GetDialogueSystemModel()
+        public static List<DialogueSystemWindowAsset> GetDialogueSystemModel()
         {
             // Find all the dialogue system model scriptable assets and cache their GUID.
-            string[] GUIDs = AssetDatabase.FindAssets("t:DialogueSystemModel");
+            string[] GUIDs = AssetDatabase.FindAssets("t:DialogueSystemWindowAsset");
 
-            var dsModels = new DialogueSystemModel[GUIDs.Length];
+            var dsModels = new DialogueSystemWindowAsset[GUIDs.Length];
 
             string path;
             for (int i = 0; i < GUIDs.Length; i++)
@@ -49,7 +49,7 @@ namespace AG.DS
                 path = AssetDatabase.GUIDToAssetPath(GUIDs[i]);
 
                 // Use the path to find and load Dialogue Container SO.
-                dsModels[i] = AssetDatabase.LoadAssetAtPath<DialogueSystemModel>(path);
+                // dsModels[i] = AssetDatabase.LoadAssetAtPath<DialogueSystemWindowModel>(path);
             }
 
             return dsModels.ToList();

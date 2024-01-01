@@ -8,12 +8,12 @@ namespace AG.DS
         /// Create a new headbar element.
         /// </summary>
         /// <param name="languageHandler">The language handler to set for.</param>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
+        /// <param name="dialogueSystemWindowAsset">The dialogue system window asset to set for.</param>
         /// <returns>A new headbar element.</returns>
         public static Headbar CreateElement
         (
             LanguageHandler languageHandler,
-            DialogueSystemModel dsModel
+            DialogueSystemWindowAsset dialogueSystemWindowAsset
         )
         {
             Headbar headbar;
@@ -43,7 +43,7 @@ namespace AG.DS
 
             void CreateHeadbar()
             {
-                headbar = new(dsModel);
+                headbar = new(dialogueSystemWindowAsset);
                 headbar.AddToClassList(StyleConfig.Headbar);
             }
 

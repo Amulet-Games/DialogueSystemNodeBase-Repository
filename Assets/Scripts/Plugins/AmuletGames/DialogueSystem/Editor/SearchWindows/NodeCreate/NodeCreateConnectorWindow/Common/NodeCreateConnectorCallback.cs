@@ -46,11 +46,11 @@ namespace AG.DS
         (
             GraphViewer graphViewer,
             LanguageHandler languageHandler,
-            DialogueSystemWindow dsWindow,
+            DialogueSystemWindow dialogueSystemWindow,
             NodeCreateConnectorObserver<TPort, TPortCreateDetail, TEdge, TEdgeView> observer
         )
         {
-            base.Setup(graphViewer, languageHandler, dsWindow, observer);
+            base.Setup(graphViewer, languageHandler, dialogueSystemWindow, observer);
             return this;
         }
 
@@ -80,10 +80,10 @@ namespace AG.DS
         void CalculateApproxCreatePosition(SearchWindowContext context)
         {
             // Convert the direction from screen space to window space(?)
-            mouseToWindowCenterVector = DsWindow.rootVisualElement.ChangeCoordinatesTo
+            mouseToWindowCenterVector = DialogueSystemWindow.rootVisualElement.ChangeCoordinatesTo
             (
-                dest: DsWindow.rootVisualElement.parent,
-                point: context.screenMousePosition - DsWindow.position.position
+                dest: DialogueSystemWindow.rootVisualElement.parent,
+                point: context.screenMousePosition - DialogueSystemWindow.position.position
             );
 
             // And calculate its position in the graph viewer.

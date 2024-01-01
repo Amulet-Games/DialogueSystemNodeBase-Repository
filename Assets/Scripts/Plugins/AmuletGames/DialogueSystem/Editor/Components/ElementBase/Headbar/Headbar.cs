@@ -39,12 +39,12 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the headbar element class.
         /// </summary>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
-        public Headbar(DialogueSystemModel dsModel)
+        /// <param name="dialogueSystemWindowAsset">The dialogue system window asset to set for.</param>
+        public Headbar(DialogueSystemWindowAsset dialogueSystemWindowAsset)
         {
             GraphTitleTextFieldView = new(
-                value: dsModel.name,
-                bindingSO: new SerializedObject(obj: dsModel)
+            value: dialogueSystemWindowAsset.Name,
+                bindingSO: new SerializedObject(obj: dialogueSystemWindowAsset)
             );
         }
     }

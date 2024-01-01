@@ -13,22 +13,22 @@ namespace AG.DS
         /// <summary>
         /// Reference of the dialogue editor window.
         /// </summary>
-        DialogueSystemWindow dsWindow;
+        DialogueSystemWindow dialogueSystemWindow;
 
 
         /// <summary>
         /// Constructor of the headbar observer class.
         /// </summary>
         /// <param name="headbar">The headbar element to set for.</param>
-        /// <param name="dsWindow">The dialogue system window to set for.</param>
+        /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
         public HeadbarObserver
         (
             Headbar headbar,
-            DialogueSystemWindow dsWindow
+            DialogueSystemWindow dialogueSystemWindow
         )
         {
             this.headbar = headbar;
-            this.dsWindow = dsWindow;
+            this.dialogueSystemWindow = dialogueSystemWindow;
         }
 
 
@@ -113,7 +113,7 @@ namespace AG.DS
         void RegisterGraphTitleTextFieldEvents()
         {
             new GraphTitleTextFieldObserver(
-                view: headbar.GraphTitleTextFieldView, dsWindow).RegisterEvents();
+                view: headbar.GraphTitleTextFieldView, dialogueSystemWindow).RegisterEvents();
         }
 
 
@@ -149,7 +149,7 @@ namespace AG.DS
         /// </summary>
         void SaveButtonClickEvent()
         {
-            dsWindow.Save();
+            dialogueSystemWindow.Save();
         }
 
 
@@ -158,7 +158,7 @@ namespace AG.DS
         /// </summary>
         void LoadButtonClickEvent()
         {
-            dsWindow.Load(isForceLoadWindow: false);
+            dialogueSystemWindow.Load(isForceLoadWindow: false);
         }
 
 
@@ -173,7 +173,7 @@ namespace AG.DS
 
             headbar.LanguageToolbarMenu.text = LanguageProvider.GetShort(type: selectedLanguageType);
 
-            dsWindow.ChangeLanguage(selectedLanguageType);
+            dialogueSystemWindow.ChangeLanguage(selectedLanguageType);
         }
     }
 }

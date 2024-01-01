@@ -16,7 +16,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the dialogue system window.
         /// </summary>
-        protected DialogueSystemWindow DsWindow;
+        protected DialogueSystemWindow DialogueSystemWindow;
 
 
         /// <summary>

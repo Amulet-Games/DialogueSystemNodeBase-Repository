@@ -24,7 +24,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the dialogue system window.
         /// </summary>
-        DialogueSystemWindow dsWindow;
+        DialogueSystemWindow dialogueSystemWindow;
 
 
         /// <summary>
@@ -38,17 +38,17 @@ namespace AG.DS
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="nodeCreateRequestWindow">The node create request window to set for.</param>
-        /// <param name="dsWindow">The dialogue system window to set for.</param>
+        /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
         public GraphViewerObserver
         (
             GraphViewer graphViewer,
             NodeCreateRequestWindow nodeCreateRequestWindow,
-            DialogueSystemWindow dsWindow
+            DialogueSystemWindow dialogueSystemWindow
         )
         {
             this.graphViewer = graphViewer;
             this.nodeCreateRequestWindow = nodeCreateRequestWindow;
-            this.dsWindow = dsWindow;
+            this.dialogueSystemWindow = dialogueSystemWindow;
         }
 
 
@@ -72,7 +72,7 @@ namespace AG.DS
         /// <returns>Set of changes in the graph that can be intercepted.</returns>
         GraphViewChange GraphViewChanged(GraphViewChange change)
         {
-            if (!dsWindow.hasUnsavedChanges)
+            if (!dialogueSystemWindow.hasUnsavedChanges)
             {
                 // If user created any new edges, removed any visual elements or moved any visual elements,
                 if (change.edgesToCreate != null

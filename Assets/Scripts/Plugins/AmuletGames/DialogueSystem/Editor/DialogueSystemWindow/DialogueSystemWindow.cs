@@ -8,9 +8,15 @@ namespace AG.DS
     public class DialogueSystemWindow : EditorWindow
     {
         /// <summary>
-        /// Reference of the dialogue system model.
+        /// Reference of the dialogue system window asset.
         /// </summary>
-        DialogueSystemModel dsModel;
+        DialogueSystemWindowAsset asset;
+
+
+        /// <summary>
+        /// Reference of the dialogue system window data.
+        /// </summary>
+        DialogueSystemWindowData data;
 
 
         /// <summary>
@@ -71,7 +77,7 @@ namespace AG.DS
         /// </summary>
         void OnEnable()
         {
-            if (dsModel == null)
+            if (asset == null)
                 return;
 
             Setup();
@@ -99,14 +105,16 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Init of the dialogue system window class.
+        /// Init of the dialogue system window.
         /// Logic here should only be executed once.
         /// </summary>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
-        public void Init(DialogueSystemModel dsModel)
+        /// <param name="asset">The dialogue system window asset to set for.</param>
+        public void Init(DialogueSystemWindowAsset asset)
         {
-            this.dsModel = dsModel;
-            dsModel.IsAlreadyOpened = true;
+            this.asset = asset;
+            asset.IsAlreadyOpened = true;
+
+            data = asset.Data;
         }
 
 
@@ -154,7 +162,7 @@ namespace AG.DS
 
                 // Headbar
                 {
-                    headBar = HeadbarPresenter.CreateElement(languageHandler, dsModel);
+                    headBar = HeadbarPresenter.CreateElement(languageHandler, asset);
                 }
 
                 // Input Hint
@@ -165,13 +173,13 @@ namespace AG.DS
                 // Node Create's
                 {
                     nodeCreateRequestWindow =
-                        NodeCreateWindowManager.Instance.CreateRequestWindow(graphViewer, languageHandler, dsWindow: this);
+                        NodeCreateWindowManager.Instance.CreateRequestWindow(graphViewer, languageHandler, dialogueSystemWindow: this);
 
                     graphViewer.NodeCreateDefaultConnectorWindow =
-                        NodeCreateWindowManager.Instance.CreateDefaultConnectorWindow(graphViewer, languageHandler, dsWindow: this);
+                        NodeCreateWindowManager.Instance.CreateDefaultConnectorWindow(graphViewer, languageHandler, dialogueSystemWindow: this);
 
                     graphViewer.NodeCreateOptionConnectorWindow = 
-                        NodeCreateWindowManager.Instance.CreateOptionConnectorWindow(graphViewer, languageHandler, dsWindow: this);
+                        NodeCreateWindowManager.Instance.CreateOptionConnectorWindow(graphViewer, languageHandler, dialogueSystemWindow: this);
                 }
             }
 
@@ -184,14 +192,14 @@ namespace AG.DS
 
             // Register modules events
             {
-                var graphViewerObserver = new GraphViewerObserver(graphViewer, nodeCreateRequestWindow, dsWindow: this);
+                var graphViewerObserver = new GraphViewerObserver(graphViewer, nodeCreateRequestWindow, dialogueSystemWindow: this);
                 graphViewerObserver.AssignDelegates();
                 graphViewerObserver.RegisterEvents();
 
-                new HeadbarObserver(headBar, dsWindow: this).RegisterEvents();
+                new HeadbarObserver(headBar, dialogueSystemWindow: this).RegisterEvents();
 
                 new DialogueSystemWindowObserver(
-                    dsModel, graphViewer, headBar, nodeCreateRequestWindow, dsWindow: this).RegisterEvents();
+                    asset, graphViewer, headBar, nodeCreateRequestWindow, dialogueSystemWindow: this).RegisterEvents();
             }
         }
 
@@ -213,7 +221,7 @@ namespace AG.DS
         {
             if (hasUnsavedChanges)
             {
-                serializeHandler.Save(dsModel, graphViewer);
+                serializeHandler.Save(asset, data, graphViewer);
 
                 ApplyChangesToDiskEvent.Invoke();
             }
@@ -235,7 +243,7 @@ namespace AG.DS
 
                 languageHandler.ClearCache();
 
-                serializeHandler.Load(dsModel, graphViewer, languageHandler);
+                serializeHandler.Load(asset, data, graphViewer, languageHandler);
 
                 ApplyChangesToDiskEvent.Invoke();
             }
@@ -252,7 +260,7 @@ namespace AG.DS
         /// <param name="value">The new dialogue system window's name to set for.</param>
         public void RenameWindow(string value)
         {
-            dsModel.Name = value;
+            asset.Name = value;
 
             ApplyChangesToDiskEvent.Invoke();
         }

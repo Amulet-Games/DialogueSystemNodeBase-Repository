@@ -7,9 +7,9 @@ namespace AG.DS
     public class DialogueSystemWindowObserver
     {
         /// <summary>
-        /// Reference of the dialogue system model.
+        /// Reference of the dialogue system window asset.
         /// </summary>
-        DialogueSystemModel dsModel;
+        DialogueSystemWindowAsset dialogueSystemWindowAsset;
 
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace AG.DS
         /// <summary>
         /// The targeting dialogue system window.
         /// </summary>
-        DialogueSystemWindow dsWindow;
+        DialogueSystemWindow dialogueSystemWindow;
 
 
         /// <summary>
@@ -51,27 +51,27 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the dialogue system window observer class.
         /// </summary>
-        /// <param name="dsModel">The dialogue system model to set for.</param>
+        /// <param name="dialogueSystemWindowAsset">The dialogue system window asset to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="nodeCreateRequestWindow">The node create request window to set for.</param>
-        /// <param name="dsWindow">The dialogue system window to set for.</param>
+        /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
         public DialogueSystemWindowObserver
         (
-            DialogueSystemModel dsModel,
+            DialogueSystemWindowAsset dialogueSystemWindowAsset,
             GraphViewer graphViewer,
             Headbar headBar,
             NodeCreateRequestWindow nodeCreateRequestWindow,
-            DialogueSystemWindow dsWindow
+            DialogueSystemWindow dialogueSystemWindow
         )
         {
-            this.dsModel = dsModel;
+            this.dialogueSystemWindowAsset = dialogueSystemWindowAsset;
             this.graphViewer = graphViewer;
             this.headBar = headBar;
             this.nodeCreateRequestWindow = nodeCreateRequestWindow;
-            this.dsWindow = dsWindow;
+            this.dialogueSystemWindow = dialogueSystemWindow;
 
-            windowRootElement = dsWindow.rootVisualElement;
+            windowRootElement = dialogueSystemWindow.rootVisualElement;
         }
 
 
@@ -99,19 +99,19 @@ namespace AG.DS
         /// <summary>
         /// Register ApplyChangesToDiskEvent to the dialogue system window.
         /// </summary>
-        void RegisterApplyChangesToDiskEvent() => dsWindow.ApplyChangesToDiskEvent += ApplyChangesToDiskEvent;
+        void RegisterApplyChangesToDiskEvent() => dialogueSystemWindow.ApplyChangesToDiskEvent += ApplyChangesToDiskEvent;
 
 
         /// <summary>
         /// Register WindowOnDisableEvent to the dialogue system window.
         /// </summary>
-        void RegisterWindowOnDisableEvent() => dsWindow.WindowOnDisableEvent += WindowOnDisableEvent;
+        void RegisterWindowOnDisableEvent() => dialogueSystemWindow.WindowOnDisableEvent += WindowOnDisableEvent;
 
 
         /// <summary>
         /// Register WindowOnDestroyEvent to the dialogue system window.
         /// </summary>
-        void RegisterWindowOnDestroyEvent() => dsWindow.WindowOnDestroyEvent += WindowOnDestroyEvent;
+        void RegisterWindowOnDestroyEvent() => dialogueSystemWindow.WindowOnDestroyEvent += WindowOnDestroyEvent;
 
 
         /// <summary>
@@ -146,7 +146,7 @@ namespace AG.DS
         {
             AssetDatabase.SaveAssets();
 
-            dsWindow.HasUnsavedChanges = false;
+            dialogueSystemWindow.HasUnsavedChanges = false;
         }
 
 
@@ -170,7 +170,7 @@ namespace AG.DS
         {
             WindowChangedEvent.Unregister(m_WindowChangesEvent);
 
-            dsModel.IsAlreadyOpened = false;
+            dialogueSystemWindowAsset.IsAlreadyOpened = false;
         }
 
 
@@ -196,14 +196,14 @@ namespace AG.DS
                 // Saving
                 if (evt.keyCode == hotkeyManager.SaveKey)
                 {
-                    dsWindow.Save();
+                    dialogueSystemWindow.Save();
                     isHotkeyReleased = false;
                 }
 
                 // Loading
                 if (evt.keyCode == hotkeyManager.LoadKey)
                 {
-                    dsWindow.Load(false);
+                    dialogueSystemWindow.Load(false);
                     isHotkeyReleased = false;
                 }
             }
@@ -254,9 +254,9 @@ namespace AG.DS
         /// </summary>
         void m_WindowChangesEvent()
         {
-            if (dsWindow.hasFocus)
+            if (dialogueSystemWindow.hasFocus)
             {
-                dsWindow.HasUnsavedChanges = true;
+                dialogueSystemWindow.HasUnsavedChanges = true;
             }
         }
     }

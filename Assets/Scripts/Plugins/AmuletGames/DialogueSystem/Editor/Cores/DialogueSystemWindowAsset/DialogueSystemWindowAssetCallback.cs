@@ -5,8 +5,14 @@ using UnityEngine;
 
 namespace AG.DS
 {
-    public class DialogueSystemModelCallback : AssetModificationProcessor
+    public class DialogueSystemWindowAssetCallback : AssetModificationProcessor
     {
+        /// <summary>
+        /// The directory path of all dialogue system window assets.
+        /// <br>If the dialogue system window assets are placed in a different directory, this path need to be updated as well.</br>
+        /// </summary>
+        const string ASSETS_DIRECTORY_PATH = "Assets/Scripts/Plugins/AmuletGames/DialogueSystem/Resources/DialogueSystemWindowAssets";
+
         /// <summary>
         /// Unity calls this method when it is about to delete an asset from disk.
         /// <br>Remember to not call any Unity AssetDatabase api from within this callback, preferably keep to file operations or VCS apis.</br>
@@ -43,17 +49,17 @@ namespace AG.DS
             // ---------------------------------------------------------------
 
             // We only want to interrupt the delete operation when...
-            //  - File is a dialogue system model asset.
+            //  - The file is a dialogue system window asset.
 
             var assetDirectoryPath = Path.GetDirectoryName(assetPath);
-            if (assetDirectoryPath == DialogueSystemModel.ASSET_DIRECTORY_PATH)
+            if (assetDirectoryPath == ASSETS_DIRECTORY_PATH)
             {
-                // The asset is inside the dialogue system model directory.
-                var dsModel = AssetDatabase.LoadAssetAtPath<DialogueSystemModel>(assetPath);
-                if (dsModel != null)
+                // The asset is inside the dialogue system window assets directory.
+                var asset = AssetDatabase.LoadAssetAtPath<DialogueSystemWindowAsset>(assetPath);
+                if (asset != null)
                 {
-                    // Confirmed it's a dialogue system model.
-                    dsModel.DeleteOpenConfirmKey();
+                    // Delete the editor prefs's dialogue system window open confirm key.
+                    EditorPrefs.DeleteKey(asset.DIALOGUE_SYSTEM_WINDOW_OPEN_CONFIRM_KEY);
                 }
             }
 
@@ -74,9 +80,9 @@ namespace AG.DS
             // Get the instance id from the opened asset and translate it to an object reference.
             Object openedAssetObject = EditorUtility.InstanceIDToObject(instanceId);
 
-            if (openedAssetObject is DialogueSystemModel dsModel)
+            if (openedAssetObject is DialogueSystemWindowAsset asset)
             {
-                if (dsModel.IsAlreadyOpened)
+                if (asset.IsAlreadyOpened)
                 {
                     if (EditorApplicationInitializer.IsClosePeacefully)
                     {
@@ -86,9 +92,9 @@ namespace AG.DS
                     }
                 }
 
-                var dsWindow = DialogueSystemWindowPresenter.CreateWindow();
-                dsWindow.Init(dsModel);
-                dsWindow.Setup();
+                var window = DialogueSystemWindowPresenter.CreateWindow();
+                window.Init(asset);
+                window.Setup();
             }
 
             return false;
