@@ -42,21 +42,83 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the port frame base class.
         /// </summary>
-        /// <param name="detail">The port create detail to set for.</param>
-        protected PortFrameBase(PortModel detail) : base(detail.Direction, detail.Capacity) { }
+        /// <param name="model">The port model to set for.</param>
+        protected PortFrameBase(PortModel model) : base(model.Direction, model.Capacity)
+        {
+            portName = model.Name;
+            portColor = model.Color;
+        }
 
 
         /// <summary>
         /// Setup for the port frame base class.
         /// </summary>
         /// <param name="edgeConnector">The edge connector to set for.</param>
-        /// <param name="detail">The port create detail to set for.</param>
-        public virtual TPort Setup(EdgeConnector edgeConnector, PortModel detail)
+        public virtual TPort Setup(EdgeConnector edgeConnector)
         {
             EdgeConnector = edgeConnector;
-            portName = detail.Name;
             Guid = Guid.NewGuid();
             return null;
+        }
+
+
+        /// <summary>
+        /// Setup the connector box element.
+        /// </summary>
+        protected void SetupConnectorBox()
+        {
+            // Setup style class
+            {
+                ConnectorBox.name = "";
+                ConnectorBox.AddToClassList(this.IsInput() ? StyleConfig.Input_Connector : StyleConfig.Output_Connector);
+            }
+        }
+
+
+        /// <summary>
+        /// Setup the connector text element.
+        /// </summary>
+        protected void SetupConnectorText()
+        {
+            // Setup style class
+            {
+                ConnectorText.name = "";
+                ConnectorText.ClearClassList();
+                ConnectorText.AddToClassList(this.IsInput() ? StyleConfig.Input_Label : StyleConfig.Output_Label);
+            }
+        }
+
+
+        /// <summary>
+        /// Setup the connector box cap element.
+        /// </summary>
+        protected void SetupConnectorBoxCap()
+        {
+            SetupDetails();
+
+            SetupStyleClass();
+
+            void SetupDetails()
+            {
+                ConnectorBoxCap.pickingMode = PickingMode.Position;
+            }
+
+            void SetupStyleClass()
+            {
+                ConnectorBoxCap.name = "";
+                ConnectorBoxCap.AddToClassList(this.IsInput() ? StyleConfig.Input_Cap : StyleConfig.Output_Cap);
+            }
+        }
+
+
+        /// <summary>
+        /// Add the style class.
+        /// </summary>
+        protected void AddStyleClass()
+        {
+            name = "";
+            ClearClassList();
+            AddToClassList(this.IsInput() ? StyleConfig.Input_Port : StyleConfig.Output_Port);
         }
 
 
@@ -81,10 +143,7 @@ namespace AG.DS
             {
                 // Disconnect opponent port.
                 {
-                    if (this.IsInput())
-                        edge.View.Output.Disconnect(edge);
-                    else
-                        edge.View.Input.Disconnect(edge);
+                    (this.IsInput() ? edge.View.Output : edge.View.Input).Disconnect(edge);
                 }
 
                 Disconnect(edge);

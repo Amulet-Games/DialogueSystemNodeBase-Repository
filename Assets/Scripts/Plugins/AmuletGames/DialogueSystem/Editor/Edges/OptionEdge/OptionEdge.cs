@@ -42,7 +42,7 @@ namespace AG.DS
         /// </summary>
         void AddStyleClass()
         {
-            AddToClassList(StyleConfig.OptionEdge);
+            AddToClassList(StyleConfig.Edge);
         }
 
 

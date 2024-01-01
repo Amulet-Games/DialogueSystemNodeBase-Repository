@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -43,7 +44,7 @@ namespace AG.DS
             InputContainer = new();
             OutputContainer = new();
             
-            Guid = System.Guid.NewGuid();
+            Guid = Guid.NewGuid();
 
             return null;
         }

@@ -140,45 +140,25 @@ namespace AG.DS
         public const string StoryNode_PreferenceImage_Image = "storyNode_PreferenceImage_Image";
         #endregion
 
-        #region Port Common USS Classes.
-        public const string Port_Sibling = "port_Sibling";
-        public const string Port_Connect = "port_Connect";
-        #endregion
+        #region Port USS Classes.
+        public const string Port_Sibling = "port-sibling";
+        public const string Port_Connect = "port-connect";
 
-        #region Port Default USS Classes.
         /*< -------------------- Port -------------------- >*/
-        public const string Default_Input_Port = "default_Input_Port";
-        public const string Default_Output_Port = "default_Output_Port";
+        public const string Input_Port = "input-port";
+        public const string Output_Port = "output-port";
 
         /*< -------------------- Connector -------------------- >*/
-        public const string Default_Input_Connector = "default_Input_Connector";
-        public const string Default_Output_Connector = "default_Output_Connector";
+        public const string Input_Connector = "input-connector";
+        public const string Output_Connector = "output-connector";
 
         /*< -------------------- Label -------------------- >*/
-        public const string Default_Input_Label = "default_Input_Label";
-        public const string Default_Output_Label = "default_Output_Label";
+        public const string Input_Label = "input-label";
+        public const string Output_Label = "output-label";
 
         /*< -------------------- Cap -------------------- >*/
-        public const string Default_Input_Cap = "default_Input_Cap";
-        public const string Default_Output_Cap = "default_Output_Cap";
-        #endregion
-
-        #region Port Option USS Classes.
-        /*< -------------------- Port -------------------- >*/
-        public const string Option_Input_Port = "option_Input_Port";
-        public const string Option_Output_Port = "option_Output_Port";
-
-        /*< -------------------- Connector -------------------- >*/
-        public const string Option_Input_Connector = "option_Input_Connector";
-        public const string Option_Output_Connector = "option_Output_Connector";
-
-        /*< -------------------- Label -------------------- >*/
-        public const string Option_Input_Label = "option_Input_Label";
-        public const string Option_Output_Label = "option_Output_Label";
-
-        /*< -------------------- Cap -------------------- >*/
-        public const string Option_Input_Cap = "option_Input_Cap";
-        public const string Option_Output_Cap = "option_Output_Cap";
+        public const string Input_Cap = "input-cap";
+        public const string Output_Cap = "output-cap";
         #endregion
 
         #region Port Group Option USS Classes.
@@ -187,8 +167,7 @@ namespace AG.DS
         #endregion
 
         #region Edge USS Classes.
-        public const string DefaultEdge = "defaultEdge";
-        public const string OptionEdge = "optionEdge";
+        public const string Edge = "edge";
         #endregion
 
         #region Folder Common USS Classes.

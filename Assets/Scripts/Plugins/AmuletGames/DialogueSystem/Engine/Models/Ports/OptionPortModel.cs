@@ -21,7 +21,7 @@ namespace AG.DS
             string name,
             bool isGroup
         )
-            : base(port, direction, capacity, name)
+            : base(port, direction, capacity, name, PortConfig.OptionPortColor)
         {
             IsGroup = isGroup;
         }

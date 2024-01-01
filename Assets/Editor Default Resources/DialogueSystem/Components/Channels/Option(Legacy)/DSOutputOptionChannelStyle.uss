@@ -182,7 +182,7 @@
 	border-radius: 0px 0px 0px 0px;
 }
 
-.port_Connect
+.port-connect
 .groupOption_Output_Label {
 
 	color: rgba(204, 115, 134, 1);

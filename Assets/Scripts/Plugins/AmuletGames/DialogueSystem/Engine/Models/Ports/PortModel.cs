@@ -1,4 +1,5 @@
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 using static UnityEditor.Experimental.GraphView.Port;
 
 namespace AG.DS
@@ -39,6 +40,9 @@ namespace AG.DS
         public string Name { get; private set; }
 
 
+        public Color Color { get; private set; }
+
+
         /// <summary>
         /// Constructor of the port create detail base class.
         /// </summary>
@@ -46,18 +50,21 @@ namespace AG.DS
         /// <param name="direction">The direction to set for.</param>
         /// <param name="capacity">The capacity to set for.</param>
         /// <param name="name">The name to set for.</param>
+        /// <param name="color">The color to set for.</param>
         public PortModel
         (
             Port port,
             Direction direction,
             Capacity capacity,
-            string name
+            string name,
+            Color color
         )
         {
             PortType = port;
             Direction = direction;
             Capacity = capacity;
             Name = name;
+            Color = color;
         }
     }
 }

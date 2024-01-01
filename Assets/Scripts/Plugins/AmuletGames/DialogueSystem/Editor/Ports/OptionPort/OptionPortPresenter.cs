@@ -19,6 +19,6 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override OptionPort Create() => new(Detail);
+        public override OptionPort Create() => new(Model);
     }
 }

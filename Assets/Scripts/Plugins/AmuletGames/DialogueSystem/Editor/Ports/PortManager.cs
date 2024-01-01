@@ -42,7 +42,8 @@ namespace AG.DS
                 port: PortModel.Port.Default,
                 direction,
                 capacity,
-                name
+                name,
+                PortConfig.DefaultPortColor
             );
 
             return Create<DefaultPort, PortModel, DefaultPortPresenter, DefaultEdge, DefaultEdgeView,
@@ -123,7 +124,7 @@ namespace AG.DS
                 listener: new TEdgeConnectorCallback().Setup(port, connectorWindow)
             );
 
-            port.Setup(edgeConnector, model);
+            port.Setup(edgeConnector);
             return port;
         }
 

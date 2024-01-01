@@ -1,5 +1,5 @@
 /*< ---------------------------------------------------------- Main >*/
-.optionEdge:checked {
+.edge:checked {
 
 	--selected-edge-color: rgba(216, 71, 132, 1);
 	--edge-width: 4;

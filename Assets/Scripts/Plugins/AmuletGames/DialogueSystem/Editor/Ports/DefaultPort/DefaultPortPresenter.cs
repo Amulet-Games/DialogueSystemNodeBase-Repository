@@ -11,14 +11,14 @@ namespace AG.DS
     >
     {
         /// <inheritdoc />
-        public override DefaultPortPresenter Setup(PortModel detail)
+        public override DefaultPortPresenter Setup(PortModel model)
         {
-            base.Setup(detail);
+            base.Setup(model);
             return this;
         }
 
 
         /// <inheritdoc />
-        public override DefaultPort Create() => new(Detail);
+        public override DefaultPort Create() => new(Model);
     }
 }

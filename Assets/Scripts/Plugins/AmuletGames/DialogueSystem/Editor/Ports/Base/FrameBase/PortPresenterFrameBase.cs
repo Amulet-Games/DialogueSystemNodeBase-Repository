@@ -17,18 +17,17 @@ namespace AG.DS
         where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdge, TEdgeView>
     {
         /// <summary>
-        /// Reference of the port create detail.
+        /// Reference of the port model.
         /// </summary>
-        protected TPortModel Detail;
+        protected TPortModel Model;
 
 
         /// <summary>
         /// Setup for the port presenter frame base class.
         /// </summary>
-        /// <returns>The after setup port presenter frame base class.</returns>
-        public virtual TPortPresenter Setup(TPortModel detail)
+        public virtual TPortPresenter Setup(TPortModel model)
         {
-            Detail = detail;
+            Model = model;
             return null;
         }
 
