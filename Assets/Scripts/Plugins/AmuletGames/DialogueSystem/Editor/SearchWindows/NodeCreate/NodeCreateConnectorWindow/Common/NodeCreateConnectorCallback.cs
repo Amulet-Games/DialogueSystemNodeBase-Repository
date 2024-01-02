@@ -9,19 +9,17 @@ namespace AG.DS
     <
         TPort,
         TPortCreateDetail,
-        TEdge,
         TEdgeView
     >
         : NodeCreateCallbackFrameBase
     <
-        NodeCreateConnectorCallback<TPort, TPortCreateDetail, TEdge, TEdgeView>,
-        NodeCreateConnectorDetail<TPort, TPortCreateDetail, TEdge, TEdgeView>,
-        NodeCreateConnectorObserver<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        NodeCreateConnectorCallback<TPort, TPortCreateDetail, TEdgeView>,
+        NodeCreateConnectorDetail<TPort, TPortCreateDetail, TEdgeView>,
+        NodeCreateConnectorObserver<TPort, TPortCreateDetail, TEdgeView>
     >
-        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdgeView>
         where TPortCreateDetail : PortModel
-        where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdgeView>
     {
         /// <summary>
         /// The direction vector from mouse screen position to window center position.
@@ -42,12 +40,12 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override NodeCreateConnectorCallback<TPort, TPortCreateDetail, TEdge, TEdgeView> Setup
+        public override NodeCreateConnectorCallback<TPort, TPortCreateDetail, TEdgeView> Setup
         (
             GraphViewer graphViewer,
             LanguageHandler languageHandler,
             DialogueSystemWindow dialogueSystemWindow,
-            NodeCreateConnectorObserver<TPort, TPortCreateDetail, TEdge, TEdgeView> observer
+            NodeCreateConnectorObserver<TPort, TPortCreateDetail, TEdgeView> observer
         )
         {
             base.Setup(graphViewer, languageHandler, dialogueSystemWindow, observer);

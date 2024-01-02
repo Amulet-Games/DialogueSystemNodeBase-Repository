@@ -6,15 +6,13 @@ namespace AG.DS
         TPort,
         TPortModel,
         TPortPresenter,
-        TEdge,
         TEdgeView
     >
         : PortPresenterBase
-        where TPort : PortFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
         where TPortModel : PortModel
-        where TPortPresenter : PortPresenterFrameBase<TPort, TPortModel, TPortPresenter, TEdge, TEdgeView>
-        where TEdge : EdgeFrameBase<TPort, TPortModel, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TPortPresenter : PortPresenterFrameBase<TPort, TPortModel, TPortPresenter, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
     {
         /// <summary>
         /// Reference of the port model.

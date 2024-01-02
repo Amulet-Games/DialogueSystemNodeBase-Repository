@@ -5,14 +5,12 @@ namespace AG.DS
     <
         TPort,
         TPortCreateDetail,
-        TEdge,
         TEdgeView
     >
         : NodeCreateDetailBase
-        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdgeView>
         where TPortCreateDetail : PortModel
-        where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdgeView>
     {
         /// <summary>
         /// Reference of the connector port.

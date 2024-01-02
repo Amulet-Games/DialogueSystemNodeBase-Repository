@@ -5,7 +5,6 @@ namespace AG.DS
     <
         OptionPort,
         OptionPortModel,
-        OptionEdge,
         OptionEdgeView
     >
     {

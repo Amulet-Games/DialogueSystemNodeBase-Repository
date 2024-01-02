@@ -5,15 +5,13 @@ namespace AG.DS
     <
         TPort,
         TPortModel,
-        TEdge,
         TEdgeView,
         TEdgeData
     >
         : EdgeSerializerBase
-        where TPort : PortFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
         where TPortModel : PortModel
-        where TEdge : EdgeFrameBase<TPort, TPortModel, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
         where TEdgeData : EdgeDataBase
     {
         /// <summary>

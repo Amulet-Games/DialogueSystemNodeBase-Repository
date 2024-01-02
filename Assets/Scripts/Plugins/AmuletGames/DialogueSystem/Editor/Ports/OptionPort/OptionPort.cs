@@ -7,7 +7,6 @@ namespace AG.DS
     <
         OptionPort,
         OptionPortModel,
-        OptionEdge,
         OptionEdgeView
     >
     {
@@ -79,7 +78,7 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <inheritdoc />
-        public override void Disconnect(OptionEdge edge)
+        public override void Disconnect(Edge<OptionPort, OptionPortModel, OptionEdgeView> edge)
         {
             base.Disconnect(edge);
             OpponentPort = null;

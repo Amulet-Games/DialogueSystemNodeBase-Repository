@@ -7,7 +7,6 @@ namespace AG.DS
     <
         DefaultPort,
         PortModel,
-        DefaultEdge,
         DefaultEdgeView
     >
     {
@@ -46,7 +45,7 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <inheritdoc />
-        public override void Disconnect(DefaultEdge edge)
+        public override void Disconnect(Edge<DefaultPort, PortModel, DefaultEdgeView> edge)
         {
             base.Disconnect(edge);
         }

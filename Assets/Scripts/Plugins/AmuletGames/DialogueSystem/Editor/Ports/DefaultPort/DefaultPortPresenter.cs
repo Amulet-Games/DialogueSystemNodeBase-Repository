@@ -6,7 +6,6 @@ namespace AG.DS
         DefaultPort,
         PortModel,
         DefaultPortPresenter,
-        DefaultEdge,
         DefaultEdgeView
     >
     {

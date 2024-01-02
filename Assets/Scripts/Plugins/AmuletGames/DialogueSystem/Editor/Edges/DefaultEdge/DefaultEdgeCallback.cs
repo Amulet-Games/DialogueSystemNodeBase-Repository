@@ -5,12 +5,15 @@ namespace AG.DS
     <
         DefaultPort,
         PortModel,
-        DefaultEdge,
         DefaultEdgeView
     >
     {
         /// <inheritdoc />
-        public override void Setup(DefaultEdge edge, DefaultEdgeView view)
+        public override void Setup
+        (
+            Edge<DefaultPort, PortModel, DefaultEdgeView> edge,
+            DefaultEdgeView view
+        )
         {
             Edge = edge;
             View = view;

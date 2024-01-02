@@ -7,7 +7,6 @@ namespace AG.DS
     <
         OptionPort,
         OptionPortModel,
-        OptionEdge,
         OptionEdgeView,
         OptionEdgeConnectorCallback,
         NodeCreateOptionConnectorWindow
@@ -27,7 +26,7 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        protected override void OnDropOutsidePort(OptionEdge edge, Vector2 position)
+        protected override void OnDropOutsidePort(Edge<OptionPort, OptionPortModel, OptionEdgeView> edge, Vector2 position)
         {
             if (ConnectorPort.IsInput())
             {

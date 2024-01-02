@@ -5,12 +5,15 @@ namespace AG.DS
     <
         OptionPort,
         OptionPortModel,
-        OptionEdge,
         OptionEdgeView
     >
     {
         /// <inheritdoc />
-        public override void Setup(OptionEdge edge, OptionEdgeView view)
+        public override void Setup
+        (
+            Edge<OptionPort, OptionPortModel, OptionEdgeView> edge,
+            OptionEdgeView view
+        )
         {
             Edge = edge;
             View = view;

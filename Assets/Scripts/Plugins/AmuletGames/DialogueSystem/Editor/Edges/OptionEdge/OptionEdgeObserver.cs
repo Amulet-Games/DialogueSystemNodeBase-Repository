@@ -1,10 +1,9 @@
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class OptionEdgeObserver : EdgeObserverFrameBase<OptionEdge>
+    public class OptionEdgeObserver : EdgeObserverFrameBase<Edge<OptionPort, OptionPortModel, OptionEdgeView>>
     {
         /// <summary>
         /// Reference of the option edge view.
@@ -14,7 +13,7 @@ namespace AG.DS
 
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents(OptionEdge edge)
+        public override void RegisterEvents(Edge<OptionPort, OptionPortModel, OptionEdgeView> edge)
         {
             Edge = edge;
             view = edge.View;

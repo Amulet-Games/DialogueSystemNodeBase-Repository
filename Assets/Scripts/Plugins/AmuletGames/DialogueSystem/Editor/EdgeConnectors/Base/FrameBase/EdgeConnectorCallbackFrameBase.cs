@@ -9,23 +9,21 @@ namespace AG.DS
     <
         TPort,
         TPortModel,
-        TEdge,
         TEdgeView,
         TEdgeConnectorCallback,
         TNodeCreateConnectorWindow
     >
         : EdgeConnectorCallbackBase
-        where TPort : PortFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
         where TPortModel : PortModel
-        where TEdge : EdgeFrameBase<TPort, TPortModel, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdge, TEdgeView>
-        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TEdge, TEdgeView, TNodeCreateConnectorWindow>
-        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TPortModel, TEdge, TEdgeView, TEdgeConnectorCallback, TNodeCreateConnectorWindow>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
+        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TEdgeView, TNodeCreateConnectorWindow>
+        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TPortModel, TEdgeView, TEdgeConnectorCallback, TNodeCreateConnectorWindow>
     {
         /// <summary>
         /// The list of edges that are going to be removed from the graph from the OnDrop callback.
         /// </summary>
-        List<TEdge> edgesToDelete;
+        List<Edge<TPort, TPortModel, TEdgeView>> edgesToDelete;
 
 
         /// <summary>
@@ -81,7 +79,7 @@ namespace AG.DS
                 {
                     if (m_edge != edge)
                     {
-                        edgesToDelete.Add((TEdge)m_edge);
+                        edgesToDelete.Add((Edge<TPort, TPortModel, TEdgeView>)m_edge);
                         ElementsToRemove.Add(m_edge);
                     }
                 }
@@ -90,7 +88,7 @@ namespace AG.DS
                 {
                     if (m_edge != edge)
                     {
-                        edgesToDelete.Add((TEdge)m_edge);
+                        edgesToDelete.Add((Edge<TPort, TPortModel, TEdgeView>)m_edge);
                         ElementsToRemove.Add(m_edge);
                     }
                 }
@@ -123,13 +121,13 @@ namespace AG.DS
 
         /// <inheritdoc />
         public override void OnDropOutsidePort(Edge edge, Vector2 position)
-            => OnDropOutsidePort((TEdge)edge, position);
+            => OnDropOutsidePort((Edge<TPort, TPortModel, TEdgeView>)edge, position);
 
 
         /// <summary>
         /// Read more: 
         /// <br><see cref="OnDropOutsidePort(Edge, Vector2)"/></br>
         /// </summary>
-        protected abstract void OnDropOutsidePort(TEdge edge, Vector2 position);
+        protected abstract void OnDropOutsidePort(Edge<TPort, TPortModel, TEdgeView> edge, Vector2 position);
     }
 }

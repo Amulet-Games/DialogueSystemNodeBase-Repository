@@ -1,18 +1,20 @@
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
-    /// <inheritdoc />
-    public abstract class EdgeFrameBase
+    /// <summary>
+    /// The graph view edge element.
+    /// </summary>
+    public class Edge
     <
         TPort,
         TPortModel,
-        TEdge,
         TEdgeView
     >
         : EdgeBase
-        where TPort : PortFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
         where TPortModel : PortModel
-        where TEdge : EdgeFrameBase<TPort, TPortModel, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
     {
         /// <summary>
         /// Reference of the edge view;
@@ -21,14 +23,16 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Setup for the edge frame base class.
+        /// Setup for the edge class.
         /// </summary>
         /// <param name="view">The edge view to set for.</param>
         /// <param name="callback">The edge callback to set for.</param>
-        public virtual TEdge Setup
+        /// <param name="styleSheet">The style sheet to set for.</param>
+        public Edge<TPort, TPortModel, TEdgeView> Setup
         (
             TEdgeView view,
-            IEdgeCallback callback
+            IEdgeCallback callback,
+            StyleSheet styleSheet
         )
         {
             View = view;
@@ -40,7 +44,12 @@ namespace AG.DS
             output.Connect(this);
             input.Connect(this);
 
-            return null;
+            focusable = true;
+
+            AddToClassList(StyleConfig.Edge);
+            styleSheets.Add(styleSheet);
+
+            return this;
         }
     }
 }

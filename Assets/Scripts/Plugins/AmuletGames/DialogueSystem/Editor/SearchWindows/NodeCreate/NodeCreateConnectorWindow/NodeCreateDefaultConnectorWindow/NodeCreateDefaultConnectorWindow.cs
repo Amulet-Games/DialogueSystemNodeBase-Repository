@@ -5,7 +5,6 @@ namespace AG.DS
     <
         DefaultPort,
         PortModel,
-        DefaultEdge,
         DefaultEdgeView,
         NodeCreateDefaultConnectorWindow
     >
@@ -13,8 +12,8 @@ namespace AG.DS
         /// <inheritdoc />
         public override NodeCreateDefaultConnectorWindow Setup
         (
-            NodeCreateConnectorCallback<DefaultPort, PortModel, DefaultEdge, DefaultEdgeView> callback,
-            NodeCreateConnectorDetail<DefaultPort, PortModel, DefaultEdge, DefaultEdgeView> detail,
+            NodeCreateConnectorCallback<DefaultPort, PortModel, DefaultEdgeView> callback,
+            NodeCreateConnectorDetail<DefaultPort, PortModel, DefaultEdgeView> detail,
             GraphViewer graphViewer
         )
         {

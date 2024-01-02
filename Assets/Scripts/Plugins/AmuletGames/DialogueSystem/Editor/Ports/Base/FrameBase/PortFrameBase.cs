@@ -10,14 +10,12 @@ namespace AG.DS
     <
         TPort,
         TPortModel,
-        TEdge,
         TEdgeView
     >
         : PortBase
-        where TPort : PortFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
         where TPortModel : PortModel
-        where TEdge : EdgeFrameBase<TPort, TPortModel, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
     {
         /// <summary>
         /// The property of edge connector.
@@ -127,7 +125,7 @@ namespace AG.DS
         /// Disconnect edge from port.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public virtual void Disconnect(TEdge edge) => base.Disconnect(edge);
+        public virtual void Disconnect(Edge<TPort, TPortModel, TEdgeView> edge) => base.Disconnect(edge);
 
 
         /// <summary>
@@ -139,7 +137,7 @@ namespace AG.DS
             if (!connected)
                 return;
 
-            foreach (TEdge edge in connections.ToList())
+            foreach (Edge<TPort, TPortModel, TEdgeView> edge in connections.ToList())
             {
                 // Disconnect opponent port.
                 {

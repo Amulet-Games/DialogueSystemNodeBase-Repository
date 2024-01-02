@@ -7,22 +7,20 @@ namespace AG.DS
     public abstract class NodeCreateConnectorWindowFrameBase
     <
         TPort,
-        TPortCreateDetail,
-        TEdge,
+        TPortModel,
         TEdgeView,
         TNodeCreateConnectorWindow
     >
         : NodeCreateWindowFrameBase
     <
-        NodeCreateConnectorCallback<TPort, TPortCreateDetail, TEdge, TEdgeView>,
-        NodeCreateConnectorDetail<TPort, TPortCreateDetail, TEdge, TEdgeView>,
-        NodeCreateConnectorWindowFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView, TNodeCreateConnectorWindow>
+        NodeCreateConnectorCallback<TPort, TPortModel, TEdgeView>,
+        NodeCreateConnectorDetail<TPort, TPortModel, TEdgeView>,
+        NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TEdgeView, TNodeCreateConnectorWindow>
     >
-        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TPortCreateDetail : PortModel
-        where TEdge : EdgeFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView>
-        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortCreateDetail, TEdge, TEdgeView, TNodeCreateConnectorWindow>
+        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
+        where TPortModel : PortModel
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
+        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TEdgeView, TNodeCreateConnectorWindow>
     {
         /// <inheritdoc />
         protected override List<SearchTreeEntry> ToShowEntries => toShowEntries;
@@ -43,8 +41,8 @@ namespace AG.DS
         /// <returns>A new node create connector window.</returns>
         public virtual new TNodeCreateConnectorWindow Setup
         (
-            NodeCreateConnectorCallback<TPort, TPortCreateDetail, TEdge, TEdgeView> callback,
-            NodeCreateConnectorDetail<TPort, TPortCreateDetail, TEdge, TEdgeView> detail,
+            NodeCreateConnectorCallback<TPort, TPortModel, TEdgeView> callback,
+            NodeCreateConnectorDetail<TPort, TPortModel, TEdgeView> detail,
             GraphViewer graphViewer
         )
         {

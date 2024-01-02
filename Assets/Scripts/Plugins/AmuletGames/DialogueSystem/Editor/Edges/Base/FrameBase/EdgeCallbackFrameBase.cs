@@ -5,19 +5,17 @@ namespace AG.DS
     <
         TPort,
         TPortModel,
-        TEdge,
         TEdgeView
     >
         : EdgeCallbackBase, IEdgeCallback
-        where TPort : PortFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
         where TPortModel : PortModel
-        where TEdge : EdgeFrameBase<TPort, TPortModel, TEdge, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdge, TEdgeView>
+        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
     {
         /// <summary>
         /// Reference of the edge element.
         /// </summary>
-        public TEdge Edge;
+        public Edge<TPort, TPortModel, TEdgeView> Edge;
 
 
         /// <summary>
@@ -32,7 +30,7 @@ namespace AG.DS
         /// <param name="edge">The edge element to set for.</param>
         /// <param name="view">The edge view to set for.</param>
         /// <returns>The after setup edge callback frame base class.</returns>
-        public abstract void Setup(TEdge edge, TEdgeView view);
+        public abstract void Setup(Edge<TPort, TPortModel, TEdgeView> edge, TEdgeView view);
 
 
         // ----------------------------- Callback -----------------------------
