@@ -37,6 +37,8 @@ namespace AG.DS
             RegisterContentButtonClickEvent();
 
             RegisterBranchTitleTextFieldEvents();
+
+            RegisterInputOptionPortCellEvents();
         }
 
 
@@ -88,6 +90,14 @@ namespace AG.DS
         void RegisterBranchTitleTextFieldEvents()
             => new LanguageTextFieldObserver(
                 view: View.BranchTitleFieldView).RegisterEvents();
+
+
+        /// <summary>
+        /// Register events to the input option port cell.
+        /// </summary>
+        void RegisterInputOptionPortCellEvents()
+            => new OptionPortCellObserver(
+                portCell: View.InputOptionPortCell).RegisterEvents();
 
 
         // ----------------------------- Event -----------------------------

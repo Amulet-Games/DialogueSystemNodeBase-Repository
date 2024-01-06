@@ -15,9 +15,13 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override DefaultPort Setup(EdgeConnector edgeConnector)
+        public override DefaultPort Setup
+        (
+            EdgeConnector edgeConnector,
+            IPortCallback callback
+        )
         {
-            base.Setup(edgeConnector);
+            base.Setup(edgeConnector, callback);
 
             SetupConnectorBox();
 
@@ -39,15 +43,7 @@ namespace AG.DS
         void AddStyleSheet()
         {
             styleSheets.Clear();
-            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DefaultPortStyle);
-        }
-
-
-        // ----------------------------- Service -----------------------------
-        /// <inheritdoc />
-        public override void Disconnect(Edge<DefaultPort, PortModel, DefaultEdgeView> edge)
-        {
-            base.Disconnect(edge);
+            styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.PortStyle);
         }
     }
 }

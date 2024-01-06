@@ -122,12 +122,12 @@ namespace AG.DS
 
                 case OptionBranchNode optionBranchNode:
                     leftAlignmentPort = optionBranchNode.View.OutputDefaultPort;
-                    rightAlignmentPort = optionBranchNode.View.InputOptionPort;
-                    middleAlignmentPort = optionBranchNode.View.InputOptionPort;
+                    rightAlignmentPort = optionBranchNode.View.InputOptionPortCell.Port;
+                    middleAlignmentPort = optionBranchNode.View.InputOptionPortCell.Port;
                     break;
 
                 case OptionRootNode optionRootNode:
-                    leftAlignmentPort = optionRootNode.View.OutputOptionPort;
+                    leftAlignmentPort = optionRootNode.View.OutputOptionPortGroup.FirstPortCell.Port;
                     rightAlignmentPort = optionRootNode.View.InputDefaultPort;
                     middleAlignmentPort = optionRootNode.View.InputDefaultPort;
                     break;
@@ -157,7 +157,7 @@ namespace AG.DS
                 HorizontalAlignmentType.RIGHT => rightAlignmentPort,
                 HorizontalAlignmentType.MIDDLE => middleAlignmentPort,
                 _ => throw new ArgumentException(
-                    "Invalid horizontal alignment type when creating a new node: " + Detail.HorizontalAlignmentType.ToString())
+                    "Invalid horizontal alignment type when creating a new GraphViewer: " + Detail.HorizontalAlignmentType.ToString())
             };
         }
 
@@ -217,7 +217,7 @@ namespace AG.DS
                 HorizontalAlignmentType.MIDDLE => Node.localBound.width / 2,
                 HorizontalAlignmentType.RIGHT => 0,
                 _ => throw new ArgumentException(
-                    "Invalid horizontal alignment type when creating a new node: " + Detail.HorizontalAlignmentType.ToString())
+                    "Invalid horizontal alignment type when creating a new GraphViewer: " + Detail.HorizontalAlignmentType.ToString())
             };
 
             return targetPos;

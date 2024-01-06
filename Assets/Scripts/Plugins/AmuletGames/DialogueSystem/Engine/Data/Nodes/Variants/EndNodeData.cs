@@ -10,7 +10,7 @@ namespace AG.DS
         /// <summary>
         /// The node's input port data.
         /// </summary>
-        [SerializeField] public PortDataBase InputPortData;
+        [SerializeField] public PortData InputPortData;
 
 
         /// <summary>

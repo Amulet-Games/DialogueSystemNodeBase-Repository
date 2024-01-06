@@ -64,12 +64,11 @@ namespace AG.DS
         #region Port Cells.
         [Header("Port Cells")]
         public StyleSheet OptionPortCellStyle;
+        public StyleSheet OptionPortGroupCellStyle;
         #endregion
 
         #region Ports.
         [Header("Ports")]
-        public StyleSheet DefaultPortStyle;
-        public StyleSheet OptionPortStyle;
         public StyleSheet PortStyle;
         #endregion
 

@@ -4,12 +4,12 @@ namespace AG.DS
     public class DefaultPortSerializer : PortSerializerFrameBase
     <
         DefaultPort,
-        PortDataBase
+        PortData
     >
     {
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(DefaultPort port, PortDataBase data)
+        public override void Save(DefaultPort port, PortData data)
         {
             base.Save(port, data);
 
@@ -19,7 +19,7 @@ namespace AG.DS
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(DefaultPort port, PortDataBase data)
+        public override void Load(DefaultPort port, PortData data)
         {
             base.Load(port, data);
 

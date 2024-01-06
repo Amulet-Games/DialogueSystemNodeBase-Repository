@@ -4,7 +4,7 @@ namespace AG.DS
     public class StartNodeView : NodeViewFrameBase<StartNodeView>
     {
         /// <summary>
-        /// The output default port of the node.
+        /// The output default port element.
         /// </summary>
         public DefaultPort OutputDefaultPort;
 

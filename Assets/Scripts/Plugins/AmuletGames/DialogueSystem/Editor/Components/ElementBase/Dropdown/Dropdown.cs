@@ -136,7 +136,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the graph viewer element.
         /// </summary>
-        public GraphViewer GraphViewer;
+        GraphViewer graphViewer;
 
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace AG.DS
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         public Dropdown(GraphViewer graphViewer)
         {
-            GraphViewer = graphViewer;
+            this.graphViewer = graphViewer;
         }
 
 
@@ -194,10 +194,10 @@ namespace AG.DS
                 float targetPosX = DropdownButton.worldBound.x;
 
                 // Remove the horizontal offset value from the graph viewer's content view container.
-                targetPosX += GraphViewer.contentViewContainer.worldBound.x * -1;
+                targetPosX += graphViewer.contentViewContainer.worldBound.x * -1;
 
                 // Divide it with the graph viewer size to keep position even after zooming in and out.
-                targetPosX /= GraphViewer.scale;
+                targetPosX /= graphViewer.scale;
 
                 DropdownMenu.style.left = targetPosX;
             }
@@ -208,10 +208,10 @@ namespace AG.DS
                 float targetPosY = DropdownButton.worldBound.y + DropdownButton.worldBound.height;
 
                 // Remove the vertical offset value from the graph viewer's content view container.
-                targetPosY += GraphViewer.contentViewContainer.worldBound.y * -1;
+                targetPosY += graphViewer.contentViewContainer.worldBound.y * -1;
 
                 // Divide it with the graph viewer size to keep position even after zooming in and out.
-                targetPosY /= GraphViewer.scale;
+                targetPosY /= graphViewer.scale;
 
                 // Combine the calculated position with the offset.
                 DropdownMenu.style.top = targetPosY += MENU_OFFSET_TOP;

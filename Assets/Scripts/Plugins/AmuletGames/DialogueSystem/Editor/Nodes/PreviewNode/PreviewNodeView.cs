@@ -31,13 +31,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The input default port of the node.
+        /// The input default port element.
         /// </summary>
         public DefaultPort InputDefaultPort;
 
 
         /// <summary>
-        /// The output default port of the node.
+        /// The output default port element.
         /// </summary>
         public DefaultPort OutputDefaultPort;
 

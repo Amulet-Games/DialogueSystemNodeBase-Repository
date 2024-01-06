@@ -69,7 +69,7 @@ namespace AG.DS
                 NodeType.Story => Spawn<StoryNode, StoryNodeView, StoryNodePresenter, StoryNodeObserver,
                                     StoryNodeSerializer, StoryNodeCallback, StoryNodeData>(graphViewer, languageHandler),
 
-                _ => throw new ArgumentException("Invalid node type: " + nodeType)
+                _ => throw new ArgumentException("Invalid GraphViewer type: " + nodeType)
             };
         }
 
@@ -126,7 +126,7 @@ namespace AG.DS
                 StoryNodeData m_data => Spawn<StoryNode, StoryNodeView, StoryNodePresenter, StoryNodeObserver,
                                 StoryNodeSerializer, StoryNodeCallback, StoryNodeData>(graphViewer, null, m_data),
 
-                _ => throw new ArgumentException("Invalid node data type: " + data.GetType().Name)
+                _ => throw new ArgumentException("Invalid GraphViewer data type: " + data.GetType().Name)
             };
         }
 
@@ -223,7 +223,7 @@ namespace AG.DS
                 StoryNode m_node => Save<StoryNode, StoryNodeView,
                            StoryNodeSerializer, StoryNodeData>(m_node),
 
-                _ => throw new ArgumentException("Invalid node element type: " + node.GetType().Name)
+                _ => throw new ArgumentException("Invalid GraphViewer element type: " + node.GetType().Name)
             };
         }
 

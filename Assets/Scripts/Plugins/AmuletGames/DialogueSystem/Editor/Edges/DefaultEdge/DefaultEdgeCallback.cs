@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace AG.DS
 {
     /// <inheritdoc />
@@ -28,6 +30,8 @@ namespace AG.DS
             {
                 View.Input.Disconnect(Edge);
                 View.Output.Disconnect(Edge);
+
+                Debug.Log("OnPreRemoveByUser");
             }
         }
 

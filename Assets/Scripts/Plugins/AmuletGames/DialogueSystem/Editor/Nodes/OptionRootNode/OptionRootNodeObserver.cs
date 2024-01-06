@@ -138,10 +138,10 @@ namespace AG.DS
 
             // Create a new output option port group cell.
             {
-                var groupView = View.OutputOptionPortGroupView;
-                var cell = new OptionPortGroupCellSeeder().Generate(Node, groupView);
+                var group = View.OutputOptionPortGroup;
+                var groupCell = new OptionPortGroupCellSeeder().Generate(group);
 
-                groupView.Add(cell, Node);
+                group.Add(groupCell);
             }
         }
     }

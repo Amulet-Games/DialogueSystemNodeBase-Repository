@@ -38,6 +38,18 @@ namespace AG.DS
 
 
         /// <summary>
+        /// The event to invoke after the port is connected to another port.
+        /// </summary>
+        public Action<EdgeBase> PostConnectEvent;
+
+
+        /// <summary>
+        /// The event to invoke when the port is about to be disconnected from another port.
+        /// </summary>
+        public Action<EdgeBase> PreDisconnectEvent;
+
+
+        /// <summary>
         /// Constructor of the port frame base class.
         /// </summary>
         /// <param name="model">The port model to set for.</param>
@@ -52,9 +64,15 @@ namespace AG.DS
         /// Setup for the port frame base class.
         /// </summary>
         /// <param name="edgeConnector">The edge connector to set for.</param>
-        public virtual TPort Setup(EdgeConnector edgeConnector)
+        /// <param name="callback">The port callback to set for.</param>
+        public virtual TPort Setup
+        (
+            EdgeConnector edgeConnector,
+            IPortCallback callback
+        )
         {
             EdgeConnector = edgeConnector;
+            Callback = callback;
             Guid = Guid.NewGuid();
             return null;
         }
@@ -122,10 +140,25 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <summary>
-        /// Disconnect edge from port.
+        /// Connect the port to the given edge.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public virtual void Disconnect(Edge<TPort, TPortModel, TEdgeView> edge) => base.Disconnect(edge);
+        public void Connect(Edge<TPort, TPortModel, TEdgeView> edge)
+        {
+            base.Connect(edge);
+            Callback.OnPostConnect(edge);
+        }
+
+
+        /// <summary>
+        /// Disconnect the port from the given edge.
+        /// </summary>
+        /// <param name="edge">The edge element to set for.</param>
+        public void Disconnect(Edge<TPort, TPortModel, TEdgeView> edge)
+        {
+            Callback.OnPreDisconnect(edge);
+            base.Disconnect(edge);
+        }
 
 
         /// <summary>
@@ -139,10 +172,8 @@ namespace AG.DS
 
             foreach (Edge<TPort, TPortModel, TEdgeView> edge in connections.ToList())
             {
-                // Disconnect opponent port.
-                {
-                    (this.IsInput() ? edge.View.Output : edge.View.Input).Disconnect(edge);
-                }
+                // Disconnect the opponent port.
+                (this.IsInput() ? edge.View.Output : edge.View.Input).Disconnect(edge);
 
                 Disconnect(edge);
                 graphViewer.Remove(edge);

@@ -30,8 +30,7 @@ namespace AG.DS
         void SavePorts()
         {
             Data.InputPortData = PortManager.Instance.Save(View.InputDefaultPort);
-            Data.OutputOptionPortData = PortManager.Instance.Save(View.OutputOptionPort);
-            View.OutputOptionPortGroupView.Save(Data.OutputOptionPortGroupData);
+            View.OutputOptionPortGroup.Save(Data.OutputOptionPortGroupData);
         }
 
 
@@ -66,8 +65,7 @@ namespace AG.DS
         void LoadPorts()
         {
             PortManager.Instance.Load(View.InputDefaultPort, Data.InputPortData);
-            PortManager.Instance.Load(View.OutputOptionPort, Data.OutputOptionPortData);
-            View.OutputOptionPortGroupView.Load(Node, Data.OutputOptionPortGroupData);
+            View.OutputOptionPortGroup.Load(Data.OutputOptionPortGroupData);
         }
 
 

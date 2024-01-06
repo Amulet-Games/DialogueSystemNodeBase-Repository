@@ -2,9 +2,7 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    /// <summary>
-    /// The graph view edge element.
-    /// </summary>
+    /// <inheritdoc />
     public class Edge
     <
         TPort,
@@ -41,8 +39,8 @@ namespace AG.DS
             output = view.Output;
             input = view.Input;
 
-            output.Connect(this);
-            input.Connect(this);
+            view.Output.Connect(this);
+            view.Input.Connect(this);
 
             focusable = true;
 

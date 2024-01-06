@@ -1,5 +1,3 @@
-using UnityEditor.Experimental.GraphView;
-
 namespace AG.DS
 {
     /// <inheritdoc />
@@ -18,21 +16,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The input default port of the node.
+        /// The input default port element.
         /// </summary>
         public DefaultPort InputDefaultPort;
 
 
         /// <summary>
-        /// The output option port of the node.
+        /// The output option port group element.
         /// </summary>
-        public OptionPort OutputOptionPort;
-
-
-        /// <summary>
-        /// The output option port group view of the node.
-        /// </summary>
-        public OptionPortGroupView OutputOptionPortGroupView;
+        public OptionPortGroup OutputOptionPortGroup;
 
 
         /// <inheritdoc />
@@ -47,8 +39,6 @@ namespace AG.DS
                 placeholderText: StringConfig.OptionRootNode_RootTitleField_PlaceholderText,
                 languageHandler
             );
-
-            OutputOptionPortGroupView = new(direction: Direction.Output);
 
             return this;
         }

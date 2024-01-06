@@ -4,7 +4,7 @@ namespace AG.DS
     public class EndNodeView : NodeViewFrameBase<EndNodeView>
     {
         /// <summary>
-        /// The input default port of the node.
+        /// The input default port element.
         /// </summary>
         public DefaultPort InputDefaultPort;
 

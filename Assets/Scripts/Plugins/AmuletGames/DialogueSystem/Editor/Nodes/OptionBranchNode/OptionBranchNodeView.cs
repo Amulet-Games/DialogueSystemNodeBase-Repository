@@ -16,13 +16,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The input option port of the node.
+        /// The input option port cell.
         /// </summary>
-        public OptionPort InputOptionPort;
+        public OptionPortCell InputOptionPortCell;
 
 
         /// <summary>
-        /// The output default port of the node.
+        /// The output default port element.
         /// </summary>
         public DefaultPort OutputDefaultPort;
 

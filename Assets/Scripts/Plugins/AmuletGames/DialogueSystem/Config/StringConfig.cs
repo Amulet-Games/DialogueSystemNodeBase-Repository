@@ -38,8 +38,8 @@ namespace AG.DS
         public const string ContextualMenuItem_DisconnectTrueOutputPort_LabelText = "Disconnect True Output Port";
         public const string ContextualMenuItem_DisconnectFalseOutputPort_LabelText = "Disconnect False Output Port";
         public const string ContextualMenuItem_DisconnectContinueOutputPort_LabelText = "Disconnect Continue Output Port";
-        public const string ContextualMenuItem_DisconnectOptionInputPort_LabelText = "Disconnect ";
-        public const string ContextualMenuItem_DisconnectOptionOutputPort_LabelText = "Disconnect ";
+        public const string ContextualMenuItem_DisconnectOptionCellPort_Input_LabelText = "Disconnect ";
+        public const string ContextualMenuItem_DisconnectOptionCellPort_Output_LabelText = "Disconnect ";
         public const string ContextualMenuItem_DisconnectAllPort_LabelText = "Disconnect All";
         #endregion
 
@@ -60,10 +60,10 @@ namespace AG.DS
         public const string DefaultPort_Output_LabelText = "Output";
         public const string DefaultPort_True_LabelText = "True";
         public const string DefaultPort_False_LabelText = "False";
-        public const string OptionPort_Input_LabelText_Connect = "Option ";
-        public const string OptionPort_Output_LabelText_Connect = "Option ";
-        public const string OptionPort_Input_LabelText_Disconnect = "Track";
-        public const string OptionPort_Output_LabelText_Disconnect = "Entry";
+        public const string OptionPortGroupCell_Input_Connect_LabelText = "Option ";
+        public const string OptionPortGroupCell_Output_Connect_LabelText = "Option ";
+        public const string OptionPortGroupCell_Input_Disconnect_LabelText = "Track";
+        public const string OptionPortGroupCell_Output_Disconnect_LabelText = "Entry";
         #endregion
 
         #region Content Button Labels.

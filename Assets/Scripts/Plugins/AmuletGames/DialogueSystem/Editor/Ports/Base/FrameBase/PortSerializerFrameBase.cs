@@ -8,7 +8,7 @@ namespace AG.DS
     >
         : PortSerializerBase
         where TPort : PortBase
-        where TPortData : PortDataBase
+        where TPortData : PortData
     {
         /// <summary>
         /// Reference of the port element.

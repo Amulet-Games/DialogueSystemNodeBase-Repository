@@ -40,9 +40,8 @@ MonoBehaviour:
   ContentButtonStyle: {fileID: 7433441132597879392, guid: 8d818c46996077948981637687c1f346, type: 3}
   FolderStyle: {fileID: 7433441132597879392, guid: f28e4dafcc9566e48ae85ddcded49202, type: 3}
   OptionPortCellStyle: {fileID: 7433441132597879392, guid: 61f764997de1660419221eafd70d3a00, type: 3}
-  DefaultPortStyle: {fileID: 7433441132597879392, guid: bdc013eea59f8ac42ac003bf5284d5be, type: 3}
-  OptionPortStyle: {fileID: 7433441132597879392, guid: da3f5c84d1cf7364bbca0e7a6e674c31, type: 3}
-  PortStyle: {fileID: 7433441132597879392, guid: b00727118f591514ca4af58104d93f95, type: 3}
+  OptionPortGroupCellStyle: {fileID: 7433441132597879392, guid: 55b6aa79f59a84848985b790e9f0b223, type: 3}
+  PortStyle: {fileID: 7433441132597879392, guid: bdc013eea59f8ac42ac003bf5284d5be, type: 3}
   RadioGroupStyle: {fileID: 7433441132597879392, guid: 4c9a0be24e5da1e4da2fc2a097c2b9e8, type: 3}
   RadioStyle: {fileID: 7433441132597879392, guid: 657aade3e571ba9469717bc594394d21, type: 3}
   GlobalStyle: {fileID: 7433441132597879392, guid: 9b5e16d70bc9fef4baaaa1efc2d58378, type: 3}

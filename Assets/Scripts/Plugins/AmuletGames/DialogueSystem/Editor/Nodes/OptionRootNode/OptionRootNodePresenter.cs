@@ -36,15 +36,14 @@ namespace AG.DS
                 name: StringConfig.DefaultPort_Input_LabelText
             );
 
-            View.OutputOptionPort = PortManager.Instance.CreateOption
+            View.OutputOptionPortGroup = OptionPortGroupPresenter.CreateElement
             (
-                connectorWindow: Node.GraphViewer.NodeCreateOptionConnectorWindow,
                 direction: Direction.Output,
-                isGroup: false
+                graphViewer: Node.GraphViewer
             );
 
             Node.Add(View.InputDefaultPort);
-            Node.Add(View.OutputOptionPort);
+            Node.OutputContainer.Add(View.OutputOptionPortGroup);
         }
 
 

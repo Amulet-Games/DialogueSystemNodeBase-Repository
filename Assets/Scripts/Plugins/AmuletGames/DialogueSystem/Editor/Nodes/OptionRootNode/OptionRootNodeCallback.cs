@@ -22,16 +22,14 @@ namespace AG.DS
             // Remove, disconnect ports
             {
                 graphViewer.Remove(port: View.InputDefaultPort);
-                graphViewer.Remove(port: View.OutputOptionPort);
 
-                for (int i = 0; i < View.OutputOptionPortGroupView.Cells.Count; i++)
+                for (int i = 0; i < View.OutputOptionPortGroup.GroupCells.Count; i++)
                 {
-                    graphViewer.Remove(port: View.OutputOptionPortGroupView.Cells[i].Port);
+                    graphViewer.Remove(port: View.OutputOptionPortGroup.GroupCells[i].PortCell.Port);
                 }
 
                 View.InputDefaultPort.Disconnect(graphViewer);
-                View.OutputOptionPort.Disconnect(graphViewer);
-                View.OutputOptionPortGroupView.DisconnectAll(graphViewer);
+                View.OutputOptionPortGroup.DisconnectAll();
             }
 
             // Remove language field

@@ -161,9 +161,17 @@ namespace AG.DS
         public const string Output_Cap = "output-cap";
         #endregion
 
-        #region Port Group Option USS Classes.
-        public const string OptionPortGroup_GroupCell = "optionPortGroup-groupCell";
-        public const string OptionPortGroup_RemoveCell_Button = "optionPortGroup-removeCell-button";
+        #region Port Cell Option USS Classes.
+        /*< -------------------- Cells -------------------- >*/
+        public const string OptionPortCell = "optionPortCell";
+
+        /*< -------------------- Group Cells -------------------- >*/
+        public const string OptionPortGroupCell = "optionPortGroupCell";
+        public const string OptionPortGroupCell_RemoveCellButton = "optionPortGroupCell-removeCellButton";
+
+        /*< -------------------- Group -------------------- >*/
+        public const string OptionPortGroup = "optionPortGroup";
+
         #endregion
 
         #region Edge USS Classes.

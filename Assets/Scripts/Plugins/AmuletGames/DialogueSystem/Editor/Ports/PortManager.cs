@@ -46,7 +46,7 @@ namespace AG.DS
                 PortConfig.DefaultPortColor
             );
 
-            return Create<DefaultPort, PortModel, DefaultPortPresenter, DefaultEdgeView,
+            return Create<DefaultPort, PortModel, DefaultPortPresenter, DefaultPortCallback, DefaultEdgeView,
                     DefaultEdgeConnectorCallback, NodeCreateDefaultConnectorWindow>(connectorWindow, detail);
         }
 
@@ -70,12 +70,12 @@ namespace AG.DS
                 direction,
                 capacity: Capacity.Single,
                 name: direction == Direction.Input
-                    ? StringConfig.OptionPort_Input_LabelText_Disconnect
-                    : StringConfig.OptionPort_Output_LabelText_Disconnect,
+                    ? StringConfig.OptionPortGroupCell_Input_Disconnect_LabelText
+                    : StringConfig.OptionPortGroupCell_Output_Disconnect_LabelText,
                 isGroup
             );
 
-            return Create<OptionPort, OptionPortModel, OptionPortPresenter, OptionEdgeView,
+            return Create<OptionPort, OptionPortModel, OptionPortPresenter, OptionPortCallback, OptionEdgeView,
                     OptionEdgeConnectorCallback, NodeCreateOptionConnectorWindow>(connectorWindow, detail);
         }
 
@@ -100,6 +100,7 @@ namespace AG.DS
             TPort,
             TPortModel,
             TPortPresenter,
+            TPortCallback,
             TEdgeView,
             TEdgeConnectorCallback,
             TNodeCreateConnectorWindow
@@ -111,18 +112,20 @@ namespace AG.DS
             where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
             where TPortModel : PortModel
             where TPortPresenter: PortPresenterFrameBase<TPort, TPortModel, TPortPresenter, TEdgeView>, new()
+            where TPortCallback: PortCallbackFrameBase<TPort, TPortModel, TPortCallback, TEdgeView>, new()
             where TEdgeView: EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
             where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TPortModel, TEdgeView, TEdgeConnectorCallback, TNodeCreateConnectorWindow>, new()
             where TNodeCreateConnectorWindow: NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TEdgeView, TNodeCreateConnectorWindow>
         {
             TPort port = new TPortPresenter().Setup(model).Create();
+            TPortCallback callback = new TPortCallback().Setup(port);
 
             var edgeConnector = new EdgeConnector<Edge<TPort, TPortModel, TEdgeView>>
             (
                 listener: new TEdgeConnectorCallback().Setup(port, connectorWindow)
             );
 
-            port.Setup(edgeConnector);
+            port.Setup(edgeConnector, callback);
             return port;
         }
 
@@ -133,8 +136,8 @@ namespace AG.DS
         /// </summary>
         /// <param name="port">The port element to set for.</param>
         /// <returns>A new port data.</returns>
-        public PortDataBase Save(DefaultPort port)
-            => Save<DefaultPort, DefaultPortSerializer, PortDataBase>(port);
+        public PortData Save(DefaultPort port)
+            => Save<DefaultPort, DefaultPortSerializer, PortData>(port);
 
 
         /// <summary>
@@ -163,7 +166,7 @@ namespace AG.DS
         )
             where TPort: PortBase
             where TPortSerializer : PortSerializerFrameBase<TPort, TPortData>, new()
-            where TPortData : PortDataBase, new()
+            where TPortData : PortData, new()
         {
             TPortData data = new();
             new TPortSerializer().Save(port, data);
@@ -178,8 +181,8 @@ namespace AG.DS
         /// </summary>
         /// <param name="port">The port element to set for.</param>
         /// <param name="data">The port data to set for.</param>
-        public void Load(DefaultPort port, PortDataBase data)
-            => Load<DefaultPort , DefaultPortSerializer, PortDataBase>(port, data);
+        public void Load(DefaultPort port, PortData data)
+            => Load<DefaultPort , DefaultPortSerializer, PortData>(port, data);
 
 
         /// <summary>
@@ -208,7 +211,7 @@ namespace AG.DS
         )
             where TPort : PortBase
             where TPortSerializer : PortSerializerFrameBase<TPort, TPortData>, new()
-            where TPortData : PortDataBase
+            where TPortData : PortData
         {
             new TPortSerializer().Load(port, data);
         }

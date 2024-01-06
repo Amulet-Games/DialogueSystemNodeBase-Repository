@@ -72,8 +72,7 @@ namespace AG.DS
         protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
             var defaultInput = View.InputDefaultPort;
-            var optionOutput = View.OutputOptionPort;
-            var optionGroupOutput = View.OutputOptionPortGroupView;
+            var optionGroupOutput = View.OutputOptionPortGroup;
 
             // Disconnect Input
             evt.menu.AppendAction
@@ -85,22 +84,11 @@ namespace AG.DS
                         : DropdownMenuAction.Status.Disabled
             );
 
-            // Disconnect Option Output
-            evt.menu.AppendAction
-            (
-                actionName: optionOutput.GetDisconnectPortContextualMenuItemLabel(),
-                action: action => optionOutput.Disconnect(GraphViewer),
-                status: optionOutput.connected
-                        ? DropdownMenuAction.Status.Normal
-                        : DropdownMenuAction.Status.Disabled
-            );
-
             // Disconnect Option Output Group
-            optionGroupOutput.AddContextualMenuItems(GraphViewer, evt);
+            optionGroupOutput.AddContextualMenuItems(evt);
 
             // Disconnect All
             var isAnyConnected = defaultInput.connected
-                              || optionOutput.connected
                               || optionGroupOutput.Connected;
 
             evt.menu.AppendAction
@@ -110,9 +98,7 @@ namespace AG.DS
                 {
                     defaultInput.Disconnect(GraphViewer);
 
-                    optionOutput.Disconnect(GraphViewer);
-
-                    optionGroupOutput.DisconnectAll(GraphViewer);
+                    optionGroupOutput.DisconnectAll();
                 },
                 status: isAnyConnected
                         ? DropdownMenuAction.Status.Normal

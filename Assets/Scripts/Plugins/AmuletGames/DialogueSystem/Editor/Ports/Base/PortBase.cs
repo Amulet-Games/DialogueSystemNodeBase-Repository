@@ -34,6 +34,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the port callback.
+        /// </summary>
+        public IPortCallback Callback;
+
+
+        /// <summary>
         /// Constructor of the port base class.
         /// </summary>
         /// <param name="direction">The direction to set for.</param>

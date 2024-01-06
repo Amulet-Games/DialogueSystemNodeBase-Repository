@@ -72,13 +72,13 @@ namespace AG.DS
         /// <inheritdoc />
         protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
-            var optionInput = View.InputOptionPort;
+            var optionInput = View.InputOptionPortCell.Port;
             var defaultOutput = View.OutputDefaultPort;
 
             // Disconnect Option Input
             evt.menu.AppendAction
             (
-                actionName: optionInput.GetDisconnectPortContextualMenuItemLabel(),
+                actionName: View.InputOptionPortCell.DisconnectCellPortContextualMenuItemLabel(),
                 action: action => optionInput.Disconnect(GraphViewer),
                 status: optionInput.connected
                         ? DropdownMenuAction.Status.Normal
