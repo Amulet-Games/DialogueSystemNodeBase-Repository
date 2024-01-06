@@ -55,11 +55,11 @@ namespace AG.DS
             DialogueSystemWindow dialogueSystemWindow
         )
         => Create
-            <DefaultPort, PortModel, DefaultEdgeView,
-            NodeCreateConnectorCallback<DefaultPort, PortModel, DefaultEdgeView>,
-            NodeCreateConnectorDetail<DefaultPort, PortModel, DefaultEdgeView>,
-            NodeCreateConnectorObserver<DefaultPort, PortModel, DefaultEdgeView>,
-            NodeCreateDefaultConnectorWindow>
+            <DefaultPort, PortModel,
+             NodeCreateConnectorCallback<DefaultPort, PortModel>,
+             NodeCreateConnectorDetail<DefaultPort, PortModel>,
+             NodeCreateConnectorObserver<DefaultPort, PortModel>,
+             NodeCreateDefaultConnectorWindow>
             (graphViewer, languageHandler, dialogueSystemWindow);
 
 
@@ -79,11 +79,11 @@ namespace AG.DS
             DialogueSystemWindow dialogueSystemWindow
         )
         => Create
-            <OptionPort, OptionPortModel, OptionEdgeView,
-            NodeCreateConnectorCallback<OptionPort, OptionPortModel, OptionEdgeView>,
-            NodeCreateConnectorDetail<OptionPort, OptionPortModel, OptionEdgeView>,
-            NodeCreateConnectorObserver<OptionPort, OptionPortModel, OptionEdgeView>,
-            NodeCreateOptionConnectorWindow>
+            <OptionPort, OptionPortModel,
+             NodeCreateConnectorCallback<OptionPort, OptionPortModel>,
+             NodeCreateConnectorDetail<OptionPort, OptionPortModel>,
+             NodeCreateConnectorObserver<OptionPort, OptionPortModel>,
+             NodeCreateOptionConnectorWindow>
             (graphViewer, languageHandler, dialogueSystemWindow);
 
 
@@ -128,7 +128,6 @@ namespace AG.DS
         /// 
         /// <typeparam name="TPort">Type port</typeparam>
         /// <typeparam name="TPortCreateDetail">Type port create detail</typeparam>
-        /// <typeparam name="TEdgeView">Type edge view</typeparam>
         /// <typeparam name="TNodeCreateConnectorCallback">Type node create callback</typeparam>
         /// <typeparam name="TNodeCreateConnectorDetail">Type node create detail</typeparam>
         /// <typeparam name="TNodeCreateConnectorObserver">Type node create observer</typeparam>
@@ -143,7 +142,6 @@ namespace AG.DS
         <
             TPort,
             TPortCreateDetail,
-            TEdgeView,
             TNodeCreateConnectorCallback,
             TNodeCreateConnectorDetail,
             TNodeCreateConnectorObserver,
@@ -154,13 +152,12 @@ namespace AG.DS
             LanguageHandler languageHandler,
             DialogueSystemWindow dialogueSystemWindow
         )
-            where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdgeView>
+            where TPort : PortFrameBase<TPort, TPortCreateDetail>
             where TPortCreateDetail : PortModel
-            where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdgeView>
-            where TNodeCreateConnectorCallback : NodeCreateConnectorCallback<TPort, TPortCreateDetail, TEdgeView>, new()
-            where TNodeCreateConnectorDetail : NodeCreateConnectorDetail<TPort, TPortCreateDetail, TEdgeView>, new()
-            where TNodeCreateConnectorObserver : NodeCreateConnectorObserver<TPort, TPortCreateDetail, TEdgeView>, new()
-            where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortCreateDetail, TEdgeView, TNodeCreateConnectorWindow>, new()
+            where TNodeCreateConnectorCallback : NodeCreateConnectorCallback<TPort, TPortCreateDetail>, new()
+            where TNodeCreateConnectorDetail : NodeCreateConnectorDetail<TPort, TPortCreateDetail>, new()
+            where TNodeCreateConnectorObserver : NodeCreateConnectorObserver<TPort, TPortCreateDetail>, new()
+            where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortCreateDetail, TNodeCreateConnectorWindow>, new()
         {
             var detail = new TNodeCreateConnectorDetail();
             var observer = new TNodeCreateConnectorObserver().Setup(detail, graphViewer);

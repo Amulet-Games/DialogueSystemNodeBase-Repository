@@ -31,14 +31,14 @@ namespace AG.DS
         {
             return output switch
             {
-                DefaultPort _ => Connect<DefaultPort, PortModel, DefaultEdgeView, DefaultEdgeObserver, DefaultEdgeCallback>
+                DefaultPort _ => Connect<DefaultPort, PortModel, DefaultEdgeObserver, DefaultEdgeCallback>
                 (
                     output as DefaultPort,
                     input as DefaultPort,
                     ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
                 ),
 
-                OptionPort _ => Connect<OptionPort, OptionPortModel, OptionEdgeView, OptionEdgeObserver, OptionEdgeCallback>
+                OptionPort _ => Connect<OptionPort, OptionPortModel, OptionEdgeObserver, OptionEdgeCallback>
                 (
                     output as OptionPort,
                     input as OptionPort,
@@ -61,14 +61,14 @@ namespace AG.DS
         {
             return port switch
             {
-                PortModel.Port.Default => Connect<DefaultPort, PortModel, DefaultEdgeView, DefaultEdgeObserver, DefaultEdgeCallback>
+                PortModel.Port.Default => Connect<DefaultPort, PortModel, DefaultEdgeObserver, DefaultEdgeCallback>
                 (
                     (DefaultPort)output,
                     (DefaultPort)input,
                     ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
                 ),
 
-                PortModel.Port.Option => Connect<OptionPort, OptionPortModel, OptionEdgeView, OptionEdgeObserver, OptionEdgeCallback>
+                PortModel.Port.Option => Connect<OptionPort, OptionPortModel, OptionEdgeObserver, OptionEdgeCallback>
                 (
                     (OptionPort)output,
                     (OptionPort)input,
@@ -86,7 +86,6 @@ namespace AG.DS
         /// 
         /// <typeparam name="TPort">Type port</typeparam>
         /// <typeparam name="TPortModel">Type port model</typeparam>
-        /// <typeparam name="TEdgeView">Type edge view</typeparam>
         /// <typeparam name="TEdgeObserver">Type edge observer</typeparam>
         /// <typeparam name="TEdgeCallback">Type edge callback</typeparam>
         /// 
@@ -95,24 +94,22 @@ namespace AG.DS
         /// <param name="styleSheet">The edge style sheet to set for.</param>
         /// 
         /// <returns>A new edge element.</returns>
-        Edge<TPort, TPortModel, TEdgeView> Connect<TPort, TPortModel, TEdgeView, TEdgeObserver, TEdgeCallback>
+        Edge<TPort, TPortModel> Connect<TPort, TPortModel, TEdgeObserver, TEdgeCallback>
         (
             TPort output,
             TPort input,
             StyleSheet styleSheet
         )
-            where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
+            where TPort : PortFrameBase<TPort, TPortModel>
             where TPortModel : PortModel
-            where TEdgeView: EdgeViewFrameBase<TPort, TPortModel, TEdgeView>, new()
-            where TEdgeObserver : EdgeObserverFrameBase<Edge<TPort, TPortModel, TEdgeView>>, new()
-            where TEdgeCallback : EdgeCallbackFrameBase<TPort, TPortModel, TEdgeView>, new()
+            where TEdgeObserver : EdgeObserverFrameBase<Edge<TPort, TPortModel>>, new()
+            where TEdgeCallback : EdgeCallbackFrameBase<TPort, TPortModel>, new()
         {
-            var view = new TEdgeView().Setup(output, input);
             var observer = new TEdgeObserver();
             var callback = new TEdgeCallback();
-            var edge = new Edge<TPort, TPortModel, TEdgeView>().Setup(view, callback, styleSheet);
+            var edge = new Edge<TPort, TPortModel>().Setup(output, input, callback, styleSheet);
 
-            callback.Setup(edge, view);
+            callback.Setup(edge);
             observer.RegisterEvents(edge);
 
             return edge;
@@ -135,11 +132,11 @@ namespace AG.DS
         {
             return edge switch
             {
-                Edge<DefaultPort, PortModel, DefaultEdgeView> m_edge => 
-                    Save<DefaultPort, PortModel, DefaultEdgeView, DefaultEdgeSerializer, EdgeDataBase>(m_edge),
+                Edge<DefaultPort, PortModel> m_edge
+                    => Save<DefaultPort, PortModel, DefaultEdgeSerializer, EdgeDataBase>(m_edge),
 
-                Edge<OptionPort, OptionPortModel, OptionEdgeView> m_edge =>
-                    Save<OptionPort, OptionPortModel, OptionEdgeView, OptionEdgeSerializer, EdgeDataBase>(m_edge),
+                Edge<OptionPort, OptionPortModel> m_edge
+                    => Save<OptionPort, OptionPortModel, OptionEdgeSerializer, EdgeDataBase>(m_edge),
 
                 _ => throw new ArgumentException("Invalid edge type: " + edge)
             };
@@ -152,25 +149,23 @@ namespace AG.DS
         /// 
         /// <typeparam name="TPort">Type port</typeparam>
         /// <typeparam name="TPortModel">Type port model</typeparam>
-        /// <typeparam name="TEdgeView">Type edge view</typeparam>
         /// <typeparam name="TEdgeSerializer">Type edge serializer</typeparam>
         /// <typeparam name="TEdgeData">Type edge data</typeparam>
         /// 
         /// <param name="edge">The edge element to set for.</param>
         /// 
         /// <returns>A new edge data.</returns>
-        TEdgeData Save<TPort, TPortModel, TEdgeView, TEdgeSerializer, TEdgeData>
+        TEdgeData Save<TPort, TPortModel, TEdgeSerializer, TEdgeData>
         (
-            Edge<TPort, TPortModel, TEdgeView> edge
+            Edge<TPort, TPortModel> edge
         )
-            where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
+            where TPort : PortFrameBase<TPort, TPortModel>
             where TPortModel : PortModel
-            where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
-            where TEdgeSerializer : EdgeSerializerFrameBase<TPort, TPortModel, TEdgeView, TEdgeData>, new()
+            where TEdgeSerializer : EdgeSerializerFrameBase<TPort, TPortModel, TEdgeData>, new()
             where TEdgeData : EdgeDataBase, new()
         {
             var data = new TEdgeData();
-            new TEdgeSerializer().Save(edge.View, data);
+            new TEdgeSerializer().Save(edge, data);
             
             return data;
         }

@@ -8,19 +8,17 @@ namespace AG.DS
     <
         TPort,
         TPortModel,
-        TEdgeView,
         TNodeCreateConnectorWindow
     >
         : NodeCreateWindowFrameBase
     <
-        NodeCreateConnectorCallback<TPort, TPortModel, TEdgeView>,
-        NodeCreateConnectorDetail<TPort, TPortModel, TEdgeView>,
-        NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TEdgeView, TNodeCreateConnectorWindow>
+        NodeCreateConnectorCallback<TPort, TPortModel>,
+        NodeCreateConnectorDetail<TPort, TPortModel>,
+        NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TNodeCreateConnectorWindow>
     >
-        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel>
         where TPortModel : PortModel
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
-        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TEdgeView, TNodeCreateConnectorWindow>
+        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TNodeCreateConnectorWindow>
     {
         /// <inheritdoc />
         protected override List<SearchTreeEntry> ToShowEntries => toShowEntries;
@@ -41,8 +39,8 @@ namespace AG.DS
         /// <returns>A new node create connector window.</returns>
         public virtual new TNodeCreateConnectorWindow Setup
         (
-            NodeCreateConnectorCallback<TPort, TPortModel, TEdgeView> callback,
-            NodeCreateConnectorDetail<TPort, TPortModel, TEdgeView> detail,
+            NodeCreateConnectorCallback<TPort, TPortModel> callback,
+            NodeCreateConnectorDetail<TPort, TPortModel> detail,
             GraphViewer graphViewer
         )
         {

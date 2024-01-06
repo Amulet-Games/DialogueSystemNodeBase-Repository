@@ -5,8 +5,7 @@ namespace AG.DS
     <
         DefaultPort,
         PortModel,
-        DefaultPortCallback,
-        DefaultEdgeView
+        DefaultPortCallback
     >
     {
         /// <inheritdoc />

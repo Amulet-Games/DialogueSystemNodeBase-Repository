@@ -4,19 +4,13 @@ namespace AG.DS
     public class OptionEdgeCallback : EdgeCallbackFrameBase
     <
         OptionPort,
-        OptionPortModel,
-        OptionEdgeView
+        OptionPortModel
     >
     {
         /// <inheritdoc />
-        public override void Setup
-        (
-            Edge<OptionPort, OptionPortModel, OptionEdgeView> edge,
-            OptionEdgeView view
-        )
+        public override void Setup(Edge<OptionPort, OptionPortModel> edge)
         {
             Edge = edge;
-            View = view;
         }
 
 
@@ -26,8 +20,8 @@ namespace AG.DS
         {
             // Disconnect ports
             {
-                View.Input.Disconnect(Edge);
-                View.Output.Disconnect(Edge);
+                Edge.Input.Disconnect(Edge);
+                Edge.Output.Disconnect(Edge);
             }
         }
 

@@ -6,41 +6,48 @@ namespace AG.DS
     public class Edge
     <
         TPort,
-        TPortModel,
-        TEdgeView
+        TPortModel
     >
         : EdgeBase
-        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel>
         where TPortModel : PortModel
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
     {
         /// <summary>
-        /// Reference of the edge view;
+        /// Reference of the output port.
         /// </summary>
-        public TEdgeView View;
+        public TPort Output;
+
+
+        /// <summary>
+        /// Reference of the input port.
+        /// </summary>
+        public TPort Input;
 
 
         /// <summary>
         /// Setup for the edge class.
         /// </summary>
-        /// <param name="view">The edge view to set for.</param>
+        /// <param name="output">The output port to set for.</param>
+        /// <param name="input">The input port to set for.</param>
         /// <param name="callback">The edge callback to set for.</param>
         /// <param name="styleSheet">The style sheet to set for.</param>
-        public Edge<TPort, TPortModel, TEdgeView> Setup
+        public Edge<TPort, TPortModel> Setup
         (
-            TEdgeView view,
+            TPort output,
+            TPort input,
             IEdgeCallback callback,
             StyleSheet styleSheet
         )
         {
-            View = view;
+            Output = output;
+            Input = input;
             Callback = callback;
 
-            output = view.Output;
-            input = view.Input;
+            this.output = Output;
+            this.input = Input;
 
-            view.Output.Connect(this);
-            view.Input.Connect(this);
+            Output.Connect(this);
+            Input.Connect(this);
 
             focusable = true;
 

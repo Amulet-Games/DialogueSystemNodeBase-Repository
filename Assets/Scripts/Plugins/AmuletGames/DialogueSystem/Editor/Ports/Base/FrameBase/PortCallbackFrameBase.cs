@@ -5,14 +5,12 @@ namespace AG.DS
     <
         TPort,
         TPortModel,
-        TPortCallback,
-        TEdgeView
+        TPortCallback
     >
         : PortCallbackBase, IPortCallback
-        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel>
         where TPortModel : PortModel
-        where TPortCallback : PortCallbackFrameBase<TPort, TPortModel, TPortCallback, TEdgeView>
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
+        where TPortCallback : PortCallbackFrameBase<TPort, TPortModel, TPortCallback>
     {
         /// <summary>
         /// Reference of the port element.

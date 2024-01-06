@@ -9,13 +9,11 @@ namespace AG.DS
     public abstract class PortFrameBase
     <
         TPort,
-        TPortModel,
-        TEdgeView
+        TPortModel
     >
         : PortBase
-        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel>
         where TPortModel : PortModel
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
     {
         /// <summary>
         /// The property of edge connector.
@@ -149,7 +147,7 @@ namespace AG.DS
         /// Connect the port to the given edge.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public void Connect(Edge<TPort, TPortModel, TEdgeView> edge)
+        public void Connect(Edge<TPort, TPortModel> edge)
         {
             base.Connect(edge);
             Callback.OnPostConnect(edge);
@@ -160,7 +158,7 @@ namespace AG.DS
         /// Disconnect the port from the given edge.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public void Disconnect(Edge<TPort, TPortModel, TEdgeView> edge)
+        public void Disconnect(Edge<TPort, TPortModel> edge)
         {
             Callback.OnPreDisconnect(edge);
             base.Disconnect(edge);
@@ -176,10 +174,10 @@ namespace AG.DS
             if (!connected)
                 return;
 
-            foreach (Edge<TPort, TPortModel, TEdgeView> edge in connections.ToList())
+            foreach (Edge<TPort, TPortModel> edge in connections.ToList())
             {
                 // Disconnect the opponent port.
-                (this.IsInput() ? edge.View.Output : edge.View.Input).Disconnect(edge);
+                (this.IsInput() ? edge.Output : edge.Input).Disconnect(edge);
 
                 Disconnect(edge);
                 graphViewer.Remove(edge);

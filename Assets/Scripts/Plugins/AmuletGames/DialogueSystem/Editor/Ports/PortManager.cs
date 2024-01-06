@@ -46,7 +46,7 @@ namespace AG.DS
                 PortConfig.DefaultPortColor
             );
 
-            return Create<DefaultPort, PortModel, DefaultPortPresenter, DefaultPortCallback, DefaultEdgeView,
+            return Create<DefaultPort, PortModel, DefaultPortPresenter, DefaultPortCallback,
                     DefaultEdgeConnectorCallback, NodeCreateDefaultConnectorWindow>(connectorWindow, detail);
         }
 
@@ -75,7 +75,7 @@ namespace AG.DS
                 isGroup
             );
 
-            return Create<OptionPort, OptionPortModel, OptionPortPresenter, OptionPortCallback, OptionEdgeView,
+            return Create<OptionPort, OptionPortModel, OptionPortPresenter, OptionPortCallback,
                     OptionEdgeConnectorCallback, NodeCreateOptionConnectorWindow>(connectorWindow, detail);
         }
 
@@ -87,7 +87,6 @@ namespace AG.DS
         /// <typeparam name="TPort">Type port</typeparam>
         /// <typeparam name="TPortModel">Type port model</typeparam>
         /// <typeparam name="TPortPresenter">Type port presenter</typeparam>
-        /// <typeparam name="TEdgeView">Type edge view</typeparam>
         /// <typeparam name="TEdgeConnectorCallback">Type connector callback</typeparam>
         /// <typeparam name="TNodeCreateConnectorWindow">Type node create connector window</typeparam>
         /// 
@@ -101,7 +100,6 @@ namespace AG.DS
             TPortModel,
             TPortPresenter,
             TPortCallback,
-            TEdgeView,
             TEdgeConnectorCallback,
             TNodeCreateConnectorWindow
         >
@@ -109,18 +107,17 @@ namespace AG.DS
             TNodeCreateConnectorWindow connectorWindow,
             TPortModel model
         )
-            where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
+            where TPort : PortFrameBase<TPort, TPortModel>
             where TPortModel : PortModel
-            where TPortPresenter: PortPresenterFrameBase<TPort, TPortModel, TPortPresenter, TEdgeView>, new()
-            where TPortCallback: PortCallbackFrameBase<TPort, TPortModel, TPortCallback, TEdgeView>, new()
-            where TEdgeView: EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
-            where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TPortModel, TEdgeView, TEdgeConnectorCallback, TNodeCreateConnectorWindow>, new()
-            where TNodeCreateConnectorWindow: NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TEdgeView, TNodeCreateConnectorWindow>
+            where TPortPresenter: PortPresenterFrameBase<TPort, TPortModel, TPortPresenter>, new()
+            where TPortCallback: PortCallbackFrameBase<TPort, TPortModel, TPortCallback>, new()
+            where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TPortModel, TEdgeConnectorCallback, TNodeCreateConnectorWindow>, new()
+            where TNodeCreateConnectorWindow: NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TNodeCreateConnectorWindow>
         {
             TPort port = new TPortPresenter().Setup(model).Create();
             TPortCallback callback = new TPortCallback().Setup(port);
 
-            var edgeConnector = new EdgeConnector<Edge<TPort, TPortModel, TEdgeView>>
+            var edgeConnector = new EdgeConnector<Edge<TPort, TPortModel>>
             (
                 listener: new TEdgeConnectorCallback().Setup(port, connectorWindow)
             );

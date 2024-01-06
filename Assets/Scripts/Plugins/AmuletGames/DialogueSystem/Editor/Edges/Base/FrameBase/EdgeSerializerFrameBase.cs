@@ -5,19 +5,17 @@ namespace AG.DS
     <
         TPort,
         TPortModel,
-        TEdgeView,
         TEdgeData
     >
         : EdgeSerializerBase
-        where TPort : PortFrameBase<TPort, TPortModel, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortModel>
         where TPortModel : PortModel
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortModel, TEdgeView>
         where TEdgeData : EdgeDataBase
     {
         /// <summary>
         /// Reference of the edge view.
         /// </summary>
-        protected TEdgeView View;
+        protected Edge<TPort, TPortModel> Edge;
 
 
         /// <summary>
@@ -29,11 +27,11 @@ namespace AG.DS
         /// <summary>
         /// Save the edge element values.
         /// </summary>
-        /// <param name="view">The edge view to set for.</param>
+        /// <param name="edge">The edge element to set for.</param>
         /// <param name="data">The edge data to set for.</param>
-        public virtual void Save(TEdgeView view, TEdgeData data)
+        public virtual void Save(Edge<TPort, TPortModel> edge, TEdgeData data)
         {
-            View = view;
+            Edge = edge;
             Data = data;
         }
 
@@ -43,8 +41,8 @@ namespace AG.DS
         /// </summary>
         protected void SaveEdgeBaseValues()
         {
-            Data.InputPortGUID = View.Input.Guid;
-            Data.OutputPortGUID = View.Output.Guid;
+            Data.InputPortGUID = Edge.Input.Guid;
+            Data.OutputPortGUID = Edge.Output.Guid;
         }
     }
 }

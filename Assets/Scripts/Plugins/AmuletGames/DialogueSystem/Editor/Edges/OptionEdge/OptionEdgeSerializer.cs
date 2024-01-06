@@ -5,14 +5,13 @@ namespace AG.DS
     <
         OptionPort,
         OptionPortModel,
-        OptionEdgeView,
         EdgeDataBase
     >
     {
         /// <inheritdoc />
-        public override void Save(OptionEdgeView view, EdgeDataBase data)
+        public override void Save(Edge<OptionPort, OptionPortModel> edge, EdgeDataBase data)
         {
-            base.Save(view, data);
+            base.Save(edge, data);
 
             SaveEdgeBaseValues();
 

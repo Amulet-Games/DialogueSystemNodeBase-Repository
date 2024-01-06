@@ -4,13 +4,11 @@ namespace AG.DS
     public class NodeCreateConnectorDetail
     <
         TPort,
-        TPortCreateDetail,
-        TEdgeView
+        TPortCreateDetail
     >
         : NodeCreateDetailBase
-        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortCreateDetail>
         where TPortCreateDetail : PortModel
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdgeView>
     {
         /// <summary>
         /// Reference of the connector port.

@@ -5,8 +5,7 @@ namespace AG.DS
     <
         OptionPort,
         OptionPortModel,
-        OptionPortPresenter,
-        OptionEdgeView
+        OptionPortPresenter
     >
     {
         /// <inheritdoc />

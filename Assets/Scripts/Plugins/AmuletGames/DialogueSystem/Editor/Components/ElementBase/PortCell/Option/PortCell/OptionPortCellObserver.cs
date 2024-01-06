@@ -66,20 +66,19 @@ namespace AG.DS
             edge.RegisterCallback<MouseMoveEvent>(
                 evt =>
                 {
-                    var m_edge = (Edge<OptionPort, OptionPortModel, OptionEdgeView>)edge;
-                    var m_edgeView = m_edge.View;
+                    var m_edge = (Edge<OptionPort, OptionPortModel>)edge;
 
-                    if (m_edge.output == null && m_edgeView.Output != null)
+                    if (m_edge.output == null && m_edge.Output != null)
                     {
                         (portCell.Port.IsInput() ? portCell.OpponentCell : portCell).OpponentCell = null;
 
-                        m_edgeView.Output = null;
+                        m_edge.Output = null;
                     }
-                    else if (m_edge.input == null && m_edgeView.Input != null)
+                    else if (m_edge.input == null && m_edge.Input != null)
                     {
                         (portCell.Port.IsInput() ? portCell : portCell.OpponentCell).OpponentCell = null;
 
-                        m_edgeView.Input = null;
+                        m_edge.Input = null;
                     }
                 }
             );

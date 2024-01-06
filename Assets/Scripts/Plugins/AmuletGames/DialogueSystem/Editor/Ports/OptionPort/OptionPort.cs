@@ -6,8 +6,7 @@ namespace AG.DS
     public class OptionPort : PortFrameBase
     <
         OptionPort,
-        OptionPortModel,
-        OptionEdgeView
+        OptionPortModel
     >
     {
         /// <inheritdoc />

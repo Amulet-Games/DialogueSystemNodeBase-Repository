@@ -7,22 +7,20 @@ namespace AG.DS
     public class NodeCreateConnectorObserver
     <
         TPort,
-        TPortCreateDetail,
-        TEdgeView
+        TPortCreateDetail
     >
         : NodeCreateObserverFrameBase
     <
-        NodeCreateConnectorDetail<TPort, TPortCreateDetail, TEdgeView>,
-        NodeCreateConnectorObserver<TPort, TPortCreateDetail, TEdgeView>
+        NodeCreateConnectorDetail<TPort, TPortCreateDetail>,
+        NodeCreateConnectorObserver<TPort, TPortCreateDetail>
     >
-        where TPort : PortFrameBase<TPort, TPortCreateDetail, TEdgeView>
+        where TPort : PortFrameBase<TPort, TPortCreateDetail>
         where TPortCreateDetail : PortModel
-        where TEdgeView : EdgeViewFrameBase<TPort, TPortCreateDetail, TEdgeView>
     {
         /// <inheritdoc />
-        public override NodeCreateConnectorObserver<TPort, TPortCreateDetail, TEdgeView> Setup
+        public override NodeCreateConnectorObserver<TPort, TPortCreateDetail> Setup
         (
-            NodeCreateConnectorDetail<TPort, TPortCreateDetail, TEdgeView> detail,
+            NodeCreateConnectorDetail<TPort, TPortCreateDetail> detail,
             GraphViewer graphViewer
         )
         {

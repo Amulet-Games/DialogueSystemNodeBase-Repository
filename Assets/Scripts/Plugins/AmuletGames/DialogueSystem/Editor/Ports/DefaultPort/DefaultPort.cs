@@ -6,8 +6,7 @@ namespace AG.DS
     public class DefaultPort : PortFrameBase
     <
         DefaultPort,
-        PortModel,
-        DefaultEdgeView
+        PortModel
     >
     {
         /// <inheritdoc />

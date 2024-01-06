@@ -6,19 +6,13 @@ namespace AG.DS
     public class DefaultEdgeCallback : EdgeCallbackFrameBase
     <
         DefaultPort,
-        PortModel,
-        DefaultEdgeView
+        PortModel
     >
     {
         /// <inheritdoc />
-        public override void Setup
-        (
-            Edge<DefaultPort, PortModel, DefaultEdgeView> edge,
-            DefaultEdgeView view
-        )
+        public override void Setup(Edge<DefaultPort, PortModel> edge)
         {
             Edge = edge;
-            View = view;
         }
 
 
@@ -28,8 +22,8 @@ namespace AG.DS
         {
             // Disconnect ports
             {
-                View.Input.Disconnect(Edge);
-                View.Output.Disconnect(Edge);
+                Edge.Input.Disconnect(Edge);
+                Edge.Output.Disconnect(Edge);
 
                 Debug.Log("OnPreRemoveByUser");
             }
