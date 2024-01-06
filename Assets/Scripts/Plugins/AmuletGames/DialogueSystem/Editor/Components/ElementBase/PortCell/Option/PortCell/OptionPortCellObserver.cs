@@ -1,3 +1,5 @@
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     public class OptionPortCellObserver
@@ -24,22 +26,31 @@ namespace AG.DS
         /// </summary>
         public void RegisterEvents()
         {
-            RegisterPortConnectEvent();
+            RegisterPortPostConnectEvent();
 
-            RegisterPortDisconnectEvent();
+            RegisterPortPreDisconnectEvent();
+
+            RegisterPortPostConnectingEdgeDropOutsideEvent();
         }
 
 
         /// <summary>
         /// Register PostConnectEvent to the cell's port.
         /// </summary>
-        void RegisterPortConnectEvent() => portCell.Port.PostConnectEvent += OptionPortPostConnectEvent;
+        void RegisterPortPostConnectEvent() => portCell.Port.PostConnectEvent += OptionPortPostConnectEvent;
 
 
         /// <summary>
         /// Register PreDisconnectEvent to the cell's port.
         /// </summary>
-        void RegisterPortDisconnectEvent() => portCell.Port.PreDisconnectEvent += OptionPortPreDisconnectEvent;
+        void RegisterPortPreDisconnectEvent() => portCell.Port.PreDisconnectEvent += OptionPortPreDisconnectEvent;
+
+
+        /// <summary>
+        /// Register PostConnectingEdgeDropOutsideEvent to the cell's port.
+        /// </summary>
+        void RegisterPortPostConnectingEdgeDropOutsideEvent() =>
+            portCell.Port.PostConnectingEdgeDropOutsideEvent += OptionPortPostConnectingEdgeDropOutsideEvent;
 
 
         // ----------------------------- Event -----------------------------
@@ -51,6 +62,27 @@ namespace AG.DS
         {
             portCell.OpponentCell = (OptionPortCell)(portCell.Port.IsInput() ? edge.output : edge.input).parent;
             portCell.OpponentCell.Index = portCell.Index;
+
+            edge.RegisterCallback<MouseMoveEvent>(
+                evt =>
+                {
+                    var m_edge = (Edge<OptionPort, OptionPortModel, OptionEdgeView>)edge;
+                    var m_edgeView = m_edge.View;
+
+                    if (m_edge.output == null && m_edgeView.Output != null)
+                    {
+                        (portCell.Port.IsInput() ? portCell.OpponentCell : portCell).OpponentCell = null;
+
+                        m_edgeView.Output = null;
+                    }
+                    else if (m_edge.input == null && m_edgeView.Input != null)
+                    {
+                        (portCell.Port.IsInput() ? portCell : portCell.OpponentCell).OpponentCell = null;
+
+                        m_edgeView.Input = null;
+                    }
+                }
+            );
         }
 
 
@@ -59,6 +91,15 @@ namespace AG.DS
         /// </summary>
         /// <param name="edge">The edge that the ports disconnected from.</param>
         void OptionPortPreDisconnectEvent(EdgeBase edge)
+        {
+            portCell.OpponentCell = null;
+        }
+
+
+        /// <summary>
+        /// The event to invoke after the cell's port previous connecting edge has been dropped in a empty space.
+        /// </summary>
+        void OptionPortPostConnectingEdgeDropOutsideEvent()
         {
             portCell.OpponentCell = null;
         }

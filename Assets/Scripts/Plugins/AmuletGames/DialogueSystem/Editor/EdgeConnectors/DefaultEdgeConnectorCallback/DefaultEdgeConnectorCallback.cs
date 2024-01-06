@@ -52,6 +52,8 @@ namespace AG.DS
                     toShowEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries
                 );
             }
+
+            ConnectorPort.Callback.OnPostConnectingEdgeDropOutside();
         }
     }
 }

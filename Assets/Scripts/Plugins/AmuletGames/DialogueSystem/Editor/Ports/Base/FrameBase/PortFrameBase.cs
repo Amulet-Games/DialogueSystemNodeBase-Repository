@@ -50,6 +50,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// The event to invoke after the previous connecting edge has been dropped in a empty space.
+        /// </summary>
+        public Action PostConnectingEdgeDropOutsideEvent;
+
+
+        /// <summary>
         /// Constructor of the port frame base class.
         /// </summary>
         /// <param name="model">The port model to set for.</param>

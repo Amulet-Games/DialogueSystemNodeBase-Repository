@@ -32,8 +32,6 @@ namespace AG.DS
             {
                 // If the edge that user dropped is from a input port.
                 {
-                    edge.View?.Input.HideConnectStyle();
-
                     NodeCreateConnectorWindow.Open
                     (
                         horizontalAlignmentType: HorizontalAlignmentType.LEFT,
@@ -48,8 +46,6 @@ namespace AG.DS
             {
                 // If the edge that user dropped is from a output port.
                 {
-                    edge.View?.Output.HideConnectStyle();
-
                     NodeCreateConnectorWindow.Open
                     (
                         horizontalAlignmentType: HorizontalAlignmentType.RIGHT,
@@ -60,6 +56,8 @@ namespace AG.DS
                     );
                 }
             }
+
+            ConnectorPort.Callback.OnPostConnectingEdgeDropOutside();
         }
     }
 }

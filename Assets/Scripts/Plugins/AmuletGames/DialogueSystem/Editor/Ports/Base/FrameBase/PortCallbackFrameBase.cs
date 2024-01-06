@@ -40,5 +40,11 @@ namespace AG.DS
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
         public abstract void OnPreDisconnect(EdgeBase edge);
+
+
+        /// <summary>
+        /// The event to invoke after the previous connecting edge has been dropped in a empty space.
+        /// </summary>
+        public abstract void OnPostConnectingEdgeDropOutside();
     }
 }

@@ -5,22 +5,6 @@ namespace AG.DS
     public static class PortExtensions
     {
         /// <summary>
-        /// Returns the child index of the port.
-        /// </summary>
-        /// <param name="port">Extension port</param>
-        /// <param name="additionNumber">An additional number that it can be used to combine with the result.</param>
-        /// <returns>The sibling index of the port within its parent hierarchy.</returns>
-        public static int GetSiblingIndex
-        (
-            this Port port,
-            int additionNumber = 1
-        )
-        {
-            return port.parent.IndexOf(port) + additionNumber;
-        }
-
-
-        /// <summary>
         /// Returns true if the port's direction is input.
         /// </summary>
         /// <param name="port">Extension port</param>

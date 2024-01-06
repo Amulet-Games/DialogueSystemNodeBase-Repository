@@ -27,7 +27,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The property of the cell's index.
+        /// The cell's index.
         /// </summary>
         public int Index;
         

@@ -30,5 +30,12 @@ namespace AG.DS
         {
             Port.PreDisconnectEvent?.Invoke(edge);
         }
+
+
+        /// <inheritdoc />
+        public override void OnPostConnectingEdgeDropOutside()
+        {
+            Port.PostConnectingEdgeDropOutsideEvent?.Invoke();
+        }
     }
 }
