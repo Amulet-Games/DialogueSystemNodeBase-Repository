@@ -4,19 +4,10 @@ namespace AG.DS
     public class DefaultPortPresenter : PortPresenterFrameBase
     <
         DefaultPort,
-        PortModel,
         DefaultPortPresenter
     >
     {
         /// <inheritdoc />
-        public override DefaultPortPresenter Setup(PortModel model)
-        {
-            base.Setup(model);
-            return this;
-        }
-
-
-        /// <inheritdoc />
-        public override DefaultPort Create() => new(Model);
+        public override DefaultPort Create(PortModel model) => new(model);
     }
 }

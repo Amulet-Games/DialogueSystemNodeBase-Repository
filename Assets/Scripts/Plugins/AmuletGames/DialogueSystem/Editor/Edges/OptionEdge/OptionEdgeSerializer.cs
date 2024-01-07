@@ -4,12 +4,11 @@ namespace AG.DS
     public class OptionEdgeSerializer : EdgeSerializerFrameBase
     <
         OptionPort,
-        OptionPortModel,
         EdgeDataBase
     >
     {
         /// <inheritdoc />
-        public override void Save(Edge<OptionPort, OptionPortModel> edge, EdgeDataBase data)
+        public override void Save(Edge<OptionPort> edge, EdgeDataBase data)
         {
             base.Save(edge, data);
 

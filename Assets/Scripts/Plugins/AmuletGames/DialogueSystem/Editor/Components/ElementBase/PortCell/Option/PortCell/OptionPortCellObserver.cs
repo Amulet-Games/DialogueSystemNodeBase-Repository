@@ -66,7 +66,7 @@ namespace AG.DS
             edge.RegisterCallback<MouseMoveEvent>(
                 evt =>
                 {
-                    var m_edge = (Edge<OptionPort, OptionPortModel>)edge;
+                    var m_edge = (Edge<OptionPort>)edge;
 
                     if (m_edge.output == null && m_edge.Output != null)
                     {

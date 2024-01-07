@@ -3,11 +3,7 @@ using UnityEditor.Experimental.GraphView;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class DefaultPort : PortFrameBase
-    <
-        DefaultPort,
-        PortModel
-    >
+    public class DefaultPort : Port<DefaultPort>
     {
         /// <inheritdoc />
         public DefaultPort(PortModel model) : base(model) { }

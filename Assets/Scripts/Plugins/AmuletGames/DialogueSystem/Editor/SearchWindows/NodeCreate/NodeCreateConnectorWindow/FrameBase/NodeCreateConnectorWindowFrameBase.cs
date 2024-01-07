@@ -7,18 +7,16 @@ namespace AG.DS
     public abstract class NodeCreateConnectorWindowFrameBase
     <
         TPort,
-        TPortModel,
         TNodeCreateConnectorWindow
     >
         : NodeCreateWindowFrameBase
     <
-        NodeCreateConnectorCallback<TPort, TPortModel>,
-        NodeCreateConnectorDetail<TPort, TPortModel>,
-        NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TNodeCreateConnectorWindow>
+        NodeCreateConnectorCallback<TPort>,
+        NodeCreateConnectorDetail<TPort>,
+        NodeCreateConnectorWindowFrameBase<TPort, TNodeCreateConnectorWindow>
     >
-        where TPort : PortFrameBase<TPort, TPortModel>
-        where TPortModel : PortModel
-        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TNodeCreateConnectorWindow>
+        where TPort : Port<TPort>
+        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TNodeCreateConnectorWindow>
     {
         /// <inheritdoc />
         protected override List<SearchTreeEntry> ToShowEntries => toShowEntries;
@@ -39,8 +37,8 @@ namespace AG.DS
         /// <returns>A new node create connector window.</returns>
         public virtual new TNodeCreateConnectorWindow Setup
         (
-            NodeCreateConnectorCallback<TPort, TPortModel> callback,
-            NodeCreateConnectorDetail<TPort, TPortModel> detail,
+            NodeCreateConnectorCallback<TPort> callback,
+            NodeCreateConnectorDetail<TPort> detail,
             GraphViewer graphViewer
         )
         {

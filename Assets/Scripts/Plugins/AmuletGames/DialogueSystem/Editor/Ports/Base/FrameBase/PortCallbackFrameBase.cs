@@ -4,13 +4,11 @@ namespace AG.DS
     public abstract class PortCallbackFrameBase
     <
         TPort,
-        TPortModel,
         TPortCallback
     >
         : PortCallbackBase, IPortCallback
-        where TPort : PortFrameBase<TPort, TPortModel>
-        where TPortModel : PortModel
-        where TPortCallback : PortCallbackFrameBase<TPort, TPortModel, TPortCallback>
+        where TPort : Port<TPort>
+        where TPortCallback : PortCallbackFrameBase<TPort, TPortCallback>
     {
         /// <summary>
         /// Reference of the port element.

@@ -4,23 +4,18 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class NodeCreateConnectorObserver
-    <
-        TPort,
-        TPortCreateDetail
-    >
+    public class NodeCreateConnectorObserver<TPort>
         : NodeCreateObserverFrameBase
     <
-        NodeCreateConnectorDetail<TPort, TPortCreateDetail>,
-        NodeCreateConnectorObserver<TPort, TPortCreateDetail>
+        NodeCreateConnectorDetail<TPort>,
+        NodeCreateConnectorObserver<TPort>
     >
-        where TPort : PortFrameBase<TPort, TPortCreateDetail>
-        where TPortCreateDetail : PortModel
+        where TPort : Port<TPort>
     {
         /// <inheritdoc />
-        public override NodeCreateConnectorObserver<TPort, TPortCreateDetail> Setup
+        public override NodeCreateConnectorObserver<TPort> Setup
         (
-            NodeCreateConnectorDetail<TPort, TPortCreateDetail> detail,
+            NodeCreateConnectorDetail<TPort> detail,
             GraphViewer graphViewer
         )
         {

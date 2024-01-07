@@ -6,14 +6,9 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public abstract class PortFrameBase
-    <
-        TPort,
-        TPortModel
-    >
+    public abstract class Port<TPort>
         : PortBase
-        where TPort : PortFrameBase<TPort, TPortModel>
-        where TPortModel : PortModel
+        where TPort : Port<TPort>
     {
         /// <summary>
         /// The property of edge connector.
@@ -57,7 +52,7 @@ namespace AG.DS
         /// Constructor of the port frame base class.
         /// </summary>
         /// <param name="model">The port model to set for.</param>
-        protected PortFrameBase(PortModel model) : base(model.Direction, model.Capacity)
+        protected Port(PortModel model) : base(model.Direction, model.Capacity)
         {
             portName = model.Name;
             portColor = model.Color;
@@ -147,7 +142,7 @@ namespace AG.DS
         /// Connect the port to the given edge.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public void Connect(Edge<TPort, TPortModel> edge)
+        public void Connect(Edge<TPort> edge)
         {
             base.Connect(edge);
             Callback.OnPostConnect(edge);
@@ -158,7 +153,7 @@ namespace AG.DS
         /// Disconnect the port from the given edge.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public void Disconnect(Edge<TPort, TPortModel> edge)
+        public void Disconnect(Edge<TPort> edge)
         {
             Callback.OnPreDisconnect(edge);
             base.Disconnect(edge);
@@ -174,7 +169,7 @@ namespace AG.DS
             if (!connected)
                 return;
 
-            foreach (Edge<TPort, TPortModel> edge in connections.ToList())
+            foreach (Edge<TPort> edge in connections.ToList())
             {
                 // Disconnect the opponent port.
                 (this.IsInput() ? edge.Output : edge.Input).Disconnect(edge);

@@ -31,14 +31,14 @@ namespace AG.DS
         {
             return output switch
             {
-                DefaultPort _ => Connect<DefaultPort, PortModel, DefaultEdgeObserver, DefaultEdgeCallback>
+                DefaultPort _ => Connect<DefaultPort, DefaultEdgeObserver, DefaultEdgeCallback>
                 (
                     output as DefaultPort,
                     input as DefaultPort,
                     ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
                 ),
 
-                OptionPort _ => Connect<OptionPort, OptionPortModel, OptionEdgeObserver, OptionEdgeCallback>
+                OptionPort _ => Connect<OptionPort, OptionEdgeObserver, OptionEdgeCallback>
                 (
                     output as OptionPort,
                     input as OptionPort,
@@ -61,14 +61,14 @@ namespace AG.DS
         {
             return port switch
             {
-                PortModel.Port.Default => Connect<DefaultPort, PortModel, DefaultEdgeObserver, DefaultEdgeCallback>
+                PortModel.Port.Default => Connect<DefaultPort, DefaultEdgeObserver, DefaultEdgeCallback>
                 (
                     (DefaultPort)output,
                     (DefaultPort)input,
                     ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
                 ),
 
-                PortModel.Port.Option => Connect<OptionPort, OptionPortModel, OptionEdgeObserver, OptionEdgeCallback>
+                PortModel.Port.Option => Connect<OptionPort, OptionEdgeObserver, OptionEdgeCallback>
                 (
                     (OptionPort)output,
                     (OptionPort)input,
@@ -85,7 +85,6 @@ namespace AG.DS
         /// </summary>
         /// 
         /// <typeparam name="TPort">Type port</typeparam>
-        /// <typeparam name="TPortModel">Type port model</typeparam>
         /// <typeparam name="TEdgeObserver">Type edge observer</typeparam>
         /// <typeparam name="TEdgeCallback">Type edge callback</typeparam>
         /// 
@@ -94,20 +93,19 @@ namespace AG.DS
         /// <param name="styleSheet">The edge style sheet to set for.</param>
         /// 
         /// <returns>A new edge element.</returns>
-        Edge<TPort, TPortModel> Connect<TPort, TPortModel, TEdgeObserver, TEdgeCallback>
+        Edge<TPort> Connect<TPort, TEdgeObserver, TEdgeCallback>
         (
             TPort output,
             TPort input,
             StyleSheet styleSheet
         )
-            where TPort : PortFrameBase<TPort, TPortModel>
-            where TPortModel : PortModel
-            where TEdgeObserver : EdgeObserverFrameBase<Edge<TPort, TPortModel>>, new()
-            where TEdgeCallback : EdgeCallbackFrameBase<TPort, TPortModel>, new()
+            where TPort : Port<TPort>
+            where TEdgeObserver : EdgeObserverFrameBase<Edge<TPort>>, new()
+            where TEdgeCallback : EdgeCallbackFrameBase<TPort>, new()
         {
             var observer = new TEdgeObserver();
             var callback = new TEdgeCallback();
-            var edge = new Edge<TPort, TPortModel>().Setup(output, input, callback, styleSheet);
+            var edge = new Edge<TPort>().Setup(output, input, callback, styleSheet);
 
             callback.Setup(edge);
             observer.RegisterEvents(edge);
@@ -132,11 +130,11 @@ namespace AG.DS
         {
             return edge switch
             {
-                Edge<DefaultPort, PortModel> m_edge
-                    => Save<DefaultPort, PortModel, DefaultEdgeSerializer, EdgeDataBase>(m_edge),
+                Edge<DefaultPort> m_edge
+                    => Save<DefaultPort, DefaultEdgeSerializer, EdgeDataBase>(m_edge),
 
-                Edge<OptionPort, OptionPortModel> m_edge
-                    => Save<OptionPort, OptionPortModel, OptionEdgeSerializer, EdgeDataBase>(m_edge),
+                Edge<OptionPort> m_edge
+                    => Save<OptionPort, OptionEdgeSerializer, EdgeDataBase>(m_edge),
 
                 _ => throw new ArgumentException("Invalid edge type: " + edge)
             };
@@ -148,20 +146,15 @@ namespace AG.DS
         /// </summary>
         /// 
         /// <typeparam name="TPort">Type port</typeparam>
-        /// <typeparam name="TPortModel">Type port model</typeparam>
         /// <typeparam name="TEdgeSerializer">Type edge serializer</typeparam>
         /// <typeparam name="TEdgeData">Type edge data</typeparam>
         /// 
         /// <param name="edge">The edge element to set for.</param>
         /// 
         /// <returns>A new edge data.</returns>
-        TEdgeData Save<TPort, TPortModel, TEdgeSerializer, TEdgeData>
-        (
-            Edge<TPort, TPortModel> edge
-        )
-            where TPort : PortFrameBase<TPort, TPortModel>
-            where TPortModel : PortModel
-            where TEdgeSerializer : EdgeSerializerFrameBase<TPort, TPortModel, TEdgeData>, new()
+        TEdgeData Save<TPort, TEdgeSerializer, TEdgeData>(Edge<TPort> edge)
+            where TPort : Port<TPort>
+            where TEdgeSerializer : EdgeSerializerFrameBase<TPort, TEdgeData>, new()
             where TEdgeData : EdgeDataBase, new()
         {
             var data = new TEdgeData();

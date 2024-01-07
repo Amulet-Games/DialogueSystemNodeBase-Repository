@@ -3,14 +3,10 @@ using UnityEngine;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class DefaultEdgeCallback : EdgeCallbackFrameBase
-    <
-        DefaultPort,
-        PortModel
-    >
+    public class DefaultEdgeCallback : EdgeCallbackFrameBase<DefaultPort>
     {
         /// <inheritdoc />
-        public override void Setup(Edge<DefaultPort, PortModel> edge)
+        public override void Setup(Edge<DefaultPort> edge)
         {
             Edge = edge;
         }

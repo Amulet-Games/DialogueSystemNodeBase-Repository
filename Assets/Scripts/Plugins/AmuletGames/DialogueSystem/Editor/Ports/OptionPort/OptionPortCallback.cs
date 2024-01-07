@@ -4,7 +4,6 @@ namespace AG.DS
     public class OptionPortCallback : PortCallbackFrameBase
     <
         OptionPort,
-        OptionPortModel,
         OptionPortCallback
     >
     {

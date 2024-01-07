@@ -1,14 +1,9 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class NodeCreateConnectorDetail
-    <
-        TPort,
-        TPortCreateDetail
-    >
+    public class NodeCreateConnectorDetail<TPort>
         : NodeCreateDetailBase
-        where TPort : PortFrameBase<TPort, TPortCreateDetail>
-        where TPortCreateDetail : PortModel
+        where TPort : Port<TPort>
     {
         /// <summary>
         /// Reference of the connector port.

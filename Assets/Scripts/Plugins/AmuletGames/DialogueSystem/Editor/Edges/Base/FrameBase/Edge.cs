@@ -3,14 +3,9 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class Edge
-    <
-        TPort,
-        TPortModel
-    >
+    public class Edge<TPort>
         : EdgeBase
-        where TPort : PortFrameBase<TPort, TPortModel>
-        where TPortModel : PortModel
+        where TPort : Port<TPort>
     {
         /// <summary>
         /// Reference of the output port.
@@ -31,7 +26,7 @@ namespace AG.DS
         /// <param name="input">The input port to set for.</param>
         /// <param name="callback">The edge callback to set for.</param>
         /// <param name="styleSheet">The style sheet to set for.</param>
-        public Edge<TPort, TPortModel> Setup
+        public Edge<TPort> Setup
         (
             TPort output,
             TPort input,

@@ -4,34 +4,17 @@ namespace AG.DS
     public abstract class PortPresenterFrameBase
     <
         TPort,
-        TPortModel,
         TPortPresenter
     >
         : PortPresenterBase
-        where TPort : PortFrameBase<TPort, TPortModel>
-        where TPortModel : PortModel
-        where TPortPresenter : PortPresenterFrameBase<TPort, TPortModel, TPortPresenter>
+        where TPort : Port<TPort>
+        where TPortPresenter : PortPresenterFrameBase<TPort, TPortPresenter>
     {
-        /// <summary>
-        /// Reference of the port model.
-        /// </summary>
-        protected TPortModel Model;
-
-
-        /// <summary>
-        /// Setup for the port presenter frame base class.
-        /// </summary>
-        public virtual TPortPresenter Setup(TPortModel model)
-        {
-            Model = model;
-            return null;
-        }
-
-
         /// <summary>
         /// Create a new port element.
         /// </summary>
+        /// <param name="model">The port model to set for.</param>
         /// <returns>A new port element.</returns>
-        public abstract TPort Create();
+        public abstract TPort Create(PortModel model);
     }
 }

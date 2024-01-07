@@ -1,14 +1,10 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class OptionEdgeCallback : EdgeCallbackFrameBase
-    <
-        OptionPort,
-        OptionPortModel
-    >
+    public class OptionEdgeCallback : EdgeCallbackFrameBase<OptionPort>
     {
         /// <inheritdoc />
-        public override void Setup(Edge<OptionPort, OptionPortModel> edge)
+        public override void Setup(Edge<OptionPort> edge)
         {
             Edge = edge;
         }

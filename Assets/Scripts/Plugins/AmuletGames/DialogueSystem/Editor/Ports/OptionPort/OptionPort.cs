@@ -3,14 +3,10 @@ using UnityEditor.Experimental.GraphView;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class OptionPort : PortFrameBase
-    <
-        OptionPort,
-        OptionPortModel
-    >
+    public class OptionPort : Port<OptionPort>
     {
         /// <inheritdoc />
-        public OptionPort(OptionPortModel model) : base(model)
+        public OptionPort(PortModel model) : base(model)
         {
         }
 

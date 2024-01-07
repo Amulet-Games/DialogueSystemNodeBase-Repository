@@ -8,20 +8,18 @@ namespace AG.DS
     public abstract class EdgeConnectorCallbackFrameBase
     <
         TPort,
-        TPortModel,
         TEdgeConnectorCallback,
         TNodeCreateConnectorWindow
     >
         : EdgeConnectorCallbackBase
-        where TPort : PortFrameBase<TPort, TPortModel>
-        where TPortModel : PortModel
-        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TPortModel, TNodeCreateConnectorWindow>
-        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TPortModel, TEdgeConnectorCallback, TNodeCreateConnectorWindow>
+        where TPort : Port<TPort>
+        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TNodeCreateConnectorWindow>
+        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TEdgeConnectorCallback, TNodeCreateConnectorWindow>
     {
         /// <summary>
         /// The list of edges that are going to be removed from the graph from the OnDrop callback.
         /// </summary>
-        List<Edge<TPort, TPortModel>> edgesToDelete;
+        List<Edge<TPort>> edgesToDelete;
 
 
         /// <summary>
@@ -77,7 +75,7 @@ namespace AG.DS
                 {
                     if (m_edge != edge)
                     {
-                        edgesToDelete.Add((Edge<TPort, TPortModel>)m_edge);
+                        edgesToDelete.Add((Edge<TPort>)m_edge);
                         ElementsToRemove.Add(m_edge);
                     }
                 }
@@ -86,7 +84,7 @@ namespace AG.DS
                 {
                     if (m_edge != edge)
                     {
-                        edgesToDelete.Add((Edge<TPort, TPortModel>)m_edge);
+                        edgesToDelete.Add((Edge<TPort>)m_edge);
                         ElementsToRemove.Add(m_edge);
                     }
                 }
@@ -119,13 +117,13 @@ namespace AG.DS
 
         /// <inheritdoc />
         public override void OnDropOutsidePort(Edge edge, Vector2 position)
-            => OnDropOutsidePort((Edge<TPort, TPortModel>)edge, position);
+            => OnDropOutsidePort((Edge<TPort>)edge, position);
 
 
         /// <summary>
         /// Read more: 
         /// <br><see cref="OnDropOutsidePort(Edge, Vector2)"/></br>
         /// </summary>
-        protected abstract void OnDropOutsidePort(Edge<TPort, TPortModel> edge, Vector2 position);
+        protected abstract void OnDropOutsidePort(Edge<TPort> edge, Vector2 position);
     }
 }

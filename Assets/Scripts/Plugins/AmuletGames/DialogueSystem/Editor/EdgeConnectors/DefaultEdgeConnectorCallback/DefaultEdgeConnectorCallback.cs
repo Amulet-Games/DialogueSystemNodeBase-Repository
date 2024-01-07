@@ -6,7 +6,6 @@ namespace AG.DS
     public class DefaultEdgeConnectorCallback : EdgeConnectorCallbackFrameBase
     <
         DefaultPort,
-        PortModel,
         DefaultEdgeConnectorCallback,
         NodeCreateDefaultConnectorWindow
     >
@@ -25,7 +24,7 @@ namespace AG.DS
 
         // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        protected override void OnDropOutsidePort(Edge<DefaultPort, PortModel> edge, Vector2 position)
+        protected override void OnDropOutsidePort(Edge<DefaultPort> edge, Vector2 position)
         {
             if (ConnectorPort.IsInput())
             {

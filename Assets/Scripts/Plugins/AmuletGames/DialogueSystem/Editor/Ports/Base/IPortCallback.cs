@@ -4,21 +4,21 @@ namespace AG.DS
     {
         /// <summary>
         /// Read more:
-        /// <see cref="PortCallbackFrameBase{TPort, TPortModel, TPortCallback}.OnPostConnect(EdgeBase)"/>
+        /// <see cref="PortCallbackFrameBase{TPort, TPortCallback}.OnPostConnect(EdgeBase)"/>
         /// </summary>
         void OnPostConnect(EdgeBase edge);
 
 
         /// <summary>
         /// Read more:
-        /// <see cref="PortCallbackFrameBase{TPort, TPortModel, TPortCallback}.OnPreDisconnect(EdgeBase)"/>
+        /// <see cref="PortCallbackFrameBase{TPort, TPortCallback}.OnPreDisconnect(EdgeBase)"/>
         /// </summary>
         void OnPreDisconnect(EdgeBase edge);
 
 
         /// <summary>
         /// Read more:
-        /// <see cref="PortCallbackFrameBase{TPort, TPortModel, TPortCallback}.OnPostConnectingEdgeDropOutside()"/>
+        /// <see cref="PortCallbackFrameBase{TPort, TPortCallback}.OnPostConnectingEdgeDropOutside()"/>
         /// </summary>
         void OnPostConnectingEdgeDropOutside();
     }

@@ -1,11 +1,11 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class DefaultEdgeObserver : EdgeObserverFrameBase<Edge<DefaultPort, PortModel>>
+    public class DefaultEdgeObserver : EdgeObserverFrameBase<Edge<DefaultPort>>
     {
         // ----------------------------- Register Events -----------------------------
         /// <inheritdoc />
-        public override void RegisterEvents(Edge<DefaultPort, PortModel> edge)
+        public override void RegisterEvents(Edge<DefaultPort> edge)
         {
             Edge = edge;
         }

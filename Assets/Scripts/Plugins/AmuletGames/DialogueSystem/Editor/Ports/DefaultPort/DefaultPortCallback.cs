@@ -4,7 +4,6 @@ namespace AG.DS
     public class DefaultPortCallback : PortCallbackFrameBase
     <
         DefaultPort,
-        PortModel,
         DefaultPortCallback
     >
     {

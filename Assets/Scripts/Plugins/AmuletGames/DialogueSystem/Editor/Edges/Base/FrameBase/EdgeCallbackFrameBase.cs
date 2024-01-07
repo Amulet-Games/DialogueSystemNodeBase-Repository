@@ -1,19 +1,14 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public abstract class EdgeCallbackFrameBase
-    <
-        TPort,
-        TPortModel
-    >
+    public abstract class EdgeCallbackFrameBase<TPort>
         : EdgeCallbackBase, IEdgeCallback
-        where TPort : PortFrameBase<TPort, TPortModel>
-        where TPortModel : PortModel
+        where TPort : Port<TPort>
     {
         /// <summary>
         /// Reference of the edge element.
         /// </summary>
-        public Edge<TPort, TPortModel> Edge;
+        public Edge<TPort> Edge;
 
 
         /// <summary>
@@ -21,7 +16,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
         /// <returns>The after setup edge callback frame base class.</returns>
-        public abstract void Setup(Edge<TPort, TPortModel> edge);
+        public abstract void Setup(Edge<TPort> edge);
 
 
         // ----------------------------- Callback -----------------------------

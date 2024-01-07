@@ -4,12 +4,11 @@ namespace AG.DS
     public class DefaultEdgeSerializer : EdgeSerializerFrameBase
     <
         DefaultPort,
-        PortModel,
         EdgeDataBase
     >
     {
         /// <inheritdoc />
-        public override void Save(Edge<DefaultPort, PortModel> edge, EdgeDataBase data)
+        public override void Save(Edge<DefaultPort> edge, EdgeDataBase data)
         {
             base.Save(edge, data);
 
