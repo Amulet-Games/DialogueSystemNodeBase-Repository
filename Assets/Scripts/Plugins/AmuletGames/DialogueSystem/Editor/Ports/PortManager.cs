@@ -37,7 +37,7 @@ namespace AG.DS
             string name
         )
         {
-            var detail = new PortModel
+            var model = new PortModel
             (
                 port: PortModel.Port.Default,
                 direction,
@@ -47,7 +47,7 @@ namespace AG.DS
             );
 
             return Create<DefaultPort, DefaultPortPresenter, DefaultPortCallback,
-                    DefaultEdgeConnectorCallback, NodeCreateDefaultConnectorWindow>(connectorWindow, detail);
+                    DefaultEdgeConnectorCallback, NodeCreateDefaultConnectorWindow>(connectorWindow, model);
         }
 
 
@@ -63,7 +63,7 @@ namespace AG.DS
             Direction direction
         )
         {
-            var detail = new PortModel
+            var model = new PortModel
             (
                 port: PortModel.Port.Option,
                 direction,
@@ -75,7 +75,7 @@ namespace AG.DS
             );
 
             return Create<OptionPort, OptionPortPresenter, OptionPortCallback,
-                    OptionEdgeConnectorCallback, NodeCreateOptionConnectorWindow>(connectorWindow, detail);
+                    OptionEdgeConnectorCallback, NodeCreateOptionConnectorWindow>(connectorWindow, model);
         }
 
 
@@ -84,7 +84,6 @@ namespace AG.DS
         /// </summary>
         /// 
         /// <typeparam name="TPort">Type port</typeparam>
-        /// <typeparam name="TPortModel">Type port model</typeparam>
         /// <typeparam name="TPortPresenter">Type port presenter</typeparam>
         /// <typeparam name="TEdgeConnectorCallback">Type connector callback</typeparam>
         /// <typeparam name="TNodeCreateConnectorWindow">Type node create connector window</typeparam>
