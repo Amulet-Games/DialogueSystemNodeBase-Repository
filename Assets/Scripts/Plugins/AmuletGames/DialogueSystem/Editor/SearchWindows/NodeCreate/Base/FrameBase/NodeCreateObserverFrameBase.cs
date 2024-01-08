@@ -97,57 +97,57 @@ namespace AG.DS
             switch (Node)
             {
                 case BooleanNode booleanNode:
-                    leftAlignmentPort = booleanNode.View.TrueOutputDefaultPort;
-                    rightAlignmentPort = booleanNode.View.InputDefaultPort;
-                    middleAlignmentPort = booleanNode.View.InputDefaultPort;
+                    leftAlignmentPort = booleanNode.View.TrueOutputPort;
+                    rightAlignmentPort = booleanNode.View.InputPort;
+                    middleAlignmentPort = booleanNode.View.InputPort;
                     break;
 
                 case DialogueNode dialogueNode:
-                    leftAlignmentPort = dialogueNode.View.OutputDefaultPort;
-                    rightAlignmentPort = dialogueNode.View.InputDefaultPort;
-                    middleAlignmentPort = dialogueNode.View.InputDefaultPort;
+                    leftAlignmentPort = dialogueNode.View.OutputPort;
+                    rightAlignmentPort = dialogueNode.View.InputPort;
+                    middleAlignmentPort = dialogueNode.View.InputPort;
                     break;
 
                 case EndNode endNode:
                     leftAlignmentPort = null;
-                    rightAlignmentPort = endNode.View.InputDefaultPort;
-                    middleAlignmentPort = endNode.View.InputDefaultPort;
+                    rightAlignmentPort = endNode.View.InputPort;
+                    middleAlignmentPort = endNode.View.InputPort;
                     break;
 
                 case EventNode eventNode:
-                    leftAlignmentPort = eventNode.View.OutputDefaultPort;
-                    rightAlignmentPort = eventNode.View.InputDefaultPort;
-                    middleAlignmentPort = eventNode.View.InputDefaultPort;
+                    leftAlignmentPort = eventNode.View.OutputPort;
+                    rightAlignmentPort = eventNode.View.InputPort;
+                    middleAlignmentPort = eventNode.View.InputPort;
                     break;
 
                 case OptionBranchNode optionBranchNode:
-                    leftAlignmentPort = optionBranchNode.View.OutputDefaultPort;
+                    leftAlignmentPort = optionBranchNode.View.OutputPort;
                     rightAlignmentPort = optionBranchNode.View.InputOptionPortCell.Port;
                     middleAlignmentPort = optionBranchNode.View.InputOptionPortCell.Port;
                     break;
 
                 case OptionRootNode optionRootNode:
                     leftAlignmentPort = optionRootNode.View.OutputOptionPortGroup.FirstPortCell.Port;
-                    rightAlignmentPort = optionRootNode.View.InputDefaultPort;
-                    middleAlignmentPort = optionRootNode.View.InputDefaultPort;
+                    rightAlignmentPort = optionRootNode.View.InputPort;
+                    middleAlignmentPort = optionRootNode.View.InputPort;
                     break;
 
                 case PreviewNode previewNode:
-                    leftAlignmentPort = previewNode.View.OutputDefaultPort;
-                    rightAlignmentPort = previewNode.View.InputDefaultPort;
-                    middleAlignmentPort = previewNode.View.InputDefaultPort;
+                    leftAlignmentPort = previewNode.View.OutputPort;
+                    rightAlignmentPort = previewNode.View.InputPort;
+                    middleAlignmentPort = previewNode.View.InputPort;
                     break;
 
                 case StartNode startNode:
-                    leftAlignmentPort = startNode.View.OutputDefaultPort;
+                    leftAlignmentPort = startNode.View.OutputPort;
                     rightAlignmentPort = null;
-                    middleAlignmentPort = startNode.View.OutputDefaultPort;
+                    middleAlignmentPort = startNode.View.OutputPort;
                     break;
 
                 case StoryNode storyNode:
-                    leftAlignmentPort = storyNode.View.OutputDefaultPort;
-                    rightAlignmentPort = storyNode.View.InputDefaultPort;
-                    middleAlignmentPort = storyNode.View.InputDefaultPort;
+                    leftAlignmentPort = storyNode.View.OutputPort;
+                    rightAlignmentPort = storyNode.View.InputPort;
+                    middleAlignmentPort = storyNode.View.InputPort;
                     break;
             }
 

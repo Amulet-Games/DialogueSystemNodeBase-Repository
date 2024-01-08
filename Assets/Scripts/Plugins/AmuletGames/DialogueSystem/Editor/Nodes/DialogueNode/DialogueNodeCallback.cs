@@ -23,11 +23,11 @@ namespace AG.DS
         {
             // Remove, disconnect ports
             {
-                graphViewer.Remove(port: View.InputDefaultPort);
-                graphViewer.Remove(port: View.OutputDefaultPort);
+                graphViewer.Remove(port: View.InputPort);
+                graphViewer.Remove(port: View.OutputPort);
 
-                View.InputDefaultPort.Disconnect(graphViewer);
-                View.OutputDefaultPort.Disconnect(graphViewer);
+                View.InputPort.Disconnect(graphViewer);
+                View.OutputPort.Disconnect(graphViewer);
             }
         }
 

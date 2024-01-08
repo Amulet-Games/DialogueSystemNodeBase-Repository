@@ -1,29 +1,29 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class OptionEdgeSerializer : EdgeSerializerFrameBase
-    <
-        OptionPort,
-        EdgeDataBase
-    >
-    {
-        /// <inheritdoc />
-        public override void Save(Edge<OptionPort> edge, EdgeDataBase data)
-        {
-            base.Save(edge, data);
+    //public class OptionEdgeSerializer : EdgeSerializerFrameBase
+    //<
+    //    OptionPort,
+    //    EdgeData
+    //>
+    //{
+    //    /// <inheritdoc />
+    //    public override void Save(Edge<OptionPort> edge, EdgeData data)
+    //    {
+    //        base.Save(edge, data);
 
-            SaveEdgeBaseValues();
+    //        SaveEdgeBaseValues();
 
-            SavePortType();
-        }
+    //        SavePortType();
+    //    }
 
 
-        /// <summary>
-        /// Save the port type.
-        /// </summary>
-        void SavePortType()
-        {
-            Data.Port = PortModel.Port.Option;
-        }
-    }
+    //    /// <summary>
+    //    /// Save the port type.
+    //    /// </summary>
+    //    void SavePortType()
+    //    {
+    //        Data.Port = PortModel.Port.Option;
+    //    }
+    //}
 }

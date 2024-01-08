@@ -9,7 +9,7 @@ namespace AG.DS
         /// <summary>
         /// The edges data cache.
         /// </summary>
-        public List<EdgeDataBase> EdgesData = new();
+        public List<EdgeData> EdgesData = new();
 
 
         /// <summary>

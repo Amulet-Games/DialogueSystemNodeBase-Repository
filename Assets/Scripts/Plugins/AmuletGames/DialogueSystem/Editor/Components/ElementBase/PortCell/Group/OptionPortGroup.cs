@@ -93,14 +93,14 @@ namespace AG.DS
         {
             data.FirstPortCellData = new OptionPortCellData
             {
-                OptionPortData = PortManager.Instance.Save(FirstPortCell.Port)
+                OptionPortData = PortManager.Instance.SaveOption(FirstPortCell.Port)
             };
 
             for (int i = 0; i < GroupCells.Count; i++)
             {
                 var cellData = new OptionPortCellData
                 {
-                    OptionPortData = PortManager.Instance.Save(GroupCells[i].PortCell.Port)
+                    OptionPortData = PortManager.Instance.SaveOption(GroupCells[i].PortCell.Port)
                 };
 
                 data.GroupCellsData.Add(cellData);

@@ -28,7 +28,7 @@ namespace AG.DS
         /// </summary>
         void CreatePortElements()
         {
-            View.InputDefaultPort = PortManager.Instance.CreateDefault
+            View.InputPort = PortManager.Instance.CreateDefault
             (
                 connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                 direction: Direction.Input,
@@ -36,7 +36,7 @@ namespace AG.DS
                 name: StringConfig.DefaultPort_Input_LabelText
             );
 
-            View.TrueOutputDefaultPort = PortManager.Instance.CreateDefault
+            View.TrueOutputPort = PortManager.Instance.CreateDefault
             (
                 connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                 direction: Direction.Output,
@@ -46,7 +46,7 @@ namespace AG.DS
 
             // False output port
             {
-                View.FalseOutputDefaultPort = PortManager.Instance.CreateDefault
+                View.FalseOutputPort = PortManager.Instance.CreateDefault
                 (
                     connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                     direction: Direction.Output,
@@ -54,12 +54,12 @@ namespace AG.DS
                     name: StringConfig.DefaultPort_False_LabelText
                 );
 
-                View.FalseOutputDefaultPort.AddToClassList(StyleConfig.BooleanNode_False_Output_Port);
+                View.FalseOutputPort.AddToClassList(StyleConfig.BooleanNode_False_Output_Port);
             }
             
-            Node.Add(View.InputDefaultPort);
-            Node.Add(View.TrueOutputDefaultPort);
-            Node.Add(View.FalseOutputDefaultPort);
+            Node.Add(View.InputPort);
+            Node.Add(View.TrueOutputPort);
+            Node.Add(View.FalseOutputPort);
         }
 
 

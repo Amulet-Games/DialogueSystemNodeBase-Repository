@@ -4,18 +4,16 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class NodeCreateConnectorObserver<TPort>
-        : NodeCreateObserverFrameBase
+    public class NodeCreateConnectorObserver : NodeCreateObserverFrameBase
     <
-        NodeCreateConnectorDetail<TPort>,
-        NodeCreateConnectorObserver<TPort>
+        NodeCreateConnectorDetail,
+        NodeCreateConnectorObserver
     >
-        where TPort : Port<TPort>
     {
         /// <inheritdoc />
-        public override NodeCreateConnectorObserver<TPort> Setup
+        public override NodeCreateConnectorObserver Setup
         (
-            NodeCreateConnectorDetail<TPort> detail,
+            NodeCreateConnectorDetail detail,
             GraphViewer graphViewer
         )
         {
@@ -66,7 +64,8 @@ namespace AG.DS
             var edge = EdgeManager.Instance.Connect
             (
                 output: !isInput ? port : YAxisReferencePort,
-                input: isInput ? port : YAxisReferencePort
+                input: isInput ? port : YAxisReferencePort,
+                styleSheet: Detail.ConnectorEdgeStyleSheet
             );
 
             GraphViewer.Add(edge);

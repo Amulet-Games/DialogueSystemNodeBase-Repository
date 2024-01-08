@@ -155,8 +155,9 @@ namespace AG.DS
                     // Try to find the input port that matches the data's input port GUID.
                     if (graphViewer.PortByPortGUID.TryGetValue(data.InputPortGUID, out PortBase input))
                     {
+                        /// TODO: Refactor the style sheet part.
                         graphViewer.Add(
-                            EdgeManager.Instance.Connect(output, input, data.Port)
+                            EdgeManager.Instance.Connect(output, input, data.styleSheets[0])
                         );
                     }
                 }

@@ -31,15 +31,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The input default port element.
+        /// The input port element.
         /// </summary>
-        public DefaultPort InputDefaultPort;
+        public PortBase InputPort;
 
 
         /// <summary>
-        /// The output default port element.
+        /// The output port element.
         /// </summary>
-        public DefaultPort OutputDefaultPort;
+        public PortBase OutputPort;
 
 
         /// <inheritdoc />

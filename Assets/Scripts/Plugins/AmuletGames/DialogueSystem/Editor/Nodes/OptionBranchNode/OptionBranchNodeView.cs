@@ -22,9 +22,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The output default port element.
+        /// The output port element.
         /// </summary>
-        public DefaultPort OutputDefaultPort;
+        public PortBase OutputPort;
 
 
         /// <inheritdoc />

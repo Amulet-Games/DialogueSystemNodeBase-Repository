@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_data:
     EdgesData:
-    - Port: 0
+    - styleSheets: []
     NodesData: []

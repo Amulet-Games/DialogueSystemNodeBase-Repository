@@ -11,13 +11,6 @@ namespace AG.DS
         /// </summary>
         public MessageProgressTypeEnumFieldView SecondLineTriggerTypeEnumContainer;
 
-
-        /// <summary>
-        /// Float container for the users to input the delta time duration that they want to wait
-        /// <br>to trigger the second line of dialogue.</br>
-        /// </summary>
-        //public FloatFieldView DurationFloatContainer;
-
         /// <summary>
         /// CSV GUID.
         /// </summary>
@@ -25,15 +18,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The input default port element.
+        /// The input port element.
         /// </summary>
-        public DefaultPort InputDefaultPort;
+        public PortBase InputPort;
 
 
         /// <summary>
-        /// The output default port element.
+        /// The output port element.
         /// </summary>
-        public DefaultPort OutputDefaultPort;
+        public PortBase OutputPort;
 
 
         /// <inheritdoc />

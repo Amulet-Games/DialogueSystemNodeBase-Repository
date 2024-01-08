@@ -1,22 +1,18 @@
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
     /// <inheritdoc />
-    public abstract class NodeCreateConnectorWindowFrameBase
-    <
-        TPort,
-        TNodeCreateConnectorWindow
-    >
+    public abstract class NodeCreateConnectorWindowFrameBase<TNodeCreateConnectorWindow>
         : NodeCreateWindowFrameBase
     <
-        NodeCreateConnectorCallback<TPort>,
-        NodeCreateConnectorDetail<TPort>,
-        NodeCreateConnectorWindowFrameBase<TPort, TNodeCreateConnectorWindow>
+        NodeCreateConnectorCallback,
+        NodeCreateConnectorDetail,
+        NodeCreateConnectorWindowFrameBase<TNodeCreateConnectorWindow>
     >
-        where TPort : Port<TPort>
-        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TNodeCreateConnectorWindow>
+        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TNodeCreateConnectorWindow>
     {
         /// <inheritdoc />
         protected override List<SearchTreeEntry> ToShowEntries => toShowEntries;
@@ -37,8 +33,8 @@ namespace AG.DS
         /// <returns>A new node create connector window.</returns>
         public virtual new TNodeCreateConnectorWindow Setup
         (
-            NodeCreateConnectorCallback<TPort> callback,
-            NodeCreateConnectorDetail<TPort> detail,
+            NodeCreateConnectorCallback callback,
+            NodeCreateConnectorDetail detail,
             GraphViewer graphViewer
         )
         {
@@ -53,11 +49,13 @@ namespace AG.DS
         /// </summary>
         /// <param name="horizontalAlignmentType">The horizontal align type to set for.</param>
         /// <param name="connectorPort">The connector port to set for. </param>
+        /// <param name="connectorEdgeStyleSheet">The connector edge style sheet to set for. </param>
         /// <param name="toShowEntries">The to show search tree entries to set for.</param>
         public void Open
         (
             HorizontalAlignmentType horizontalAlignmentType,
-            TPort connectorPort,
+            PortBase connectorPort,
+            StyleSheet connectorEdgeStyleSheet,
             List<SearchTreeEntry> toShowEntries
         )
         {
@@ -65,7 +63,8 @@ namespace AG.DS
             {
                 Detail.SetTypeHorizontalAlignment(value: horizontalAlignmentType);
                 Detail.SetPortConnector(value: connectorPort);
-
+                Detail.SetEdgeStyleSheet(value: connectorEdgeStyleSheet);
+                
                 this.toShowEntries = toShowEntries;
             }
 

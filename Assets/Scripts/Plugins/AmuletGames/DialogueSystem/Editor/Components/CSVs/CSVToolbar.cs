@@ -7,14 +7,14 @@ namespace AG.DS
 {
     public class CSVToolbar
     {
-        [MenuItem("Custom Tools/Dialogue/Save to CSV")]
+        [MenuItem("Custom Tools/Dialogue/SaveOption to CSV")]
         public static void SaveToCSV()
         {
             SaveCSV saveCSV = new SaveCSV();
             saveCSV.Save();
 
             EditorApplication.Beep();
-            Debug.Log("<color=green> Save CSV File successfully! </color>");
+            Debug.Log("<color=green> SaveOption CSV File successfully! </color>");
         }
 
         [MenuItem("Custom Tools/Dialogue/Load from CSV")]

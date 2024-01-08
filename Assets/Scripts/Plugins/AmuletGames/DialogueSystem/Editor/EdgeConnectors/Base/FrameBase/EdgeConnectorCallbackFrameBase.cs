@@ -1,31 +1,36 @@
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
     /// <inheritdoc />
     public abstract class EdgeConnectorCallbackFrameBase
     <
-        TPort,
         TEdgeConnectorCallback,
         TNodeCreateConnectorWindow
     >
         : EdgeConnectorCallbackBase
-        where TPort : Port<TPort>
-        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TPort, TNodeCreateConnectorWindow>
-        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TEdgeConnectorCallback, TNodeCreateConnectorWindow>
+        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TNodeCreateConnectorWindow>
+        where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TEdgeConnectorCallback, TNodeCreateConnectorWindow>
     {
         /// <summary>
         /// The list of edges that are going to be removed from the graph from the OnDrop callback.
         /// </summary>
-        List<Edge<TPort>> edgesToDelete;
+        List<EdgeBase> edgesToDelete;
 
 
         /// <summary>
-        /// Reference of the connector's port element.
+        /// Reference of the connector port element.
         /// </summary>
-        protected TPort ConnectorPort;
+        protected PortBase ConnectorPort;
+
+
+        /// <summary>
+        /// Reference of the connector edge's style sheet.
+        /// </summary>
+        protected StyleSheet ConnectorEdgeStyleSheet;
 
 
         /// <summary>
@@ -37,14 +42,18 @@ namespace AG.DS
         /// <summary>
         /// Setup for the edge connector callback base class.
         /// </summary>
+        /// <param name="connectorPort">The connector port to set for.</param>
+        /// <param name="connectorEdgeStyleSheet">The connector edge style sheet to set for.</param>
         /// <param name="nodeCreateConnectorWindow">The node create connector window to set for.</param>
         public virtual TEdgeConnectorCallback Setup
         (
-            TPort connectorPort,
+            PortBase connectorPort,
+            StyleSheet connectorEdgeStyleSheet,
             TNodeCreateConnectorWindow nodeCreateConnectorWindow
         )
         {
             ConnectorPort = connectorPort;
+            ConnectorEdgeStyleSheet = connectorEdgeStyleSheet;
             NodeCreateConnectorWindow = nodeCreateConnectorWindow;
 
             EdgesToCreate = new();
@@ -75,7 +84,7 @@ namespace AG.DS
                 {
                     if (m_edge != edge)
                     {
-                        edgesToDelete.Add((Edge<TPort>)m_edge);
+                        edgesToDelete.Add((EdgeBase)m_edge);
                         ElementsToRemove.Add(m_edge);
                     }
                 }
@@ -84,7 +93,7 @@ namespace AG.DS
                 {
                     if (m_edge != edge)
                     {
-                        edgesToDelete.Add((Edge<TPort>)m_edge);
+                        edgesToDelete.Add((EdgeBase)m_edge);
                         ElementsToRemove.Add(m_edge);
                     }
                 }
@@ -101,11 +110,12 @@ namespace AG.DS
                     }
                 }
             }
-            
+
             var newEdge = EdgeManager.Instance.Connect
             (
-                output: edge.output,
-                input: edge.input
+                output: edge.output as PortBase,
+                input: edge.input as PortBase,
+                styleSheet: ConnectorEdgeStyleSheet
             );
 
             EdgesToCreate.Add(newEdge);
@@ -116,14 +126,13 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override void OnDropOutsidePort(Edge edge, Vector2 position)
-            => OnDropOutsidePort((Edge<TPort>)edge, position);
+        public override void OnDropOutsidePort(Edge edge, Vector2 position) => OnDropOutsidePort((EdgeBase)edge, position);
 
 
         /// <summary>
         /// Read more: 
         /// <br><see cref="OnDropOutsidePort(Edge, Vector2)"/></br>
         /// </summary>
-        protected abstract void OnDropOutsidePort(Edge<TPort> edge, Vector2 position);
+        protected abstract void OnDropOutsidePort(EdgeBase edge, Vector2 position);
     }
 }

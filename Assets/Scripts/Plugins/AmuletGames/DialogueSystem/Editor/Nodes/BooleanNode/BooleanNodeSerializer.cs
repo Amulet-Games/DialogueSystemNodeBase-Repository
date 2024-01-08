@@ -29,9 +29,9 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            Data.InputPortData = PortManager.Instance.Save(View.InputDefaultPort);
-            Data.TrueOutputPortData =  PortManager.Instance.Save(View.TrueOutputDefaultPort);
-            Data.FalseOutputPortData = PortManager.Instance.Save(View.FalseOutputDefaultPort);
+            Data.InputPortData = PortManager.Instance.Save(View.InputPort);
+            Data.TrueOutputPortData =  PortManager.Instance.Save(View.TrueOutputPort);
+            Data.FalseOutputPortData = PortManager.Instance.Save(View.FalseOutputPort);
         }
 
 
@@ -64,9 +64,9 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputDefaultPort, Data.InputPortData);
-            PortManager.Instance.Load(View.TrueOutputDefaultPort, Data.TrueOutputPortData);
-            PortManager.Instance.Load(View.FalseOutputDefaultPort, Data.FalseOutputPortData);
+            PortManager.Instance.Load(View.InputPort, Data.InputPortData);
+            PortManager.Instance.Load(View.TrueOutputPort, Data.TrueOutputPortData);
+            PortManager.Instance.Load(View.FalseOutputPort, Data.FalseOutputPortData);
         }
 
 

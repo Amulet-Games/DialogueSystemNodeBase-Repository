@@ -73,7 +73,7 @@ namespace AG.DS
         protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
             var optionInput = View.InputOptionPortCell.Port;
-            var defaultOutput = View.OutputDefaultPort;
+            var defaultOutput = View.OutputPort;
 
             // Disconnect Option Input
             evt.menu.AppendAction

@@ -28,7 +28,7 @@ namespace AG.DS
         /// </summary>
         void CreatePortElements()
         {
-            View.InputDefaultPort = PortManager.Instance.CreateDefault
+            View.InputPort = PortManager.Instance.CreateDefault
             (
                 connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                 direction: Direction.Input,
@@ -42,7 +42,7 @@ namespace AG.DS
                 graphViewer: Node.GraphViewer
             );
 
-            Node.Add(View.InputDefaultPort);
+            Node.Add(View.InputPort);
             Node.OutputContainer.Add(View.OutputOptionPortGroup);
         }
 

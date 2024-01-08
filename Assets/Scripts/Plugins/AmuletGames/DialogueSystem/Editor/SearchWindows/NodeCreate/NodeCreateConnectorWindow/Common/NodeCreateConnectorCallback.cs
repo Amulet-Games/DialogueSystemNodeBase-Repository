@@ -5,14 +5,13 @@ using UnityEngine.UIElements;
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class NodeCreateConnectorCallback<TPort>
+    public class NodeCreateConnectorCallback
         : NodeCreateCallbackFrameBase
     <
-        NodeCreateConnectorCallback<TPort>,
-        NodeCreateConnectorDetail<TPort>,
-        NodeCreateConnectorObserver<TPort>
+        NodeCreateConnectorCallback,
+        NodeCreateConnectorDetail,
+        NodeCreateConnectorObserver
     >
-        where TPort : Port<TPort>
     {
         /// <summary>
         /// The direction vector from mouse screen position to window center position.
@@ -33,12 +32,12 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override NodeCreateConnectorCallback<TPort> Setup
+        public override NodeCreateConnectorCallback Setup
         (
             GraphViewer graphViewer,
             LanguageHandler languageHandler,
             DialogueSystemWindow dialogueSystemWindow,
-            NodeCreateConnectorObserver<TPort> observer
+            NodeCreateConnectorObserver observer
         )
         {
             base.Setup(graphViewer, languageHandler, dialogueSystemWindow, observer);

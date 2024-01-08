@@ -1,10 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
     [Serializable]
-    public class EdgeDataBase
+    public class EdgeData
     {
         /// <summary>
         /// The edge's input port GUID value.
@@ -21,6 +23,15 @@ namespace AG.DS
         /// <summary>
         /// The edge's port type value.
         /// </summary>
-        [SerializeField] public PortModel.Port Port;
+        [SerializeField] public List<StyleSheet> styleSheets;
+
+
+        /// <summary>
+        /// Constructor of the edge data class.
+        /// </summary>
+        public EdgeData()
+        {
+            styleSheets = new();
+        }
     }
 }

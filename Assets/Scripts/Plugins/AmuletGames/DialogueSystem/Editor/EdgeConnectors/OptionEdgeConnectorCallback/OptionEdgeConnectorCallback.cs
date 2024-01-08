@@ -1,11 +1,11 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
     /// <inheritdoc />
     public class OptionEdgeConnectorCallback : EdgeConnectorCallbackFrameBase
     <
-        OptionPort,
         OptionEdgeConnectorCallback,
         NodeCreateOptionConnectorWindow
     >
@@ -13,47 +13,36 @@ namespace AG.DS
         /// <inheritdoc />
         public override OptionEdgeConnectorCallback Setup
         (
-            OptionPort connectorPort,
+            PortBase connectorPort,
+            StyleSheet connectorEdgeStyleSheet,
             NodeCreateOptionConnectorWindow connectorWindow
         )
         {
-            base.Setup(connectorPort, connectorWindow);
+            base.Setup(connectorPort, connectorEdgeStyleSheet, connectorWindow);
             return this;
         }
 
 
         // ----------------------------- Callback -----------------------------
         /// <inheritdoc />
-        protected override void OnDropOutsidePort(Edge<OptionPort> edge, Vector2 position)
+        protected override void OnDropOutsidePort(EdgeBase edge, Vector2 position)
         {
-            if (ConnectorPort.IsInput())
-            {
-                // If the edge that user dropped is from a input port.
-                {
-                    NodeCreateConnectorWindow.Open
-                    (
-                        horizontalAlignmentType: HorizontalAlignmentType.LEFT,
+            var isDropFromInput = ConnectorPort.IsInput();
+            var horizontalAlignmentType = isDropFromInput ? HorizontalAlignmentType.LEFT : HorizontalAlignmentType.RIGHT;
+            var toShowEntries = isDropFromInput
+                ? NodeCreateEntryProvider.OptionChannelInputEntries
+                : NodeCreateEntryProvider.OptionChannelOutputEntries;
 
-                        connectorPort: ConnectorPort,
+            NodeCreateConnectorWindow.Open
+            (
+                horizontalAlignmentType: horizontalAlignmentType,
 
-                        toShowEntries: NodeCreateEntryProvider.OptionChannelInputEntries
-                    );
-                }
-            }
-            else
-            {
-                // If the edge that user dropped is from a output port.
-                {
-                    NodeCreateConnectorWindow.Open
-                    (
-                        horizontalAlignmentType: HorizontalAlignmentType.RIGHT,
+                connectorPort: ConnectorPort,
 
-                        connectorPort: ConnectorPort,
+                connectorEdgeStyleSheet: ConnectorEdgeStyleSheet,
 
-                        toShowEntries: NodeCreateEntryProvider.OptionChannelOutputEntries
-                    );
-                }
-            }
+                toShowEntries: toShowEntries
+            );
 
             ConnectorPort.Callback.OnPostConnectingEdgeDropOutside();
         }

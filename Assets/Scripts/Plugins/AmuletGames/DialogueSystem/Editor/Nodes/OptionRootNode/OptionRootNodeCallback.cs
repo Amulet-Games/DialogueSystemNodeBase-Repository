@@ -21,14 +21,14 @@ namespace AG.DS
         {
             // Remove, disconnect ports
             {
-                graphViewer.Remove(port: View.InputDefaultPort);
+                graphViewer.Remove(port: View.InputPort);
 
                 for (int i = 0; i < View.OutputOptionPortGroup.GroupCells.Count; i++)
                 {
                     graphViewer.Remove(port: View.OutputOptionPortGroup.GroupCells[i].PortCell.Port);
                 }
 
-                View.InputDefaultPort.Disconnect(graphViewer);
+                View.InputPort.Disconnect(graphViewer);
                 View.OutputOptionPortGroup.DisconnectAll();
             }
 

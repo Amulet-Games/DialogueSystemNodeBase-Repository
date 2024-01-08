@@ -34,7 +34,7 @@ namespace AG.DS
                 direction: Direction.Input
             );
 
-            View.OutputDefaultPort = PortManager.Instance.CreateDefault
+            View.OutputPort = PortManager.Instance.CreateDefault
             (
                 connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                 direction: Direction.Output,
@@ -43,7 +43,7 @@ namespace AG.DS
             );
 
             Node.Add(View.InputOptionPortCell);
-            Node.Add(View.OutputDefaultPort);
+            Node.Add(View.OutputPort);
         }
 
 

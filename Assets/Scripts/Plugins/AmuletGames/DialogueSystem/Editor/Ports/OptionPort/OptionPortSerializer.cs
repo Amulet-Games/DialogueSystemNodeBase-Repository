@@ -1,15 +1,11 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class OptionPortSerializer : PortSerializerFrameBase
-    <
-        OptionPort,
-        OptionPortData
-    >
+    public class OptionPortSerializer : PortSerializerFrameBase<OptionPortData>
     {
         // ----------------------------- Save -----------------------------
         /// <inheritdoc />
-        public override void Save(OptionPort port, OptionPortData data)
+        public override void Save(PortBase port, OptionPortData data)
         {
             base.Save(port, data);
 
@@ -30,7 +26,7 @@ namespace AG.DS
 
         // ----------------------------- Load -----------------------------
         /// <inheritdoc />
-        public override void Load(OptionPort port, OptionPortData data)
+        public override void Load(PortBase port, OptionPortData data)
         {
             base.Load(port, data);
 

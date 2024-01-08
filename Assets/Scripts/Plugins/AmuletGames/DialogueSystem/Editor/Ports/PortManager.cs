@@ -1,4 +1,6 @@
 using UnityEditor.Experimental.GraphView;
+using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEditor.Experimental.GraphView.Port;
 
 namespace AG.DS
@@ -29,7 +31,7 @@ namespace AG.DS
         /// <param name="capacity">The capacity to set for.</param>
         /// <param name="name">The name to set for.</param>
         /// <returns>A new default port element.</returns>
-        public DefaultPort CreateDefault
+        public PortBase CreateDefault
         (
             NodeCreateDefaultConnectorWindow connectorWindow,
             Direction direction,
@@ -37,7 +39,7 @@ namespace AG.DS
             string name
         )
         {
-            var model = new PortModel
+            var detail = new PortModel
             (
                 port: PortModel.Port.Default,
                 direction,
@@ -46,8 +48,12 @@ namespace AG.DS
                 PortConfig.DefaultPortColor
             );
 
-            return Create<DefaultPort, DefaultPortPresenter, DefaultPortCallback,
-                    DefaultEdgeConnectorCallback, NodeCreateDefaultConnectorWindow>(connectorWindow, model);
+            return Create<DefaultEdgeConnectorCallback, NodeCreateDefaultConnectorWindow>
+            (
+                ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle,
+                connectorWindow,
+                detail
+            );
         }
 
 
@@ -57,7 +63,7 @@ namespace AG.DS
         /// <param name="connectorWindow">The connector window to set for.</param>
         /// <param name="direction">The direction to set for.</param>
         /// <returns>A new option port element.</returns>
-        public OptionPort CreateOption
+        public PortBase CreateOption
         (
             NodeCreateOptionConnectorWindow connectorWindow,
             Direction direction
@@ -74,8 +80,12 @@ namespace AG.DS
                 color: PortConfig.OptionPortColor
             );
 
-            return Create<OptionPort, OptionPortPresenter, OptionPortCallback,
-                    OptionEdgeConnectorCallback, NodeCreateOptionConnectorWindow>(connectorWindow, model);
+            return Create<OptionEdgeConnectorCallback, NodeCreateOptionConnectorWindow>
+            (
+                ConfigResourcesManager.StyleSheetConfig.OptionEdgeStyle,
+                connectorWindow,
+                model
+            );
         }
 
 
@@ -83,39 +93,38 @@ namespace AG.DS
         /// Method for creating a new port element.
         /// </summary>
         /// 
-        /// <typeparam name="TPort">Type port</typeparam>
-        /// <typeparam name="TPortPresenter">Type port presenter</typeparam>
         /// <typeparam name="TEdgeConnectorCallback">Type connector callback</typeparam>
         /// <typeparam name="TNodeCreateConnectorWindow">Type node create connector window</typeparam>
         /// 
+        /// <param name="connectorEdgeStyleSheet">The connector edge style sheet to set for.</param>
         /// <param name="connectorWindow">The connector window to set for.</param>
         /// <param name="model">The port model to set for.</param>
         /// 
         /// <returns>A port element.</returns>
-        TPort Create
+        PortBase Create
         <
-            TPort,
-            TPortPresenter,
-            TPortCallback,
             TEdgeConnectorCallback,
             TNodeCreateConnectorWindow
         >
         (
+            StyleSheet connectorEdgeStyleSheet,
             TNodeCreateConnectorWindow connectorWindow,
             PortModel model
         )
-            where TPort : Port<TPort>
-            where TPortPresenter: PortPresenterFrameBase<TPort, TPortPresenter>, new()
-            where TPortCallback: PortCallbackFrameBase<TPort, TPortCallback>, new()
-            where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TPort, TEdgeConnectorCallback, TNodeCreateConnectorWindow>, new()
-            where TNodeCreateConnectorWindow: NodeCreateConnectorWindowFrameBase<TPort, TNodeCreateConnectorWindow>
+            where TEdgeConnectorCallback : EdgeConnectorCallbackFrameBase<TEdgeConnectorCallback, TNodeCreateConnectorWindow>, new()
+            where TNodeCreateConnectorWindow: NodeCreateConnectorWindowFrameBase<TNodeCreateConnectorWindow>
         {
-            TPort port = new TPortPresenter().Create(model);
-            TPortCallback callback = new TPortCallback().Setup(port);
+            var port = new PortPresenter().Create(model);
+            var callback = new PortCallback().Setup(port);
 
-            var edgeConnector = new EdgeConnector<Edge<TPort>>
+            var edgeConnector = new EdgeConnector<EdgeBase>
             (
-                listener: new TEdgeConnectorCallback().Setup(port, connectorWindow)
+                listener: new TEdgeConnectorCallback().Setup
+                (
+                    connectorPort: port,
+                    connectorEdgeStyleSheet: connectorEdgeStyleSheet,
+                    connectorWindow
+                )
             );
 
             port.Setup(edgeConnector, callback);
@@ -129,8 +138,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="port">The port element to set for.</param>
         /// <returns>A new port data.</returns>
-        public PortData Save(DefaultPort port)
-            => Save<DefaultPort, DefaultPortSerializer, PortData>(port);
+        public PortData Save(PortBase port) => Save<DefaultPortSerializer, PortData>(port);
 
 
         /// <summary>
@@ -138,27 +146,24 @@ namespace AG.DS
         /// </summary>
         /// <param name="port">The port element to set for.</param>
         /// <returns>A new port data.</returns>
-        public OptionPortData Save(OptionPort port)
-            => Save<OptionPort, OptionPortSerializer, OptionPortData>(port);
+        public OptionPortData SaveOption(PortBase port) => Save<OptionPortSerializer, OptionPortData>(port);
 
 
         /// <summary>
         /// Save the port element values.
         /// </summary>
         /// 
-        /// <typeparam name="TPort">Type port</typeparam>
         /// <typeparam name="TPortSerializer">Type port serializer</typeparam>
         /// <typeparam name="TPortData">Type port data</typeparam>
         /// 
         /// <param name="port">THe port element to set for.</param>
         /// 
         /// <returns>A new port data.</returns>
-        TPortData Save<TPort, TPortSerializer, TPortData>
+        TPortData Save<TPortSerializer, TPortData>
         (
-            TPort port
+            PortBase port
         )
-            where TPort: PortBase
-            where TPortSerializer : PortSerializerFrameBase<TPort, TPortData>, new()
+            where TPortSerializer : PortSerializerFrameBase<TPortData>, new()
             where TPortData : PortData, new()
         {
             TPortData data = new();
@@ -174,8 +179,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="port">The port element to set for.</param>
         /// <param name="data">The port data to set for.</param>
-        public void Load(DefaultPort port, PortData data)
-            => Load<DefaultPort , DefaultPortSerializer, PortData>(port, data);
+        public void Load(PortBase port, PortData data) => Load<DefaultPortSerializer, PortData>(port, data);
 
 
         /// <summary>
@@ -183,27 +187,24 @@ namespace AG.DS
         /// </summary>
         /// <param name="port">The port element to set for.</param>
         /// <param name="data">The port data to set for.</param>
-        public void Load(OptionPort port, OptionPortData data)
-            => Load<OptionPort, OptionPortSerializer, OptionPortData>(port, data);
+        public void Load(PortBase port, OptionPortData data) => Load<OptionPortSerializer, OptionPortData>(port, data);
 
 
         /// <summary>
         /// Load the port element values.
         /// </summary>
         /// 
-        /// <typeparam name="TPort">Type port</typeparam>
         /// <typeparam name="TPortSerializer">Type port serializer</typeparam>
         /// <typeparam name="TPortData">Type port data</typeparam>
         /// 
-        /// <param name="port">THe port element to set for.</param>
-        /// <param name="data">THe port data to set for.</param>
-        void Load<TPort, TPortSerializer, TPortData>
+        /// <param name="port">The port element to set for.</param>
+        /// <param name="data">The port data to set for.</param>
+        void Load<TPortSerializer, TPortData>
         (
-            TPort port,
+            PortBase port,
             TPortData data
         )
-            where TPort : PortBase
-            where TPortSerializer : PortSerializerFrameBase<TPort, TPortData>, new()
+            where TPortSerializer : PortSerializerFrameBase<TPortData>, new()
             where TPortData : PortData
         {
             new TPortSerializer().Load(port, data);

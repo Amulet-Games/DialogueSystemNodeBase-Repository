@@ -1,17 +1,13 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class NodeCreateDefaultConnectorWindow : NodeCreateConnectorWindowFrameBase
-    <
-        DefaultPort,
-        NodeCreateDefaultConnectorWindow
-    >
+    public class NodeCreateDefaultConnectorWindow : NodeCreateConnectorWindowFrameBase<NodeCreateDefaultConnectorWindow>
     {
         /// <inheritdoc />
         public override NodeCreateDefaultConnectorWindow Setup
         (
-            NodeCreateConnectorCallback<DefaultPort> callback,
-            NodeCreateConnectorDetail<DefaultPort> detail,
+            NodeCreateConnectorCallback callback,
+            NodeCreateConnectorDetail detail,
             GraphViewer graphViewer
         )
         {

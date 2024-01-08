@@ -16,9 +16,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The input default port element.
+        /// The input port element.
         /// </summary>
-        public DefaultPort InputDefaultPort;
+        public PortBase InputPort;
 
 
         /// <summary>

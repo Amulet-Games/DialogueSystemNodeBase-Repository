@@ -22,15 +22,15 @@
 
 
         /// <summary>
-        /// The input default port of the node.
+        /// The input port of the node.
         /// </summary>
-        public DefaultPort InputDefaultPort;
+        public PortBase InputPort;
 
 
         /// <summary>
-        /// The output default port of the node.
+        /// The output port of the node.
         /// </summary>
-        public DefaultPort OutputDefaultPort;
+        public PortBase OutputPort;
 
 
         /// <inheritdoc />

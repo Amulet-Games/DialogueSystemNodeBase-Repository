@@ -72,9 +72,9 @@ namespace AG.DS
         /// <inheritdoc />
         protected override void AddContextualMenuItems(ContextualMenuPopulateEvent evt)
         {
-            var defaultInput = View.InputDefaultPort;
-            var defaultTrueOutput = View.TrueOutputDefaultPort;
-            var defaultFalseOutput = View.FalseOutputDefaultPort;
+            var defaultInput = View.InputPort;
+            var defaultTrueOutput = View.TrueOutputPort;
+            var defaultFalseOutput = View.FalseOutputPort;
 
             // Disconnect Input
             evt.menu.AppendAction

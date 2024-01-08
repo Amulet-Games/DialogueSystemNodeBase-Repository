@@ -40,6 +40,9 @@ namespace AG.DS
         public string Name { get; private set; }
 
 
+        /// <summary>
+        /// The color of the port.
+        /// </summary>
         public Color Color { get; private set; }
 
 

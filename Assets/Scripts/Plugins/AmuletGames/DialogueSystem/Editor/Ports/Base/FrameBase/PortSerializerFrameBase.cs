@@ -1,19 +1,13 @@
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class PortSerializerFrameBase
-    <
-        TPort,
-        TPortData
-    >
-        : PortSerializerBase
-        where TPort : PortBase
+    public class PortSerializerFrameBase<TPortData> : PortSerializerBase
         where TPortData : PortData
     {
         /// <summary>
         /// Reference of the port element.
         /// </summary>
-        protected TPort Port;
+        protected PortBase Port;
 
 
         /// <summary>
@@ -28,7 +22,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="port">The port element to set for.</param>
         /// <param name="data">The port data to set for.</param>
-        public virtual void Save(TPort port, TPortData data)
+        public virtual void Save(PortBase port, TPortData data)
         {
             Port = port;
             Data = data;
@@ -50,7 +44,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="port">The port element to set for.</param>
         /// <param name="data">The port data to set for.</param>
-        public virtual void Load(TPort port, TPortData data)
+        public virtual void Load(PortBase port, TPortData data)
         {
             Port = port;
             Data = data;

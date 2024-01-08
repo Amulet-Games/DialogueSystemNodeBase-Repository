@@ -1,22 +1,34 @@
+using UnityEngine.UIElements;
+
 namespace AG.DS
 {
     /// <inheritdoc />
-    public class NodeCreateConnectorDetail<TPort>
-        : NodeCreateDetailBase
-        where TPort : Port<TPort>
+    public class NodeCreateConnectorDetail : NodeCreateDetailBase
     {
         /// <summary>
-        /// Reference of the connector port.
-        /// <br>If the node is created through the node create request window, the field's value will be null.</br>
+        /// The model's connector port.
         /// </summary>
-        public TPort ConnectorPort { get; private set; }
+        public PortBase ConnectorPort { get; private set; }
+
+
+        /// <summary>
+        /// The model's connector edge style sheet.</param>
+        /// </summary>
+        public StyleSheet ConnectorEdgeStyleSheet { get; private set; }
 
 
         // ----------------------------- Service -----------------------------
         /// <summary>
         /// Set a new value to the connector port.
         /// </summary>
-        /// <param name="value">The connector port to set for.</param>
-        public void SetPortConnector(TPort value) => ConnectorPort = value;
+        /// <param name="value">The new value to set for.</param>
+        public void SetPortConnector(PortBase value) => ConnectorPort = value;
+
+
+        /// <summary>
+        /// Set a new value to the connector edge style sheet.
+        /// </summary>
+        /// <param name="value">The new value to set for.</param>
+        public void SetEdgeStyleSheet(StyleSheet value) => ConnectorEdgeStyleSheet = value;
     }
 }

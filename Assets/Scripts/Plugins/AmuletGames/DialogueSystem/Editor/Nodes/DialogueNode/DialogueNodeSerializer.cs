@@ -31,8 +31,8 @@
         /// </summary>
         void SavePorts()
         {
-            Data.InputPortData = PortManager.Instance.Save(View.InputDefaultPort);
-            Data.OutputPortData = PortManager.Instance.Save(View.OutputDefaultPort);
+            Data.InputPortData = PortManager.Instance.Save(View.InputPort);
+            Data.OutputPortData = PortManager.Instance.Save(View.OutputPort);
         }
 
 
@@ -77,8 +77,8 @@
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputDefaultPort, Data.InputPortData);
-            PortManager.Instance.Load(View.OutputDefaultPort, Data.OutputPortData);
+            PortManager.Instance.Load(View.InputPort, Data.InputPortData);
+            PortManager.Instance.Load(View.OutputPort, Data.OutputPortData);
         }
 
 
