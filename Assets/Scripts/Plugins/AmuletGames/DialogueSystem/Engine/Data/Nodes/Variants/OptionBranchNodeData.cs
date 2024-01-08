@@ -8,9 +8,9 @@ namespace AG.DS
     public class OptionBranchNodeData : NodeDataBase
     {
         /// <summary>
-        /// The node's input option port data.
+        /// The node's input option port cell data.
         /// </summary>
-        [SerializeField] public OptionPortData InputOptionPortData;
+        [SerializeField] public OptionPortCellData InputOptionPortCellData;
 
 
         /// <summary>
@@ -30,6 +30,8 @@ namespace AG.DS
         /// </summary>
         public OptionBranchNodeData()
         {
+            InputOptionPortCellData = new();
+            OutputPortData = new();
             BranchTitleText = new();
         }
     }

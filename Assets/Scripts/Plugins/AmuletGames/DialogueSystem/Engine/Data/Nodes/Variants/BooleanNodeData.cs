@@ -36,6 +36,9 @@ namespace AG.DS
         /// </summary>
         public BooleanNodeData()
         {
+            InputPortData = new();
+            TrueOutputPortData = new();
+            FalseOutputPortData = new();
             ConditionModifierGroupData = new();
         }
     }

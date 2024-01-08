@@ -7,17 +7,14 @@ namespace AG.DS
     public class OptionPortCellData
     {
         /// <summary>
-        /// The cell's option port data.
+        /// The cell's port GUID value.
         /// </summary>
-        [SerializeField] public OptionPortData OptionPortData;
+        [SerializeField] public Guid PortGuid;
 
 
         /// <summary>
-        /// Constructor of the option port cell data class.
+        /// The cell's port name value.
         /// </summary>
-        public OptionPortCellData()
-        {
-            OptionPortData = new();
-        }
+        [SerializeField] public string PortName;
     }
 }

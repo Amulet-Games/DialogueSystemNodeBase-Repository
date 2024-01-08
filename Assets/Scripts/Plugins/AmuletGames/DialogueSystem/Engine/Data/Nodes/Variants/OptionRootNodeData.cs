@@ -14,12 +14,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The node's output port data.
-        /// </summary>
-        [SerializeField] public OptionPortData OutputOptionPortData;
-
-
-        /// <summary>
         /// The node's output option port group data.
         /// </summary>
         [SerializeField] public OptionPortGroupData OutputOptionPortGroupData;
@@ -36,6 +30,7 @@ namespace AG.DS
         /// </summary>
         public OptionRootNodeData()
         {
+            InputPortData = new();
             OutputOptionPortGroupData = new();
             RootTitleText = new();
         }

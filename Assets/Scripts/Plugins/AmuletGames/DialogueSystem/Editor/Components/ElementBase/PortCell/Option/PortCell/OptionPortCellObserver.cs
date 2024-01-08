@@ -41,6 +41,32 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Register MouseDownEvent to the cell's port connecting edge.
+        /// </summary>
+        /// <param name="edge"></param>
+        void RegisterConnectingEdgeMouseDownEvent(EdgeBase edge)
+        {
+            edge.RegisterCallback<MouseMoveEvent>(
+                evt =>
+                {
+                    if (edge.output == null && edge.Output != null)
+                    {
+                        (portCell.Port.IsInput() ? portCell.OpponentCell : portCell).OpponentCell = null;
+
+                        edge.Output = null;
+                    }
+                    else if (edge.input == null && edge.Input != null)
+                    {
+                        (portCell.Port.IsInput() ? portCell : portCell.OpponentCell).OpponentCell = null;
+
+                        edge.Input = null;
+                    }
+                }
+            );
+        }
+
+
+        /// <summary>
         /// Register PreDisconnectEvent to the cell's port.
         /// </summary>
         void RegisterPortPreDisconnectEvent() => portCell.Port.PreDisconnectEvent += OptionPortPreDisconnectEvent;
@@ -63,23 +89,7 @@ namespace AG.DS
             portCell.OpponentCell = (OptionPortCell)(portCell.Port.IsInput() ? edge.output : edge.input).parent;
             portCell.OpponentCell.Index = portCell.Index;
 
-            edge.RegisterCallback<MouseMoveEvent>(
-                evt =>
-                {
-                    if (edge.output == null && edge.Output != null)
-                    {
-                        (portCell.Port.IsInput() ? portCell.OpponentCell : portCell).OpponentCell = null;
-
-                        edge.Output = null;
-                    }
-                    else if (edge.input == null && edge.Input != null)
-                    {
-                        (portCell.Port.IsInput() ? portCell : portCell.OpponentCell).OpponentCell = null;
-
-                        edge.Input = null;
-                    }
-                }
-            );
+            RegisterConnectingEdgeMouseDownEvent(edge);
         }
 
 

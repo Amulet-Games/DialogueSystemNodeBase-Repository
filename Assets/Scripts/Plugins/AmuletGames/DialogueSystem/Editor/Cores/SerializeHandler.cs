@@ -157,7 +157,7 @@ namespace AG.DS
                     {
                         /// TODO: Refactor the style sheet part.
                         graphViewer.Add(
-                            EdgeManager.Instance.Connect(output, input, data.styleSheets[0])
+                            EdgeManager.Instance.Connect(data.StyleSheet, input, output)
                         );
                     }
                 }

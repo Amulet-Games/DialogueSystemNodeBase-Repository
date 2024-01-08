@@ -53,15 +53,15 @@ namespace AG.DS
             if (port.IsInput())
             {
                 port.portName = cell.OpponentCell != null
-                    ? StringConfig.OptionPortGroupCell_Input_Connect_LabelText.Append(cell.Index.ToString())
-                    : StringConfig.OptionPortGroupCell_Input_Disconnect_LabelText;
+                    ? StringConfig.OptionPortCell_Input_Connect_LabelText.Append(cell.Index.ToString())
+                    : StringConfig.OptionPortCell_Input_Disconnect_LabelText;
 
             }
             else
             {
                 port.portName = cell.OpponentCell != null
-                    ? StringConfig.OptionPortGroupCell_Output_Connect_LabelText.Append(cell.Index.ToString())
-                    : StringConfig.OptionPortGroupCell_Output_Disconnect_LabelText;
+                    ? StringConfig.OptionPortCell_Output_Connect_LabelText.Append(cell.Index.ToString())
+                    : StringConfig.OptionPortCell_Output_Disconnect_LabelText;
             }
         }
 

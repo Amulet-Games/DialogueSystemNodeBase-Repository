@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_data:
     EdgesData:
-    - styleSheets: []
+    - Focusable: 0
+      StyleSheet: {fileID: 0}
     NodesData: []

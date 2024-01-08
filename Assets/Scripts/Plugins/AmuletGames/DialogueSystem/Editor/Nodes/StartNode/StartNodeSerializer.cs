@@ -27,7 +27,7 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            Data.OutputPortData = PortManager.Instance.Save(View.OutputPort);
+            new PortSerializer().Save(View.OutputPort, Data.OutputPortData);
         }
 
 
@@ -50,7 +50,7 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.OutputPort, Data.OutputPortData);
+            new PortSerializer().Load(View.OutputPort, Data.OutputPortData);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace AG.DS
 
             if (data != null)
             {
-                PortManager.Instance.Load(portCell.Port, data.OptionPortData);
+                new OptionPortCellSerializer().Load(portCell, data);
             }
 
             return portCell;

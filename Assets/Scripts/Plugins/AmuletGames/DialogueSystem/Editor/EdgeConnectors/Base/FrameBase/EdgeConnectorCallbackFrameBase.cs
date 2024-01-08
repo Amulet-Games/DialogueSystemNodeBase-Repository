@@ -42,14 +42,14 @@ namespace AG.DS
         /// <summary>
         /// Setup for the edge connector callback base class.
         /// </summary>
+        /// <param name="nodeCreateConnectorWindow">The node create connector window to set for.</param>
         /// <param name="connectorPort">The connector port to set for.</param>
         /// <param name="connectorEdgeStyleSheet">The connector edge style sheet to set for.</param>
-        /// <param name="nodeCreateConnectorWindow">The node create connector window to set for.</param>
         public virtual TEdgeConnectorCallback Setup
         (
+            TNodeCreateConnectorWindow nodeCreateConnectorWindow,
             PortBase connectorPort,
-            StyleSheet connectorEdgeStyleSheet,
-            TNodeCreateConnectorWindow nodeCreateConnectorWindow
+            StyleSheet connectorEdgeStyleSheet
         )
         {
             ConnectorPort = connectorPort;

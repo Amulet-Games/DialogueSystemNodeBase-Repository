@@ -33,7 +33,7 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Single,
-                name: StringConfig.DefaultPort_Input_LabelText
+                name: StringConfig.Port_Input_LabelText
             );
 
             View.TrueOutputPort = PortManager.Instance.CreateDefault
@@ -41,7 +41,7 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                 direction: Direction.Output,
                 capacity: Port.Capacity.Single,
-                name: StringConfig.DefaultPort_True_LabelText
+                name: StringConfig.Port_True_LabelText
             );
 
             // False output port
@@ -51,7 +51,7 @@ namespace AG.DS
                     connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                     direction: Direction.Output,
                     capacity: Port.Capacity.Single,
-                    name: StringConfig.DefaultPort_False_LabelText
+                    name: StringConfig.Port_False_LabelText
                 );
 
                 View.FalseOutputPort.AddToClassList(StyleConfig.BooleanNode_False_Output_Port);

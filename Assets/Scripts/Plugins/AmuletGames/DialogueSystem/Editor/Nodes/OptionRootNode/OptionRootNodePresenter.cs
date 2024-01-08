@@ -33,7 +33,7 @@ namespace AG.DS
                 connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
                 direction: Direction.Input,
                 capacity: Port.Capacity.Multi,
-                name: StringConfig.DefaultPort_Input_LabelText
+                name: StringConfig.Port_Input_LabelText
             );
 
             View.OutputOptionPortGroup = OptionPortGroupPresenter.CreateElement

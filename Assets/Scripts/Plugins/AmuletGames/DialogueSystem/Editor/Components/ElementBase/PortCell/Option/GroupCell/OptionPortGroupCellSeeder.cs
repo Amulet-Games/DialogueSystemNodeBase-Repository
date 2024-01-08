@@ -6,7 +6,7 @@ namespace AG.DS
         /// Generate a new option port group cell element.
         /// </summary>
         /// <param name="group">The option port group to set for.</param>
-        /// <param name="data">The option port group cell data to set for.</param>
+        /// <param name="data">The option port cell data to set for.</param>
         /// <returns>A new option port group cell element.</returns>
         public OptionPortGroupCell Generate
         (
@@ -25,7 +25,7 @@ namespace AG.DS
 
             if (data != null)
             {
-                PortManager.Instance.Load(groupCell.PortCell.Port, data.OptionPortData);
+                new OptionPortCellSerializer().Load(groupCell.PortCell, data);
             }
 
             return groupCell;

@@ -55,15 +55,18 @@ namespace AG.DS
         public const string StoryNode_NodeTitleField_DefaultText = "Story";
         #endregion
 
-        #region Input / Output Port Labels.
-        public const string DefaultPort_Input_LabelText = "Input";
-        public const string DefaultPort_Output_LabelText = "Output";
-        public const string DefaultPort_True_LabelText = "True";
-        public const string DefaultPort_False_LabelText = "False";
-        public const string OptionPortGroupCell_Input_Connect_LabelText = "Option ";
-        public const string OptionPortGroupCell_Output_Connect_LabelText = "Option ";
-        public const string OptionPortGroupCell_Input_Disconnect_LabelText = "Track";
-        public const string OptionPortGroupCell_Output_Disconnect_LabelText = "Entry";
+        #region Port Labels.
+        public const string Port_Input_LabelText = "Input";
+        public const string Port_Output_LabelText = "Output";
+        public const string Port_True_LabelText = "True";
+        public const string Port_False_LabelText = "False";
+        #endregion
+
+        #region Option Port Cell Labels.
+        public const string OptionPortCell_Input_Connect_LabelText = "Option ";
+        public const string OptionPortCell_Output_Connect_LabelText = "Option ";
+        public const string OptionPortCell_Input_Disconnect_LabelText = "Track";
+        public const string OptionPortCell_Output_Disconnect_LabelText = "Entry";
         #endregion
 
         #region Content Button Labels.

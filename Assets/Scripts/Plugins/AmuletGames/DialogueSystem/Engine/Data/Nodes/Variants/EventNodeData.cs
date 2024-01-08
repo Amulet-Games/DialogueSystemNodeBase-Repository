@@ -30,6 +30,8 @@ namespace AG.DS
         /// </summary>
         public EventNodeData()
         {
+            InputPortData = new();
+            OutputPortData = new();
             EventModifierGroupData = new();
         }
     }

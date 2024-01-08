@@ -91,17 +91,15 @@ namespace AG.DS
         /// <param name="data">The option port group data to set for.</param>
         public void Save(OptionPortGroupData data)
         {
-            data.FirstPortCellData = new OptionPortCellData
-            {
-                OptionPortData = PortManager.Instance.SaveOption(FirstPortCell.Port)
-            };
+            var optionPortCellSerializer = new OptionPortCellSerializer();
 
+            optionPortCellSerializer.Save(FirstPortCell, data.FirstPortCellData);
+            
             for (int i = 0; i < GroupCells.Count; i++)
             {
-                var cellData = new OptionPortCellData
-                {
-                    OptionPortData = PortManager.Instance.SaveOption(GroupCells[i].PortCell.Port)
-                };
+                var cellData = new OptionPortCellData();
+
+                optionPortCellSerializer.Save(GroupCells[i].PortCell, cellData);
 
                 data.GroupCellsData.Add(cellData);
             }

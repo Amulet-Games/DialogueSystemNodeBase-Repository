@@ -31,8 +31,9 @@
         /// </summary>
         void SavePorts()
         {
-            Data.InputPortData = PortManager.Instance.Save(View.InputPort);
-            Data.OutputPortData = PortManager.Instance.Save(View.OutputPort);
+            var serializer = new PortSerializer();
+            serializer.Save(View.InputPort, Data.InputPortData);
+            serializer.Save(View.OutputPort, Data.OutputPortData);
         }
 
 
@@ -77,8 +78,9 @@
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputPort, Data.InputPortData);
-            PortManager.Instance.Load(View.OutputPort, Data.OutputPortData);
+            var serializer = new PortSerializer();
+            serializer.Load(View.InputPort, Data.InputPortData);
+            serializer.Load(View.OutputPort, Data.OutputPortData);
         }
 
 

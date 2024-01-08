@@ -29,9 +29,10 @@ namespace AG.DS
         /// </summary>
         void SavePorts()
         {
-            Data.InputPortData = PortManager.Instance.Save(View.InputPort);
-            Data.TrueOutputPortData =  PortManager.Instance.Save(View.TrueOutputPort);
-            Data.FalseOutputPortData = PortManager.Instance.Save(View.FalseOutputPort);
+            var serializer = new PortSerializer();
+            serializer.Save(View.InputPort, Data.InputPortData);
+            serializer.Save(View.TrueOutputPort, Data.TrueOutputPortData);
+            serializer.Save(View.FalseOutputPort, Data.FalseOutputPortData);
         }
 
 
@@ -64,9 +65,10 @@ namespace AG.DS
         /// </summary>
         void LoadPorts()
         {
-            PortManager.Instance.Load(View.InputPort, Data.InputPortData);
-            PortManager.Instance.Load(View.TrueOutputPort, Data.TrueOutputPortData);
-            PortManager.Instance.Load(View.FalseOutputPort, Data.FalseOutputPortData);
+            var serializer = new PortSerializer();
+            serializer.Load(View.InputPort, Data.InputPortData);
+            serializer.Load(View.TrueOutputPort, Data.TrueOutputPortData);
+            serializer.Load(View.FalseOutputPort, Data.FalseOutputPortData);
         }
 
 
@@ -75,7 +77,8 @@ namespace AG.DS
         /// </summary>
         void LoadConditionModifierGroup()
         {
-            new ConditionModifierGroupSerializer().Load(
+            new ConditionModifierGroupSerializer().Load
+            (
                 View.ConditionModifierGroupView,
                 Data.ConditionModifierGroupData,
                 Node.GraphViewer

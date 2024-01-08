@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -21,17 +20,14 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The edge's port type value.
+        /// The edge's focusable value.
         /// </summary>
-        [SerializeField] public List<StyleSheet> styleSheets;
+        [SerializeField] public bool Focusable;
 
 
         /// <summary>
-        /// Constructor of the edge data class.
+        /// The edge's style sheet.
         /// </summary>
-        public EdgeData()
-        {
-            styleSheets = new();
-        }
+        [SerializeField] public StyleSheet StyleSheet;
     }
 }
