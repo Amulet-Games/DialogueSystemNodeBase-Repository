@@ -116,6 +116,7 @@ namespace AG.DS
             (
                 nodeCreateOptionConnectorWindow: GraphViewer.NodeCreateOptionConnectorWindow,
                 direction: Direction,
+                isIndexDominant: true,
                 index: FIRST_PORT_CELL_INDEX,
                 data: data.FirstPortCellData
             );

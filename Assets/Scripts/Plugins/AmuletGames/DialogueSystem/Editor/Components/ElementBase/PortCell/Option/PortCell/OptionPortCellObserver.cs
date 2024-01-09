@@ -43,7 +43,7 @@ namespace AG.DS
         /// <summary>
         /// Register MouseDownEvent to the cell's port connecting edge.
         /// </summary>
-        /// <param name="edge"></param>
+        /// <param name="edge">The edge that connects the two ports.</param>
         void RegisterConnectingEdgeMouseDownEvent(EdgeBase edge)
         {
             edge.RegisterCallback<MouseMoveEvent>(
@@ -87,7 +87,12 @@ namespace AG.DS
         void OptionPortPostConnectEvent(EdgeBase edge)
         {
             portCell.OpponentCell = (OptionPortCell)(portCell.Port.IsInput() ? edge.output : edge.input).parent;
-            portCell.OpponentCell.Index = portCell.Index;
+
+            if (portCell.IsIndexDominant)
+            {
+                portCell.OpponentCell.Index = portCell.Index;
+                portCell.OpponentCell.UpdatePortName();
+            }
 
             RegisterConnectingEdgeMouseDownEvent(edge);
         }

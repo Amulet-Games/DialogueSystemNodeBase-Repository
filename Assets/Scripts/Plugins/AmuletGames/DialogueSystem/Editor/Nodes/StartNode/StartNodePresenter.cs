@@ -1,4 +1,5 @@
 using UnityEditor.Experimental.GraphView;
+using static UnityEditor.Experimental.GraphView.Port;
 
 namespace AG.DS
 {
@@ -25,15 +26,28 @@ namespace AG.DS
         /// </summary>
         void CreatePortElements()
         {
-            View.OutputPort = PortManager.Instance.CreateDefault
-            (
-                connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
-                direction: Direction.Output,
-                capacity: Port.Capacity.Single,
-                name: StringConfig.Port_Output_LabelText
-            );
+            // Output
+            {
+                var portModel = new PortModel
+                (
+                    port: PortModel.Port.Default,
+                    Direction.Output,
+                    capacity: Capacity.Single,
+                    name: StringConfig.Port_Output_LabelText,
+                    color: PortConfig.DefaultPortColor
+                );
 
-            Node.Add(View.OutputPort);
+                View.OutputPort = PortManager.Instance.Create(portModel);
+                View.OutputPort.AddEdgeConnector
+                (
+                    nodeCreateConnectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
+                    nodeCreateWindowEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries,
+                    edgeFocusable: true,
+                    edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                );
+
+                Node.Add(View.OutputPort);
+            }
         }
     }
 }

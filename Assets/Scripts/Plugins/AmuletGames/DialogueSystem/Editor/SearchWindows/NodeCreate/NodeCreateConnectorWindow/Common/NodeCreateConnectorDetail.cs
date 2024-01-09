@@ -14,7 +14,7 @@ namespace AG.DS
         /// <summary>
         /// The model's connector edge style sheet.</param>
         /// </summary>
-        public StyleSheet ConnectorEdgeStyleSheet { get; private set; }
+        public EdgeModel EdgeModel { get; private set; }
 
 
         // ----------------------------- Service -----------------------------
@@ -26,9 +26,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Set a new value to the connector edge style sheet.
+        /// Set a new value to the edge model.
         /// </summary>
         /// <param name="value">The new value to set for.</param>
-        public void SetEdgeStyleSheet(StyleSheet value) => ConnectorEdgeStyleSheet = value;
+        public void SetEdgeModel(EdgeModel value) => EdgeModel = value;
     }
 }

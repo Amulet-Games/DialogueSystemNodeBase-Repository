@@ -1,5 +1,6 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.Port;
 
 namespace AG.DS
 {
@@ -28,38 +29,76 @@ namespace AG.DS
         /// </summary>
         void CreatePortElements()
         {
-            View.InputPort = PortManager.Instance.CreateDefault
-            (
-                connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
-                direction: Direction.Input,
-                capacity: Port.Capacity.Single,
-                name: StringConfig.Port_Input_LabelText
-            );
-
-            View.TrueOutputPort = PortManager.Instance.CreateDefault
-            (
-                connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
-                direction: Direction.Output,
-                capacity: Port.Capacity.Single,
-                name: StringConfig.Port_True_LabelText
-            );
-
-            // False output port
+            // Input
             {
-                View.FalseOutputPort = PortManager.Instance.CreateDefault
+                var portModel = new PortModel
                 (
-                    connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
-                    direction: Direction.Output,
-                    capacity: Port.Capacity.Single,
-                    name: StringConfig.Port_False_LabelText
+                    port: PortModel.Port.Default,
+                    Direction.Input,
+                    capacity: Capacity.Single,
+                    name: StringConfig.Port_Input_LabelText,
+                    color: PortConfig.DefaultPortColor
                 );
 
-                View.FalseOutputPort.AddToClassList(StyleConfig.BooleanNode_False_Output_Port);
+                View.InputPort = PortManager.Instance.Create(portModel);
+                View.InputPort.AddEdgeConnector
+                (
+                    nodeCreateConnectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
+                    nodeCreateWindowEntries: NodeCreateEntryProvider.DefaultNodeInputEntries,
+                    edgeFocusable: true,
+                    edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                );
+
+                Node.Add(View.InputPort);
             }
-            
-            Node.Add(View.InputPort);
-            Node.Add(View.TrueOutputPort);
-            Node.Add(View.FalseOutputPort);
+
+            // True Output
+            {
+                var portModel = new PortModel
+                (
+                    port: PortModel.Port.Default,
+                    Direction.Output,
+                    capacity: Capacity.Single,
+                    name: StringConfig.Port_True_LabelText,
+                    color: PortConfig.DefaultPortColor
+                );
+
+                View.TrueOutputPort = PortManager.Instance.Create(portModel);
+                View.TrueOutputPort.AddEdgeConnector
+                (
+                    nodeCreateConnectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
+                    nodeCreateWindowEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries,
+                    edgeFocusable: true,
+                    edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                );
+
+                Node.Add(View.TrueOutputPort);
+            }
+
+            // False Output
+            {
+                var portModel = new PortModel
+                (
+                    port: PortModel.Port.Default,
+                    Direction.Output,
+                    capacity: Capacity.Single,
+                    name: StringConfig.Port_False_LabelText,
+                    color: PortConfig.DefaultPortColor
+                );
+
+                View.FalseOutputPort = PortManager.Instance.Create(portModel);
+                View.FalseOutputPort.AddToClassList(StyleConfig.BooleanNode_False_Output_Port);
+
+                View.FalseOutputPort.AddEdgeConnector
+                (
+                    nodeCreateConnectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
+                    nodeCreateWindowEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries,
+                    edgeFocusable: true,
+                    edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                );
+
+                Node.Add(View.FalseOutputPort);
+            }
         }
 
 

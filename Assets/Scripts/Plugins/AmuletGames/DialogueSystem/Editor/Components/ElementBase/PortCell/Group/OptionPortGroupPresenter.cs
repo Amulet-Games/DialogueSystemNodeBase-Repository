@@ -38,6 +38,7 @@ namespace AG.DS
                 (
                     nodeCreateOptionConnectorWindow: graphViewer.NodeCreateOptionConnectorWindow,
                     direction: direction,
+                    isIndexDominant: true,
                     index: OptionPortGroup.FIRST_PORT_CELL_INDEX
                 );
             }

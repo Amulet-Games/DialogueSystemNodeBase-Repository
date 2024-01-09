@@ -42,9 +42,10 @@ namespace AG.DS
             {
                 groupCell.PortCell = OptionPortCellPresenter.CreateElement
                 (
-                    connectorWindow: nodeCreateOptionConnectorWindow,
+                    nodeCreateOptionConnectorWindow: nodeCreateOptionConnectorWindow,
                     direction: direction,
-                    index: index
+                    index: index,
+                    isIndexDominant: true
                 );
             }
 

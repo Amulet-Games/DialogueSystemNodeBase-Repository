@@ -1,5 +1,6 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.Port;
 
 namespace AG.DS
 {
@@ -28,22 +29,40 @@ namespace AG.DS
         /// </summary>
         void CreatePortElements()
         {
-            View.InputOptionPortCell = OptionPortCellPresenter.CreateElement
-            (
-                connectorWindow: Node.GraphViewer.NodeCreateOptionConnectorWindow,
-                direction: Direction.Input
-            );
+            // Input
+            {
+                View.InputOptionPortCell = OptionPortCellPresenter.CreateElement
+                (
+                    nodeCreateOptionConnectorWindow: Node.GraphViewer.NodeCreateOptionConnectorWindow,
+                    direction: Direction.Input,
+                    isIndexDominant: false
+                );
 
-            View.OutputPort = PortManager.Instance.CreateDefault
-            (
-                connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
-                direction: Direction.Output,
-                capacity: Port.Capacity.Single,
-                name: StringConfig.Port_Output_LabelText
-            );
+                Node.Add(View.InputOptionPortCell);
+            }
 
-            Node.Add(View.InputOptionPortCell);
-            Node.Add(View.OutputPort);
+            // Output
+            {
+                var portModel = new PortModel
+                (
+                    port: PortModel.Port.Default,
+                    Direction.Output,
+                    capacity: Capacity.Single,
+                    name: StringConfig.Port_Output_LabelText,
+                    color: PortConfig.DefaultPortColor
+                );
+
+                View.OutputPort = PortManager.Instance.Create(portModel);
+                View.OutputPort.AddEdgeConnector
+                (
+                    nodeCreateConnectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
+                    nodeCreateWindowEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries,
+                    edgeFocusable: true,
+                    edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                );
+
+                Node.Add(View.OutputPort);
+            }
         }
 
 

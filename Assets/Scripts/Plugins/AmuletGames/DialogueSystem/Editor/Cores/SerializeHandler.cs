@@ -155,10 +155,10 @@ namespace AG.DS
                     // Try to find the input port that matches the data's input port GUID.
                     if (graphViewer.PortByPortGUID.TryGetValue(data.InputPortGUID, out PortBase input))
                     {
-                        /// TODO: Refactor the style sheet part.
-                        graphViewer.Add(
-                            EdgeManager.Instance.Connect(data.StyleSheet, input, output)
-                        );
+                        var model = new EdgeModel(focusable: data.Focusable, styleSheet: data.StyleSheet);
+                        var edge = EdgeManager.Instance.Connect(model, input, output);
+                        
+                        graphViewer.Add(edge);
                     }
                 }
             }

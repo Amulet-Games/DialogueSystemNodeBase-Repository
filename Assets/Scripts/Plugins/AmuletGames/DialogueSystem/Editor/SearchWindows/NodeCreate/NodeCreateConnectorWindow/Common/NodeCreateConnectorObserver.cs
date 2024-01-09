@@ -63,9 +63,9 @@ namespace AG.DS
 
             var edge = EdgeManager.Instance.Connect
             (
-                output: !isInput ? port : YAxisReferencePort,
+                model: Detail.EdgeModel,
                 input: isInput ? port : YAxisReferencePort,
-                styleSheet: Detail.ConnectorEdgeStyleSheet
+                output: !isInput ? port : YAxisReferencePort
             );
 
             GraphViewer.Add(edge);

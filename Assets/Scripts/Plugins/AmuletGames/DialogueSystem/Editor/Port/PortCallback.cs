@@ -15,10 +15,9 @@ namespace AG.DS
         /// Setup for the port callback frame base class.
         /// </summary>
         /// <param name="port">The port element to set for.</param>
-        public PortCallback Setup(PortBase port)
+        public void Setup(PortBase port)
         {
             Port = port;
-            return this;
         }
 
 
@@ -34,7 +33,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the port is disconnected to another port.
+        /// The callback to invoke when the port is disconnected to another port.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
         public void OnPreDisconnect(EdgeBase edge)
@@ -44,7 +43,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke after the previous connecting edge has been dropped in a empty space.
+        /// The callback to invoke after the connecting edge has been dropped in an empty space.
         /// </summary>
         public void OnPostConnectingEdgeDropOutside()
         {

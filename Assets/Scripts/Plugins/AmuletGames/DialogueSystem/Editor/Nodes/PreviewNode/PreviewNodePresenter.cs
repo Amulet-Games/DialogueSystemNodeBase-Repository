@@ -1,6 +1,7 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.Port;
 
 namespace AG.DS
 {
@@ -29,24 +30,51 @@ namespace AG.DS
         /// </summary>
         void CreatePortElements()
         {
-            View.InputPort = PortManager.Instance.CreateDefault
-            (
-                connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
-                direction: Direction.Input,
-                capacity: Port.Capacity.Single,
-                name: StringConfig.Port_Input_LabelText
-            );
+            // Input
+            {
+                var portModel = new PortModel
+                (
+                    port: PortModel.Port.Default,
+                    Direction.Input,
+                    capacity: Capacity.Single,
+                    name: StringConfig.Port_Input_LabelText,
+                    color: PortConfig.DefaultPortColor
+                );
 
-            View.OutputPort = PortManager.Instance.CreateDefault
-            (
-                connectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
-                direction: Direction.Output,
-                capacity: Port.Capacity.Single,
-                name: StringConfig.Port_Output_LabelText
-            );
+                View.InputPort = PortManager.Instance.Create(portModel);
+                View.InputPort.AddEdgeConnector
+                (
+                    nodeCreateConnectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
+                    nodeCreateWindowEntries: NodeCreateEntryProvider.DefaultNodeInputEntries,
+                    edgeFocusable: true,
+                    edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                );
 
-            Node.Add(View.InputPort);
-            Node.Add(View.OutputPort);
+                Node.Add(View.InputPort);
+            }
+
+            // Output
+            {
+                var portModel = new PortModel
+                (
+                    port: PortModel.Port.Default,
+                    Direction.Output,
+                    capacity: Capacity.Single,
+                    name: StringConfig.Port_Output_LabelText,
+                    color: PortConfig.DefaultPortColor
+                );
+
+                View.OutputPort = PortManager.Instance.Create(portModel);
+                View.OutputPort.AddEdgeConnector
+                (
+                    nodeCreateConnectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
+                    nodeCreateWindowEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries,
+                    edgeFocusable: true,
+                    edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                );
+
+                Node.Add(View.OutputPort);
+            }
         }
 
 

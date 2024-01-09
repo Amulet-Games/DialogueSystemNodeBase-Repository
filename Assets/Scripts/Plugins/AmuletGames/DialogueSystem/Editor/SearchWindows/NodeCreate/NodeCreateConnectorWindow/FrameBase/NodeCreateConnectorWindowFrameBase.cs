@@ -49,13 +49,13 @@ namespace AG.DS
         /// </summary>
         /// <param name="horizontalAlignmentType">The horizontal align type to set for.</param>
         /// <param name="connectorPort">The connector port to set for. </param>
-        /// <param name="connectorEdgeStyleSheet">The connector edge style sheet to set for. </param>
+        /// <param name="edgeModel">The edge model to set for. </param>
         /// <param name="toShowEntries">The to show search tree entries to set for.</param>
         public void Open
         (
             HorizontalAlignmentType horizontalAlignmentType,
             PortBase connectorPort,
-            StyleSheet connectorEdgeStyleSheet,
+            EdgeModel edgeModel,
             List<SearchTreeEntry> toShowEntries
         )
         {
@@ -63,7 +63,7 @@ namespace AG.DS
             {
                 Detail.SetTypeHorizontalAlignment(value: horizontalAlignmentType);
                 Detail.SetPortConnector(value: connectorPort);
-                Detail.SetEdgeStyleSheet(value: connectorEdgeStyleSheet);
+                Detail.SetEdgeModel(value: edgeModel);
                 
                 this.toShowEntries = toShowEntries;
             }

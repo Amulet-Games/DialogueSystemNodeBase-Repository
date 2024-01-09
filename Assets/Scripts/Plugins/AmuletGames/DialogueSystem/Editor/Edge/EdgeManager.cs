@@ -1,5 +1,3 @@
-using UnityEngine.UIElements;
-
 namespace AG.DS
 {
     public class EdgeManager
@@ -29,14 +27,11 @@ namespace AG.DS
         /// <returns>A new edge element.</returns>
         public EdgeBase Connect
         (
-            //EdgeModel model,
-            StyleSheet styleSheet,
+            EdgeModel model,
             PortBase input,
             PortBase output
         )
         {
-            var model = new EdgeModel(true, styleSheet);
-
             var observer = new EdgeObserver();
             var callback = new EdgeCallback();
             var edge = EdgePresenter.CreateElement(model);
