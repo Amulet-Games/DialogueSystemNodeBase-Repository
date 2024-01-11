@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -15,13 +14,13 @@ namespace AG.DS
         where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TNodeCreateConnectorWindow>
     {
         /// <inheritdoc />
-        protected override List<SearchTreeEntry> ToShowEntries => toShowEntries;
+        protected override List<SearchTreeEntry> NodeCreateWindowEntries => nodeCreateWindowEntries;
 
 
         /// <summary>
-        /// The node create entries of the window.
+        /// Reference of the node create window entries.
         /// </summary>
-        List<SearchTreeEntry> toShowEntries;
+        List<SearchTreeEntry> nodeCreateWindowEntries;
 
 
         /// <summary>
@@ -50,22 +49,22 @@ namespace AG.DS
         /// <param name="horizontalAlignmentType">The horizontal align type to set for.</param>
         /// <param name="connectorPort">The connector port to set for. </param>
         /// <param name="edgeModel">The edge model to set for. </param>
-        /// <param name="toShowEntries">The to show search tree entries to set for.</param>
+        /// <param name="nodeCreateWindowEntries">The node create window entries to set for.</param>
         public void Open
         (
-            HorizontalAlignmentType horizontalAlignmentType,
+            HorizontalAlignment horizontalAlignmentType,
             PortBase connectorPort,
             EdgeModel edgeModel,
-            List<SearchTreeEntry> toShowEntries
+            List<SearchTreeEntry> nodeCreateWindowEntries
         )
         {
             // Update detail
             {
-                Detail.SetTypeHorizontalAlignment(value: horizontalAlignmentType);
+                Detail.SetHorizontalAlignmentType(value: horizontalAlignmentType);
                 Detail.SetPortConnector(value: connectorPort);
                 Detail.SetEdgeModel(value: edgeModel);
                 
-                this.toShowEntries = toShowEntries;
+                this.nodeCreateWindowEntries = nodeCreateWindowEntries;
             }
 
             // Open window

@@ -153,9 +153,9 @@ namespace AG.DS
 
             YAxisReferencePort = Detail.HorizontalAlignmentType switch
             {
-                HorizontalAlignmentType.LEFT => leftAlignmentPort,
-                HorizontalAlignmentType.RIGHT => rightAlignmentPort,
-                HorizontalAlignmentType.MIDDLE => middleAlignmentPort,
+                HorizontalAlignment.LEFT => leftAlignmentPort,
+                HorizontalAlignment.RIGHT => rightAlignmentPort,
+                HorizontalAlignment.MIDDLE => middleAlignmentPort,
                 _ => throw new ArgumentException(
                     "Invalid horizontal alignment type when creating a new GraphViewer: " + Detail.HorizontalAlignmentType.ToString())
             };
@@ -189,7 +189,7 @@ namespace AG.DS
 
         // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when the new node's position needed to be initialized
+        /// The event to invoke when the new node's position needed to be initialized.
         /// </summary>
         /// <param name="evt">The registering event</param>
         protected abstract void InitializeNewNodePositionEvent(GeometryChangedEvent evt);
@@ -213,9 +213,9 @@ namespace AG.DS
 
             targetPos.x -= Detail.HorizontalAlignmentType switch
             {
-                HorizontalAlignmentType.LEFT => Node.localBound.width,
-                HorizontalAlignmentType.MIDDLE => Node.localBound.width / 2,
-                HorizontalAlignmentType.RIGHT => 0,
+                HorizontalAlignment.LEFT => Node.localBound.width,
+                HorizontalAlignment.MIDDLE => Node.localBound.width / 2,
+                HorizontalAlignment.RIGHT => 0,
                 _ => throw new ArgumentException(
                     "Invalid horizontal alignment type when creating a new GraphViewer: " + Detail.HorizontalAlignmentType.ToString())
             };

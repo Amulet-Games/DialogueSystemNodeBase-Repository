@@ -5,17 +5,28 @@ namespace AG.DS
     /// </summary>
     public class NodeCreateDetailBase
     {
+        //public enum HorizontalAlignment
+        //{
+        //    Left,
+
+        //    Middle,
+
+        //    Right,
+
+        //    Free
+        //}
+
         /// <summary>
         /// The horizontal alignment type to use when creating the node to the graph.
         /// </summary>
-        public HorizontalAlignmentType HorizontalAlignmentType { get; private set; }
+        public HorizontalAlignment HorizontalAlignmentType { get; private set; }
 
 
         // ----------------------------- Service -----------------------------
         /// <summary>
         /// Set a new value to the horizontal alignment type.
         /// </summary>
-        /// <param name="value">The horizontal alignment type to set for.</param>
-        public void SetTypeHorizontalAlignment(HorizontalAlignmentType value) => HorizontalAlignmentType = value;
+        /// <param name="value">The new value to set for.</param>
+        public void SetHorizontalAlignmentType(HorizontalAlignment value) => HorizontalAlignmentType = value;
     }
 }

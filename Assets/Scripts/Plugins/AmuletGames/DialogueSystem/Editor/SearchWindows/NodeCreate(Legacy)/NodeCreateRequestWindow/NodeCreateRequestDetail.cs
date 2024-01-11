@@ -8,7 +8,7 @@ namespace AG.DS
         /// </summary>
         public NodeCreateRequestDetail()
         {
-            SetTypeHorizontalAlignment(value: HorizontalAlignmentType.MIDDLE);
+            SetHorizontalAlignmentType(value: HorizontalAlignment.MIDDLE);
         }
     }
 }

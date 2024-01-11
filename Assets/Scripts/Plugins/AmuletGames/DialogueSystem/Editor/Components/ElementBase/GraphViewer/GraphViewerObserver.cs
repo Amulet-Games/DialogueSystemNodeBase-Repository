@@ -94,18 +94,7 @@ namespace AG.DS
         /// <param name="context">A struct that represents the context when the user initiates creating a graph node.</param>
         void NodeCreationRequest(NodeCreationContext context)
         {
-            if (Event.current != null)
-            {
-                // If the user opened up the node create request window by pressing space bar.
-                nodeCreateRequestWindow.Open();
-            }
-            else
-            {
-                // If the user opened up the node create request window through contextual menu.
-                nodeCreateRequestWindow.Open(
-                    openScreenPosition: context.screenMousePosition
-                );
-            }
+            nodeCreateRequestWindow.Open(openScreenPosition: context.screenMousePosition);
         }
 
 

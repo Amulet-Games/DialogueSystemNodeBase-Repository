@@ -13,7 +13,7 @@ namespace AG.DS
     >
     {
         /// <inheritdoc />
-        protected override List<SearchTreeEntry> ToShowEntries
+        protected override List<SearchTreeEntry> NodeCreateWindowEntries
         {
             get => NodeCreateEntryProvider.NodeCreateRequestEntries;
         }

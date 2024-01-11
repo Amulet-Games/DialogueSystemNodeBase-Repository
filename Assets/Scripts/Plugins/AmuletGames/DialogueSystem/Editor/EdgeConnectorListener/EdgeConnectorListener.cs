@@ -45,7 +45,7 @@ namespace AG.DS
         TNodeCreateConnectorWindow nodeCreateConnectorWindow;
 
 
-        // <summary>
+        /// <summary>
         /// Reference of the node create window entries.
         /// </summary>
         List<SearchTreeEntry> nodeCreateWindowEntries;
@@ -164,7 +164,7 @@ namespace AG.DS
         public void OnDropOutsidePort(Edge edge, Vector2 position)
         {
             var input = connectorPort.IsInput();
-            var horizontalAlignmentType = input ? HorizontalAlignmentType.LEFT : HorizontalAlignmentType.RIGHT;
+            var horizontalAlignmentType = input ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT;
 
             nodeCreateConnectorWindow.Open
             (
@@ -174,7 +174,7 @@ namespace AG.DS
 
                 edgeModel: edgeModel,
 
-                toShowEntries: nodeCreateWindowEntries
+                nodeCreateWindowEntries: nodeCreateWindowEntries
             );
 
             connectorPort.Callback.OnPostConnectingEdgeDropOutside();

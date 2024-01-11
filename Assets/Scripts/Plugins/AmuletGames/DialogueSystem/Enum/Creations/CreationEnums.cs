@@ -1,6 +1,6 @@
 namespace AG.DS
 {
-    public enum HorizontalAlignmentType
+    public enum HorizontalAlignment
     {
         LEFT,
 
