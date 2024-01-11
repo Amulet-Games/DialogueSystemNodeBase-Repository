@@ -196,7 +196,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Calculate the final position of where to create  the new node element.
+        /// Calculate the final position of where to create the new node element.
         /// </summary>
         /// <returns>The final position of where to create the new node element.</returns>
         /// <exception cref="ArgumentException">

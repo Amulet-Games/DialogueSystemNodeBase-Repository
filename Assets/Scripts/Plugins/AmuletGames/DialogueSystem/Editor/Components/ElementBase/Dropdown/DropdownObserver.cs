@@ -112,7 +112,7 @@ namespace AG.DS
         /// </summary>
         void DropdownSelectedElementChangedEvent()
         {
-            selectedElementChangedEvent?.Invoke(dropdown.SelectedElement.AdditionalInfo);
+            selectedElementChangedEvent.Invoke(dropdown.SelectedElement.AdditionalInfo);
         }
     }
 }

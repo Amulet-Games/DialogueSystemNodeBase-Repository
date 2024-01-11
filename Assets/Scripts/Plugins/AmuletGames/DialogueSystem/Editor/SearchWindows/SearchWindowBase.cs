@@ -19,7 +19,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when an entry in the search window is selected.
         /// </summary>
-        public event Func<SearchTreeEntry, SearchWindowContext, bool> EntrySelectEvent;
+        public Func<SearchTreeEntry, SearchWindowContext, bool> EntrySelectedEvent;
 
 
         // ----------------------------- Service -----------------------------
@@ -44,8 +44,8 @@ namespace AG.DS
         /// <param name="searchTreeEntry">The selected entry.</param>
         /// <param name="context">Contextual data to pass to the search window when it is first created.</param>
         /// <returns>Returns true if succeeded, false otherwise.</returns>
-        public bool OnSelectEntry(SearchTreeEntry SearchTreeEntry, SearchWindowContext context)
-            => EntrySelectEvent.Invoke(SearchTreeEntry, context);
+        public bool OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
+            => EntrySelectedEvent.Invoke(searchTreeEntry, context);
 
 
         /// <summary>

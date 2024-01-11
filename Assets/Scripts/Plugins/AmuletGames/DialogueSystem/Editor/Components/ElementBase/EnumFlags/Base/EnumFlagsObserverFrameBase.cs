@@ -109,7 +109,7 @@ namespace AG.DS
         /// </summary>
         void EnumFlagsSelectedFlagsChangedEvent()
         {
-            selectedFlagsChangedEvent?.Invoke(enumFlags.SelectedFlags);
+            selectedFlagsChangedEvent.Invoke(enumFlags.SelectedFlags);
         }
     }
 }

@@ -13,12 +13,6 @@ namespace AG.DS
     >
     {
         /// <summary>
-        /// The direction vector from mouse screen position to window center position.
-        /// </summary>
-        Vector2 mouseToWindowCenterVector;
-
-
-        /// <summary>
         /// The approximate position of where the node will be created on the graph.
         /// </summary>
         Vector2 approxCreatePosition;
@@ -67,8 +61,8 @@ namespace AG.DS
         /// </summary>
         void CalculateApproxCreatePosition()
         {
-            // Convert the direction from screen space to window space(?)
-            mouseToWindowCenterVector = DialogueSystemWindow.rootVisualElement.ChangeCoordinatesTo
+            // Calculate the direction vector from mouse screen position to window center position.
+            Vector2 mouseToWindowCenterVector = DialogueSystemWindow.rootVisualElement.ChangeCoordinatesTo
             (
                 dest: DialogueSystemWindow.rootVisualElement.parent,
                 point: GraphViewer.ScreenMousePosition - DialogueSystemWindow.position.position

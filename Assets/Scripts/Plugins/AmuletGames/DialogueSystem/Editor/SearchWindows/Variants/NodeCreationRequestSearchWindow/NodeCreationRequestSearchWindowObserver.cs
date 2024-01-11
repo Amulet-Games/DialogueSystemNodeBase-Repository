@@ -1,18 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class NodeCreationRequestSearchWindowObserver : MonoBehaviour
+namespace AG.DS
 {
-    // Start is called before the first frame update
-    void Start()
+    public class NodeCreationRequestSearchWindowObserver
     {
-        
-    }
+        /// <summary>
+        /// The targeting node creation request search window.
+        /// </summary>
+        public NodeCreationRequestSearchWindowView view;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
+        /// <summary>
+        /// Constructor of the node creation request search window observer class.
+        /// </summary>
+        /// <param name="view">The node creation request search window view to set for.</param>
+        public NodeCreationRequestSearchWindowObserver(NodeCreationRequestSearchWindowView view)
+        {
+            this.view = view;
+        }
+
+
+        // ----------------------------- Register Events -----------------------------
+        /// <summary>
+        /// Register events to the node creation request search window.
+        /// </summary>
+        public void RegisterEvents()
+        {
+
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void RegisterEntrySelectEvent()
+        {
+
+        }
+
+        // ----------------------------- Event -----------------------------
+
     }
 }
