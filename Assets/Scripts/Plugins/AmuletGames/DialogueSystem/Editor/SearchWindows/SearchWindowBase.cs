@@ -51,8 +51,8 @@ namespace AG.DS
         /// <summary>
         /// Open the search window.
         /// </summary>
-        /// <param name="screenMousePosition">The screen mouse position to set for.</param>
-        public void OpenWindow(Vector2 screenMousePosition) => 
-            SearchWindow.Open(context: new SearchWindowContext(screenMousePosition), provider: this);
+        /// <param name="openScreenPosition">The open screen position to set for.</param>
+        public void OpenWindow(Vector2 openScreenPosition)
+            => SearchWindow.Open(context: new SearchWindowContext(openScreenPosition), provider: this);
     }
 }

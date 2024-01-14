@@ -66,7 +66,7 @@ namespace AG.DS
         /// <summary>
         /// Calculate the approximate position of where to create a node element.
         /// </summary>
-        /// <param name="context">THe search window context to set for.</param>
+        /// <param name="context">The search window context to set for.</param>
         void CalculateApproxCreatePosition(SearchWindowContext context)
         {
             // Convert the direction from screen space to window space(?)

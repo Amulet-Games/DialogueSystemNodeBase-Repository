@@ -43,6 +43,9 @@ namespace AG.DS
         LanguageHandler languageHandler;
 
 
+
+
+
         /// <summary>
         /// The property of the dialogue system window's hasUnsavedChanges value.
         /// </summary>
@@ -145,11 +148,6 @@ namespace AG.DS
 
             // Create modules
             {
-                // Graph Viewer
-                {
-                    graphViewer = GraphViewerPresenter.CreateElement();
-                }
-
                 // Language Handler
                 {
                     languageHandler = new();
@@ -165,12 +163,17 @@ namespace AG.DS
                     headBar = HeadbarPresenter.CreateElement(languageHandler, asset);
                 }
 
+                // Graph Viewer
+                {
+                    graphViewer = GraphViewerPresenter.CreateElement(languageHandler, dialogueSystemWindow: this);
+                }
+
                 // Input Hint
                 {
                     InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
                 }
 
-                // Node Create's
+                // Search Windows
                 {
                     nodeCreateRequestWindow =
                         NodeCreateWindowManager.Instance.CreateRequestWindow(graphViewer, languageHandler, dialogueSystemWindow: this);
@@ -192,14 +195,11 @@ namespace AG.DS
 
             // Register modules events
             {
-                var graphViewerObserver = new GraphViewerObserver(graphViewer, nodeCreateRequestWindow, dialogueSystemWindow: this);
-                graphViewerObserver.AssignDelegates();
-                graphViewerObserver.RegisterEvents();
+                new GraphViewerObserver(graphViewer, dialogueSystemWindow: this).RegisterEvents();
 
                 new HeadbarObserver(headBar, dialogueSystemWindow: this).RegisterEvents();
 
-                new DialogueSystemWindowObserver(
-                    asset, graphViewer, headBar, nodeCreateRequestWindow, dialogueSystemWindow: this).RegisterEvents();
+                new DialogueSystemWindowObserver(asset, graphViewer, headBar, dialogueSystemWindow: this).RegisterEvents();
             }
         }
 

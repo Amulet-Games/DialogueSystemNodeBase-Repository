@@ -25,12 +25,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the node create request window.
-        /// </summary>
-        NodeCreateRequestWindow nodeCreateRequestWindow;
-
-
-        /// <summary>
         /// The targeting dialogue system window.
         /// </summary>
         DialogueSystemWindow dialogueSystemWindow;
@@ -54,21 +48,18 @@ namespace AG.DS
         /// <param name="dialogueSystemWindowAsset">The dialogue system window asset to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="headBar">The headBar element to set for.</param>
-        /// <param name="nodeCreateRequestWindow">The node create request window to set for.</param>
         /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
         public DialogueSystemWindowObserver
         (
             DialogueSystemWindowAsset dialogueSystemWindowAsset,
             GraphViewer graphViewer,
             Headbar headBar,
-            NodeCreateRequestWindow nodeCreateRequestWindow,
             DialogueSystemWindow dialogueSystemWindow
         )
         {
             this.dialogueSystemWindowAsset = dialogueSystemWindowAsset;
             this.graphViewer = graphViewer;
             this.headBar = headBar;
-            this.nodeCreateRequestWindow = nodeCreateRequestWindow;
             this.dialogueSystemWindow = dialogueSystemWindow;
 
             windowRootElement = dialogueSystemWindow.rootVisualElement;
@@ -155,10 +146,11 @@ namespace AG.DS
         /// </summary>
         void WindowOnDisableEvent()
         {
-            // Dispose node create windows
+            // Dispose search windows
             {
-                Object.DestroyImmediate(nodeCreateRequestWindow, allowDestroyingAssets: true);
-                Object.DestroyImmediate(graphViewer.NodeCreateDefaultConnectorWindow, allowDestroyingAssets: true);
+                Object.DestroyImmediate(graphViewer.NodeCreationRequestSearchWindowView.SearchWindow, allowDestroyingAssets: true);
+                Object.DestroyImmediate(graphViewer.EdgeConnectorSearchWindowView.SearchWindow, allowDestroyingAssets: true);
+                Object.DestroyImmediate(graphViewer.OptionEdgeConnectorSearchWindowView.SearchWindow, allowDestroyingAssets: true);
             }
         }
 

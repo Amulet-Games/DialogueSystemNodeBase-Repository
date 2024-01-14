@@ -6,7 +6,7 @@ namespace AG.DS
     public class SearchWindowObserver
     {
         /// <summary>
-        /// The targeting search window base component.
+        /// The targeting search window component.
         /// </summary>
         SearchWindowBase searchWindow;
 
@@ -34,6 +34,9 @@ namespace AG.DS
 
 
         // ----------------------------- Register Events -----------------------------
+        /// <summary>
+        /// Register events to the search window component.
+        /// </summary>
         public void RegisterEvents()
         {
             RegisterEntrySelectEvent();

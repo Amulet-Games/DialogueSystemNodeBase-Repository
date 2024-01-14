@@ -20,6 +20,25 @@ namespace AG.DS
         public NodeCreateOptionConnectorWindow NodeCreateOptionConnectorWindow;
 
 
+        // ----------------------------- New -----------------------------
+        /// <summary>
+        /// Reference of the node creation request search window view.
+        /// </summary>
+        public NodeCreationRequestSearchWindowView NodeCreationRequestSearchWindowView;
+
+
+        /// <summary>
+        /// Reference of the edge connector search window view.
+        /// </summary>
+        public EdgeConnectorSearchWindowView EdgeConnectorSearchWindowView;
+
+
+        /// <summary>
+        /// Reference of the option edge connector search window view.
+        /// </summary>
+        public EdgeConnectorSearchWindowView OptionEdgeConnectorSearchWindowView;
+
+
         /// <summary>
         /// Is the graph viewer in focus at the moment?
         /// </summary>
@@ -70,8 +89,32 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the graph viewer element class.
         /// </summary>
-        public GraphViewer()
+        /// <param name="languageHandler">The language handler to set for.</param>
+        /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
+        public GraphViewer
+        (
+            LanguageHandler languageHandler,
+            DialogueSystemWindow dialogueSystemWindow
+        )
         {
+            NodeCreationRequestSearchWindowView = new(graphViewer: this, languageHandler, dialogueSystemWindow);
+            EdgeConnectorSearchWindowView = new
+            (
+                graphViewer: this,
+                languageHandler,
+                inputConnectorSearchTreeEntries: NodeCreateEntryProvider.DefaultNodeInputEntries,
+                outputConnectorSearchTreeEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries,
+                dialogueSystemWindow
+            );
+            OptionEdgeConnectorSearchWindowView = new
+            (
+                graphViewer: this,
+                languageHandler,
+                inputConnectorSearchTreeEntries: NodeCreateEntryProvider.OptionChannelInputEntries,
+                outputConnectorSearchTreeEntries: NodeCreateEntryProvider.OptionChannelOutputEntries,
+                dialogueSystemWindow
+            );
+
             Nodes = new();
             Edges = new();
             PortByPortGUID = new();

@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -16,61 +14,135 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the node create request window.
-        /// </summary>
-        NodeCreateRequestWindow nodeCreateRequestWindow;
-
-
-        /// <summary>
         /// Reference of the dialogue system window.
         /// </summary>
         DialogueSystemWindow dialogueSystemWindow;
 
 
         /// <summary>
-        /// The event to invoke when certain changes have occurred in the graph.
-        /// </summary>
-        event Action graphViewChangedEvent;
-
-
-        /// <summary>
         /// Constructor of the graph viewer observer class.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="nodeCreateRequestWindow">The node create request window to set for.</param>
         /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
         public GraphViewerObserver
         (
             GraphViewer graphViewer,
-            NodeCreateRequestWindow nodeCreateRequestWindow,
             DialogueSystemWindow dialogueSystemWindow
         )
         {
             this.graphViewer = graphViewer;
-            this.nodeCreateRequestWindow = nodeCreateRequestWindow;
             this.dialogueSystemWindow = dialogueSystemWindow;
         }
 
 
-        // ----------------------------- Assign Delegates -----------------------------
+        // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Assign actions to the graph viewer's delegates. 
+        /// Register events to the graph viewer.
         /// </summary>
-        public void AssignDelegates()
+        public void RegisterEvents()
         {
-            graphViewer.graphViewChanged = GraphViewChanged;
-            graphViewer.nodeCreationRequest = NodeCreationRequest;
-            graphViewer.deleteSelection = DeleteSelection;
+            RegisterFocusEvent();
+
+            RegisterBlurEvent();
+
+            RegisterGraphViewChangedEvent();
+
+            RegisterNodeCreationRequestEvent();
+
+            RegisterDeleteSelectionEvent();
+
+            RegisterNodeCreationRequestSearchWindowEvents();
+
+            RegisterEdgeConnectorSearchWindowEvents();
+
+            RegisterOptionEdgeConnectorSearchWindowEvents();
         }
 
 
-        // ----------------------------- Actions -----------------------------
+        /// <summary>
+        /// Register FocusEvent to the graph viewer.
+        /// </summary>
+        void RegisterFocusEvent() => graphViewer.RegisterCallback<FocusEvent>(FocusEvent);
+
+
+        /// <summary>
+        /// Register BlurEvent to the graph viewer.
+        /// </summary>
+        void RegisterBlurEvent() => graphViewer.RegisterCallback<BlurEvent>(BlurEvent);
+
+
+        /// <summary>
+        /// Register GraphViewChangedEvent to the graph viewer.
+        /// </summary>
+        void RegisterGraphViewChangedEvent() => graphViewer.graphViewChanged = GraphViewChangedEvent;
+
+
+        /// <summary>
+        /// Register NodeCreationRequestEvent to the graph viewer.
+        /// </summary>
+        void RegisterNodeCreationRequestEvent() => graphViewer.nodeCreationRequest = NodeCreationRequestEvent;
+
+
+        /// <summary>
+        /// Register DeleteSelectionEvent to the graph viewer.
+        /// </summary>
+        void RegisterDeleteSelectionEvent() => graphViewer.deleteSelection = DeleteSelectionEvent;
+
+
+        /// <summary>
+        /// Register events to the node creation request search window.
+        /// </summary>
+        void RegisterNodeCreationRequestSearchWindowEvents()
+            => new NodeCreationRequestSearchWindowObserver(graphViewer.NodeCreationRequestSearchWindowView).RegisterEvents();
+
+
+        /// <summary>
+        /// Register events to the edge connector search window.
+        /// </summary>
+        void RegisterEdgeConnectorSearchWindowEvents()
+            => new EdgeConnectorSearchWindowObserver(graphViewer.EdgeConnectorSearchWindowView).RegisterEvents();
+
+
+        /// <summary>
+        /// Register events to the option edge connector search window.
+        /// </summary>
+        void RegisterOptionEdgeConnectorSearchWindowEvents()
+            => new EdgeConnectorSearchWindowObserver(graphViewer.OptionEdgeConnectorSearchWindowView).RegisterEvents();
+
+
+        // ----------------------------- Event -----------------------------
+        /// <summary>
+        /// The event to invoke when the graph viewer has given focus.
+        /// <para></para>
+        /// <br>Different than "Focus In", this version has its bubble up property set to false.</br>
+        /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void FocusEvent(FocusEvent evt)
+        {
+            graphViewer.IsFocus = true;
+        }
+
+
+        /// <summary>
+        /// The event to invoke when the graph viewer has lost focus.
+        /// <para></para>
+        /// <br>Different than "Focus Out", this version has its bubble up property set to false.</br>
+        /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
+        /// </summary>
+        /// <param name="evt">The registering event.</param>
+        void BlurEvent(BlurEvent evt)
+        {
+            graphViewer.IsFocus = false;
+        }
+
+
         /// <summary>
         /// The action to invoke when certain changes have occurred in the graph.
         /// </summary>
         /// <param name="change">Set of changes in the graph that can be intercepted.</param>
         /// <returns>Set of changes in the graph that can be intercepted.</returns>
-        GraphViewChange GraphViewChanged(GraphViewChange change)
+        GraphViewChange GraphViewChangedEvent(GraphViewChange change)
         {
             if (!dialogueSystemWindow.hasUnsavedChanges)
             {
@@ -80,7 +152,7 @@ namespace AG.DS
                  || change.movedElements != null
                 )
                 {
-                    graphViewChangedEvent.Invoke();
+                    WindowChangedEvent.Invoke();
                 }
             }
 
@@ -92,9 +164,9 @@ namespace AG.DS
         /// The action to invoke when the user requests to display the node create window.
         /// </summary>
         /// <param name="context">A struct that represents the context when the user initiates creating a graph node.</param>
-        void NodeCreationRequest(NodeCreationContext context)
+        void NodeCreationRequestEvent(NodeCreationContext context)
         {
-            nodeCreateRequestWindow.Open(openScreenPosition: context.screenMousePosition);
+            graphViewer.NodeCreationRequestSearchWindowView.SearchWindow.OpenWindow(openScreenPosition: context.screenMousePosition);
         }
 
 
@@ -103,7 +175,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="operationName">Name of operation for undo/redo labels.</param>
         /// <param name="askUser">Whether or not to ask the user.</param>
-        void DeleteSelection(string operationName, AskUser askUser)
+        void DeleteSelectionEvent(string operationName, AskUser askUser)
         {
             // Delete selected elements
             {
@@ -147,74 +219,6 @@ namespace AG.DS
                 }
             }
 
-            WindowChangedEvent.Invoke();
-        }
-
-
-        // ----------------------------- Register Events -----------------------------
-        /// <summary>
-        /// Register events to the graph viewer.
-        /// </summary>
-        public void RegisterEvents()
-        {
-            RegisterFocusEvent();
-
-            RegisterBlurEvent();
-
-            RegisterGraphViewChangedEvent();
-        }
-
-
-        /// <summary>
-        /// Register FocusEvent to the graph viewer.
-        /// </summary>
-        void RegisterFocusEvent() => graphViewer.RegisterCallback<FocusEvent>(FocusEvent);
-
-
-        /// <summary>
-        /// Register BlurEvent to the graph viewer.
-        /// </summary>
-        void RegisterBlurEvent() => graphViewer.RegisterCallback<BlurEvent>(BlurEvent);
-
-
-        /// <summary>
-        /// Register GraphViewChangedEvent to the graph viewer.
-        /// </summary>
-        void RegisterGraphViewChangedEvent() => graphViewChangedEvent += m_GraphViewChangedEvent;
-
-
-        // ----------------------------- Event -----------------------------
-        /// <summary>
-        /// The event to invoke when the graph viewer has given focus.
-        /// <para></para>
-        /// <br>Different than "Focus In", this version has its bubble up property set to false.</br>
-        /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
-        /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void FocusEvent(FocusEvent evt)
-        {
-            graphViewer.IsFocus = true;
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the graph viewer has lost focus.
-        /// <para></para>
-        /// <br>Different than "Focus Out", this version has its bubble up property set to false.</br>
-        /// <br>Which means the visual elements that are in higher hierarchy won't be affected by this event.</br>
-        /// </summary>
-        /// <param name="evt">The registering event.</param>
-        void BlurEvent(BlurEvent evt)
-        {
-            graphViewer.IsFocus = false;
-        }
-
-
-        /// <summary>
-        /// The event to invoke when certain changes have occurred in the graph.
-        /// </summary>
-        void m_GraphViewChangedEvent()
-        {
             WindowChangedEvent.Invoke();
         }
     }

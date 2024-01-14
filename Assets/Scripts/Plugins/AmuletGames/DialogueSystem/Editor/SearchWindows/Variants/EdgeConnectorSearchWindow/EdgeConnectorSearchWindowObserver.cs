@@ -5,12 +5,12 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class NodeCreationRequestSearchWindowObserver
+    public class EdgeConnectorSearchWindowObserver
     {
         /// <summary>
-        /// The targeting node creation request search window.
+        /// The targeting edge connector search window.
         /// </summary>
-        public NodeCreationRequestSearchWindowView view;
+        public EdgeConnectorSearchWindowView view;
 
 
         /// <summary>
@@ -32,10 +32,10 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the node creation request search window observer class.
+        /// Constructor of the edge connector search window observer class.
         /// </summary>
-        /// <param name="view">The node creation request search window view to set for.</param>
-        public NodeCreationRequestSearchWindowObserver(NodeCreationRequestSearchWindowView view)
+        /// <param name="view">The edge connector search window view to set for.</param>
+        public EdgeConnectorSearchWindowObserver(EdgeConnectorSearchWindowView view)
         {
             this.view = view;
             graphViewer = view.GraphViewer;
@@ -45,7 +45,7 @@ namespace AG.DS
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the node creation request search window.
+        /// Register events to the edge connector search window.
         /// </summary>
         public void RegisterEvents()
         {
@@ -60,10 +60,9 @@ namespace AG.DS
             => new SearchWindowObserver(view.SearchWindow, SearchWindowEntrySelectedEvent);
 
 
-
         // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when an entry in the node creation request search window is selected.
+        /// The event to invoke when an entry in the edge connector search window is selected.
         /// </summary>
         /// <param name="searchTreeEntry">The selected entry.</param>
         /// <param name="context">Contextual data to pass to the search window when it is first created.</param>
@@ -92,6 +91,9 @@ namespace AG.DS
         /// <param name="evt">The registering event</param>
         void NodeProductCreatedEvent(GeometryChangedEvent evt)
         {
+            PortBase connectToPort;
+            bool isInputConnector = view.ConnectorPort.IsInput();
+
             // Initialize the node product position
             {
                 // Convert the direction from screen space to window space(?)
@@ -104,28 +106,72 @@ namespace AG.DS
                 // And calculate its position in the graph viewer.
                 var spawnPosition = graphViewer.contentViewContainer.WorldToLocal(p: mouseToWindowCenterVector);
 
-                var referenceYAxisPort = nodeProduct switch
+                connectToPort = nodeProduct switch
                 {
-                    BooleanNode node => node.View.InputPort,
-                    DialogueNode node => node.View.InputPort,
-                    EndNode node => node.View.InputPort,
-                    EventNode node => node.View.InputPort,
-                    OptionBranchNode node => node.View.InputOptionPortCell.Port,
-                    OptionRootNode node => node.View.InputPort,
-                    PreviewNode node => node.View.InputPort,
-                    StartNode node => node.View.OutputPort,
-                    StoryNode node => node.View.InputPort,
-                    _ => throw new ArgumentException("Node creation failed: cannot retrieve 'referenceYAxisPort' from invalid node type.")
+                    BooleanNode node => isInputConnector
+                        ? node.View.TrueOutputPort
+                        : node.View.InputPort,
+
+                    DialogueNode node => isInputConnector
+                        ? node.View.OutputPort
+                        : node.View.InputPort,
+                        
+                    EndNode node => isInputConnector
+                        ? null
+                        : node.View.InputPort,
+
+                    EventNode node => isInputConnector
+                        ? node.View.OutputPort
+                        : node.View.InputPort,
+
+                    OptionBranchNode node => isInputConnector
+                        ? node.View.OutputPort
+                        : node.View.InputOptionPortCell.Port,
+
+                    OptionRootNode node => isInputConnector
+                        ? node.View.OutputOptionPortGroup.FirstPortCell.Port
+                        : node.View.InputPort,
+
+                    PreviewNode node => isInputConnector
+                        ? node.View.OutputPort
+                        : node.View.InputPort,
+
+                    StartNode node => isInputConnector
+                        ? node.View.OutputPort
+                        : null,
+
+                    _ => throw new ArgumentException("Node creation failed: cannot retrieve 'connectToPort' from invalid node type.")
                 };
 
                 spawnPosition.y -= (nodeProduct.topContainer.worldBound.height
-                                  + referenceYAxisPort.localBound.position.y
+                                  + connectToPort.localBound.position.y
                                   + NumberConfig.MANUAL_CREATE_Y_OFFSET)
                                   / graphViewer.scale;
 
-                spawnPosition.x -= nodeProduct.localBound.width / 2;
+                spawnPosition.x -= isInputConnector
+                    ? nodeProduct.localBound.width
+                    : nodeProduct.localBound.width / 2;
 
                 nodeProduct.SetPosition(newPos: new Rect(position: spawnPosition, size: Vector2Utility.Zero));
+            }
+
+            // Connect the connector port to the node product
+            {
+                var port = view.ConnectorPort;
+
+                if (port.IsSingle() && port.connected)
+                {
+                    port.Disconnect(graphViewer);
+                }
+
+                var edge = EdgeManager.Instance.Connect
+                (
+                    model: view.EdgeModel,
+                    input: isInputConnector ? port : connectToPort,
+                    output: !isInputConnector ? port : connectToPort
+                );
+
+                graphViewer.Add(edge);
             }
 
             nodeProduct.Callback.OnCreate();
