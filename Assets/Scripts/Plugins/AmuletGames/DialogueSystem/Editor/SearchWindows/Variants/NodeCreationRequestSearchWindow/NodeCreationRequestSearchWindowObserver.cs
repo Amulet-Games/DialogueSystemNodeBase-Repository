@@ -57,7 +57,7 @@ namespace AG.DS
         /// Register events to the search window component.
         /// </summary>
         public void RegisterSearchWindowEvents()
-            => new SearchWindowObserver(view.SearchWindow, SearchWindowEntrySelectedEvent);
+            => new SearchWindowObserver(view.SearchWindow, SearchWindowEntrySelectedEvent).RegisterEvents();
 
 
 

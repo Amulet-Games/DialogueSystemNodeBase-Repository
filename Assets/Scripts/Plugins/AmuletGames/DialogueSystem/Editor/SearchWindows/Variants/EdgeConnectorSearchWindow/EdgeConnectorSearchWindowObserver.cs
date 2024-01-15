@@ -32,6 +32,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the search window context's screen mouse position.
+        /// </summary>
+        Vector2 SearchWindowContextScreenMousePosition;
+
+
+        /// <summary>
         /// Constructor of the edge connector search window observer class.
         /// </summary>
         /// <param name="view">The edge connector search window view to set for.</param>
@@ -57,7 +63,7 @@ namespace AG.DS
         /// Register events to the search window component.
         /// </summary>
         public void RegisterSearchWindowEvents()
-            => new SearchWindowObserver(view.SearchWindow, SearchWindowEntrySelectedEvent);
+            => new SearchWindowObserver(view.SearchWindow, SearchWindowEntrySelectedEvent).RegisterEvents();
 
 
         // ----------------------------- Event -----------------------------
@@ -68,6 +74,8 @@ namespace AG.DS
         /// <param name="context">Contextual data to pass to the search window when it is first created.</param>
         bool SearchWindowEntrySelectedEvent(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
         {
+            SearchWindowContextScreenMousePosition = context.screenMousePosition;
+
             nodeProduct = NodeManager.Instance.Spawn
             (
                 graphViewer,
@@ -100,7 +108,7 @@ namespace AG.DS
                 var mouseToWindowCenterVector = dialogueSystemWindow.rootVisualElement.ChangeCoordinatesTo
                 (
                     dest: dialogueSystemWindow.rootVisualElement.parent,
-                    point: graphViewer.ScreenMousePosition - dialogueSystemWindow.position.position
+                    point: SearchWindowContextScreenMousePosition - dialogueSystemWindow.position.position
                 );
 
                 // And calculate its position in the graph viewer.
@@ -150,7 +158,7 @@ namespace AG.DS
 
                 spawnPosition.x -= isInputConnector
                     ? nodeProduct.localBound.width
-                    : nodeProduct.localBound.width / 2;
+                    : 0;
 
                 nodeProduct.SetPosition(newPos: new Rect(position: spawnPosition, size: Vector2Utility.Zero));
             }

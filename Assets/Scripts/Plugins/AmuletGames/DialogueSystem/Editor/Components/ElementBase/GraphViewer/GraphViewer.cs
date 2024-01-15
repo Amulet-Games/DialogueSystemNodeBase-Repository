@@ -9,34 +9,21 @@ namespace AG.DS
     public class GraphViewer : GraphView
     {
         /// <summary>
-        /// Reference of the node create default connector window.
-        /// </summary>
-        public NodeCreateDefaultConnectorWindow NodeCreateDefaultConnectorWindow;
-
-
-        /// <summary>
-        /// Reference of the node create option connector window.
-        /// </summary>
-        public NodeCreateOptionConnectorWindow NodeCreateOptionConnectorWindow;
-
-
-        // ----------------------------- New -----------------------------
-        /// <summary>
         /// Reference of the node creation request search window view.
         /// </summary>
-        public NodeCreationRequestSearchWindowView NodeCreationRequestSearchWindowView;
+        public NodeCreationRequestSearchWindowView NodeCreationRequestSearchWindowView { get; private set; }
 
 
         /// <summary>
         /// Reference of the edge connector search window view.
         /// </summary>
-        public EdgeConnectorSearchWindowView EdgeConnectorSearchWindowView;
+        public EdgeConnectorSearchWindowView EdgeConnectorSearchWindowView { get; private set; }
 
 
         /// <summary>
         /// Reference of the option edge connector search window view.
         /// </summary>
-        public EdgeConnectorSearchWindowView OptionEdgeConnectorSearchWindowView;
+        public EdgeConnectorSearchWindowView OptionEdgeConnectorSearchWindowView { get; private set; }
 
 
         /// <summary>

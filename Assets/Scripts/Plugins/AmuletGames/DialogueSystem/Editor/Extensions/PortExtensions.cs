@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
@@ -9,27 +8,22 @@ namespace AG.DS
         /// <summary>
         /// Add a new edge connector to the port.
         /// </summary>
-        /// <typeparam name="TNodeCreateConnectorWindow">Type node create connector window</typeparam>
         /// <param name="port">Extension port</param>
-        /// <param name="nodeCreateConnectorWindow">The node create connector window to set for.</param>
-        /// <param name="nodeCreateWindowEntries">The node create window entries to set for.</param>
+        /// <param name="edgeConnectorSearchWindowView">The edge connector search window to set for.</param>
         /// <param name="edgeFocusable">The edge focusable value to set for.</param>
         /// <param name="edgeStyleSheet">The edge style sheet to set for.</param>
-        public static void AddEdgeConnector<TNodeCreateConnectorWindow>
+        public static void AddEdgeConnector
         (
             this PortBase port,
-            TNodeCreateConnectorWindow nodeCreateConnectorWindow,
-            List<SearchTreeEntry> nodeCreateWindowEntries,
+            EdgeConnectorSearchWindowView edgeConnectorSearchWindowView,
             bool edgeFocusable,
             StyleSheet edgeStyleSheet
         )
-            where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TNodeCreateConnectorWindow>
         {
-            var listener = new EdgeConnectorListener<TNodeCreateConnectorWindow>
+            var listener = new EdgeConnectorListener
             (
                 connectorPort: port,
-                nodeCreateConnectorWindow,
-                nodeCreateWindowEntries,
+                edgeConnectorSearchWindowView,
                 edgeFocusable,
                 edgeStyleSheet
             );

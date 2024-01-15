@@ -33,7 +33,7 @@ namespace AG.DS
             {
                 View.InputOptionPortCell = OptionPortCellPresenter.CreateElement
                 (
-                    nodeCreateOptionConnectorWindow: Node.GraphViewer.NodeCreateOptionConnectorWindow,
+                    edgeConnectorSearchWindowView: Node.GraphViewer.OptionEdgeConnectorSearchWindowView,
                     direction: Direction.Input,
                     isIndexDominant: false
                 );
@@ -55,8 +55,7 @@ namespace AG.DS
                 View.OutputPort = PortManager.Instance.Create(portModel);
                 View.OutputPort.AddEdgeConnector
                 (
-                    nodeCreateConnectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
-                    nodeCreateWindowEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries,
+                    edgeConnectorSearchWindowView: Node.GraphViewer.EdgeConnectorSearchWindowView,
                     edgeFocusable: true,
                     edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
                 );

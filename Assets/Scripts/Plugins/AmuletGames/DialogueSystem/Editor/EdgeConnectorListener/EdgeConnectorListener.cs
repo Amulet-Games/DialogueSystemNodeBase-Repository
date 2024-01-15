@@ -11,9 +11,7 @@ namespace AG.DS
     /// <br>Read More:</br>
     /// <br>https://github.com/Unity-Technologies/UnityCsReference/blob/6c247dc72666deb3d5359564fcab5875c5999dc7/Modules/GraphViewEditor/Elements/Port.cs</br>
     /// </summary>
-    public class EdgeConnectorListener<TNodeCreateConnectorWindow>
-        : IEdgeConnectorListener
-        where TNodeCreateConnectorWindow : NodeCreateConnectorWindowFrameBase<TNodeCreateConnectorWindow>
+    public class EdgeConnectorListener : IEdgeConnectorListener
     {
         /// <summary>
         /// Reference of the graph view's GraphViewChange struct.
@@ -40,15 +38,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the node create connector window.
+        /// Reference of the edge connector search window view.
         /// </summary>
-        TNodeCreateConnectorWindow nodeCreateConnectorWindow;
-
-
-        /// <summary>
-        /// Reference of the node create window entries.
-        /// </summary>
-        List<SearchTreeEntry> nodeCreateWindowEntries;
+        EdgeConnectorSearchWindowView edgeConnectorSearchWindowView;
 
 
         /// <summary>
@@ -67,22 +59,19 @@ namespace AG.DS
         /// Constructor of the edge connector callback class.
         /// </summary>
         /// <param name="connectorPort">The connector port to set for.</param>
-        /// <param name="nodeCreateConnectorWindow">The node create connector window to set for.</param>
-        /// <param name="nodeCreateWindowEntries">The node create window entries to set for.</param>
+        /// <param name="edgeConnectorSearchWindowView">The edge connector window view to set for.</param>
         /// <param name="edgeFocusable">The edge's focusable value to set for.</param>
         /// <param name="edgeStyleSheet">The edge's style sheet to set for.</param>
         public EdgeConnectorListener
         (
             PortBase connectorPort,
-            TNodeCreateConnectorWindow nodeCreateConnectorWindow,
-            List<SearchTreeEntry> nodeCreateWindowEntries,
+            EdgeConnectorSearchWindowView edgeConnectorSearchWindowView,
             bool edgeFocusable,
             StyleSheet edgeStyleSheet
         )
         {
             this.connectorPort = connectorPort;
-            this.nodeCreateConnectorWindow = nodeCreateConnectorWindow;
-            this.nodeCreateWindowEntries = nodeCreateWindowEntries;
+            this.edgeConnectorSearchWindowView = edgeConnectorSearchWindowView;
             edgeModel = new(edgeFocusable, edgeStyleSheet);
 
             edgesToCreate = new();
@@ -163,19 +152,10 @@ namespace AG.DS
         /// <param name="position">The position in empty space the edge is dropped on.</param>
         public void OnDropOutsidePort(Edge edge, Vector2 position)
         {
-            var input = connectorPort.IsInput();
-            var horizontalAlignmentType = input ? HorizontalAlignment.LEFT : HorizontalAlignment.RIGHT;
+            edgeConnectorSearchWindowView.ConnectorPort = connectorPort;
+            edgeConnectorSearchWindowView.EdgeModel = edgeModel;
 
-            nodeCreateConnectorWindow.Open
-            (
-                horizontalAlignmentType: horizontalAlignmentType,
-
-                connectorPort: connectorPort,
-
-                edgeModel: edgeModel,
-
-                nodeCreateWindowEntries: nodeCreateWindowEntries
-            );
+            edgeConnectorSearchWindowView.SearchWindow.OpenWindow(openScreenPosition: GUIUtility.GUIToScreenPoint(Event.current.mousePosition));
 
             connectorPort.Callback.OnPostConnectingEdgeDropOutside();
         }

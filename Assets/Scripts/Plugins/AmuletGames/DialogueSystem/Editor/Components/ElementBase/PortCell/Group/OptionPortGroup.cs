@@ -114,7 +114,7 @@ namespace AG.DS
         {
             FirstPortCell = new OptionPortCellSeeder().Generate
             (
-                nodeCreateOptionConnectorWindow: GraphViewer.NodeCreateOptionConnectorWindow,
+                edgeConnectorSearchWindowView: GraphViewer.OptionEdgeConnectorSearchWindowView,
                 direction: Direction,
                 isIndexDominant: true,
                 index: FIRST_PORT_CELL_INDEX,

@@ -7,7 +7,7 @@ namespace AG.DS
         /// <summary>
         /// Generate a new option port cell.
         /// </summary>
-        /// <param name="nodeCreateOptionConnectorWindow">The node create option connector window to set for.</param>
+        /// <param name="edgeConnectorSearchWindowView">The edge connector search window to set for.</param>
         /// <param name="direction">The direction to set for.</param>
         /// <param name="isIndexDominant">The isIndexDominant value to set for.</param>
         /// <param name="index">The index to set for.</param>
@@ -15,7 +15,7 @@ namespace AG.DS
         /// <returns>A new option port cell.</returns>
         public OptionPortCell Generate
         (
-            NodeCreateOptionConnectorWindow nodeCreateOptionConnectorWindow,
+            EdgeConnectorSearchWindowView edgeConnectorSearchWindowView,
             Direction direction,
             bool isIndexDominant,
             int index = OptionPortGroup.FIRST_PORT_CELL_INDEX,
@@ -24,7 +24,7 @@ namespace AG.DS
         {
             var portCell = OptionPortCellPresenter.CreateElement
             (
-                nodeCreateOptionConnectorWindow,
+                edgeConnectorSearchWindowView,
                 direction,
                 isIndexDominant: isIndexDominant,
                 index

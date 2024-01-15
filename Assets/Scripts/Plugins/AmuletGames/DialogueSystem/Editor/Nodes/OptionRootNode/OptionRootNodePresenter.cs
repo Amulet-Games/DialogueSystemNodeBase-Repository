@@ -43,8 +43,7 @@ namespace AG.DS
                 View.InputPort = PortManager.Instance.Create(portModel);
                 View.InputPort.AddEdgeConnector
                 (
-                    nodeCreateConnectorWindow: Node.GraphViewer.NodeCreateDefaultConnectorWindow,
-                    nodeCreateWindowEntries: NodeCreateEntryProvider.DefaultNodeInputEntries,
+                    edgeConnectorSearchWindowView: Node.GraphViewer.EdgeConnectorSearchWindowView,
                     edgeFocusable: true,
                     edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
                 );

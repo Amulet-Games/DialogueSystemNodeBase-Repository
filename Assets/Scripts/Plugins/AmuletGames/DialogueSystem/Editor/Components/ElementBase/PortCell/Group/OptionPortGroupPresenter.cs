@@ -36,7 +36,7 @@ namespace AG.DS
             {
                 group.FirstPortCell = new OptionPortCellSeeder().Generate
                 (
-                    nodeCreateOptionConnectorWindow: graphViewer.NodeCreateOptionConnectorWindow,
+                    edgeConnectorSearchWindowView: graphViewer.OptionEdgeConnectorSearchWindowView,
                     direction: direction,
                     isIndexDominant: true,
                     index: OptionPortGroup.FIRST_PORT_CELL_INDEX

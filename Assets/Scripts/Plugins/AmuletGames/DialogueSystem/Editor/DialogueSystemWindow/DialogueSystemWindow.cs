@@ -43,9 +43,6 @@ namespace AG.DS
         LanguageHandler languageHandler;
 
 
-
-
-
         /// <summary>
         /// The property of the dialogue system window's hasUnsavedChanges value.
         /// </summary>
@@ -128,8 +125,6 @@ namespace AG.DS
         {
             Headbar headBar;
 
-            NodeCreateRequestWindow nodeCreateRequestWindow;
-
             // Setup static classes
             {
                 LanguageProvider.Setup();
@@ -171,18 +166,6 @@ namespace AG.DS
                 // Input Hint
                 {
                     InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
-                }
-
-                // Search Windows
-                {
-                    nodeCreateRequestWindow =
-                        NodeCreateWindowManager.Instance.CreateRequestWindow(graphViewer, languageHandler, dialogueSystemWindow: this);
-
-                    graphViewer.NodeCreateDefaultConnectorWindow =
-                        NodeCreateWindowManager.Instance.CreateDefaultConnectorWindow(graphViewer, languageHandler, dialogueSystemWindow: this);
-
-                    graphViewer.NodeCreateOptionConnectorWindow = 
-                        NodeCreateWindowManager.Instance.CreateOptionConnectorWindow(graphViewer, languageHandler, dialogueSystemWindow: this);
                 }
             }
 
