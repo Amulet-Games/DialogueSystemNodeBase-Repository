@@ -33,29 +33,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The current mouse position on screen when an unity's event is invoked.
-        /// </summary>
-        /// 
-        /// <exception cref="ArgumentException">
-        /// Thrown when there's no event occurred when trying to retrieve the current screen mouse position.
-        /// </exception>
-        public Vector2 ScreenMousePosition
-        {
-            get
-            {
-                if (Event.current != null)
-                {
-                    return GUIUtility.GUIToScreenPoint(Event.current.mousePosition);
-                }
-                else
-                {
-                    throw new ArgumentException("Can't get the current mouse position since there's no event has been invoked yet!");
-                }
-            }
-        }
-
-
-        /// <summary>
         /// The node elements cache.
         /// </summary>
         public List<NodeBase> Nodes { get; private set; }

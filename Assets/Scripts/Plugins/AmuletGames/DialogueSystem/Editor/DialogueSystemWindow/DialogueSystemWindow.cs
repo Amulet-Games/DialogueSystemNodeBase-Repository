@@ -137,7 +137,6 @@ namespace AG.DS
                 HotkeyManager.Setup();
                 EdgeManager.Setup();
                 NodeManager.Setup();
-                NodeCreateWindowManager.Setup();
                 PortManager.Setup();
             }
 

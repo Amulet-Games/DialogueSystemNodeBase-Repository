@@ -161,7 +161,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The action to invoke when the user requests to display the node create window.
+        /// The action to invoke when the user requests to display the node creation window.
         /// </summary>
         /// <param name="context">A struct that represents the context when the user initiates creating a graph node.</param>
         void NodeCreationRequestEvent(NodeCreationContext context)

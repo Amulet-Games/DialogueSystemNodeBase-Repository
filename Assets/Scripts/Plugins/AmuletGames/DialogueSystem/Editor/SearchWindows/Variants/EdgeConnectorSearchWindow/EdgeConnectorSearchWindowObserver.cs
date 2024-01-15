@@ -32,7 +32,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the search window context's screen mouse position.
+        /// The search window context's screen mouse position.
         /// </summary>
         Vector2 SearchWindowContextScreenMousePosition;
 

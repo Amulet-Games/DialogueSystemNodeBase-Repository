@@ -60,7 +60,6 @@ namespace AG.DS
             => new SearchWindowObserver(view.SearchWindow, SearchWindowEntrySelectedEvent).RegisterEvents();
 
 
-
         // ----------------------------- Event -----------------------------
         /// <summary>
         /// The event to invoke when an entry in the node creation request search window is selected.
@@ -98,7 +97,7 @@ namespace AG.DS
                 var mouseToWindowCenterVector = dialogueSystemWindow.rootVisualElement.ChangeCoordinatesTo
                 (
                     dest: dialogueSystemWindow.rootVisualElement.parent,
-                    point: graphViewer.ScreenMousePosition - dialogueSystemWindow.position.position
+                    point: GUIUtility.GUIToScreenPoint(Event.current.mousePosition) - dialogueSystemWindow.position.position
                 );
 
                 // And calculate its position in the graph viewer.
