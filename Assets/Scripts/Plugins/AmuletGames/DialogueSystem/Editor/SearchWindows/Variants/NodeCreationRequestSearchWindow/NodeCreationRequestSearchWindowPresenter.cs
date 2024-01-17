@@ -8,7 +8,8 @@ namespace AG.DS
         /// <returns>A new node creation request search window.</returns>
         public static SearchWindowBase CreateWindow()
         {
-            return SearchWindowPresenter.CreateWindow<SearchWindowBase>(NodeCreateEntryProvider.NodeCreateRequestEntries);
+            return SearchWindowPresenter.CreateWindow<SearchWindowBase>(
+                SearchTreeEntryProvider.NodeCreationRequestSearchTreeEntries);
         }
     }
 }

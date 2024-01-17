@@ -128,7 +128,7 @@ namespace AG.DS
             // Setup static classes
             {
                 LanguageProvider.Setup();
-                NodeCreateEntryProvider.Setup();
+                SearchTreeEntryProvider.Setup();
             }
 
             // Setup singletons

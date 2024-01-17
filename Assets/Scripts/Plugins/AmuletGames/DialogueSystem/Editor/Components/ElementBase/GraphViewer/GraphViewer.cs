@@ -66,16 +66,16 @@ namespace AG.DS
             (
                 graphViewer: this,
                 languageHandler,
-                inputConnectorSearchTreeEntries: NodeCreateEntryProvider.DefaultNodeInputEntries,
-                outputConnectorSearchTreeEntries: NodeCreateEntryProvider.DefaultNodeOutputEntries,
+                inputConnectorSearchTreeEntries: SearchTreeEntryProvider.EdgeConnectorInputSearchTreeEntries,
+                outputConnectorSearchTreeEntries: SearchTreeEntryProvider.EdgeConnectorOutputSearchTreeEntries,
                 dialogueSystemWindow
             );
             OptionEdgeConnectorSearchWindowView = new
             (
                 graphViewer: this,
                 languageHandler,
-                inputConnectorSearchTreeEntries: NodeCreateEntryProvider.OptionChannelInputEntries,
-                outputConnectorSearchTreeEntries: NodeCreateEntryProvider.OptionChannelOutputEntries,
+                inputConnectorSearchTreeEntries: SearchTreeEntryProvider.OptionEdgeConnectorInputSearchTreeEntries,
+                outputConnectorSearchTreeEntries: SearchTreeEntryProvider.OptionEdgeConnectorOutputSearchTreeEntries,
                 dialogueSystemWindow
             );
 

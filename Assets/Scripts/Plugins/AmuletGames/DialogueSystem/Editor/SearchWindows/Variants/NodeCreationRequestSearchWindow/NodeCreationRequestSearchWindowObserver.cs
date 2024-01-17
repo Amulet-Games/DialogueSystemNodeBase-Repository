@@ -71,7 +71,7 @@ namespace AG.DS
             nodeProduct = NodeManager.Instance.Spawn
             (
                 graphViewer,
-                nodeType: ((NodeCreateEntry)searchTreeEntry).NodeType,
+                nodeType: ((NodeTypeSearchTreeEntryUserData)searchTreeEntry.userData).NodeType,
                 view.LanguageHandler
             );
 

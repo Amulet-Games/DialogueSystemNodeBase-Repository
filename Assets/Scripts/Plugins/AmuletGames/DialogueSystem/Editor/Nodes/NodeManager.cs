@@ -36,37 +36,37 @@ namespace AG.DS
         public NodeBase Spawn
         (
             GraphViewer graphViewer,
-            NodeType nodeType,
+            Node nodeType,
             LanguageHandler languageHandler = null
         )
         {
             return nodeType switch
             {
-                NodeType.Boolean => Spawn<BooleanNode, BooleanNodeView, BooleanNodePresenter, BooleanNodeObserver,
+                Node.Boolean => Spawn<BooleanNode, BooleanNodeView, BooleanNodePresenter, BooleanNodeObserver,
                                       BooleanNodeSerializer, BooleanNodeCallback, BooleanNodeData>(graphViewer),
 
-                NodeType.Dialogue => Spawn<DialogueNode, DialogueNodeView, DialogueNodePresenter, DialogueNodeObserver,
+                Node.Dialogue => Spawn<DialogueNode, DialogueNodeView, DialogueNodePresenter, DialogueNodeObserver,
                                        DialogueNodeSerializer, DialogueNodeCallback, DialogueNodeData>(graphViewer, languageHandler),
 
-                NodeType.End => Spawn<EndNode, EndNodeView, EndNodePresenter, EndNodeObserver,
+                Node.End => Spawn<EndNode, EndNodeView, EndNodePresenter, EndNodeObserver,
                                   EndNodeSerializer, EndNodeCallback, EndNodeData>(graphViewer),
 
-                NodeType.Event => Spawn<EventNode, EventNodeView, EventNodePresenter, EventNodeObserver,
+                Node.Event => Spawn<EventNode, EventNodeView, EventNodePresenter, EventNodeObserver,
                                     EventNodeSerializer, EventNodeCallback, EventNodeData>(graphViewer),
 
-                NodeType.OptionBranch => Spawn<OptionBranchNode, OptionBranchNodeView, OptionBranchNodePresenter, OptionBranchNodeObserver,
+                Node.OptionBranch => Spawn<OptionBranchNode, OptionBranchNodeView, OptionBranchNodePresenter, OptionBranchNodeObserver,
                                            OptionBranchNodeSerializer, OptionBranchNodeCallback, OptionBranchNodeData>(graphViewer, languageHandler),
 
-                NodeType.OptionRoot => Spawn<OptionRootNode, OptionRootNodeView, OptionRootNodePresenter, OptionRootNodeObserver,
+                Node.OptionRoot => Spawn<OptionRootNode, OptionRootNodeView, OptionRootNodePresenter, OptionRootNodeObserver,
                                          OptionRootNodeSerializer, OptionRootNodeCallback, OptionRootNodeData>(graphViewer, languageHandler),
 
-                NodeType.Preview => Spawn<PreviewNode, PreviewNodeView, PreviewNodePresenter, PreviewNodeObserver,
+                Node.Preview => Spawn<PreviewNode, PreviewNodeView, PreviewNodePresenter, PreviewNodeObserver,
                                       PreviewNodeSerializer, PreviewNodeCallback, PreviewNodeData>(graphViewer),
 
-                NodeType.Start => Spawn<StartNode, StartNodeView, StartNodePresenter, StartNodeObserver,
+                Node.Start => Spawn<StartNode, StartNodeView, StartNodePresenter, StartNodeObserver,
                                     StartNodeSerializer, StartNodeCallback, StartNodeData>(graphViewer),
 
-                NodeType.Story => Spawn<StoryNode, StoryNodeView, StoryNodePresenter, StoryNodeObserver,
+                Node.Story => Spawn<StoryNode, StoryNodeView, StoryNodePresenter, StoryNodeObserver,
                                     StoryNodeSerializer, StoryNodeCallback, StoryNodeData>(graphViewer, languageHandler),
 
                 _ => throw new ArgumentException("Invalid GraphViewer type: " + nodeType)

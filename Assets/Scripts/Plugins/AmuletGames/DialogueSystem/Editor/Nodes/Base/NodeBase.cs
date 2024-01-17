@@ -7,7 +7,7 @@ namespace AG.DS
     /// <summary>
     /// The graph view node element.
     /// </summary>
-    public abstract class NodeBase : Node
+    public abstract class NodeBase : UnityEditor.Experimental.GraphView.Node
     {
         /// <summary>
         /// Reference of the graph viewer element.

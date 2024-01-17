@@ -19,17 +19,22 @@ namespace AG.DS
         #endregion
 
         #region Search Entry Labels.
-        public const string SearchEntry_AncestorEntry_LabelText = "Dialogue Editor";
         public const string SearchEntry_FamilyEntry_Nodes_LabelText = "Nodes";
         public const string SearchEntry_ChildEntry_BooleanNode_LabelText = "Boolean Node";
-        public const string SearchEntry_ChildEntry_DialogueNode_LabelText = "Dialogue Node";
-        public const string SearchEntry_ChildEntry_EndNode_LabelText = "End Node";
-        public const string SearchEntry_ChildEntry_EventNode_LabelText = "Event Node";
-        public const string SearchEntry_ChildEntry_OptionBranchNode_LabelText = "Option Branch Node";
-        public const string SearchEntry_ChildEntry_OptionRootNode_LabelText = "Option Root Node";
-        public const string SearchEntry_ChildEntry_PreviewNode_LabelText = "Preview Node";
-        public const string SearchEntry_ChildEntry_StartNode_LabelText = "Start Node";
-        public const string SearchEntry_ChildEntry_StoryNode_LabelText = "Story Node";
+
+        // New
+        public const string SearchTreeGroupEntry_NodeCreationRequest_CreationRequest_LabelText = "Creation Request";
+        public const string SearchTreeGroupEntry_EdgeConnector_EdgeConnector_LabelText = "Edge Connector";
+        public const string SearchTreeGroupEntry_NodeCreationRequest_NewNode_LabelText = "New Node";
+        public const string SearchTreeEntry_Common_BooleanNode_LabelText = "Boolean Node";
+        public const string SearchTreeEntry_Common_DialogueNode_LabelText = "Dialogue Node";
+        public const string SearchTreeEntry_Common_EndNode_LabelText = "End Node";
+        public const string SearchTreeEntry_Common_EventNode_LabelText = "Event Node";
+        public const string SearchTreeEntry_Common_OptionBranchNode_LabelText = "Option Branch Node";
+        public const string SearchTreeEntry_Common_OptionRootNode_LabelText = "Option Root Node";
+        public const string SearchTreeEntry_Common_PreviewNode_LabelText = "Preview Node";
+        public const string SearchTreeEntry_Common_StartNode_LabelText = "Start Node";
+        public const string SearchTreeEntry_Common_StoryNode_LabelText = "Story Node";
         #endregion
 
         #region Contextual Menu Item Labels.

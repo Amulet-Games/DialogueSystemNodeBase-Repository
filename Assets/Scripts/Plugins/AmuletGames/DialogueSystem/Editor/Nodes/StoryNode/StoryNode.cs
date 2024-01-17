@@ -73,7 +73,7 @@ namespace AG.DS
             var target = NodeManager.Instance.Spawn
             (
                 GraphViewer,
-                nodeType: NodeType.Boolean,
+                nodeType: Node.Boolean,
                 LanguageHandler
             );
 
