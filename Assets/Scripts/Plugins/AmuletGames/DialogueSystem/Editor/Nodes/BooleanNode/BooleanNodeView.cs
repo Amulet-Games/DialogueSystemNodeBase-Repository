@@ -10,9 +10,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// View for the condition modifier group.
+        /// Element that contains the condition modifiers.
         /// </summary>
-        public ConditionModifierGroupView ConditionModifierGroupView;
+        public ConditionModifierGroup ConditionModifierGroup;
 
 
         /// <summary>
@@ -37,7 +37,6 @@ namespace AG.DS
         public override BooleanNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleFieldView = new(value: StringConfig.BooleanNode_NodeTitleField_DefaultText);
-            ConditionModifierGroupView = new();
 
             return this;
         }

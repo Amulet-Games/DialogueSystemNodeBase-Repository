@@ -109,14 +109,14 @@ namespace AG.DS
 
             void CreateEventModifierGroup()
             {
-                EventModifierGroupPresenter.CreateElement(view: View.EventModifierGroupView);
+                View.EventModifierGroup = EventModifierGroupPresenter.CreateElement();
             }
 
             void AddElementsToContainer()
             {
                 Node.topContainer.Add(View.ContentButton);
 
-                contentContainer.Add(View.EventModifierGroupView.GroupContainer);
+                contentContainer.Add(View.EventModifierGroup);
             }
 
             void AddContainersToNode()

@@ -5,20 +5,20 @@ namespace AG.DS
         /// <summary>
         /// Generate a new event modifier.
         /// </summary>
-        /// <param name="groupView">The event modifier group view to set for.</param>
+        /// <param name="group">The event modifier group element to set for.</param>
         /// <param name="data">The event modifier data to set for.</param>
         /// <returns>A new event modifier view.</returns>
         public EventModifierView Generate
         (
-            EventModifierGroupView groupView,
+            EventModifierGroup group,
             EventModifierData data = null
         )
         {
             var view = new EventModifierView();
 
-            EventModifierPresenter.CreateElement(view, index: groupView.NextIndex);
+            EventModifierPresenter.CreateElement(view, index: group.NextIndex);
 
-            new EventModifierObserver(view, groupView).RegisterEvents();
+            new EventModifierObserver(view, group).RegisterEvents();
 
             if (data != null)
             {

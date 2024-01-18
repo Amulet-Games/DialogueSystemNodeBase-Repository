@@ -3,13 +3,16 @@ namespace AG.DS
     public class ConditionModifierGroupPresenter
     {
         /// <summary>
-        /// Create the elements for the condition modifier group view.
+        /// Create a new condition modifier group element.
         /// </summary>
-        /// <param name="view">The condition modifier group view to set for.</param>
-        public static void CreateElement(ConditionModifierGroupView view)
+        /// <returns>A new condition modifier group element.</returns>
+        public static ConditionModifierGroup CreateElement()
         {
-            view.GroupContainer = new();
-            view.GroupContainer.AddToClassList(StyleConfig.ConditionModifierGroup);
+            var group = new ConditionModifierGroup();
+
+            group.AddToClassList(StyleConfig.ConditionModifierGroup);
+
+            return group;
         }
     }
 }

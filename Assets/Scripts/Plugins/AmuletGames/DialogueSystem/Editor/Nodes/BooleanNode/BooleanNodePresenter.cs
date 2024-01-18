@@ -133,14 +133,14 @@ namespace AG.DS
 
             void CreateConditionModifierGroup()
             {
-                ConditionModifierGroupPresenter.CreateElement(view: View.ConditionModifierGroupView);
+                View.ConditionModifierGroup = ConditionModifierGroupPresenter.CreateElement();
             }
 
             void AddElementsToContainer()
             {
                 Node.topContainer.Add(View.ContentButton);
 
-                contentContainer.Add(View.ConditionModifierGroupView.GroupContainer);
+                contentContainer.Add(View.ConditionModifierGroup);
             }
 
             void AddContainersToNode()

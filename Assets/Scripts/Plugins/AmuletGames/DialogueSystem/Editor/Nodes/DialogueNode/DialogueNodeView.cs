@@ -16,9 +16,9 @@
 
 
         /// <summary>
-        /// View for the message modifier group.
+        /// Element that contains the message modifiers.
         /// </summary>
-        public MessageModifierGroupView MessageModifierGroupView;
+        public MessageModifierGroup MessageModifierGroup;
 
 
         /// <summary>
@@ -38,7 +38,6 @@
         {
             NodeTitleFieldView = new(value: StringConfig.DialogueNode_NodeTitleField_DefaultText);
             DialogueSpeakerFieldView = new(placeholderText: StringConfig.DialogueNode_DialogueSpeakerField_PlaceholderText);
-            MessageModifierGroupView = new();
 
             return this;
         }

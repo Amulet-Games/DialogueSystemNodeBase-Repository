@@ -5,20 +5,20 @@ namespace AG.DS
         /// <summary>
         /// Save the condition modifier group values.
         /// </summary>
-        /// <param name="view">The condition modifier group view to set for.</param>
+        /// <param name="group">The condition modifier group element to set for.</param>
         /// <param name="data">The condition modifier group data to set for.</param>
         public void Save
         (
-            ConditionModifierGroupView view,
+            ConditionModifierGroup group,
             ConditionModifierGroupData data
         )
         {
-            data.ModifiersData = new ConditionModifierData[view.ModifiersCount];
+            data.ModifiersData = new ConditionModifierData[group.ModifiersCount];
 
-            for (int i = 0; i < view.ModifiersCount; i++)
+            for (int i = 0; i < group.ModifiersCount; i++)
             {
                 data.ModifiersData[i] = new();
-                new ConditionModifierSerializer().Save(view.Modifiers[i], data.ModifiersData[i]);
+                new ConditionModifierSerializer().Save(group.Modifiers[i], data.ModifiersData[i]);
             }
         }
 
@@ -26,12 +26,12 @@ namespace AG.DS
         /// <summary>
         /// Load the condition modifier group values.
         /// </summary>
-        /// <param name="view">The condition modifier group view to set for.</param>
+        /// <param name="group">The condition modifier group element to set for.</param>
         /// <param name="data">The condition modifier group data to set for.</param>
         /// <param name="graphViewer">The graph viewer to set for.</param>
         public void Load
         (
-            ConditionModifierGroupView view,
+            ConditionModifierGroup group,
             ConditionModifierGroupData data,
             GraphViewer graphViewer
         )
@@ -39,15 +39,15 @@ namespace AG.DS
             for (int i = 0; i <= data.ModifiersData.Length; i++)
             {
                 var modifier = new ConditionModifierSeeder().Generate(
-                    groupView: view,
+                    group: group,
                     graphViewer,
                     data: data.ModifiersData[i]
                 );
 
-                view.Add(modifier);
+                group.Add(modifier);
             }
 
-            view.UpdateReferences();
+            group.UpdateReferences();
         }
     }
 }

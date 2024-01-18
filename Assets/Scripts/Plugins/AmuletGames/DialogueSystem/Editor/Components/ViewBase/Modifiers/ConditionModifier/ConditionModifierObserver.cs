@@ -13,24 +13,24 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the condition modifier group view.
+        /// Reference of the condition modifier group element.
         /// </summary>
-        ConditionModifierGroupView groupView;
+        ConditionModifierGroup group;
 
 
         /// <summary>
         /// Constructor of the condition modifier observer class.
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
-        /// <param name="groupView">The condition modifier group view to set for,</param>
+        /// <param name="group">The condition modifier group element to set for,</param>
         public ConditionModifierObserver
         (
             ConditionModifierView view,
-            ConditionModifierGroupView groupView
+            ConditionModifierGroup group
         )
         {
             this.view = view;
-            this.groupView = groupView;
+            this.group = group;
         }
 
 
@@ -188,7 +188,7 @@ namespace AG.DS
         /// </summary>
         void MoveUpButtonClickEvent()
         {
-            groupView.Swap(modifier: view, swapUp: true);
+            group.Swap(modifier: view, swapUp: true);
         }
 
 
@@ -197,7 +197,7 @@ namespace AG.DS
         /// </summary>
         void MoveDownButtonClickEvent()
         {
-            groupView.Swap(modifier: view, swapUp: false);
+            group.Swap(modifier: view, swapUp: false);
         }
 
 
@@ -215,8 +215,8 @@ namespace AG.DS
         /// </summary>
         void RemoveButtonClickEvent()
         {
-            groupView.Remove(view);
-            groupView.UpdateReferences();
+            group.Remove(view);
+            group.UpdateReferences();
         }
 
 

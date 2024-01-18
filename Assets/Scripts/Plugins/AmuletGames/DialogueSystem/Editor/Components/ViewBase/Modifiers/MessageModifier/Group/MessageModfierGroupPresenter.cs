@@ -3,13 +3,16 @@ namespace AG.DS
     public class MessageModifierGroupPresenter
     {
         /// <summary>
-        /// Create the elements for the message modifier group view.
+        /// Create a new message modifier group element.
         /// </summary>
-        /// <param name="view">The message modifier group view to set for.</param>
-        public static void CreateElement(MessageModifierGroupView view)
+        /// <returns>A new message modifier group element.</returns>
+        public static MessageModifierGroup CreateElement()
         {
-            view.GroupContainer = new();
-            view.GroupContainer.AddToClassList(StyleConfig.MessageModifierGroup);
+            var group = new MessageModifierGroup();
+
+            group.AddToClassList(StyleConfig.MessageModifierGroup);
+
+            return group;
         }
     }
 }

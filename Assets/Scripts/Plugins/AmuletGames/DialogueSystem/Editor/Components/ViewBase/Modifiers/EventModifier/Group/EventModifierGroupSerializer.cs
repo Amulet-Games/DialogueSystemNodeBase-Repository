@@ -5,20 +5,20 @@ namespace AG.DS
         /// <summary>
         /// Save the event modifier group values.
         /// </summary>
-        /// <param name="view">The event modifier group view to set for.</param>
+        /// <param name="group">The event modifier group element to set for.</param>
         /// <param name="data">The event modifier group data to set for.</param>
         public void Save
         (
-            EventModifierGroupView view,
+            EventModifierGroup group,
             EventModifierGroupData data
         )
         {
-            data.ModifiersData = new EventModifierData[view.ModifiersCount];
+            data.ModifiersData = new EventModifierData[group.ModifiersCount];
 
-            for (int i = 0; i < view.ModifiersCount; i++)
+            for (int i = 0; i < group.ModifiersCount; i++)
             {
                 data.ModifiersData[i] = new();
-                new EventModifierSerializer().Save(view.Modifiers[i], data.ModifiersData[i]);
+                new EventModifierSerializer().Save(group.Modifiers[i], data.ModifiersData[i]);
             }
         }
 
@@ -26,25 +26,25 @@ namespace AG.DS
         /// <summary>
         /// Load the event modifier group values.
         /// </summary>
-        /// <param name="view">The event modifier group view to set for.</param>
+        /// <param name="group">The event modifier group element to set for.</param>
         /// <param name="data">The event modifier group data to set for.</param>
         public void Load
         (
-            EventModifierGroupView view,
+            EventModifierGroup group,
             EventModifierGroupData data
         )
         {
             for (int i = 0; i <= data.ModifiersData.Length; i++)
             {
                 var modifier = new EventModifierSeeder().Generate(
-                    groupView: view,
+                    group: group,
                     data: data.ModifiersData[i]
                 );
 
-                view.Add(modifier);
+                group.Add(modifier);
             }
 
-            view.UpdateReferences();
+            group.UpdateReferences();
         }
     }
 }

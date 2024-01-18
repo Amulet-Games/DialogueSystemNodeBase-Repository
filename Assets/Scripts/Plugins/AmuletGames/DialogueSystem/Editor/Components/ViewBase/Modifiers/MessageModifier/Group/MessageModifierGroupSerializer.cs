@@ -5,20 +5,20 @@ namespace AG.DS
         /// <summary>
         /// Save the message modifier group values.
         /// </summary>
-        /// <param name="view">The message modifier group view to set for.</param>
+        /// <param name="group">The message modifier group element to set for.</param>
         /// <param name="data">The message modifier group data to set for.</param>
         public void Save
         (
-            MessageModifierGroupView view,
+            MessageModifierGroup group,
             MessageModifierGroupData data
         )
         {
-            data.ModifiersData = new MessageModifierData[view.ModifiersCount];
+            data.ModifiersData = new MessageModifierData[group.ModifiersCount];
 
-            for (int i = 0; i < view.ModifiersCount; i++)
+            for (int i = 0; i < group.ModifiersCount; i++)
             {
                 data.ModifiersData[i] = new();
-                new MessageModifierSerializer().Save(view.Modifiers[i], data.ModifiersData[i]);
+                new MessageModifierSerializer().Save(group.Modifiers[i], data.ModifiersData[i]);
             }
         }
 
@@ -26,12 +26,12 @@ namespace AG.DS
         /// <summary>
         /// Load the message modifier group values.
         /// </summary>
-        /// <param name="view">The message modifier group view to set for.</param>
+        /// <param name="group">The message modifier group element to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>
         /// <param name="data">The message modifier group data to set for.</param>
         public void Load
         (
-            MessageModifierGroupView view,
+            MessageModifierGroup group,
             LanguageHandler languageHandler,
             MessageModifierGroupData data
         )
@@ -39,15 +39,15 @@ namespace AG.DS
             for (int i = 0; i <= data.ModifiersData.Length; i++)
             {
                 var modifier = new MessageModifierSeeder().Generate(
-                    groupView: view,
+                    group: group,
                     languageHandler,
                     data: data.ModifiersData[i]
                 );
 
-                view.Add(modifier);
+                group.Add(modifier);
             }
 
-            view.UpdateReferences();
+            group.UpdateReferences();
         }
     }
 }

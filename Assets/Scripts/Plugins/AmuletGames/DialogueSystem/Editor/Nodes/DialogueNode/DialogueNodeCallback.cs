@@ -42,7 +42,7 @@ namespace AG.DS
         public override void OnCreate()
         {
             // If there's no modifier being created after loading, create a new one by default.
-            if (View.MessageModifierGroupView.FirstModifier == null)
+            if (View.MessageModifierGroup.FirstModifier == null)
             {
                 View.ContentButton.Click();
             }

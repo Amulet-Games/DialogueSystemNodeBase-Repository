@@ -10,9 +10,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// View for the event modifier group.
+        /// Element that contains the event modifiers.
         /// </summary>
-        public EventModifierGroupView EventModifierGroupView;
+        public EventModifierGroup EventModifierGroup;
 
 
         /// <summary>
@@ -31,7 +31,6 @@ namespace AG.DS
         public override EventNodeView Setup(LanguageHandler languageHandler)
         {
             NodeTitleFieldView = new(value: StringConfig.EventNode_NodeTitleField_DefaultText);
-            EventModifierGroupView = new();
 
             return this;
         }

@@ -3,16 +3,16 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class EventModifierGroupView
+    public class ConditionModifierGroup : VisualElement
     {
         /// <summary>
-        /// The event modifiers cache.
+        /// The condition modifiers cache.
         /// </summary>
-        public List<EventModifierView> Modifiers { get; private set; }
+        public List<ConditionModifierView> Modifiers { get; private set; }
 
 
         /// <summary>
-        /// The event modifiers cache counter.
+        /// The condition modifiers cache counter.
         /// </summary>
         public int ModifiersCount { get; private set; } = 0;
 
@@ -24,15 +24,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Element that contains the group modifiers.
-        /// </summary>
-        public VisualElement GroupContainer;
-
-
-        /// <summary>
         /// The property of the modifier that is in the first position of the group.
         /// </summary>
-        public EventModifierView FirstModifier
+        public ConditionModifierView FirstModifier
         {
             get
             {
@@ -55,13 +49,13 @@ namespace AG.DS
         /// <summary>
         /// Reference of the modifier that is in the first position of the group.
         /// </summary>
-        EventModifierView m_firstModifier;
+        ConditionModifierView m_firstModifier;
 
 
         /// <summary>
         /// The property of the modifier that is in the last position of the group.
         /// </summary>
-        public EventModifierView LastModifier
+        public ConditionModifierView LastModifier
         {
             get
             {
@@ -83,13 +77,13 @@ namespace AG.DS
         /// <summary>
         /// Reference of the modifier that is in the last position of the group.
         /// </summary>
-        EventModifierView m_lastModifier;
+        ConditionModifierView m_lastModifier;
 
 
         /// <summary>
         /// The property of the modifier that is the only one exists in the group.
         /// </summary>
-        public EventModifierView SoleModifier
+        public ConditionModifierView SoleModifier
         {
             get
             {
@@ -114,13 +108,13 @@ namespace AG.DS
         /// <summary>
         /// Reference of the modifier that is the only one exists in the group.
         /// </summary>
-        EventModifierView m_soleModifier;
+        ConditionModifierView m_soleModifier;
 
 
         /// <summary>
-        /// Constructor of the event modifier group view class.
+        /// Constructor of the condition modifier group view class.
         /// </summary>
-        public EventModifierGroupView()
+        public ConditionModifierGroup()
         {
             Modifiers = new();
         }
@@ -132,7 +126,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="modifier">The swap from modifier to set for.</param>
         /// <param name="swapUp">The swap up value to set for.</param>
-        public void Swap(EventModifierView modifier, bool swapUp)
+        public void Swap(ConditionModifierView modifier, bool swapUp)
         {
             var swapFromIndex = Modifiers.IndexOf(modifier);
 
@@ -166,30 +160,30 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Remove the given event modifier view from the group.
+        /// Remove the given condition modifier view from the group.
         /// </summary>
-        /// <param name="modifier">The event modifier view to set for.</param>
-        public void Remove(EventModifierView modifier)
+        /// <param name="modifier">The condition modifier view to set for.</param>
+        public void Remove(ConditionModifierView modifier)
         {
             ModifiersCount--;
 
             Modifiers.Remove(modifier);
 
-            GroupContainer.Remove(modifier.Folder);
+            Remove(modifier.Folder);
         }
 
 
         /// <summary>
-        /// Add the given event modifier view to the group.
+        /// Add the given condition modifier view to the group.
         /// </summary>
-        /// <param name="modifier">The event modifier view to set for.</param>
-        public void Add(EventModifierView modifier)
+        /// <param name="modifier">The condition modifier view to set for.</param>
+        public void Add(ConditionModifierView modifier)
         {
             ModifiersCount++;
 
             Modifiers.Add(modifier);
 
-            GroupContainer.Add(modifier.Folder);
+            Add(modifier.Folder);
 
             NextIndex++;
         }
