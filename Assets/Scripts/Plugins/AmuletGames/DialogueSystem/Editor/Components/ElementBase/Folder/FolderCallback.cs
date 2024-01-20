@@ -13,8 +13,7 @@ namespace AG.DS
             folder.Expanded = true;
             folder.ExecuteOnceOnGeometryChanged(GeometryChangedEvent);
 
-            void GeometryChangedEvent(GeometryChangedEvent evt) =>
-                folder.StartEditingFolderTitle();
+            void GeometryChangedEvent(GeometryChangedEvent evt) => folder.StartEditingFolderTitle();
         }
     }
 }

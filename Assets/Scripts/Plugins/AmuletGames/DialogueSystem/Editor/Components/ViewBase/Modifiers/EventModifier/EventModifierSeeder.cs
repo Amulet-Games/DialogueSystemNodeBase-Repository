@@ -25,7 +25,7 @@ namespace AG.DS
                 new EventModifierSerializer().Load(view, data);
             }
 
-            new EventModifierCallback().OnCreate(view, data == null);
+            EventModifierCallback.OnCreate(view, byUser: data == null);
 
             return view;
         }

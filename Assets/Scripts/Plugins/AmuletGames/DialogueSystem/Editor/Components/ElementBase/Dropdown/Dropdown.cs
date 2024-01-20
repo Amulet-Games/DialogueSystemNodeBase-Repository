@@ -7,86 +7,84 @@ namespace AG.DS
     public class Dropdown : VisualElement
     {
         /// <summary>
-        /// Element that contains the dropdown menu header container and dropdown elements container.
+        /// Element that contains the dropdown menu header container and dropdown items container.
         /// </summary>
         public VisualElement DropdownMenu;
 
         /// <summary>
-        /// Element that contains the dropdown elements.
+        /// Element that contains the dropdown items.
         /// </summary>
-        public VisualElement DropdownElementsContainer;
+        public VisualElement DropdownItemsContainer;
 
 
         /// <summary>
-        /// The property of the dropdown elements cache.
+        /// The property of the dropdown items cache.
         /// </summary>
-        public DropdownElement[] DropdownElements
+        public DropdownItem[] DropdownItems
         {
             get
             {
-                return m_dropdownElements;
+                return m_dropdownItems;
             }
             set
             {
-                if (m_dropdownElements != null)
+                if (m_dropdownItems != null)
                 {
-                    throw new ArgumentException("Attempted to set the dropdown elements cache twice!");
+                    throw new ArgumentException("Attempted to set the dropdown items cache twice!");
                 }
                 else
                 {
                     for (int i = 0; i < value.Length; i++)
                     {
-                        DropdownElementsContainer.Add(value[i]);
+                        DropdownItemsContainer.Add(value[i]);
                     }
 
-                    m_dropdownElements = value;
+                    m_dropdownItems = value;
 
-                    SelectedElement = m_dropdownElements.First();
-
-                    m_dropdownElements.Last().ShowLastElementStyle();
+                    m_dropdownItems.Last().ShowLastStyle();
                 }
             }
         }
 
 
         /// <summary>
-        /// The dropdown elements cache.
+        /// The dropdown items cache.
         /// </summary>
-        DropdownElement[] m_dropdownElements;
+        DropdownItem[] m_dropdownItems;
 
 
         /// <summary>
-        /// The property of the selected dropdown element.
+        /// The property of the selected dropdown item.
         /// </summary>
-        public DropdownElement SelectedElement
+        public DropdownItem SelectedItem
         {
             get
             {
-                return m_selectedElement;
+                return m_selectedItem;
             }
             set
             {
-                if (value == m_selectedElement)
+                if (value == m_selectedItem)
                 {
                     return;
                 }
 
                 value?.SetSelected(true);
-                m_selectedElement?.SetSelected(false);
-                m_selectedElement = value;
+                m_selectedItem?.SetSelected(false);
+                m_selectedItem = value;
 
-                DropdownButtonIconImage.sprite = m_selectedElement.IconImage.sprite;
-                DropdownButtonTextLabel.text = m_selectedElement.TextLabel.text;
+                DropdownButtonIconImage.sprite = m_selectedItem.IconImage.sprite;
+                DropdownButtonTextLabel.text = m_selectedItem.TextLabel.text;
 
-                SelectedElementChangedEvent?.Invoke();
+                SelectedItemChangedEvent?.Invoke();
             }
         }
 
 
         /// <summary>
-        /// The selected dropdown element.
+        /// The selected dropdown item.
         /// </summary>
-        public DropdownElement m_selectedElement;
+        public DropdownItem m_selectedItem;
 
 
         /// <summary>
@@ -146,9 +144,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the selected dropdown element has changed.
+        /// The event to invoke when the selected dropdown item has changed.
         /// </summary>
-        public Action SelectedElementChangedEvent;
+        public Action SelectedItemChangedEvent;
 
 
         /// <summary>
@@ -168,7 +166,7 @@ namespace AG.DS
         /// <param name="data">The dropdown data to set for.</param>
         public void Save(DropdownData data)
         {
-            data.selectedElementIndex = DropdownElements.IndexOf(SelectedElement);
+            data.selectedItemIndex = DropdownItems.IndexOf(SelectedItem);
         }
 
 
@@ -178,7 +176,7 @@ namespace AG.DS
         /// <param name="data">The dropdown data to set for.</param>
         public void Load(DropdownData data)
         {
-            SelectedElement = DropdownElements[data.selectedElementIndex];
+            SelectedItem = DropdownItems[data.selectedItemIndex];
         }
 
 

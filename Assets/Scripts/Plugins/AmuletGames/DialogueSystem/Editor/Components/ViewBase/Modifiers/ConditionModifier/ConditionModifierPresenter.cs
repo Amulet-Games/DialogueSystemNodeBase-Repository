@@ -266,49 +266,49 @@ namespace AG.DS
 
             void CreateOperationDropdown()
             {
-                var matchDropdownElement = DropdownElementPresenter.CreateElement
+                var matchDropdownElement = DropdownItemPresenter.CreateElement
                 (
                     labelText: StringConfig.ConditionModifier_Match_LabelText,
                     iconSprite: ConfigResourcesManager.SpriteConfig.MatchOperatorIconSprite,
                     additionalInfo: "Match"
                 );
 
-                var equalDropdownElement = DropdownElementPresenter.CreateElement
+                var equalDropdownElement = DropdownItemPresenter.CreateElement
                 (
                     labelText: StringConfig.ConditionModifier_Equal_LabelText,
                     iconSprite: ConfigResourcesManager.SpriteConfig.EqualOperatorIconSprite,
                     additionalInfo: "Equal"
                 );
 
-                var equalOrBiggerDropdownElement = DropdownElementPresenter.CreateElement
+                var equalOrBiggerDropdownElement = DropdownItemPresenter.CreateElement
                 (
                     labelText: StringConfig.ConditionModifier_EqualOrBigger_LabelText,
                     iconSprite: ConfigResourcesManager.SpriteConfig.EqualOrBiggerOperatorIconSprite,
                     additionalInfo: "EqualOrBigger"
                 );
 
-                var equalOrSmallerDropdownElement = DropdownElementPresenter.CreateElement
+                var equalOrSmallerDropdownElement = DropdownItemPresenter.CreateElement
                 (
                     labelText: StringConfig.ConditionModifier_EqualOrSmaller_LabelText,
                     iconSprite: ConfigResourcesManager.SpriteConfig.EqualOrSmallerOperatorIconSprite,
                     additionalInfo: "EqualOrSmaller"
                 );
 
-                var biggerDropdownElement = DropdownElementPresenter.CreateElement
+                var biggerDropdownElement = DropdownItemPresenter.CreateElement
                 (
                     labelText: StringConfig.ConditionModifier_Bigger_LabelText,
                     iconSprite: ConfigResourcesManager.SpriteConfig.BiggerOperatorIconSprite,
                     additionalInfo: "Bigger"
                 );
 
-                var smallerDropdownElement = DropdownElementPresenter.CreateElement
+                var smallerDropdownElement = DropdownItemPresenter.CreateElement
                 (
                     labelText: StringConfig.ConditionModifier_Smaller_LabelText,
                     iconSprite: ConfigResourcesManager.SpriteConfig.SmallerOperatorIconSprite,
                     additionalInfo: "Smaller"
                 );
 
-                var customLogicDropdownElement = DropdownElementPresenter.CreateElement
+                var customLogicDropdownElement = DropdownItemPresenter.CreateElement
                 (
                     labelText: StringConfig.ConditionModifier_CustomLogic_LabelText,
                     iconSprite: ConfigResourcesManager.SpriteConfig.CustomLogicOperatorIconSprite,
@@ -345,28 +345,28 @@ namespace AG.DS
 
             void CreateChainWithDropdown()
             {
-                var noneDropdownElement = DropdownElementPresenter.CreateElement
+                var noneDropdownElement = DropdownItemPresenter.CreateElement
                 (
                     labelText: StringConfig.ConditionModifier_None_LabelText,
                     iconSprite: ConfigResourcesManager.SpriteConfig.UnlinkConditionIconSprite,
                     additionalInfo: "All"
                 );
 
-                var group1DropdownElement = DropdownElementPresenter.CreateElement
+                var group1DropdownElement = DropdownItemPresenter.CreateElement
                 (
                     labelText: StringConfig.ConditionModifier_Group1_LabelText,
                     iconSprite: ConfigResourcesManager.SpriteConfig.LinkConditionIconSprite,
                     additionalInfo: "Group1"
                 );
 
-                var group2DropdownElement = DropdownElementPresenter.CreateElement
+                var group2DropdownElement = DropdownItemPresenter.CreateElement
                 (
                     labelText: StringConfig.ConditionModifier_Group2_LabelText,
                     iconSprite: ConfigResourcesManager.SpriteConfig.LinkConditionIconSprite,
                     additionalInfo: "Group2"
                 );
 
-                var group3DropdownElement = DropdownElementPresenter.CreateElement
+                var group3DropdownElement = DropdownItemPresenter.CreateElement
                 (
                     labelText: StringConfig.ConditionModifier_Group3_LabelText,
                     iconSprite: ConfigResourcesManager.SpriteConfig.LinkConditionIconSprite,

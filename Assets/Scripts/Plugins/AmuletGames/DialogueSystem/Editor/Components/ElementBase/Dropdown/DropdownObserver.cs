@@ -12,30 +12,30 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the dropdown selected element has changed.
+        /// The event to invoke when the dropdown selected item has changed.
         /// </summary>
-        Action<string> selectedElementChangedEvent;
+        Action<string> selectedItemChangedEvent;
 
 
         /// <summary>
         /// Constructor of the dropdown observer class.
         /// </summary>
-        /// <param name="dropdown">The dropdown to set for.</param>
-        /// <param name="selectedElementChangedEvent">The SelectedElementChangedEvent to set for.</param>
+        /// <param name="dropdown">The dropdown element to set for.</param>
+        /// <param name="selectedItemChangedEvent">The SelectedItemChangedEvent to set for.</param>
         public DropdownObserver
         (
             Dropdown dropdown,
-            Action<string> selectedElementChangedEvent
+            Action<string> selectedItemChangedEvent
         )
         {
             this.dropdown = dropdown;
-            this.selectedElementChangedEvent = selectedElementChangedEvent;
+            this.selectedItemChangedEvent = selectedItemChangedEvent;
         }
 
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the dropdown elements.
+        /// Register events to the dropdown element.
         /// </summary>
         public void RegisterEvents()
         {
@@ -43,9 +43,9 @@ namespace AG.DS
 
             RegisterDropdownButtonMouseDownEvent();
 
-            RegisterDropElementEvents();
+            RegisterDropdownItemsEvents();
 
-            RegisterSelectedElementChangedEvent();
+            RegisterSelectedItemChangedEvent();
         }
 
 
@@ -64,23 +64,23 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register events to the dropdown elements.
+        /// Register events to the dropdown items.
         /// </summary>
-        void RegisterDropElementEvents()
+        void RegisterDropdownItemsEvents()
         {
-            var dropElements = dropdown.DropdownElements;
-            for (int i = 0; i < dropElements.Length; i++)
+            var dropdownItems = dropdown.DropdownItems;
+            for (int i = 0; i < dropdownItems.Length; i++)
             {
-                new DropElementObserver(dropElements[i], dropdown).RegisterEvents();
+                new DropdownItemObserver(dropdownItems[i], dropdown).RegisterEvents();
             }
         }
 
 
         /// <summary>
-        /// Register SelectedElementChangedEvent to the dropdown.
+        /// Register SelectedItemChangedEvent to the dropdown.
         /// </summary>
-        void RegisterSelectedElementChangedEvent() =>
-            dropdown.SelectedElementChangedEvent += DropdownSelectedElementChangedEvent;
+        void RegisterSelectedItemChangedEvent() =>
+            dropdown.SelectedItemChangedEvent += DropdownSelectedItemChangedEvent;
 
 
         // ----------------------------- Event -----------------------------
@@ -108,11 +108,11 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the dropdown selected element has changed.
+        /// The event to invoke when the dropdown selected item has changed.
         /// </summary>
-        void DropdownSelectedElementChangedEvent()
+        void DropdownSelectedItemChangedEvent()
         {
-            selectedElementChangedEvent.Invoke(dropdown.SelectedElement.AdditionalInfo);
+            selectedItemChangedEvent.Invoke(dropdown.SelectedItem.AdditionalInfo);
         }
     }
 }

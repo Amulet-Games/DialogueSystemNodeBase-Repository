@@ -308,17 +308,17 @@ namespace AG.DS
         #region Dropdown USS Classes.
         public const string Dropdown = "dropdown";
 
-        /*< -------------------- Dropdown Element -------------------- >*/
-        public const string DropdownElement = "dropdownElement";
-        public const string DropdownElement_Selected = "dropdownElement-selected";
-        public const string DropdownElement_Last = "dropdownElement-last";
-        public const string DropdownElement_Icon_Image = "dropdownElement-icon-image";
-        public const string DropdownElement_Text_Label = "dropdownElement-text-label";
+        /*< -------------------- Dropdown Item -------------------- >*/
+        public const string DropdownItem = "dropdownItem";
+        public const string DropdownItem_Selected = "dropdownItem-selected";
+        public const string DropdownItem_Last = "dropdownItem-last";
+        public const string DropdownItem_Icon_Image = "dropdownItem-icon-image";
+        public const string DropdownItem_Text_Label = "dropdownItem-text-label";
 
         /*< -------------------- Dropdown Menu -------------------- >*/
         public const string Dropdown_DropdownMenu_Header_Container = "dropdown-dropdownMenu-header-container";
         public const string Dropdown_DropdownMenu_HeaderText_Label = "dropdown-dropdownMenu-headerText-label"; 
-        public const string Dropdown_DropdownMenu_DropdownElements_Container = "dropdown-dropdownMenu-dropdownElements-container";
+        public const string Dropdown_DropdownMenu_DropdownItems_Container = "dropdown-dropdownMenu-dropdownItems-container";
 
         /*< -------------------- Dropdown Button -------------------- >*/
         public const string Dropdown_DropdownButton_Button = "dropdown-dropdownButton-button";

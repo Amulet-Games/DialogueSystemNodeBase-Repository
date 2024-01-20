@@ -8,13 +8,13 @@ namespace AG.DS
         /// Create a new dropdown element.
         /// </summary>
         /// <param name="dropdownMenuHeader">The dropdown menu header to set for.</param>
-        /// <param name="dropdownElements">The dropdown elements to set for.</param>
+        /// <param name="dropdownItems">The dropdown items to set for.</param>
         /// <param name="graphViewer">The graph viewer to set for.</param>
         /// <returns>A new dropdown element.</returns>
         public static Dropdown CreateElement
         (
             string dropdownMenuHeader,
-            DropdownElement[] dropdownElements,
+            DropdownItem[] dropdownItems,
             GraphViewer graphViewer
         )
         {
@@ -48,8 +48,6 @@ namespace AG.DS
 
             AddStyleSheet();
 
-            HideDropdownMenuByDefault();
-
             return dropdown;
 
             void CreateDropdown()
@@ -65,8 +63,8 @@ namespace AG.DS
                 dropdownMenuHeaderContainer = new();
                 dropdownMenuHeaderContainer.AddToClassList(StyleConfig.Dropdown_DropdownMenu_Header_Container);
 
-                dropdown.DropdownElementsContainer = new();
-                dropdown.DropdownElementsContainer.AddToClassList(StyleConfig.Dropdown_DropdownMenu_DropdownElements_Container);
+                dropdown.DropdownItemsContainer = new();
+                dropdown.DropdownItemsContainer.AddToClassList(StyleConfig.Dropdown_DropdownMenu_DropdownItems_Container);
             }
 
             void CreateDropdownButton()
@@ -118,10 +116,10 @@ namespace AG.DS
                 dropdown.DropdownButton.Add(menuSelectImage);
 
                 dropdownMenuHeaderContainer.Add(dropdownMenuHeaderLabel);
-                dropdown.DropdownElements = dropdownElements;
+                dropdown.DropdownItems = dropdownItems;
 
                 dropdown.DropdownMenu.Add(dropdownMenuHeaderContainer);
-                dropdown.DropdownMenu.Add(dropdown.DropdownElementsContainer);
+                dropdown.DropdownMenu.Add(dropdown.DropdownItemsContainer);
             }
 
             void AddContainersToDropdown()
@@ -137,11 +135,6 @@ namespace AG.DS
                 
                 dropdown.DropdownMenu.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.GlobalStyle);
                 dropdown.DropdownMenu.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.DropdownStyle);
-            }
-
-            void HideDropdownMenuByDefault()
-            {
-                dropdown.Dropped = false;
             }
         }
     }

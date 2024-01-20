@@ -9,7 +9,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
         /// <param name="byUser">Is the modifier created by the user.</param>
-        public void OnCreate
+        public static void OnCreate
         (
             ConditionModifierView view,
             bool byUser
@@ -22,8 +22,14 @@ namespace AG.DS
                 ReflectableObjectFieldCallback<Object>.OnCreateByUser(view.SecondReflectableObjectFieldView);
                 BindingFlagsCallback.OnCreateByUser(view.SecondBindingFlags);
 
+                DropdownCallback.OnCreateByUser(view.OperationDropdown);
+                DropdownCallback.OnCreateByUser(view.ChainWithDropdown);
+
                 OnCreateByUser(view);
             }
+
+            DropdownCallback.OnCreate(view.OperationDropdown);
+            DropdownCallback.OnCreate(view.ChainWithDropdown);
         }
 
 

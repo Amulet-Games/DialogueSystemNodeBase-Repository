@@ -27,7 +27,7 @@ namespace AG.DS
                 new MessageModifierSerializer().Load(view, data);
             }
 
-            new MessageModifierCallback().OnCreate(view, data == null);
+            MessageModifierCallback.OnCreate(view, byUser: data == null);
 
             return view;
         }

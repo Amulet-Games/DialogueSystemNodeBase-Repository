@@ -90,13 +90,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Dropdown for the operators dropdown elements.
+        /// Dropdown for the operators dropdown items.
         /// </summary>
         public Dropdown OperationDropdown;
 
 
         /// <summary>
-        /// Dropdown for the chain with dropdown elements.
+        /// Dropdown for the chain with dropdown items.
         /// </summary>
         public Dropdown ChainWithDropdown;
 

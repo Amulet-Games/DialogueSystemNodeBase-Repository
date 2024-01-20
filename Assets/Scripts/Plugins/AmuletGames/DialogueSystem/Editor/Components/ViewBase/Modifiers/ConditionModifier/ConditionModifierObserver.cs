@@ -171,7 +171,7 @@ namespace AG.DS
         void RegisterOperationDropdownEvents()
             => new DropdownObserver(
                 dropdown: view.OperationDropdown,
-                selectedElementChangedEvent: OperationDropdownSelectedElementChangeEvent).RegisterEvents();
+                selectedItemChangedEvent: OperationDropdownSelectedItemChangeEvent).RegisterEvents();
 
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace AG.DS
         /// </summary>
         void RegisterChainWithDropdownEvents()
             => new DropdownObserver(dropdown: view.ChainWithDropdown,
-                selectedElementChangedEvent: ChainWithDropdownSelectedElementChangeEvent).RegisterEvents();
+                selectedItemChangedEvent: ChainWithDropdownSelectedItemChangeEvent).RegisterEvents();
 
 
         // ----------------------------- Event -----------------------------
@@ -251,12 +251,12 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the operation dropdown selected element has changed.
+        /// The event to invoke when the operation dropdown selected item has changed.
         /// </summary>
-        /// <param name="selectedElementInfo">The info that received from the dropdown selected element.</param>
-        void OperationDropdownSelectedElementChangeEvent(string selectedElementInfo)
+        /// <param name="itemAdditionalInfo">The additional info of the selected dropdown item.</param>
+        void OperationDropdownSelectedItemChangeEvent(string itemAdditionalInfo)
         {
-            view.OperationType = selectedElementInfo switch
+            view.OperationType = itemAdditionalInfo switch
             {
                 "Match" => ConditionModifierOperationType.String,
                 "Equal" or
@@ -265,27 +265,25 @@ namespace AG.DS
                 "Bigger" or
                 "Smaller" => ConditionModifierOperationType.Float,
                 "CustomLogic" => ConditionModifierOperationType.CustomLogic,
-                _ => throw new ArgumentException("Invalid operation dropdown element addition info: " + selectedElementInfo)
+                _ => throw new ArgumentException("Invalid operation dropdown item addition info: " + itemAdditionalInfo)
             };
         }
 
 
         /// <summary>
-        /// The event to invoke when the chain with dropdown selected element has changed.
+        /// The event to invoke when the chain with dropdown selected item has changed.
         /// </summary>
-        /// <param name="selectedElementInfo">The info that received from the dropdown selected element.</param>
-        void ChainWithDropdownSelectedElementChangeEvent(string selectedElementInfo)
+        /// <param name="selectedItemAdditionalInfo">The additional info of the selected dropdown item.</param>
+        void ChainWithDropdownSelectedItemChangeEvent(string itemAdditionalInfo)
         {
-            var debugInfo = selectedElementInfo switch
+            var debugInfo = itemAdditionalInfo switch
             {
                 "All" => "Chain With: All",
                 "Group1" => "Chain With: Group 1",
                 "Group2" => "Chain With: Group 2",
                 "Group3" => "Chain With: Group 3",
-                _ => throw new ArgumentException("Invalid operation dropdown element addition info: " + selectedElementInfo)
+                _ => throw new ArgumentException("Invalid operation dropdown item addition info: " + itemAdditionalInfo)
             };
-
-            Debug.Log(debugInfo);
         }
     }
 }

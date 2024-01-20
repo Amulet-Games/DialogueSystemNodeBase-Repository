@@ -1,5 +1,5 @@
 /*< ---------------------------------------------------------- Main >*/
-.dropdownElement {
+.dropdownItem {
 
 	background-color: rgba(19, 19, 19, 1);
 	
@@ -9,19 +9,19 @@
 	flex-direction: row;
 }
 
-.dropdownElement:hover {
+.dropdownItem:hover {
 	
 	cursor: link;
 
 	background-color: rgba(120, 120, 120, 1);
 }
 
-.dropdownElement-selected {
+.dropdownItem-selected {
 	
 	background-color: rgba(58, 121, 187, 1);
 }
 
-.dropdownElement-last {
+.dropdownItem-last {
 	
 	/* top - right - bottom - left */
 	border-radius: 0px 0px 4px 4px;
@@ -29,7 +29,7 @@
 
 
 /*< ---------------------------------------------------------- Icon Image >*/
-.dropdownElement-icon-image {
+.dropdownItem-icon-image {
 
 	align-self: center;
 	
@@ -40,15 +40,15 @@
 	margin: 0px 0px 0px 4.5px;
 }
 
-.dropdownElement:hover
-.dropdownElement-icon-image {
+.dropdownItem:hover
+.dropdownItem-icon-image {
 	
 	cursor: link;
 }
 
 
 /*< ---------------------------------------------------------- Text Label >*/
-.dropdownElement-text-label {
+.dropdownItem-text-label {
 
 	color: white;
 	
@@ -62,8 +62,8 @@
 	margin: 1px 16.5px 0px 4.5px;
 }
 
-.dropdownElement:hover
-.dropdownElement-text-label {
+.dropdownItem:hover
+.dropdownItem-text-label {
 	
 	cursor: link;
 }

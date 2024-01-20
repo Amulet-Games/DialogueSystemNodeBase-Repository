@@ -7,7 +7,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="view">The message modifier view to set for.</param>
         /// <param name="byUser">Is the modifier created by the user.</param>
-        public void OnCreate
+        public static void OnCreate
         (
             MessageModifierView view,
             bool byUser

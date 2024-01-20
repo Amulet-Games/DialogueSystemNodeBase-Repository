@@ -8,7 +8,7 @@ namespace AG.DS
     {
         #region Dropdown.
         [Header("Dropdown")]
-        public StyleSheet DropdownElementStyle;
+        public StyleSheet DropdownItemStyle;
         public StyleSheet DropdownStyle;
         #endregion
 

@@ -2,12 +2,12 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class DropElementObserver
+    public class DropdownItemObserver
     {
         /// <summary>
-        /// The targeting dropdown element.
+        /// The targeting dropdown item element.
         /// </summary>
-        DropdownElement dropdownElement;
+        DropdownItem dropdownItem;
 
 
         /// <summary>
@@ -17,24 +17,24 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the dropdown element observer class.
+        /// Constructor of the dropdown item observer class.
         /// </summary>
-        /// <param name="dropdownElement">The dropdown element to set for.</param>
-        /// <param name="dropdown">The dropdown to set for.</param>
-        public DropElementObserver
+        /// <param name="dropdownItem">The dropdown item to set for.</param>
+        /// <param name="dropdown">The dropdown element to set for.</param>
+        public DropdownItemObserver
         (
-            DropdownElement dropdownElement,
+            DropdownItem dropdownItem,
             Dropdown dropdown
         )
         {
-            this.dropdownElement = dropdownElement;
+            this.dropdownItem = dropdownItem;
             this.dropdown = dropdown;
         }
 
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the dropdown element.
+        /// Register events to the dropdown item.
         /// </summary>
         public void RegisterEvents()
         {
@@ -43,19 +43,19 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register MouseDownEvent to the dropdown element.
+        /// Register MouseDownEvent to the dropdown item.
         /// </summary>
-        void RegisterMouseDownEvent() => dropdownElement.RegisterCallback<MouseDownEvent>(MouseDownEvent);
+        void RegisterMouseDownEvent() => dropdownItem.RegisterCallback<MouseDownEvent>(MouseDownEvent);
 
 
         // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when the mouse button is clicked inside the dropdown element.
+        /// The event to invoke when the mouse button is clicked inside the dropdown item.
         /// </summary>
         /// <param name="evt">The registering event.</param>
         void MouseDownEvent(MouseDownEvent evt)
         {
-            dropdown.SelectedElement = dropdownElement;
+            dropdown.SelectedItem = dropdownItem;
 
             // Prevent moving the parent node when using the field.
             evt.StopImmediatePropagation();

@@ -2,29 +2,29 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class DropdownElement : VisualElement
+    public class DropdownItem : VisualElement
     {
         /// <summary>
-        /// Image for the element icon.
+        /// Image for the item icon.
         /// </summary>
         public Image IconImage;
 
 
         /// <summary>
-        /// Label for the element text.
+        /// Label for the item text.
         /// </summary>
         public Label TextLabel;
 
 
         /// <summary>
-        /// The element's additional info.
+        /// The item's additional info.
         /// </summary>
         public string AdditionalInfo;
 
 
         // ----------------------------- Service -----------------------------
         /// <summary>
-        /// Set the dropdown element selected status.
+        /// Set the dropdown item selected status.
         /// </summary>
         /// <param name="selected">The selected value to set for.</param>
         public void SetSelected(bool selected)

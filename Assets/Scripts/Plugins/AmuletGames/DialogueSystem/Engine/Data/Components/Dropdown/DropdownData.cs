@@ -7,8 +7,8 @@ namespace AG.DS
     public class DropdownData
     {
         /// <summary>
-        /// The dropdown's selected dropdown element array index.
+        /// The dropdown's selected dropdown item array index.
         /// </summary>
-        [SerializeField] public int selectedElementIndex;
+        [SerializeField] public int selectedItemIndex;
     }
 }
