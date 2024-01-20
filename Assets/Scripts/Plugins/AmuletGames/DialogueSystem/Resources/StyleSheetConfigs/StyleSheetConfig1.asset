@@ -16,8 +16,8 @@ MonoBehaviour:
   DropdownStyle: {fileID: 7433441132597879392, guid: 024eccb1025c97b45a249636cdd3fbf5, type: 3}
   DefaultEdgeStyle: {fileID: 7433441132597879392, guid: 41088e26e1dd87447a5d7b669eaf0d8a, type: 3}
   OptionEdgeStyle: {fileID: 7433441132597879392, guid: 9ce2ad735e252fb489f32838ff6374a6, type: 3}
+  EnumFlagsItemStyle: {fileID: 7433441132597879392, guid: 1cb9a5878cd088e4fa047ea02dc5aa76, type: 3}
   EnumFlagsStyle: {fileID: 7433441132597879392, guid: 385ca94093bb9494e812b685d627f759, type: 3}
-  FlagElementStyle: {fileID: 7433441132597879392, guid: 1cb9a5878cd088e4fa047ea02dc5aa76, type: 3}
   ConditionModifierGroupStyle: {fileID: 7433441132597879392, guid: ae2de0a672ae30a4a9d8f71c2c93af25, type: 3}
   ConditionModifierStyle: {fileID: 7433441132597879392, guid: aff0bf21346fa4c4a926b885dfbf9ab3, type: 3}
   EventModifierGroupStyle: {fileID: 7433441132597879392, guid: 9c64af7ba10ee3b48a7fc8b4e19aef64, type: 3}

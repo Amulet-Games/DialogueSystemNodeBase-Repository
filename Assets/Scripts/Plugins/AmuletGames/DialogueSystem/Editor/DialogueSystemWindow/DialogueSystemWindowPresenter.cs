@@ -30,8 +30,8 @@ namespace AG.DS
             {
                 window.minSize = new Vector2
                 (
-                    x: WindowConfig.WindowMinSize.x,
-                    y: WindowConfig.WindowMinSize.y
+                    x: DialogueSystemWindowConfig.WindowMinSize.x,
+                    y: DialogueSystemWindowConfig.WindowMinSize.y
                 );
             }
 
@@ -40,8 +40,8 @@ namespace AG.DS
                 var mainWindowPosition = EditorGUIUtility.GetMainWindowPosition();
                 
                 window.CenterToMainWindow(
-                    customWidth: mainWindowPosition.width * WindowConfig.WindowStartSizeScreenRatio.x,
-                    customHeight: mainWindowPosition.height * WindowConfig.WindowStartSizeScreenRatio.y);
+                    customWidth: mainWindowPosition.width * DialogueSystemWindowConfig.WindowStartSizeScreenRatio.x,
+                    customHeight: mainWindowPosition.height * DialogueSystemWindowConfig.WindowStartSizeScreenRatio.y);
             }
         }
     }

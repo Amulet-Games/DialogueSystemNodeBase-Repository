@@ -20,15 +20,15 @@ namespace AG.DS
         /// <summary>
         /// The property of the dropdown items cache.
         /// </summary>
-        public DropdownItem[] DropdownItems
+        public DropdownItem[] Items
         {
             get
             {
-                return m_dropdownItems;
+                return m_items;
             }
             set
             {
-                if (m_dropdownItems != null)
+                if (m_items != null)
                 {
                     throw new ArgumentException("Attempted to set the dropdown items cache twice!");
                 }
@@ -39,9 +39,9 @@ namespace AG.DS
                         DropdownItemsContainer.Add(value[i]);
                     }
 
-                    m_dropdownItems = value;
+                    m_items = value;
 
-                    m_dropdownItems.Last().ShowLastStyle();
+                    m_items.Last().ShowLastStyle();
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace AG.DS
         /// <summary>
         /// The dropdown items cache.
         /// </summary>
-        DropdownItem[] m_dropdownItems;
+        DropdownItem[] m_items;
 
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace AG.DS
         /// <param name="data">The dropdown data to set for.</param>
         public void Save(DropdownData data)
         {
-            data.selectedItemIndex = DropdownItems.IndexOf(SelectedItem);
+            data.selectedItemIndex = Items.IndexOf(SelectedItem);
         }
 
 
@@ -176,7 +176,7 @@ namespace AG.DS
         /// <param name="data">The dropdown data to set for.</param>
         public void Load(DropdownData data)
         {
-            SelectedItem = DropdownItems[data.selectedItemIndex];
+            SelectedItem = Items[data.selectedItemIndex];
         }
 
 

@@ -1,5 +1,5 @@
 /*< ---------------------------------------------------------- Main >*/
-.flagElement {
+.enumFlagsItem {
 	
 	background-color: rgba(19, 19, 19, 1);
 	
@@ -9,28 +9,28 @@
 	flex-direction: row;
 }
 
-.flagElement:hover {
+.enumFlagsItem:hover {
 	
 	cursor: link;
 
 	background-color: rgba(120, 120, 120, 1);
 }
 
-.flagElement-first {
+.enumFlagsItem-first {
 	
 	/* top - right - bottom - left */
 	border-radius: 4px 4px 0px 0px;
 }
 
-.flagElement-last {
+.enumFlagsItem-last {
 	
 	/* top - right - bottom - left */
 	border-radius: 0px 0px 4px 4px;
 }
 
 
-/*< ---------------------------------------------------------- Selected Icon Image >*/
-.flagElement-selectedIcon-image {
+/*< ---------------------------------------------------------- Checkmark Image >*/
+.enumFlagsItem-checkmark-image {
 	
 	align-self: center;
 	
@@ -41,15 +41,15 @@
 	margin: 0px 0px 0px 4.5px;
 }
 
-.flagElement:hover
-.flagElement-selectedIcon-image {
+.enumFlagsItem:hover
+.enumFlagsItem-checkmark-image {
 	
 	cursor: link;
 }
 
 
 /*< ---------------------------------------------------------- Text Label >*/
-.flagElement-text-label {
+.enumFlagsItem-text-label {
 
 	color: white;
 	
@@ -63,8 +63,8 @@
 	margin: 1px 16.5px 0px 4.5px;
 }
 
-.flagElement:hover
-.flagElement-text-label {
+.enumFlagsItem:hover
+.enumFlagsItem-text-label {
 	
 	cursor: link;
 }

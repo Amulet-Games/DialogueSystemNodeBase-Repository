@@ -8,7 +8,7 @@ namespace AG.DS
         /// <param name="flags">The binding flags to set for.</param>
         public static void OnCreateByUser(BindingFlags flags)
         {
-            flags.SelectedFlags = flags.AllTypeFlagElement.Flag;
+            flags.SelectedItems = flags.AllTypeItem.Flag;
         }
     }
 }

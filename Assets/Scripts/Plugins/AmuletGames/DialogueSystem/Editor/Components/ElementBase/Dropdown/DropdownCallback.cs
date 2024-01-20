@@ -20,7 +20,7 @@ namespace AG.DS
         /// <param name="dropdown">The dropdown element to set for.</param>
         public static void OnCreateByUser(Dropdown dropdown)
         {
-            dropdown.SelectedItem = dropdown.DropdownItems.First();
+            dropdown.SelectedItem = dropdown.Items.First();
         }
     }
 }

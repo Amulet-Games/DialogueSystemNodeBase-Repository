@@ -20,7 +20,7 @@ namespace AG.DS
 
             CreateEnumFlagsMenu();
 
-            CreateFlagsElements();
+            CreateEnumFlagsItems();
 
             AddStyleSheet();
 
@@ -42,7 +42,7 @@ namespace AG.DS
                 EnumFlagsPresenter.CreateEnumFlagsMenu(enumFlags: bindingFlags);
             }
 
-            void CreateFlagsElements()
+            void CreateEnumFlagsItems()
             {
                 // All Type
                 {
@@ -57,48 +57,48 @@ namespace AG.DS
                         }
                     }
 
-                    bindingFlags.AllTypeFlagElement = FlagElementPresenter.CreateElement
+                    bindingFlags.AllTypeItem = EnumFlagsItemPresenter.CreateElement
                     (
                         labelText: StringConfig.ConditionModifier_BindingFlags_FlagElement_All_LabelText,
-                        selectedIconSprite: ConfigResourcesManager.SpriteConfig.CheckMarkIconSprite,
+                        checkmarkSprite: ConfigResourcesManager.SpriteConfig.CheckmarkIconSprite,
                         flag: allFlag
                     );
                 }
 
                 // Regular Types
                 {
-                    var instanceFlagElement = FlagElementPresenter.CreateElement
+                    var instanceItem = EnumFlagsItemPresenter.CreateElement
                     (
                         labelText: StringConfig.ConditionModifier_BindingFlags_FlagElement_Instance_LabelText,
-                        selectedIconSprite: ConfigResourcesManager.SpriteConfig.CheckMarkIconSprite,
+                        checkmarkSprite: ConfigResourcesManager.SpriteConfig.CheckmarkIconSprite,
                         flag: BindingFlags.Bindings.Instance
                     );
-                    var staticFlagElement = FlagElementPresenter.CreateElement
+                    var staticItem = EnumFlagsItemPresenter.CreateElement
                     (
                         labelText: StringConfig.ConditionModifier_BindingFlags_FlagElement_Static_LabelText,
-                        selectedIconSprite: ConfigResourcesManager.SpriteConfig.CheckMarkIconSprite,
+                        checkmarkSprite: ConfigResourcesManager.SpriteConfig.CheckmarkIconSprite,
                         flag: BindingFlags.Bindings.Static
                     );
-                    var publicFlagElement = FlagElementPresenter.CreateElement
+                    var publicItem = EnumFlagsItemPresenter.CreateElement
                     (
                         labelText: StringConfig.ConditionModifier_BindingFlags_FlagElement_Public_LabelText,
-                        selectedIconSprite: ConfigResourcesManager.SpriteConfig.CheckMarkIconSprite,
+                        checkmarkSprite: ConfigResourcesManager.SpriteConfig.CheckmarkIconSprite,
                         flag: BindingFlags.Bindings.Public
                     );
-                    var privateFlagElement = FlagElementPresenter.CreateElement
+                    var privateItem = EnumFlagsItemPresenter.CreateElement
                     (
                         labelText: StringConfig.ConditionModifier_BindingFlags_FlagElement_Private_LabelText,
-                        selectedIconSprite: ConfigResourcesManager.SpriteConfig.CheckMarkIconSprite,
+                        checkmarkSprite: ConfigResourcesManager.SpriteConfig.CheckmarkIconSprite,
                         flag: BindingFlags.Bindings.Private
                     );
 
-                    bindingFlags.FlagElements = new FlagElement<BindingFlags.Bindings>[]
+                    bindingFlags.Items = new EnumFlagsItem<BindingFlags.Bindings>[]
                     {
-                        bindingFlags.AllTypeFlagElement,
-                        instanceFlagElement,
-                        staticFlagElement,
-                        publicFlagElement,
-                        privateFlagElement
+                        bindingFlags.AllTypeItem,
+                        instanceItem,
+                        staticItem,
+                        publicItem,
+                        privateItem
                     };
                 }
             }

@@ -17,21 +17,21 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The all type flag element.
+        /// The all type enum flags item.
         /// </summary>
-        public FlagElement<Bindings> AllTypeFlagElement;
+        public EnumFlagsItem<Bindings> AllTypeItem;
 
 
         /// <inheritdoc/>
-        public override FlagElement<Bindings>[] FlagElements
+        public override EnumFlagsItem<Bindings>[] Items
         {
             get
             {
-                return m_flagElements;
+                return m_items;
             }
             set
             {
-                if (m_flagElements != null)
+                if (m_items != null)
                 {
                     throw new ArgumentException("Attempted to set the enum flags elements cache twice!");
                 }
@@ -42,29 +42,29 @@ namespace AG.DS
                         EnumFlagsMenu.Add(value[i]);
                     }
 
-                    m_flagElements = value;
+                    m_items = value;
 
-                    FlagElements.First().ShowFirstElementStyle();
-                    m_flagElements.Last().ShowLastElementStyle();
+                    Items.First().ShowFirstStyle();
+                    m_items.Last().ShowLastStyle();
                 }
             }
         }
         
 
         /// <inheritdoc/>
-        public override Bindings SelectedFlags
+        public override Bindings SelectedItems
         {
             get
             {
-                return m_selectedFlags;
+                return m_selectedItems;
             }
             set
             {
-                m_selectedFlags = value;
+                m_selectedItems = value;
 
-                UpdateFlagsDisplay();
+                UpdateItemsDisplay();
 
-                SelectedFlagsChangedEvent?.Invoke();
+                SelectedItemsChangedEvent?.Invoke();
             }
         }
 
@@ -80,43 +80,43 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <inheritdoc/>
-        protected override void AddFlag(Bindings value) => SelectedFlags |= value;
+        protected override void AddFlag(Bindings value) => SelectedItems |= value;
 
 
         /// <inheritdoc/>
-        protected override void RemoveFlag(Bindings value) => SelectedFlags &= ~value;
+        protected override void RemoveFlag(Bindings value) => SelectedItems &= ~value;
 
 
         /// <summary>
-        /// Update the enum flags display.
+        /// Update the enum flags items' display.
         /// </summary>
-        void UpdateFlagsDisplay()
+        void UpdateItemsDisplay()
         {
-            var allFlag = m_selectedFlags == AllTypeFlagElement.Flag;
+            var allFlag = m_selectedItems == AllTypeItem.Flag;
             if (allFlag)
             {
-                for (int i = 0; i < FlagElements.Length; i++)
+                for (int i = 0; i < Items.Length; i++)
                 {
-                    FlagElements[i].SetSelected(true);
+                    Items[i].SetSelected(true);
                 }
             }
             else
             {
-                for (int i = 0; i < FlagElements.Length; i++)
+                for (int i = 0; i < Items.Length; i++)
                 {
-                    FlagElements[i].SetSelected(SelectedFlags.HasFlag(FlagElements[i].Flag));
+                    Items[i].SetSelected(SelectedItems.HasFlag(Items[i].Flag));
                 }
 
                 // If the selected flag is None, automatically select the second flag element by default.
-                if (m_selectedFlags == 0)
+                if (m_selectedItems == 0)
                 {
-                    LastSelectedFlagElement = FlagElements[1];
+                    LastSelectedItem = Items[1];
                 }
             }
 
             EnumFlagsButtonTextLabel.text = allFlag
                 ? StringConfig.ConditionModifier_BindingFlags_FlagElement_All_LabelText
-                : m_selectedFlags.ToString();
+                : m_selectedItems.ToString();
         }
     }
 }

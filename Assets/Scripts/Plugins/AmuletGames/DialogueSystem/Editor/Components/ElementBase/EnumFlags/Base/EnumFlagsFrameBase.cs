@@ -7,64 +7,64 @@ namespace AG.DS
         where TEnum : struct, Enum
     {
         /// <summary>
-        /// Element that contains the flag elements.
+        /// Element that contains the enum flags items.
         /// </summary>
         public VisualElement EnumFlagsMenu;
 
 
         /// <summary>
-        /// The property of the flag elements cache.
+        /// The property of the enum flags items cache.
         /// </summary>
-        public abstract FlagElement<TEnum>[] FlagElements { get; set; }
+        public abstract EnumFlagsItem<TEnum>[] Items { get; set; }
 
 
         /// <summary>
-        /// The flag elements cache.
+        /// The enum flags items cache.
         /// </summary>
-        protected FlagElement<TEnum>[] m_flagElements;
+        protected EnumFlagsItem<TEnum>[] m_items;
 
 
         /// <summary>
-        /// The property of the last selected flag element.
+        /// The property of the last selected enum flags item.
         /// </summary>
-        public FlagElement<TEnum> LastSelectedFlagElement
+        public EnumFlagsItem<TEnum> LastSelectedItem
         {
             get
             {
-                return m_lastSelectedFlagElement;
+                return m_lastSelectedItem;
             }
             set
             {
-                m_lastSelectedFlagElement = value;
+                m_lastSelectedItem = value;
 
-                if (SelectedFlags.HasFlag(m_lastSelectedFlagElement.Flag))
+                if (SelectedItems.HasFlag(m_lastSelectedItem.Flag))
                 {
-                    RemoveFlag(m_lastSelectedFlagElement.Flag);
+                    RemoveFlag(m_lastSelectedItem.Flag);
                 }
                 else
                 {
-                    AddFlag(m_lastSelectedFlagElement.Flag);
+                    AddFlag(m_lastSelectedItem.Flag);
                 }
             }
         }
 
 
         /// <summary>
-        /// The last selected flag element.
+        /// The last selected enum flags item.
         /// </summary>
-        protected FlagElement<TEnum> m_lastSelectedFlagElement;
+        protected EnumFlagsItem<TEnum> m_lastSelectedItem;
 
 
         /// <summary>
-        /// The property of the selected flags.
+        /// The property of the selected enum flags items.
         /// </summary>
-        public abstract TEnum SelectedFlags { get; set; }
+        public abstract TEnum SelectedItems { get; set; }
 
 
         /// <summary>
-        /// The selected flags.
+        /// The selected enum flags items.
         /// </summary>
-        protected TEnum m_selectedFlags;
+        protected TEnum m_selectedItems;
 
 
         /// <summary>
@@ -118,9 +118,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the selected flags has changed.
+        /// The event to invoke when the selected enum flags items has changed.
         /// </summary>
-        public Action SelectedFlagsChangedEvent;
+        public Action SelectedItemsChangedEvent;
 
 
         /// <summary>

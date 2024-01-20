@@ -68,7 +68,7 @@ namespace AG.DS
         /// </summary>
         void RegisterDropdownItemsEvents()
         {
-            var dropdownItems = dropdown.DropdownItems;
+            var dropdownItems = dropdown.Items;
             for (int i = 0; i < dropdownItems.Length; i++)
             {
                 new DropdownItemObserver(dropdownItems[i], dropdown).RegisterEvents();

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace AG.DS
 {
-    public static class WindowConfig
+    public static class DialogueSystemWindowConfig
     {
         /// <summary>
         /// The minimum size of the dialogue system window when it's floating or modal.

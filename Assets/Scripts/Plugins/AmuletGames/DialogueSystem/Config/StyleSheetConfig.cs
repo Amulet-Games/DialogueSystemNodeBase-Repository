@@ -20,8 +20,8 @@ namespace AG.DS
 
         #region Enum Flags.
         [Header("Enum Flags")]
+        public StyleSheet EnumFlagsItemStyle;
         public StyleSheet EnumFlagsStyle;
-        public StyleSheet FlagElementStyle;
         #endregion
 
         #region Modifiers.

@@ -146,7 +146,7 @@ namespace AG.DS
         void RegisterSecondBindingFlagsEvents()
             => new BindingFlagsObserver(
                 enumFlags: view.SecondBindingFlags,
-                selectedFlagsChangedEvent: SecondBindingFlagsSelectedFlagsChangedEvent).RegisterEvents();
+                selectedItemsChangedEvent: SecondBindingFlagsSelectedFlagsChangedEvent).RegisterEvents();
 
 
         /// <summary>

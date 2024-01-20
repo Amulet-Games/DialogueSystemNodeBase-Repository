@@ -8,13 +8,13 @@ namespace AG.DS
         /// Constructor of the binding flags observer class.
         /// </summary>
         /// <param name="enumFlags">The enum flags to set for.</param>
-        /// <param name="selectedFlagsChangedEvent">The selectedFlagsChangedEvent to set for.</param>
+        /// <param name="selectedItemsChangedEvent">The selectedItemsChangedEvent to set for.</param>
         public BindingFlagsObserver
         (
             EnumFlagsFrameBase<BindingFlags.Bindings> enumFlags,
-            Action<BindingFlags.Bindings> selectedFlagsChangedEvent
+            Action<BindingFlags.Bindings> selectedItemsChangedEvent
         )
-            : base(enumFlags, selectedFlagsChangedEvent)
+            : base(enumFlags, selectedItemsChangedEvent)
         {
         }
     }

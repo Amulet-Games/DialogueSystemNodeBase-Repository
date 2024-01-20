@@ -330,12 +330,12 @@ namespace AG.DS
         #region EnumFlags USS Classes.
         public const string EnumFlags = "enumFlags";
 
-        /*< -------------------- Flag Element -------------------- >*/
-        public const string FlagElement = "flagElement";
-        public const string FlagElement_First = "flagElement-first";
-        public const string FlagElement_Last = "flagElement-last";
-        public const string FlagElement_SelectedIcon_Image = "flagElement-selectedIcon-image";
-        public const string FlagElement_Text_Label = "flagElement-text-label";
+        /*< -------------------- EnumFlags Item -------------------- >*/
+        public const string EnumFlagsItem = "enumFlagsItem";
+        public const string EnumFlagsItem_First = "enumFlagsItem-first";
+        public const string EnumFlagsItem_Last = "enumFlagsItem-last";
+        public const string EnumFlagsItem_Checkmark_Image = "enumFlagsItem-checkmark-image";
+        public const string EnumFlagsItem_Text_Label = "enumFlagsItem-text-label";
 
         /*< -------------------- EnumFlags Menu -------------------- >*/
         public const string EnumFlags_EnumFlagsMenu = "enumFlags-enumFlagsMenu";

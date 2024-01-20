@@ -7,7 +7,7 @@ namespace AG.DS
     {
         #region Check Marks.
         [Header("Check Marks")]
-        public Sprite CheckMarkIconSprite;
+        public Sprite CheckmarkIconSprite;
         #endregion
 
         #region Commons.

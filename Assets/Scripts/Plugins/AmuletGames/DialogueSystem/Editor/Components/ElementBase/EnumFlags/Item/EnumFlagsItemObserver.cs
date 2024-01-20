@@ -3,13 +3,13 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class FlagElementObserver<TEnum>
+    public class EnumFlagsItemObserver<TEnum>
         where TEnum : struct, Enum
     {
         /// <summary>
-        /// The targeting flag element.
+        /// The targeting enum flags item element.
         /// </summary>
-        FlagElement<TEnum> flagElement;
+        EnumFlagsItem<TEnum> enumFlagsItem;
 
 
         /// <summary>
@@ -19,24 +19,24 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the flag element observer class.
+        /// Constructor of the enum flags item observer class.
         /// </summary>
-        /// <param name="flagElement">The flag element to set for.</param>
+        /// <param name="enumFlagsItem">The enum flags item to set for.</param>
         /// <param name="enumFlags">The enum flags to set for.</param>
-        public FlagElementObserver
+        public EnumFlagsItemObserver
         (
-            FlagElement<TEnum> flagElement,
+            EnumFlagsItem<TEnum> enumFlagsItem,
             EnumFlagsFrameBase<TEnum> enumFlags
         )
         {
-            this.flagElement = flagElement;
+            this.enumFlagsItem = enumFlagsItem;
             this.enumFlags = enumFlags;
         }
 
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the flag element.
+        /// Register events to the enum flags item.
         /// </summary>
         public void RegisterEvents()
         {
@@ -45,19 +45,19 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register MouseDownEvent to the flag element.
+        /// Register MouseDownEvent to the enum flags item.
         /// </summary>
-        void RegisterMouseDownEvent() => flagElement.RegisterCallback<MouseDownEvent>(MouseDownEvent);
+        void RegisterMouseDownEvent() => enumFlagsItem.RegisterCallback<MouseDownEvent>(MouseDownEvent);
 
 
         // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when the mouse button is clicked inside the flag element.
+        /// The event to invoke when the mouse button is clicked inside the enum flags item.
         /// </summary>
         /// <param name="evt">The registering event.</param>
         void MouseDownEvent(MouseDownEvent evt)
         {
-            enumFlags.LastSelectedFlagElement = flagElement;
+            enumFlags.LastSelectedItem = enumFlagsItem;
 
             // Prevent moving the parent node when using the field.
             evt.StopImmediatePropagation();

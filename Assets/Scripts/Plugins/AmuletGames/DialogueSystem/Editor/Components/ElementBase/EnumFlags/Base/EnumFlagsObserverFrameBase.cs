@@ -12,24 +12,24 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the enum flags selected flags has changed.
+        /// The event to invoke when the enum flags's selected enum flags item has changed.
         /// </summary>
-        Action<TEnum> selectedFlagsChangedEvent;
+        Action<TEnum> selectedItemsChangedEvent;
 
 
         /// <summary>
         /// Constructor of the enum flags observer class.
         /// </summary>
         /// <param name="enumFlags">The enum flags to set for.</param>
-        /// <param name="selectedFlagsChangedEvent">The selectedFlagsChangedEvent to set for.</param>
+        /// <param name="selectedItemsChangedEvent">The selectedItemsChangedEvent to set for.</param>
         public EnumFlagsObserverFrameBase
         (
             EnumFlagsFrameBase<TEnum> enumFlags,
-            Action<TEnum> selectedFlagsChangedEvent
+            Action<TEnum> selectedItemsChangedEvent
         )
         {
             this.enumFlags = enumFlags;
-            this.selectedFlagsChangedEvent = selectedFlagsChangedEvent;
+            this.selectedItemsChangedEvent = selectedItemsChangedEvent;
         }
 
 
@@ -43,9 +43,9 @@ namespace AG.DS
 
             RegisterEnumFlagsButtonMouseDownEvent();
 
-            RegisterFlagElementEvents();
+            RegisterEnumFlagsItemEvents();
 
-            RegisterSelectedFlagsChangedEvent();
+            RegisterSelectedItemsChangedEvent();
         }
 
 
@@ -63,21 +63,24 @@ namespace AG.DS
             enumFlags.EnumFlagsButton.RegisterCallback<MouseDownEvent>(EnumFlagsButtonMouseDownEvent);
 
 
-        void RegisterFlagElementEvents()
+        /// <summary>
+        /// Register events to the enum flags items.
+        /// </summary>
+        void RegisterEnumFlagsItemEvents()
         {
-            var flagElements = enumFlags.FlagElements;
-            for (int i = 0; i < flagElements.Length; i++)
+            var enumFlagsItem = enumFlags.Items;
+            for (int i = 0; i < enumFlagsItem.Length; i++)
             {
-                new FlagElementObserver<TEnum>(flagElements[i], enumFlags).RegisterEvents();
+                new EnumFlagsItemObserver<TEnum>(enumFlagsItem[i], enumFlags).RegisterEvents();
             }
         }
 
 
         /// <summary>
-        /// Register SelectedFlagsChangedEvent to the enum flags.
+        /// Register SelectedItemsChangedEvent to the enum flags.
         /// </summary>
-        void RegisterSelectedFlagsChangedEvent() =>
-            enumFlags.SelectedFlagsChangedEvent += EnumFlagsSelectedFlagsChangedEvent;
+        void RegisterSelectedItemsChangedEvent() =>
+            enumFlags.SelectedItemsChangedEvent += EnumFlagsSelectedItemsChangedEvent;
 
 
         // ----------------------------- Event -----------------------------
@@ -105,11 +108,11 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the enum flags selected flags has changed.
+        /// The event to invoke when the enum flags's selected enum flags item has changed.
         /// </summary>
-        void EnumFlagsSelectedFlagsChangedEvent()
+        void EnumFlagsSelectedItemsChangedEvent()
         {
-            selectedFlagsChangedEvent.Invoke(enumFlags.SelectedFlags);
+            selectedItemsChangedEvent.Invoke(enumFlags.SelectedItems);
         }
     }
 }

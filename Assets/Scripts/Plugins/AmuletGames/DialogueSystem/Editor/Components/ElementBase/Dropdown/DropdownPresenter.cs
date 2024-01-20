@@ -116,7 +116,7 @@ namespace AG.DS
                 dropdown.DropdownButton.Add(menuSelectImage);
 
                 dropdownMenuHeaderContainer.Add(dropdownMenuHeaderLabel);
-                dropdown.DropdownItems = dropdownItems;
+                dropdown.Items = dropdownItems;
 
                 dropdown.DropdownMenu.Add(dropdownMenuHeaderContainer);
                 dropdown.DropdownMenu.Add(dropdown.DropdownItemsContainer);

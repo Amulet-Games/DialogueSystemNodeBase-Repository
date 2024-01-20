@@ -3,35 +3,35 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class FlagElement<TEnum> : VisualElement
+    public class EnumFlagsItem<TEnum> : VisualElement
         where TEnum : struct, Enum
     {
         /// <summary>
-        /// Image for the element selected icon.
+        /// Image for the checkmark icon.
         /// </summary>
-        public Image SelectedIconImage;
+        public Image CheckmarkImage;
 
 
         /// <summary>
-        /// Label for the element text.
+        /// Label for the item text.
         /// </summary>
         public Label TextLabel;
 
 
         /// <summary>
-        /// The element's flag.
+        /// The item's flag.
         /// </summary>
         public TEnum Flag;
 
 
         // ----------------------------- Service -----------------------------
         /// <summary>
-        /// Set the flag element selected status.
+        /// Set the item selected status.
         /// </summary>
         /// <param name="selected">The selected value to set for.</param>
         public void SetSelected(bool selected)
         {
-            SelectedIconImage.SetVisibility(selected);
+            CheckmarkImage.SetVisibility(selected);
         }
     }
 }

@@ -6,11 +6,10 @@ namespace AG.DS
     public class EnumFlagsPresenter
     {
         /// <summary>
-        /// Create the enum flags menu element for the enum flags element.
+        /// Create the enum flags's menu element for the enum flags element.
         /// </summary>
         /// <typeparam name="TEnum">Type system.Enum</typeparam>
         /// <param name="enumFlags">The enum flags to set for.</param>
-        /// <param name="flagsElements">The flag elements to set for.</param>
         protected static void CreateEnumFlagsMenu<TEnum>(EnumFlagsFrameBase<TEnum> enumFlags)
             where TEnum : struct, Enum
         {
@@ -47,7 +46,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Create the enum flags button element for the enum flags element.
+        /// Create the enum flags's button element for the enum flags element.
         /// </summary>
         /// <typeparam name="TEnum">Type system.Enum</typeparam>
         /// <param name="enumFlags">The enum flags to set for.</param>

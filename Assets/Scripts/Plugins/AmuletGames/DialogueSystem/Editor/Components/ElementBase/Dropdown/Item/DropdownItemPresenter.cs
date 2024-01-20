@@ -21,7 +21,7 @@ namespace AG.DS
         {
             DropdownItem dropdownItem;
 
-            CreateElement();
+            CreateItem();
 
             CreateIconImage();
 
@@ -29,13 +29,13 @@ namespace AG.DS
 
             SetupDetails();
 
-            AddItemsToDropdown();
+            AddElementsToItem();
 
             AddStyleSheet();
 
             return dropdownItem;
 
-            void CreateElement()
+            void CreateItem()
             {
                 dropdownItem = new();
                 dropdownItem.AddToClassList(StyleConfig.DropdownItem);
@@ -69,7 +69,7 @@ namespace AG.DS
                 dropdownItem.IconImage.pickingMode = PickingMode.Position;
             }
 
-            void AddItemsToDropdown()
+            void AddElementsToItem()
             {
                 dropdownItem.Add(dropdownItem.IconImage);
                 dropdownItem.Add(dropdownItem.TextLabel);

@@ -24,7 +24,7 @@ namespace AG.DS
 
         // ----------------------------- Service -----------------------------
         /// <summary>
-        /// Set the dropdown item selected status.
+        /// Set the item selected status.
         /// </summary>
         /// <param name="selected">The selected value to set for.</param>
         public void SetSelected(bool selected)
