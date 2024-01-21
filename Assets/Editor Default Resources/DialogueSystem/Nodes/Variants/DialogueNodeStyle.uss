@@ -15,8 +15,8 @@
 
 
 /*< ---------------------------------------------------------- Content Button Text Label >*/
-.contentButton
-.contentButton-buttonText-label {
+.contentButton-button
+.contentButton-text-label {
 	
 	/* top - right - bottom - left */
 	margin: 2px 0px 0px 12px;
@@ -24,7 +24,7 @@
 
 
 /*< ---------------------------------------------------------- Content Button Icon Image >*/
-.contentButton-buttonIcon-image {
+.contentButton-icon-image {
 
 	height: 27.5px;
 	width: 27.5px;

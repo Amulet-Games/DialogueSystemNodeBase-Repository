@@ -8,7 +8,7 @@
 
 
 /*< ---------------------------------------------------------- Content Button Icon Image >*/
-.contentButton-buttonIcon-image {
+.contentButton-icon-image {
 
 	height: 31px;
 	width: 31px;
