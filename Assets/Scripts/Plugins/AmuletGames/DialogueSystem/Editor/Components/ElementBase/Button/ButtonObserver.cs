@@ -2,10 +2,10 @@ using System;
 
 namespace AG.DS
 {
-    public class CommonButtonObserver
+    public class ButtonObserver
     {
         /// <summary>
-        /// Is pressing the button will invoke the WindowChangedEvent?
+        /// Will the WindowChangedEvent get invoked when pressing the button?
         /// </summary>
         bool isAlert;
 
@@ -13,7 +13,7 @@ namespace AG.DS
         /// <summary>
         /// The targeting button element.
         /// </summary>
-        CommonButton button;
+        Button button;
 
 
         /// <summary>
@@ -23,15 +23,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the common button observer class.
+        /// Constructor of the button observer class.
         /// </summary>
         /// <param name="isAlert">The isAlert value to set for.</param>
         /// <param name="button">The button element to set for.</param>
         /// <param name="clickEvent">The clickEvent to set for.</param>
-        public CommonButtonObserver
+        public ButtonObserver
         (
             bool isAlert,
-            CommonButton button,
+            Button button,
             Action clickEvent
         )
         {
@@ -43,7 +43,7 @@ namespace AG.DS
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the common button element.
+        /// Register events to the button element.
         /// </summary>
         public void RegisterEvents()
         {
@@ -70,7 +70,7 @@ namespace AG.DS
 
         // ----------------------------- Event -----------------------------
         /// <summary>
-        /// The event to invoke when the button is clicked and the isAlert property.
+        /// The event to invoke when the button is clicked and the isAlert value was set to true.
         /// </summary>
         void AlertClickEvent()
         {

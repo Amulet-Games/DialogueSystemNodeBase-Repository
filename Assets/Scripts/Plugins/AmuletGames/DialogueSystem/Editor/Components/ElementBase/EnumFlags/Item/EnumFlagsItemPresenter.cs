@@ -55,7 +55,7 @@ namespace AG.DS
 
             void CreateTextLabel()
             {
-                enumFlagsItem.TextLabel = CommonLabelPresenter.CreateElement
+                enumFlagsItem.TextLabel = LabelPresenter.CreateElement
                 (
                     text: labelText,
                     USS: StyleConfig.EnumFlagsItem_Text_Label

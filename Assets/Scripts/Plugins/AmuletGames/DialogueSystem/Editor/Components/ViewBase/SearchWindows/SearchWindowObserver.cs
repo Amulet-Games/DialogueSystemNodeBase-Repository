@@ -8,7 +8,7 @@ namespace AG.DS
         /// <summary>
         /// The targeting search window component.
         /// </summary>
-        SearchWindowBase searchWindow;
+        SearchWindow searchWindow;
 
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace AG.DS
         /// <param name="entrySelectedEvent">The EntrySelectedEvent to set for.</param>
         public SearchWindowObserver
         (
-            SearchWindowBase searchWindow,
+            SearchWindow searchWindow,
             Func<SearchTreeEntry, SearchWindowContext, bool> entrySelectedEvent
         )
         {

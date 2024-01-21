@@ -106,8 +106,9 @@ namespace AG.DS
 
             void CreateContentButton()
             {
-                View.ContentButton = ContentButtonPresenter.CreateElement
+                ContentButtonPresenter.CreateElement
                 (
+                    view: View.ContentButtonView,
                     buttonText: StringConfig.ContentButton_AddMessage_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddMessageButtonIconSprite
                 );
@@ -139,7 +140,7 @@ namespace AG.DS
 
             void CreateDialogueSpeakerLabel()
             {
-                dialogueSpeakerLabel = CommonLabelPresenter.CreateElement
+                dialogueSpeakerLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.DialogueNode_DialogueSpeakerLabel_LabelText,
                     USS: StyleConfig.DialogueNode_DialogueSpeaker_Label
@@ -162,7 +163,7 @@ namespace AG.DS
 
             void AddElementsToContainer()
             {
-                Node.topContainer.Add(View.ContentButton);
+                Node.topContainer.Add(View.ContentButtonView.Button);
 
                 contentContainer.Add(View.DialogueSpeakerFieldView.Field);
 

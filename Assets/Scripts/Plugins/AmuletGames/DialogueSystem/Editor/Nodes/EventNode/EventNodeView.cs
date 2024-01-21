@@ -4,9 +4,9 @@ namespace AG.DS
     public class EventNodeView : NodeViewFrameBase<EventNodeView>
     {
         /// <summary>
-        /// Content button for adding events to the node.
+        /// View for the content button.
         /// </summary>
-        public CommonButton ContentButton;
+        public ContentButtonView ContentButtonView;
 
 
         /// <summary>
@@ -30,6 +30,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override EventNodeView Setup(LanguageHandler languageHandler)
         {
+            ContentButtonView = new();
             NodeTitleFieldView = new(value: StringConfig.EventNode_NodeTitleField_DefaultText);
 
             return this;

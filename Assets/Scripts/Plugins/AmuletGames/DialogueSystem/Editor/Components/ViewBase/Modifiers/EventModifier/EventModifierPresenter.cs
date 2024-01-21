@@ -77,7 +77,7 @@ namespace AG.DS
 
             void CreateMoveUpButton()
             {
-                view.MoveUpButton = CommonButtonPresenter.CreateElement
+                view.MoveUpButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.MoveUpButtonIconSprite,
                     USS: StyleConfig.EventModifier_MoveUp_Button
@@ -88,7 +88,7 @@ namespace AG.DS
 
             void CreateMoveDownButton()
             {
-                view.MoveDownButton = CommonButtonPresenter.CreateElement
+                view.MoveDownButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.MoveDownButtonIconSprite,
                     USS: StyleConfig.EventModifier_MoveDown_Button
@@ -99,7 +99,7 @@ namespace AG.DS
 
             void CreateRenameButton()
             {
-                view.RenameButton = CommonButtonPresenter.CreateElement
+                view.RenameButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
                     USS: StyleConfig.EventModifier_Rename_Button
@@ -110,7 +110,7 @@ namespace AG.DS
 
             void CreateRemoveButton()
             {
-                view.RemoveButton = CommonButtonPresenter.CreateElement
+                view.RemoveButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
                     USS: StyleConfig.EventModifier_Remove_Button
@@ -121,7 +121,7 @@ namespace AG.DS
 
             void CreateDialogueEventLabel()
             {
-                dialogueEventLabel = CommonLabelPresenter.CreateElement
+                dialogueEventLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.EventModifier_DialogueEventLabel_LabelText,
                     USS: StyleConfig.EventModifier_DialogueEvent_Label
@@ -150,7 +150,7 @@ namespace AG.DS
 
             void CreateStartDelayLabel()
             {
-                startDelayLabel = CommonLabelPresenter.CreateElement
+                startDelayLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.EventModifier_StartDelay_LabelText,
                     USS: StyleConfig.EventModifier_StartDelay_Label
@@ -168,7 +168,7 @@ namespace AG.DS
 
             void CreateDelaySecondsLabel()
             {
-                delaySecondsLabel = CommonLabelPresenter.CreateElement
+                delaySecondsLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.EventModifier_DelaySeconds_LabelText,
                     USS: StyleConfig.EventModifier_DelaySeconds_Label

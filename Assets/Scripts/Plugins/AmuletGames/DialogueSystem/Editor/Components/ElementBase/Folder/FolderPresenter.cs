@@ -53,7 +53,7 @@ namespace AG.DS
 
             void CreateExpandButton()
             {
-                folder.ExpandButton = CommonButtonPresenter.CreateElement
+                folder.ExpandButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.FolderExpandButtonCloseIconSprite,
                     USS: StyleConfig.Folder_Expand_Button

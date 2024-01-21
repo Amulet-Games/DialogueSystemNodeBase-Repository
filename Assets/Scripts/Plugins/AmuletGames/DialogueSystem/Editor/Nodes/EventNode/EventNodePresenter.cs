@@ -94,8 +94,9 @@ namespace AG.DS
 
             void CreateContentButton()
             {
-                View.ContentButton = ContentButtonPresenter.CreateElement
+                ContentButtonPresenter.CreateElement
                 (
+                    view: View.ContentButtonView,
                     buttonText: StringConfig.ContentButton_AddEvent_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEventButtonIconSprite
                 );
@@ -114,7 +115,7 @@ namespace AG.DS
 
             void AddElementsToContainer()
             {
-                Node.topContainer.Add(View.ContentButton);
+                Node.topContainer.Add(View.ContentButtonView.Button);
 
                 contentContainer.Add(View.EventModifierGroup);
             }

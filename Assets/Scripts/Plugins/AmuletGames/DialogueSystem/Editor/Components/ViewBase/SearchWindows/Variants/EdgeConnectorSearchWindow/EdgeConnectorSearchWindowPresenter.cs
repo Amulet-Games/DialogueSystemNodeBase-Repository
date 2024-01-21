@@ -6,9 +6,9 @@ namespace AG.DS
         /// Create a new edge connector search window.
         /// </summary>
         /// <returns>A new edge connector search window.</returns>
-        public static SearchWindowBase CreateWindow()
+        public static SearchWindow CreateWindow()
         {
-            return SearchWindowPresenter.CreateWindow<SearchWindowBase>(new());
+            return SearchWindowPresenter.CreateWindow<SearchWindow>(new());
         }
     }
 }

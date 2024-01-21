@@ -66,7 +66,7 @@ namespace AG.DS
         /// Register ClickEvent to the node title edit button.
         /// </summary>
         void RegisterNodeTitleEditButtonClickEvent()
-            => new CommonButtonObserver(
+            => new ButtonObserver(
                 isAlert: false,
                 button: View.EditTitleButton,
                 clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();
@@ -76,9 +76,8 @@ namespace AG.DS
         /// Register ClickEvent to the node content button.
         /// </summary>
         void RegisterContentButtonClickEvent()
-            => new CommonButtonObserver(
-                isAlert: true,
-                button: View.ContentButton,
+            => new ContentButtonObserver(
+                view: View.ContentButtonView,
                 clickEvent: ContentButtonClickEvent).RegisterEvents();
 
 

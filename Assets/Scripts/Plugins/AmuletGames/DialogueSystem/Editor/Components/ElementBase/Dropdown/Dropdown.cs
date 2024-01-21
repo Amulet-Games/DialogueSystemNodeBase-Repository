@@ -102,7 +102,7 @@ namespace AG.DS
         /// <summary>
         /// Button that shows the dropdown menu when clicked.
         /// </summary>
-        public CommonButton DropdownButton;
+        public Button DropdownButton;
 
 
         /// <summary>

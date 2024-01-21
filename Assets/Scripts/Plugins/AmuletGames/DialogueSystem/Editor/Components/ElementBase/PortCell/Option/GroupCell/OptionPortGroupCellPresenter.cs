@@ -51,7 +51,7 @@ namespace AG.DS
 
             void CreateRemoveCellButton()
             {
-                groupCell.RemoveButton = CommonButtonPresenter.CreateElement
+                groupCell.RemoveButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
                     USS: StyleConfig.OptionPortGroupCell_RemoveCellButton

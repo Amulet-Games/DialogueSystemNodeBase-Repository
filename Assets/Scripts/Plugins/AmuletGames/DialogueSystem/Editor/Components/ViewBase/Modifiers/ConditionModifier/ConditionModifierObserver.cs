@@ -79,7 +79,7 @@ namespace AG.DS
         /// Register ClickEvent to the move up button.
         /// </summary>
         void RegisterMoveUpButtonClickEvent()
-            => new CommonButtonObserver(
+            => new ButtonObserver(
                 isAlert: true,
                 button: view.MoveUpButton,
                 clickEvent: MoveUpButtonClickEvent).RegisterEvents();
@@ -89,7 +89,7 @@ namespace AG.DS
         /// Register ClickEvent to the move down button.
         /// </summary>
         void RegisterMoveDownButtonClickEvent()
-            => new CommonButtonObserver(
+            => new ButtonObserver(
                 isAlert: true,
                 button: view.MoveDownButton,
                 clickEvent: MoveDownButtonClickEvent).RegisterEvents();
@@ -99,7 +99,7 @@ namespace AG.DS
         /// Register ClickEvent to the rename button.
         /// </summary>
         void RegisterRenameButtonClickEvent()
-            => new CommonButtonObserver(
+            => new ButtonObserver(
                 isAlert: true,
                 button: view.RenameButton,
                 clickEvent: RenameButtonClickEvent).RegisterEvents();
@@ -109,7 +109,7 @@ namespace AG.DS
         /// Register ClickEvent to the remove button.
         /// </summary>
         void RegisterRemoveButtonClickEvent()
-            => new CommonButtonObserver(
+            => new ButtonObserver(
                 isAlert: true,
                 button: view.RemoveButton,
                 clickEvent: RemoveButtonClickEvent).RegisterEvents();
@@ -119,7 +119,7 @@ namespace AG.DS
         /// Register ClickEvent to the second variable switch field button.
         /// </summary>
         void RegisterSecondVariableSwitchFieldButtonClickEvent()
-            => new CommonButtonObserver(
+            => new ButtonObserver(
                 isAlert: true,
                 button: view.SecondVariableSwitchFieldButton,
                 clickEvent: SecondVariableSwitchFieldButtonClickEvent).RegisterEvents();

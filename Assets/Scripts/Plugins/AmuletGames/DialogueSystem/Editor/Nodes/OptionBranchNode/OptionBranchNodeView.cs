@@ -4,9 +4,9 @@ namespace AG.DS
     public class OptionBranchNodeView : NodeViewFrameBase<OptionBranchNodeView>
     {
         /// <summary>
-        /// Content button for adding conditions to the node.
+        /// View for the content button.
         /// </summary>
-        public CommonButton ContentButton;
+        public ContentButtonView ContentButtonView;
 
 
         /// <summary>
@@ -30,9 +30,8 @@ namespace AG.DS
         /// <inheritdoc />
         public override OptionBranchNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleFieldView = new(
-                value: StringConfig.OptionBranchNode_NodeTitleField_DefaultText
-            );
+            ContentButtonView = new();
+            NodeTitleFieldView = new(value: StringConfig.OptionBranchNode_NodeTitleField_DefaultText);
 
             BranchTitleFieldView = new
             (

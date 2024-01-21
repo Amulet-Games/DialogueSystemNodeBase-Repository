@@ -94,8 +94,9 @@ namespace AG.DS
 
             void CreateContentButton()
             {
-                View.ContentButton = ContentButtonPresenter.CreateElement
+                ContentButtonPresenter.CreateElement
                 (
+                    view: View.ContentButtonView,
                     buttonText: StringConfig.ContentButton_AddCondition_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddConditionButtonIconSprite
                 );
@@ -127,7 +128,7 @@ namespace AG.DS
 
             void CreateBranchTitleLabel()
             {
-                branchTitleLabel = CommonLabelPresenter.CreateElement
+                branchTitleLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.OptionBranchNode_BranchTitleLabel_LabelText,
                     USS: StyleConfig.OptionBranchNode_BranchTitle_Label
@@ -146,7 +147,7 @@ namespace AG.DS
 
             void AddElementsToContainer()
             {
-                Node.topContainer.Add(View.ContentButton);
+                Node.topContainer.Add(View.ContentButtonView.Button);
 
                 branchTitleOuterContainer.Add(branchTitleImage);
                 branchTitleOuterContainer.Add(branchTitleInnerContainer);

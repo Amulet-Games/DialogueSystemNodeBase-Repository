@@ -31,7 +31,7 @@ namespace AG.DS
             // Second term
             ObjectField secondTermObjectField;
 
-            Button modifierRemoveButton;
+            UnityEngine.UIElements.Button modifierRemoveButton;
 
             SetupModifierBox();
 

@@ -53,7 +53,7 @@ namespace AG.DS
         /// Register ClickEvent to the remove button.
         /// </summary>
         void RegisterRemoveButtonClickEvent()
-            => new CommonButtonObserver(
+            => new ButtonObserver(
                 isAlert: true,
                 button: groupCell.RemoveButton,
                 clickEvent: RemoveButtonClickEvent).RegisterEvents();

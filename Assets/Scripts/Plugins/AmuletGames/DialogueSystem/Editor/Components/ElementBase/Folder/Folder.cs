@@ -19,7 +19,7 @@ namespace AG.DS
         /// <summary>
         /// Button that expands the folder when clicked.
         /// </summary>
-        public CommonButton ExpandButton;
+        public Button ExpandButton;
 
 
         /// <summary>

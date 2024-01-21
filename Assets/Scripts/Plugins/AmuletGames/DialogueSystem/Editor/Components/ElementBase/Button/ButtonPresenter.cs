@@ -3,21 +3,21 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class CommonButtonPresenter
+    public class ButtonPresenter
     {
         /// <summary>
-        /// Create a new common button element.
+        /// Create a new button element.
         /// </summary>
         /// <param name="text">The text to set for.</param>
         /// <param name="USS">The USS style to set for.</param>
-        /// <returns>A new common button element.</returns>
-        public static CommonButton CreateElement
+        /// <returns>A new button element.</returns>
+        public static Button CreateElement
         (
             string text,
             string USS
         )
         {
-            CommonButton button;
+            Button button;
 
             Label textLabel;
 
@@ -36,7 +36,7 @@ namespace AG.DS
 
             void CreateTextLabel()
             {
-                textLabel = CommonLabelPresenter.CreateElement
+                textLabel = LabelPresenter.CreateElement
                 (
                     text: text,
                     USS: StyleConfig.Button_ButtonText_Label
@@ -51,18 +51,18 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for creating a new common button element.
+        /// Create a new button element.
         /// </summary>
         /// <param name="sprite">The sprite to set for.</param>
         /// <param name="USS">The USS style to set for.</param>
-        /// <returns>A new common button element.</returns>
-        public static CommonButton CreateElement
+        /// <returns>A new button element.</returns>
+        public static Button CreateElement
         (
             Sprite sprite,
             string USS
         )
         {
-            CommonButton button;
+            Button button;
 
             CreateButton();
 
@@ -83,13 +83,13 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Method for creating a new common button element.
+        /// Create a new button element.
         /// </summary>
         /// <param name="USS">The USS style to set for.</param>
-        /// <returns>A new common button element.</returns>
-        public static CommonButton CreateElement(string USS)
+        /// <returns>A new button element.</returns>
+        public static Button CreateElement(string USS)
         {
-            CommonButton button = new();
+            Button button = new();
 
             button.AddToClassList(USS);
 

@@ -35,7 +35,7 @@ namespace AG.DS
         /// Register ClickEvent to the node title edit button.
         /// </summary>
         void RegisterNodeTitleEditButtonClickEvent()
-            => new CommonButtonObserver(
+            => new ButtonObserver(
                 isAlert: false,
                 button: View.EditTitleButton,
                 clickEvent: NodeTitleEditButtonClickEvent).RegisterEvents();

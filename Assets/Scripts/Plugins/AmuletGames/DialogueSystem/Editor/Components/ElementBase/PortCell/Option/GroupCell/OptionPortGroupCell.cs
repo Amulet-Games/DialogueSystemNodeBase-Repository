@@ -13,6 +13,6 @@ namespace AG.DS
         /// <summary>
         /// Button to remove the cell from the group. 
         /// </summary>
-        public CommonButton RemoveButton;
+        public Button RemoveButton;
     }
 }

@@ -1,5 +1,5 @@
-/*< ---------------------------------------------------------- Main >*/
-.contentButton {
+/*< ---------------------------------------------------------- Button >*/
+.contentButton-button {
 
 	min-width: 201px;
 
@@ -16,14 +16,14 @@
 	border-radius: 0px 4px 0px 0px;
 }
 
-.contentButton:hover {
+.contentButton-button:hover {
 
 	background-color: rgba(88, 88, 88, 1);
 }
 
 
-/*< ---------------------------------------------------------- Button Text Label >*/
-.contentButton-buttonText-label {
+/*< ---------------------------------------------------------- Text Label >*/
+.contentButton-text-label {
 	
 	color: white;
 	
@@ -46,8 +46,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Button Icon Image >*/
-.contentButton-buttonIcon-image {
+/*< ---------------------------------------------------------- Icon Image >*/
+.contentButton-icon-image {
 	
 	flex-shrink: 0;
 }

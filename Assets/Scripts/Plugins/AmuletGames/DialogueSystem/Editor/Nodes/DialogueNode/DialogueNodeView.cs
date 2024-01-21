@@ -4,9 +4,9 @@
     public class DialogueNodeView : NodeViewFrameBase<DialogueNodeView>
     {
         /// <summary>
-        /// Content button for adding messages to the node.
+        /// View for the content button.
         /// </summary>
-        public CommonButton ContentButton;
+        public ContentButtonView ContentButtonView;
 
 
         /// <summary>
@@ -36,6 +36,7 @@
         /// <inheritdoc />
         public override DialogueNodeView Setup(LanguageHandler languageHandler)
         {
+            ContentButtonView = new();
             NodeTitleFieldView = new(value: StringConfig.DialogueNode_NodeTitleField_DefaultText);
             DialogueSpeakerFieldView = new(placeholderText: StringConfig.DialogueNode_DialogueSpeakerField_PlaceholderText);
 

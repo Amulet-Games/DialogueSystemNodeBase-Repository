@@ -4,9 +4,9 @@ namespace AG.DS
     public class BooleanNodeView : NodeViewFrameBase<BooleanNodeView>
     {
         /// <summary>
-        /// Content button for adding conditions to the node.
+        /// View for the content button.
         /// </summary>
-        public CommonButton ContentButton;
+        public ContentButtonView ContentButtonView;
 
 
         /// <summary>
@@ -36,6 +36,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override BooleanNodeView Setup(LanguageHandler languageHandler)
         {
+            ContentButtonView = new();
             NodeTitleFieldView = new(value: StringConfig.BooleanNode_NodeTitleField_DefaultText);
 
             return this;

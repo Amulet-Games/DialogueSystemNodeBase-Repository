@@ -44,7 +44,7 @@ namespace AG.DS
             // If there's no modifier being created after loading, create a new one by default.
             if (View.ConditionModifierGroup.FirstModifier == null)
             {
-                View.ContentButton.Click();
+                View.ContentButtonView.Button.Click();
             }
         }
     }

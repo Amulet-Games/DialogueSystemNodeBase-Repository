@@ -8,7 +8,7 @@ namespace AG.DS
     /// <summary>
     /// The search window component.
     /// </summary>
-    public class SearchWindowBase : ScriptableObject, ISearchWindowProvider
+    public class SearchWindow : ScriptableObject, ISearchWindowProvider
     {
         /// <summary>
         /// Reference of the search tree entries.
@@ -53,6 +53,10 @@ namespace AG.DS
         /// </summary>
         /// <param name="openScreenPosition">The open screen position to set for.</param>
         public void OpenWindow(Vector2 openScreenPosition)
-            => SearchWindow.Open(context: new SearchWindowContext(openScreenPosition), provider: this);
+            => UnityEditor.Experimental.GraphView.SearchWindow.Open
+            (
+                context: new SearchWindowContext(openScreenPosition),
+                provider: this
+            );
     }
 }

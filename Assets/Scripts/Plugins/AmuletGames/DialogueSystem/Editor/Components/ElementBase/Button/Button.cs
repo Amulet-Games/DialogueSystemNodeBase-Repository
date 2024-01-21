@@ -3,12 +3,12 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class CommonButton : VisualElement
+    public class Button : VisualElement
     {
         /// <summary>
         /// The property of the manipulator that tracks Mouse events on the button and callbacks when its clicked.
         /// </summary>
-        public CommonClickable Clickable
+        public Clickable Clickable
         {
             get
             {
@@ -33,7 +33,7 @@ namespace AG.DS
         /// <summary>
         /// Manipulator that tracks Mouse events on the button and callbacks when its clicked.
         /// </summary>
-        CommonClickable m_clickable;
+        Clickable m_clickable;
 
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace AG.DS
             {
                 if (m_clickable == null)
                 {
-                    Clickable = new CommonClickable(clicked: value, delay: 0, interval: 0);
+                    Clickable = new Clickable(clicked: value, delay: 0, interval: 0);
                 }
                 else
                 {
@@ -63,7 +63,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Invoke the content button's clicked action.
+        /// Invoke the clickable's clicked action.
         /// </summary>
         public void Click() => m_clickable.Invoke();
     }

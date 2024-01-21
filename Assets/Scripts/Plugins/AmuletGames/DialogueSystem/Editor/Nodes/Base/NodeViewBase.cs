@@ -14,6 +14,6 @@ namespace AG.DS
         /// <summary>
         /// Button for editing the node title.
         /// </summary>
-        public CommonButton EditTitleButton;
+        public Button EditTitleButton;
     }
 }

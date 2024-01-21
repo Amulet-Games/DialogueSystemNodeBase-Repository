@@ -52,7 +52,7 @@ namespace AG.DS
 
             void CreateTextLabel()
             {
-                dropdownItem.TextLabel = CommonLabelPresenter.CreateElement
+                dropdownItem.TextLabel = LabelPresenter.CreateElement
                 (
                     text: labelText,
                     USS: StyleConfig.DropdownItem_Text_Label

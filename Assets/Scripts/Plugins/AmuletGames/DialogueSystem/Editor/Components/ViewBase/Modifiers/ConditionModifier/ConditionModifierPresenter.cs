@@ -119,7 +119,7 @@ namespace AG.DS
 
             void CreateMoveUpButton()
             {
-                view.MoveUpButton = CommonButtonPresenter.CreateElement
+                view.MoveUpButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.MoveUpButtonIconSprite,
                     USS: StyleConfig.ConditionModifier_MoveUp_Button
@@ -130,7 +130,7 @@ namespace AG.DS
 
             void CreateMoveDownButton()
             {
-                view.MoveDownButton = CommonButtonPresenter.CreateElement
+                view.MoveDownButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.MoveDownButtonIconSprite,
                     USS: StyleConfig.ConditionModifier_MoveDown_Button
@@ -141,7 +141,7 @@ namespace AG.DS
 
             void CreateRenameButton()
             {
-                view.RenameButton = CommonButtonPresenter.CreateElement
+                view.RenameButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
                     USS: StyleConfig.ConditionModifier_Rename_Button
@@ -152,7 +152,7 @@ namespace AG.DS
 
             void CreateRemoveButton()
             {
-                view.RemoveButton = CommonButtonPresenter.CreateElement
+                view.RemoveButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
                     USS: StyleConfig.ConditionModifier_Remove_Button
@@ -175,7 +175,7 @@ namespace AG.DS
 
             void CreateSecondVariableLabel()
             {
-                secondVariableLabel = CommonLabelPresenter.CreateElement
+                secondVariableLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.ConditionModifier_SecondVariable_LabelText,
                     USS: StyleConfig.ConditionModifier_SecondVariable_Label
@@ -204,7 +204,7 @@ namespace AG.DS
 
             void CreateSecondBindingFlagsLabel()
             {
-                secondBindingFlagsLabel = CommonLabelPresenter.CreateElement
+                secondBindingFlagsLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.ConditionModifier_SecondBindingFlags_LabelText,
                     USS: StyleConfig.ConditionModifier_SecondBindingFlags_Label
@@ -248,7 +248,7 @@ namespace AG.DS
 
             void CreateSecondFloatHintLabel()
             {
-                secondFloatFieldHintLabel = CommonLabelPresenter.CreateElement
+                secondFloatFieldHintLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.ConditionModifier_SecondFloatHint_LabelText,
                     USS: StyleConfig.ConditionModifier_SecondFloatHint_Label
@@ -257,7 +257,7 @@ namespace AG.DS
 
             void CreateOperationLabel()
             {
-                operationLabel = CommonLabelPresenter.CreateElement
+                operationLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.ConditionModifier_Operation_LabelText,
                     USS: StyleConfig.ConditionModifier_Operation_Label
@@ -336,7 +336,7 @@ namespace AG.DS
 
             void CreateChainWithLabel()
             {
-                chainWithLabel = CommonLabelPresenter.CreateElement
+                chainWithLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.ConditionModifier_ChainWith_LabelText,
                     USS: StyleConfig.ConditionModifier_ChainWith_Label
@@ -447,7 +447,7 @@ namespace AG.DS
             /// <param name="buttonLabelUSS">The button Label USS to set for.</param>
             /// <param name="buttonIconUSS">The button icon USS to set for.</param>
             /// <returns>A new switch field button element.</returns>
-            public static CommonButton CreateElement
+            public static Button CreateElement
             (
                 string buttonText,
                 Sprite buttonIconSprite,
@@ -456,7 +456,7 @@ namespace AG.DS
                 string buttonIconUSS
             )
             {
-                CommonButton button;
+                Button button;
 
                 Label buttonLabel;
                 Image iconImage;
@@ -492,7 +492,7 @@ namespace AG.DS
 
                 void CreateButtonLabel()
                 {
-                    buttonLabel = CommonLabelPresenter.CreateElement
+                    buttonLabel = LabelPresenter.CreateElement
                     (
                         text: buttonText,
                         USS: buttonLabelUSS

@@ -44,7 +44,7 @@ namespace AG.DS
         /// <summary>
         /// Button that change the second term field type when clicked.
         /// </summary>
-        Button changeFieldTypeButton;
+        UnityEngine.UIElements.Button changeFieldTypeButton;
 
 
         /// <summary>

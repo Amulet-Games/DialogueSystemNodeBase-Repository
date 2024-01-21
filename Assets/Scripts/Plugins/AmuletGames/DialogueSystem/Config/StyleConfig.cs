@@ -66,9 +66,9 @@ namespace AG.DS
         #endregion
 
         #region Content Button USS Classes.
-        public const string ContentButton = "contentButton";
-        public const string ContentButton_ButtonText_Label = "contentButton-buttonText-label";
-        public const string ContentButton_ButtonIcon_Image = "contentButton-buttonIcon-image";
+        public const string ContentButton_Button = "contentButton-button";
+        public const string ContentButton_Text_Label = "contentButton-text-label";
+        public const string ContentButton_Icon_Image = "contentButton-icon-image";
         #endregion
 
         #region Node Common USS Classes.

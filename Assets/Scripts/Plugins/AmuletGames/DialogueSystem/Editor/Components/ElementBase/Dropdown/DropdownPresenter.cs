@@ -82,7 +82,7 @@ namespace AG.DS
 
             void CreateDropdownButtonTextLabel()
             {
-                dropdown.DropdownButtonTextLabel = CommonLabelPresenter.CreateElement(
+                dropdown.DropdownButtonTextLabel = LabelPresenter.CreateElement(
                     text: "",
                     USS: StyleConfig.Dropdown_DropdownButton_Text_Label
                 );
@@ -98,7 +98,7 @@ namespace AG.DS
 
             void CreateDropdownMenuHeaderLabel()
             {
-                dropdownMenuHeaderLabel = CommonLabelPresenter.CreateElement(
+                dropdownMenuHeaderLabel = LabelPresenter.CreateElement(
                     text: dropdownMenuHeader,
                     USS: StyleConfig.Dropdown_DropdownMenu_HeaderText_Label
                 );

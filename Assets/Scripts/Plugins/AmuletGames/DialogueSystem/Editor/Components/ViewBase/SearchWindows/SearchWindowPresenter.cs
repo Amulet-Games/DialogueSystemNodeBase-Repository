@@ -13,7 +13,7 @@ namespace AG.DS
         /// <param name="searchTreeEntries">The search tree entries to set for.</param>
         /// <returns>A new search window component</returns>
         public static TSearchWindow CreateWindow<TSearchWindow>(List<SearchTreeEntry> searchTreeEntries)
-            where TSearchWindow : SearchWindowBase
+            where TSearchWindow : SearchWindow
         {
             var window = ScriptableObject.CreateInstance<TSearchWindow>();
             window.SearchTreeEntries = searchTreeEntries;

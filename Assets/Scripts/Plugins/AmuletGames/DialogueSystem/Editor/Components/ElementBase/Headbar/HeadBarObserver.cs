@@ -71,7 +71,7 @@ namespace AG.DS
         /// </summary>
         void RegisterSaveButtonClickEvent()
         {
-            new CommonButtonObserver(
+            new ButtonObserver(
                 isAlert: false,
                 button: headbar.SaveButton,
                 clickEvent: SaveButtonClickEvent).RegisterEvents();
@@ -83,7 +83,7 @@ namespace AG.DS
         /// </summary>
         void RegisterLoadButtonClickEvent()
         {
-            new CommonButtonObserver(
+            new ButtonObserver(
                 isAlert: false,
                 button: headbar.LoadButton,
                 clickEvent: LoadButtonClickEvent).RegisterEvents();

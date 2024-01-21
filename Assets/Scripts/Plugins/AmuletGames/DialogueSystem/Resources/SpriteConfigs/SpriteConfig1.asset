@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c425441c98a614e9f12eb70d522e41, type: 3}
   m_Name: SpriteConfig1
   m_EditorClassIdentifier: 
-  CheckMarkIconSprite: {fileID: 21300000, guid: b666809a2e6bc47ab9a0518ed13d81e0, type: 3}
+  CheckmarkIconSprite: {fileID: 21300000, guid: b666809a2e6bc47ab9a0518ed13d81e0, type: 3}
   EditButtonIconSprite: {fileID: 21300000, guid: bfd03f3d05893184a8ca4dc3780500c2, type: 3}
   MoveDownButtonIconSprite: {fileID: 21300000, guid: c1e241b752c5a424e93271867d126405, type: 3}
   MoveUpButtonIconSprite: {fileID: 21300000, guid: 81166389d3b2799488f063d41894b087, type: 3}

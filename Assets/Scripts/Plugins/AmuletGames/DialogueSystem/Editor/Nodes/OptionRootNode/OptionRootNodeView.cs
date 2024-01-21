@@ -4,9 +4,9 @@ namespace AG.DS
     public class OptionRootNodeView : NodeViewFrameBase<OptionRootNodeView>
     {
         /// <summary>
-        /// Content button for adding output option port to the node.
+        /// View for the content button.
         /// </summary>
-        public CommonButton ContentButton;
+        public ContentButtonView ContentButtonView;
 
 
         /// <summary>
@@ -30,9 +30,8 @@ namespace AG.DS
         /// <inheritdoc />
         public override OptionRootNodeView Setup(LanguageHandler languageHandler)
         {
-            NodeTitleFieldView = new(
-                value: StringConfig.OptionRootNode_NodeTitleField_DefaultText
-            );
+            ContentButtonView = new();
+            NodeTitleFieldView = new(value: StringConfig.OptionRootNode_NodeTitleField_DefaultText);
 
             RootTitleFieldView = new
             (

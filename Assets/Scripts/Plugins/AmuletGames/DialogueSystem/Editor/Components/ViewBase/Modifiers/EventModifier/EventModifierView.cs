@@ -11,25 +11,25 @@ namespace AG.DS
         /// <summary>
         /// Button that moves the modifier up one position when clicked.
         /// </summary>
-        public CommonButton MoveUpButton;
+        public Button MoveUpButton;
 
 
         /// <summary>
         /// Button that moves the modifier down one position when clicked.
         /// </summary>
-        public CommonButton MoveDownButton;
+        public Button MoveDownButton;
 
 
         /// <summary>
         /// Button that renames the modifier when clicked.
         /// </summary>
-        public CommonButton RenameButton;
+        public Button RenameButton;
 
 
         /// <summary>
         /// Button that removes the modifier when clicked.
         /// </summary>
-        public CommonButton RemoveButton;
+        public Button RemoveButton;
 
 
         /// <summary>

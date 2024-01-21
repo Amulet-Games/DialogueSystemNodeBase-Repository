@@ -2,14 +2,14 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class CommonLabelPresenter
+    public class LabelPresenter
     {
         /// <summary>
-        /// Create a new common Label element.
+        /// Create a new Label element.
         /// </summary>
         /// <param name="text">The text to set for.</param>
         /// <param name="USS">The USS style to set for.</param>
-        /// <returns>A new common Label element.</returns>
+        /// <returns>A new Label element.</returns>
         public static Label CreateElement
         (
             string text,

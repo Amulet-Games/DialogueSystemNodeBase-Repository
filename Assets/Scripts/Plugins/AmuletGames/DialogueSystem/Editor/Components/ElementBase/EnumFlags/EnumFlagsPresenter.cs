@@ -75,7 +75,7 @@ namespace AG.DS
 
             void CreateEnumFlagsButtonTextLabel()
             {
-                enumFlags.EnumFlagsButtonTextLabel = CommonLabelPresenter.CreateElement(
+                enumFlags.EnumFlagsButtonTextLabel = LabelPresenter.CreateElement(
                     text: "",
                     USS: StyleConfig.EnumFlags_EnumFlagsButton_TextLabel
                 );

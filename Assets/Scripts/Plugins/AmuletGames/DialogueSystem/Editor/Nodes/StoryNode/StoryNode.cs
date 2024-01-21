@@ -99,7 +99,7 @@ namespace AG.DS
             target.NodeBorder.style.borderTopColor = new Color(r: 0, g: 0, b: 0, a: 0);
 
             var dNode = (BooleanNode)target;
-            dNode.View.ContentButton.Click();
+            dNode.View.ContentButtonView.Button.Click();
 
             BringToFront();
         }

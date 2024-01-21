@@ -5,7 +5,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the search window.
         /// </summary>
-        public SearchWindowBase SearchWindow;
+        public SearchWindow SearchWindow;
 
 
         /// <summary>

@@ -34,7 +34,7 @@ namespace AG.DS
         /// Register ClickEvent to the expand button.
         /// </summary>
         void RegisterExpandButtonClickEvent()
-            => new CommonButtonObserver(
+            => new ButtonObserver(
                 isAlert: false,
                 button: folder.ExpandButton,
                 clickEvent: ExpandButtonClickEvent).RegisterEvents();

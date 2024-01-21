@@ -50,7 +50,7 @@ namespace AG.DS
 
             void CreateTextLabel()
             {
-                radio.TextLabel = CommonLabelPresenter.CreateElement
+                radio.TextLabel = LabelPresenter.CreateElement
                 (
                     text: labelText,
                     USS: StyleConfig.Radio_Text_Label

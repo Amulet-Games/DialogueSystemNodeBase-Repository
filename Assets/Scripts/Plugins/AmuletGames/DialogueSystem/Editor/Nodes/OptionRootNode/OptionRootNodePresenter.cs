@@ -93,8 +93,9 @@ namespace AG.DS
 
             void CreateContentButton()
             {
-                View.ContentButton = ContentButtonPresenter.CreateElement
+                ContentButtonPresenter.CreateElement
                 (
+                    view: View.ContentButtonView,
                     buttonText: StringConfig.ContentButton_AddEntry_LabelText,
                     buttonIconSprite: ConfigResourcesManager.SpriteConfig.AddEntryButtonIconSprite
                 );
@@ -126,7 +127,7 @@ namespace AG.DS
 
             void CreateRootTitleLabel()
             {
-                rootTitleLabel = CommonLabelPresenter.CreateElement
+                rootTitleLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.OptionRootNode_RootTitleLabel_LabelText,
                     USS: StyleConfig.OptionRootNode_RootTitle_Label
@@ -145,7 +146,7 @@ namespace AG.DS
 
             void AddElementsToContainer()
             {
-                Node.topContainer.Add(View.ContentButton);
+                Node.topContainer.Add(View.ContentButtonView.Button);
 
                 rootTitleOuterContainer.Add(rootTitleImage);
                 rootTitleOuterContainer.Add(rootTitleInnerContainer);

@@ -102,7 +102,7 @@ namespace AG.DS
 
             void CreateMoveUpButton()
             {
-                view.MoveUpButton = CommonButtonPresenter.CreateElement
+                view.MoveUpButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.MoveUpButtonIconSprite,
                     USS: StyleConfig.MessageModifier_MoveUp_Button
@@ -113,7 +113,7 @@ namespace AG.DS
 
             void CreateMoveDownButton()
             {
-                view.MoveDownButton = CommonButtonPresenter.CreateElement
+                view.MoveDownButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.MoveDownButtonIconSprite,
                     USS: StyleConfig.MessageModifier_MoveDown_Button
@@ -124,7 +124,7 @@ namespace AG.DS
 
             void CreateRenameButton()
             {
-                view.RenameButton = CommonButtonPresenter.CreateElement
+                view.RenameButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.EditButtonIconSprite,
                     USS: StyleConfig.MessageModifier_Rename_Button
@@ -135,7 +135,7 @@ namespace AG.DS
 
             void CreateRemoveButton()
             {
-                view.RemoveButton = CommonButtonPresenter.CreateElement
+                view.RemoveButton = ButtonPresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.RemoveButtonIconSprite,
                     USS: StyleConfig.MessageModifier_Remove_Button
@@ -146,7 +146,7 @@ namespace AG.DS
 
             void CreateMessageTextLabel()
             {
-                messageTextLabel = CommonLabelPresenter.CreateElement
+                messageTextLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.MessageModifier_MessageTextLabel_LabelText,
                     USS: StyleConfig.MessageModifier_MessageText_Label
@@ -176,7 +176,7 @@ namespace AG.DS
 
             void CreateMessageAudioLabel()
             {
-                messageAudioLabel = CommonLabelPresenter.CreateElement
+                messageAudioLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.MessageModifier_MessageAudioLabel_LabelText,
                     USS: StyleConfig.MessageModifier_MessageAudio_Label
@@ -205,7 +205,7 @@ namespace AG.DS
         
             void CreateContinueByLabel()
             {
-                continueByLabel = CommonLabelPresenter.CreateElement
+                continueByLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.MessageModifier_ContinueBy_LabelText,
                     USS: StyleConfig.MessageModifier_ContinueBy_Label
@@ -237,7 +237,7 @@ namespace AG.DS
 
             void CreateStartDelayLabel()
             {
-                startDelayLabel = CommonLabelPresenter.CreateElement
+                startDelayLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.MessageModifier_StartDelay_LabelText,
                     USS: StyleConfig.MessageModifier_StartDelay_Label
@@ -255,7 +255,7 @@ namespace AG.DS
 
             void CreateDelaySecondsLabel()
             {
-                delaySecondsLabel = CommonLabelPresenter.CreateElement
+                delaySecondsLabel = LabelPresenter.CreateElement
                 (
                     text: StringConfig.MessageModifier_DelaySeconds_LabelText,
                     USS: StyleConfig.MessageModifier_DelaySeconds_Label

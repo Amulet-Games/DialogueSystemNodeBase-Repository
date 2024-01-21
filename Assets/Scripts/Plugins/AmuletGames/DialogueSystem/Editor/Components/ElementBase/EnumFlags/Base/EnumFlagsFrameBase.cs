@@ -76,7 +76,7 @@ namespace AG.DS
         /// <summary>
         /// Button that shows the enum flags menu when clicked.
         /// </summary>
-        public CommonButton EnumFlagsButton;
+        public Button EnumFlagsButton;
 
 
         /// <summary>
