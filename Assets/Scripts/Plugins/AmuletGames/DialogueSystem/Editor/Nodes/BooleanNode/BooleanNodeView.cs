@@ -10,9 +10,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Element that contains the condition modifiers.
+        /// View for the condition modifier group.
         /// </summary>
-        public ConditionModifierGroup ConditionModifierGroup;
+        public ConditionModifierGroupView ConditionModifierGroupView;
 
 
         /// <summary>

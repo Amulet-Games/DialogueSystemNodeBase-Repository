@@ -158,7 +158,7 @@ namespace AG.DS
             
             void CreateMessageModifierGroup()
             {
-                View.MessageModifierGroup = MessageModifierGroupPresenter.CreateElement();
+                MessageModifierGroupPresenter.CreateElement(view: View.MessageModifierGroupView);
             }
 
             void AddElementsToContainer()
@@ -176,7 +176,7 @@ namespace AG.DS
                 dialogueSpeakerMainContainer.Add(dialogueSpeakerOuterContainer);
 
                 contentContainer.Add(dialogueSpeakerMainContainer);
-                contentContainer.Add(View.MessageModifierGroup);
+                contentContainer.Add(View.MessageModifierGroupView.GroupContainer);
             }
 
             void AddContainersToNode()

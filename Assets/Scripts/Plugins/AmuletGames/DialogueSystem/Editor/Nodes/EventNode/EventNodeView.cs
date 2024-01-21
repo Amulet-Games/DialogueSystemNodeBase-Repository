@@ -10,9 +10,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Element that contains the event modifiers.
+        /// View for the event modifier group.
         /// </summary>
-        public EventModifierGroup EventModifierGroup;
+        public EventModifierGroupView EventModifierGroupView;
 
 
         /// <summary>

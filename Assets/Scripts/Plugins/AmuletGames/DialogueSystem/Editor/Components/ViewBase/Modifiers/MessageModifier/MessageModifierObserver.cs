@@ -11,24 +11,24 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the message modifier group element.
+        /// Reference of the message modifier group view.
         /// </summary>
-        MessageModifierGroup group;
+        MessageModifierGroupView groupView;
 
 
         /// <summary>
         /// Constructor of the message modifier observer class.
         /// </summary>
         /// <param name="view">The message modifier view to set for.</param>
-        /// <param name="group">The message modifier group element to set for,</param>
+        /// <param name="groupView">The message modifier group view to set for,</param>
         public MessageModifierObserver
         (
             MessageModifierView view,
-            MessageModifierGroup group
+            MessageModifierGroupView groupView
         )
         {
             this.view = view;
-            this.group = group;
+            this.groupView = groupView;
         }
 
 
@@ -139,7 +139,7 @@ namespace AG.DS
         /// </summary>
         void MoveUpButtonClickEvent()
         {
-            group.Swap(modifier: view, swapUp: true);
+            groupView.Swap(modifier: view, swapUp: true);
         }
 
 
@@ -148,7 +148,7 @@ namespace AG.DS
         /// </summary>
         void MoveDownButtonClickEvent()
         {
-            group.Swap(modifier: view, swapUp: false);
+            groupView.Swap(modifier: view, swapUp: false);
         }
 
 
@@ -166,8 +166,8 @@ namespace AG.DS
         /// </summary>
         void RemoveButtonClickEvent()
         {
-            group.Remove(view);
-            group.UpdateReferences();
+            groupView.Remove(view);
+            groupView.UpdateReferences();
         }
     }
 }

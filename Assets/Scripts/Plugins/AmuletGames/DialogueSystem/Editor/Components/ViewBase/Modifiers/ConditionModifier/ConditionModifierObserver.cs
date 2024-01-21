@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace AG.DS
@@ -13,24 +12,24 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the condition modifier group element.
+        /// Reference of the condition modifier group view.
         /// </summary>
-        ConditionModifierGroup group;
+        ConditionModifierGroupView groupView;
 
 
         /// <summary>
         /// Constructor of the condition modifier observer class.
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
-        /// <param name="group">The condition modifier group element to set for,</param>
+        /// <param name="groupView">The condition modifier group view to set for,</param>
         public ConditionModifierObserver
         (
             ConditionModifierView view,
-            ConditionModifierGroup group
+            ConditionModifierGroupView groupView
         )
         {
             this.view = view;
-            this.group = group;
+            this.groupView = groupView;
         }
 
 
@@ -188,7 +187,7 @@ namespace AG.DS
         /// </summary>
         void MoveUpButtonClickEvent()
         {
-            group.Swap(modifier: view, swapUp: true);
+            groupView.Swap(modifier: view, swapUp: true);
         }
 
 
@@ -197,7 +196,7 @@ namespace AG.DS
         /// </summary>
         void MoveDownButtonClickEvent()
         {
-            group.Swap(modifier: view, swapUp: false);
+            groupView.Swap(modifier: view, swapUp: false);
         }
 
 
@@ -215,8 +214,8 @@ namespace AG.DS
         /// </summary>
         void RemoveButtonClickEvent()
         {
-            group.Remove(view);
-            group.UpdateReferences();
+            groupView.Remove(view);
+            groupView.UpdateReferences();
         }
 
 

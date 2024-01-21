@@ -130,7 +130,7 @@ namespace AG.DS
         /// </summary>
         void ContentButtonClickEvent()
         {
-            var groupView = View.MessageModifierGroup;
+            var groupView = View.MessageModifierGroupView;
             var modifier = new MessageModifierSeeder().Generate(groupView, Node.LanguageHandler);
 
             // Add to group

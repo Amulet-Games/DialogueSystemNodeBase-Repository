@@ -3,16 +3,13 @@ namespace AG.DS
     public class EventModifierGroupPresenter
     {
         /// <summary>
-        /// Create a new event modifier group element.
+        /// Create the elements for the event modifier group view.
         /// </summary>
-        /// <returns>A new event modifier group element.</returns>
-        public static EventModifierGroup CreateElement()
+        /// <param name="view">The event modifier group view to set for.</param>
+        public static void CreateElement(EventModifierGroupView view)
         {
-            var group = new EventModifierGroup();
-
-            group.AddToClassList(StyleConfig.EventModifierGroup);
-
-            return group;
+            view.GroupContainer = new();
+            view.GroupContainer.AddToClassList(StyleConfig.EventModifierGroup);
         }
     }
 }

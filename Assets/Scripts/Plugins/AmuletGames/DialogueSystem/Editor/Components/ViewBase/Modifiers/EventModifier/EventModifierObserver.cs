@@ -9,24 +9,24 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the event modifier group element.
+        /// Reference of the event modifier group view.
         /// </summary>
-        EventModifierGroup group;
+        EventModifierGroupView groupView;
 
 
         /// <summary>
         /// Constructor of the event modifier observer class.
         /// </summary>
         /// <param name="view">The event modifier view to set for.</param>
-        /// <param name="group">The event modifier group element to set for,</param>
+        /// <param name="groupView">The event modifier group view to set for,</param>
         public EventModifierObserver
         (
             EventModifierView view,
-            EventModifierGroup group
+            EventModifierGroupView groupView
         )
         {
             this.view = view;
-            this.group = group;
+            this.groupView = groupView;
         }
 
 
@@ -119,7 +119,7 @@ namespace AG.DS
         /// </summary>
         void MoveUpButtonClickEvent()
         {
-            group.Swap(modifier: view, swapUp: true);
+            groupView.Swap(modifier: view, swapUp: true);
         }
 
 
@@ -128,7 +128,7 @@ namespace AG.DS
         /// </summary>
         void MoveDownButtonClickEvent()
         {
-            group.Swap(modifier: view, swapUp: false);
+            groupView.Swap(modifier: view, swapUp: false);
         }
 
 
@@ -146,8 +146,8 @@ namespace AG.DS
         /// </summary>
         void RemoveButtonClickEvent()
         {
-            group.Remove(view);
-            group.UpdateReferences();
+            groupView.Remove(view);
+            groupView.UpdateReferences();
         }
     }
 }

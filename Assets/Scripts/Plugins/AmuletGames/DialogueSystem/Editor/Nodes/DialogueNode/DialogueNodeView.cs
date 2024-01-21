@@ -16,9 +16,9 @@
 
 
         /// <summary>
-        /// Element that contains the message modifiers.
+        /// View for the message modifier group.
         /// </summary>
-        public MessageModifierGroup MessageModifierGroup;
+        public MessageModifierGroupView MessageModifierGroupView;
 
 
         /// <summary>
