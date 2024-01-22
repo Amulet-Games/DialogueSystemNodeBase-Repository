@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using GraphViewEdge = UnityEditor.Experimental.GraphView.Edge;
 
 namespace AG.DS
 {
@@ -22,13 +23,13 @@ namespace AG.DS
         /// <summary>
         /// The list of edges that are going to be created to the graph from the OnDrop callback.
         /// </summary>
-        List<Edge> edgesToCreate;
+        List<GraphViewEdge> edgesToCreate;
 
 
         /// <summary>
         /// The list of edges that are going to be removed from the graph from the OnDrop callback.
         /// </summary>
-        List<EdgeBase> edgesToDelete;
+        List<Edge> edgesToDelete;
 
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the connector port element.
         /// </summary>
-        PortBase connectorPort;
+        Port connectorPort;
 
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace AG.DS
         /// <param name="edgeStyleSheet">The edge's style sheet to set for.</param>
         public EdgeConnectorListener
         (
-            PortBase connectorPort,
+            Port connectorPort,
             EdgeConnectorSearchWindowView edgeConnectorSearchWindowView,
             bool edgeFocusable,
             StyleSheet edgeStyleSheet
@@ -89,7 +90,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="graphView">Reference to the graph view element.</param>
         /// <param name="edge">The edge being created.</param>
-        public void OnDrop(GraphView graphView, Edge edge)
+        public void OnDrop(GraphView graphView, GraphViewEdge edge)
         {
             var graphViewer = (GraphViewer)graphView;
 
@@ -104,7 +105,7 @@ namespace AG.DS
                 {
                     if (m_edge != edge)
                     {
-                        edgesToDelete.Add((EdgeBase)m_edge);
+                        edgesToDelete.Add((Edge)m_edge);
                         elementsToRemove.Add(m_edge);
                     }
                 }
@@ -113,7 +114,7 @@ namespace AG.DS
                 {
                     if (m_edge != edge)
                     {
-                        edgesToDelete.Add((EdgeBase)m_edge);
+                        edgesToDelete.Add((Edge)m_edge);
                         elementsToRemove.Add(m_edge);
                     }
                 }
@@ -131,11 +132,11 @@ namespace AG.DS
                 }
             }
 
-            var newEdge = EdgeManager.Instance.Connect
+            var newEdge = EdgeFactory.Create
             (
                 model: edgeModel,
-                input: edge.input as PortBase,
-                output: edge.output as PortBase
+                input: edge.input as Port,
+                output: edge.output as Port
             );
 
             edgesToCreate.Add(newEdge);
@@ -150,7 +151,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="edge">The edge being dropped.</param>
         /// <param name="position">The position in empty space the edge is dropped on.</param>
-        public void OnDropOutsidePort(Edge edge, Vector2 position)
+        public void OnDropOutsidePort(GraphViewEdge edge, Vector2 position)
         {
             edgeConnectorSearchWindowView.ConnectorPort = connectorPort;
             edgeConnectorSearchWindowView.EdgeModel = edgeModel;

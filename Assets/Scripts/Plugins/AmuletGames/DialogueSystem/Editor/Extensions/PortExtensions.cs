@@ -1,5 +1,6 @@
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.Port;
 
 namespace AG.DS
 {
@@ -14,7 +15,7 @@ namespace AG.DS
         /// <param name="edgeStyleSheet">The edge style sheet to set for.</param>
         public static void AddEdgeConnector
         (
-            this PortBase port,
+            this Port port,
             EdgeConnectorSearchWindowView edgeConnectorSearchWindowView,
             bool edgeFocusable,
             StyleSheet edgeStyleSheet
@@ -28,7 +29,7 @@ namespace AG.DS
                 edgeStyleSheet
             );
 
-            port.EdgeConnector = new EdgeConnector<EdgeBase>(listener);
+            port.EdgeConnector = new EdgeConnector<Edge>(listener);
         }
 
 
@@ -50,18 +51,7 @@ namespace AG.DS
         /// <returns>True if the port's capacity is single.</returns>
         public static bool IsSingle(this Port port)
         {
-            return port.capacity == Port.Capacity.Single;
-        }
-
-
-        /// <summary>
-        /// Returns true if the port is added to the connect style.
-        /// </summary>
-        /// <param name="port">Extension port.</param>
-        /// <returns>True if the port is added to the connect style.</returns>
-        public static bool IsConnectStyle(this Port port)
-        {
-            return port.ClassListContains(StyleConfig.Port_Connect);
+            return port.capacity == Capacity.Single;
         }
     }
 }

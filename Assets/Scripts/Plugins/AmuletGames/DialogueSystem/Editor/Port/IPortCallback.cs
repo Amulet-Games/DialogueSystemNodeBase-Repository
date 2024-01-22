@@ -4,16 +4,16 @@ namespace AG.DS
     {
         /// <summary>
         /// Read more:
-        /// <see cref="PortCallback.OnPostConnect(EdgeBase)"/>
+        /// <see cref="PortCallback.OnPostConnect(Edge)"/>
         /// </summary>
-        void OnPostConnect(EdgeBase edge);
+        void OnPostConnect(Edge edge);
 
 
         /// <summary>
         /// Read more:
-        /// <see cref="PortCallback.OnPreDisconnect(EdgeBase)"/>
+        /// <see cref="PortCallback.OnPreDisconnect(Edge)"/>
         /// </summary>
-        void OnPreDisconnect(EdgeBase edge);
+        void OnPreDisconnect(Edge edge);
 
 
         /// <summary>

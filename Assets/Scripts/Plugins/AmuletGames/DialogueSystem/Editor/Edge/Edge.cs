@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -6,18 +5,18 @@ namespace AG.DS
     /// <summary>
     /// The graph view edge element.
     /// </summary>
-    public class EdgeBase : Edge
+    public class Edge : UnityEditor.Experimental.GraphView.Edge
     {
         /// <summary>
         /// Reference of the output port.
         /// </summary>
-        public PortBase Output;
+        public Port Output;
 
 
         /// <summary>
         /// Reference of the input port.
         /// </summary>
-        public PortBase Input;
+        public Port Input;
 
 
         /// <summary>
@@ -37,7 +36,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="callback">The edge callback to set for.</param>
         /// <returns>The edge base element.</returns>
-        public EdgeBase Setup
+        public Edge Setup
         (
             IEdgeCallback callback,
             StyleSheet styleSheet
@@ -56,10 +55,10 @@ namespace AG.DS
         /// <param name="input">The input port to set for.</param>
         /// <param name="output">The output port to set for.</param>
         /// <returns>The edge base element.</returns>
-        public EdgeBase Connect
+        public Edge Connect
         (
-            PortBase input,
-            PortBase output
+            Port input,
+            Port output
         )
         {
             this.input = input;

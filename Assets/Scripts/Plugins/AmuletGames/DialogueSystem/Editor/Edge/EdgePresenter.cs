@@ -7,9 +7,9 @@ namespace AG.DS
         /// </summary>
         /// <param name="model">The edge model to set for.</param>
         /// <returns>A new edge base element.</returns>
-        public static EdgeBase CreateElement(EdgeModel model)
+        public static Edge CreateElement(EdgeModel model)
         {
-            EdgeBase edge;
+            Edge edge;
 
             CreateEdge();
 

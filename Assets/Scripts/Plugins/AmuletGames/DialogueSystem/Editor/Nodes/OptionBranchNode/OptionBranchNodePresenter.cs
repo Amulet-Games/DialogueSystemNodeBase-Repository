@@ -52,7 +52,7 @@ namespace AG.DS
                     color: PortConfig.DefaultPortColor
                 );
 
-                View.OutputPort = PortManager.Instance.Create(portModel);
+                View.OutputPort = PortFactory.Create(portModel);
                 View.OutputPort.AddEdgeConnector
                 (
                     edgeConnectorSearchWindowView: Node.GraphViewer.EdgeConnectorSearchWindowView,

@@ -122,7 +122,7 @@ namespace AG.DS
         void ContentButtonClickEvent()
         {
             var groupView = View.ConditionModifierGroupView;
-            var modifier = new ConditionModifierSeeder().Generate(groupView, Node.GraphViewer);
+            var modifier = ConditionModifierFactory.Create(groupView, Node.GraphViewer);
 
             // Add to group
             {

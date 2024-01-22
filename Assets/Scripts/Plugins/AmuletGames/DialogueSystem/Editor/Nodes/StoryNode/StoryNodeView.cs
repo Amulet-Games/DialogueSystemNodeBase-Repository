@@ -20,13 +20,13 @@ namespace AG.DS
         /// <summary>
         /// The input port element.
         /// </summary>
-        public PortBase InputPort;
+        public Port InputPort;
 
 
         /// <summary>
         /// The output port element.
         /// </summary>
-        public PortBase OutputPort;
+        public Port OutputPort;
 
 
         /// <inheritdoc />

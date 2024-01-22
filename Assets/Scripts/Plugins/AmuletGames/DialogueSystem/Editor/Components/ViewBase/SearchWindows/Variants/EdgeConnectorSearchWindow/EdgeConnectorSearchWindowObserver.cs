@@ -99,7 +99,7 @@ namespace AG.DS
         /// <param name="evt">The registering event</param>
         void NodeProductCreatedEvent(GeometryChangedEvent evt)
         {
-            PortBase connectToPort;
+            Port connectToPort;
             bool isInputConnector = view.ConnectorPort.IsInput();
 
             // Initialize the node product position
@@ -172,7 +172,7 @@ namespace AG.DS
                     port.Disconnect(graphViewer);
                 }
 
-                var edge = EdgeManager.Instance.Connect
+                var edge = EdgeFactory.Create
                 (
                     model: view.EdgeModel,
                     input: isInputConnector ? port : connectToPort,

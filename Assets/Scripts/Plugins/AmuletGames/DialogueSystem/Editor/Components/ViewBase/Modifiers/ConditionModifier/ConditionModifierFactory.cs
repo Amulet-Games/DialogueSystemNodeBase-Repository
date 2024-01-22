@@ -1,15 +1,15 @@
 namespace AG.DS
 {
-    public class ConditionModifierSeeder
+    public class ConditionModifierFactory
     {
         /// <summary>
-        /// Generate a new condition modifier.
+        /// Create a new condition modifier view class.
         /// </summary>
         /// <param name="groupView">The condition modifier group view to set for.</param>
         /// <param name="graphViewer">The graph viewer to set for.</param>
         /// <param name="data">The condition modifier data to set for.</param>
         /// <returns>A new condition modifier view.</returns>
-        public ConditionModifierView Generate
+        public static ConditionModifierView Create
         (
             ConditionModifierGroupView groupView,
             GraphViewer graphViewer,

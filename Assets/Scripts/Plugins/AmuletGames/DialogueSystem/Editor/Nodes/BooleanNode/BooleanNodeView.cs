@@ -18,19 +18,19 @@ namespace AG.DS
         /// <summary>
         /// The input default port of the node.
         /// </summary>
-        public PortBase InputPort;
+        public Port InputPort;
 
 
         /// <summary>
         /// The true output port of the node.
         /// </summary>
-        public PortBase TrueOutputPort;
+        public Port TrueOutputPort;
 
 
         /// <summary>
         /// The false output port of the node.
         /// </summary>
-        public PortBase FalseOutputPort;
+        public Port FalseOutputPort;
 
 
         /// <inheritdoc />

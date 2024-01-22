@@ -82,7 +82,7 @@ namespace AG.DS
         /// Add the given port to the node.
         /// </summary>
         /// <param name="port">The port base to set for.</param>
-        public void Add(PortBase port)
+        public void Add(Port port)
         {
             (port.direction == Direction.Input ? InputContainer : OutputContainer).Add(port);
 
@@ -105,7 +105,7 @@ namespace AG.DS
         /// Remove the given port from the node.
         /// </summary>
         /// <param name="port">The port base to set for.</param>
-        public void Remove(PortBase port)
+        public void Remove(Port port)
         {
             (port.direction == Direction.Input ? InputContainer : OutputContainer).Remove(port);
 

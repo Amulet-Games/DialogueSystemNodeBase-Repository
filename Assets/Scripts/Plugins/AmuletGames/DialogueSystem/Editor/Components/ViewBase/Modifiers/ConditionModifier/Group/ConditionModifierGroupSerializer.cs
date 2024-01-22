@@ -38,7 +38,8 @@ namespace AG.DS
         {
             for (int i = 0; i <= data.ModifiersData.Length; i++)
             {
-                var modifier = new ConditionModifierSeeder().Generate(
+                var modifier = ConditionModifierFactory.Create
+                (
                     groupView: view,
                     graphViewer,
                     data: data.ModifiersData[i]

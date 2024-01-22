@@ -135,9 +135,7 @@ namespace AG.DS
             {
                 ConfigResourcesManager.Setup();
                 HotkeyManager.Setup();
-                EdgeManager.Setup();
                 NodeManager.Setup();
-                PortManager.Setup();
             }
 
             // Create modules

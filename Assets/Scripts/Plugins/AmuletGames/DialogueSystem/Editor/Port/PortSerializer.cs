@@ -10,7 +10,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="port">The port element to set for.</param>
         /// <param name="data">The port data to set for.</param>
-        public void Save(PortBase port, PortData data)
+        public void Save(Port port, PortData data)
         {
             data.Guid = port.Guid;
         }
@@ -21,7 +21,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="port">The port element to set for.</param>
         /// <param name="data">The port data to set for.</param>
-        public void Load(PortBase port, PortData data)
+        public void Load(Port port, PortData data)
         {
             port.Guid = data.Guid;
         }

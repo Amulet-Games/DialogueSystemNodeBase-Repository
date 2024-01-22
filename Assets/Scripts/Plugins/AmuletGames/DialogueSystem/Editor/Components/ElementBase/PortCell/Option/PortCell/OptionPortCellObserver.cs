@@ -44,7 +44,7 @@ namespace AG.DS
         /// Register MouseMoveEvent to the cell's port connecting edge.
         /// </summary>
         /// <param name="edge">The edge that connects the two ports.</param>
-        void RegisterConnectingEdgeMouseMoveEvent(EdgeBase edge)
+        void RegisterConnectingEdgeMouseMoveEvent(Edge edge)
         {
             edge.RegisterCallback<MouseMoveEvent>(
                 evt =>
@@ -84,7 +84,7 @@ namespace AG.DS
         /// The event to invoke after the cell's port is connected to another cell's port.
         /// </summary>
         /// <param name="edge">The edge that connects the two ports.</param>
-        void OptionPortPostConnectEvent(EdgeBase edge)
+        void OptionPortPostConnectEvent(Edge edge)
         {
             portCell.OpponentCell = (OptionPortCell)(portCell.Port.IsInput() ? edge.output : edge.input).parent;
 
@@ -102,7 +102,7 @@ namespace AG.DS
         /// The event to invoke when the cell's port is about to be disconnected from another cell's port.
         /// </summary>
         /// <param name="edge">The edge that the ports disconnected from.</param>
-        void OptionPortPreDisconnectEvent(EdgeBase edge)
+        void OptionPortPreDisconnectEvent(Edge edge)
         {
             portCell.OpponentCell = null;
         }

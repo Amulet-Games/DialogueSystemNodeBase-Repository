@@ -1,15 +1,15 @@
 namespace AG.DS
 {
-    public class MessageModifierSeeder
+    public class MessageModifierViewFactory
     {
         /// <summary>
-        /// Generate a new message modifier.
+        /// Create a new message modifier view class.
         /// </summary>
         /// <param name="groupView">The message modifier group view to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>
         /// <param name="data">The message modifier data to set for.</param>
-        /// <returns>A new message modifier view.</returns>
-        public MessageModifierView Generate
+        /// <returns>A new message modifier view class.</returns>
+        public static MessageModifierView Create
         (
             MessageModifierGroupView groupView,
             LanguageHandler languageHandler,

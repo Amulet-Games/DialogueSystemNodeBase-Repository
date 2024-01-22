@@ -52,7 +52,7 @@ namespace AG.DS
                     color: PortConfig.OptionPortColor
                 );
 
-                cell.Port = PortManager.Instance.Create(portModel);
+                cell.Port = PortFactory.Create(portModel);
                 cell.Port.AddEdgeConnector
                 (
                     edgeConnectorSearchWindowView: edgeConnectorSearchWindowView,

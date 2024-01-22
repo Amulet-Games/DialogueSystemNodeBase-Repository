@@ -2,10 +2,10 @@ using UnityEditor.Experimental.GraphView;
 
 namespace AG.DS
 {
-    public class OptionPortCellSeeder
+    public class OptionPortCellFactory
     {
         /// <summary>
-        /// Generate a new option port cell.
+        /// Create a new option port cell.
         /// </summary>
         /// <param name="edgeConnectorSearchWindowView">The edge connector search window to set for.</param>
         /// <param name="direction">The direction to set for.</param>
@@ -13,7 +13,7 @@ namespace AG.DS
         /// <param name="index">The index to set for.</param>
         /// <param name="data">The option port cell data to set for.</param>
         /// <returns>A new option port cell.</returns>
-        public OptionPortCell Generate
+        public static OptionPortCell Create
         (
             EdgeConnectorSearchWindowView edgeConnectorSearchWindowView,
             Direction direction,

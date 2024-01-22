@@ -32,7 +32,7 @@ namespace AG.DS
         /// <summary>
         /// The property of the connector port reference.
         /// </summary>
-        public PortBase ConnectorPort
+        public Port ConnectorPort
         {
             get
             {
@@ -51,7 +51,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the connector port.
         /// </summary>
-        PortBase m_connectorPort;
+        Port m_connectorPort;
 
 
         /// <summary>

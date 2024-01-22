@@ -34,7 +34,7 @@ namespace AG.DS
 
             void CreateFirstPortCell()
             {
-                group.FirstPortCell = new OptionPortCellSeeder().Generate
+                group.FirstPortCell = OptionPortCellFactory.Create
                 (
                     edgeConnectorSearchWindowView: graphViewer.OptionEdgeConnectorSearchWindowView,
                     direction: direction,

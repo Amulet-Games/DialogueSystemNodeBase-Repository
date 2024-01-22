@@ -138,7 +138,7 @@ namespace AG.DS
             // Create a new output option port group cell.
             {
                 var group = View.OutputOptionPortGroup;
-                var groupCell = new OptionPortGroupCellSeeder().Generate(group);
+                var groupCell = OptionPortGroupCellFactory.Create(group);
 
                 group.Add(groupCell);
             }

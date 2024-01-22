@@ -8,14 +8,14 @@ namespace AG.DS
         /// <summary>
         /// Reference of the edge element.
         /// </summary>
-        EdgeBase edge;
+        Edge edge;
 
 
         /// <summary>
         /// Setup for the edge callback class.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public void Setup(EdgeBase edge)
+        public void Setup(Edge edge)
         {
             this.edge = edge;
         }

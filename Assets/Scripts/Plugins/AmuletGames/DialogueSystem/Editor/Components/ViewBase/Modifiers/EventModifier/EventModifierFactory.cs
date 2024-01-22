@@ -1,14 +1,14 @@
 namespace AG.DS
 {
-    public class EventModifierSeeder
+    public class EventModifierFactory
     {
         /// <summary>
-        /// Generate a new event modifier.
+        /// Create a new event modifier view class.
         /// </summary>
         /// <param name="groupView">The event modifier group view to set for.</param>
         /// <param name="data">The event modifier data to set for.</param>
         /// <returns>A new event modifier view.</returns>
-        public EventModifierView Generate
+        public static EventModifierView Create
         (
             EventModifierGroupView groupView,
             EventModifierData data = null

@@ -10,9 +10,9 @@ namespace AG.DS
         /// </summary>
         /// <param name="model">The port model to set for.</param>
         /// <returns>A new port element.</returns>
-        public static PortBase CreateElement(PortModel model)
+        public static Port CreateElement(PortModel model)
         {
-            PortBase port;
+            Port port;
 
             CreatePort();
 

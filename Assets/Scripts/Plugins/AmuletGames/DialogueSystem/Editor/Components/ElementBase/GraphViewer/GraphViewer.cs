@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
+using GraphViewPort = UnityEditor.Experimental.GraphView.Port;
 
 namespace AG.DS
 {
@@ -41,13 +42,13 @@ namespace AG.DS
         /// <summary>
         /// The edge elements cache.
         /// </summary>
-        public List<EdgeBase> Edges { get; private set; }
+        public List<Edge> Edges { get; private set; }
 
 
         /// <summary>
         /// The ports elements cache.
         /// </summary>
-        public Dictionary<Guid, PortBase> PortByPortGUID { get; private set; }
+        public Dictionary<Guid, Port> PortByPortGUID { get; private set; }
 
 
         /// <summary>
@@ -93,9 +94,13 @@ namespace AG.DS
         /// <param name="connectFromPort">The starting port to validate against.</param>
         /// <param name="nodeAdapter">Parameter can be ignored.</param>
         /// <returns>List of compatible ports.</returns>
-        public override List<Port> GetCompatiblePorts(Port connectFromPort, NodeAdapter nodeAdapter)
+        public override List<GraphViewPort> GetCompatiblePorts
+        (
+            GraphViewPort connectFromPort,
+            NodeAdapter nodeAdapter
+        )
         {
-            List<Port> compatiblePorts = new();
+            List<GraphViewPort> compatiblePorts = new();
 
             ports.ForEach((connectToPort) =>
             {
@@ -167,7 +172,7 @@ namespace AG.DS
         /// Remove the given edge from the graph.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public void Remove(EdgeBase edge)
+        public void Remove(Edge edge)
         {
             RemoveElement(edge);
             Edges.Remove(edge);
@@ -178,7 +183,7 @@ namespace AG.DS
         /// Remove the port with the give port name(GUID) from the graph viewer's cache.
         /// </summary>
         /// <param name="node">The port element to set for.</param>
-        public void Remove(PortBase port)
+        public void Remove(Port port)
         {
             if (PortByPortGUID.ContainsKey(port.Guid))
             {
@@ -206,7 +211,7 @@ namespace AG.DS
         /// Add the given edge to the graph.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public void Add(EdgeBase edge)
+        public void Add(Edge edge)
         {
             AddElement(edge);
             Edges.Add(edge);
@@ -217,7 +222,7 @@ namespace AG.DS
         /// Add the given port to the graph viewer's cache.
         /// </summary>
         /// <param name="node">The port element to set for.</param>
-        public void Add(PortBase port)
+        public void Add(Port port)
         {
             if (!PortByPortGUID.ContainsKey(port.Guid))
             {

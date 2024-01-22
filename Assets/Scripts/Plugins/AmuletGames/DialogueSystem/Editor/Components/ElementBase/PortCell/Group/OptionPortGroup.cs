@@ -112,7 +112,7 @@ namespace AG.DS
         /// <param name="data">The option port group data to set for.</param>
         public void Load(OptionPortGroupData data)
         {
-            FirstPortCell = new OptionPortCellSeeder().Generate
+            FirstPortCell = OptionPortCellFactory.Create
             (
                 edgeConnectorSearchWindowView: GraphViewer.OptionEdgeConnectorSearchWindowView,
                 direction: Direction,
@@ -124,7 +124,7 @@ namespace AG.DS
 
             for (int i = 0; i < data.GroupCellsData.Count; i++)
             {
-                var cell = new OptionPortGroupCellSeeder().Generate
+                var cell = OptionPortGroupCellFactory.Create
                 (
                     group: this,
                     data: data.GroupCellsData[i]

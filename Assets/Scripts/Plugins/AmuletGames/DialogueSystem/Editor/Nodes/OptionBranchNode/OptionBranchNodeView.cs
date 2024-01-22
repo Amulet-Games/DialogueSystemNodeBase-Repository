@@ -24,7 +24,7 @@ namespace AG.DS
         /// <summary>
         /// The output port element.
         /// </summary>
-        public PortBase OutputPort;
+        public Port OutputPort;
 
 
         /// <inheritdoc />

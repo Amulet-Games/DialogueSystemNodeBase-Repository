@@ -6,7 +6,7 @@ namespace AG.DS
         /// <summary>
         /// The input port element.
         /// </summary>
-        public PortBase InputPort;
+        public Port InputPort;
 
 
         /// <inheritdoc />

@@ -1,14 +1,14 @@
 namespace AG.DS
 {
-    public class OptionPortGroupCellSeeder
+    public class OptionPortGroupCellFactory
     {
         /// <summary>
-        /// Generate a new option port group cell element.
+        /// Create a new option port group cell element.
         /// </summary>
         /// <param name="group">The option port group to set for.</param>
         /// <param name="data">The option port cell data to set for.</param>
         /// <returns>A new option port group cell element.</returns>
-        public OptionPortGroupCell Generate
+        public static OptionPortGroupCell Create
         (
             OptionPortGroup group,
             OptionPortCellData data = null

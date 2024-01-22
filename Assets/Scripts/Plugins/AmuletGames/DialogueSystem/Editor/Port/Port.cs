@@ -8,7 +8,7 @@ namespace AG.DS
     /// <summary>
     /// The graph view port element.
     /// </summary>
-    public class PortBase : Port
+    public class Port : UnityEditor.Experimental.GraphView.Port
     {
         /// <summary>
         /// The property of edge connector.
@@ -29,13 +29,13 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke after the port is connected to another port.
         /// </summary>
-        public Action<EdgeBase> PostConnectEvent;
+        public Action<Edge> PostConnectEvent;
 
 
         /// <summary>
         /// The event to invoke when the port is about to be disconnected from another port.
         /// </summary>
-        public Action<EdgeBase> PreDisconnectEvent;
+        public Action<Edge> PreDisconnectEvent;
 
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace AG.DS
         /// Constructor of the port base class.
         /// </summary>
         /// <param name="model">The port model to set for.</param>
-        public PortBase(PortModel model) : base(Orientation.Horizontal, model.Direction, model.Capacity, null)
+        public Port(PortModel model) : base(Orientation.Horizontal, model.Direction, model.Capacity, null)
         {
             portName = model.Name;
             portColor = model.Color;
@@ -90,7 +90,7 @@ namespace AG.DS
         /// Setup for the port base class.
         /// </summary>
         /// <param name="callback">The port callback to set for.</param>
-        public PortBase Setup(IPortCallback callback)
+        public Port Setup(IPortCallback callback)
         {
             Callback = callback;
 
@@ -154,7 +154,7 @@ namespace AG.DS
         /// Connect the port to the given edge.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public void Connect(EdgeBase edge)
+        public void Connect(Edge edge)
         {
             base.Connect(edge);
             Callback.OnPostConnect(edge);
@@ -165,7 +165,7 @@ namespace AG.DS
         /// Disconnect the port from the given edge.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public void Disconnect(EdgeBase edge)
+        public void Disconnect(Edge edge)
         {
             Callback.OnPreDisconnect(edge);
             base.Disconnect(edge);
@@ -181,7 +181,7 @@ namespace AG.DS
             if (!connected)
                 return;
 
-            foreach (EdgeBase edge in connections.ToList())
+            foreach (Edge edge in connections.ToList())
             {
                 // Disconnect the opponent port.
                 (this.IsInput() ? edge.Output : edge.Input).Disconnect(edge);

@@ -38,7 +38,8 @@ namespace AG.DS
         {
             for (int i = 0; i <= data.ModifiersData.Length; i++)
             {
-                var modifier = new MessageModifierSeeder().Generate(
+                var modifier = MessageModifierViewFactory.Create
+                (
                     groupView: view,
                     languageHandler,
                     data: data.ModifiersData[i]

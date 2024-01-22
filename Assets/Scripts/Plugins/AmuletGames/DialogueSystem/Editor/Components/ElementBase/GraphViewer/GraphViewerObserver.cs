@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
-using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
@@ -181,7 +180,7 @@ namespace AG.DS
             // Delete selected elements
             {
                 List<NodeBase> nodesToDelete = new();
-                List<EdgeBase> edgesToDelete = new();
+                List<Edge> edgesToDelete = new();
 
                 // Cache selected elements
                 for (int i = 0; i < graphViewer.selection.Count; i++)
@@ -190,7 +189,7 @@ namespace AG.DS
                     {
                         nodesToDelete.Add(node);
                     }
-                    else if (graphViewer.selection[i] is EdgeBase edge)
+                    else if (graphViewer.selection[i] is Edge edge)
                     {
                         edgesToDelete.Add(edge);
                     }

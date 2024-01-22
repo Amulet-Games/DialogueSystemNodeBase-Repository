@@ -7,6 +7,6 @@ namespace AG.DS
         /// <summary>
         /// The cell's port.
         /// </summary>
-        public PortBase Port;
+        public Port Port;
     }
 }

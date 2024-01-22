@@ -24,13 +24,13 @@
         /// <summary>
         /// The input port of the node.
         /// </summary>
-        public PortBase InputPort;
+        public Port InputPort;
 
 
         /// <summary>
         /// The output port of the node.
         /// </summary>
-        public PortBase OutputPort;
+        public Port OutputPort;
 
 
         /// <inheritdoc />

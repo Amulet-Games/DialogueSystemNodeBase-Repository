@@ -36,7 +36,8 @@ namespace AG.DS
         {
             for (int i = 0; i <= data.ModifiersData.Length; i++)
             {
-                var modifier = new EventModifierSeeder().Generate(
+                var modifier = EventModifierFactory.Create
+                (
                     groupView: view,
                     data: data.ModifiersData[i]
                 );

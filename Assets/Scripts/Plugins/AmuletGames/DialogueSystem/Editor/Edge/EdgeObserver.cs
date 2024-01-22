@@ -8,7 +8,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the edge element.
         /// </summary>
-        EdgeBase edge;
+        Edge edge;
 
 
         // ----------------------------- Register Events -----------------------------
@@ -16,7 +16,7 @@ namespace AG.DS
         /// Register events to the edge.
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
-        public void RegisterEvents(EdgeBase edge)
+        public void RegisterEvents(Edge edge)
         {
             this.edge = edge;
         }

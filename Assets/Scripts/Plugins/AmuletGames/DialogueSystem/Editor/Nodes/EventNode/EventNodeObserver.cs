@@ -122,7 +122,7 @@ namespace AG.DS
         void ContentButtonClickEvent()
         {
             var groupView = View.EventModifierGroupView;
-            var modifier = new EventModifierSeeder().Generate(groupView);
+            var modifier = EventModifierFactory.Create(groupView);
 
             // Add to group
             {

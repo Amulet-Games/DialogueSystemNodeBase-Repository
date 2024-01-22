@@ -8,7 +8,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the edge element.
         /// </summary>
-        EdgeBase edge;
+        Edge edge;
 
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="edge">The edge element to set for.</param>
         /// <param name="data">The edge data to set for.</param>
-        public void Save(EdgeBase edge, EdgeData data)
+        public void Save(Edge edge, EdgeData data)
         {
             this.edge = edge;
             this.data = data;
