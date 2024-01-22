@@ -37,6 +37,7 @@ namespace AG.DS
         public override BooleanNodeView Setup(LanguageHandler languageHandler)
         {
             ContentButtonView = new();
+            ConditionModifierGroupView = new();
             NodeTitleFieldView = new(value: StringConfig.BooleanNode_NodeTitleField_DefaultText);
 
             return this;

@@ -31,6 +31,7 @@ namespace AG.DS
         public override EventNodeView Setup(LanguageHandler languageHandler)
         {
             ContentButtonView = new();
+            EventModifierGroupView = new();
             NodeTitleFieldView = new(value: StringConfig.EventNode_NodeTitleField_DefaultText);
 
             return this;

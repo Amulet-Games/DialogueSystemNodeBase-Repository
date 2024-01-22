@@ -37,6 +37,7 @@
         public override DialogueNodeView Setup(LanguageHandler languageHandler)
         {
             ContentButtonView = new();
+            MessageModifierGroupView = new();
             NodeTitleFieldView = new(value: StringConfig.DialogueNode_NodeTitleField_DefaultText);
             DialogueSpeakerFieldView = new(placeholderText: StringConfig.DialogueNode_DialogueSpeakerField_PlaceholderText);
 
