@@ -1,3 +1,4 @@
+using System;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -14,6 +15,12 @@ namespace AG.DS
         /// Label for the element text.
         /// </summary>
         public Label TextLabel;
+
+
+        /// <summary>
+        /// The event to invoke when the item is selected.
+        /// </summary>
+        public Action SelectedEvent;
 
 
         // ----------------------------- Service -----------------------------

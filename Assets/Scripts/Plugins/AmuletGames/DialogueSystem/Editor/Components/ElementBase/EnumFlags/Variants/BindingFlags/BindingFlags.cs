@@ -64,7 +64,7 @@ namespace AG.DS
 
                 UpdateItemsDisplay();
 
-                SelectedItemsChangedEvent?.Invoke();
+                SelectedItemsChangedEvent?.Invoke(m_selectedItems);
             }
         }
 

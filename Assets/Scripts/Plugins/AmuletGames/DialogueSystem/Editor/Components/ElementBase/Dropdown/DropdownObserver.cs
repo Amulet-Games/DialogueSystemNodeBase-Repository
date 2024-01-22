@@ -79,8 +79,7 @@ namespace AG.DS
         /// <summary>
         /// Register SelectedItemChangedEvent to the dropdown.
         /// </summary>
-        void RegisterSelectedItemChangedEvent() =>
-            dropdown.SelectedItemChangedEvent += DropdownSelectedItemChangedEvent;
+        void RegisterSelectedItemChangedEvent() => dropdown.SelectedItemChangedEvent += selectedItemChangedEvent;
 
 
         // ----------------------------- Event -----------------------------
@@ -104,15 +103,6 @@ namespace AG.DS
 
             // Prevent moving the parent node when using the field.
             evt.StopImmediatePropagation();
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the dropdown selected item has changed.
-        /// </summary>
-        void DropdownSelectedItemChangedEvent()
-        {
-            selectedItemChangedEvent.Invoke(dropdown.SelectedItem.AdditionalInfo);
         }
     }
 }

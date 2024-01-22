@@ -120,7 +120,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the selected enum flags items has changed.
         /// </summary>
-        public Action SelectedItemsChangedEvent;
+        public Action<TEnum> SelectedItemsChangedEvent;
 
 
         /// <summary>

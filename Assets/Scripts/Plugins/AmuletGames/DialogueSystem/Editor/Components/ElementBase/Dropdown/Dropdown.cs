@@ -76,7 +76,7 @@ namespace AG.DS
                 DropdownButtonIconImage.sprite = m_selectedItem.IconImage.sprite;
                 DropdownButtonTextLabel.text = m_selectedItem.TextLabel.text;
 
-                SelectedItemChangedEvent?.Invoke();
+                SelectedItemChangedEvent?.Invoke(SelectedItem.AdditionalInfo);
             }
         }
 
@@ -146,7 +146,7 @@ namespace AG.DS
         /// <summary>
         /// The event to invoke when the selected dropdown item has changed.
         /// </summary>
-        public Action SelectedItemChangedEvent;
+        public Action<string> SelectedItemChangedEvent;
 
 
         /// <summary>

@@ -79,8 +79,7 @@ namespace AG.DS
         /// <summary>
         /// Register SelectedItemsChangedEvent to the enum flags.
         /// </summary>
-        void RegisterSelectedItemsChangedEvent() =>
-            enumFlags.SelectedItemsChangedEvent += EnumFlagsSelectedItemsChangedEvent;
+        void RegisterSelectedItemsChangedEvent() => enumFlags.SelectedItemsChangedEvent += selectedItemsChangedEvent;
 
 
         // ----------------------------- Event -----------------------------
@@ -104,15 +103,6 @@ namespace AG.DS
 
             // Prevent moving the parent node when using the field.
             evt.StopImmediatePropagation();
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the enum flags's selected enum flags item has changed.
-        /// </summary>
-        void EnumFlagsSelectedItemsChangedEvent()
-        {
-            selectedItemsChangedEvent.Invoke(enumFlags.SelectedItems);
         }
     }
 }
