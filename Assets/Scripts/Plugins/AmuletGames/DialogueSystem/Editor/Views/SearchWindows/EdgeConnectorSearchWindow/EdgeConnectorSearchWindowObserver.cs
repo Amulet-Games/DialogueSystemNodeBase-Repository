@@ -137,7 +137,7 @@ namespace AG.DS
                         : node.View.InputOptionPortCell.Port,
 
                     OptionRootNode node => isInputConnector
-                        ? node.View.OutputOptionPortGroup.FirstPortCell.Port
+                        ? node.View.OutputOptionPortGroup.BaseOptionPortCell.Port
                         : node.View.InputPort,
 
                     PreviewNode node => isInputConnector
@@ -172,7 +172,7 @@ namespace AG.DS
                     port.Disconnect(graphViewer);
                 }
 
-                var edge = EdgeFactory.Create
+                var edge = EdgeFactory.Generate
                 (
                     model: view.EdgeModel,
                     input: isInputConnector ? port : connectToPort,

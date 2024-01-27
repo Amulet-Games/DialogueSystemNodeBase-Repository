@@ -7,7 +7,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="view">The event modifier view to set for.</param>
         /// <param name="data">The event modifier data to set for.</param>
-        public void Save
+        public static void Save
         (
             EventModifierView view,
             EventModifierData data
@@ -41,7 +41,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="view">The event modifier view to set for.</param>
         /// <param name="data">The event modifier data to set for.</param>
-        public void Load
+        public static void Load
         (
             EventModifierView view,
             EventModifierData data

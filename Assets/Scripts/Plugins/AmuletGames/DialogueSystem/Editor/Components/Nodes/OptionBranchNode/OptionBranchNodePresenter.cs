@@ -45,20 +45,24 @@ namespace AG.DS
             {
                 var portModel = new PortModel
                 (
-                    port: PortModel.Port.Default,
-                    Direction.Output,
+                    direction: Direction.Output,
                     capacity: Capacity.Single,
                     name: StringConfig.Port_Output_LabelText,
                     color: PortConfig.DefaultPortColor
                 );
-
-                View.OutputPort = PortFactory.Create(portModel);
-                View.OutputPort.AddEdgeConnector
+                var edgeModel = new EdgeModel
+                (
+                    focusable: true,
+                    styleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                );
+                var edgeConnectorListenerModel = new EdgeConnectorListenerModel
                 (
                     edgeConnectorSearchWindowView: Node.GraphViewer.EdgeConnectorSearchWindowView,
-                    edgeFocusable: true,
-                    edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                    edgeModel: edgeModel
                 );
+
+                View.OutputPort = PortFactory.Generate(portModel);
+                View.OutputPort.AddEdgeConnector(edgeConnectorListenerModel);
 
                 Node.Add(View.OutputPort);
             }

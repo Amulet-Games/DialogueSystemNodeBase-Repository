@@ -13,12 +13,11 @@ namespace AG.DS
             EventModifierGroupData data
         )
         {
-            data.ModifiersData = new EventModifierData[view.ModifiersCount];
-
             for (int i = 0; i < view.ModifiersCount; i++)
             {
-                data.ModifiersData[i] = new();
-                new EventModifierSerializer().Save(view.Modifiers[i], data.ModifiersData[i]);
+                data.ModifiersData.Add(
+                    EventModifierDataFactory.Generate(view: view.Modifiers[i])
+                );
             }
         }
 
@@ -34,9 +33,10 @@ namespace AG.DS
             EventModifierGroupData data
         )
         {
-            for (int i = 0; i <= data.ModifiersData.Length; i++)
+            var count = data.ModifiersData.Count;
+            for (int i = 0; i <= count; i++)
             {
-                var modifier = EventModifierFactory.Create
+                var modifier = EventModifierViewFactory.Generate
                 (
                     groupView: view,
                     data: data.ModifiersData[i]

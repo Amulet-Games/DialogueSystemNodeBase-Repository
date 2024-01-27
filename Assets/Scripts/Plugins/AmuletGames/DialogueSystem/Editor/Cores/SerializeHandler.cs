@@ -47,10 +47,9 @@ namespace AG.DS
                 var edgeCount = graphViewer.Edges.Count;
                 for (int i = 0; i < edgeCount; i++)
                 {
-                    var data = new EdgeData();
-                    new EdgeSerializer().Save(edge: graphViewer.Edges[i], data);
-
-                    dialogueSystemWindowData.EdgesData.Add(data);
+                    dialogueSystemWindowData.EdgesData.Add(
+                        EdgeDataFactory.Generate(edge: graphViewer.Edges[i])
+                    );
                 }
             }
         }
@@ -157,7 +156,7 @@ namespace AG.DS
                     if (graphViewer.PortByPortGUID.TryGetValue(data.InputPortGUID, out Port input))
                     {
                         var model = new EdgeModel(focusable: data.Focusable, styleSheet: data.StyleSheet);
-                        var edge = EdgeFactory.Create(model, input, output);
+                        var edge = EdgeFactory.Generate(model, input, output);
                         
                         graphViewer.Add(edge);
                     }

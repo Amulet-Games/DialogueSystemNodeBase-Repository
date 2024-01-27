@@ -13,12 +13,11 @@ namespace AG.DS
             ConditionModifierGroupData data
         )
         {
-            data.ModifiersData = new ConditionModifierData[view.ModifiersCount];
-
             for (int i = 0; i < view.ModifiersCount; i++)
             {
-                data.ModifiersData[i] = new();
-                new ConditionModifierSerializer().Save(view.Modifiers[i], data.ModifiersData[i]);
+                data.ModifiersData.Add(
+                    ConditionModifierDataFactory.Generate(view: view.Modifiers[i])
+                );
             }
         }
 
@@ -36,9 +35,10 @@ namespace AG.DS
             GraphViewer graphViewer
         )
         {
-            for (int i = 0; i <= data.ModifiersData.Length; i++)
+            var count = data.ModifiersData.Count;
+            for (int i = 0; i <= count; i++)
             {
-                var modifier = ConditionModifierFactory.Create
+                var modifier = ConditionModifierViewFactory.Generate
                 (
                     groupView: view,
                     graphViewer,

@@ -33,21 +33,24 @@ namespace AG.DS
             {
                 var portModel = new PortModel
                 (
-                    port: PortModel.Port.Default,
-                    Direction.Input,
+                    direction: Direction.Input,
                     capacity: Capacity.Single,
                     name: StringConfig.Port_Input_LabelText,
                     color: PortConfig.DefaultPortColor
                 );
-
-                View.InputPort = PortFactory.Create(portModel);
-                View.InputPort.AddEdgeConnector
+                var edgeModel = new EdgeModel
+                (
+                    focusable: true,
+                    styleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                );
+                var edgeConnectorListenerModel = new EdgeConnectorListenerModel
                 (
                     edgeConnectorSearchWindowView: Node.GraphViewer.EdgeConnectorSearchWindowView,
-                    edgeFocusable: true,
-                    edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                    edgeModel: edgeModel
                 );
 
+                View.InputPort = PortFactory.Generate(portModel);
+                View.InputPort.AddEdgeConnector(edgeConnectorListenerModel);
                 Node.Add(View.InputPort);
             }
 
@@ -55,20 +58,24 @@ namespace AG.DS
             {
                 var portModel = new PortModel
                 (
-                    port: PortModel.Port.Default,
-                    Direction.Output,
+                    direction: Direction.Output,
                     capacity: Capacity.Single,
                     name: StringConfig.Port_True_LabelText,
                     color: PortConfig.DefaultPortColor
                 );
-
-                View.TrueOutputPort = PortFactory.Create(portModel);
-                View.TrueOutputPort.AddEdgeConnector
+                var edgeModel = new EdgeModel
+                (
+                    focusable: true,
+                    styleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                );
+                var edgeConnectorListenerModel = new EdgeConnectorListenerModel
                 (
                     edgeConnectorSearchWindowView: Node.GraphViewer.EdgeConnectorSearchWindowView,
-                    edgeFocusable: true,
-                    edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                    edgeModel: edgeModel
                 );
+
+                View.TrueOutputPort = PortFactory.Generate(portModel);
+                View.TrueOutputPort.AddEdgeConnector(edgeConnectorListenerModel);
 
                 Node.Add(View.TrueOutputPort);
             }
@@ -77,22 +84,25 @@ namespace AG.DS
             {
                 var portModel = new PortModel
                 (
-                    port: PortModel.Port.Default,
-                    Direction.Output,
+                    direction: Direction.Output,
                     capacity: Capacity.Single,
                     name: StringConfig.Port_False_LabelText,
                     color: PortConfig.DefaultPortColor
                 );
-
-                View.FalseOutputPort = PortFactory.Create(portModel);
-                View.FalseOutputPort.AddToClassList(StyleConfig.BooleanNode_False_Output_Port);
-
-                View.FalseOutputPort.AddEdgeConnector
+                var edgeModel = new EdgeModel
+                (
+                    focusable: true,
+                    styleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                );
+                var edgeConnectorListenerModel = new EdgeConnectorListenerModel
                 (
                     edgeConnectorSearchWindowView: Node.GraphViewer.EdgeConnectorSearchWindowView,
-                    edgeFocusable: true,
-                    edgeStyleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
+                    edgeModel: edgeModel
                 );
+
+                View.FalseOutputPort = PortFactory.Generate(portModel);
+                View.FalseOutputPort.AddToClassList(StyleConfig.BooleanNode_False_Output_Port);
+                View.FalseOutputPort.AddEdgeConnector(edgeConnectorListenerModel);
 
                 Node.Add(View.FalseOutputPort);
             }

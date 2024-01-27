@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace AG.DS
@@ -9,6 +10,15 @@ namespace AG.DS
         /// <summary>
         /// The group's condition modifiers data.
         /// </summary>
-        [SerializeField] public ConditionModifierData[] ModifiersData;
+        [SerializeField] public List<ConditionModifierData> ModifiersData;
+
+
+        /// <summary>
+        /// Constructor of the condition modifier group data class.
+        /// </summary>
+        public ConditionModifierGroupData()
+        {
+            ModifiersData = new();
+        }
     }
 }

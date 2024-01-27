@@ -7,7 +7,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="view">The message modifier view to set for.</param>
         /// <param name="data">The message modifier data to set for.</param>
-        public void Save
+        public static void Save
         (
             MessageModifierView view,
             MessageModifierData data
@@ -62,7 +62,7 @@ namespace AG.DS
         /// </summary>
         /// <param name="view">The message modifier view to set for.</param>
         /// <param name="data">The message modifier data to set for.</param>
-        public void Load
+        public static void Load
         (
             MessageModifierView view,
             MessageModifierData data

@@ -13,12 +13,11 @@ namespace AG.DS
             MessageModifierGroupData data
         )
         {
-            data.ModifiersData = new MessageModifierData[view.ModifiersCount];
-
             for (int i = 0; i < view.ModifiersCount; i++)
             {
-                data.ModifiersData[i] = new();
-                new MessageModifierSerializer().Save(view.Modifiers[i], data.ModifiersData[i]);
+                data.ModifiersData.Add(
+                    MessageModifierDataFactory.Generate(view: view.Modifiers[i])
+                );
             }
         }
 
@@ -36,9 +35,10 @@ namespace AG.DS
             MessageModifierGroupData data
         )
         {
-            for (int i = 0; i <= data.ModifiersData.Length; i++)
+            var count = data.ModifiersData.Count;
+            for (int i = 0; i <= count; i++)
             {
-                var modifier = MessageModifierViewFactory.Create
+                var modifier = MessageModifierViewFactory.Generate
                 (
                     groupView: view,
                     languageHandler,

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 using GraphViewEdge = UnityEditor.Experimental.GraphView.Edge;
 
 namespace AG.DS
@@ -60,20 +59,17 @@ namespace AG.DS
         /// Constructor of the edge connector callback class.
         /// </summary>
         /// <param name="connectorPort">The connector port to set for.</param>
-        /// <param name="edgeConnectorSearchWindowView">The edge connector window view to set for.</param>
-        /// <param name="edgeFocusable">The edge's focusable value to set for.</param>
-        /// <param name="edgeStyleSheet">The edge's style sheet to set for.</param>
+        /// <param name="model">The edge connector listener model to set for.</param>
         public EdgeConnectorListener
         (
             Port connectorPort,
-            EdgeConnectorSearchWindowView edgeConnectorSearchWindowView,
-            bool edgeFocusable,
-            StyleSheet edgeStyleSheet
+            EdgeConnectorListenerModel model
         )
         {
             this.connectorPort = connectorPort;
-            this.edgeConnectorSearchWindowView = edgeConnectorSearchWindowView;
-            edgeModel = new(edgeFocusable, edgeStyleSheet);
+
+            edgeConnectorSearchWindowView = model.EdgeConnectorSearchWindowView;
+            edgeModel = model.EdgeModel;
 
             edgesToCreate = new();
             edgesToDelete = new();
@@ -132,7 +128,7 @@ namespace AG.DS
                 }
             }
 
-            var newEdge = EdgeFactory.Create
+            var newEdge = EdgeFactory.Generate
             (
                 model: edgeModel,
                 input: edge.input as Port,
@@ -156,7 +152,9 @@ namespace AG.DS
             edgeConnectorSearchWindowView.ConnectorPort = connectorPort;
             edgeConnectorSearchWindowView.EdgeModel = edgeModel;
 
-            edgeConnectorSearchWindowView.SearchWindow.OpenWindow(openScreenPosition: GUIUtility.GUIToScreenPoint(Event.current.mousePosition));
+            edgeConnectorSearchWindowView.SearchWindow.OpenWindow(
+                openScreenPosition: GUIUtility.GUIToScreenPoint(Event.current.mousePosition)
+            );
 
             connectorPort.Callback.OnPostConnectingEdgeDropOutside();
         }

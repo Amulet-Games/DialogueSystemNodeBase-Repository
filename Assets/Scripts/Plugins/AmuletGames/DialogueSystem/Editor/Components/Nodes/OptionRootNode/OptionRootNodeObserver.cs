@@ -37,6 +37,8 @@ namespace AG.DS
             RegisterContentButtonClickEvent();
 
             RegisterRootTitleTextFieldEvents();
+
+            RegisterOptionPortGroupEvents();
         }
 
 
@@ -89,6 +91,13 @@ namespace AG.DS
                 view: View.RootTitleFieldView).RegisterEvents();
 
 
+        /// <summary>
+        /// Register events to the option port group element.
+        /// </summary>
+        void RegisterOptionPortGroupEvents()
+            => new OptionPortGroupObserver(group: View.OutputOptionPortGroup).RegisterEvents();
+
+
         // ----------------------------- Event -----------------------------
         /// <summary>
         /// The event to invoke when the pointer's state has changed.
@@ -138,7 +147,7 @@ namespace AG.DS
             // Create a new output option port group cell.
             {
                 var group = View.OutputOptionPortGroup;
-                var groupCell = OptionPortGroupCellFactory.Create(group);
+                var groupCell = OptionPortGroupItemFactory.Generate(group);
 
                 group.Add(groupCell);
             }

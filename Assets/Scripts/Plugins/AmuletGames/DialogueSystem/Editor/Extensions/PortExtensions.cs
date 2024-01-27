@@ -1,5 +1,4 @@
 using UnityEditor.Experimental.GraphView;
-using UnityEngine.UIElements;
 using static UnityEditor.Experimental.GraphView.Port;
 
 namespace AG.DS
@@ -10,23 +9,17 @@ namespace AG.DS
         /// Add a new edge connector to the port.
         /// </summary>
         /// <param name="port">Extension port</param>
-        /// <param name="edgeConnectorSearchWindowView">The edge connector search window to set for.</param>
-        /// <param name="edgeFocusable">The edge focusable value to set for.</param>
-        /// <param name="edgeStyleSheet">The edge style sheet to set for.</param>
+        /// <param name="edgeConnectorListenerModel">The edge connector listener model to set for.</param>
         public static void AddEdgeConnector
         (
             this Port port,
-            EdgeConnectorSearchWindowView edgeConnectorSearchWindowView,
-            bool edgeFocusable,
-            StyleSheet edgeStyleSheet
+            EdgeConnectorListenerModel edgeConnectorListenerModel
         )
         {
             var listener = new EdgeConnectorListener
             (
                 connectorPort: port,
-                edgeConnectorSearchWindowView,
-                edgeFocusable,
-                edgeStyleSheet
+                model: edgeConnectorListenerModel
             );
 
             port.EdgeConnector = new EdgeConnector<Edge>(listener);
