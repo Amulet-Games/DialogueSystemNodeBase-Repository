@@ -27,6 +27,8 @@ namespace AG.DS
         public const string Object_Field_Input = "object-field-input";
         public const string Object_Field_Display = "object-field-display";
         public const string Object_Field_Display_Label = "object-field-display-label";
+        public const string Object_Field_Display_IconImage = "object-field-display-iconImage";
+        public const string Object_Field_SelectImage = "object-field-selectImage";
 
         /*< -------------------- Integer Field -------------------- >*/
         public const string Integer_Field_Empty = "integer-field-empty";
@@ -161,17 +163,17 @@ namespace AG.DS
         public const string Output_Cap = "output-cap";
         #endregion
 
-        #region Port Cell Option USS Classes.
-        /*< -------------------- Cells -------------------- >*/
-        public const string OptionPortCell = "optionPortCell";
+        #region Port Cell USS Classes.
+        public const string PortCell = "portCell";
+        #endregion
 
-        /*< -------------------- Group Cells -------------------- >*/
-        public const string OptionPortGroupCell = "optionPortGroupCell";
-        public const string OptionPortGroupCell_RemoveCellButton = "optionPortGroupCell-removeCellButton";
-
+        #region Port Group USS Classes.
         /*< -------------------- Group -------------------- >*/
         public const string OptionPortGroup = "optionPortGroup";
 
+        /*< -------------------- Group Item -------------------- >*/
+        public const string OptionPortGroupItem = "optionPortGroupItem";
+        public const string OptionPortGroupItem_RemoveButton = "optionPortGroupItem-removeButton";
         #endregion
 
         #region Edge USS Classes.
@@ -187,8 +189,8 @@ namespace AG.DS
         public const string Folder_Content_Container = "folder-content-container";
         #endregion
 
-        #region Modifier Event USS Classes.
-        public const string EventModifier_HelperButton_Container = "eventModifier-helperButton-container";
+        #region Modifier View Event USS Classes.
+        public const string EventModifier_HelperButtons_Container = "eventModifier-helperButtons-container";
         public const string EventModifier_MoveUp_Button = "eventModifier-moveUp-button";
         public const string EventModifier_MoveDown_Button = "eventModifier-moveDown-button";
         public const string EventModifier_Rename_Button = "eventModifier-rename-button";
@@ -207,69 +209,45 @@ namespace AG.DS
         public const string EventModifierGroup = "eventModifierGroup";
         #endregion
 
-        #region Modifier Condition USS Classes (Legacy).
-        public const string Modifier_Condition_Main_Box = "modifier_Condition_Main_Box";
-        public const string Modifier_Condition_FirstTerm_ObjectField = "modifier_Condition_FirstTerm_ObjectField";
-
-        public const string Modifier_Condition_Operator_EnumField = "modifier_Condition_Operator_EnumField";
-        public const string Modifier_Condition_Operator_Icon = "modifier_Condition_Operator_Icon";
-
-        public const string Modifier_Condition_SecondTerm_TextField = "modifier_Condition_SecondTerm_TextField";
-        public const string Modifier_Condition_SecondTerm_FloatField = "modifier_Condition_SecondTerm_FloatField";
-        public const string Modifier_Condition_SecondTerm_ObjectField = "modifier_Condition_SecondTerm_ObjectField";
-
-        public const string Modifier_Condition_Button_Box = "modifier_Condition_Button_Box";
-        public const string Modifier_Condition_ChangeFieldType_Button = "modifier_Condition_ChangeFieldType_Button";
-        public const string Modifier_Condition_Remove_Button = "modifier_Condition_Remove_Button";
-
-        /*< -------------------- Root -------------------- >*/
-        public const string Modifier_Condition_Rooted_Main_Box = "modifier_Condition_Rooted_Main_Box";
-        public const string Modifier_Condition_Rooted_FirstTerm_ObjectField = "modifier_Condition_Rooted_FirstTerm_ObjectField";
-
-        public const string Modifier_Condition_Rooted_Operator_EnumField = "modifier_Condition_Rooted_Operator_EnumField";
-        public const string Modifier_Condition_Rooted_Operator_Icon = "modifier_Condition_Rooted_Operator_Icon";
-
-        public const string Modifier_Condition_Rooted_SecondTerm_TextField = "modifier_Condition_Rooted_SecondTerm_TextField";
-        public const string Modifier_Condition_Rooted_SecondTerm_FloatField = "modifier_Condition_Rooted_SecondTerm_FloatField";
-        public const string Modifier_Condition_Rooted_SecondTerm_ObjectField = "modifier_Condition_Rooted_SecondTerm_ObjectField";
-
-        public const string Modifier_Condition_Rooted_Button_Box = "modifier_Condition_Rooted_Button_Box";
-        public const string Modifier_Condition_Rooted_ChangeFieldType_Button = "modifier_Condition_Rooted_ChangeFieldType_Button";
-        #endregion
-
         #region Modifier Condition USS Classes.
-        public const string ConditionModifier_HelperButton_Container = "conditionModifier-helperButton-container";
+        public const string ConditionModifier_HelperButtons_Container = "conditionModifier-helperButtons-container";
         public const string ConditionModifier_MoveUp_Button = "conditionModifier-moveUp-button";
         public const string ConditionModifier_MoveDown_Button = "conditionModifier-moveDown-button";
         public const string ConditionModifier_Rename_Button = "conditionModifier-rename-button";
         public const string ConditionModifier_Remove_Button = "conditionModifier-remove-button";
-        public const string ConditionModifier_SecondVariable_Container = "conditionModifier-secondVariable-container";
-        public const string ConditionModifier_SecondVariable_FieldLabel_Container = "conditionModifier-secondVariable-fieldLabel-container";
-        public const string ConditionModifier_SecondVariable_Label = "conditionModifier-secondVariable-label";
-        public const string ConditionModifier_SecondVariable_SwitchField_Button = "conditionModifier-secondVariable-switchField-button";
-        public const string ConditionModifier_SecondVariable_SwitchFieldButtonIcon_Image = "conditionModifier-secondVariable-switchFieldButtonIcon-image";
-        public const string ConditionModifier_SecondVariable_SwitchFieldButtonText_Label = "conditionModifier-secondVariable-switchFieldButtonText-label";
-        public const string ConditionModifier_SecondReflectableObject_Image = "conditionModifier-secondReflectableObject-image";
-        public const string ConditionModifier_SecondReflectableObject_Field = "conditionModifier-secondReflectableObject-field";
-        public const string ConditionModifier_SecondBindingFlags_FieldInfo_Container = "conditionModifier-secondBindinFlags-fieldInfo-container";
-        public const string ConditionModifier_SecondBindingFlags_Label = "conditionModifier-secondBindingFlags-label";
-        public const string ConditionModifier_SecondText_Image = "conditionModifier-secondText-image";
-        public const string ConditionModifier_SecondText_Field = "conditionModifier-secondText-field";
-        public const string ConditionModifier_SecondFloatField_HintLabel_Container = "conditionModifier-secondFloatField-hintLabel-container";
-        public const string ConditionModifier_SecondFloat_Field = "conditionModifier-secondFloat-field";
-        public const string ConditionModifier_SecondFloatHint_Label = "conditionModifier-secondFloatHint-label";
-        public const string ConditionModifier_Operation_ChainWith_Container = "conditionModifier-operation-chainWith-container";
+        public const string ConditionModifier_Dropdowns_Container = "conditionModifier-dropdowns-container";
         public const string ConditionModifier_Operation_Container = "conditionModifier-operation-container";
         public const string ConditionModifier_Operation_Label = "conditionModifier-operation-label";
         public const string ConditionModifier_ChainWith_Container = "conditionModifier-chainWith-container";
         public const string ConditionModifier_ChainWith_Label = "conditionModifier-chainWith-label";
+
+        /*< -------------------- Variable Group -------------------- >*/
+        public const string ConditionModifier_VariableGroup = "conditionModifier-variableGroup";
+        public const string ConditionModifier_VariableGroup_MainLabelContainer = "conditionModifier-variableGroup-mainLabelContainer";
+        public const string ConditionModifier_VariableGroup_Label = "conditionModifier-variableGroup-label";
+        public const string ConditionModifier_VariableGroup_FieldInfo_Container = "conditionModifier-variableGroup-fieldInfo-container";
+        public const string ConditionModifier_VariableGroup_FieldInfo_Label = "conditionModifier-variableGroup-fieldInfo-label";
+        public const string ConditionModifier_VariableGroup_TextField_Image = "conditionModifier-variableGroup-textField-image";
+        public const string ConditionModifier_VariableGroup_TextField_Field = "conditionModifier-variableGroup-textField-field";
+        public const string ConditionModifier_VariableGroup_FloatField_Container = "conditionModifier-variableGroup-floatField-container";
+        public const string ConditionModifier_VariableGroup_FloatField_Field = "conditionModifier-variableGroup-floatField-field";
+        public const string ConditionModifier_VariableGroup_FloatField_HintLabel = "conditionModifier-variableGroup-floatField-hintLabel";
+
+        /*< -------------------- Switch Button -------------------- >*/
+        public const string ConditionModifier_SwitchButton = "conditionModifier-switchButton";
+        public const string ConditionModifier_SwitchButton_IconImage = "conditionModifier-switchButton-iconImage";
+        public const string ConditionModifier_SwitchButton_TextLabel = "conditionModifier-switchButton-textLabel";
+
+        /*< -------------------- Special Case -------------------- >*/
+        public const string ConditionModifier_VariableGroup_Label_First = "conditionModifier-variableGroup-label-first";
+        public const string ConditionModifier_SwitchButton_First = "conditionModifier-switchButton-first";
 
         /*< -------------------- Condition Modifier Group -------------------- >*/
         public const string ConditionModifierGroup = "conditionModifierGroup";
         #endregion
 
         #region Modifier Message USS Classes.
-        public const string MessageModifier_HelperButton_Container = "messageModifier-helperButton-container";
+        public const string MessageModifier_HelperButtons_Container = "messageModifier-helperButtons-container";
         public const string MessageModifier_MoveUp_Button = "messageModifier-moveUp-button";
         public const string MessageModifier_MoveDown_Button = "messageModifier-moveDown-button";
         public const string MessageModifier_Rename_Button = "messageModifier-rename-button";
@@ -282,7 +260,7 @@ namespace AG.DS
         public const string MessageModifier_MessageAudio_Image = "messageModifier-messageAudio-image";
         public const string MessageModifier_MessageAudio_Label = "messageModifier-messageAudio-label";
         public const string MessageModifier_MessageAudio_Field = "messageModifier-messageAudio-field";
-        public const string MessageModifier_ContinueBy_StartDelay_Container = "messageModifier-continueBy-startDelay-container";
+        public const string MessageModifier_Dropdowns_Container = "messageModifier-dropdowns-container";
         public const string MessageModifier_ContinueBy_Container = "messageModifier-continueBy-container";
         public const string MessageModifier_ContinueBy_Label = "messageModifier-continueBy-label";
         public const string MessageModifier_StartDelay_Container = "messageModifier-startDelay-container";
@@ -344,6 +322,17 @@ namespace AG.DS
         public const string EnumFlags_EnumFlagsButton = "enumFlags-enumFlagsButton";
         public const string EnumFlags_EnumFlagsButton_TextLabel = "enumFlags-enumFlagsButton-textLabel";
         public const string EnumFlags_EnumFlagsButton_MenuSelectImage = "enumFlags-enumFlagsButton-menuSelectImage";
+        #endregion
+
+        #region Search Window Selector USS Classes.
+        public const string SearchWindowSelector = "searchWindowSelector";
+        public const string SearchWindowSelector_Empty = "searchWindowSelector-empty";
+
+        /*< -------------------- Search Window Selector Button -------------------- >*/
+        public const string SearchWindowSelector_SelectorButton_Button = "searchWindowSelector-selectButton-button";
+        public const string SearchWindowSelector_SelectorButton_Icon_Image = "searchWindowSelector-selectButton-icon-image";
+        public const string SearchWindowSelector_SelectorButton_Text_Label = "searchWindowSelector-selectButton-text-label";
+        public const string SearchWindowSelector_SelectorButton_MenuSelectImage = "searchWindowSelector-selectButton-windowSelectImage";
         #endregion
     }
 }

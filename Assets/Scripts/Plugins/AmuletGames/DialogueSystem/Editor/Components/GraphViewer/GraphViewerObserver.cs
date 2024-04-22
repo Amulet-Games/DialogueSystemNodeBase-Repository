@@ -20,17 +20,26 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the language handler.
+        /// </summary>
+        LanguageHandler languageHandler;
+
+
+        /// <summary>
         /// Constructor of the graph viewer observer class.
         /// </summary>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <param name="languageHandler">The language handler to set for.</param>
         /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
         public GraphViewerObserver
         (
             GraphViewer graphViewer,
+            LanguageHandler languageHandler,
             DialogueSystemWindow dialogueSystemWindow
         )
         {
             this.graphViewer = graphViewer;
+            this.languageHandler = languageHandler;
             this.dialogueSystemWindow = dialogueSystemWindow;
         }
 
@@ -93,21 +102,33 @@ namespace AG.DS
         /// Register events to the node creation request search window.
         /// </summary>
         void RegisterNodeCreationRequestSearchWindowEvents()
-            => new NodeCreationRequestSearchWindowObserver(graphViewer.NodeCreationRequestSearchWindowView).RegisterEvents();
+            => new NodeCreationRequestSearchWindowObserver(
+                view: graphViewer.NodeCreationRequestSearchWindowView,
+                graphViewer: graphViewer,
+                languageHandler: languageHandler,
+                dialogueSystemWindow: dialogueSystemWindow).RegisterEvents();
 
 
         /// <summary>
         /// Register events to the edge connector search window.
         /// </summary>
         void RegisterEdgeConnectorSearchWindowEvents()
-            => new EdgeConnectorSearchWindowObserver(graphViewer.EdgeConnectorSearchWindowView).RegisterEvents();
+            => new EdgeConnectorSearchWindowObserver(
+                view: graphViewer.EdgeConnectorSearchWindowView,
+                graphViewer: graphViewer,
+                languageHandler: languageHandler,
+                dialogueSystemWindow: dialogueSystemWindow).RegisterEvents();
 
 
         /// <summary>
         /// Register events to the option edge connector search window.
         /// </summary>
         void RegisterOptionEdgeConnectorSearchWindowEvents()
-            => new EdgeConnectorSearchWindowObserver(graphViewer.OptionEdgeConnectorSearchWindowView).RegisterEvents();
+            => new EdgeConnectorSearchWindowObserver(
+                view: graphViewer.OptionEdgeConnectorSearchWindowView,
+                graphViewer: graphViewer,
+                languageHandler: languageHandler,
+                dialogueSystemWindow: dialogueSystemWindow).RegisterEvents();
 
 
         // ----------------------------- Event -----------------------------
@@ -166,7 +187,7 @@ namespace AG.DS
         /// <param name="context">A struct that represents the context when the user initiates creating a graph node.</param>
         void NodeCreationRequestEvent(NodeCreationContext context)
         {
-            graphViewer.NodeCreationRequestSearchWindowView.SearchWindow.OpenWindow(openScreenPosition: context.screenMousePosition);
+            graphViewer.NodeCreationRequestSearchWindowView.SearchWindow.OpenWindow(screenMousePosition: context.screenMousePosition);
         }
 
 

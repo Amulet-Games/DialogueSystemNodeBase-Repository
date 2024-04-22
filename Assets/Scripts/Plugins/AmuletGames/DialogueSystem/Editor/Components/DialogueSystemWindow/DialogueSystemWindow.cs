@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace AG.DS
@@ -157,7 +158,7 @@ namespace AG.DS
 
                 // Graph Viewer
                 {
-                    graphViewer = GraphViewerPresenter.CreateElement(languageHandler, dialogueSystemWindow: this);
+                    graphViewer = GraphViewerPresenter.CreateElement();
                 }
 
                 // Input Hint
@@ -175,7 +176,7 @@ namespace AG.DS
 
             // Register modules events
             {
-                new GraphViewerObserver(graphViewer, dialogueSystemWindow: this).RegisterEvents();
+                new GraphViewerObserver(graphViewer, languageHandler, dialogueSystemWindow: this).RegisterEvents();
 
                 new HeadbarObserver(headBar, dialogueSystemWindow: this).RegisterEvents();
 
@@ -255,6 +256,14 @@ namespace AG.DS
             languageHandler.CurrentLanguage = value;
 
             WindowChangedEvent.Invoke();
+        }
+
+        private void OnGUI()
+        {
+            //Debug.Log(rootVisualElement.parent.worldBound.yMin);
+            //Debug.Log("worldBound = " + rootVisualElement.parent.worldBound);
+            //Debug.Log("screenPosition = " + GUIUtility.GUIToScreenPoint(rootVisualElement.parent.worldBound.position));
+            //Debug.Log(GUIUtility.GUIToScreenRect(rootVisualElement.parent.contentRect));
         }
     }
 }

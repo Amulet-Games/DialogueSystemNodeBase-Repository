@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnitySearchWindow = UnityEditor.Experimental.GraphView.SearchWindow;
 
 namespace AG.DS
 {
@@ -51,12 +52,26 @@ namespace AG.DS
         /// <summary>
         /// Open the search window.
         /// </summary>
-        /// <param name="openScreenPosition">The open screen position to set for.</param>
-        public void OpenWindow(Vector2 openScreenPosition)
-            => UnityEditor.Experimental.GraphView.SearchWindow.Open
+        /// <param name="screenMousePosition">The screen mouse position to set for.</param>
+        /// <param name="requestWidth">The request width to set for.</param>
+        /// <param name="requestHeight">The request height to set for.</param>
+        public void OpenWindow
+        (
+            Vector2 screenMousePosition,
+            float requestWidth = 0f,
+            float requestHeight = 0f
+        )
+        {
+            UnitySearchWindow.Open
             (
-                context: new SearchWindowContext(openScreenPosition),
+                context: new SearchWindowContext
+                (
+                    screenMousePosition,
+                    requestWidth,
+                    requestHeight
+                ),
                 provider: this
             );
+        }
     }
 }

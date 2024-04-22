@@ -18,7 +18,7 @@ namespace AG.DS
             VisualElement helperButtonsContainer;
             VisualElement messageTextContainer;
             VisualElement messageAudioContainer;
-            VisualElement continueByStartDelayContainer;
+            VisualElement dropdownsContainer;
             VisualElement continueByContainer;
             VisualElement startDelayContainer;
             VisualElement delaySecondsContainer;
@@ -79,7 +79,7 @@ namespace AG.DS
             void CreateContainers()
             {
                 helperButtonsContainer = new();
-                helperButtonsContainer.AddToClassList(StyleConfig.MessageModifier_HelperButton_Container);
+                helperButtonsContainer.AddToClassList(StyleConfig.MessageModifier_HelperButtons_Container);
 
                 messageTextContainer = new();
                 messageTextContainer.AddToClassList(StyleConfig.MessageModifier_MessageText_Container);
@@ -87,8 +87,8 @@ namespace AG.DS
                 messageAudioContainer = new();
                 messageAudioContainer.AddToClassList(StyleConfig.MessageModifier_MessageAudio_Container);
 
-                continueByStartDelayContainer = new();
-                continueByStartDelayContainer.AddToClassList(StyleConfig.MessageModifier_ContinueBy_StartDelay_Container);
+                dropdownsContainer = new();
+                dropdownsContainer.AddToClassList(StyleConfig.MessageModifier_Dropdowns_Container);
 
                 continueByContainer = new();
                 continueByContainer.AddToClassList(StyleConfig.MessageModifier_ContinueBy_Container);
@@ -197,10 +197,10 @@ namespace AG.DS
                 messageAudioImage = ImagePresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.MessageAudioFieldSprite,
-                    USS01: StyleConfig.MessageModifier_MessageAudio_Image
+                    USS01: StyleConfig.Object_Field_Display_IconImage
                 );
 
-                view.MessageAudioFieldView.Field.SetDisplayImage(messageAudioImage);
+                view.MessageAudioFieldView.Field.SetIconImage(messageAudioImage);
             }
         
             void CreateContinueByLabel()
@@ -282,15 +282,15 @@ namespace AG.DS
                 messageAudioContainer.Add(view.MessageAudioFieldView.Field);
 
                 // Continue by & Start delay
-                view.Folder.AddElementToContent(continueByStartDelayContainer);
+                view.Folder.AddElementToContent(dropdownsContainer);
 
                 // Continue by
-                continueByStartDelayContainer.Add(continueByContainer);
+                dropdownsContainer.Add(continueByContainer);
                 continueByContainer.Add(continueByLabel);
                 continueByContainer.Add(view.ContinueByRadioGroup);
 
                 // Start delay
-                continueByStartDelayContainer.Add(startDelayContainer);
+                dropdownsContainer.Add(startDelayContainer);
                 startDelayContainer.Add(startDelayLabel);
                 startDelayContainer.Add(delaySecondsContainer);
 

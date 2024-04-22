@@ -35,7 +35,7 @@ namespace AG.DS
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the common text field.
+        /// Register events to the common text field view.
         /// </summary>
         public void RegisterEvents()
         {

@@ -67,7 +67,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register ClickEvent to the save button.
+        /// Register events to the save button.
         /// </summary>
         void RegisterSaveButtonClickEvent()
         {
@@ -79,7 +79,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register ClickEvent to the load button.
+        /// Register events to the load button.
         /// </summary>
         void RegisterLoadButtonClickEvent()
         {

@@ -84,7 +84,7 @@ namespace AG.DS
             void CreateMenuSelectImage()
             {
                 menuSelectImage = ImagePresenter.CreateElement(
-                    sprite: ConfigResourcesManager.SpriteConfig.MenuSelectIcon2Sprite,
+                    sprite: ConfigResourcesManager.SpriteConfig.DropdownMenuSelectIconSprite,
                     USS01: StyleConfig.EnumFlags_EnumFlagsButton_MenuSelectImage
                 );
             }

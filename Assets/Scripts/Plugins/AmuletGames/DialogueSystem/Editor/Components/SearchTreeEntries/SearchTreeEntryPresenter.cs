@@ -8,7 +8,7 @@ namespace AG.DS
         /// <summary>
         /// Create a new search tree entry.
         /// </summary>
-        /// <param name="text">The name to set for.</param>
+        /// <param name="text">The text to set for.</param>
         /// <param name="icon">The icon to set for.</param>
         /// <param name="level">The level to set for.</param>
         /// <param name="userData">The user data to set for.</param>

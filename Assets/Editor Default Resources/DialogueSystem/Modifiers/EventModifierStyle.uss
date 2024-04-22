@@ -1,5 +1,5 @@
-/*< ---------------------------------------------------------- Helper Button Container >*/
-.eventModifier-helperButton-container {
+/*< ---------------------------------------------------------- Helper Buttons Container >*/
+.eventModifier-helperButtons-container {
 
 	align-items: center;
 
@@ -258,7 +258,7 @@
 
 .eventModifier-dialogueEvent-field:focus
 .object-field-input {
-
+	
 	/* top - right - bottom - left */
 	margin: -1px -1.5px -1px -1.5px;
 }
@@ -314,10 +314,6 @@
 	height: 18px;
 	width: 20px;
 
-	align-self: Center;
-
-	flex-shrink: 0;
-	
 	-unity-slice-top: 0;
 	-unity-slice-right: 0;
 	-unity-slice-bottom: 0;
@@ -325,7 +321,9 @@
 	-unity-slice-scale: 0;
 
 	/* top - right - bottom - left */
-	margin: 0px 1px 0px 0px;
+	margin: 0.5px 2px 0px 0px;
+
+	cursor: link;
 }
 
 .eventModifier-dialogueEvent-field
@@ -344,9 +342,8 @@
 	border-radius: 4px;
 }
 
-
-/*< ---------------------------------------------------------- Dialogue Event Image >*/
-.eventModifier-dialogueEvent-image {
+.eventModifier-dialogueEvent-field
+.object-field-display-iconImage {
 
 	height: 18.5px;
 	width: 17px;
@@ -354,13 +351,13 @@
 	align-self: center;
 
 	/* top - right - bottom - left */
-	margin: 0px 0px 0.5px 4px;
+	margin: 0px 0px 0px 4px;
 
 	--unity-image-tint-color: white;
 }
 
 .eventModifier-dialogueEvent-field.object-field-empty
-.eventModifier-dialogueEvent-image {
+.object-field-display-iconImage {
 
 	--unity-image-tint-color: rgba(81, 81, 81, 1);
 }

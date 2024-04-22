@@ -226,7 +226,9 @@
 	-unity-slice-scale: 0;
 
 	/* top - right - bottom - left */
-	margin: 0px 1px 0px 0px;
+	margin: 0.5px 2px 0px 0px;
+
+	cursor: link;
 }
 
 .dialogueSpeaker-dialogueSpeaker-field

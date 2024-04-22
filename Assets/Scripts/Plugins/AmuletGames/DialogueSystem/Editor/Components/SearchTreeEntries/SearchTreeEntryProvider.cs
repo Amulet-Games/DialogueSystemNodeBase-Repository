@@ -5,7 +5,7 @@ using UnityEngine;
 namespace AG.DS
 {
     /// <summary>
-    /// A class that stores all the search tree entries that will be used in the dialogue system window.
+    /// A class that stores all the static search tree entries that will be used in the dialogue system window.
     /// </summary>
     public static class SearchTreeEntryProvider
     {
@@ -19,7 +19,7 @@ namespace AG.DS
         /// Reference of the empty search tree entry icon.
         /// <br>This will create a space on each search tree entry next to their name text.</br>
         /// </summary>
-        static Texture2D emptySearchTreeEntryIcon;
+        public static Texture2D EmptySearchTreeEntryIcon;
 
 
         /// <summary>
@@ -53,9 +53,21 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The top search tree entry index.
+        /// Reference of the condition modifier second variable none search tree entry.
         /// </summary>
-        const int ENTRY_TOP_LEVEL_INDEX = 0;
+        public static SearchTreeEntry ConditionModifierSecondVariableNoneSearchTreeEntry;
+
+
+        /// <summary>
+        /// Reference of the condition modifier second value none search tree entry.
+        /// </summary>
+        public static SearchTreeEntry ConditionModifierSecondValueNoneSearchTreeEntry;
+
+
+        /// <summary>
+        /// The title search tree entry index.
+        /// </summary>
+        public const int TITLE_ENTRY_LEVEL_INDEX = 0;
 
 
         /// <summary>
@@ -81,9 +93,9 @@ namespace AG.DS
         /// </summary>
         static void CreateEmptySearchTreeEntryIcon()
         {
-            emptySearchTreeEntryIcon = new Texture2D(1, 1);
-            emptySearchTreeEntryIcon.SetPixel(0, 0, new Color(0, 0, 0, 0));
-            emptySearchTreeEntryIcon.Apply();
+            EmptySearchTreeEntryIcon = new Texture2D(1, 1);
+            EmptySearchTreeEntryIcon.SetPixel(0, 0, new Color(0, 0, 0, 0));
+            EmptySearchTreeEntryIcon.Apply();
         }
 
 
@@ -95,7 +107,7 @@ namespace AG.DS
             var creationRequestEntry = SearchTreeGroupEntryPresenter.CreateEntry
             (
                 text: StringConfig.SearchTreeGroupEntry_NodeCreationRequest_CreationRequest_LabelText,
-                level: ENTRY_TOP_LEVEL_INDEX
+                level: TITLE_ENTRY_LEVEL_INDEX
             );
             var newNodeEntry = SearchTreeGroupEntryPresenter.CreateEntry
             (
@@ -107,67 +119,66 @@ namespace AG.DS
             {
                 creationRequestEntry,
                 newNodeEntry,
-
                 SearchTreeEntryPresenter.CreateEntry
                 (
                     text: StringConfig.SearchTreeEntry_Common_BooleanNode_LabelText,
-                    icon: emptySearchTreeEntryIcon,
+                    icon: EmptySearchTreeEntryIcon,
                     level: newNodeEntry.NextLevel(),
                     userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.Boolean)
                 ),
                 SearchTreeEntryPresenter.CreateEntry
                 (
                     text: StringConfig.SearchTreeEntry_Common_DialogueNode_LabelText,
-                    icon: emptySearchTreeEntryIcon,
+                    icon: EmptySearchTreeEntryIcon,
                     level: newNodeEntry.NextLevel(),
                     userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.Dialogue)
                 ),
                 SearchTreeEntryPresenter.CreateEntry
                 (
                     text: StringConfig.SearchTreeEntry_Common_EndNode_LabelText,
-                    icon: emptySearchTreeEntryIcon,
-                    level: newNodeEntry.NextLevel(),
+                    icon: EmptySearchTreeEntryIcon,
+                    level: 3,
                     userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.End)
                 ),
                 SearchTreeEntryPresenter.CreateEntry
                 (
                     text: StringConfig.SearchTreeEntry_Common_EventNode_LabelText,
-                    icon: emptySearchTreeEntryIcon,
+                    icon: EmptySearchTreeEntryIcon,
                     level: newNodeEntry.NextLevel(),
                     userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.Event)
                 ),
                 SearchTreeEntryPresenter.CreateEntry
                 (
                     text: StringConfig.SearchTreeEntry_Common_OptionBranchNode_LabelText,
-                    icon: emptySearchTreeEntryIcon,
+                    icon: EmptySearchTreeEntryIcon,
                     level: newNodeEntry.NextLevel(),
                     userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.OptionBranch)
                 ),
                 SearchTreeEntryPresenter.CreateEntry
                 (
                     text: StringConfig.SearchTreeEntry_Common_OptionRootNode_LabelText,
-                    icon: emptySearchTreeEntryIcon,
+                    icon: EmptySearchTreeEntryIcon,
                     level: newNodeEntry.NextLevel(),
                     userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.OptionRoot)
                 ),
                 SearchTreeEntryPresenter.CreateEntry
                 (
                     text: StringConfig.SearchTreeEntry_Common_PreviewNode_LabelText,
-                    icon: emptySearchTreeEntryIcon,
+                    icon: EmptySearchTreeEntryIcon,
                     level: newNodeEntry.NextLevel(),
                     userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.Preview)
                 ),
                 SearchTreeEntryPresenter.CreateEntry
                 (
                     text: StringConfig.SearchTreeEntry_Common_StartNode_LabelText,
-                    icon: emptySearchTreeEntryIcon,
+                    icon: EmptySearchTreeEntryIcon,
                     level: newNodeEntry.NextLevel(),
                     userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.Start)
                 ),
                 SearchTreeEntryPresenter.CreateEntry
                 (
                     text: StringConfig.SearchTreeEntry_Common_StoryNode_LabelText,
-                    icon: emptySearchTreeEntryIcon,
+                    icon: EmptySearchTreeEntryIcon,
                     level: newNodeEntry.NextLevel(),
                     userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.Story)
                 ),
@@ -183,61 +194,61 @@ namespace AG.DS
             var edgeConnectorEntry = SearchTreeGroupEntryPresenter.CreateEntry
             (
                 text: StringConfig.SearchTreeGroupEntry_EdgeConnector_EdgeConnector_LabelText,
-                level: ENTRY_TOP_LEVEL_INDEX
+                level: TITLE_ENTRY_LEVEL_INDEX
             );
             var booleanNodeSearchTreeEntry = SearchTreeEntryPresenter.CreateEntry
             (
                 text: StringConfig.SearchTreeEntry_Common_BooleanNode_LabelText,
-                icon: emptySearchTreeEntryIcon,
+                icon: EmptySearchTreeEntryIcon,
                 level: edgeConnectorEntry.NextLevel(),
                 userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.Boolean)
             );
             var dialogueNodeSearchTreeEntry = SearchTreeEntryPresenter.CreateEntry
             (
                 text: StringConfig.SearchTreeEntry_Common_DialogueNode_LabelText,
-                icon: emptySearchTreeEntryIcon,
+                icon: EmptySearchTreeEntryIcon,
                 level: edgeConnectorEntry.NextLevel(),
                 userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.Dialogue)
             );
             var endNodeSearchTreeEntry = SearchTreeEntryPresenter.CreateEntry
             (
                 text: StringConfig.SearchTreeEntry_Common_EndNode_LabelText,
-                icon: emptySearchTreeEntryIcon,
+                icon: EmptySearchTreeEntryIcon,
                 level: edgeConnectorEntry.NextLevel(),
                 userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.End)
             );
             var eventNodeSearchTreeEntry = SearchTreeEntryPresenter.CreateEntry
             (
                 text: StringConfig.SearchTreeEntry_Common_EventNode_LabelText,
-                icon: emptySearchTreeEntryIcon,
+                icon: EmptySearchTreeEntryIcon,
                 level: edgeConnectorEntry.NextLevel(),
                 userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.Event)
             );
             var optionBranchNodeSearchTreeEntry = SearchTreeEntryPresenter.CreateEntry
             (
                 text: StringConfig.SearchTreeEntry_Common_OptionBranchNode_LabelText,
-                icon: emptySearchTreeEntryIcon,
+                icon: EmptySearchTreeEntryIcon,
                 level: edgeConnectorEntry.NextLevel(),
                 userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.OptionBranch)
             );// 
             var optionRootNodeSearchTreeEntry = SearchTreeEntryPresenter.CreateEntry
             (
                 text: StringConfig.SearchTreeEntry_Common_OptionRootNode_LabelText,
-                icon: emptySearchTreeEntryIcon,
+                icon: EmptySearchTreeEntryIcon,
                 level: edgeConnectorEntry.NextLevel(),
                 userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.OptionRoot)
             );
             var previewNodeSearchTreeEntry = SearchTreeEntryPresenter.CreateEntry
             (
                 text: StringConfig.SearchTreeEntry_Common_PreviewNode_LabelText,
-                icon: emptySearchTreeEntryIcon,
+                icon: EmptySearchTreeEntryIcon,
                 level: edgeConnectorEntry.NextLevel(),
                 userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.Preview)
             );
             var startNodeSearchTreeEntry = SearchTreeEntryPresenter.CreateEntry
             (
                 text: StringConfig.SearchTreeEntry_Common_StartNode_LabelText,
-                icon: emptySearchTreeEntryIcon,
+                icon: EmptySearchTreeEntryIcon,
                 level: edgeConnectorEntry.NextLevel(),
                 userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.Start)
             );

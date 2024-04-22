@@ -1,5 +1,5 @@
-/*< ---------------------------------------------------------- Helper Button Container >*/
-.messageModifier-helperButton-container {
+/*< ---------------------------------------------------------- Helper Buttons Container >*/
+.messageModifier-helperButtons-container {
 
 	align-items: center;
 
@@ -318,7 +318,7 @@
 	align-self: flex-start;
 
 	/* top - right - bottom - left */
-	margin: 2px 0px 0px 2px;
+	margin: 2.5px 0px 0px 2px;
 
 	--unity-image-tint-color: white;
 }
@@ -330,7 +330,7 @@
 .messageModifier-messageText-image {
 
 	/* top - right - bottom - left */
-	margin: 1.5px 0px 0px 1px;
+	margin: 2px 0px 0px 1px;
 }
 
 .messageModifier-messageText-field.text-field-empty
@@ -494,7 +494,9 @@
 	-unity-slice-scale: 0;
 
 	/* top - right - bottom - left */
-	margin: 0px 1px 0px 0px;
+	margin: 0.5px 2px 0px 0px;
+
+	cursor: link;
 }
 
 .messageModifier-messageAudio-field
@@ -513,9 +515,8 @@
 	border-radius: 4px;
 }
 
-
-/*< ---------------------------------------------------------- Message Audio Image >*/
-.messageModifier-messageAudio-image {
+.messageModifier-messageAudio-field
+.object-field-display-iconImage {
 
 	height: 19.5px;
 	width: 19.5px;
@@ -529,14 +530,14 @@
 }
 
 .messageModifier-messageAudio-field.object-field-empty
-.messageModifier-messageAudio-image {
+.object-field-display-iconImage {
 
 	--unity-image-tint-color: rgba(81, 81, 81, 1);
 }
 
 
-/*< ---------------------------------------------------------- Continue By & Start Delay Container >*/
-.messageModifier-continueBy-startDelay-container {
+/*< ---------------------------------------------------------- Dropdowns Container >*/
+.messageModifier-dropdowns-container {
 
 	flex-direction: row;
 }

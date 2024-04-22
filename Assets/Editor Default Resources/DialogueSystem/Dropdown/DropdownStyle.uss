@@ -31,7 +31,7 @@
 }
 
 
-/*< ---------------------------------------------------------- Dropdown Button Image >*/
+/*< ---------------------------------------------------------- Dropdown Button Icon Image >*/
 .dropdown-dropdownButton-icon-image {
 
 	align-self: center;
@@ -54,7 +54,7 @@
 	margin: 0px 0px 0px 4px;
 }
 
-/*< ---------------------------------------------------------- Dropdown Button Label >*/
+/*< ---------------------------------------------------------- Dropdown Button Text Label >*/
 .dropdown-dropdownButton-text-label {
 	
 	color: white;

@@ -1,17 +1,19 @@
-using UnityEngine;
-
 namespace AG.DS
 {
+    using VariableGroup = ConditionModifierView.VariableGroup;
+
     public class ConditionModifierCallback
     {
         /// <summary>
         /// The callback to invoke when the modifier is created on the graph by the system or user.
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
+        /// <param name="searchTreeEntryProvider">The condition modifier search tree entry provider to set for.</param>
         /// <param name="byUser">Is the modifier created by the user.</param>
         public static void OnCreate
         (
             ConditionModifierView view,
+            ConditionModifierViewSearchTreeEntryProvider searchTreeEntryProvider,
             bool byUser
         )
         {
@@ -19,8 +21,8 @@ namespace AG.DS
             {
                 FolderCallback.OnCreateByUser(view.Folder);
 
-                ReflectableObjectFieldCallback<Object>.OnCreateByUser(view.SecondReflectableObjectFieldView);
-                BindingFlagsCallback.OnCreateByUser(view.SecondBindingFlags);
+                VariableGroupCallback.OnCreateByUser(group: view.FirstVariableGroup, searchTreeEntryProvider);
+                VariableGroupCallback.OnCreateByUser(group: view.SecondVariableGroup, searchTreeEntryProvider);
 
                 DropdownCallback.OnCreateByUser(view.OperationDropdown);
                 DropdownCallback.OnCreateByUser(view.ChainWithDropdown);
@@ -39,7 +41,35 @@ namespace AG.DS
         /// <param name="view">The condition modifier view to set for.</param>
         static void OnCreateByUser(ConditionModifierView view)
         {
-            view.OperationType = ConditionModifierOperationType.String;
+            view.m_OperationType = ConditionModifierView.OperationType.String;
+        }
+
+
+        class VariableGroupCallback
+        {
+            /// <summary>
+            /// The callback to invoke when the group is created on the graph by the user.
+            /// </summary>
+            /// <param name="group">The variable group element to set for.</param>
+            /// <param name="searchTreeEntryProvider">The condition modifier search tree entry provider to set for.</param>
+            public static void OnCreateByUser
+            (
+                VariableGroup group,
+                ConditionModifierViewSearchTreeEntryProvider searchTreeEntryProvider
+            )
+            {
+                SearchWindowSelectorCallback.OnCreateByUser
+                (
+                    selector: group.VariableSearchWindowSelector,
+                    nullValueEntry: searchTreeEntryProvider.NullValueVariableSearchTreeEntry
+                );
+
+                SearchWindowSelectorCallback.OnCreateByUser
+                (
+                    selector: group.FieldInfoSearchWindowSelector,
+                    nullValueEntry: searchTreeEntryProvider.NullValueVariableSearchTreeEntry
+                );
+            }
         }
     }
 }

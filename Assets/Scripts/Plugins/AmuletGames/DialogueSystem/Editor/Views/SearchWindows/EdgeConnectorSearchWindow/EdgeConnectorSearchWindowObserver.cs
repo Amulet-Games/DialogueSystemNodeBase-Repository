@@ -10,13 +10,19 @@ namespace AG.DS
         /// <summary>
         /// The targeting edge connector search window.
         /// </summary>
-        public EdgeConnectorSearchWindowView view;
+        EdgeConnectorSearchWindowView view;
 
 
         /// <summary>
         /// Reference of the graph viewer element.
         /// </summary>
         GraphViewer graphViewer;
+
+
+        /// <summary>
+        /// Reference of the language handler.
+        /// </summary>
+        LanguageHandler languageHandler;
 
 
         /// <summary>
@@ -41,17 +47,27 @@ namespace AG.DS
         /// Constructor of the edge connector search window observer class.
         /// </summary>
         /// <param name="view">The edge connector search window view to set for.</param>
-        public EdgeConnectorSearchWindowObserver(EdgeConnectorSearchWindowView view)
+        /// <param name="graphViewer">The graph viewer element to set for.</param>
+        /// <param name="languageHandler">The language handler to set for.</param>
+        /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
+        public EdgeConnectorSearchWindowObserver
+        (
+            EdgeConnectorSearchWindowView view,
+            GraphViewer graphViewer,
+            LanguageHandler languageHandler,
+            DialogueSystemWindow dialogueSystemWindow
+        )
         {
             this.view = view;
-            graphViewer = view.GraphViewer;
-            dialogueSystemWindow = view.DialogueSystemWindow;
+            this.graphViewer = graphViewer;
+            this.languageHandler = languageHandler;
+            this.dialogueSystemWindow = dialogueSystemWindow;
         }
 
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the edge connector search window.
+        /// Register events to the edge connector search window view.
         /// </summary>
         public void RegisterEvents()
         {
@@ -62,7 +78,7 @@ namespace AG.DS
         /// <summary>
         /// Register events to the search window component.
         /// </summary>
-        public void RegisterSearchWindowEvents()
+        void RegisterSearchWindowEvents()
             => new SearchWindowObserver(view.SearchWindow, SearchWindowEntrySelectedEvent).RegisterEvents();
 
 
@@ -80,7 +96,7 @@ namespace AG.DS
             (
                 graphViewer,
                 nodeType: ((NodeTypeSearchTreeEntryUserData)searchTreeEntry.userData).NodeType,
-                view.LanguageHandler
+                languageHandler
             );
 
             nodeProduct.ExecuteOnceOnGeometryChanged(NodeProductCreatedEvent);

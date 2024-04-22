@@ -23,9 +23,9 @@ namespace AG.DS
             {
                 graphViewer.Remove(port: View.InputPort);
 
-                for (int i = 0; i < View.OutputOptionPortGroup.GroupCells.Count; i++)
+                for (int i = 0; i < View.OutputOptionPortGroup.Items.Count; i++)
                 {
-                    graphViewer.Remove(port: View.OutputOptionPortGroup.GroupCells[i].PortCell.Port);
+                    graphViewer.Remove(port: View.OutputOptionPortGroup.Items[i].PortCell.Port);
                 }
 
                 View.InputPort.Disconnect(graphViewer);

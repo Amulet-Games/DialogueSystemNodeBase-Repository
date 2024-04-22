@@ -115,7 +115,7 @@ namespace AG.DS
             }
 
             EnumFlagsButtonTextLabel.text = allFlag
-                ? StringConfig.ConditionModifier_BindingFlags_FlagElement_All_LabelText
+                ? StringConfig.ConditionModifierView.BindingFlags_FlagElement_All_LabelText
                 : m_selectedItems.ToString();
         }
     }

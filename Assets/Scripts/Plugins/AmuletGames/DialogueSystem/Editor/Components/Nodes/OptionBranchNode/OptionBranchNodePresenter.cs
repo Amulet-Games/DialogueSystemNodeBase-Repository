@@ -31,12 +31,15 @@ namespace AG.DS
         {
             // Input
             {
-                View.InputOptionPortCell = OptionPortCellPresenter.CreateElement
+                var portCellModel = new OptionPortCellModel
                 (
-                    edgeConnectorSearchWindowView: Node.GraphViewer.OptionEdgeConnectorSearchWindowView,
                     direction: Direction.Input,
-                    isIndexDominant: false
+                    isIndexDominant: false,
+                    index: OptionPortGroup.FIRST_ITEM_INDEX,
+                    edgeConnectorSearchWindowView: Node.GraphViewer.OptionEdgeConnectorSearchWindowView
                 );
+
+                View.InputOptionPortCell = OptionPortCellFactory.Generate(model: portCellModel);
 
                 Node.Add(View.InputOptionPortCell);
             }
@@ -48,21 +51,12 @@ namespace AG.DS
                     direction: Direction.Output,
                     capacity: Capacity.Single,
                     name: StringConfig.Port_Output_LabelText,
-                    color: PortConfig.DefaultPortColor
-                );
-                var edgeModel = new EdgeModel
-                (
-                    focusable: true,
-                    styleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
-                );
-                var edgeConnectorListenerModel = new EdgeConnectorListenerModel
-                (
+                    color: PortConfig.DefaultPortColor,
                     edgeConnectorSearchWindowView: Node.GraphViewer.EdgeConnectorSearchWindowView,
-                    edgeModel: edgeModel
+                    edgeModel: new(focusable: true, styleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle)
                 );
 
                 View.OutputPort = PortFactory.Generate(portModel);
-                View.OutputPort.AddEdgeConnector(edgeConnectorListenerModel);
 
                 Node.Add(View.OutputPort);
             }

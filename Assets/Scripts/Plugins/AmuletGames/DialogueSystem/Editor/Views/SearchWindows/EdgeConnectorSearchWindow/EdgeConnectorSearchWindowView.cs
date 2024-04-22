@@ -12,24 +12,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the graph viewer element.
-        /// </summary>
-        public GraphViewer GraphViewer;
-
-
-        /// <summary>
-        /// Reference of the language handler.
-        /// </summary>
-        public LanguageHandler LanguageHandler;
-
-
-        /// <summary>
-        /// Reference of the dialogue system window.
-        /// </summary>
-        public DialogueSystemWindow DialogueSystemWindow;
-
-
-        /// <summary>
         /// The property of the connector port reference.
         /// </summary>
         public Port ConnectorPort
@@ -43,7 +25,8 @@ namespace AG.DS
                 m_connectorPort = value;
 
                 SearchWindow.SearchTreeEntries = m_connectorPort.IsInput()
-                    ? InputConnectorSearchTreeEntries : OutputConnectorSearchTreeEntries;
+                    ? InputConnectorSearchTreeEntries
+                    : OutputConnectorSearchTreeEntries;
             }
         }
 
@@ -75,23 +58,14 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the edge connector search window view class.
         /// </summary>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="languageHandler">The language handler to set for.</param>
         /// <param name="inputConnectorSearchTreeEntries">The input connector search tree entries to set for.</param>
         /// <param name="outputConnectorSearchTreeEntries">The output connector search tree entries to set for.</param>
-        /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
         public EdgeConnectorSearchWindowView
         (
-            GraphViewer graphViewer,
-            LanguageHandler languageHandler,
             List<SearchTreeEntry> inputConnectorSearchTreeEntries,
-            List<SearchTreeEntry> outputConnectorSearchTreeEntries,
-            DialogueSystemWindow dialogueSystemWindow
+            List<SearchTreeEntry> outputConnectorSearchTreeEntries
         )
         {
-            GraphViewer = graphViewer;
-            LanguageHandler = languageHandler;
-            DialogueSystemWindow = dialogueSystemWindow;
             InputConnectorSearchTreeEntries = inputConnectorSearchTreeEntries;
             OutputConnectorSearchTreeEntries = outputConnectorSearchTreeEntries;
         }

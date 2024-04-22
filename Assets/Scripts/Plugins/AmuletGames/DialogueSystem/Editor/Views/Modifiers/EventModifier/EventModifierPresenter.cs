@@ -63,7 +63,7 @@ namespace AG.DS
             void CreateContainers()
             {
                 helperButtonsContainer = new();
-                helperButtonsContainer.AddToClassList(StyleConfig.EventModifier_HelperButton_Container);
+                helperButtonsContainer.AddToClassList(StyleConfig.EventModifier_HelperButtons_Container);
 
                 dialogueEventContainer = new();
                 dialogueEventContainer.AddToClassList(StyleConfig.EventModifier_DialogueEvent_Container);
@@ -142,10 +142,10 @@ namespace AG.DS
                 dialogueEventImage = ImagePresenter.CreateElement
                 (
                     sprite: ConfigResourcesManager.SpriteConfig.DialogueEventFieldSprite,
-                    USS01: StyleConfig.EventModifier_DialogueEvent_Image
+                    USS01: StyleConfig.Object_Field_Display_IconImage
                 );
 
-                view.DialogueEventFieldView.Field.SetDisplayImage(dialogueEventImage);
+                view.DialogueEventFieldView.Field.SetIconImage(dialogueEventImage);
             }
 
             void CreateStartDelayLabel()

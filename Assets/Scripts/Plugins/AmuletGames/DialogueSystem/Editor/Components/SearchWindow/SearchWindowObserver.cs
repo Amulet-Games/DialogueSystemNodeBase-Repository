@@ -46,19 +46,6 @@ namespace AG.DS
         /// <summary>
         /// Register EntrySelectedEvent to the search window.
         /// </summary>
-        void RegisterEntrySelectEvent() =>
-            searchWindow.EntrySelectedEvent += SearchWindowEntrySelectedEvent;
-
-
-        // ----------------------------- Event -----------------------------
-        /// <summary>
-        /// The event to invoke when an entry in the search window is selected.
-        /// </summary>
-        /// <param name="searchTreeEntry">The selected entry.</param>
-        /// <param name="context">Contextual data to pass to the search window when it is first created.</param>
-        bool SearchWindowEntrySelectedEvent(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
-        {
-            return entrySelectedEvent.Invoke(searchTreeEntry, context);
-        }
+        void RegisterEntrySelectEvent() => searchWindow.EntrySelectedEvent = entrySelectedEvent;
     }
 }

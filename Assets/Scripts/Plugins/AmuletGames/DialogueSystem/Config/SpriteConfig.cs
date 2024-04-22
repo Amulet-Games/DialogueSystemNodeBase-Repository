@@ -34,8 +34,10 @@ namespace AG.DS
 
         #region Dropdown Arrows
         [Header("Dropdown Arrows")]
-        public Sprite MenuSelectIcon1Sprite;
-        public Sprite MenuSelectIcon2Sprite;
+        public Sprite DropdownMenuSelectIconSprite;
+        public Sprite ObjectPickerSelectIcon;
+        public Sprite SearchWindowSelectIconSprite;
+        public Sprite ToolbarMenuSelectIconSprite;
         #endregion
 
         #region Fields.
@@ -50,8 +52,9 @@ namespace AG.DS
         public Sprite MessageAudioFieldSprite;
         public Sprite MessageTextFieldSprite;
         public Sprite RootTitleFieldSprite;
-        public Sprite SwitchFieldButtonIconSprite;
-        public Sprite SwitchFieldButtonDisableIconSprite;
+        public Sprite SceneObjectFieldIconSprite;
+        public Sprite SwitchButtonDisableIconSprite;
+        public Sprite SwitchButtonIconSprite;
         public Sprite UnityObjectFieldIconSprite;
         #endregion
 

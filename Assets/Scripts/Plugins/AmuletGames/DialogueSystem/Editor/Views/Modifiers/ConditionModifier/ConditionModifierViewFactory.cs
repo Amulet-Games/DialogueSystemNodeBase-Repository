@@ -17,17 +17,18 @@ namespace AG.DS
         )
         {
             var view = new ConditionModifierView();
+            var searchTreeEntryProvider = new ConditionModifierViewSearchTreeEntryProvider(view);
 
-            ConditionModifierPresenter.CreateElement(view, index: groupView.NextIndex, graphViewer);
+            ConditionModifierViewPresenter.CreateElement(view, index: groupView.NextIndex, graphViewer);
 
-            new ConditionModifierObserver(view, groupView).RegisterEvents();
+            new ConditionModifierViewObserver(view, searchTreeEntryProvider, groupView).RegisterEvents();
 
             if (data != null)
             {
                 ConditionModifierSerializer.Load(view, data);
             }
 
-            ConditionModifierCallback.OnCreate(view, byUser: data == null);
+            ConditionModifierCallback.OnCreate(view, searchTreeEntryProvider, byUser: data == null);
 
             return view;
         }

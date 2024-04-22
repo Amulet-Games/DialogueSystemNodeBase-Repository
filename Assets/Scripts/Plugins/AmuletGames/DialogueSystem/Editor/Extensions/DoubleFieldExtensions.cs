@@ -16,7 +16,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Return the double field's text element.
+        /// Returns the double field's text element.
         /// </summary>
         /// <param name="field">Extension double field.</param>
         /// <returns>The text element of the double field.</returns>

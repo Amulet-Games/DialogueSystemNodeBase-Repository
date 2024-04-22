@@ -16,12 +16,12 @@ namespace AG.DS
     }
 
 
-    public enum ConditionModifierOperationType
-    {
-        String,
-        Float,
-        CustomLogic,
-    }
+    //public enum ConditionModifierOperationType
+    //{
+    //    String,
+    //    Number,
+    //    CustomLogic,
+    //}
 
 
     /*< -------------------- Message -------------------- >*/

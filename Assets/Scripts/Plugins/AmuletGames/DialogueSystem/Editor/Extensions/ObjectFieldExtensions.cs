@@ -6,13 +6,41 @@ namespace AG.DS
     public static class ObjectFieldExtensions
     {
         /// <summary>
+        /// Returns the object field's initial child's element.
+        /// <para></para>
+        /// Note that this method only works when the object field's child elements' order hasn't been changed.<br>
+        /// And new elements haven't been added to the object field.
+        /// </summary>
+        /// <param name="field">Extension object field.</param>
+        /// <returns>The object field's initial child's element.</returns>
+        public static
+        (
+            VisualElement inputElement,
+            VisualElement displayElement,
+            VisualElement selectorElement,
+            VisualElement displayImageElement,
+            VisualElement displayLabelElement
+        )
+            GetInitialChildElements(this ObjectField field)
+        {
+            var fieldInput = field.Q(className: ObjectField.inputUssClassName);
+            var fieldDisplay = fieldInput.Q(className: ObjectField.objectUssClassName);
+            var fieldSelector = fieldInput.Q(className: ObjectField.selectorUssClassName);
+            var fieldDisplayImage = fieldDisplay.Q(className: "unity-object-field-display__icon");
+            var fieldDisplayLabel = fieldDisplay.Q(className: "unity-object-field-display__label");
+            
+            return (fieldInput, fieldDisplay, fieldSelector, fieldDisplayImage, fieldDisplayLabel);
+        }
+
+
+        /// <summary>
         /// Returns the object field's input element.
         /// </summary>
         /// <param name="field">Extension object field.</param>
         /// <returns>The input element of the object field.</returns>
         public static VisualElement GetFieldInput(this ObjectField field)
         {
-            return field.ElementAt(0);
+            return field.Q(className: StyleConfig.Object_Field_Input);
         }
 
 
@@ -23,7 +51,7 @@ namespace AG.DS
         /// <returns>The display element of the object field.</returns>
         public static VisualElement GetFieldDisplay(this ObjectField field)
         {
-            return field.GetFieldInput().ElementAt(0);
+            return field.GetFieldInput().Q(className: StyleConfig.Object_Field_Display);
         }
 
 
@@ -34,18 +62,7 @@ namespace AG.DS
         /// <returns>The selector element of the object field.</returns>
         public static VisualElement GetFieldSelector(this ObjectField field)
         {
-            return field.GetFieldInput().ElementAt(1);
-        }
-
-
-        /// <summary>
-        /// Returns the object field's display image element.
-        /// </summary>
-        /// <param name="field">Extension object field.</param>
-        /// <returns>The image label element of the object field.</returns>
-        public static Image GetDisplayImage(this ObjectField field)
-        {
-            return (Image)field.GetFieldDisplay().ElementAt(0);
+            return field.GetFieldInput().Q(className: ObjectField.selectorUssClassName);
         }
 
 
@@ -54,29 +71,18 @@ namespace AG.DS
         /// </summary>
         /// <param name="field">Extension object field.</param>
         /// <returns>The display label element of the object field.</returns>
-        public static Label GetDisplayLabel(this ObjectField field)
+        public static VisualElement GetDisplayLabel(this ObjectField field)
         {
-            var fieldDisplay = field.GetFieldDisplay();
-
-            if (fieldDisplay.childCount > 1)
-            {
-                // Display image is added.
-                return (Label)fieldDisplay.ElementAt(1);
-            }
-            else
-            {
-                // Display image isn't added.
-                return (Label)fieldDisplay.ElementAt(0);
-            }
+            return field.GetFieldDisplay().Q(className: StyleConfig.Object_Field_Display_Label);
         }
 
 
         /// <summary>
-        /// Set the object field's display image.
+        /// Set the object field's icon image.
         /// </summary>
         /// <param name="field">Extension object field.</param>
         /// <param name="image">The image to set for.</param>
-        public static void SetDisplayImage
+        public static void SetIconImage
         (
             this ObjectField field,
             Image image
@@ -87,6 +93,21 @@ namespace AG.DS
             // Place it as the first element within the field's hierarchy list
             // so that it's align on the left side.
             image.SendToBack();
+        }
+
+
+        /// <summary>
+        /// Set the object field's select image.
+        /// </summary>
+        /// <param name="field">Extension object field.</param>
+        /// <param name="image">The image to set for.</param>
+        public static void SetSelectImage
+        (
+            this ObjectField field,
+            Image image
+        )
+        {
+            field.GetFieldDisplay().Add(image);
         }
 
 
@@ -134,7 +155,7 @@ namespace AG.DS
             string placeholderText
         )
         {
-            field.GetDisplayLabel().text = placeholderText;
+            ((Label)field.GetDisplayLabel()).text = placeholderText;
             field.AddToClassList(StyleConfig.Object_Field_Empty);
         }
     }

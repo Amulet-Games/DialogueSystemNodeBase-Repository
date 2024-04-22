@@ -89,11 +89,12 @@ namespace AG.DS
             GraphViewer.Add(port);
         }
 
+
         /// <summary>
         /// Add the given port cell to the node.
         /// </summary>
         /// <param name="portCell">The port cell base to set for.</param>
-        public void Add(PortCellBase portCell)
+        public void Add(OptionPortCell portCell)
         {
             (portCell.Port.direction == Direction.Input ? InputContainer : OutputContainer).Add(portCell);
 
@@ -110,18 +111,6 @@ namespace AG.DS
             (port.direction == Direction.Input ? InputContainer : OutputContainer).Remove(port);
 
             GraphViewer.Remove(port);
-        }
-
-
-        /// <summary>
-        /// Remove the given port cell from the node.
-        /// </summary>
-        /// <param name="portCell">The port cell base to set for.</param>
-        public void Remove(PortCellBase portCell)
-        {
-            (portCell.Port.direction == Direction.Input ? InputContainer : OutputContainer).Remove(portCell);
-
-            GraphViewer.Remove(portCell.Port);
         }
     }
 }

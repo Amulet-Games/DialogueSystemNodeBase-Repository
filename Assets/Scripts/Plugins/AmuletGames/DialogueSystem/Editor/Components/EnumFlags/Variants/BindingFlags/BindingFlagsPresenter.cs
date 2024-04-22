@@ -59,7 +59,7 @@ namespace AG.DS
 
                     bindingFlags.AllTypeItem = EnumFlagsItemPresenter.CreateElement
                     (
-                        labelText: StringConfig.ConditionModifier_BindingFlags_FlagElement_All_LabelText,
+                        labelText: StringConfig.ConditionModifierView.BindingFlags_FlagElement_All_LabelText,
                         checkmarkSprite: ConfigResourcesManager.SpriteConfig.CheckmarkIconSprite,
                         flag: allFlag
                     );
@@ -69,25 +69,25 @@ namespace AG.DS
                 {
                     var instanceItem = EnumFlagsItemPresenter.CreateElement
                     (
-                        labelText: StringConfig.ConditionModifier_BindingFlags_FlagElement_Instance_LabelText,
+                        labelText: StringConfig.ConditionModifierView.BindingFlags_FlagElement_Instance_LabelText,
                         checkmarkSprite: ConfigResourcesManager.SpriteConfig.CheckmarkIconSprite,
                         flag: BindingFlags.Bindings.Instance
                     );
                     var staticItem = EnumFlagsItemPresenter.CreateElement
                     (
-                        labelText: StringConfig.ConditionModifier_BindingFlags_FlagElement_Static_LabelText,
+                        labelText: StringConfig.ConditionModifierView.BindingFlags_FlagElement_Static_LabelText,
                         checkmarkSprite: ConfigResourcesManager.SpriteConfig.CheckmarkIconSprite,
                         flag: BindingFlags.Bindings.Static
                     );
                     var publicItem = EnumFlagsItemPresenter.CreateElement
                     (
-                        labelText: StringConfig.ConditionModifier_BindingFlags_FlagElement_Public_LabelText,
+                        labelText: StringConfig.ConditionModifierView.BindingFlags_FlagElement_Public_LabelText,
                         checkmarkSprite: ConfigResourcesManager.SpriteConfig.CheckmarkIconSprite,
                         flag: BindingFlags.Bindings.Public
                     );
                     var privateItem = EnumFlagsItemPresenter.CreateElement
                     (
-                        labelText: StringConfig.ConditionModifier_BindingFlags_FlagElement_Private_LabelText,
+                        labelText: StringConfig.ConditionModifierView.BindingFlags_FlagElement_Private_LabelText,
                         checkmarkSprite: ConfigResourcesManager.SpriteConfig.CheckmarkIconSprite,
                         flag: BindingFlags.Bindings.Private
                     );

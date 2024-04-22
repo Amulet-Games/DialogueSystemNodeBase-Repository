@@ -15,7 +15,11 @@ namespace AG.DS
         /// </summary>
         public EdgeConnector EdgeConnector
         {
-            set
+            get
+            {
+                return m_EdgeConnector;
+            }
+            private set
             {
                 if (m_EdgeConnector != null)
                     return;
@@ -90,8 +94,10 @@ namespace AG.DS
         /// Setup for the port base class.
         /// </summary>
         /// <param name="callback">The port callback to set for.</param>
-        public Port Setup(IPortCallback callback)
+        public Port Setup(EdgeConnector edgeConnector, IPortCallback callback)
         {
+            EdgeConnector = edgeConnector;
+
             Callback = callback;
 
             SetupConnectorBox();

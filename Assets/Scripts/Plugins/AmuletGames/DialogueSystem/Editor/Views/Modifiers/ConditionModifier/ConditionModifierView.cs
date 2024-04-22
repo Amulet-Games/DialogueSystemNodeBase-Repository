@@ -1,10 +1,153 @@
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
 {
     public class ConditionModifierView
     {
+        public enum OperationType
+        {
+            String,
+            Number,
+            CustomLogic,
+        }
+
+
+        public class VariableGroup : VisualElement
+        {
+            public class SwitchButton : Button
+            {
+                /// <summary>
+                /// Label for the switch button text.
+                /// </summary>
+                public Label TextLabel;
+            }
+
+
+            /// <summary>
+            /// Button that switches the variable field when clicked.
+            /// </summary>
+            public SwitchButton m_SwitchButton;
+
+
+            /// <summary>
+            /// Element that contains the variable scene elements.
+            /// </summary>
+            public VisualElement SceneElementsContainer;
+
+
+            /// <summary>
+            /// The property of the scene elements displaying state
+            /// </summary>
+            public bool IsDisplaySceneElements
+            {
+                get
+                {
+                    return isDisplaySceneElements;
+                }
+                set
+                {
+                    isDisplaySceneElements = value;
+
+                    UpdateDisplay(view.m_OperationType);
+                }
+            }
+
+
+            /// <summary>
+            /// The scene elements displaying state.
+            /// </summary>
+            bool isDisplaySceneElements = false;
+
+
+            /// <summary>
+            /// Selector that opens the variable search window.
+            /// </summary>
+            public SearchWindowSelector VariableSearchWindowSelector;
+
+
+            /// <summary>
+            /// Element that contains the field info elements.
+            /// </summary>
+            public VisualElement FieldInfoContainer;
+
+
+            /// <summary>
+            /// Selector that opens the field info search selector.
+            /// </summary>
+            public SearchWindowSelector FieldInfoSearchWindowSelector;
+
+
+            /// <summary>
+            /// View for the text field.
+            /// </summary>
+            public CommonTextFieldView TextFieldView;
+
+
+            /// <summary>
+            /// Element that contains the float field elements.
+            /// </summary>
+            public VisualElement FloatFieldContainer;
+
+
+            /// <summary>
+            /// View for the float field.
+            /// </summary>
+            public CommonFloatFieldView FloatFieldView;
+
+
+            /// <summary>
+            /// View for the condition modifier.
+            /// </summary>
+            ConditionModifierView view;
+
+
+            /// <summary>
+            /// Constructor of the variable group element.
+            /// </summary>
+            /// <param name="view">The condition modifier view to set for.</param>
+            /// <param name="textFieldPlaceholderText">The text field placeholder text to set for.</param>
+            public VariableGroup
+            (
+                ConditionModifierView view,
+                string textFieldPlaceholderText
+            )
+            {
+                this.view = view;
+                TextFieldView = new(placeholderText: textFieldPlaceholderText);
+                FloatFieldView = new();
+            }
+
+
+            /// <summary>
+            /// Update the variable group's display.
+            /// </summary>
+            /// <param name="operationType">The operation type to set for.</param>
+            public void UpdateDisplay(OperationType operationType)
+            {
+                this.SetDisplay(
+                    operationType == OperationType.String ||
+                    operationType == OperationType.Number
+                );
+
+                SceneElementsContainer.SetDisplay(IsDisplaySceneElements);
+
+                TextFieldView.Field.SetDisplay(
+                    !IsDisplaySceneElements &&
+                     operationType == OperationType.String
+                );
+
+                FloatFieldContainer.SetDisplay(
+                    !IsDisplaySceneElements &&
+                     operationType == OperationType.Number
+                );
+
+                m_SwitchButton.TextLabel.text = IsDisplaySceneElements
+                    ? StringConfig.ConditionModifierView.SwitchButton_ToManualInput_LabelText
+                    : StringConfig.ConditionModifierView.SwitchButton_ToSceneObject_LabelText;
+            }
+        }
+
+
         /// <summary>
         /// Folder that contains the modifier's elements.
         /// </summary>
@@ -36,57 +179,15 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Element that contains the second variable elements.
+        /// Element that contains the first variable group elements.
         /// </summary>
-        public VisualElement SecondVariableContainer;
+        public VariableGroup FirstVariableGroup;
 
 
         /// <summary>
-        /// Button that switches the second variable field when clicked.
+        /// Element that contains the second variable group elements.
         /// </summary>
-        public Button SecondVariableSwitchFieldButton;
-
-
-        /// <summary>
-        /// Element that contains the second reflectable elements.
-        /// </summary>
-        public VisualElement SecondReflectableElementsContainer;
-
-
-        /// <summary>
-        /// Element that contains the second binding flags and second field info scroller elements.
-        /// </summary>
-        public VisualElement SecondBindingFlagsFieldInfoContainer;
-
-
-        /// <summary>
-        /// View for the second reflectable object field.
-        /// </summary>
-        public ReflectableObjectFieldView<Object> SecondReflectableObjectFieldView;
-
-
-        /// <summary>
-        /// Enum flags for the second reflectable object field.
-        /// </summary>
-        public BindingFlags SecondBindingFlags; 
-
-
-        /// <summary>
-        /// View for the second text field.
-        /// </summary>
-        public CommonTextFieldView SecondTextFieldView;
-
-
-        /// <summary>
-        /// Element that contains the second float field and the hint label.
-        /// </summary>
-        public VisualElement SecondFloatFieldHintLabelContainer;
-
-
-        /// <summary>
-        ///  View for the second float field.
-        /// </summary>
-        public CommonFloatFieldView SecondFloatFieldView;
+        public VariableGroup SecondVariableGroup;
 
 
         /// <summary>
@@ -102,9 +203,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The property of the current operation type of the modifier.
+        /// The property of the current operation type.
         /// </summary>
-        public ConditionModifierOperationType OperationType
+        public OperationType m_OperationType
         {
             get
             {
@@ -113,55 +214,17 @@ namespace AG.DS
             set
             {
                 m_operationType = value;
-                UpdateFieldsDisplay();
+
+                FirstVariableGroup.UpdateDisplay(m_operationType);
+                SecondVariableGroup.UpdateDisplay(m_operationType);
             }
         }
 
 
         /// <summary>
-        /// Current operation type of the modifier.
+        /// The current operation type.
         /// </summary>
-        ConditionModifierOperationType m_operationType = ConditionModifierOperationType.String;
-
-
-        /// <summary>
-        /// The property of the second reflectable field displaying state.
-        /// </summary>
-        public bool IsDisplaySecondReflectableElements
-        {
-            get
-            {
-                return m_isDisplaySecondReflectableField;
-            }
-            set
-            {
-                m_isDisplaySecondReflectableField = value;
-                UpdateFieldsDisplay();
-            }
-        }
-
-
-        /// <summary>
-        /// Is the modifier displaying the second reflectable field?
-        /// </summary>
-        bool m_isDisplaySecondReflectableField = false;
-
-
-        /// <summary>
-        /// Constructor of the condition modifier view class.
-        /// </summary>
-        public ConditionModifierView()
-        {
-            SecondReflectableObjectFieldView = new(
-                placeholderText: StringConfig.ConditionModifier_SecondReflectableObjectField_PlaceholderText
-            );
-
-            SecondTextFieldView = new(
-                placeholderText: StringConfig.ConditionModifier_SecondTextField_PlaceholderText
-            );
-
-            SecondFloatFieldView = new();
-        }
+        OperationType m_operationType = OperationType.String;
 
 
         // ----------------------------- Service -----------------------------
@@ -184,28 +247,5 @@ namespace AG.DS
         /// </summary>
         /// <param name="value">The value to set to.</param>
         public void SetEnabledRemoveButton(bool value) => RemoveButton.SetEnabled(value: value);
-
-
-        /// <summary>
-        /// Update the modifier's fields display.
-        /// </summary>
-        private void UpdateFieldsDisplay()
-        {
-            SecondVariableContainer.SetDisplay(
-                m_operationType == ConditionModifierOperationType.String ||
-                m_operationType == ConditionModifierOperationType.Float
-            );
-            SecondReflectableElementsContainer.SetDisplay(
-                IsDisplaySecondReflectableElements
-            );
-            SecondTextFieldView.Field.SetDisplay(
-                !IsDisplaySecondReflectableElements &&
-                m_operationType == ConditionModifierOperationType.String
-            );
-            SecondFloatFieldHintLabelContainer.SetDisplay(
-                !IsDisplaySecondReflectableElements &&
-                m_operationType == ConditionModifierOperationType.Float
-            );
-        }
     }
 }

@@ -8,14 +8,8 @@ namespace AG.DS
         /// <summary>
         /// Create a new graph viewer element.
         /// </summary>
-        /// <param name="languageHandler">The language handler to set for.</param>
-        /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
         /// <returns>A new graph viewer element.</returns>
-        public static GraphViewer CreateElement
-        (
-            LanguageHandler languageHandler,
-            DialogueSystemWindow dialogueSystemWindow
-        )
+        public static GraphViewer CreateElement()
         {
             GraphViewer graphViewer;
 
@@ -37,7 +31,7 @@ namespace AG.DS
 
             void CreateGraphViewer()
             {
-                graphViewer = new(languageHandler, dialogueSystemWindow);
+                graphViewer = new();
             }
 
             void CreateNodeCreationRequestSearchWindow()

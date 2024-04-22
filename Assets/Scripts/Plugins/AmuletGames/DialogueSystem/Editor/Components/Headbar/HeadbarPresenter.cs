@@ -81,7 +81,7 @@ namespace AG.DS
                 headbar.LanguageToolbarMenu = ToolbarMenuPresenter.CreateElement
                 (
                     dropdownLabel: LanguageProvider.GetShort(type: languageHandler.CurrentLanguage),
-                    dropdownIcon: ConfigResourcesManager.SpriteConfig.MenuSelectIcon1Sprite,
+                    dropdownIcon: ConfigResourcesManager.SpriteConfig.ToolbarMenuSelectIconSprite,
                     toolbarMenuUSS: StyleConfig.Headbar_LanguageToolbarMenu_Main,
                     centerContainerUSS: StyleConfig.Headbar_LanguageToolbarMenu_Center_Container,
                     dropdownLabelUSS: StyleConfig.Headbar_LanguageToolbarMenu_Dropdown_Label,

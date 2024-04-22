@@ -56,20 +56,21 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the edge connector callback class.
+        /// Constructor of the edge connector listener class.
         /// </summary>
         /// <param name="connectorPort">The connector port to set for.</param>
-        /// <param name="model">The edge connector listener model to set for.</param>
+        /// <param name="edgeConnectorSearchWindowView">The edge connector search window view to set for.</param>
+        /// <param name="edgeModel">The edge model to set for.</param>
         public EdgeConnectorListener
         (
             Port connectorPort,
-            EdgeConnectorListenerModel model
+            EdgeConnectorSearchWindowView edgeConnectorSearchWindowView,
+            EdgeModel edgeModel
         )
         {
             this.connectorPort = connectorPort;
-
-            edgeConnectorSearchWindowView = model.EdgeConnectorSearchWindowView;
-            edgeModel = model.EdgeModel;
+            this.edgeConnectorSearchWindowView = edgeConnectorSearchWindowView;
+            this.edgeModel = edgeModel;
 
             edgesToCreate = new();
             edgesToDelete = new();
@@ -153,7 +154,7 @@ namespace AG.DS
             edgeConnectorSearchWindowView.EdgeModel = edgeModel;
 
             edgeConnectorSearchWindowView.SearchWindow.OpenWindow(
-                openScreenPosition: GUIUtility.GUIToScreenPoint(Event.current.mousePosition)
+                screenMousePosition: GUIUtility.GUIToScreenPoint(Event.current.mousePosition)
             );
 
             connectorPort.Callback.OnPostConnectingEdgeDropOutside();

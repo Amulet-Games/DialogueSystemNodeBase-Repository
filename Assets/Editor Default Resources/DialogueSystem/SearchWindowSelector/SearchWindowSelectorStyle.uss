@@ -1,0 +1,128 @@
+/*< ---------------------------------------------------------- Search Window Selector Button >*/
+.searchWindowSelector-selectButton-button {
+	
+	background-color: rgba(32, 32, 32, 1);
+	
+	height: 27px;
+	width: auto;
+	
+	flex-direction: row;
+
+	/* top - right - bottom - left */
+	margin: 3px 6px 0px 6px;
+	border-radius: 4px;
+}
+
+.searchWindowSelector-selectButton-button:hover {
+	
+	cursor: link;
+
+	border-color: rgba(71, 71, 71, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px;
+}
+
+.searchWindowSelector-selectButton-button:focus {
+	
+	border-color: rgba(58, 121, 187, 1);
+
+	/* top - right - bottom - left */
+	border-width: 1px;
+}
+
+
+/*< ---------------------------------------------------------- Search Window Selector Button Icon Image >*/
+.searchWindowSelector-selectButton-icon-image {
+
+	height: 20px;
+	width: 22px;
+
+	align-self: center;
+
+	/* top - right - bottom - left */
+	margin: 0.5px 0px 0px 1.5px;
+
+	--unity-image-tint-color: white;
+}
+
+.searchWindowSelector-selectButton-button:hover
+.searchWindowSelector-selectButton-icon-image,
+
+.searchWindowSelector-selectButton-button:focus
+.searchWindowSelector-selectButton-icon-image {
+
+	/* top - right - bottom - left */
+	margin: 0.5px 0px 0px 0px;
+}
+
+.searchWindowSelector.searchWindowSelector-empty
+.searchWindowSelector-selectButton-icon-image {
+
+	--unity-image-tint-color: rgba(120, 120, 120, 1);
+}
+
+/*< ---------------------------------------------------------- Search Window Selector Button Text Label >*/
+.searchWindowSelector-selectButton-text-label {
+
+	color: white;
+
+	align-self: Center;
+	
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	font-size: 13px;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	
+	/* top - right - bottom - left */
+	margin: 1px 3px 0px 1px;
+}
+
+.searchWindowSelector-selectButton-button:hover
+.searchWindowSelector-selectButton-text-label {
+	
+	cursor: link;
+}
+
+.searchWindowSelector-selectButton-button:hover
+.searchWindowSelector-selectButton-text-label,
+
+.searchWindowSelector-selectButton-button:focus
+.searchWindowSelector-selectButton-text-label {
+
+	/* top - right - bottom - left */
+	margin: 1px 3px 0px 1px;
+}
+
+.searchWindowSelector.searchWindowSelector-empty
+.searchWindowSelector-selectButton-text-label {
+
+	color: rgba(120, 120, 120, 1);
+}
+
+
+/*< ---------------------------------------------------------- Search Window Selector Window Select Image >*/
+.searchWindowSelector-selectButton-windowSelectImage {
+
+	align-self: center;
+	
+	height: 13px;
+	width: 13px;
+	
+	/* top - right - bottom - left */
+	margin: 0px 5.5px 2px 0px;
+
+	--unity-image-tint-color: rgba(120, 120, 120, 1);
+}
+
+.searchWindowSelector-selectButton-button:hover
+.searchWindowSelector-selectButton-windowSelectImage,
+
+.searchWindowSelector-selectButton-button:focus
+.searchWindowSelector-selectButton-windowSelectImage {
+
+	/* top - right - bottom - left */
+	margin: 0px 4px 2px 0px;
+}

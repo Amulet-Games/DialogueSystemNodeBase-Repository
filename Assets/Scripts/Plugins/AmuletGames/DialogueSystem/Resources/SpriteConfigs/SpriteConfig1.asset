@@ -23,8 +23,10 @@ MonoBehaviour:
   AddEntryButtonIconSprite: {fileID: 21300000, guid: 151785b89ea5c47729fefda27509d6df, type: 3}
   AddEventButtonIconSprite: {fileID: 21300000, guid: 4d9f578eee56a22468aad41c49557a14, type: 3}
   AddMessageButtonIconSprite: {fileID: 21300000, guid: b74ee3fa3df474d4a8b6be6511ca30f8, type: 3}
-  MenuSelectIcon1Sprite: {fileID: 21300000, guid: a2e0941619c6c7f48880f6edee3321ac, type: 3}
-  MenuSelectIcon2Sprite: {fileID: 21300000, guid: 7b70c1c1dbd114943b47d7800581186e, type: 3}
+  DropdownMenuSelectIconSprite: {fileID: 21300000, guid: 7b70c1c1dbd114943b47d7800581186e, type: 3}
+  ObjectPickerSelectIcon: {fileID: 21300000, guid: dd2103c3a601a482994c49d704a0f51e, type: 3}
+  SearchWindowSelectIconSprite: {fileID: 21300000, guid: 5e7e1ec710c7da943afed3286102ab83, type: 3}
+  ToolbarMenuSelectIconSprite: {fileID: 21300000, guid: a2e0941619c6c7f48880f6edee3321ac, type: 3}
   BranchTitleFieldSprite: {fileID: 21300000, guid: eb4bfeac88deba8499ec3b2be8f4cabd, type: 3}
   ContinueByAutoSprite: {fileID: 21300000, guid: 987a083c62a26f7478a9b1af17aff2f7, type: 3}
   ContinueByInputSprite: {fileID: 21300000, guid: ff3308159fb56094d9421fc8d8b9fbb9, type: 3}
@@ -35,8 +37,9 @@ MonoBehaviour:
   MessageAudioFieldSprite: {fileID: 21300000, guid: 0bdd3a99a3ded58478d11ad38c153a7c, type: 3}
   MessageTextFieldSprite: {fileID: 21300000, guid: aefa42d0ca08b2240b582d0d59ac092d, type: 3}
   RootTitleFieldSprite: {fileID: 21300000, guid: 37490b35d1d47e949b01d0b5966ce419, type: 3}
-  SwitchFieldButtonIconSprite: {fileID: 21300000, guid: 0a88d38db92b8a0439e40b5c4bdd0057, type: 3}
-  SwitchFieldButtonDisableIconSprite: {fileID: 21300000, guid: 95f6974efc9e54d4fbc809a449c3189c, type: 3}
+  SceneObjectFieldIconSprite: {fileID: 21300000, guid: 0db5239f998dbf242ac6d6c2c293f090, type: 3}
+  SwitchButtonDisableIconSprite: {fileID: 21300000, guid: 95f6974efc9e54d4fbc809a449c3189c, type: 3}
+  SwitchButtonIconSprite: {fileID: 21300000, guid: 0a88d38db92b8a0439e40b5c4bdd0057, type: 3}
   UnityObjectFieldIconSprite: {fileID: 21300000, guid: 145c931dac52abf46a97bfc9cce7d8fe, type: 3}
   FolderExpandButtonCloseIconSprite: {fileID: 21300000, guid: 82c12682d26d6a84898153daf7f104a0, type: 3}
   FolderExpandButtonOpenIconSprite: {fileID: 21300000, guid: 208f6e6eef98f2247b928ec13248934f, type: 3}

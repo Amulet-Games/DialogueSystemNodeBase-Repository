@@ -28,6 +28,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the selector search window.
+        /// </summary>
+        public SearchWindow SelectorSearchWindow { get; private set; }
+
+
+        /// <summary>
         /// Is the graph viewer in focus at the moment?
         /// </summary>
         public bool IsFocus;
@@ -54,31 +60,21 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the graph viewer element class.
         /// </summary>
-        /// <param name="languageHandler">The language handler to set for.</param>
-        /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
-        public GraphViewer
-        (
-            LanguageHandler languageHandler,
-            DialogueSystemWindow dialogueSystemWindow
-        )
+        public GraphViewer()
         {
-            NodeCreationRequestSearchWindowView = new(graphViewer: this, languageHandler, dialogueSystemWindow);
+            NodeCreationRequestSearchWindowView = new();
             EdgeConnectorSearchWindowView = new
             (
-                graphViewer: this,
-                languageHandler,
                 inputConnectorSearchTreeEntries: SearchTreeEntryProvider.EdgeConnectorInputSearchTreeEntries,
-                outputConnectorSearchTreeEntries: SearchTreeEntryProvider.EdgeConnectorOutputSearchTreeEntries,
-                dialogueSystemWindow
+                outputConnectorSearchTreeEntries: SearchTreeEntryProvider.EdgeConnectorOutputSearchTreeEntries
             );
             OptionEdgeConnectorSearchWindowView = new
             (
-                graphViewer: this,
-                languageHandler,
                 inputConnectorSearchTreeEntries: SearchTreeEntryProvider.OptionEdgeConnectorInputSearchTreeEntries,
-                outputConnectorSearchTreeEntries: SearchTreeEntryProvider.OptionEdgeConnectorOutputSearchTreeEntries,
-                dialogueSystemWindow
+                outputConnectorSearchTreeEntries: SearchTreeEntryProvider.OptionEdgeConnectorOutputSearchTreeEntries
             );
+
+            SelectorSearchWindow = SelectorSearchWindowPresenter.CreateWindow();
 
             Nodes = new();
             Edges = new();

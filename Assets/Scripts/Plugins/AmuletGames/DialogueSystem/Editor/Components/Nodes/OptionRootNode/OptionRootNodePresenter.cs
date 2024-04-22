@@ -36,21 +36,12 @@ namespace AG.DS
                     direction: Direction.Input,
                     capacity: Capacity.Multi,
                     name: StringConfig.Port_Input_LabelText,
-                    color: PortConfig.DefaultPortColor
-                );
-                var edgeModel = new EdgeModel
-                (
-                    focusable: true,
-                    styleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle
-                );
-                var edgeConnectorListenerModel = new EdgeConnectorListenerModel
-                (
+                    color: PortConfig.DefaultPortColor,
                     edgeConnectorSearchWindowView: Node.GraphViewer.EdgeConnectorSearchWindowView,
-                    edgeModel: edgeModel
+                    edgeModel: new(focusable: true, styleSheet: ConfigResourcesManager.StyleSheetConfig.DefaultEdgeStyle)
                 );
 
                 View.InputPort = PortFactory.Generate(portModel);
-                View.InputPort.AddEdgeConnector(edgeConnectorListenerModel);
 
                 Node.Add(View.InputPort);
             }

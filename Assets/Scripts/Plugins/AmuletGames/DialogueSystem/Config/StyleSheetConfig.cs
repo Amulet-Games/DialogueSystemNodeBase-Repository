@@ -64,7 +64,11 @@ namespace AG.DS
         #region Port Cells.
         [Header("Port Cells")]
         public StyleSheet OptionPortCellStyle;
-        public StyleSheet OptionPortGroupCellStyle;
+        #endregion
+
+        #region Port Groups.
+        [Header("Port Groups")]
+        public StyleSheet OptionPortGroupItemStyle;
         #endregion
 
         #region Ports.
@@ -76,6 +80,11 @@ namespace AG.DS
         [Header("Radio")]
         public StyleSheet RadioGroupStyle;
         public StyleSheet RadioStyle;
+        #endregion
+
+        #region Search Window Selector.
+        [Header("Search Window Selector")]
+        public StyleSheet SearchWindowSelectorStyle;
         #endregion
 
         #region Globals.

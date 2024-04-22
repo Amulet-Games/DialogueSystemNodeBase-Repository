@@ -176,7 +176,7 @@
 }
 
 .previewNode_PreviewSprite_ObjectField
-.unity-object-field__selector {
+.object-field-selector {
 	
 	height: 11px;
 	width: 11px;
@@ -193,7 +193,7 @@
 }
 
 .previewNode_PreviewSprite_ObjectField
-.unity-object-field__selector:hover {
+.object-field-selector:hover {
 	
 	background-color: rgba(76, 76, 76, 1);
 }

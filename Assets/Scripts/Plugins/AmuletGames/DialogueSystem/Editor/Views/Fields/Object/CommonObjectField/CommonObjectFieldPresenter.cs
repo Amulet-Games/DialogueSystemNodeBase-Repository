@@ -24,9 +24,15 @@ namespace AG.DS
             ObjectField field;
             VisualElement fieldInput;
             VisualElement fieldDisplay;
-            Label fieldDisplayLabel;
+            VisualElement fieldSelector;
+            VisualElement fieldDisplayImage;
+            VisualElement fieldDisplayLabel;
 
             CreateField();
+
+            SetupFieldSelector();
+
+            SetupDisplayImage();
 
             SetupDetails();
 
@@ -37,24 +43,30 @@ namespace AG.DS
             void CreateField()
             {
                 view.Field = new();
+                var (inputElement, displayElement, selectorElement, displayImageElement, displayLabelElement) = view.Field.GetInitialChildElements();
 
                 field = view.Field;
-                fieldInput = field.GetFieldInput();
-                fieldDisplay = field.GetFieldDisplay();
-                fieldDisplayLabel = field.GetDisplayLabel();
+                fieldInput = inputElement;
+                fieldDisplay = displayElement;
+                fieldSelector = selectorElement;
+                fieldDisplayImage = displayImageElement;
+                fieldDisplayLabel = displayLabelElement;
+            }
+
+            void SetupFieldSelector()
+            {
+                fieldSelector.AddBackgroundHighlighter();
+            }
+
+            void SetupDisplayImage()
+            {
+                fieldDisplay.Remove(fieldDisplayImage);
             }
 
             void SetupDetails()
             {
                 field.objectType = typeof(TObject);
                 field.allowSceneObjects = false;
-
-                // Remove display image
-                fieldDisplay.Remove(field.GetDisplayImage());
-
-                // Add background highlighter to the selector
-                field.GetFieldSelector().AddBackgroundHighlighter();
-
             }
 
             void AddStyleClass()

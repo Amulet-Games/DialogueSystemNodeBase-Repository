@@ -87,7 +87,7 @@
 
 .modifier_Condition_FirstTerm_ObjectField
 .unity-object-field__input
-.unity-object-field__selector {
+.object-field-selector {
 
 	/* top - right - bottom - left */
 	margin: 0px 2px 0px 0px;
@@ -96,7 +96,7 @@
 
 .modifier_Condition_FirstTerm_ObjectField
 .unity-object-field__input
-.unity-object-field__selector:hover {
+.object-field-selector:hover {
 	
 	background-color: rgba(76, 76, 76, 1);
 }
@@ -358,7 +358,7 @@
 
 .modifier_Condition_SecondTerm_ObjectField
 .unity-object-field__input
-.unity-object-field__selector {
+.object-field-selector {
 
 	/* top - right - bottom - left */
 	margin: 0px 2px 0px 0px;
@@ -367,7 +367,7 @@
 
 .modifier_Condition_SecondTerm_ObjectField
 .unity-object-field__input
-.unity-object-field__selector:hover {
+.object-field-selector:hover {
 	
 	background-color: rgba(76, 76, 76, 1);
 }
@@ -517,7 +517,7 @@
 
 .modifier_Event_ObjectField
 .unity-object-field__input
-.unity-object-field__selector {
+.object-field-selector {
 
 	height: 17px;
 	width: 19px;
@@ -529,7 +529,7 @@
 
 .modifier_Event_ObjectField
 .unity-object-field__input
-.unity-object-field__selector:hover {
+.object-field-selector:hover {
 	
 	background-color: rgba(76, 76, 76, 1);
 }
@@ -848,7 +848,7 @@
 
 .modifier_Message_Audio_ObjectField
 .unity-object-field__input
-.unity-object-field__selector {
+.object-field-selector {
 	
 	background-color: rgba(42, 42, 42, 1);
 
@@ -859,7 +859,7 @@
 
 .modifier_Message_Audio_ObjectField
 .unity-object-field__input
-.unity-object-field__selector:hover {
+.object-field-selector:hover {
 	
 	background-color: rgba(76, 76, 76, 1);
 }

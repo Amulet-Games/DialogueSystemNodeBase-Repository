@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -83,9 +84,10 @@ namespace AG.DS
         /// <param name="button">Extension visual element.</param>
         public static void AddBackgroundHighlighter(this VisualElement element)
         {
-            VisualElement highlighter = new();
-
-            highlighter.pickingMode = PickingMode.Ignore;
+            VisualElement highlighter = new()
+            {
+                pickingMode = PickingMode.Ignore
+            };
 
             highlighter.AddToClassList(StyleConfig.Background_Highlighter);
 

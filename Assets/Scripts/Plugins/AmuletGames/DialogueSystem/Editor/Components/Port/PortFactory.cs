@@ -1,3 +1,5 @@
+using UnityEditor.Experimental.GraphView;
+
 namespace AG.DS
 {
     public class PortFactory
@@ -9,10 +11,16 @@ namespace AG.DS
         /// <returns>A port element.</returns>
         public static Port Generate(PortModel model)
         {
-            var callback = new PortCallback();
             var port = PortPresenter.CreateElement(model);
+            var callback = new PortCallback();
+            var listener = new EdgeConnectorListener
+            (
+                connectorPort: port,
+                edgeConnectorSearchWindowView: model.EdgeConnectorSearchWindowView,
+                edgeModel: model.EdgeModel
+            );
 
-            port.Setup(callback);
+            port.Setup(edgeConnector: new EdgeConnector<Edge>(listener), callback);
             callback.Setup(port);
 
             return port;
