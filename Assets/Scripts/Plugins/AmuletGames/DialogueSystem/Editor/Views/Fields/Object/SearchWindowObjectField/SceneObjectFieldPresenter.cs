@@ -29,10 +29,6 @@ namespace AG.DS
 
             CreateField();
 
-            SetupFieldSelector();
-
-            SetupDisplayImage();
-
             SetupDetails();
 
             AddStyleClass();
@@ -51,20 +47,13 @@ namespace AG.DS
                 fieldDisplayLabel = displayLabelElement;
             }
 
-            void SetupFieldSelector()
-            {
-                fieldSelector.AddBackgroundHighlighter();
-            }
-
-            void SetupDisplayImage()
-            {
-                fieldDisplay.Remove(fieldDisplayImage);
-            }
-
             void SetupDetails()
             {
                 field.objectType = typeof(GameObject);
                 field.allowSceneObjects = true;
+
+                fieldDisplay.Remove(fieldDisplayImage);
+                fieldSelector.AddBackgroundHighlighter();
             }
 
             void AddStyleClass()

@@ -309,16 +309,14 @@ namespace AG.DS
             /// Register events to the text field.
             /// </summary>
             void RegisterTextFieldEvents()
-                => new CommonTextFieldObserver(
-                    view: group.TextFieldView).RegisterEvents();
+                => new CommonTextFieldViewObserver(view: group.TextFieldView).RegisterEvents();
 
 
             /// <summary>
             /// Register events to the float field.
             /// </summary>
             void RegisterFloatFieldEvents()
-                => new CommonFloatFieldObserver(
-                    view: group.FloatFieldView).RegisterEvents();
+                => new CommonFloatFieldObserver(view: group.FloatFieldView).RegisterEvents();
 
 
             // ----------------------------- Event -----------------------------

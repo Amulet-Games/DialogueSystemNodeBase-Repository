@@ -2,7 +2,7 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class CommonTextFieldObserver
+    public class CommonTextFieldViewObserver
     {
         /// <summary>
         /// The targeting common text field view.
@@ -26,7 +26,7 @@ namespace AG.DS
         /// Constructor of the common text field observer class.
         /// </summary>
         /// <param name="view">The common text field view to set for.</param>
-        public CommonTextFieldObserver(CommonTextFieldView view)
+        public CommonTextFieldViewObserver(CommonTextFieldView view)
         {
             this.view = view;
             field = view.Field;
@@ -62,7 +62,7 @@ namespace AG.DS
         /// <summary>
         /// Register MouseDownEvent to the field.
         /// </summary>
-        void RegisterMouseDownEvent() => view.Field.RegisterCallback<MouseDownEvent>(MouseDownEvent);
+        void RegisterMouseDownEvent() => field.RegisterCallback<MouseDownEvent>(MouseDownEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -74,9 +74,9 @@ namespace AG.DS
         {
             previousValue = field.value;
 
-            if (view.Value.IsNullOrEmpty())
+            if (view.IsEmpty)
             {
-                field.SetActivePlaceholderText(view.PlaceholderText, active: false);
+                view.PlaceholderTextLabel.UnDisplayElement();
             }
 
             field.HideEmptyStyle();

@@ -60,6 +60,15 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Returns true if the if the value parameter is null or Empty,
+        /// <br>or if value consists exclusively of white-space characters.</br>
+        /// </summary>
+        /// <param name="str">Extension string value.</param>
+        /// <returns>True if the value parameter is null or Empty, or if value consists exclusively of white-space characters.</returns>
+        public static bool IsNullOrWhiteSpace(this string str) => string.IsNullOrWhiteSpace(str);
+
+
+        /// <summary>
         /// Returns true if the given value matches the comparing value.
         /// </summary>
         /// 

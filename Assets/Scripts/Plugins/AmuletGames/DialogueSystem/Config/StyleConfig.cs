@@ -19,8 +19,10 @@ namespace AG.DS
         /*< -------------------- Text Field -------------------- >*/
         public const string Text_Field_Empty = "text-field-empty";
         public const string Text_Field_Input = "text-field-input";
+        public const string Text_Field_Image = "text-field-image";
         public const string Text_Field_Multiline_Container = "text-field-multiline-container";
         public const string Text_Field_Element = "text-field-element";
+        public const string Text_Field_Placeholder_Label = "text-field-placeholder-label";
 
         /*< -------------------- Object Field -------------------- >*/
         public const string Object_Field_Empty = "object-field-empty";
@@ -227,7 +229,6 @@ namespace AG.DS
         public const string ConditionModifier_VariableGroup_Label = "conditionModifier-variableGroup-label";
         public const string ConditionModifier_VariableGroup_FieldInfo_Container = "conditionModifier-variableGroup-fieldInfo-container";
         public const string ConditionModifier_VariableGroup_FieldInfo_Label = "conditionModifier-variableGroup-fieldInfo-label";
-        public const string ConditionModifier_VariableGroup_TextField_Image = "conditionModifier-variableGroup-textField-image";
         public const string ConditionModifier_VariableGroup_TextField_Field = "conditionModifier-variableGroup-textField-field";
         public const string ConditionModifier_VariableGroup_FloatField_Container = "conditionModifier-variableGroup-floatField-container";
         public const string ConditionModifier_VariableGroup_FloatField_Field = "conditionModifier-variableGroup-floatField-field";

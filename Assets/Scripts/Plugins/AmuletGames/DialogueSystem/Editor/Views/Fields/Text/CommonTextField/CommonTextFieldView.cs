@@ -16,9 +16,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The text to display when the field is empty.
+        /// Label for the text field placeholder text.
         /// </summary>
-        [NonSerialized] public string PlaceholderText;
+        [NonSerialized] public Label PlaceholderTextLabel;
 
 
         /// <summary>
@@ -32,14 +32,18 @@ namespace AG.DS
             }
             set
             {
-                m_value = value;
+                IsEmpty = value.IsNullOrWhiteSpace();
+
+                if (IsEmpty)
+                {
+                    m_value = "";
+                }
+                else
+                {
+                    m_value = value;
+                }
 
                 Field.SetValueWithoutNotify(m_value);
-
-                if (m_value.IsNullOrEmpty())
-                {
-                    Field.SetActivePlaceholderText(PlaceholderText, active: true);
-                }
 
                 this.ToggleEmptyStyle();
             }
@@ -53,13 +57,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the common text field view class.
+        /// Returns true if the view's field is currently empty.
         /// </summary>
-        /// <param name="placeholderText">The placeholder text to set for.</param>
-        public CommonTextFieldView(string placeholderText)
-        {
-            PlaceholderText = placeholderText;
-        }
+        [NonSerialized] public bool IsEmpty;
 
 
         // ----------------------------- Serialization -----------------------------

@@ -9,13 +9,15 @@ namespace AG.DS
         /// <param name="view">Extension common text field view.</param>
         public static void ToggleEmptyStyle(this CommonTextFieldView view)
         {
-            if (!view.Value.IsNullOrEmpty())
+            if (view.IsEmpty)
             {
-                view.Field.HideEmptyStyle();
+                view.Field.ShowEmptyStyle();
+                view.PlaceholderTextLabel.DisplayElement();
             }
             else
             {
-                view.Field.ShowEmptyStyle();
+                view.Field.HideEmptyStyle();
+                view.PlaceholderTextLabel.UnDisplayElement();
             }
         }
     }

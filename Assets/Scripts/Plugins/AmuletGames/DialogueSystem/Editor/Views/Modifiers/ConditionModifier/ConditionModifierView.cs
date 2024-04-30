@@ -105,15 +105,10 @@ namespace AG.DS
             /// Constructor of the variable group element.
             /// </summary>
             /// <param name="view">The condition modifier view to set for.</param>
-            /// <param name="textFieldPlaceholderText">The text field placeholder text to set for.</param>
-            public VariableGroup
-            (
-                ConditionModifierView view,
-                string textFieldPlaceholderText
-            )
+            public VariableGroup(ConditionModifierView view)
             {
                 this.view = view;
-                TextFieldView = new(placeholderText: textFieldPlaceholderText);
+                TextFieldView = new();
                 FloatFieldView = new();
             }
 

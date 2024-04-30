@@ -343,8 +343,6 @@ namespace AG.DS
                 Label floatFieldHintLabel;
                 Label fieldInfoLabel;
 
-                Image textFieldImage;
-
                 CreateGroup();
 
                 CreateContainers();
@@ -361,8 +359,6 @@ namespace AG.DS
 
                 CreateTextField();
 
-                CreateTextFieldImage();
-
                 CreateFloatField();
 
                 CreateFloatFieldHintLabel();
@@ -375,7 +371,7 @@ namespace AG.DS
 
                 void CreateGroup()
                 {
-                    group = new(view, textFieldPlaceholderText);
+                    group = new(view);
                     group.AddToClassList(StyleConfig.ConditionModifier_VariableGroup);
                 }
 
@@ -446,23 +442,14 @@ namespace AG.DS
 
                 void CreateTextField()
                 {
-                    CommonTextFieldPresenter.CreateElement
+                    CommonTextFieldViewPresenter.CreateElement
                     (
                         view: group.TextFieldView,
+                        placeholderText: textFieldPlaceholderText,
                         multiline: false,
-                        fieldUSS: StyleConfig.ConditionModifier_VariableGroup_TextField_Field
+                        fieldUSS: StyleConfig.ConditionModifier_VariableGroup_TextField_Field,
+                        fieldImageSprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite
                     );
-                }
-
-                void CreateTextFieldImage()
-                {
-                    textFieldImage = ImagePresenter.CreateElement
-                    (
-                        sprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite,
-                        USS01: StyleConfig.ConditionModifier_VariableGroup_TextField_Image
-                    );
-
-                    group.TextFieldView.Field.SetDisplayImage(textFieldImage);
                 }
 
                 void CreateFloatField()

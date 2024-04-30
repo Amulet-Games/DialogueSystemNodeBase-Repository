@@ -6,33 +6,55 @@ namespace AG.DS
     public static class TextFieldExtensions
     {
         /// <summary>
+        /// Returns the text field's initial child's elements.
+        /// <para></para>
+        /// Note that this method only works when the text field's child elements' order hasn't been changed.<br>
+        /// And new elements haven't been added to the text field.
+        /// </summary>
+        /// <param name="field">Extension text field.</param>
+        /// <returns>The text field's initial child's elements.</returns>
+        public static
+        (
+            VisualElement inputElement,
+            VisualElement multilineContainerElement,
+            VisualElement textElement
+        )
+            GetInitialChildElements(this TextField field)
+        {
+            var fieldInput = field.Q(className: TextField.inputUssClassName);
+            var textElement = fieldInput.Q(className: "unity-text-element");
+            var multilineContainerElement = field.multiline
+                ? fieldInput.Q(className: "unity-base-text-field__multiline-container")
+                : null;
+
+            return (fieldInput, multilineContainerElement, textElement);
+        }
+
+
+        /// <summary>
         /// Returns the text field's input element.
         /// </summary>
         /// <param name="field">Extension text field.</param>
         /// <returns>The input element of the text field.</returns>
         public static VisualElement GetFieldInput(this TextField field)
         {
-            return field.ElementAt(0);
+            return field.Q(className: StyleConfig.Text_Field_Input);
         }
 
 
         /// <summary>
         /// Returns the text field's multiline container.
         /// </summary>
-        /// 
         /// <param name="field">Extension text field</param>
-        /// 
         /// <returns>The multiline container of the text field.</returns>
-        /// 
         /// <exception cref="ArgumentException">
-        /// Thrown when the given text field's multiline property has set to false and thus the multiline container
-        /// visual element can't be found.
+        /// Thrown when the given text field's multiline property has set to false.
         /// </exception>
         public static VisualElement GetMultilineContainer(this TextField field)
         {
             if (field.multiline)
             {
-                return field.GetFieldInput().ElementAt(0);
+                return field.Q(className: StyleConfig.Text_Field_Multiline_Container);
             }
             else
             {
@@ -48,14 +70,7 @@ namespace AG.DS
         /// <returns>The text element of the text field.</returns>
         public static VisualElement GetTextElement(this TextField field)
         {
-            if (field.multiline)
-            {
-                return field.GetMultilineContainer().ElementAt(0);
-            }
-            else
-            {
-                return field.GetFieldInput().ElementAt(0);
-            }
+            return field.Q(className: StyleConfig.Text_Field_Element);
         }
 
 
@@ -75,6 +90,21 @@ namespace AG.DS
             // Place it as the first element within the field's hierarchy list
             // so that it's align on the left side.
             image.SendToBack();
+        }
+
+
+        /// <summary>
+        /// Set the text field's placeholder label.
+        /// </summary>
+        /// <param name="field">Extension text field.</param>
+        /// <param name="label">The label to set for.</param>
+        public static void SetPlaceholderLabel
+        (
+            this TextField field,
+            Label label
+        )
+        {
+            field.GetTextElement().Add(label);
         }
 
 

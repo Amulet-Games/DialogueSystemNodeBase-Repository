@@ -13,7 +13,7 @@ namespace AG.DS
         (
             ConditionModifierGroupView groupView,
             GraphViewer graphViewer,
-            ConditionModifierData data = null
+            ConditionModifierViewData data = null
         )
         {
             var view = new ConditionModifierView();
@@ -25,10 +25,10 @@ namespace AG.DS
 
             if (data != null)
             {
-                ConditionModifierSerializer.Load(view, data);
+                ConditionModifierViewSerializer.Load(view, data);
             }
 
-            ConditionModifierCallback.OnCreate(view, searchTreeEntryProvider, byUser: data == null);
+            ConditionModifierViewCallback.OnCreate(view, searchTreeEntryProvider, byUser: data == null);
 
             return view;
         }

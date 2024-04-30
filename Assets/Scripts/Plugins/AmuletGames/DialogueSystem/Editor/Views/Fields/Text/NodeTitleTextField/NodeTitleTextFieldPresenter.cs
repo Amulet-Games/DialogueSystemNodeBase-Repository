@@ -16,8 +16,8 @@ namespace AG.DS
         )
         {
             TextField field;
-            VisualElement fieldInput;
-            VisualElement textElement;
+            VisualElement fieldInputElement;
+            VisualElement fieldTextElement;
 
             CreateField();
 
@@ -29,32 +29,37 @@ namespace AG.DS
 
             void CreateField()
             {
-                view.Field = new();
+                view.Field = new
+                (
+                    maxLength: NumberConfig.MAX_CHAR_LENGTH_NODE_TITLE_TEXT,
+                    multiline: false,
+                    isPasswordField: false,
+                    maskChar: '*'
+                );
+                var (inputElement, multilineContainerElement, textElement) = view.Field.GetInitialChildElements();
 
                 field = view.Field;
-                fieldInput = field.GetFieldInput();
-                textElement = field.GetTextElement();
+                fieldInputElement = inputElement;
+                fieldTextElement = textElement;
             }
 
             void SetupDetails()
             {
                 field.isDelayed = true;
-                field.multiline = false;
-                field.maxLength = NumberConfig.MAX_CHAR_LENGTH_NODE_TITLE_TEXT;
 
-                fieldInput.pickingMode = PickingMode.Ignore;
-                textElement.pickingMode = PickingMode.Ignore;
+                fieldInputElement.pickingMode = PickingMode.Ignore;
+                fieldTextElement.pickingMode = PickingMode.Ignore;
             }
 
             void AddStyleClass()
             {
                 field.ClearClassList();
-                fieldInput.ClearClassList();
-                textElement.ClearClassList();
+                fieldInputElement.ClearClassList();
+                fieldTextElement.ClearClassList();
 
                 field.AddToClassList(fieldUSS);
-                fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
-                textElement.AddToClassList(StyleConfig.Text_Field_Element);
+                fieldInputElement.AddToClassList(StyleConfig.Text_Field_Input);
+                fieldTextElement.AddToClassList(StyleConfig.Text_Field_Element);
             }
 
             void SetupDefaultValue()

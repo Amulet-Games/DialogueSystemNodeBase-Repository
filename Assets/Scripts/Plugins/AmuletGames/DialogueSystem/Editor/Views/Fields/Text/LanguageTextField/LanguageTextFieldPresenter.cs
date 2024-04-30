@@ -18,6 +18,9 @@ namespace AG.DS
         )
         {
             TextField field;
+            VisualElement fieldInputElement;
+            VisualElement fieldMultilineContainerElement;
+            VisualElement fieldTextElement;
 
             CreateField();
 
@@ -29,9 +32,19 @@ namespace AG.DS
 
             void CreateField()
             {
-                view.Field = new();
+                view.Field = new
+                (
+                    maxLength: multiline ? NumberConfig.MAX_CHAR_LENGTH_MULTI_LINE_TEXT_FIELD : NumberConfig.MAX_CHAR_LENGTH_SINGLE_LINE_TEXT_FIELD,
+                    multiline: multiline,
+                    isPasswordField: false,
+                    maskChar: '*'
+                );
+                var (inputElement, multilineContainerElement, textElement) = view.Field.GetInitialChildElements();
 
                 field = view.Field;
+                fieldInputElement = inputElement;
+                fieldMultilineContainerElement = multilineContainerElement;
+                fieldTextElement = textElement;
             }
 
             void SetupDetails()
@@ -42,16 +55,12 @@ namespace AG.DS
                 {
                     // WhiteSpace.Normal means the texts will auto line break when
                     // it reaches the end of the field input element.
-
-                    field.maxLength = NumberConfig.MAX_CHAR_LENGTH_MULTI_LINE_TEXT_FIELD;
                     field.style.whiteSpace = WhiteSpace.Normal;
                 }
                 else
                 {
                     // WhiteSpace.NoWarp means the texts are shown in one line even when
                     // it's expanded outside of the field input element.
-
-                    field.maxLength = NumberConfig.MAX_CHAR_LENGTH_SINGLE_LINE_TEXT_FIELD;
                     field.style.whiteSpace = WhiteSpace.NoWrap;
                 }
 
@@ -60,22 +69,18 @@ namespace AG.DS
 
             void AddStyleClass()
             {
-                var fieldInput = field.GetFieldInput();
-                var textElement = field.GetTextElement();
-
                 field.ClearClassList();
-                fieldInput.ClearClassList();
-                textElement.ClearClassList();
+                fieldInputElement.ClearClassList();
+                fieldTextElement.ClearClassList();
 
                 field.AddToClassList(fieldUSS);
-                fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
-                textElement.AddToClassList(StyleConfig.Text_Field_Element);
+                fieldInputElement.AddToClassList(StyleConfig.Text_Field_Input);
+                fieldTextElement.AddToClassList(StyleConfig.Text_Field_Element);
 
                 if (multiline)
                 {
-                    var fieldMultilineContainer = field.GetMultilineContainer();
-                    fieldMultilineContainer.ClearClassList();
-                    fieldMultilineContainer.AddToClassList(StyleConfig.Text_Field_Multiline_Container);
+                    fieldMultilineContainerElement.ClearClassList();
+                    fieldMultilineContainerElement.AddToClassList(StyleConfig.Text_Field_Multiline_Container);
                 }
             }
 

@@ -7,10 +7,10 @@ namespace AG.DS
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
         /// <returns>a new condition modifier data.</returns>
-        public static ConditionModifierData Generate(ConditionModifierView view)
+        public static ConditionModifierViewData Generate(ConditionModifierView view)
         {
-            var data = new ConditionModifierData();
-            ConditionModifierSerializer.Save(view, data);
+            var data = new ConditionModifierViewData();
+            ConditionModifierViewSerializer.Save(view, data);
 
             return data;
         }

@@ -2,7 +2,7 @@ namespace AG.DS
 {
     using VariableGroup = ConditionModifierView.VariableGroup;
 
-    public class ConditionModifierCallback
+    public class ConditionModifierViewCallback
     {
         /// <summary>
         /// The callback to invoke when the modifier is created on the graph by the system or user.
@@ -58,6 +58,8 @@ namespace AG.DS
                 ConditionModifierViewSearchTreeEntryProvider searchTreeEntryProvider
             )
             {
+                CommonTextFieldViewCallback.OnCreateByUser(view: group.TextFieldView);
+
                 SearchWindowSelectorCallback.OnCreateByUser
                 (
                     selector: group.VariableSearchWindowSelector,

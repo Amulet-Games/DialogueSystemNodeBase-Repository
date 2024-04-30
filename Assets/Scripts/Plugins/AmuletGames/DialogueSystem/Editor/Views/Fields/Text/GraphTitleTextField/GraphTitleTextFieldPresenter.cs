@@ -17,8 +17,8 @@ namespace AG.DS
         )
         {
             TextField field;
-            VisualElement fieldInput;
-            VisualElement textElement;
+            VisualElement fieldInputElement;
+            VisualElement fieldTextElement;
 
             CreateField();
 
@@ -33,10 +33,11 @@ namespace AG.DS
             void CreateField()
             {
                 view.Field = new();
+                var (inputElement, multilineContainerElement, textElement) = view.Field.GetInitialChildElements();
 
                 field = view.Field;
-                fieldInput = field.GetFieldInput();
-                textElement = field.GetTextElement();
+                fieldInputElement = inputElement;
+                fieldTextElement = textElement;
             }
 
             void SetupDetails()
@@ -47,12 +48,12 @@ namespace AG.DS
             void AddStyleClass()
             {
                 field.ClearClassList();
-                fieldInput.ClearClassList();
-                textElement.ClearClassList();
+                fieldInputElement.ClearClassList();
+                fieldTextElement.ClearClassList();
 
                 field.AddToClassList(fieldUSS);
-                fieldInput.AddToClassList(StyleConfig.Text_Field_Input);
-                textElement.AddToClassList(StyleConfig.Text_Field_Element);
+                fieldInputElement.AddToClassList(StyleConfig.Text_Field_Input);
+                fieldTextElement.AddToClassList(StyleConfig.Text_Field_Element);
             }
 
             void SetupDefaultValue()

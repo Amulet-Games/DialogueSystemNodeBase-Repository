@@ -4,7 +4,7 @@ using UnityEngine;
 namespace AG.DS
 {
     [Serializable]
-    public class ConditionModifierData
+    public class ConditionModifierViewData
     {
         /// <summary>
         /// The modifier's folder data.
@@ -25,9 +25,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Constructor of the condition modifier data class.
+        /// Constructor of the condition modifier view data class.
         /// </summary>
-        public ConditionModifierData()
+        public ConditionModifierViewData()
         {
             FolderData = new();
             OperationDropdownData = new();

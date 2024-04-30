@@ -1,16 +1,16 @@
 namespace AG.DS
 {
-    public class ConditionModifierSerializer
+    public class ConditionModifierViewSerializer
     {
         /// <summary>
-        /// Save the condition modifier values.
+        /// Save the condition modifier view values.
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
         /// <param name="data">The condition modifier data to set for.</param>
         public static void Save
         (
             ConditionModifierView view,
-            ConditionModifierData data
+            ConditionModifierViewData data
         )
         {
             SaveFolder();
@@ -37,14 +37,14 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Load the condition modifier values.
+        /// Load the condition modifier view values.
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
         /// <param name="data">The condition modifier data to set for.</param>
         public static void Load
         (
             ConditionModifierView view,
-            ConditionModifierData data
+            ConditionModifierViewData data
         )
         {
             LoadFolder();

@@ -10,7 +10,7 @@ namespace AG.DS
         /// <summary>
         /// The group's condition modifiers data.
         /// </summary>
-        [SerializeField] public List<ConditionModifierData> ModifiersData;
+        [SerializeField] public List<ConditionModifierViewData> ModifiersData;
 
 
         /// <summary>

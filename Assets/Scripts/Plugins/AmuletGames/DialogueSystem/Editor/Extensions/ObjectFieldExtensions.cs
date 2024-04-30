@@ -6,13 +6,13 @@ namespace AG.DS
     public static class ObjectFieldExtensions
     {
         /// <summary>
-        /// Returns the object field's initial child's element.
+        /// Returns the object field's initial child's elements.
         /// <para></para>
         /// Note that this method only works when the object field's child elements' order hasn't been changed.<br>
         /// And new elements haven't been added to the object field.
         /// </summary>
         /// <param name="field">Extension object field.</param>
-        /// <returns>The object field's initial child's element.</returns>
+        /// <returns>The object field's initial child's elements.</returns>
         public static
         (
             VisualElement inputElement,
@@ -51,7 +51,7 @@ namespace AG.DS
         /// <returns>The display element of the object field.</returns>
         public static VisualElement GetFieldDisplay(this ObjectField field)
         {
-            return field.GetFieldInput().Q(className: StyleConfig.Object_Field_Display);
+            return field.Q(className: StyleConfig.Object_Field_Display);
         }
 
 
@@ -62,7 +62,7 @@ namespace AG.DS
         /// <returns>The selector element of the object field.</returns>
         public static VisualElement GetFieldSelector(this ObjectField field)
         {
-            return field.GetFieldInput().Q(className: ObjectField.selectorUssClassName);
+            return field.Q(className: ObjectField.selectorUssClassName);
         }
 
 
@@ -73,7 +73,7 @@ namespace AG.DS
         /// <returns>The display label element of the object field.</returns>
         public static VisualElement GetDisplayLabel(this ObjectField field)
         {
-            return field.GetFieldDisplay().Q(className: StyleConfig.Object_Field_Display_Label);
+            return field.Q(className: StyleConfig.Object_Field_Display_Label);
         }
 
 
