@@ -74,18 +74,9 @@ namespace AG.DS
         {
             previousValue = field.value;
 
-            if (view.CurrentLanguageValue.IsNullOrEmpty())
-            {
-                field.SetActivePlaceholderText(view.PlaceholderText, active: false);
-            }
+            view.HideEmptyStyle();
 
-            field.HideEmptyStyle();
-
-            InputHint.ShowHint
-            (
-                hintText: StringConfig.InputHint_HintTextLabel_LabelText,
-                targetWorldBoundRect: field.worldBound
-            );
+            InputHint.ShowHint(hintText: StringConfig.InputHint_HintTextLabel_LabelText, targetWorldBoundRect: field.worldBound);
         }
 
 

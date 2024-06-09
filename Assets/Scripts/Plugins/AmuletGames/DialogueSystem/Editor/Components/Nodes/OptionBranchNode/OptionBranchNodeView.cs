@@ -32,12 +32,7 @@ namespace AG.DS
         {
             ContentButtonView = new();
             NodeTitleFieldView = new(value: StringConfig.OptionBranchNode_NodeTitleField_DefaultText);
-
-            BranchTitleFieldView = new
-            (
-                placeholderText: StringConfig.OptionBranchNode_BranchTitleField_PlaceholderText,
-                languageHandler
-            );
+            BranchTitleFieldView = new(languageHandler);
 
             return this;
         }

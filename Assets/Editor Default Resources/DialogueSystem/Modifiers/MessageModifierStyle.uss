@@ -203,6 +203,8 @@
 /*< ---------------------------------------------------------- Message Text Field >*/
 .messageModifier-messageText-field {
 	
+	cursor: text;
+
 	background-color: rgba(32, 32, 32, 1);
 
 	min-height: 27px;
@@ -240,10 +242,70 @@
 }
 
 .messageModifier-messageText-field
-.text-field-input {
-	
+.text-field-image {
+
+	height: 22px;
+	width: 22px;
+
 	align-self: flex-start;
 
+	/* top - right - bottom - left */
+	margin: 2.5px 0px 0px 2px;
+
+	--unity-image-tint-color: white;
+}
+
+.messageModifier-messageText-field:hover
+.text-field-image,
+
+.messageModifier-messageText-field:focus
+.text-field-image {
+
+	/* top - right - bottom - left */
+	margin: 2px 0px 0px 1px;
+}
+
+.messageModifier-messageText-field.text-field-empty
+.text-field-image {
+
+	--unity-image-tint-color: rgba(81, 81, 81, 1);
+}
+
+.messageModifier-messageText-field
+.text-field-placeholder-label {
+	
+	color: rgba(81, 81, 81, 1);
+	cursor: text;
+
+	font-size: 13px;
+	
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
+	
+	letter-spacing: -0.25px;
+	word-spacing: -2px;
+
+	align-self: auto;
+
+	/* top - right - bottom - left */
+	margin: 5px 4px 5px 1px;
+}
+
+.messageModifier-messageText-field:hover
+.text-field-placeholder-label,
+
+.messageModifier-messageText-field:focus
+.text-field-placeholder-label {
+	
+	/* top - right - bottom - left */
+	margin: 4.5px 4px 4.5px 1px;
+}
+
+.messageModifier-messageText-field
+.text-field-input {
+	
 	cursor: text;
 	
 	flex-grow: 1;
@@ -275,9 +337,12 @@
 	
 	flex-direction: column;
 
+	flex-grow: 1;
 	flex-shrink: 0;
 
 	overflow: scroll;
+
+	align-self: flex-start;
 }
 
 .messageModifier-messageText-field
@@ -291,12 +356,10 @@
 	flex-grow: 1;
 	flex-shrink: 0;
 
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
+	-unity-font-definition: url('project:/assets/data/fonts/inter/asset/inter-medium-dynamic-sdf.asset');
 	
 	letter-spacing: -0.25px;
 	word-spacing: -2px;
-
-	align-self: center;
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 0px;
@@ -306,37 +369,6 @@
 .text-field-element {
 	
 	color: rgba(81, 81, 81, 1);
-}
-
-
-/*< ---------------------------------------------------------- Message Text Image >*/
-.messageModifier-messageText-image {
-
-	height: 22px;
-	width: 22px;
-
-	align-self: flex-start;
-
-	/* top - right - bottom - left */
-	margin: 2.5px 0px 0px 2px;
-
-	--unity-image-tint-color: white;
-}
-
-.messageModifier-messageText-field:hover
-.messageModifier-messageText-image,
-
-.messageModifier-messageText-field:focus
-.messageModifier-messageText-image {
-
-	/* top - right - bottom - left */
-	margin: 2px 0px 0px 1px;
-}
-
-.messageModifier-messageText-field.text-field-empty
-.messageModifier-messageText-image {
-
-	--unity-image-tint-color: rgba(81, 81, 81, 1);
 }
 
 

@@ -70,10 +70,7 @@ namespace AG.DS
         /// </summary>
         public MessageModifierView(LanguageHandler languageHandler)
         {
-            MessageTextFieldView = new(
-                placeholderText: StringConfig.MessageModifier_MessageTextField_PlaceholderText,
-                languageHandler
-            );
+            MessageTextFieldView = new(languageHandler);
 
             MessageAudioFieldView = new(
                 placeholderText: StringConfig.MessageModifier_MessageAudioField_PlaceholderText,

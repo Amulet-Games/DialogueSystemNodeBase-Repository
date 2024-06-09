@@ -138,6 +138,7 @@ namespace AG.DS
                 LanguageTextFieldPresenter.CreateElement
                 (
                     view: View.BranchTitleFieldView,
+                    placeholderText: StringConfig.OptionBranchNode_BranchTitleField_PlaceholderText,
                     multiline: false,
                     fieldUSS: StyleConfig.OptionBranchNode_BranchTitle_Field
                 );

@@ -61,7 +61,7 @@ namespace AG.DS
                 {
                     fieldImageElement = ImagePresenter.CreateElement
                     (
-                        sprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite,
+                        sprite: fieldImageSprite,
                         USS01: StyleConfig.Text_Field_Image
                     );
                 }

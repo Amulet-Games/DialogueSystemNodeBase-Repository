@@ -143,7 +143,7 @@ namespace AG.DS
             {
                 // Language Handler
                 {
-                    languageHandler = new();
+                    languageHandler = LanguageHandlerFactory.Generate();
                 }
 
                 // Serialize Handler

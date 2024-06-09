@@ -134,6 +134,7 @@ namespace AG.DS
                 LanguageTextFieldPresenter.CreateElement
                 (
                     view: View.RootTitleFieldView,
+                    placeholderText: StringConfig.OptionRootNode_RootTitleField_PlaceholderText,
                     multiline: false,
                     fieldUSS: StyleConfig.OptionRootNode_RootTitle_Field
                 );

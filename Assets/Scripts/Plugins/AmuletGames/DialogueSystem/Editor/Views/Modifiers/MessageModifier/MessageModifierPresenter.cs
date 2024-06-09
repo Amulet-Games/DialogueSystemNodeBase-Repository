@@ -29,7 +29,6 @@ namespace AG.DS
             Label startDelayLabel;
             Label delaySecondsLabel;
 
-            Image messageTextImage;
             Image messageAudioImage;
 
             CreateFolder();
@@ -47,8 +46,6 @@ namespace AG.DS
             CreateMessageTextLabel();
 
             CreateMessageTextField();
-
-            CreateMessageTextImage();
 
             CreateMessageAudioLabel();
 
@@ -158,20 +155,11 @@ namespace AG.DS
                 LanguageTextFieldPresenter.CreateElement
                 (
                     view: view.MessageTextFieldView,
+                    placeholderText: StringConfig.MessageModifier_MessageTextField_PlaceholderText,
                     multiline: true,
-                    fieldUSS: StyleConfig.MessageModifier_MessageText_Field
+                    fieldUSS: StyleConfig.MessageModifier_MessageText_Field,
+                    fieldImageSprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite
                 );
-            }
-
-            void CreateMessageTextImage()
-            {
-                messageTextImage = ImagePresenter.CreateElement
-                (
-                    sprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite,
-                    USS01: StyleConfig.MessageModifier_MessageText_Image
-                );
-
-                view.MessageTextFieldView.Field.SetDisplayImage(messageTextImage);
             }
 
             void CreateMessageAudioLabel()

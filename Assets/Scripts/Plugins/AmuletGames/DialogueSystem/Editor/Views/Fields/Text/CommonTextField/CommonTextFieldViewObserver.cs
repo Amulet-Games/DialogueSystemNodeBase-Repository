@@ -74,12 +74,7 @@ namespace AG.DS
         {
             previousValue = field.value;
 
-            if (view.IsEmpty)
-            {
-                view.PlaceholderTextLabel.UnDisplayElement();
-            }
-
-            field.HideEmptyStyle();
+            view.HideEmptyStyle();
         }
 
 

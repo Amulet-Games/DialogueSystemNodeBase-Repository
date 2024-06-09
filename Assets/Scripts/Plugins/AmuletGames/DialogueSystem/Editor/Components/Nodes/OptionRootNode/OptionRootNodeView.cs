@@ -32,12 +32,7 @@ namespace AG.DS
         {
             ContentButtonView = new();
             NodeTitleFieldView = new(value: StringConfig.OptionRootNode_NodeTitleField_DefaultText);
-
-            RootTitleFieldView = new
-            (
-                placeholderText: StringConfig.OptionRootNode_RootTitleField_PlaceholderText,
-                languageHandler
-            );
+            RootTitleFieldView = new(languageHandler);
 
             return this;
         }

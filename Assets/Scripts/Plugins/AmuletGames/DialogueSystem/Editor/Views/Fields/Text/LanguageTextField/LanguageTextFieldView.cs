@@ -16,9 +16,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The text to display when the field is empty.
+        /// Label for the text field placeholder text.
         /// </summary>
-        [NonSerialized] public string PlaceholderText;
+        [NonSerialized] public Label PlaceholderTextLabel;
 
 
         /// <summary>
@@ -32,8 +32,13 @@ namespace AG.DS
             }
             set
             {
-                LanguageValue.ValueByLanguageType[LanguageHandler.CurrentLanguage] = value;
-                UpdateFieldLanguageValue();
+                IsEmpty = value.IsNullOrWhiteSpace();
+
+                LanguageValue.ValueByLanguageType[LanguageHandler.CurrentLanguage] = IsEmpty ? "" : value;
+
+                Field.SetValueWithoutNotify(LanguageValue.ValueByLanguageType[LanguageHandler.CurrentLanguage]);
+
+                this.ToggleEmptyStyle();
             }
         }
 
@@ -45,6 +50,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Returns true if the view's field is currently empty.
+        /// </summary>
+        [NonSerialized] public bool IsEmpty;
+
+
+        /// <summary>
         /// Reference of the language handler.
         /// </summary>
         [NonSerialized] public LanguageHandler LanguageHandler;
@@ -53,15 +64,9 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the language text field view class.
         /// </summary>
-        /// <param name="placeholderText">The placeholder text to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>
-        public LanguageTextFieldView
-        (
-            string placeholderText,
-            LanguageHandler languageHandler
-        )
+        public LanguageTextFieldView(LanguageHandler languageHandler)
         {
-            PlaceholderText = placeholderText;
             LanguageHandler = languageHandler;
             LanguageValue = new();
         }
@@ -85,8 +90,6 @@ namespace AG.DS
         public void Load(LanguageGeneric<string> value)
         {
             LanguageValue.Load(value);
-
-            UpdateFieldLanguageValue();
         }
 
 
@@ -96,14 +99,7 @@ namespace AG.DS
         /// </summary>
         public void UpdateFieldLanguageValue()
         {
-            Field.SetValueWithoutNotify(CurrentLanguageValue);
-
-            if (CurrentLanguageValue.IsNullOrEmpty())
-            {
-                Field.SetActivePlaceholderText(PlaceholderText, active: true);
-            }
-
-            this.ToggleEmptyStyle();
+            CurrentLanguageValue = LanguageValue.ValueByLanguageType[LanguageHandler.CurrentLanguage];
         }
 
 

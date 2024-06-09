@@ -126,6 +126,38 @@
 }
 
 .optionBranchNode-branchTitle-field
+.text-field-placeholder-label {
+
+	color: rgba(81, 81, 81, 1);
+	cursor: text;
+
+	font-size: 13px;
+	
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
+	
+	letter-spacing: -0.25px;
+	word-spacing: -2px;
+
+	align-self: auto;
+
+	/* top - right - bottom - left */
+	margin: 5px 4px 5px 5px;
+}
+
+.optionBranchNode-branchTitle-field:hover
+.text-field-placeholder-label,
+
+.optionBranchNode-branchTitle-field:focus
+.text-field-placeholder-label {
+	
+	/* top - right - bottom - left */
+	margin: 4.5px 4px 4.5px 4.5px;
+}
+
+.optionBranchNode-branchTitle-field
 .text-field-input {
 	
 	cursor: text;

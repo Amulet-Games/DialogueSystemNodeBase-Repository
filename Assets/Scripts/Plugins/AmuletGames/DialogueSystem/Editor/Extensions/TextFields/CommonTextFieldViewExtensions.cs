@@ -11,14 +11,36 @@ namespace AG.DS
         {
             if (view.IsEmpty)
             {
-                view.Field.ShowEmptyStyle();
-                view.PlaceholderTextLabel.DisplayElement();
+                ShowEmptyStyle(view);
             }
             else
             {
-                view.Field.HideEmptyStyle();
-                view.PlaceholderTextLabel.UnDisplayElement();
+                HideEmptyStyle(view);
             }
+        }
+
+
+        /// <summary>
+        /// Add the common text field to the empty style class.
+        /// </summary>
+        /// <param name="field">Extension common text field.</param>
+        public static void ShowEmptyStyle(this CommonTextFieldView view)
+        {
+            view.Field.AddToClassList(StyleConfig.Text_Field_Empty);
+            view.Field.GetFieldInput().UnDisplayElement();
+            view.PlaceholderTextLabel.DisplayElement();
+        }
+
+
+        /// <summary>
+        /// Remove the common text field from the empty style class.
+        /// </summary>
+        /// <param name="field">Extension common text field.</param>
+        public static void HideEmptyStyle(this CommonTextFieldView view)
+        {
+            view.Field.RemoveFromClassList(StyleConfig.Text_Field_Empty);
+            view.Field.GetFieldInput().DisplayElement();
+            view.PlaceholderTextLabel.UnDisplayElement();
         }
     }
 }

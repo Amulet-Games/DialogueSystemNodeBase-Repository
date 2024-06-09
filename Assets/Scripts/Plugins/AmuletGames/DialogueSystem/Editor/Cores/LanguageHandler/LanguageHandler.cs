@@ -1,15 +1,10 @@
+using System;
 using System.Collections.Generic;
 
 namespace AG.DS
 {
     public class LanguageHandler
     {
-        /// <summary>
-        /// Reference of the language handler callback.
-        /// </summary>
-        LanguageHandlerCallback callback;
-
-
         /// <summary>
         /// The language field elements cache.
         /// </summary>
@@ -28,7 +23,8 @@ namespace AG.DS
             set
             {
                 m_CurrentLanguage = value;
-                callback.OnLanguageChange();
+
+                CurrentLanguageChangedEvent?.Invoke();
             }
         }
 
@@ -40,12 +36,16 @@ namespace AG.DS
 
 
         /// <summary>
+        /// The event to invoke when current language has changed.
+        /// </summary>
+        public Action CurrentLanguageChangedEvent;
+
+
+        /// <summary>
         /// Constructor of the language handler class.
         /// </summary>
         public LanguageHandler()
         {
-            callback = new(languageHandler: this);
-
             LanguageFieldViews = new();
             CurrentLanguage = LanguageType.English;
         }

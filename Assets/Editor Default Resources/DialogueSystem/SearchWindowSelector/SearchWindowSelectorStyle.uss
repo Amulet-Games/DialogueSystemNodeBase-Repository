@@ -59,7 +59,7 @@
 .searchWindowSelector.searchWindowSelector-empty
 .searchWindowSelector-selectButton-icon-image {
 
-	--unity-image-tint-color: rgba(120, 120, 120, 1);
+	--unity-image-tint-color: rgba(81, 81, 81, 1);
 }
 
 /*< ---------------------------------------------------------- Search Window Selector Button Text Label >*/
@@ -99,7 +99,7 @@
 .searchWindowSelector.searchWindowSelector-empty
 .searchWindowSelector-selectButton-text-label {
 
-	color: rgba(120, 120, 120, 1);
+	color: rgba(81, 81, 81, 1);
 }
 
 
@@ -113,8 +113,8 @@
 	
 	/* top - right - bottom - left */
 	margin: 0px 5.5px 2px 0px;
-
-	--unity-image-tint-color: rgba(120, 120, 120, 1);
+	
+	--unity-image-tint-color: rgba(81, 81, 81, 1);
 }
 
 .searchWindowSelector-selectButton-button:hover

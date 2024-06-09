@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace AG.DS
@@ -8,25 +9,34 @@ namespace AG.DS
         /// Create the elements for the language text field view.
         /// </summary>
         /// <param name="view">The language text field view to set for..</param>
+        /// <param name="placeholderText">The placeholder text to set for.</param>
         /// <param name="multiline">Set this to true to allow multiple lines in the text field and false if otherwise.</param>
         /// <param name="fieldUSS">The field USS style to set for.</param>
+        /// <param name="fieldImageSprite">The field image sprite to set for.</param>
         public static void CreateElement
         (
             LanguageTextFieldView view,
+            string placeholderText,
             bool multiline,
-            string fieldUSS
+            string fieldUSS,
+            Sprite fieldImageSprite = null
         )
         {
             TextField field;
+            Image fieldImageElement = null;
             VisualElement fieldInputElement;
             VisualElement fieldMultilineContainerElement;
             VisualElement fieldTextElement;
 
             CreateField();
 
-            SetupDetails();
+            CreateFieldImage();
+
+            CreatePlaceholderLabel();
 
             AddStyleClass();
+
+            SetupDetails();
 
             SetupDefaultValue();
 
@@ -47,24 +57,25 @@ namespace AG.DS
                 fieldTextElement = textElement;
             }
 
-            void SetupDetails()
+            void CreateFieldImage()
             {
-                field.multiline = multiline;
-
-                if (multiline)
+                if (fieldImageSprite)
                 {
-                    // WhiteSpace.Normal means the texts will auto line break when
-                    // it reaches the end of the field input element.
-                    field.style.whiteSpace = WhiteSpace.Normal;
+                    fieldImageElement = ImagePresenter.CreateElement
+                    (
+                        sprite: fieldImageSprite,
+                        USS01: StyleConfig.Text_Field_Image
+                    );
                 }
-                else
-                {
-                    // WhiteSpace.NoWarp means the texts are shown in one line even when
-                    // it's expanded outside of the field input element.
-                    field.style.whiteSpace = WhiteSpace.NoWrap;
-                }
+            }
 
-                field.pickingMode = PickingMode.Position;
+            void CreatePlaceholderLabel()
+            {
+                view.PlaceholderTextLabel = LabelPresenter.CreateElement
+                (
+                    text: placeholderText,
+                    USS: StyleConfig.Text_Field_Placeholder_Label
+                );
             }
 
             void AddStyleClass()
@@ -82,6 +93,31 @@ namespace AG.DS
                     fieldMultilineContainerElement.ClearClassList();
                     fieldMultilineContainerElement.AddToClassList(StyleConfig.Text_Field_Multiline_Container);
                 }
+            }
+
+            void SetupDetails()
+            {
+                if (multiline)
+                {
+                    // WhiteSpace.Normal means the texts will auto line break when
+                    // it reaches the end of the field input element.
+                    field.style.whiteSpace = WhiteSpace.Normal;
+                }
+                else
+                {
+                    // WhiteSpace.NoWarp means the texts are shown in one line even when
+                    // it's expanded outside of the field input element.
+                    field.style.whiteSpace = WhiteSpace.NoWrap;
+                }
+
+                field.pickingMode = PickingMode.Position;
+
+                if (fieldImageElement != null)
+                {
+                    field.SetDisplayImage(fieldImageElement);
+                }
+
+                field.SetPlaceholderLabel(view.PlaceholderTextLabel);
             }
 
             void SetupDefaultValue()

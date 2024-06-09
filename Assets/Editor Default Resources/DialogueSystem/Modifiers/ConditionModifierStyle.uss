@@ -378,6 +378,38 @@
 }
 
 .conditionModifier-variableGroup-textField-field
+.text-field-placeholder-label {
+	
+	color: rgba(81, 81, 81, 1);
+	cursor: text;
+
+	font-size: 13px;
+	
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
+	
+	letter-spacing: -0.25px;
+	word-spacing: -2px;
+
+	align-self: auto;
+
+	/* top - right - bottom - left */
+	margin: 5px 4px 5px 1px;
+}
+
+.conditionModifier-variableGroup-textField-field:hover
+.text-field-placeholder-label,
+
+.conditionModifier-variableGroup-textField-field:focus
+.text-field-placeholder-label {
+	
+	/* top - right - bottom - left */
+	margin: 4.5px 4px 4.5px 1px;
+}
+
+.conditionModifier-variableGroup-textField-field
 .text-field-input {
 
 	cursor: text;
@@ -410,28 +442,6 @@
 	word-spacing: -2px;
 
 	align-self: center;
-
-	/* top - right - bottom - left */
-	margin: 0px 0px 0px 1px;
-}
-
-.conditionModifier-variableGroup-textField-field
-.text-field-placeholder-label {
-	
-	color: rgba(81, 81, 81, 1);
-	cursor: text;
-
-	font-size: 13px;
-	
-	flex-grow: 1;
-	flex-shrink: 0;
-
-	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Dynamic-SDF.asset');
-	
-	letter-spacing: -0.25px;
-	word-spacing: -2px;
-
-	align-self: auto;
 
 	/* top - right - bottom - left */
 	margin: 0px 0px 0px 1px;

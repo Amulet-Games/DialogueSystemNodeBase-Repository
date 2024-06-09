@@ -34,14 +34,7 @@ namespace AG.DS
             {
                 IsEmpty = value.IsNullOrWhiteSpace();
 
-                if (IsEmpty)
-                {
-                    m_value = "";
-                }
-                else
-                {
-                    m_value = value;
-                }
+                m_value = IsEmpty ? "" : value; 
 
                 Field.SetValueWithoutNotify(m_value);
 

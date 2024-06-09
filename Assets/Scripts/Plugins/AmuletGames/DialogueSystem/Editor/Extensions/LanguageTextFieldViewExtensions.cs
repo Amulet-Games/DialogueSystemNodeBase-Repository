@@ -9,14 +9,38 @@ namespace AG.DS
         /// <param name="view">Extension language text field view.</param>
         public static void ToggleEmptyStyle(this LanguageTextFieldView view)
         {
-            if (!view.CurrentLanguageValue.IsNullOrEmpty())
+            if (view.IsEmpty)
             {
-                view.Field.HideEmptyStyle();
+                ShowEmptyStyle(view);
             }
             else
             {
-                view.Field.ShowEmptyStyle();
+                HideEmptyStyle(view);
             }
+        }
+
+
+        /// <summary>
+        /// Add the language text field to the empty style class.
+        /// </summary>
+        /// <param name="field">Extension language text field.</param>
+        public static void ShowEmptyStyle(this LanguageTextFieldView view)
+        {
+            view.Field.AddToClassList(StyleConfig.Text_Field_Empty);
+            view.Field.GetFieldInput().UnDisplayElement();
+            view.PlaceholderTextLabel.DisplayElement();
+        }
+
+
+        /// <summary>
+        /// Remove the language text field from the empty style class.
+        /// </summary>
+        /// <param name="field">Extension language text field.</param>
+        public static void HideEmptyStyle(this LanguageTextFieldView view)
+        {
+            view.Field.RemoveFromClassList(StyleConfig.Text_Field_Empty);
+            view.Field.GetFieldInput().DisplayElement();
+            view.PlaceholderTextLabel.UnDisplayElement();
         }
     }
 }

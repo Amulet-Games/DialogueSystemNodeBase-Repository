@@ -104,44 +104,7 @@ namespace AG.DS
             Label label
         )
         {
-            field.GetTextElement().Add(label);
-        }
-
-
-        /// <summary>
-        /// Set the placeholder text active status.
-        /// </summary>
-        /// <param name="view">Extension text field view.</param>
-        /// <param name="placeholderText">The placeholder text to set for.</param>
-        /// <param name="active">The active value to set for.</param>
-        public static void SetActivePlaceholderText
-        (
-            this TextField field,
-            string placeholderText,
-            bool active
-        )
-        {
-            field.SetValueWithoutNotify(active ? placeholderText : string.Empty);
-        }
-
-
-        /// <summary>
-        /// Remove the text field from the empty style class.
-        /// </summary>
-        /// <param name="field">Extension text field.</param>
-        public static void HideEmptyStyle(this TextField field)
-        {
-            field.RemoveFromClassList(StyleConfig.Text_Field_Empty);
-        }
-
-
-        /// <summary>
-        /// Add the text field to the empty style class.
-        /// </summary>
-        /// <param name="field">Extension text field.</param>
-        public static void ShowEmptyStyle(this TextField field)
-        {
-            field.AddToClassList(StyleConfig.Text_Field_Empty);
+            field.Add(label);
         }
     }
 }
