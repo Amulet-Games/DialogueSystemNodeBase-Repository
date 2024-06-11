@@ -46,12 +46,14 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override void OnCreate()
+        public override void OnCreate(bool byUser)
         {
-            // Add language field
+            if (byUser)
             {
-                View.RootTitleFieldView.LanguageHandler.Add(View.RootTitleFieldView);
+                LanguageTextFieldCallback.OnCreateByUser(View.RootTitleFieldView);
             }
+
+            View.RootTitleFieldView.LanguageHandler.Add(View.RootTitleFieldView);
         }
     }
 }

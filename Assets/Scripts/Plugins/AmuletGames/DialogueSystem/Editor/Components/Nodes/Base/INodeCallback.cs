@@ -20,6 +20,6 @@ namespace AG.DS
         /// Read more:
         /// <see cref="NodeCallbackFrameBase{TNode, TNodeView, TNodeCallback}.OnCreate"/>
         /// </summary>
-        void OnCreate();
+        void OnCreate(bool byUser);
     }
 }

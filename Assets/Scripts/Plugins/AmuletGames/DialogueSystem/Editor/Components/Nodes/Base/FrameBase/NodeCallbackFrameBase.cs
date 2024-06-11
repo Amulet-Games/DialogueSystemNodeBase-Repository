@@ -41,9 +41,10 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The callback to invoke when the node is created on the graph by the system or user.
+        /// The callback to invoke when the node is created on the graph.
         /// Note that this is called after the node's save data is loaded.
         /// </summary>
-        public abstract void OnCreate();
+        /// <param name="byUser">Is the node created by the user.</param>
+        public abstract void OnCreate(bool byUser);
     }
 }

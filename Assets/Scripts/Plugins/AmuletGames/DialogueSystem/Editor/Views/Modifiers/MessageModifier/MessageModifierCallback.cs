@@ -16,6 +16,8 @@ namespace AG.DS
             if (byUser)
             {
                 FolderCallback.OnCreateByUser(view.Folder);
+
+                LanguageTextFieldCallback.OnCreateByUser(view.MessageTextFieldView);
             }
         }
     }

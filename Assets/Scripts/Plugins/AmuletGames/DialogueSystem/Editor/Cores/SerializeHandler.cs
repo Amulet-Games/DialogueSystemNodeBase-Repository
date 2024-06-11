@@ -124,9 +124,16 @@ namespace AG.DS
             var count = dialogueSystemWindowData.NodesData.Count;
             for (int i = 0; i < count; i++)
             {
-                graphViewer.Add(
-                    NodeManager.Instance.Spawn(graphViewer, dialogueSystemWindowData.NodesData[i], languageHandler)
+                var nodeProduct = NodeManager.Instance.Spawn
+                (
+                    graphViewer,
+                    data: dialogueSystemWindowData.NodesData[i],
+                    languageHandler
                 );
+
+                nodeProduct.ExecuteOnceOnGeometryChanged((evt) => nodeProduct.Callback.OnCreate(byUser: false));
+
+                graphViewer.Add(nodeProduct);
             }
         }
 

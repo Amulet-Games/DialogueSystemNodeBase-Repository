@@ -34,7 +34,7 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override void OnCreate()
+        public override void OnCreate(bool byUser)
         {
         }
     }

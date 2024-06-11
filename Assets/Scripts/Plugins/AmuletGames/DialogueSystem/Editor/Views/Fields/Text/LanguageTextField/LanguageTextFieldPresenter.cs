@@ -38,8 +38,6 @@ namespace AG.DS
 
             SetupDetails();
 
-            SetupDefaultValue();
-
             void CreateField()
             {
                 view.Field = new
@@ -118,11 +116,6 @@ namespace AG.DS
                 }
 
                 field.SetPlaceholderLabel(view.PlaceholderTextLabel);
-            }
-
-            void SetupDefaultValue()
-            {
-                view.CurrentLanguageValue = "";
             }
         }
     }

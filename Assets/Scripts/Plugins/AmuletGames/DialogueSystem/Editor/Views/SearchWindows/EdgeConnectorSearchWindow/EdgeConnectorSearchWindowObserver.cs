@@ -198,7 +198,7 @@ namespace AG.DS
                 graphViewer.Add(edge);
             }
 
-            nodeProduct.Callback.OnCreate();
+            nodeProduct.Callback.OnCreate(byUser: true);
         }
     }
 }

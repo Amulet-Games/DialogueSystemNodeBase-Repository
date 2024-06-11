@@ -143,7 +143,7 @@ namespace AG.DS
                 nodeProduct.SetPosition(newPos: new Rect(position: spawnPosition, size: Vector2Utility.Zero));
             }
 
-            nodeProduct.Callback.OnCreate();
+            nodeProduct.Callback.OnCreate(byUser: true);
         }
     }
 }

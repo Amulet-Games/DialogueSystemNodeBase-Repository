@@ -42,12 +42,14 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override void OnCreate()
+        public override void OnCreate(bool byUser)
         {
-            // Add language field
+            if (byUser)
             {
-                View.BranchTitleFieldView.LanguageHandler.Add(View.BranchTitleFieldView);
+                LanguageTextFieldCallback.OnCreateByUser(View.BranchTitleFieldView);
             }
+
+            View.BranchTitleFieldView.LanguageHandler.Add(View.BranchTitleFieldView);
         }
     }
 }
