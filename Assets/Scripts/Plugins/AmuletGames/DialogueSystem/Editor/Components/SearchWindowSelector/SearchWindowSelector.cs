@@ -97,22 +97,22 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the search window selector element.
         /// </summary>
+        /// <param name="selectorSearchWindowView">The selector search window view to set for.</param>
         /// <param name="nullValueSelectorButtonLabelText">The null value selector button label text to set for.</param>
         /// <param name="searchWindowWidth">The search window width to set for.</param>
         /// <param name="searchWindowHeight">The search window height to set for.</param>
-        /// <param name="selectorSearchWindowView">The selector search window view to set for.</param>
         public SearchWindowSelector
         (
+            SelectorSearchWindowView selectorSearchWindowView,
             string nullValueSelectorButtonLabelText,
             float searchWindowWidth,
-            float searchWindowHeight,
-            SelectorSearchWindowView selectorSearchWindowView
+            float searchWindowHeight
         )
         {
+            SelectorSearchWindowView = selectorSearchWindowView;
             NullValueSelectorButtonLabelText = nullValueSelectorButtonLabelText;
             this.searchWindowWidth = searchWindowWidth;
             this.searchWindowHeight = searchWindowHeight;
-            SelectorSearchWindowView = selectorSearchWindowView;
         }
 
 

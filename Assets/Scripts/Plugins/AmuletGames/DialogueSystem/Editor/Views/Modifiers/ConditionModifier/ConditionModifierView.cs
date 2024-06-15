@@ -66,6 +66,12 @@ namespace AG.DS
 
 
             /// <summary>
+            /// View for the variable search window.
+            /// </summary>
+            public SelectorSearchWindowView VariableSearchWindowView;
+
+
+            /// <summary>
             /// Element that contains the field info elements.
             /// </summary>
             public VisualElement FieldInfoContainer;
@@ -75,6 +81,12 @@ namespace AG.DS
             /// Selector that opens the field info search selector.
             /// </summary>
             public SearchWindowSelector FieldInfoSearchWindowSelector;
+
+
+            /// <summary>
+            /// View for the field info search window.
+            /// </summary>
+            public SelectorSearchWindowView FieldInfoSearchWindowView;
 
 
             /// <summary>
@@ -105,9 +117,16 @@ namespace AG.DS
             /// Constructor of the variable group element.
             /// </summary>
             /// <param name="view">The condition modifier view to set for.</param>
-            public VariableGroup(ConditionModifierView view)
+            /// <param name="searchWindow">The search window to set for.</param>
+            public VariableGroup
+            (
+                ConditionModifierView view,
+                SearchWindow searchWindow
+            )
             {
                 this.view = view;
+                VariableSearchWindowView = new(searchWindow);
+                FieldInfoSearchWindowView = new(searchWindow);
                 TextFieldView = new();
                 FloatFieldView = new();
             }

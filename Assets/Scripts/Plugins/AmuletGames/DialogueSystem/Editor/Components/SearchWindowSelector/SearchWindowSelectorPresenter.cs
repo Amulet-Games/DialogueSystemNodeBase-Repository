@@ -8,15 +8,15 @@ namespace AG.DS
         /// <summary>
         /// Create a new search window selector element.
         /// </summary>
+        /// <param name="selectorSearchWindowView">The selector search window view to set for.</param>
         /// <param name="selectorButtonIconSprite">The selector button icon sprite to set for.</param>
         /// <param name="nullValueSelectorButtonLabelText">The null value selector button label text to set for.</param>
-        /// <param name="selectorSearchWindowView">The selector search window view to set for.</param>
         /// <returns>A new search window selector element.</returns>
         public static SearchWindowSelector CreateElement
         (
+            SelectorSearchWindowView selectorSearchWindowView,
             Sprite selectorButtonIconSprite,
-            string nullValueSelectorButtonLabelText,
-            SelectorSearchWindowView selectorSearchWindowView
+            string nullValueSelectorButtonLabelText
         )
         {
             SearchWindowSelector selector;
@@ -47,10 +47,10 @@ namespace AG.DS
             {
                 selector = new
                 (
+                    selectorSearchWindowView,
                     nullValueSelectorButtonLabelText,
                     searchWindowWidth: 400f,
-                    searchWindowHeight: 320f,
-                    selectorSearchWindowView
+                    searchWindowHeight: 320f
                 );
 
                 selector.AddToClassList(StyleConfig.SearchWindowSelector);

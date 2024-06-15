@@ -371,7 +371,7 @@ namespace AG.DS
 
                 void CreateGroup()
                 {
-                    group = new(view);
+                    group = new(view, searchWindow);
                     group.AddToClassList(StyleConfig.ConditionModifier_VariableGroup);
                 }
 
@@ -415,9 +415,9 @@ namespace AG.DS
                 {
                     group.VariableSearchWindowSelector = SearchWindowSelectorPresenter.CreateElement
                     (
+                        group.VariableSearchWindowView,
                         selectorButtonIconSprite: ConfigResourcesManager.SpriteConfig.SceneObjectFieldIconSprite,
-                        nullValueSelectorButtonLabelText: StringConfig.ConditionModifierView.VariableSearchWindowSelector_PlaceholderText,
-                        new SelectorSearchWindowView(searchWindow)
+                        nullValueSelectorButtonLabelText: StringConfig.ConditionModifierView.VariableSearchWindowSelector_PlaceholderText
                     );
                 }
 
@@ -434,9 +434,9 @@ namespace AG.DS
                 {
                     group.FieldInfoSearchWindowSelector = SearchWindowSelectorPresenter.CreateElement
                     (
+                        group.FieldInfoSearchWindowView,
                         selectorButtonIconSprite: ConfigResourcesManager.SpriteConfig.SceneObjectFieldIconSprite,
-                        nullValueSelectorButtonLabelText: StringConfig.ConditionModifierView.FieldInfoSearchWindowSelector_PlaceholderText,
-                        new SelectorSearchWindowView(searchWindow)
+                        nullValueSelectorButtonLabelText: StringConfig.ConditionModifierView.FieldInfoSearchWindowSelector_PlaceholderText
                     );
                 }
 
