@@ -1,3 +1,5 @@
+using System;
+
 namespace AG.DS
 {
     public interface INodeCallback
@@ -21,5 +23,12 @@ namespace AG.DS
         /// <see cref="NodeCallbackFrameBase{TNode, TNodeView, TNodeCallback}.OnCreate"/>
         /// </summary>
         void OnCreate(bool byUser);
+
+
+        /// <summary>
+        /// Read more:
+        /// <see cref="NodeCallbackFrameBase{TNode, TNodeView, TNodeCallback}.NodeCreatedEvent"/>
+        /// </summary>
+        event Action NodeCreatedEvent;
     }
 }

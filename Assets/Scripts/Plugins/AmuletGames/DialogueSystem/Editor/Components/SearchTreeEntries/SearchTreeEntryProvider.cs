@@ -137,7 +137,7 @@ namespace AG.DS
                 (
                     text: StringConfig.SearchTreeEntry_Common_EndNode_LabelText,
                     icon: EmptySearchTreeEntryIcon,
-                    level: 3,
+                    level: newNodeEntry.NextLevel(),
                     userData: new NodeTypeSearchTreeEntryUserData(nodeType: Node.End)
                 ),
                 SearchTreeEntryPresenter.CreateEntry

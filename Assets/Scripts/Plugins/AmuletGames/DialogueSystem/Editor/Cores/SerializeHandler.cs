@@ -131,8 +131,6 @@ namespace AG.DS
                     languageHandler
                 );
 
-                nodeProduct.ExecuteOnceOnGeometryChanged((evt) => nodeProduct.Callback.OnCreate(byUser: false));
-
                 graphViewer.Add(nodeProduct);
             }
         }

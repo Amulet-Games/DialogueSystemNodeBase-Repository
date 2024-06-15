@@ -170,11 +170,13 @@ namespace AG.DS
 
             presenter.CreateElements(node);
             observer.RegisterEvents(node);
-            
+
             if (data != null)
             {
                 new TNodeSerializer().Load(node, data);
             }
+
+            node.ExecuteOnceOnGeometryChanged((evt) => callback.OnCreate(byUser: data == null));
 
             return node;
         }

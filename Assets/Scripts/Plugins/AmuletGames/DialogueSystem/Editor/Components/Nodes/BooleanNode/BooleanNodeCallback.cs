@@ -39,7 +39,7 @@ namespace AG.DS
 
 
         /// <inheritdoc />
-        public override void OnCreate(bool byUser)
+        protected override void _OnCreate(bool byUser)
         {
             // If there's no modifier being created after loading, create a new one by default.
             if (byUser)

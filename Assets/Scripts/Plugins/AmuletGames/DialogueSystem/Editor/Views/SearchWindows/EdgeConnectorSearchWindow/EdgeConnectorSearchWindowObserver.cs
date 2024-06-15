@@ -34,7 +34,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the new created node from the SearchWindowEntrySelectedEvent.
         /// </summary>
-        NodeBase nodeProduct;
+        NodeBase node;
 
 
         /// <summary>
@@ -82,6 +82,12 @@ namespace AG.DS
             => new SearchWindowObserver(view.SearchWindow, SearchWindowEntrySelectedEvent).RegisterEvents();
 
 
+        /// <summary>
+        /// Register NodeCreatedEvent to the newly created node.
+        /// </summary>
+        void RegisterNodeCreatedEvents() => node.Callback.NodeCreatedEvent += NodeCreatedEvent;
+
+
         // ----------------------------- Event -----------------------------
         /// <summary>
         /// The event to invoke when an entry in the edge connector search window is selected.
@@ -92,16 +98,16 @@ namespace AG.DS
         {
             SearchWindowContextScreenMousePosition = context.screenMousePosition;
 
-            nodeProduct = NodeManager.Instance.Spawn
+            node = NodeManager.Instance.Spawn
             (
                 graphViewer,
                 nodeType: ((NodeTypeSearchTreeEntryUserData)searchTreeEntry.userData).NodeType,
                 languageHandler
             );
 
-            nodeProduct.ExecuteOnceOnGeometryChanged(NodeProductCreatedEvent);
+            RegisterNodeCreatedEvents();
 
-            graphViewer.Add(nodeProduct);
+            graphViewer.Add(node);
 
             WindowChangedEvent.Invoke();
 
@@ -110,10 +116,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the new node has been created on the graph.
+        /// The event to invoke when the a node has been created on the graph.
         /// </summary>
-        /// <param name="evt">The registering event</param>
-        void NodeProductCreatedEvent(GeometryChangedEvent evt)
+        void NodeCreatedEvent()
         {
             Port connectToPort;
             bool isInputConnector = view.ConnectorPort.IsInput();
@@ -130,7 +135,7 @@ namespace AG.DS
                 // And calculate its position in the graph viewer.
                 var spawnPosition = graphViewer.contentViewContainer.WorldToLocal(p: mouseToWindowCenterVector);
 
-                connectToPort = nodeProduct switch
+                connectToPort = node switch
                 {
                     BooleanNode node => isInputConnector
                         ? node.View.TrueOutputPort
@@ -139,7 +144,7 @@ namespace AG.DS
                     DialogueNode node => isInputConnector
                         ? node.View.OutputPort
                         : node.View.InputPort,
-                        
+
                     EndNode node => isInputConnector
                         ? null
                         : node.View.InputPort,
@@ -167,16 +172,16 @@ namespace AG.DS
                     _ => throw new ArgumentException("Node creation failed: cannot retrieve 'connectToPort' from invalid node type.")
                 };
 
-                spawnPosition.y -= (nodeProduct.topContainer.worldBound.height
+                spawnPosition.y -= (node.topContainer.worldBound.height
                                   + connectToPort.localBound.position.y
                                   + NumberConfig.MANUAL_CREATE_Y_OFFSET)
                                   / graphViewer.scale;
 
                 spawnPosition.x -= isInputConnector
-                    ? nodeProduct.localBound.width
+                    ? node.localBound.width
                     : 0;
 
-                nodeProduct.SetPosition(newPos: new Rect(position: spawnPosition, size: Vector2Utility.Zero));
+                node.SetPosition(newPos: new Rect(position: spawnPosition, size: Vector2Utility.Zero));
             }
 
             // Connect the connector port to the node product
@@ -197,8 +202,6 @@ namespace AG.DS
 
                 graphViewer.Add(edge);
             }
-
-            nodeProduct.Callback.OnCreate(byUser: true);
         }
     }
 }

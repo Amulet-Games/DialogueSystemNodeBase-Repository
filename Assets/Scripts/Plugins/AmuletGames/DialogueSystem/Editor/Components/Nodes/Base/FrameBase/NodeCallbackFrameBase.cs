@@ -1,3 +1,5 @@
+using System;
+
 namespace AG.DS
 {
     public abstract class NodeCallbackFrameBase
@@ -45,6 +47,23 @@ namespace AG.DS
         /// Note that this is called after the node's save data is loaded.
         /// </summary>
         /// <param name="byUser">Is the node created by the user.</param>
-        public abstract void OnCreate(bool byUser);
+        public void OnCreate(bool byUser)
+        {
+            _OnCreate(byUser);
+            NodeCreatedEvent?.Invoke();
+        }
+
+
+        /// <summary>
+        /// Read more:
+        /// <see cref="OnCreate"/>
+        /// </summary>
+        protected abstract void _OnCreate(bool byUser);
+
+
+        /// <summary>
+        /// The event to invoke when the node is created on the graph.
+        /// </summary>
+        public event Action NodeCreatedEvent;
     }
 }
