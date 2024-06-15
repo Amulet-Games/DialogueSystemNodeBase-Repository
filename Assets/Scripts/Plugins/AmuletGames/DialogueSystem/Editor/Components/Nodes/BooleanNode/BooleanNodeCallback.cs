@@ -44,7 +44,7 @@ namespace AG.DS
             // If there's no modifier being created after loading, create a new one by default.
             if (byUser)
             {
-                View.ContentButtonView.Button.Click();
+                View.m_ContentButtonView.Button.Click();
             }
         }
     }

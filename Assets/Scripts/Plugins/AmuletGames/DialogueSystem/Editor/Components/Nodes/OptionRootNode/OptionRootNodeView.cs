@@ -6,7 +6,7 @@ namespace AG.DS
         /// <summary>
         /// View for the content button.
         /// </summary>
-        public ContentButtonView ContentButtonView;
+        public ContentButtonView m_ContentButtonView;
 
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override OptionRootNodeView Setup(LanguageHandler languageHandler)
         {
-            ContentButtonView = new();
+            m_ContentButtonView = new();
             NodeTitleFieldView = new(value: StringConfig.OptionRootNode_NodeTitleField_DefaultText);
             RootTitleFieldView = new(languageHandler);
 

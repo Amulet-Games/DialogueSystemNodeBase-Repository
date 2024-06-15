@@ -6,7 +6,7 @@
         /// <summary>
         /// View for the content button.
         /// </summary>
-        public ContentButtonView ContentButtonView;
+        public ContentButtonView m_ContentButtonView;
 
 
         /// <summary>
@@ -36,7 +36,7 @@
         /// <inheritdoc />
         public override DialogueNodeView Setup(LanguageHandler languageHandler)
         {
-            ContentButtonView = new();
+            m_ContentButtonView = new();
             MessageModifierGroupView = new();
             NodeTitleFieldView = new(value: StringConfig.DialogueNode_NodeTitleField_DefaultText);
             DialogueSpeakerFieldView = new(placeholderText: StringConfig.DialogueNode_DialogueSpeakerField_PlaceholderText);

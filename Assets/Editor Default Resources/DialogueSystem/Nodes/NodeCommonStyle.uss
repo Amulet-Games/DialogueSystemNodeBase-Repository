@@ -183,6 +183,61 @@
 }
 
 
+/*< ---------------------------------------------------------- Content Button View Button >*/
+.contentButtonView-button {
+
+	min-width: 201px;
+
+	align-items: flex-start;
+	align-self: auto;
+
+	background-color: rgba(70, 70, 70, 1);
+
+	flex-direction: row;
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	/* top - right - bottom - left */
+	border-radius: 0px 4px 0px 0px;
+}
+
+.contentButtonView-button:hover {
+
+	background-color: rgba(88, 88, 88, 1);
+}
+
+
+/*< ---------------------------------------------------------- Content Button View Text Label >*/
+.contentButtonView-text-label {
+	
+	color: white;
+	
+	height: 30px;
+	
+	font-size: 17.5px;
+
+	flex-shrink: 0;
+	
+	-unity-font-definition: url('project:/Assets/Data/Fonts/Inter/asset/Inter-Medium-Static-SDF.asset');
+	-unity-text-align: middle-left;
+
+	letter-spacing: -2px;
+	word-spacing: 11px;
+
+	white-space: nowrap;
+
+	/* top - right - bottom - left */
+	margin: 2.5px 0px 0px 12px;
+}
+
+
+/*< ---------------------------------------------------------- Content Button View Icon Image >*/
+.contentButtonView-icon-image {
+	
+	flex-shrink: 0;
+}
+
+
 /*< ---------------------------------------------------------- Empty Text Field >*/
 .text-field-empty
 .unity-text-field__input {
@@ -190,12 +245,14 @@
 	color: rgba(101, 101, 101, 1);
 }
 
+
 /*< ---------------------------------------------------------- Empty Object Field >*/
 .object-field-empty 
 .unity-object-field-display__label {
 
 	color: rgba(150, 150, 150, 1);
 }
+
 
 /*< ---------------------------------------------------------- Empty Float Field >*/
 .float-field-empty

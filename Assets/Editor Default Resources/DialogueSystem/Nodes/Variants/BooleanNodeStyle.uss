@@ -15,17 +15,17 @@
 }
 
 
-/*< ---------------------------------------------------------- Content Button Text Label >*/
-.contentButton-button
-.contentButton-text-label {
+/*< ---------------------------------------------------------- Content Button View Text Label >*/
+.contentButtonView-button
+.contentButtonView-text-label {
 	
 	/* top - right - bottom - left */
 	margin: 4px 0px 0px 12px;
 }
 
 
-/*< ---------------------------------------------------------- Content Button Icon Image >*/
-.contentButton-icon-image {
+/*< ---------------------------------------------------------- Content Button View Icon Image >*/
+.contentButtonView-icon-image {
 
 	height: 27.5px;
 	width: 27.5px;

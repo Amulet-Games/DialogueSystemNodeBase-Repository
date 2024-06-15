@@ -41,7 +41,7 @@ namespace AG.DS
         {
             if (byUser)
             {
-                View.ContentButtonView.Button.Click();
+                View.m_ContentButtonView.Button.Click();
             }
         }
     }

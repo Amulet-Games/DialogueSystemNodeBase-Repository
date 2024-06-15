@@ -24,6 +24,11 @@ namespace AG.DS
         public StyleSheet EnumFlagsStyle;
         #endregion
 
+        #region Folder.
+        [Header("Folder.")]
+        public StyleSheet FolderStyle;
+        #endregion
+
         #region Modifiers.
         [Header("Modifiers")]
         public StyleSheet ConditionModifierGroupStyle;
@@ -55,12 +60,6 @@ namespace AG.DS
         public StyleSheet NodeCommonStyle;
         #endregion
 
-        #region Others.
-        [Header("Others.")]
-        public StyleSheet ContentButtonStyle;
-        public StyleSheet FolderStyle;
-        #endregion
-
         #region Port Cells.
         [Header("Port Cells")]
         public StyleSheet OptionPortCellStyle;
@@ -90,13 +89,6 @@ namespace AG.DS
         #region Globals.
         [Header("Globals")]
         public StyleSheet GlobalStyle;
-        #endregion
-
-        #region Legacy.
-        [Header("Legacy.")]
-        public StyleSheet DSModifierStyle;
-        public StyleSheet DSRootedModifierStyle;
-        public StyleSheet DSSegmentStyle;
         #endregion
     }
 }

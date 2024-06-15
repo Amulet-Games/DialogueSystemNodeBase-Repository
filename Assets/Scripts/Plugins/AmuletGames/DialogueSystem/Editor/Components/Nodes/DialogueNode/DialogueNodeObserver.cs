@@ -73,12 +73,12 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Register ClickEvent to the node content button.
+        /// Register ClickEvent to the node content button view's button.
         /// </summary>
         void RegisterContentButtonClickEvent()
-            => new ContentButtonObserver(
-                view: View.ContentButtonView,
-                clickEvent: ContentButtonClickEvent).RegisterEvents();
+            => new ContentButtonViewObserver(
+                view: View.m_ContentButtonView,
+                clickEvent: ContentButtonViewClickEvent).RegisterEvents();
 
 
         /// <summary>
@@ -126,9 +126,9 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the content button is clicked.
+        /// The event to invoke when the content button view's button is clicked.
         /// </summary>
-        void ContentButtonClickEvent()
+        void ContentButtonViewClickEvent()
         {
             var groupView = View.MessageModifierGroupView;
             var modifier = MessageModifierViewFactory.Generate(groupView, Node.LanguageHandler);

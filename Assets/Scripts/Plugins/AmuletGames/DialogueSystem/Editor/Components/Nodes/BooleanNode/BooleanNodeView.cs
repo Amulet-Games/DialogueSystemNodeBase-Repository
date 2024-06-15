@@ -6,7 +6,7 @@ namespace AG.DS
         /// <summary>
         /// View for the content button.
         /// </summary>
-        public ContentButtonView ContentButtonView;
+        public ContentButtonView m_ContentButtonView;
 
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace AG.DS
         /// <inheritdoc />
         public override BooleanNodeView Setup(LanguageHandler languageHandler)
         {
-            ContentButtonView = new();
+            m_ContentButtonView = new();
             ConditionModifierGroupView = new();
             NodeTitleFieldView = new(value: StringConfig.BooleanNode_NodeTitleField_DefaultText);
 

@@ -7,8 +7,8 @@
 }
 
 
-/*< ---------------------------------------------------------- Content Button Icon Image >*/
-.contentButton-icon-image {
+/*< ---------------------------------------------------------- Content Button View Icon Image >*/
+.contentButtonView-icon-image {
 
 	height: 28px;
 	width: 27.5px;
