@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace AG.DS
 {
@@ -30,6 +31,8 @@ namespace AG.DS
 
                 CreateIconImage();
 
+                SetupDetails();
+
                 AddElementsToContentButton();
 
                 void CreateButton()
@@ -54,6 +57,11 @@ namespace AG.DS
                         sprite: buttonIconSprite,
                         USS01: StyleConfig.ContentButtonView_Icon_Image
                     );
+                }
+
+                void SetupDetails()
+                {
+                    view.TextLabel.pickingMode = PickingMode.Ignore;
                 }
 
                 void AddElementsToContentButton()

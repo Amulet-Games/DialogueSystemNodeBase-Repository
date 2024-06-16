@@ -89,6 +89,8 @@
 .optionRootNode-rootTitle-field {
 
 	background-color: rgba(32, 32, 32, 1);
+	
+	cursor: text;
 
 	height: 27px;
 	min-width: 406px;

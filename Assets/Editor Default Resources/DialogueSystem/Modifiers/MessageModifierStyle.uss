@@ -203,9 +203,9 @@
 /*< ---------------------------------------------------------- Message Text Field >*/
 .messageModifier-messageText-field {
 	
-	cursor: text;
-
 	background-color: rgba(32, 32, 32, 1);
+	
+	cursor: text;
 
 	min-height: 27px;
 	width: 456px;

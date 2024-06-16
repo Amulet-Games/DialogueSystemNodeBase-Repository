@@ -115,9 +115,15 @@ namespace AG.DS
         /// </summary>
         void SetupConnectorBox()
         {
+            // Setup details
+            {
+                ConnectorBox.pickingMode = PickingMode.Position;
+            }
+
             // Setup style class
             {
                 ConnectorBox.name = "";
+                ConnectorBox.ClearClassList();
                 ConnectorBox.AddToClassList(this.IsInput() ? StyleConfig.Input_Connector : StyleConfig.Output_Connector);
             }
         }

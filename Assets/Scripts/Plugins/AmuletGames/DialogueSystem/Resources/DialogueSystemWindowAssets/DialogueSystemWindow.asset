@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: DialogueSystemWindow
   m_EditorClassIdentifier: 
   m_data:
-    EdgesData:
-    - Focusable: 0
-      StyleSheet: {fileID: 0}
+    EdgesData: []
     NodesData: []

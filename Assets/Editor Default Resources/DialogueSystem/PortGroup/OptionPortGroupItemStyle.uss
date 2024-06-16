@@ -16,6 +16,8 @@
 	
 	background-color: rgba(88, 88, 88, 1);
 
+	cursor: link;
+
 	height: 15px;
 	width: 15px;
 
