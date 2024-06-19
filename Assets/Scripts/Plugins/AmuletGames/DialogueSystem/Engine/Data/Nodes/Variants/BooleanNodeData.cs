@@ -28,7 +28,7 @@ namespace AG.DS
         /// <summary>
         /// The node's condition modifier group data.
         /// </summary>
-        [SerializeField] public ConditionModifierGroupData ConditionModifierGroupData;
+        [SerializeField] public ConditionModifierViewGroupViewData ConditionModifierGroupData;
 
 
         /// <summary>

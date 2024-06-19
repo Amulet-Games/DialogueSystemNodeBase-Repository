@@ -12,7 +12,7 @@ namespace AG.DS
         /// <summary>
         /// View for the event modifier group.
         /// </summary>
-        public EventModifierGroupView EventModifierGroupView;
+        public EventModifierViewGroupView EventModifierGroupView;
 
 
         /// <summary>

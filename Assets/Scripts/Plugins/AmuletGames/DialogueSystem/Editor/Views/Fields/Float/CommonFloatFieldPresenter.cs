@@ -22,8 +22,6 @@ namespace AG.DS
 
             AddStyleClass();
 
-            SetupDefaultValue();
-
             void CreateField()
             {
                 view.Field = new();
@@ -43,11 +41,6 @@ namespace AG.DS
                 field.AddToClassList(fieldUSS);
                 fieldInput.AddToClassList(StyleConfig.Float_Field_Input);
                 textElement.AddToClassList(StyleConfig.Float_Field_Element);
-            }
-
-            void SetupDefaultValue()
-            {
-                view.Value = 0;
             }
         }
     }

@@ -148,7 +148,7 @@ namespace AG.DS
             
             void CreateMessageModifierGroup()
             {
-                MessageModifierGroupPresenter.CreateElement(view: View.MessageModifierGroupView);
+                MessageModifierViewGroupPresenter.CreateElement(view: View.MessageModifierGroupView);
             }
 
             void AddElementsToContainer()

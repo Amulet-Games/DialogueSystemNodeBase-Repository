@@ -5,29 +5,29 @@ namespace AG.DS
         /// <summary>
         /// Generate a new message modifier view class.
         /// </summary>
-        /// <param name="groupView">The message modifier group view to set for.</param>
+        /// <param name="groupView">The message modifier view group view to set for.</param>
         /// <param name="languageHandler">The language handler to set for.</param>
-        /// <param name="data">The message modifier data to set for.</param>
+        /// <param name="data">The message modifier view data to set for.</param>
         /// <returns>A new message modifier view class.</returns>
         public static MessageModifierView Generate
         (
-            MessageModifierGroupView groupView,
+            MessageModifierViewGroupView groupView,
             LanguageHandler languageHandler,
-            MessageModifierData data = null
+            MessageModifierViewData data = null
         )
         {
             var view = new MessageModifierView(languageHandler);
 
-            MessageModifierPresenter.CreateElement(view, index: groupView.NextIndex);
+            MessageModifierViewPresenter.CreateElement(view, index: groupView.NextIndex);
 
-            new MessageModifierObserver(view, groupView).RegisterEvents();
+            new MessageModifierViewObserver(view, groupView).RegisterEvents();
 
             if (data != null)
             {
-                MessageModifierSerializer.Load(view, data);
+                MessageModifierViewSerializer.Load(view, data);
             }
 
-            MessageModifierCallback.OnCreate(view, byUser: data == null);
+            MessageModifierViewCallback.OnCreate(view, byUser: data == null);
 
             return view;
         }

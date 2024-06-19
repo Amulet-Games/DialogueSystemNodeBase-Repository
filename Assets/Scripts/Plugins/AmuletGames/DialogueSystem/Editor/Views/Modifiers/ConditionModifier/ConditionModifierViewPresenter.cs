@@ -8,6 +8,269 @@ namespace AG.DS
 
     public class ConditionModifierViewPresenter
     {
+        class VariableGroupPresenter
+        {
+            class SwitchButtonPresenter
+            {
+                /// <summary>
+                /// Create a new switch button element.
+                /// </summary>
+                /// <param name="buttonText">The button text to set for.</param>
+                /// <param name="buttonIconSprite">The button icon sprite to set for.</param>
+                /// <param name="buttonUSS">The button USS to set for.</param>
+                /// <param name="buttonLabelUSS">The button Label USS to set for.</param>
+                /// <param name="buttonIconUSS">The button icon USS to set for.</param>
+                /// <returns>A new switch button element.</returns>
+                public static SwitchButton CreateElement
+                (
+                    string buttonText,
+                    Sprite buttonIconSprite,
+                    string buttonUSS,
+                    string buttonLabelUSS,
+                    string buttonIconUSS
+                )
+                {
+                    SwitchButton button;
+                    Image iconImage;
+
+                    CreateButton();
+
+                    CreateTextLabel();
+
+                    CreateIconImage();
+
+                    SetupDetails();
+
+                    AddElementsToContentButton();
+
+                    AddStyleSheet();
+
+                    return button;
+
+                    void CreateButton()
+                    {
+                        button = new();
+                        button.AddToClassList(buttonUSS);
+                    }
+
+                    void CreateIconImage()
+                    {
+                        iconImage = ImagePresenter.CreateElement
+                        (
+                            sprite: buttonIconSprite,
+                            USS01: buttonIconUSS
+                        );
+                    }
+
+                    void CreateTextLabel()
+                    {
+                        button.TextLabel = LabelPresenter.CreateElement
+                        (
+                            text: buttonText,
+                            USS: buttonLabelUSS
+                        );
+                    }
+
+                    void SetupDetails()
+                    {
+                        button.TextLabel.pickingMode = PickingMode.Position;
+                    }
+
+                    void AddElementsToContentButton()
+                    {
+                        button.Add(iconImage);
+                        button.Add(button.TextLabel);
+                    }
+
+                    void AddStyleSheet()
+                    {
+                        button.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.ConditionModifierStyle);
+                    }
+                }
+            }
+
+
+            /// <summary>
+            /// Create a new variable group element.
+            /// </summary>
+            /// <param name="view">The condition modifier view to set for.</param>
+            /// <param name="searchWindow">The search window to set for.</param>
+            /// <param name="mainLabelText">The main label text to set for.</param>
+            /// <param name="textFieldPlaceholderText">The text field placeholder text to set for.</param>
+            /// <returns>A new variable group element.</returns>
+            public static VariableGroup CreateElement
+            (
+                ConditionModifierView view,
+                SearchWindow searchWindow,
+                string mainLabelText,
+                string textFieldPlaceholderText,
+                string floatFieldHintLabelText
+            )
+            {
+                VariableGroup group;
+
+                VisualElement mainLabelContainer;
+
+                Label mainLabel;
+                Label floatFieldHintLabel;
+                Label fieldInfoLabel;
+
+                CreateGroup();
+
+                CreateContainers();
+
+                CreateSwitchButton();
+
+                CreateMainLabel();
+
+                CreateVariableSearchWindowSelector();
+
+                CreateFieldInfoLabel();
+
+                CreateFieldInfoSearchWindowSelector();
+
+                CreateTextField();
+
+                CreateFloatField();
+
+                CreateFloatFieldHintLabel();
+
+                AddElementsToGroup();
+
+                AddStyleSheet();
+
+                return group;
+
+                void CreateGroup()
+                {
+                    group = new(view, searchWindow);
+                    group.AddToClassList(StyleConfig.ConditionModifier_VariableGroup);
+                }
+
+                void CreateContainers()
+                {
+                    mainLabelContainer = new();
+                    mainLabelContainer.AddToClassList(StyleConfig.ConditionModifier_VariableGroup_MainLabelContainer);
+
+                    group.SceneElementsContainer = new();
+
+                    group.FieldInfoContainer = new();
+                    group.FieldInfoContainer.AddToClassList(StyleConfig.ConditionModifier_VariableGroup_FieldInfo_Container);
+
+                    group.FloatFieldContainer = new();
+                    group.FloatFieldContainer.AddToClassList(StyleConfig.ConditionModifier_VariableGroup_FloatField_Container);
+
+                }
+
+                void CreateSwitchButton()
+                {
+                    group.m_SwitchButton = SwitchButtonPresenter.CreateElement
+                    (
+                        buttonText: StringConfig.ConditionModifierView.SwitchButton_ToSceneObject_LabelText,
+                        buttonIconSprite: ConfigResourcesManager.SpriteConfig.SwitchButtonIconSprite,
+                        buttonUSS: StyleConfig.ConditionModifier_SwitchButton,
+                        buttonLabelUSS: StyleConfig.ConditionModifier_SwitchButton_TextLabel,
+                        buttonIconUSS: StyleConfig.ConditionModifier_SwitchButton_IconImage
+                    );
+                }
+
+                void CreateMainLabel()
+                {
+                    mainLabel = LabelPresenter.CreateElement
+                    (
+                        text: mainLabelText,
+                        USS: StyleConfig.ConditionModifier_VariableGroup_Label
+                    );
+                }
+
+                void CreateVariableSearchWindowSelector()
+                {
+                    group.VariableSearchWindowSelector = SearchWindowSelectorPresenter.CreateElement
+                    (
+                        group.VariableSearchWindowView,
+                        selectorButtonIconSprite: ConfigResourcesManager.SpriteConfig.SceneObjectFieldIconSprite,
+                        nullValueSelectorButtonLabelText: StringConfig.ConditionModifierView.VariableSearchWindowSelector_PlaceholderText
+                    );
+                }
+
+                void CreateFieldInfoLabel()
+                {
+                    fieldInfoLabel = LabelPresenter.CreateElement
+                    (
+                        text: StringConfig.ConditionModifierView.FieldInfo_LabelText,
+                        USS: StyleConfig.ConditionModifier_VariableGroup_FieldInfo_Label
+                    );
+                }
+
+                void CreateFieldInfoSearchWindowSelector()
+                {
+                    group.FieldInfoSearchWindowSelector = SearchWindowSelectorPresenter.CreateElement
+                    (
+                        group.FieldInfoSearchWindowView,
+                        selectorButtonIconSprite: ConfigResourcesManager.SpriteConfig.SceneObjectFieldIconSprite,
+                        nullValueSelectorButtonLabelText: StringConfig.ConditionModifierView.FieldInfoSearchWindowSelector_PlaceholderText
+                    );
+                }
+
+                void CreateTextField()
+                {
+                    CommonTextFieldViewPresenter.CreateElement
+                    (
+                        view: group.TextFieldView,
+                        placeholderText: textFieldPlaceholderText,
+                        multiline: false,
+                        fieldUSS: StyleConfig.ConditionModifier_VariableGroup_TextField_Field,
+                        fieldImageSprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite
+                    );
+                }
+
+                void CreateFloatField()
+                {
+                    CommonFloatFieldPresenter.CreateElement
+                    (
+                        view: group.FloatFieldView,
+                        fieldUSS: StyleConfig.ConditionModifier_VariableGroup_FloatField_Field
+                    );
+                }
+
+                void CreateFloatFieldHintLabel()
+                {
+                    floatFieldHintLabel = LabelPresenter.CreateElement
+                    (
+                        text: floatFieldHintLabelText,
+                        USS: StyleConfig.ConditionModifier_VariableGroup_FloatField_HintLabel
+                    );
+                }
+
+                void AddElementsToGroup()
+                {
+                    mainLabelContainer.Add(mainLabel);
+                    mainLabelContainer.Add(group.m_SwitchButton);
+
+                    group.SceneElementsContainer.Add(group.VariableSearchWindowSelector);
+                    group.SceneElementsContainer.Add(group.FieldInfoContainer);
+
+                    group.FieldInfoContainer.Add(fieldInfoLabel);
+                    group.FieldInfoContainer.Add(group.FieldInfoSearchWindowSelector);
+
+                    group.FloatFieldContainer.Add(group.FloatFieldView.Field);
+                    group.FloatFieldContainer.Add(floatFieldHintLabel);
+
+                    group.Add(mainLabelContainer);
+                    group.Add(group.SceneElementsContainer);
+                    group.Add(group.TextFieldView.Field);
+                    group.Add(group.FloatFieldContainer);
+
+                }
+
+                void AddStyleSheet()
+                {
+                    group.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.ConditionModifierStyle);
+                }
+            }
+        }
+
+
         /// <summary>
         /// Create the elements for the condition modifier view.
         /// </summary>
@@ -312,269 +575,6 @@ namespace AG.DS
 
                 // Operation & Chain With
                 view.Folder.AddElementToContent(dropdownsContainer);
-            }
-        }
-
-
-        class VariableGroupPresenter
-        {
-            /// <summary>
-            /// Create a new variable group element.
-            /// </summary>
-            /// <param name="view">The condition modifier view to set for.</param>
-            /// <param name="searchWindow">The search window to set for.</param>
-            /// <param name="mainLabelText">The main label text to set for.</param>
-            /// <param name="textFieldPlaceholderText">The text field placeholder text to set for.</param>
-            /// <returns>A new variable group element.</returns>
-            public static VariableGroup CreateElement
-            (
-                ConditionModifierView view,
-                SearchWindow searchWindow,
-                string mainLabelText,
-                string textFieldPlaceholderText,
-                string floatFieldHintLabelText
-            )
-            {
-                VariableGroup group;
-
-                VisualElement mainLabelContainer;
-
-                Label mainLabel;
-                Label floatFieldHintLabel;
-                Label fieldInfoLabel;
-
-                CreateGroup();
-
-                CreateContainers();
-
-                CreateSwitchButton();
-
-                CreateMainLabel();
-
-                CreateVariableSearchWindowSelector();
-
-                CreateFieldInfoLabel();
-
-                CreateFieldInfoSearchWindowSelector();
-
-                CreateTextField();
-
-                CreateFloatField();
-
-                CreateFloatFieldHintLabel();
-
-                AddElementsToGroup();
-
-                AddStyleSheet();
-
-                return group;
-
-                void CreateGroup()
-                {
-                    group = new(view, searchWindow);
-                    group.AddToClassList(StyleConfig.ConditionModifier_VariableGroup);
-                }
-
-                void CreateContainers()
-                {
-                    mainLabelContainer = new();
-                    mainLabelContainer.AddToClassList(StyleConfig.ConditionModifier_VariableGroup_MainLabelContainer);
-
-                    group.SceneElementsContainer = new();
-
-                    group.FieldInfoContainer = new();
-                    group.FieldInfoContainer.AddToClassList(StyleConfig.ConditionModifier_VariableGroup_FieldInfo_Container);
-
-                    group.FloatFieldContainer = new();
-                    group.FloatFieldContainer.AddToClassList(StyleConfig.ConditionModifier_VariableGroup_FloatField_Container);
-
-                }
-
-                void CreateSwitchButton()
-                {
-                    group.m_SwitchButton = SwitchButtonPresenter.CreateElement
-                    (
-                        buttonText: StringConfig.ConditionModifierView.SwitchButton_ToSceneObject_LabelText,
-                        buttonIconSprite: ConfigResourcesManager.SpriteConfig.SwitchButtonIconSprite,
-                        buttonUSS: StyleConfig.ConditionModifier_SwitchButton,
-                        buttonLabelUSS: StyleConfig.ConditionModifier_SwitchButton_TextLabel,
-                        buttonIconUSS: StyleConfig.ConditionModifier_SwitchButton_IconImage
-                    );
-                }
-
-                void CreateMainLabel()
-                {
-                    mainLabel = LabelPresenter.CreateElement
-                    (
-                        text: mainLabelText,
-                        USS: StyleConfig.ConditionModifier_VariableGroup_Label
-                    );
-                }
-
-                void CreateVariableSearchWindowSelector()
-                {
-                    group.VariableSearchWindowSelector = SearchWindowSelectorPresenter.CreateElement
-                    (
-                        group.VariableSearchWindowView,
-                        selectorButtonIconSprite: ConfigResourcesManager.SpriteConfig.SceneObjectFieldIconSprite,
-                        nullValueSelectorButtonLabelText: StringConfig.ConditionModifierView.VariableSearchWindowSelector_PlaceholderText
-                    );
-                }
-
-                void CreateFieldInfoLabel()
-                {
-                    fieldInfoLabel = LabelPresenter.CreateElement
-                    (
-                        text: StringConfig.ConditionModifierView.FieldInfo_LabelText,
-                        USS: StyleConfig.ConditionModifier_VariableGroup_FieldInfo_Label
-                    );
-                }
-
-                void CreateFieldInfoSearchWindowSelector()
-                {
-                    group.FieldInfoSearchWindowSelector = SearchWindowSelectorPresenter.CreateElement
-                    (
-                        group.FieldInfoSearchWindowView,
-                        selectorButtonIconSprite: ConfigResourcesManager.SpriteConfig.SceneObjectFieldIconSprite,
-                        nullValueSelectorButtonLabelText: StringConfig.ConditionModifierView.FieldInfoSearchWindowSelector_PlaceholderText
-                    );
-                }
-
-                void CreateTextField()
-                {
-                    CommonTextFieldViewPresenter.CreateElement
-                    (
-                        view: group.TextFieldView,
-                        placeholderText: textFieldPlaceholderText,
-                        multiline: false,
-                        fieldUSS: StyleConfig.ConditionModifier_VariableGroup_TextField_Field,
-                        fieldImageSprite: ConfigResourcesManager.SpriteConfig.MessageTextFieldSprite
-                    );
-                }
-
-                void CreateFloatField()
-                {
-                    CommonFloatFieldPresenter.CreateElement
-                    (
-                        view: group.FloatFieldView,
-                        fieldUSS: StyleConfig.ConditionModifier_VariableGroup_FloatField_Field
-                    );
-                }
-
-                void CreateFloatFieldHintLabel()
-                {
-                    floatFieldHintLabel = LabelPresenter.CreateElement
-                    (
-                        text: floatFieldHintLabelText,
-                        USS: StyleConfig.ConditionModifier_VariableGroup_FloatField_HintLabel
-                    );
-                }
-
-                void AddElementsToGroup()
-                {
-                    mainLabelContainer.Add(mainLabel);
-                    mainLabelContainer.Add(group.m_SwitchButton);
-
-                    group.SceneElementsContainer.Add(group.VariableSearchWindowSelector);
-                    group.SceneElementsContainer.Add(group.FieldInfoContainer);
-
-                    group.FieldInfoContainer.Add(fieldInfoLabel);
-                    group.FieldInfoContainer.Add(group.FieldInfoSearchWindowSelector);
-
-                    group.FloatFieldContainer.Add(group.FloatFieldView.Field);
-                    group.FloatFieldContainer.Add(floatFieldHintLabel);
-
-                    group.Add(mainLabelContainer);
-                    group.Add(group.SceneElementsContainer);
-                    group.Add(group.TextFieldView.Field);
-                    group.Add(group.FloatFieldContainer);
-
-                }
-
-                void AddStyleSheet()
-                {
-                    group.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.ConditionModifierStyle);
-                }
-            }
-        }
-
-
-        class SwitchButtonPresenter
-        {
-            /// <summary>
-            /// Create a new switch button element.
-            /// </summary>
-            /// <param name="buttonText">The button text to set for.</param>
-            /// <param name="buttonIconSprite">The button icon sprite to set for.</param>
-            /// <param name="buttonUSS">The button USS to set for.</param>
-            /// <param name="buttonLabelUSS">The button Label USS to set for.</param>
-            /// <param name="buttonIconUSS">The button icon USS to set for.</param>
-            /// <returns>A new switch button element.</returns>
-            public static SwitchButton CreateElement
-            (
-                string buttonText,
-                Sprite buttonIconSprite,
-                string buttonUSS,
-                string buttonLabelUSS,
-                string buttonIconUSS
-            )
-            {
-                SwitchButton button;
-                Image iconImage;
-
-                CreateButton();
-
-                CreateTextLabel();
-
-                CreateIconImage();
-
-                SetupDetails();
-
-                AddElementsToContentButton();
-
-                AddStyleSheet();
-
-                return button;
-
-                void CreateButton()
-                {
-                    button = new();
-                    button.AddToClassList(buttonUSS);
-                }
-
-                void CreateIconImage()
-                {
-                    iconImage = ImagePresenter.CreateElement
-                    (
-                        sprite: buttonIconSprite,
-                        USS01: buttonIconUSS
-                    );
-                }
-
-                void CreateTextLabel()
-                {
-                    button.TextLabel = LabelPresenter.CreateElement
-                    (
-                        text: buttonText,
-                        USS: buttonLabelUSS
-                    );
-                }
-
-                void SetupDetails()
-                {
-                    button.TextLabel.pickingMode = PickingMode.Position;
-                }
-
-                void AddElementsToContentButton()
-                {
-                    button.Add(iconImage);
-                    button.Add(button.TextLabel);
-                }
-
-                void AddStyleSheet()
-                {
-                    button.styleSheets.Add(ConfigResourcesManager.StyleSheetConfig.ConditionModifierStyle);
-                }
             }
         }
     }

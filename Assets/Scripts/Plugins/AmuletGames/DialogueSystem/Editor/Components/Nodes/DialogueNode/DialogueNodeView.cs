@@ -18,7 +18,7 @@
         /// <summary>
         /// View for the message modifier group.
         /// </summary>
-        public MessageModifierGroupView MessageModifierGroupView;
+        public MessageModifierViewGroupView MessageModifierGroupView;
 
 
         /// <summary>

@@ -127,7 +127,7 @@ namespace AG.DS
             // Add to group
             {
                 groupView.Add(modifier);
-                groupView.UpdateReferences();
+                groupView.UpdateModifiersReferences();
             }
         }
     }

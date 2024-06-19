@@ -100,7 +100,7 @@ namespace AG.DS
 
             void CreateEventModifierGroup()
             {
-                EventModifierGroupPresenter.CreateElement(view: View.EventModifierGroupView);
+                EventModifierViewGroupPresenter.CreateElement(view: View.EventModifierGroupView);
             }
 
             void AddElementsToContainer()

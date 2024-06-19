@@ -40,7 +40,7 @@ namespace AG.DS
         /// </summary>
         void SaveConditionModifierGroup()
         {
-            new ConditionModifierGroupSerializer().Save(View.ConditionModifierGroupView, Data.ConditionModifierGroupData);
+            new ConditionModifierViewGroupViewSerializer().Save(View.ConditionModifierViewGroupView, Data.ConditionModifierGroupData);
         }
 
 
@@ -75,9 +75,9 @@ namespace AG.DS
         /// </summary>
         void LoadConditionModifierGroup()
         {
-            new ConditionModifierGroupSerializer().Load
+            new ConditionModifierViewGroupViewSerializer().Load
             (
-                View.ConditionModifierGroupView,
+                View.ConditionModifierViewGroupView,
                 Data.ConditionModifierGroupData,
                 Node.GraphViewer
             );

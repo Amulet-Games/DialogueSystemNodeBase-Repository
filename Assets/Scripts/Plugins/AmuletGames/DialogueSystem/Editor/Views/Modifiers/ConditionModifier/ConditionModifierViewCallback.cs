@@ -4,6 +4,37 @@ namespace AG.DS
 
     public class ConditionModifierViewCallback
     {
+        class VariableGroupCallback
+        {
+            /// <summary>
+            /// The callback to invoke when the group is created on the graph by the user.
+            /// </summary>
+            /// <param name="group">The variable group element to set for.</param>
+            /// <param name="searchTreeEntryProvider">The condition modifier search tree entry provider to set for.</param>
+            public static void OnCreateByUser
+            (
+                VariableGroup group,
+                ConditionModifierViewSearchTreeEntryProvider searchTreeEntryProvider
+            )
+            {
+                SearchWindowSelectorCallback.OnCreateByUser
+                (
+                    selector: group.VariableSearchWindowSelector,
+                    nullValueEntry: searchTreeEntryProvider.NullValueVariableSearchTreeEntry
+                );
+
+                SearchWindowSelectorCallback.OnCreateByUser
+                (
+                    selector: group.FieldInfoSearchWindowSelector,
+                    nullValueEntry: searchTreeEntryProvider.NullValueVariableSearchTreeEntry
+                );
+
+                CommonTextFieldViewCallback.OnCreateByUser(view: group.TextFieldView);
+                CommonFloatFieldCallback.OnCreateByUser(view: group.FloatFieldView);
+            }
+        }
+
+
         /// <summary>
         /// The callback to invoke when the modifier is created on the graph by the system or user.
         /// </summary>
@@ -42,36 +73,6 @@ namespace AG.DS
         static void OnCreateByUser(ConditionModifierView view)
         {
             view.m_OperationType = ConditionModifierView.OperationType.String;
-        }
-
-
-        class VariableGroupCallback
-        {
-            /// <summary>
-            /// The callback to invoke when the group is created on the graph by the user.
-            /// </summary>
-            /// <param name="group">The variable group element to set for.</param>
-            /// <param name="searchTreeEntryProvider">The condition modifier search tree entry provider to set for.</param>
-            public static void OnCreateByUser
-            (
-                VariableGroup group,
-                ConditionModifierViewSearchTreeEntryProvider searchTreeEntryProvider
-            )
-            {
-                CommonTextFieldViewCallback.OnCreateByUser(view: group.TextFieldView);
-
-                SearchWindowSelectorCallback.OnCreateByUser
-                (
-                    selector: group.VariableSearchWindowSelector,
-                    nullValueEntry: searchTreeEntryProvider.NullValueVariableSearchTreeEntry
-                );
-
-                SearchWindowSelectorCallback.OnCreateByUser
-                (
-                    selector: group.FieldInfoSearchWindowSelector,
-                    nullValueEntry: searchTreeEntryProvider.NullValueVariableSearchTreeEntry
-                );
-            }
         }
     }
 }

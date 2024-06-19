@@ -22,7 +22,7 @@ namespace AG.DS
         /// <summary>
         /// The node's event modifier group data.
         /// </summary>
-        [SerializeField] public EventModifierGroupData EventModifierGroupData;
+        [SerializeField] public EventModifierViewGroupViewData EventModifierGroupData;
 
 
         /// <summary>

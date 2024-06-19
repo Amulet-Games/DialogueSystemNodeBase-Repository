@@ -6,7 +6,7 @@ namespace AG.DS
         /// Save the condition modifier view values.
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
-        /// <param name="data">The condition modifier data to set for.</param>
+        /// <param name="data">The condition modifier view data to set for.</param>
         public static void Save
         (
             ConditionModifierView view,
@@ -40,7 +40,7 @@ namespace AG.DS
         /// Load the condition modifier view values.
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
-        /// <param name="data">The condition modifier data to set for.</param>
+        /// <param name="data">The condition modifier view data to set for.</param>
         public static void Load
         (
             ConditionModifierView view,

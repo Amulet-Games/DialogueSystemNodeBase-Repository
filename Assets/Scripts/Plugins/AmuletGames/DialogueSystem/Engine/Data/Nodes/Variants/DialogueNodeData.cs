@@ -28,7 +28,7 @@ namespace AG.DS
         /// <summary>
         /// The node's dialogue node stitcher data.
         /// </summary>
-        [SerializeField] public MessageModifierGroupData MessageModifierGroupData;
+        [SerializeField] public MessageModifierViewGroupViewData MessageModifierGroupData;
 
 
         /// <summary>

@@ -121,13 +121,13 @@ namespace AG.DS
         /// </summary>
         void ContentButtonViewClickEvent()
         {
-            var groupView = View.ConditionModifierGroupView;
+            var groupView = View.ConditionModifierViewGroupView;
             var modifier = ConditionModifierViewFactory.Generate(groupView, Node.GraphViewer);
 
             // Add to group
             {
                 groupView.Add(modifier);
-                groupView.UpdateReferences();
+                groupView.UpdateModifiersReferences();
             }
         }
     }

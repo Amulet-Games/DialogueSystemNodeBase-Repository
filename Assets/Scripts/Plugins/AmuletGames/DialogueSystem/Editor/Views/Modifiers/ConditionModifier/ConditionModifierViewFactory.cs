@@ -5,13 +5,13 @@ namespace AG.DS
         /// <summary>
         /// Generate a new condition modifier view class.
         /// </summary>
-        /// <param name="groupView">The condition modifier group view to set for.</param>
+        /// <param name="groupView">The condition modifier view group view to set for.</param>
         /// <param name="graphViewer">The graph viewer to set for.</param>
-        /// <param name="data">The condition modifier data to set for.</param>
+        /// <param name="data">The condition modifier view data to set for.</param>
         /// <returns>A new condition modifier view.</returns>
         public static ConditionModifierView Generate
         (
-            ConditionModifierGroupView groupView,
+            ConditionModifierViewGroupView groupView,
             GraphViewer graphViewer,
             ConditionModifierViewData data = null
         )
