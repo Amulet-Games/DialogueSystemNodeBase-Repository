@@ -20,7 +20,14 @@ namespace AG.DS
         /// <summary>
         /// Index of the next modifier.
         /// </summary>
-        public int NextIndex { get; private set; } = 1;
+        public int NextIndex
+        {
+            get
+            {
+                const int BASE_MODIFIER_INDEX = 1;
+                return ModifiersCount + BASE_MODIFIER_INDEX;
+            }
+        }
 
 
         /// <summary>
@@ -190,8 +197,6 @@ namespace AG.DS
             Modifiers.Add(modifier);
 
             GroupContainer.Add(modifier.Folder);
-
-            NextIndex++;
         }
 
 
