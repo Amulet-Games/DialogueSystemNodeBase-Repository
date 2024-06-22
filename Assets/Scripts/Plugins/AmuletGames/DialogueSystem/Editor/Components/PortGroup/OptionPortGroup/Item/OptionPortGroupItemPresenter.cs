@@ -36,7 +36,7 @@ namespace AG.DS
                     direction: model.Group.Direction,
                     index: model.Group.NextItemIndex,
                     isIndexDominant: true,
-                    edgeConnectorSearchWindowView: model.Group.GraphViewer.EdgeConnectorSearchWindowView
+                    edgeConnectorSearchWindowView: model.Group.GraphViewer.OptionEdgeConnectorSearchWindowView
                 );;
 
                 item.PortCell = OptionPortCellFactory.Generate(cellModel);

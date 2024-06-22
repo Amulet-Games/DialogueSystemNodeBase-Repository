@@ -50,7 +50,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the edge model;
+        /// Reference of the edge model.
         /// </summary>
         public EdgeModel EdgeModel;
 
