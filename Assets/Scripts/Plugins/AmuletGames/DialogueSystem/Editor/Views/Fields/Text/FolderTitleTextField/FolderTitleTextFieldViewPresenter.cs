@@ -2,17 +2,16 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class GraphTitleTextFieldPresenter
+    public class FolderTitleTextFieldPresenter
     {
         /// <summary>
-        /// Create the elements for the graph title text field view.
+        /// Create the elements for the folder title text field view.
         /// </summary>
-        /// <param name="view">The graph title text field view to set for.</param>
+        /// <param name="view">The folder title text field view to set for.</param>
         /// <param name="fieldUSS">The field USS style to set for.</param>
-        /// <returns>A new graph title text field element.</returns>
-        public static TextField CreateElement
+        public static void CreateElement
         (
-            GraphTitleTextFieldView view,
+            FolderTitleTextFieldView view,
             string fieldUSS
         )
         {
@@ -22,27 +21,24 @@ namespace AG.DS
 
             CreateField();
 
-            SetupDetails();
-
             AddStyleClass();
 
-            SetupDefaultValue();
-
-            return field;
+            SetupDetails();
 
             void CreateField()
             {
-                view.Field = new();
+                view.Field = new
+                (
+                    maxLength: NumberConfig.MAX_CHAR_LENGTH_FOLDER_TITLE_TEXT,
+                    multiline: false,
+                    isPasswordField: false,
+                    maskChar: '*'
+                );
                 var (inputElement, multilineContainerElement, textElement) = view.Field.GetInitialChildElements();
 
                 field = view.Field;
                 fieldInputElement = inputElement;
                 fieldTextElement = textElement;
-            }
-
-            void SetupDetails()
-            {
-                field.isDelayed = true;
             }
 
             void AddStyleClass()
@@ -56,10 +52,12 @@ namespace AG.DS
                 fieldTextElement.AddToClassList(StyleConfig.Text_Field_Element);
             }
 
-            void SetupDefaultValue()
+            void SetupDetails()
             {
-                view.Value = "";
-                view.BindingSO = null;
+                field.isDelayed = true;
+
+                fieldInputElement.pickingMode = PickingMode.Ignore;
+                fieldTextElement.pickingMode = PickingMode.Ignore;
             }
         }
     }

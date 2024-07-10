@@ -11,9 +11,19 @@ namespace AG.DS
         public static void OnCreateByUser(Folder folder)
         {
             folder.Expanded = true;
-            folder.ExecuteOnceOnGeometryChanged(GeometryChangedEvent);
+            folder.ExecuteOnceOnGeometryChanged(_ExecuteOnceOnGeometryChangedEvent);
 
-            void GeometryChangedEvent(GeometryChangedEvent evt) => folder.StartEditingFolderTitle();
+            FolderTitleTextFieldCallback.OnCreateByUser(folder.FolderTitleFieldView);
+        }
+
+
+        /// <summary>
+        /// Register GeometryChangedEvent to the folder, and unregistered it once it's invoked.
+        /// </summary>
+        /// <param name="folder">The folder element to set for.</param>
+        static void _ExecuteOnceOnGeometryChangedEvent(GeometryChangedEvent evt)
+        {
+            ((Folder)evt.target).StartEditingFolderTitle();
         }
     }
 }

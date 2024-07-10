@@ -89,7 +89,7 @@ namespace AG.DS
         /// </summary>
         void RegisterSelectorSearchWindowEntrySelectedEvent()
             => new SearchWindowObserver(
-                searchWindow: selector.SelectorSearchWindowView.SearchWindow,
+                searchWindow: SelectorSearchWindowView.SearchWindow,
                 entrySelectedEvent: SelectorSearchWindowEntrySelectedEvent).RegisterEvents();
 
 

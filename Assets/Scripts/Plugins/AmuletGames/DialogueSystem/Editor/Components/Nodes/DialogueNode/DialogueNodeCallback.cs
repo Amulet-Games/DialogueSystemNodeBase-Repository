@@ -42,6 +42,8 @@ namespace AG.DS
             if (byUser)
             {
                 View.m_ContentButtonView.Button.Click();
+
+                CommonObjectFieldCallback.OnCreateByUser(View.DialogueSpeakerFieldView);
             }
         }
     }

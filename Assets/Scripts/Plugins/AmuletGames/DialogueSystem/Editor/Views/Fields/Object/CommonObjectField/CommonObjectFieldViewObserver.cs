@@ -1,51 +1,40 @@
-using System;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
-using Object = UnityEngine.Object;
 
 namespace AG.DS
 {
-    public class SceneObjectFieldObserver
+    public class CommonObjectFieldObserver<TObject>
+        where TObject : Object
     {
         /// <summary>
-        /// The targeting scene object field view;
+        /// The targeting common object field view.
         /// </summary>
-        SceneObjectFieldView view;
+        CommonObjectFieldView<TObject> view;
 
 
         /// <summary>
-        /// The event to invoke when the scene object field's serializable value has changed.
+        /// Constructor of the common object field observer class.
         /// </summary>
-        Action valueChangedEvent;
-
-
-        /// <summary>
-        /// Constructor of the scene object field observer class.
-        /// </summary>
-        /// <param name="view">The scene object field view to set for.</param>
-        /// <param name="valueChangedEvent">The ValueChangedEvent to set for.</param>
-        public SceneObjectFieldObserver
+        /// <param name="view">The common object field view to set for.</param>
+        public CommonObjectFieldObserver
         (
-            SceneObjectFieldView view,
-            Action valueChangedEvent
+            CommonObjectFieldView<TObject> view
         )
         {
             this.view = view;
-            this.valueChangedEvent = valueChangedEvent;
         }
 
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the scene object field.
+        /// Register events to the common object field view.
         /// </summary>
         public void RegisterEvents()
         {
             RegisterChangeEvent();
 
             RegisterMouseDownEvent();
-
-            RegisterValueChangedEvent();
         }
 
 
@@ -58,13 +47,8 @@ namespace AG.DS
         /// <summary>
         /// Register MouseDownEvent to the field.
         /// </summary>
-        void RegisterMouseDownEvent() => view.Field.RegisterCallback<MouseDownEvent>(MouseDownEvent);
-
-
-        /// <summary>
-        /// Register ValueChangedEvent to the view.
-        /// </summary>
-        void RegisterValueChangedEvent() => view.ValueChangedEvent += valueChangedEvent;
+        void RegisterMouseDownEvent() =>
+            view.Field.RegisterCallback<MouseDownEvent>(MouseDownEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -79,24 +63,15 @@ namespace AG.DS
             // Unbind the previous value.
             field.Unbind();
 
-            // Check if the new value is from the current active scene.
-            //var newValue = (DialogueObject)evt.newValue;
-            //if (newValue.scene.name != "")
-            //{
-            //    //if (SceneManager.GetActiveScene().name != "" && newValue.scene.name.Equals(SceneManager.GetActiveScene().name)) { }
-            //    view.Value = newValue;
-            //}
-            //else
-            //{
-            //    view.Value = null;
-            //    Debug.LogError("Attempted to assign a gameObject value that isn't from the current active scene.");
-            //}
-
             // Push the current container's value to the undo stack.
             //TestingWindow.Instance.PushUndo(
             //    reversible: objectContainer,
             //    dataReversedAction: containerValueChangedAction
             //);
+
+            view.Value = evt.newValue
+                ? evt.newValue as TObject
+                : null;
 
             WindowChangedEvent.Invoke();
         }

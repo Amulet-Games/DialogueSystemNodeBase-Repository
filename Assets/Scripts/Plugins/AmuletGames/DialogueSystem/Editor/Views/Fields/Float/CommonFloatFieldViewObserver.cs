@@ -28,7 +28,7 @@ namespace AG.DS
         
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the common float field.
+        /// Register events to the common float field view.
         /// </summary>
         public void RegisterEvents()
         {

@@ -1,8 +1,6 @@
 ﻿using System;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace AG.DS
 {
@@ -21,9 +19,15 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the headbar element.
+        /// </summary>
+        public Headbar Headbar { get; private set; }
+
+
+        /// <summary>
         /// Reference of the graph viewer element.
         /// </summary>
-        GraphViewer graphViewer;
+        public GraphViewer GraphViewer { get; private set; }
 
 
         /// <summary>
@@ -61,48 +65,23 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The event to invoke when the dialogue system window's OnDisable is called.
-        /// </summary> 
-        public event Action WindowOnDisableEvent;
-
-
-        /// <summary>
-        /// The event to invoke when the dialogue system window's OnDestroy is called.
-        /// </summary> 
-        public event Action WindowOnDestroyEvent;
-
-
-        /// <summary>
         /// This is called when the scripts are reloaded and after OnDisable.
         /// <br>Also when the window is first opened in <see cref="EditorWindow.CreateWindow{T}(System.Type[])"/>.</br>
         /// </summary>
-        void OnEnable()
-        {
-            if (asset == null)
-                return;
-
-            Setup();
-
-            Load(isForceLoadWindow: true);
-
-            graphViewer.ReframeGraphOnGeometryChanged(
-                geometryChangedElement: rootVisualElement,
-                frameType: FrameType.All
-            );
-        }
+        void OnEnable() => DialogueSystemWindowCallback.OnEnable(asset, GraphViewer, window: this);
 
 
         /// <summary>
         /// This is called when the scripts are reloaded and before OnEnable.
         /// <br>Also when the window is about to close before OnDestroy is called.</br>
         /// </summary>
-        void OnDisable() => WindowOnDisableEvent.Invoke();
+        void OnDisable() => DialogueSystemWindowCallback.OnDisable(GraphViewer);
 
 
         /// <summary>
         /// This is called when the window is closed and can be used to cleanup any static references.
         /// </summary>
-        void OnDestroy() => WindowOnDestroyEvent.Invoke();
+        void OnDestroy() => DialogueSystemWindowCallback.OnDestroy(asset, window: this);
 
 
         /// <summary>
@@ -114,7 +93,6 @@ namespace AG.DS
         {
             this.asset = asset;
             asset.IsAlreadyOpened = true;
-
             data = asset.Data;
         }
 
@@ -124,8 +102,6 @@ namespace AG.DS
         /// </summary>
         public void Setup()
         {
-            Headbar headBar;
-
             // Setup static classes
             {
                 LanguageProvider.Setup();
@@ -148,39 +124,30 @@ namespace AG.DS
 
                 // Serialize Handler
                 {
-                    serializeHandler = new();
+                    serializeHandler = SerializeHandlerFactory.Generate();
                 }
 
                 // Headbar
                 {
-                    headBar = HeadbarPresenter.CreateElement(languageHandler, asset);
+                    Headbar = HeadbarFactory.Generate(languageHandler, dialogueSystemWindowAsset: asset, dialogueSystemWindow: this);
                 }
 
                 // Graph Viewer
                 {
-                    graphViewer = GraphViewerPresenter.CreateElement();
+                    GraphViewer = GraphViewerFactory.Generate(languageHandler, dialogueSystemWindow: this);
                 }
 
                 // Input Hint
                 {
-                    InputHint.Instance = InputHintPresenter.CreateElement(graphViewer);
+                    InputHint.Instance = InputHintFactory.Generate(GraphViewer);
                 }
             }
 
             // Add modules to graph
             {
-                graphViewer.contentViewContainer.Add(InputHint.Instance);
-                rootVisualElement.Add(graphViewer);
-                rootVisualElement.Add(headBar);
-            }
-
-            // Register modules events
-            {
-                new GraphViewerObserver(graphViewer, languageHandler, dialogueSystemWindow: this).RegisterEvents();
-
-                new HeadbarObserver(headBar, dialogueSystemWindow: this).RegisterEvents();
-
-                new DialogueSystemWindowObserver(asset, graphViewer, headBar, dialogueSystemWindow: this).RegisterEvents();
+                GraphViewer.contentViewContainer.Add(InputHint.Instance);
+                rootVisualElement.Add(GraphViewer);
+                rootVisualElement.Add(Headbar);
             }
         }
 
@@ -202,7 +169,7 @@ namespace AG.DS
         {
             if (hasUnsavedChanges)
             {
-                serializeHandler.Save(asset, data, graphViewer);
+                serializeHandler.Save(asset, data, GraphViewer);
 
                 ApplyChangesToDiskEvent.Invoke();
             }
@@ -220,11 +187,11 @@ namespace AG.DS
         {
             if (isForceLoadWindow || hasUnsavedChanges)
             {
-                graphViewer.ClearGraph();
+                GraphViewer.ClearGraph();
 
                 languageHandler.ClearCache();
 
-                serializeHandler.Load(asset, data, graphViewer, languageHandler);
+                serializeHandler.Load(asset, data, GraphViewer, languageHandler);
 
                 ApplyChangesToDiskEvent.Invoke();
             }
@@ -258,12 +225,16 @@ namespace AG.DS
             WindowChangedEvent.Invoke();
         }
 
-        private void OnGUI()
+
+        /// <summary>
+        /// The event to invoke when there are new changes happened to the dialogue system window.
+        /// </summary>
+        public void DialogueSystemWindowChangedEvent()
         {
-            //Debug.Log(rootVisualElement.parent.worldBound.yMin);
-            //Debug.Log("worldBound = " + rootVisualElement.parent.worldBound);
-            //Debug.Log("screenPosition = " + GUIUtility.GUIToScreenPoint(rootVisualElement.parent.worldBound.position));
-            //Debug.Log(GUIUtility.GUIToScreenRect(rootVisualElement.parent.contentRect));
+            if (hasFocus)
+            {
+                hasUnsavedChanges = true;
+            }
         }
     }
 }

@@ -28,7 +28,7 @@ namespace AG.DS
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the common integer field.
+        /// Register events to the common integer field view.
         /// </summary>
         public void RegisterEvents()
         {

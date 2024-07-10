@@ -43,7 +43,7 @@ namespace AG.DS
         public Headbar(DialogueSystemWindowAsset dialogueSystemWindowAsset)
         {
             GraphTitleTextFieldView = new(
-            value: dialogueSystemWindowAsset.Name,
+                value: dialogueSystemWindowAsset.Name,
                 bindingSO: new SerializedObject(obj: dialogueSystemWindowAsset)
             );
         }

@@ -9,7 +9,7 @@ namespace AG.DS
         /// <param name="selector">Extension search window selector.</param>
         public static void ToggleNullValueStyle(this SearchWindowSelector selector)
         {
-            if (selector.IsSelectedEntryNullValue)
+            if (selector.SelectedEntry.userData == null)
             {
                 selector.ShowNullValueStyle();
             }

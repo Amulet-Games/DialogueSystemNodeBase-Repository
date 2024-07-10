@@ -3,7 +3,7 @@ namespace AG.DS
     public class MessageModifierViewCallback
     {
         /// <summary>
-        /// The callback to invoke when the modifier is created on the graph by the system or user.
+        /// The callback to invoke when the modifier view is created on the graph by the system or user.
         /// </summary>
         /// <param name="view">The message modifier view to set for.</param>
         /// <param name="byUser">Is the modifier created by the user.</param>
@@ -18,6 +18,8 @@ namespace AG.DS
                 FolderCallback.OnCreateByUser(view.Folder);
 
                 LanguageTextFieldCallback.OnCreateByUser(view.MessageTextFieldView);
+
+                LanguageObjectFieldCallback.OnCreateByUser(view.MessageAudioFieldView);
 
                 CommonFloatFieldCallback.OnCreateByUser(view.DelaySecondsFieldView);
             }

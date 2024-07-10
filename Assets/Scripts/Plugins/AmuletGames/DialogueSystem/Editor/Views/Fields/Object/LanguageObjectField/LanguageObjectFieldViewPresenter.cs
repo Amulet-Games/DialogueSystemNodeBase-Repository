@@ -34,8 +34,6 @@ namespace AG.DS
 
             AddStyleClass();
 
-            SetupDefaultValue();
-
             void CreateField()
             {
                 view.Field = new();
@@ -73,11 +71,6 @@ namespace AG.DS
 
                 if (fieldUSS02 != null)
                     field.AddToClassList(fieldUSS02);
-            }
-
-            void SetupDefaultValue()
-            {
-                view.CurrentLanguageValue = null;
             }
         }
     }

@@ -36,7 +36,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The callback to invoke when the modifier is created on the graph by the system or user.
+        /// The callback to invoke when the modifier view is created on the graph by the system or user.
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
         /// <param name="searchTreeEntryProvider">The condition modifier search tree entry provider to set for.</param>
@@ -67,7 +67,7 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The callback to invoke when the modifier is created on the graph by the user.
+        /// The callback to invoke when the modifier view is created on the graph by the user.
         /// </summary>
         /// <param name="view">The condition modifier view to set for.</param>
         static void OnCreateByUser(ConditionModifierView view)

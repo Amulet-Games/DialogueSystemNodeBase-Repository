@@ -25,8 +25,6 @@ namespace AG.DS
 
                 m_selectedEntry = value;
 
-                IsSelectedEntryNullValue = m_selectedEntry.userData == null;
-
                 this.ToggleNullValueStyle();
 
                 SelectedEntryChangedEvent?.Invoke(m_selectedEntry);
@@ -38,12 +36,6 @@ namespace AG.DS
         /// The selected search tree entry.
         /// </summary>
         SearchTreeEntry m_selectedEntry;
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool IsSelectedEntryNullValue;
 
 
         /// <summary>

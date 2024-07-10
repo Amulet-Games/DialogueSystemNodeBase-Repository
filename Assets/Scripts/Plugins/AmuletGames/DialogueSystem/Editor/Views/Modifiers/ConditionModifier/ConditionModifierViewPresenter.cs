@@ -93,15 +93,13 @@ namespace AG.DS
             /// <summary>
             /// Create a new variable group element.
             /// </summary>
-            /// <param name="view">The condition modifier view to set for.</param>
-            /// <param name="searchWindow">The search window to set for.</param>
+            /// <param name="view">The condition modifier view to set for.</param>s
             /// <param name="mainLabelText">The main label text to set for.</param>
             /// <param name="textFieldPlaceholderText">The text field placeholder text to set for.</param>
             /// <returns>A new variable group element.</returns>
             public static VariableGroup CreateElement
             (
                 ConditionModifierView view,
-                SearchWindow searchWindow,
                 string mainLabelText,
                 string textFieldPlaceholderText,
                 string floatFieldHintLabelText
@@ -143,7 +141,7 @@ namespace AG.DS
 
                 void CreateGroup()
                 {
-                    group = new(view, searchWindow);
+                    group = new(view);
                     group.AddToClassList(StyleConfig.ConditionModifier_VariableGroup);
                 }
 
@@ -390,7 +388,6 @@ namespace AG.DS
                 view.FirstVariableGroup = VariableGroupPresenter.CreateElement
                 (
                     view: view,
-                    searchWindow: graphViewer.SelectorSearchWindow,
                     mainLabelText: StringConfig.ConditionModifierView.FirstVariable_LabelText,
                     textFieldPlaceholderText: StringConfig.ConditionModifierView.FirstTextField_PlaceholderText,
                     floatFieldHintLabelText: StringConfig.ConditionModifierView.FirstFloatField_HintLabelText
@@ -409,7 +406,6 @@ namespace AG.DS
                 view.SecondVariableGroup = VariableGroupPresenter.CreateElement
                 (
                     view: view,
-                    searchWindow: graphViewer.SelectorSearchWindow,
                     mainLabelText: StringConfig.ConditionModifierView.SecondVariable_LabelText,
                     textFieldPlaceholderText: StringConfig.ConditionModifierView.SecondTextField_PlaceholderText,
                     floatFieldHintLabelText: StringConfig.ConditionModifierView.SecondFloatField_HintLabelText

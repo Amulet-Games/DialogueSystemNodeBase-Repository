@@ -1,15 +1,14 @@
 using UnityEditor;
 using UnityEngine.UIElements;
-using Object = UnityEngine.Object;
 
 namespace AG.DS
 {
     public class DialogueSystemWindowObserver
     {
         /// <summary>
-        /// Reference of the dialogue system window asset.
+        /// The targeting dialogue system window.
         /// </summary>
-        DialogueSystemWindowAsset dialogueSystemWindowAsset;
+        DialogueSystemWindow dialogueSystemWindow;
 
 
         /// <summary>
@@ -22,12 +21,6 @@ namespace AG.DS
         /// Reference of the headBar element.
         /// </summary>
         Headbar headBar;
-
-
-        /// <summary>
-        /// The targeting dialogue system window.
-        /// </summary>
-        DialogueSystemWindow dialogueSystemWindow;
 
 
         /// <summary>
@@ -45,22 +38,12 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the dialogue system window observer class.
         /// </summary>
-        /// <param name="dialogueSystemWindowAsset">The dialogue system window asset to set for.</param>
-        /// <param name="graphViewer">The graph viewer element to set for.</param>
-        /// <param name="headBar">The headBar element to set for.</param>
         /// <param name="dialogueSystemWindow">The dialogue system window to set for.</param>
-        public DialogueSystemWindowObserver
-        (
-            DialogueSystemWindowAsset dialogueSystemWindowAsset,
-            GraphViewer graphViewer,
-            Headbar headBar,
-            DialogueSystemWindow dialogueSystemWindow
-        )
+        public DialogueSystemWindowObserver(DialogueSystemWindow dialogueSystemWindow)
         {
-            this.dialogueSystemWindowAsset = dialogueSystemWindowAsset;
-            this.graphViewer = graphViewer;
-            this.headBar = headBar;
             this.dialogueSystemWindow = dialogueSystemWindow;
+            graphViewer = dialogueSystemWindow.GraphViewer;
+            headBar = dialogueSystemWindow.Headbar;
 
             windowRootElement = dialogueSystemWindow.rootVisualElement;
         }
@@ -76,8 +59,6 @@ namespace AG.DS
             RegisterApplyChangesToDiskEvent();
 
             // Window events
-            RegisterWindowOnDisableEvent();
-            RegisterWindowOnDestroyEvent();
             RegisterWindowChangedEvent();
 
             // Visual element events
@@ -91,18 +72,6 @@ namespace AG.DS
         /// Register ApplyChangesToDiskEvent to the dialogue system window.
         /// </summary>
         void RegisterApplyChangesToDiskEvent() => dialogueSystemWindow.ApplyChangesToDiskEvent += ApplyChangesToDiskEvent;
-
-
-        /// <summary>
-        /// Register WindowOnDisableEvent to the dialogue system window.
-        /// </summary>
-        void RegisterWindowOnDisableEvent() => dialogueSystemWindow.WindowOnDisableEvent += WindowOnDisableEvent;
-
-
-        /// <summary>
-        /// Register WindowOnDestroyEvent to the dialogue system window.
-        /// </summary>
-        void RegisterWindowOnDestroyEvent() => dialogueSystemWindow.WindowOnDestroyEvent += WindowOnDestroyEvent;
 
 
         /// <summary>
@@ -126,7 +95,7 @@ namespace AG.DS
         /// <summary>
         /// Register m_WindowChangedEvent to the static WindowChangedEvent.
         /// </summary>
-        void RegisterWindowChangedEvent() => WindowChangedEvent.Register(m_WindowChangesEvent);
+        void RegisterWindowChangedEvent() => WindowChangedEvent.Register(dialogueSystemWindow.DialogueSystemWindowChangedEvent);
 
 
         // ----------------------------- Event -----------------------------
@@ -136,33 +105,7 @@ namespace AG.DS
         void ApplyChangesToDiskEvent()
         {
             AssetDatabase.SaveAssets();
-
             dialogueSystemWindow.HasUnsavedChanges = false;
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the dialogue system window's OnDisable is called.
-        /// </summary>
-        void WindowOnDisableEvent()
-        {
-            // Dispose search windows
-            {
-                Object.DestroyImmediate(graphViewer.NodeCreationRequestSearchWindowView.SearchWindow, allowDestroyingAssets: true);
-                Object.DestroyImmediate(graphViewer.EdgeConnectorSearchWindowView.SearchWindow, allowDestroyingAssets: true);
-                Object.DestroyImmediate(graphViewer.OptionEdgeConnectorSearchWindowView.SearchWindow, allowDestroyingAssets: true);
-            }
-        }
-
-
-        /// <summary>
-        /// The event to invoke when the dialogue system window's OnDestroy is called.
-        /// </summary>
-        void WindowOnDestroyEvent()
-        {
-            WindowChangedEvent.Unregister(m_WindowChangesEvent);
-
-            dialogueSystemWindowAsset.IsAlreadyOpened = false;
         }
 
 
@@ -238,18 +181,6 @@ namespace AG.DS
             /// </summary>
             /// <param name="evt">The registering event.</param>
             void DockAreaBlurEvent(BlurEvent evt) => graphViewer.Blur();
-        }
-
-
-        /// <summary>
-        /// The event to invoke when there are new changes happened to the dialogue system window.
-        /// </summary>
-        void m_WindowChangesEvent()
-        {
-            if (dialogueSystemWindow.hasFocus)
-            {
-                dialogueSystemWindow.HasUnsavedChanges = true;
-            }
         }
     }
 }

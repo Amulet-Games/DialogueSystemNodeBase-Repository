@@ -117,16 +117,11 @@ namespace AG.DS
             /// Constructor of the variable group element.
             /// </summary>
             /// <param name="view">The condition modifier view to set for.</param>
-            /// <param name="searchWindow">The search window to set for.</param>
-            public VariableGroup
-            (
-                ConditionModifierView view,
-                SearchWindow searchWindow
-            )
+            public VariableGroup(ConditionModifierView view)
             {
                 this.view = view;
-                VariableSearchWindowView = new(searchWindow);
-                FieldInfoSearchWindowView = new(searchWindow);
+                VariableSearchWindowView = new();
+                FieldInfoSearchWindowView = new();
                 TextFieldView = new();
                 FloatFieldView = new();
             }

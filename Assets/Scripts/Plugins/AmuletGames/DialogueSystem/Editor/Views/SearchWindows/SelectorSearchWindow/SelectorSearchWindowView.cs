@@ -10,7 +10,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the search window.
         /// </summary>
-        public SearchWindow SearchWindow;
+        public static SearchWindow SearchWindow { get; private set; }
 
 
         /// <summary>
@@ -28,10 +28,10 @@ namespace AG.DS
         /// <summary>
         /// Constructor of the selector search window view.
         /// </summary>
-        /// <param name="searchWindow">The search window to set for.</param>
-        public SelectorSearchWindowView(SearchWindow searchWindow)
+        public SelectorSearchWindowView()
         {
-            SearchWindow = searchWindow;
+            if (SearchWindow == null)
+                SearchWindow = SelectorSearchWindowPresenter.CreateWindow();
         }
 
 

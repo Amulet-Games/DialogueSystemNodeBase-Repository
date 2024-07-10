@@ -49,6 +49,11 @@ namespace AG.DS
         /// <param name="byUser">Is the node created by the user.</param>
         public void OnCreate(bool byUser)
         {
+            if (byUser)
+            {
+                NodeTitleTextFieldCallback.OnCreateByUser(View.NodeTitleFieldView);
+            }
+
             _OnCreate(byUser);
             NodeCreatedEvent?.Invoke();
         }

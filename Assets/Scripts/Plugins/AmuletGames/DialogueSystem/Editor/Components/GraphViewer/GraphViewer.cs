@@ -28,12 +28,6 @@ namespace AG.DS
 
 
         /// <summary>
-        /// Reference of the selector search window.
-        /// </summary>
-        public SearchWindow SelectorSearchWindow { get; private set; }
-
-
-        /// <summary>
         /// Is the graph viewer in focus at the moment?
         /// </summary>
         public bool IsFocus;
@@ -73,8 +67,6 @@ namespace AG.DS
                 inputConnectorSearchTreeEntries: SearchTreeEntryProvider.OptionEdgeConnectorInputSearchTreeEntries,
                 outputConnectorSearchTreeEntries: SearchTreeEntryProvider.OptionEdgeConnectorOutputSearchTreeEntries
             );
-
-            SelectorSearchWindow = SelectorSearchWindowPresenter.CreateWindow();
 
             Nodes = new();
             Edges = new();

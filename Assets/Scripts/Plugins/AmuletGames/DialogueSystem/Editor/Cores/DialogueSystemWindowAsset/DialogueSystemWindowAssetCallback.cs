@@ -92,9 +92,7 @@ namespace AG.DS
                     }
                 }
 
-                var window = DialogueSystemWindowPresenter.CreateWindow();
-                window.Init(asset);
-                window.Setup();
+                DialogueSystemWindowFactory.Generate(asset);
             }
 
             return false;

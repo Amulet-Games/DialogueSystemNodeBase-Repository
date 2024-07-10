@@ -25,7 +25,7 @@ namespace AG.DS
 
         // ----------------------------- Register Events -----------------------------
         /// <summary>
-        /// Register events to the language object field.
+        /// Register events to the language object field view.
         /// </summary>
         public void RegisterEvents()
         {

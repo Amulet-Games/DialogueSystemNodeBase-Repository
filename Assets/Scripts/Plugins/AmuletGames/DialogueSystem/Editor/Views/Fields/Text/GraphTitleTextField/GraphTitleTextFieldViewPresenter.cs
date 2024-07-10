@@ -2,16 +2,17 @@ using UnityEngine.UIElements;
 
 namespace AG.DS
 {
-    public class NodeTitleTextFieldPresenter
+    public class GraphTitleTextFieldPresenter
     {
         /// <summary>
-        /// Create the elements for the node title text field view.
+        /// Create the elements for the graph title text field view.
         /// </summary>
-        /// <param name="view">The node title text field view to set for.</param>
+        /// <param name="view">The graph title text field view to set for.</param>
         /// <param name="fieldUSS">The field USS style to set for.</param>
-        public static void CreateElement
+        /// <returns>A new graph title text field element.</returns>
+        public static TextField CreateElement
         (
-            NodeTitleTextFieldView view,
+            GraphTitleTextFieldView view,
             string fieldUSS
         )
         {
@@ -25,17 +26,11 @@ namespace AG.DS
 
             AddStyleClass();
 
-            SetupDefaultValue();
+            return field;
 
             void CreateField()
             {
-                view.Field = new
-                (
-                    maxLength: NumberConfig.MAX_CHAR_LENGTH_NODE_TITLE_TEXT,
-                    multiline: false,
-                    isPasswordField: false,
-                    maskChar: '*'
-                );
+                view.Field = new();
                 var (inputElement, multilineContainerElement, textElement) = view.Field.GetInitialChildElements();
 
                 field = view.Field;
@@ -46,9 +41,6 @@ namespace AG.DS
             void SetupDetails()
             {
                 field.isDelayed = true;
-
-                fieldInputElement.pickingMode = PickingMode.Ignore;
-                fieldTextElement.pickingMode = PickingMode.Ignore;
             }
 
             void AddStyleClass()
@@ -60,11 +52,6 @@ namespace AG.DS
                 field.AddToClassList(fieldUSS);
                 fieldInputElement.AddToClassList(StyleConfig.Text_Field_Input);
                 fieldTextElement.AddToClassList(StyleConfig.Text_Field_Element);
-            }
-
-            void SetupDefaultValue()
-            {
-                view.Value = "";
             }
         }
     }
