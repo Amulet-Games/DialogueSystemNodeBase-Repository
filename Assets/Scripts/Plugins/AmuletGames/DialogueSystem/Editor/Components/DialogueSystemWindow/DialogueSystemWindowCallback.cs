@@ -11,7 +11,6 @@ namespace AG.DS
         /// <param name="window">The dialogue system window to set for.</param>
         public static void OnCreate(DialogueSystemWindow window)
         {
-            HeadbarCallback.OnCreate(window.Headbar);
         }
 
 
@@ -21,21 +20,16 @@ namespace AG.DS
         /// <param name="asset">The dialogue system window asset to set for.</param>
         /// <param name="graphViewer">The graph viewer element to set for.</param>
         /// <param name="window">The dialogue system window to set for.</param>
-        public static void OnEnable
-        (
-            DialogueSystemWindowAsset asset,
-            GraphViewer graphViewer,
-            DialogueSystemWindow window
-        )
+        public static void OnEnable(DialogueSystemWindow window)
         {
-            if (asset == null)
+            if (window.Asset == null)
                 return;
 
             window.Setup();
 
             window.Load(isForceLoadWindow: true);
 
-            graphViewer.ReframeGraphOnGeometryChanged(
+            window.GraphViewer.ReframeGraphOnGeometryChanged(
                 geometryChangedElement: window.rootVisualElement,
                 frameType: FrameType.All
             );
@@ -60,16 +54,11 @@ namespace AG.DS
         /// <summary>
         /// The callback to invoke when the dialogue system window's OnDestroy is called.
         /// </summary>
-        /// <param name="asset">The dialogue system window asset to set for.</param>
         /// <param name="window">The dialogue system window to set for.</param>
-        public static void OnDestroy
-        (
-            DialogueSystemWindowAsset asset,
-            DialogueSystemWindow window
-        )
+        public static void OnDestroy(DialogueSystemWindow window)
         {
             WindowChangedEvent.Unregister(window.DialogueSystemWindowChangedEvent);
-            asset.IsAlreadyOpened = false;
+            window.Asset.IsAlreadyOpened = false;
         }
     }
 }

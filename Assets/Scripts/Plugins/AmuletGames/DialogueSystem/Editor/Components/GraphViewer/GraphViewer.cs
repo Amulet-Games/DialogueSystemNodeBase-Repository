@@ -28,6 +28,12 @@ namespace AG.DS
 
 
         /// <summary>
+        /// Reference of the blackboard element.
+        /// </summary>
+        public Blackboard Blackboard { get; private set; }
+
+
+        /// <summary>
         /// Is the graph viewer in focus at the moment?
         /// </summary>
         public bool IsFocus;
@@ -56,17 +62,32 @@ namespace AG.DS
         /// </summary>
         public GraphViewer()
         {
-            NodeCreationRequestSearchWindowView = new();
-            EdgeConnectorSearchWindowView = new
-            (
-                inputConnectorSearchTreeEntries: SearchTreeEntryProvider.EdgeConnectorInputSearchTreeEntries,
-                outputConnectorSearchTreeEntries: SearchTreeEntryProvider.EdgeConnectorOutputSearchTreeEntries
-            );
-            OptionEdgeConnectorSearchWindowView = new
-            (
-                inputConnectorSearchTreeEntries: SearchTreeEntryProvider.OptionEdgeConnectorInputSearchTreeEntries,
-                outputConnectorSearchTreeEntries: SearchTreeEntryProvider.OptionEdgeConnectorOutputSearchTreeEntries
-            );
+            // Search Window Views
+            {
+                NodeCreationRequestSearchWindowView = new();
+                EdgeConnectorSearchWindowView = new
+                (
+                    inputConnectorSearchTreeEntries: SearchTreeEntryProvider.EdgeConnectorInputSearchTreeEntries,
+                    outputConnectorSearchTreeEntries: SearchTreeEntryProvider.EdgeConnectorOutputSearchTreeEntries
+                );
+                OptionEdgeConnectorSearchWindowView = new
+                (
+                    inputConnectorSearchTreeEntries: SearchTreeEntryProvider.OptionEdgeConnectorInputSearchTreeEntries,
+                    outputConnectorSearchTreeEntries: SearchTreeEntryProvider.OptionEdgeConnectorOutputSearchTreeEntries
+                );
+            }
+
+            // Blackboard
+            {
+                Blackboard = BlackboardFactory.Generate(graphViewer: this);
+                Add(Blackboard);
+            }
+
+            // InputHint
+            {
+                InputHint.Instance = InputHintFactory.Generate(graphViewer: this);
+                contentViewContainer.Add(InputHint.Instance);
+            }
 
             Nodes = new();
             Edges = new();

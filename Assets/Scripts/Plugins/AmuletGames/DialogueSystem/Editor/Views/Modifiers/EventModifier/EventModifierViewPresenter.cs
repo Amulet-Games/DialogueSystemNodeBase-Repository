@@ -56,7 +56,7 @@ namespace AG.DS
             {
                 view.Folder = FolderPresenter.CreateElement
                 (
-                    StringConfig.EventModifier_FolderTitleField_DefaultText.Append(index.ToString())
+                    folderTitle: StringConfig.EventModifier_FolderTitleField_DefaultText.Append(index.ToString())
                 );
             }
 

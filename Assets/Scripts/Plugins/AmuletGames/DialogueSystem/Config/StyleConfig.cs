@@ -337,5 +337,13 @@ namespace AG.DS
         public const string SearchWindowSelector_SelectorButton_Text_Label = "searchWindowSelector-selectButton-text-label";
         public const string SearchWindowSelector_SelectorButton_MenuSelectImage = "searchWindowSelector-selectButton-windowSelectImage";
         #endregion
+
+        #region Blackboard USS Classes.
+        public const string Blackboard = "blackboard";
+        public const string Blackboard_Category = "blackboard-category";
+        public const string Blackboard_Category_Container = "blackboard-category-container";
+        public const string Blackboard_Section = "blackboard-section";
+        public const string Blackboard_Section_Container = "blackboard-section-container";
+        #endregion
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace AG.DS
@@ -9,7 +8,7 @@ namespace AG.DS
         /// <summary>
         /// Reference of the dialogue system window asset.
         /// </summary>
-        DialogueSystemWindowAsset asset;
+        public DialogueSystemWindowAsset Asset { get; private set; }
 
 
         /// <summary>
@@ -49,26 +48,10 @@ namespace AG.DS
 
 
         /// <summary>
-        /// The property of the dialogue system window's hasUnsavedChanges value.
-        /// </summary>
-        public bool HasUnsavedChanges
-        {
-            get => hasUnsavedChanges;
-            set => hasUnsavedChanges = value;
-        }
-
-
-        /// <summary>
-        /// The event to invoke to write all the unsaved changes to the disk.
-        /// </summary>
-        public event Action ApplyChangesToDiskEvent;
-
-
-        /// <summary>
         /// This is called when the scripts are reloaded and after OnDisable.
         /// <br>Also when the window is first opened in <see cref="EditorWindow.CreateWindow{T}(System.Type[])"/>.</br>
         /// </summary>
-        void OnEnable() => DialogueSystemWindowCallback.OnEnable(asset, GraphViewer, window: this);
+        void OnEnable() => DialogueSystemWindowCallback.OnEnable(window: this);
 
 
         /// <summary>
@@ -81,7 +64,7 @@ namespace AG.DS
         /// <summary>
         /// This is called when the window is closed and can be used to cleanup any static references.
         /// </summary>
-        void OnDestroy() => DialogueSystemWindowCallback.OnDestroy(asset, window: this);
+        void OnDestroy() => DialogueSystemWindowCallback.OnDestroy(window: this);
 
 
         /// <summary>
@@ -91,7 +74,7 @@ namespace AG.DS
         /// <param name="asset">The dialogue system window asset to set for.</param>
         public void Init(DialogueSystemWindowAsset asset)
         {
-            this.asset = asset;
+            Asset = asset;
             asset.IsAlreadyOpened = true;
             data = asset.Data;
         }
@@ -129,23 +112,17 @@ namespace AG.DS
 
                 // Headbar
                 {
-                    Headbar = HeadbarFactory.Generate(languageHandler, dialogueSystemWindowAsset: asset, dialogueSystemWindow: this);
+                    Headbar = HeadbarFactory.Generate(languageHandler, dialogueSystemWindowAsset: Asset, dialogueSystemWindow: this);
                 }
 
                 // Graph Viewer
                 {
                     GraphViewer = GraphViewerFactory.Generate(languageHandler, dialogueSystemWindow: this);
                 }
-
-                // Input Hint
-                {
-                    InputHint.Instance = InputHintFactory.Generate(GraphViewer);
-                }
             }
 
             // Add modules to graph
             {
-                GraphViewer.contentViewContainer.Add(InputHint.Instance);
                 rootVisualElement.Add(GraphViewer);
                 rootVisualElement.Add(Headbar);
             }
@@ -169,9 +146,8 @@ namespace AG.DS
         {
             if (hasUnsavedChanges)
             {
-                serializeHandler.Save(asset, data, GraphViewer);
-
-                ApplyChangesToDiskEvent.Invoke();
+                serializeHandler.Save(Asset, data, GraphViewer);
+                SaveChangesToAssetDatabase();
             }
             else
             {
@@ -191,9 +167,9 @@ namespace AG.DS
 
                 languageHandler.ClearCache();
 
-                serializeHandler.Load(asset, data, GraphViewer, languageHandler);
+                serializeHandler.Load(Asset, data, GraphViewer, languageHandler);
 
-                ApplyChangesToDiskEvent.Invoke();
+                SaveChangesToAssetDatabase();
             }
             else
             {
@@ -208,9 +184,8 @@ namespace AG.DS
         /// <param name="value">The new dialogue system window's name to set for.</param>
         public void RenameWindow(string value)
         {
-            asset.Name = value;
-
-            ApplyChangesToDiskEvent.Invoke();
+            Asset.Name = value;
+            SaveChangesToAssetDatabase();
         }
 
 
@@ -221,8 +196,17 @@ namespace AG.DS
         public void ChangeLanguage(LanguageType value)
         {
             languageHandler.CurrentLanguage = value;
-
             WindowChangedEvent.Invoke();
+        }
+
+
+        /// <summary>
+        /// Save the window changes to the asset database.
+        /// </summary>
+        void SaveChangesToAssetDatabase()
+        {
+            AssetDatabase.SaveAssets();
+            hasUnsavedChanges = false;
         }
 
 

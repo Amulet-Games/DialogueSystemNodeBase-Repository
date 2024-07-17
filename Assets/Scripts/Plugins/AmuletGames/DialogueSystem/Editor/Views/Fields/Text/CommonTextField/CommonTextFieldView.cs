@@ -52,7 +52,7 @@ namespace AG.DS
         /// <summary>
         /// Returns true if the view's field is currently empty.
         /// </summary>
-        [NonSerialized] public bool IsEmpty;
+        public bool IsEmpty { get; private set; }
 
 
         // ----------------------------- Serialization -----------------------------

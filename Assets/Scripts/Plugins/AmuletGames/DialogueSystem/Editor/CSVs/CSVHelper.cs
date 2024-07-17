@@ -38,7 +38,7 @@ namespace AG.DS
         public static List<DialogueSystemWindowAsset> GetDialogueSystemModel()
         {
             // Find all the dialogue system model scriptable assets and cache their GUID.
-            string[] GUIDs = AssetDatabase.FindAssets("t:DialogueSystemWindowAsset");
+            string[] GUIDs = AssetDatabase.FindAssets("t:Asset");
 
             var dsModels = new DialogueSystemWindowAsset[GUIDs.Length];
 

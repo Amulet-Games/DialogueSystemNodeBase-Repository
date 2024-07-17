@@ -55,9 +55,6 @@ namespace AG.DS
         /// </summary>
         public void RegisterEvents()
         {
-            // Serialization events
-            RegisterApplyChangesToDiskEvent();
-
             // Window events
             RegisterWindowChangedEvent();
 
@@ -66,12 +63,6 @@ namespace AG.DS
             RegisterKeyUpEvent();
             RegisterGeometryChangedEvent();
         }
-
-
-        /// <summary>
-        /// Register ApplyChangesToDiskEvent to the dialogue system window.
-        /// </summary>
-        void RegisterApplyChangesToDiskEvent() => dialogueSystemWindow.ApplyChangesToDiskEvent += ApplyChangesToDiskEvent;
 
 
         /// <summary>
@@ -98,17 +89,7 @@ namespace AG.DS
         void RegisterWindowChangedEvent() => WindowChangedEvent.Register(dialogueSystemWindow.DialogueSystemWindowChangedEvent);
 
 
-        // ----------------------------- Event -----------------------------
-        /// <summary>
-        /// The event to invoke to write all the unsaved changes to the disk.
-        /// </summary>
-        void ApplyChangesToDiskEvent()
-        {
-            AssetDatabase.SaveAssets();
-            dialogueSystemWindow.HasUnsavedChanges = false;
-        }
-
-
+        // ----------------------------- Event 
         /// <summary>
         /// The event to invoke when the user pressed any hotkeys in the empty space inside the window.
         /// </summary>

@@ -109,10 +109,6 @@ namespace AG.DS
         public const string MessageModifier_DelaySeconds_LabelText = "seconds";
         #endregion
 
-        #region Condition Modifier Texts.
-        
-        #endregion
-
         public static class ConditionModifierView
         {
             public const string FolderTitleField_DefaultText = "Condition ";
@@ -154,6 +150,31 @@ namespace AG.DS
             public const string BindingFlags_FlagElement_Static_LabelText = "Static";
             public const string BindingFlags_FlagElement_Public_LabelText = "Public";
             public const string BindingFlags_FlagElement_Private_LabelText = "Private";
+        }
+
+        public static class Blackboard
+        {
+            public static class GenericMenu
+            {
+                public const string StringLabelText = "Variables/String";
+                public const string FloatLabelText = "Variables/Float";
+                public const string BooleanLabelText = "Variables/Boolean";
+                
+                public const string EventLabelText = "Dialogue Event";
+            }
+
+            public static class VariablesSection
+            {
+                public const string MainLabelText = "Variables";
+                public const string StringsLabelText = "Strings";
+                public const string FloatsLabelText = "Floats";
+                public const string BooleansLabelText = "Booleans";
+            }
+
+            public static class EventsSection
+            {
+                public const string MainLabelText = "Events";
+            }
         }
 
         #region Option Root Node Texts.

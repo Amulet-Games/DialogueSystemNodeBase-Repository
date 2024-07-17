@@ -20,6 +20,8 @@ namespace AG.DS
 
             new HeadbarObserver(headbar, dialogueSystemWindow).RegisterEvents();
 
+            HeadbarCallback.OnCreate(headbar);
+
             return headbar;
         }
     }
